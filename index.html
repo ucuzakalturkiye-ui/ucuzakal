@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UcuzaKal Türkiye | Seçkin Seyahat ve Rezervasyon Platformu</title>
     
-    <!-- خطوط فائقة الفخامة والأناقة -->
+    <!-- خطوط فائقة الوضوح والفخامة -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -25,7 +25,9 @@
                     colors: {
                         brand: {
                             gold: '#D4AF37',
-                            dark: '#030508', /* لون كحلي ليلي عميق جداً يبرز الفخامة */
+                            dark: '#050810', /* كحلي ليلي عميق جداً */
+                            surface: '#0A0E17', /* لون بطاقات الوضع الليلي */
+                            light: '#FBFBF9', /* أبيض دافئ للوضع النهاري */
                         }
                     }
                 }
@@ -34,84 +36,40 @@
     </script>
 
     <style>
-        /* نقش هادئ وراقي جداً في الخلفية */
+        /* نقش هادئ جداً وفخم */
         .premium-bg {
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23d4af37' fill-opacity='0.015' fill-rule='evenodd'%3E%3Cpath d='M0 40L40 0H20L0 20M40 40V20L20 40'/%3E%3C/g%3E%3C/svg%3E");
         }
 
-        /* توهج أنيق ومستمر لاسم المنصة */
+        /* توهج راقي لاسم المنصة */
         @keyframes elegantGlow {
             0% { text-shadow: 0 0 10px rgba(212,175,55,0.2); }
-            50% { text-shadow: 0 0 25px rgba(212,175,55,0.7), 0 0 35px rgba(255,255,255,0.2); }
+            50% { text-shadow: 0 0 20px rgba(212,175,55,0.5), 0 0 30px rgba(255,255,255,0.1); }
             100% { text-shadow: 0 0 10px rgba(212,175,55,0.2); }
         }
         .title-glow { animation: elegantGlow 4s infinite ease-in-out; }
 
-        /* ======== تصميم بطاقات الوجهات الفاخرة (Museum-Style) ======== */
-        .ultra-luxury-card {
-            background: transparent;
-            position: relative;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid transparent;
-        }
-
-        .img-frame {
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .img-frame::after {
+        /* تأثير اللمعان الزجاجي على البطاقات */
+        .glass-shine::after {
             content: '';
             position: absolute;
-            inset: 12px;
-            border: 1px solid rgba(212, 175, 55, 0);
-            transition: all 0.8s ease;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(212,175,55,0.1) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            transition: all 1s ease;
             pointer-events: none;
-            z-index: 10;
+            z-index: 20;
         }
-
-        .ultra-luxury-card:hover .img-frame::after {
-            border: 1px solid rgba(212, 175, 55, 0.8);
-            inset: 16px;
-        }
-
-        .ultra-luxury-card:hover {
-            transform: translateY(-12px);
-        }
-
-        .ultra-luxury-card img {
-            transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
-            filter: brightness(0.9);
-        }
-
-        .ultra-luxury-card:hover img {
-            transform: scale(1.08);
-            filter: brightness(1.1);
-        }
-
-        .card-content {
-            padding: 2rem 1rem 1rem 1rem;
-            text-align: center;
-        }
-
-        .gold-divider {
-            width: 30px;
-            height: 1px;
-            background-color: #D4AF37;
-            margin: 1rem auto;
-            transition: width 0.6s ease;
-        }
-
-        .ultra-luxury-card:hover .gold-divider {
-            width: 80px;
+        .group:hover .glass-shine::after {
+            left: 200%;
+            transition: all 1.2s ease-in-out;
         }
 
         /* الشاشة السينمائية الراقية */
         #cinematic-overlay {
             position: fixed; inset: 0;
-            background: rgba(3, 5, 8, 0.99); 
+            background: rgba(3, 5, 10, 0.98); 
             backdrop-filter: blur(15px);
             z-index: 999999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -123,35 +81,40 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        .lens-spin { animation: smoothSpin 10s linear infinite; }
+        .lens-spin { animation: smoothSpin 8s linear infinite; }
 
-        body { transition: background-color 0.5s ease, color 0.5s ease; }
+        /* شريط التمرير */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
+
+        body { transition: background-color 0.6s ease, color 0.6s ease; }
     </style>
 </head>
-<body class="bg-[#FCFBF9] dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg">
+<body class="bg-brand-light dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg transition-colors duration-500">
 
-    <!-- الشاشة السينمائية الانتقالية الفاخرة (جاري تحويلك لمنصة الحجز) -->
+    <!-- الشاشة السينمائية (جاري تحويلك لمنصة الحجز...) -->
     <div id="cinematic-overlay">
         <div class="text-center p-8">
-            <div class="relative w-28 h-28 mx-auto mb-10 flex items-center justify-center">
+            <div class="relative w-24 h-24 mx-auto mb-8 flex items-center justify-center">
                 <div class="absolute inset-0 rounded-full border border-brand-gold/30 animate-ping"></div>
-                <div class="w-24 h-24 rounded-full border-t-2 border-b-2 border-brand-gold lens-spin"></div>
-                <i class="fas fa-key text-brand-gold text-2xl absolute"></i>
+                <div class="w-20 h-20 rounded-full border-t-2 border-b-2 border-brand-gold lens-spin"></div>
+                <i class="fas fa-lock text-brand-gold text-2xl absolute"></i>
             </div>
-            <h3 class="font-luxury text-3xl sm:text-4xl text-brand-gold font-bold mb-4 tracking-widest" data-i18n="cinematic_title">Rezervasyon Platformuna Yönlendiriliyorsunuz...</h3>
-            <div class="w-64 h-[1px] bg-slate-800 mx-auto overflow-hidden mt-8">
+            <h3 class="font-luxury text-3xl sm:text-4xl text-brand-gold font-bold mb-4 tracking-wider" data-i18n="cinematic_title">Rezervasyon Platformuna Yönlendiriliyorsunuz...</h3>
+            <div class="w-64 h-[2px] bg-slate-800 mx-auto overflow-hidden mt-8 rounded-full">
                 <div id="cinematic-bar" class="h-full bg-brand-gold w-0 transition-all duration-[2000ms] ease-out"></div>
             </div>
         </div>
     </div>
 
     <!-- شريط التنقل العلوي -->
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-brand-dark/90 backdrop-blur-xl border-b border-brand-gold/20 shadow-sm transition-colors">
+    <header class="sticky top-0 z-50 bg-white/95 dark:bg-brand-dark/95 backdrop-blur-md border-b border-brand-gold/20 shadow-sm transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
             
             <!-- الشعار -->
             <a href="#" class="flex items-center gap-4 group">
-                <div class="w-12 h-12 rounded-full border-2 border-brand-gold flex items-center justify-center bg-transparent text-brand-gold font-luxury font-bold text-xl group-hover:bg-brand-gold group-hover:text-white transition duration-700 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                <div class="w-12 h-12 rounded-full border-2 border-brand-gold flex items-center justify-center bg-transparent text-brand-gold font-luxury font-bold text-xl group-hover:bg-brand-gold group-hover:text-white transition duration-500">
                     U
                 </div>
                 <div>
@@ -161,23 +124,27 @@
                 </div>
             </a>
 
-            <!-- اللغات والتحكم (تمت إضافة الصينية والكردية) -->
-            <div class="flex items-center gap-4 sm:gap-6">
-                <select id="lang-switcher" onchange="changeLanguage(this.value)" class="bg-transparent text-slate-900 dark:text-white border border-brand-gold/40 rounded-full px-4 py-2 text-sm font-bold focus:outline-none focus:border-brand-gold cursor-pointer transition shadow-sm">
-                    <option value="tr">Türkçe</option>
-                    <option value="ar">العربية</option>
-                    <option value="en">English</option>
-                    <option value="ru">Русский</option>
-                    <option value="es">Español</option>
-                    <option value="zh">中文 (Chinese)</option>
-                    <option value="ku">Kurdî</option>
-                    <option value="fa">فارسی</option>
-                    <option value="az">Azərbaycan</option>
-                    <option value="el">Ελληνικά</option>
-                    <option value="ka">ქართული</option>
-                    <option value="bg">Български</option>
-                    <option value="uk">Українська</option>
-                </select>
+            <!-- اللغات والتحكم (تمت معالجة التباين في الوضعين) -->
+            <div class="flex items-center gap-4 sm:gap-5">
+                <div class="relative">
+                    <select id="lang-switcher" onchange="changeLanguage(this.value)" class="bg-[#F3F4F6] dark:bg-[#0A0E17] text-slate-900 dark:text-white border border-brand-gold/50 rounded-full px-4 py-2 text-sm font-bold focus:outline-none focus:ring-1 focus:ring-brand-gold cursor-pointer transition shadow-sm appearance-none pr-8">
+                        <option value="tr" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">Türkçe</option>
+                        <option value="ar" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">العربية</option>
+                        <option value="en" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">English</option>
+                        <option value="ru" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">Русский</option>
+                        <option value="es" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">Español</option>
+                        <option value="zh" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">中文 (Chinese)</option>
+                        <option value="ku" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">Kurdî</option>
+                        <option value="fa" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">فارسی</option>
+                        <option value="az" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">Azərbaycan</option>
+                        <option value="el" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">Ελληνικά</option>
+                        <option value="ka" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">ქართული</option>
+                        <option value="bg" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">Български</option>
+                        <option value="uk" class="bg-white dark:bg-[#0A0E17] text-slate-900 dark:text-white">Українська</option>
+                    </select>
+                    <!-- أيقونة سهم مخصصة للقائمة -->
+                    <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-xs pointer-events-none"></i>
+                </div>
 
                 <button onclick="toggleTheme()" class="w-10 h-10 flex items-center justify-center text-slate-700 dark:text-brand-gold border border-brand-gold/30 rounded-full hover:bg-brand-gold hover:text-white transition duration-300" title="Tema">
                     <i id="theme-icon" class="fas fa-sun text-sm"></i>
@@ -192,146 +159,169 @@
     </header>
 
     <!-- الواجهة الرئيسية -->
-    <section class="relative py-48 lg:py-64 px-4 overflow-hidden text-center flex items-center justify-center">
-        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-110" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2500&q=100');"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-brand-dark"></div>
+    <section class="relative py-44 lg:py-60 px-4 overflow-hidden text-center flex items-center justify-center">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2500&q=100');"></div>
+        <div class="absolute inset-0 bg-black/40 dark:bg-brand-dark/75"></div>
         
-        <div class="max-w-5xl mx-auto relative z-10 text-white">
-            <h1 class="font-luxury text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-8 title-glow tracking-widest" data-i18n="hero_title">
+        <div class="max-w-4xl mx-auto relative z-10 text-white">
+            <h1 class="font-luxury text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-8 title-glow tracking-wide drop-shadow-xl" data-i18n="hero_title">
                 Seçkin Rotaları Lüksle Keşfedin
             </h1>
-            <p class="text-white/80 text-lg sm:text-xl max-w-3xl mx-auto font-light leading-relaxed mb-10" data-i18n="hero_subtitle">
+            <p class="text-white/95 text-lg sm:text-xl max-w-2xl mx-auto font-medium leading-relaxed mb-10 drop-shadow-md" data-i18n="hero_subtitle">
                 Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.
             </p>
         </div>
     </section>
 
-    <!-- قسم الوجهات الفاخرة (تصميم متحفي فائق الأناقة Ultra-Luxury Cards) -->
+    <!-- قسم الوجهات الفاخرة (تناسق تام في النهاري والليلي) -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div class="text-center max-w-3xl mx-auto mb-24">
-            <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-4" data-i18n="hotels_sub">ÖZEL SEÇKİ</span>
-            <h2 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-8" data-i18n="hotels_heading">Özel Seçki Koleksiyonu</h2>
-            <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
+        <div class="text-center max-w-3xl mx-auto mb-20">
+            <h2 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="hotels_heading">Özel Seçki Koleksiyonu</h2>
+            <div class="w-16 h-[2px] bg-brand-gold mx-auto"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             
             <!-- إسطنبول -->
-            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90" alt="Istanbul" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
+            <div class="group relative bg-white dark:bg-brand-surface rounded-[2rem] border border-brand-gold/20 hover:border-brand-gold/60 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-700 overflow-hidden flex flex-col cursor-pointer glass-shine" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
+                <div class="relative h-[320px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90" alt="Istanbul" class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <span class="text-brand-gold text-[11px] tracking-[0.2em] font-bold block mb-1 uppercase">İSTANBUL</span>
+                        <h3 class="font-luxury text-2xl font-bold">Çırağan Palace</h3>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">İSTANBUL</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">Çırağan Palace</h3>
-                    <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h1_desc">
+                <div class="p-8 flex-1 flex flex-col justify-between">
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium mb-8" data-i18n="h1_desc">
                         Boğaziçi'nin kalbinde, eşsiz konforu ve kusursuz manzarasıyla öne çıkan seçkin bir deneyim.
                     </p>
-                    <div class="flex justify-center items-center gap-4">
-                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€269</span>
+                    <div class="border-t border-slate-200 dark:border-white/10 pt-6 flex justify-between items-center">
+                        <div>
+                            <span class="text-slate-500 text-[10px] uppercase tracking-widest block font-bold" data-i18n="starting_from">Başlayan Fiyatlar</span>
+                            <span class="font-luxury text-2xl font-bold text-slate-900 dark:text-brand-gold block">€269</span>
+                        </div>
+                        <span class="bg-brand-gold text-white text-xs font-bold px-6 py-3 rounded-full uppercase tracking-wider shadow-md group-hover:bg-[#b8952a] transition-colors">İncele</span>
                     </div>
                 </div>
             </div>
 
             <!-- أنطاليا -->
-            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90" alt="Antalya" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
+            <div class="group relative bg-white dark:bg-brand-surface rounded-[2rem] border border-brand-gold/20 hover:border-brand-gold/60 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-700 overflow-hidden flex flex-col cursor-pointer glass-shine" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
+                <div class="relative h-[320px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90" alt="Antalya" class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <span class="text-brand-gold text-[11px] tracking-[0.2em] font-bold block mb-1 uppercase">ANTALYA</span>
+                        <h3 class="font-luxury text-2xl font-bold">Maxx Royal Belek</h3>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">ANTALYA</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">Maxx Royal Belek</h3>
-                    <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h2_desc">
+                <div class="p-8 flex-1 flex flex-col justify-between">
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium mb-8" data-i18n="h2_desc">
                         Akdeniz kıyılarında özel alanlar sunan, doğa ile iç içe, ayrıcalıklı tasarıma sahip konfor alanı.
                     </p>
-                    <div class="flex justify-center items-center gap-4">
-                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€319</span>
+                    <div class="border-t border-slate-200 dark:border-white/10 pt-6 flex justify-between items-center">
+                        <div>
+                            <span class="text-slate-500 text-[10px] uppercase tracking-widest block font-bold" data-i18n="starting_from">Başlayan Fiyatlar</span>
+                            <span class="font-luxury text-2xl font-bold text-slate-900 dark:text-brand-gold block">€319</span>
+                        </div>
+                        <span class="bg-brand-gold text-white text-xs font-bold px-6 py-3 rounded-full uppercase tracking-wider shadow-md group-hover:bg-[#b8952a] transition-colors">İncele</span>
                     </div>
                 </div>
             </div>
 
             <!-- طرابزون -->
-            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=90" alt="Trabzon" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
+            <div class="group relative bg-white dark:bg-brand-surface rounded-[2rem] border border-brand-gold/20 hover:border-brand-gold/60 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-700 overflow-hidden flex flex-col cursor-pointer glass-shine" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
+                <div class="relative h-[320px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=90" alt="Trabzon" class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <span class="text-brand-gold text-[11px] tracking-[0.2em] font-bold block mb-1 uppercase">TRABZON</span>
+                        <h3 class="font-luxury text-2xl font-bold">Royal Uzungöl</h3>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">TRABZON</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">Royal Uzungöl</h3>
-                    <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h3_desc">
+                <div class="p-8 flex-1 flex flex-col justify-between">
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium mb-8" data-i18n="h3_desc">
                         Göl manzaralı, huzur dolu mimarisiyle doğanın kalbinde eşsiz ve sakin bir dinlenme noktası.
                     </p>
-                    <div class="flex justify-center items-center gap-4">
-                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€72</span>
+                    <div class="border-t border-slate-200 dark:border-white/10 pt-6 flex justify-between items-center">
+                        <div>
+                            <span class="text-slate-500 text-[10px] uppercase tracking-widest block font-bold" data-i18n="starting_from">Başlayan Fiyatlar</span>
+                            <span class="font-luxury text-2xl font-bold text-slate-900 dark:text-brand-gold block">€72</span>
+                        </div>
+                        <span class="bg-brand-gold text-white text-xs font-bold px-6 py-3 rounded-full uppercase tracking-wider shadow-md group-hover:bg-[#b8952a] transition-colors">İncele</span>
                     </div>
                 </div>
             </div>
 
             <!-- بورصة -->
-            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90" alt="Bursa" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
+            <div class="group relative bg-white dark:bg-brand-surface rounded-[2rem] border border-brand-gold/20 hover:border-brand-gold/60 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-700 overflow-hidden flex flex-col cursor-pointer glass-shine" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
+                <div class="relative h-[320px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90" alt="Bursa" class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <span class="text-brand-gold text-[11px] tracking-[0.2em] font-bold block mb-1 uppercase">BURSA</span>
+                        <h3 class="font-luxury text-2xl font-bold">Almira Termal</h3>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">BURSA</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">Almira Termal</h3>
-                    <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h4_desc">
+                <div class="p-8 flex-1 flex flex-col justify-between">
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium mb-8" data-i18n="h4_desc">
                         Uludağ manzarasına karşı şifalı olanaklarla harmanlanmış, bedeni ve ruhu dinlendiren bir ortam.
                     </p>
-                    <div class="flex justify-center items-center gap-4">
-                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€95</span>
+                    <div class="border-t border-slate-200 dark:border-white/10 pt-6 flex justify-between items-center">
+                        <div>
+                            <span class="text-slate-500 text-[10px] uppercase tracking-widest block font-bold" data-i18n="starting_from">Başlayan Fiyatlar</span>
+                            <span class="font-luxury text-2xl font-bold text-slate-900 dark:text-brand-gold block">€95</span>
+                        </div>
+                        <span class="bg-brand-gold text-white text-xs font-bold px-6 py-3 rounded-full uppercase tracking-wider shadow-md group-hover:bg-[#b8952a] transition-colors">İncele</span>
                     </div>
                 </div>
             </div>
 
             <!-- أنقرة -->
-            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=90" alt="Ankara" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
+            <div class="group relative bg-white dark:bg-brand-surface rounded-[2rem] border border-brand-gold/20 hover:border-brand-gold/60 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-700 overflow-hidden flex flex-col cursor-pointer glass-shine" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
+                <div class="relative h-[320px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=90" alt="Ankara" class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <span class="text-brand-gold text-[11px] tracking-[0.2em] font-bold block mb-1 uppercase">ANKARA</span>
+                        <h3 class="font-luxury text-2xl font-bold">JW Marriott</h3>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">ANKARA</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">JW Marriott</h3>
-                    <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h5_desc">
+                <div class="p-8 flex-1 flex flex-col justify-between">
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium mb-8" data-i18n="h5_desc">
                         Başkentin merkezinde, modern detayları ve yüksek ağırlama standartlarıyla öne çıkan prestijli adres.
                     </p>
-                    <div class="flex justify-center items-center gap-4">
-                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€145</span>
+                    <div class="border-t border-slate-200 dark:border-white/10 pt-6 flex justify-between items-center">
+                        <div>
+                            <span class="text-slate-500 text-[10px] uppercase tracking-widest block font-bold" data-i18n="starting_from">Başlayan Fiyatlar</span>
+                            <span class="font-luxury text-2xl font-bold text-slate-900 dark:text-brand-gold block">€145</span>
+                        </div>
+                        <span class="bg-brand-gold text-white text-xs font-bold px-6 py-3 rounded-full uppercase tracking-wider shadow-md group-hover:bg-[#b8952a] transition-colors">İncele</span>
                     </div>
                 </div>
             </div>
 
             <!-- إزمير -->
-            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=90" alt="Izmir" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
+            <div class="group relative bg-white dark:bg-brand-surface rounded-[2rem] border border-brand-gold/20 hover:border-brand-gold/60 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-700 overflow-hidden flex flex-col cursor-pointer glass-shine" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
+                <div class="relative h-[320px] overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=90" alt="Izmir" class="w-full h-full object-cover transition-transform duration-[2000ms] group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 text-white">
+                        <span class="text-brand-gold text-[11px] tracking-[0.2em] font-bold block mb-1 uppercase">İZMİR</span>
+                        <h3 class="font-luxury text-2xl font-bold">Swissôtel Büyük Efes</h3>
+                    </div>
                 </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">İZMİR</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">Swissôtel</h3>
-                    <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h6_desc">
+                <div class="p-8 flex-1 flex flex-col justify-between">
+                    <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed font-medium mb-8" data-i18n="h6_desc">
                         Ege rüzgarlarına nazır, kordon boyunda konumlanmış, sanatla iç içe ferah bir yaşam alanı.
                     </p>
-                    <div class="flex justify-center items-center gap-4">
-                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€130</span>
+                    <div class="border-t border-slate-200 dark:border-white/10 pt-6 flex justify-between items-center">
+                        <div>
+                            <span class="text-slate-500 text-[10px] uppercase tracking-widest block font-bold" data-i18n="starting_from">Başlayan Fiyatlar</span>
+                            <span class="font-luxury text-2xl font-bold text-slate-900 dark:text-brand-gold block">€130</span>
+                        </div>
+                        <span class="bg-brand-gold text-white text-xs font-bold px-6 py-3 rounded-full uppercase tracking-wider shadow-md group-hover:bg-[#b8952a] transition-colors">İncele</span>
                     </div>
                 </div>
             </div>
@@ -339,54 +329,59 @@
         </div>
     </main>
 
-    <!-- قسم الطيران الفاخر -->
-    <section class="border-y border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#020306]/50 py-32 backdrop-blur-sm">
+    <!-- قسم الطيران -->
+    <section class="border-y border-slate-200 dark:border-white/5 bg-white/50 dark:bg-brand-dark/50 py-32 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-20">
-                <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-4" data-i18n="flights_sub">GÖKLERDEKİ ZARAFET</span>
                 <h2 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="flights_heading">Ayrıcalıklı Uçuşlar</h2>
-                <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
+                <div class="w-16 h-[2px] bg-brand-gold mx-auto"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="ultra-luxury-card p-12 cursor-pointer text-center group bg-white/80 dark:bg-[#030508]/80 rounded-xl" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
-                    <i class="fas fa-plane text-brand-gold text-4xl mb-6 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-2">İstanbul ⇄ Antalya</h3>
-                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-6 font-bold">Türk Hava Yolları</span>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 font-light mb-10 leading-relaxed" data-i18n="f1_desc">Ayrıcalıklı bagaj ve ikram olanaklarıyla kesintisiz ve konforlu direkt geçiş.</p>
-                    <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-brand-gold">€45</span>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-brand-surface p-10 rounded-[2rem] border border-brand-gold/20 hover:border-brand-gold/60 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-700 cursor-pointer text-center group hover:-translate-y-2" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
+                    <i class="fas fa-plane text-brand-gold text-4xl mb-6 block transform group-hover:-translate-y-1 transition duration-500"></i>
+                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">İstanbul ⇄ Antalya</h3>
+                    <span class="block text-[11px] text-slate-500 tracking-widest uppercase mb-6 text-center font-bold">Türk Hava Yolları</span>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 font-medium mb-10 leading-relaxed text-center" data-i18n="f1_desc">Ayrıcalıklı bagaj ve ikram olanaklarıyla kesintisiz ve konforlu direkt geçiş.</p>
+                    <div class="text-center">
+                        <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-brand-gold">€45</span>
+                    </div>
                 </div>
 
-                <div class="ultra-luxury-card p-12 cursor-pointer text-center group bg-white/80 dark:bg-[#030508]/80 rounded-xl" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
-                    <i class="fas fa-plane text-brand-gold text-4xl mb-6 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-2">Ankara ⇄ Trabzon</h3>
-                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-6 font-bold">Pegasus Airlines</span>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 font-light mb-10 leading-relaxed" data-i18n="f2_desc">Kuzeyin serin doğasına uzanan, güvenli, hızlı ve son derece pratik hava köprüsü.</p>
-                    <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-brand-gold">€38</span>
+                <div class="bg-white dark:bg-brand-surface p-10 rounded-[2rem] border border-brand-gold/20 hover:border-brand-gold/60 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-700 cursor-pointer text-center group hover:-translate-y-2" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
+                    <i class="fas fa-plane text-brand-gold text-4xl mb-6 block transform group-hover:-translate-y-1 transition duration-500"></i>
+                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">Ankara ⇄ Trabzon</h3>
+                    <span class="block text-[11px] text-slate-500 tracking-widest uppercase mb-6 text-center font-bold">Pegasus Airlines</span>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 font-medium mb-10 leading-relaxed text-center" data-i18n="f2_desc">Kuzeyin serin doğasına uzanan, güvenli, hızlı ve son derece pratik hava köprüsü.</p>
+                    <div class="text-center">
+                        <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-brand-gold">€38</span>
+                    </div>
                 </div>
 
-                <div class="ultra-luxury-card p-12 cursor-pointer text-center group bg-white/80 dark:bg-[#030508]/80 rounded-xl" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
-                    <i class="fas fa-plane text-brand-gold text-4xl mb-6 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-2">İzmir ⇄ İstanbul</h3>
-                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-6 font-bold">AJet Premium</span>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 font-light mb-10 leading-relaxed" data-i18n="f3_desc">Dakik kalkış ve ferah koltuk aralıklarıyla Ege kıyılarından metropole huzurlu yolculuk.</p>
-                    <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-brand-gold">€32</span>
+                <div class="bg-white dark:bg-brand-surface p-10 rounded-[2rem] border border-brand-gold/20 hover:border-brand-gold/60 shadow-lg hover:shadow-[0_20px_40px_-15px_rgba(212,175,55,0.3)] transition-all duration-700 cursor-pointer text-center group hover:-translate-y-2" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
+                    <i class="fas fa-plane text-brand-gold text-4xl mb-6 block transform group-hover:-translate-y-1 transition duration-500"></i>
+                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-2 text-center">İzmir ⇄ İstanbul</h3>
+                    <span class="block text-[11px] text-slate-500 tracking-widest uppercase mb-6 text-center font-bold">AJet Premium</span>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 font-medium mb-10 leading-relaxed text-center" data-i18n="f3_desc">Dakik kalkış ve ferah koltuk aralıklarıyla Ege kıyılarından metropole huzurlu yolculuk.</p>
+                    <div class="text-center">
+                        <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-brand-gold">€32</span>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- قسم "من نحن" (لمحة) - مكتوب باحترافية تامة -->
+    <!-- قسم "من نحن" (لمحة) - مكتوب باحترافية، بدون كلمة فندق أو شركة -->
     <section class="py-32 px-4 relative overflow-hidden">
         <div class="max-w-4xl mx-auto text-center relative z-10">
             <h2 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-10 leading-tight" data-i18n="about_heading">
                 Biz Kimiz?
             </h2>
-            <div class="w-12 h-[1px] bg-brand-gold mx-auto mb-10"></div>
-            <p class="text-slate-700 dark:text-slate-300 text-lg sm:text-xl leading-relaxed font-light mb-8" data-i18n="about_text_1">
+            <div class="w-12 h-[2px] bg-brand-gold mx-auto mb-10"></div>
+            <p class="text-slate-700 dark:text-slate-300 text-lg sm:text-xl leading-relaxed font-medium mb-8" data-i18n="about_text_1">
                 UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.
             </p>
-            <p class="text-slate-700 dark:text-slate-300 text-lg sm:text-xl leading-relaxed font-light" data-i18n="about_text_2">
+            <p class="text-slate-700 dark:text-slate-300 text-lg sm:text-xl leading-relaxed font-medium" data-i18n="about_text_2">
                 Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.
             </p>
         </div>
@@ -398,7 +393,7 @@
             <h2 class="font-luxury text-4xl text-slate-900 dark:text-white font-bold mb-4" data-i18n="ratings_heading">İzlenimlerinizi Paylaşın</h2>
         </div>
         
-        <div class="bg-white dark:bg-[#04070C] p-10 md:p-16 rounded-[2rem] border border-slate-200 dark:border-white/5 shadow-2xl text-center">
+        <div class="bg-white dark:bg-brand-surface p-10 md:p-16 rounded-[2rem] border border-slate-200 dark:border-white/5 shadow-xl text-center">
             <div id="star-container" class="flex justify-center gap-5 text-3xl text-slate-300 dark:text-slate-700 mb-12 cursor-pointer">
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(1)"></i>
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(2)"></i>
@@ -410,7 +405,7 @@
             <div class="flex flex-col gap-8 max-w-md mx-auto">
                 <input type="text" id="user-review-name" data-i18n-placeholder="review_name_placeholder" placeholder="Adınız Soyadınız" class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition">
                 <textarea id="user-review-text" rows="1" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..." class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition resize-none"></textarea>
-                <button onclick="submitReview()" class="mt-8 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-4 rounded-full text-xs tracking-[0.2em] uppercase hover:opacity-80 transition" data-i18n="submit_review_btn">
+                <button onclick="submitReview()" class="mt-8 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-4 rounded-full text-xs tracking-[0.2em] uppercase hover:opacity-80 transition shadow-md" data-i18n="submit_review_btn">
                     Gönder
                 </button>
             </div>
@@ -421,7 +416,7 @@
     </section>
 
     <!-- الفوتر مع أيقونات التواصل بألوانها الحقيقية الدائمة -->
-    <footer class="bg-white dark:bg-[#020306] border-t border-slate-200 dark:border-white/5 pt-20 pb-12 transition-colors duration-500">
+    <footer class="bg-white dark:bg-[#030509] border-t border-slate-200 dark:border-white/5 pt-20 pb-12 transition-colors duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex flex-col items-center justify-center gap-12 mb-16">
                 
@@ -430,16 +425,23 @@
                 </div>
 
                 <!-- الألوان الحقيقية الأصلية ظاهرة بشكل دائم ومباشر -->
-                <div class="flex gap-6 sm:gap-8 items-center">
+                <div class="flex gap-6 sm:gap-8 items-center flex-wrap justify-center">
+                    <!-- Instagram -->
                     <a href="https://www.instagram.com/ucuzakalturkiye/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <!-- Facebook -->
                     <a href="https://www.facebook.com/profile.php?id=61596063752611" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <!-- X (Twitter) -->
                     <a href="https://x.com/UcuzaKalTr" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg border border-slate-700" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                    <!-- Pinterest -->
                     <a href="https://tr.pinterest.com/ucuzakal/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-[#E60023] flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <!-- TikTok -->
                     <a href="https://www.tiktok.com/@ucuzakaltr" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg border border-slate-700 shadow-[#ff0050]/20" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <!-- YouTube -->
                     <a href="https://www.youtube.com/channel/UCVgRlsTwyH4dnwdn9bJM5Dg" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg" title="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
 
+            <!-- الجملة المطلوبة للحقوق -->
             <div class="text-center text-sm text-slate-500 dark:text-slate-400 font-bold" data-i18n="rights">
                 Tüm hakları saklıdır UcuzaKal Türkiye
             </div>
@@ -473,6 +475,7 @@
             if(icon) icon.className = "fas fa-sun text-lg text-brand-gold transition";
         }
 
+        // تأثير سينمائي
         function triggerCinematicRedirect(url) {
             const overlay = document.getElementById('cinematic-overlay');
             const bar = document.getElementById('cinematic-bar');
@@ -515,13 +518,11 @@
             alert("Google Gmail oturum açma aktif.");
         }
 
-        // القاموس محدث (14 لغة مع الصينية والكردية)
         const TRANSLATIONS = {
             tr: {
                 dir: "ltr",
                 hero_title: "Seçkin Rotaları Lüksle Keşfedin",
                 hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.",
-                hotels_sub: "ÖZEL SEÇKİ",
                 hotels_heading: "Özel Seçki Koleksiyonu",
                 h1_desc: "Boğaziçi'nin kalbinde, eşsiz konforu ve kusursuz manzarasıyla öne çıkan seçkin bir deneyim.",
                 h2_desc: "Akdeniz kıyılarında özel alanlar sunan, doğa ile iç içe, ayrıcalıklı tasarıma sahip konfor alanı.",
@@ -530,7 +531,6 @@
                 h5_desc: "Başkentin merkezinde, modern detayları ve yüksek ağırlama standartlarıyla öne çıkan prestijli adres.",
                 h6_desc: "Ege rüzgarlarına nazır, kordon boyunda konumlanmış, sanatla iç içe ferah bir yaşam alanı.",
                 starting_from: "Başlayan Fiyatlar",
-                flights_sub: "GÖKLERDEKİ ZARAFET",
                 flights_heading: "Ayrıcalıklı Uçuşlar",
                 f1_desc: "Ayrıcalıklı bagaj ve ikram olanaklarıyla kesintisiz ve konforlu direkt geçiş.",
                 f2_desc: "Kuzeyin serin doğasına uzanan, güvenli, hızlı ve son derece pratik hava köprüsü.",
@@ -553,7 +553,6 @@
                 dir: "rtl",
                 hero_title: "اكتشف روعة الوجهات الفاخرة",
                 hero_subtitle: "مختارات إقامة وطيران حصرية مصممة لتلبية ذوقك الرفيع في أبرز وجهات تركيا.",
-                hotels_sub: "مختارات خاصة",
                 hotels_heading: "مجموعة المختارات الخاصة",
                 h1_desc: "في قلب البوسفور، تجربة استثنائية تتميز بالراحة المطلقة والمناظر الخلابة التي لا تُضاهى.",
                 h2_desc: "مساحات مصممة خصيصاً على سواحل المتوسط، توفر أجواءً من الخصوصية المطلقة والرفاهية المندمجة مع الطبيعة.",
@@ -562,7 +561,6 @@
                 h5_desc: "في قلب العاصمة، عنوان مرموق يتألق بتفاصيل حديثة ومعايير ضيافة احترافية تلبي تطلعاتك.",
                 h6_desc: "مساحة معيشة فسيحة تعانق نسيم إيجه، مدمجة بلمسات فنية معاصرة على طول الكورنيش.",
                 starting_from: "الأسعار تبدأ من",
-                flights_sub: "أناقة الأجواء",
                 flights_heading: "مسارات الرحلات الحصرية",
                 f1_desc: "انتقال مباشر ومريح دون انقطاع، مصحوباً بامتيازات الأمتعة والخدمات الرفيعة في الأجواء.",
                 f2_desc: "جسر جوي آمن وسريع، يمتد بك نحو الطبيعة الباردة والمنعشة في الشمال التركي.",
@@ -585,7 +583,6 @@
                 dir: "ltr",
                 hero_title: "Discover Elite Routes in Luxury",
                 hero_subtitle: "Exclusive accommodation and flight opportunities carefully compiled for you in Turkey's most popular destinations.",
-                hotels_sub: "EXCLUSIVE SELECTION",
                 hotels_heading: "Special Selection Collection",
                 h1_desc: "An outstanding experience in the heart of the Bosphorus, standing out with its unique comfort and flawless view.",
                 h2_desc: "A comfort zone with privileged design, intertwined with nature, offering private spaces on the Mediterranean shores.",
@@ -594,7 +591,6 @@
                 h5_desc: "A prestigious address in the center of the capital, standing out with modern details and high hospitality standards.",
                 h6_desc: "A spacious living area intertwined with contemporary art, located along the promenade, facing the Aegean winds.",
                 starting_from: "Rates Starting From",
-                flights_sub: "ELEGANCE IN THE SKIES",
                 flights_heading: "Privileged Flights",
                 f1_desc: "Uninterrupted and comfortable direct transit with privileged baggage and catering facilities.",
                 f2_desc: "A safe, fast, and highly practical air bridge extending to the cool nature of the North.",
@@ -617,7 +613,6 @@
                 dir: "ltr",
                 hero_title: "在奢华中发现精英路线",
                 hero_subtitle: "为您精心挑选土耳其最热门目的地的专属住宿和航班机会。",
-                hotels_sub: "专属精选",
                 hotels_heading: "特别精选系列",
                 h1_desc: "在博斯普鲁斯海峡中心的卓越体验，以其独特的舒适和无瑕的美景脱颖而出。",
                 h2_desc: "与自然交织的尊贵设计舒适区，在地中海沿岸提供私人空间。",
@@ -626,7 +621,6 @@
                 h5_desc: "位于首都中心的尊贵地标，以现代细节和高标准的款待脱颖而出。",
                 h6_desc: "宽敞的生活空间与当代艺术交织，沿着海滨长廊，迎着爱琴海的微风。",
                 starting_from: "起步价",
-                flights_sub: "云端优雅",
                 flights_heading: "尊享航班",
                 f1_desc: "提供尊享行李和餐饮服务，享受不间断且舒适的直达旅程。",
                 f2_desc: "安全、快速且非常实用的空中桥梁，直达北部的清凉大自然。",
@@ -647,10 +641,9 @@
             },
             ku: {
                 dir: "ltr",
-                hero_title: "Di Luksê de Zerafeta Anatolyayê Kêşf Bikin",
+                hero_title: "Di Luksê de Rêyên Bijarte Kêşf Bikin",
                 hero_subtitle: "Derfetên rûniştin û firînê yên taybet ji bo we li cihên herî delal ên Tirkiyeyê hatine amadekirin.",
-                hotels_sub: "KOLEKSİYONA TAYBET",
-                hotels_heading: "Bijarteyên Taybet",
+                hotels_heading: "Koleksiyona Taybet",
                 h1_desc: "Li dilê Bosforê, bi rehetiyek bêhempa û dîmenek bêkêmasî ezmûnek taybet.",
                 h2_desc: "Li peravên Deryaya Spî, qadek rehet a bi sêwirana taybet û bi xwezayê re têkel.",
                 h3_desc: "Li nav xwezaya kesk a Deryaya Reş, bi mîmariya xwe ya aram û dîmena golê, navberek aram.",
@@ -658,7 +651,6 @@
                 h5_desc: "Li navenda paytextê, navnîşanek bi prestîj ku bi hûrguliyên nûjen û standardên bilind derdikeve pêş.",
                 h6_desc: "Li perava Egeyê, qadek jiyanê ya berfireh û bi hunerê re têkel.",
                 starting_from: "Bihayên Destpêkê",
-                flights_sub: "ZERAFETA LI EZMANAN",
                 flights_heading: "Firînên Taybet",
                 f1_desc: "Bi derfetên taybet ên bagaj û xwarinê re, derbasbûnek yekser û rehet.",
                 f2_desc: "Pireke asmanî ya ewle û bilez ku digihîje xwezaya hênik a Bakur.",
@@ -724,7 +716,7 @@
                 f2_desc: "Un puente aéreo seguro, rápido y muy práctico que se extiende hasta la fresca naturaleza del norte.",
                 f3_desc: "Un viaje tranquilo desde las costas del Egeo hasta la metrópolis con salidas puntuales.",
                 about_heading: "¿Quiénes somos?",
-                about_text_1: "UcuzaKal Türkiye es una plataforma de viajes independiente. Nuestro objetivo es proporcionar precios precisos con total transparencia.",
+                about_text_1: "UcuzaKal Türkiye es una plataforma de viajes independiente. Nuestro objetivo es proporcionar precios precisos con total transparencia, convirtiendo la planificación de viajes en un arte.",
                 about_text_2: "Cada ruta meticulosamente compilada está diseñada para que su viaje no sea solo un destino, sino que siga siendo una experiencia impecable e inolvidable.",
                 ratings_heading: "Comparte tus impresiones",
                 ratings_desc: "Sus pensamientos sinceros sobre nuestra orientación son valiosos para nosotros.",
