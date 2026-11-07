@@ -68,7 +68,7 @@
         }
 
         .modal-overlay {
-            position: fixed; inset: 0; background: rgba(3, 5, 8, 0.8);
+            position: fixed; inset: 0; background: rgba(3, 5, 8, 0.85);
             backdrop-filter: blur(8px); z-index: 9999;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
@@ -83,7 +83,7 @@
         .title-glow { animation: elegantGlow 4s infinite ease-in-out; }
 
         #toast-container {
-            position: fixed; bottom: 30px; right: 30px; z-index: 10000;
+            position: fixed; bottom: 30px; right: 30px; z-index: 100000;
             display: flex; flex-direction: column; gap: 15px;
         }
         html[dir="rtl"] #toast-container { right: auto; left: 30px; }
@@ -104,6 +104,44 @@
 <body class="bg-brand-lightbg dark:bg-brand-dark text-slate-800 dark:text-slate-100 flex h-screen overflow-hidden">
 
     <div id="toast-container"></div>
+
+    <!-- شاشة تسجيل الدخول الأمنية للوحة الإدارة (Admin Security Lock Screen) -->
+    <div id="admin-auth-lock" class="fixed inset-0 z-[99999] bg-[#030509] flex items-center justify-center p-4">
+        <div class="w-full max-w-md bg-[#0A0F1A] border border-brand-gold/30 rounded-3xl p-8 sm:p-10 shadow-2xl text-center relative overflow-hidden">
+            <div class="absolute -top-24 -left-24 w-48 h-48 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="w-16 h-16 rounded-full border-2 border-brand-gold flex items-center justify-center mx-auto mb-6 bg-brand-gold/10 text-brand-gold text-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)]">
+                <i class="fas fa-shield-alt"></i>
+            </div>
+            
+            <h2 class="font-luxury text-3xl font-bold text-white mb-2 title-glow">Ucuza<span class="text-brand-gold">Kal</span></h2>
+            <p class="text-xs text-brand-gold uppercase tracking-[0.25em] font-bold mb-8">Güvenli Yönetim Girişi</p>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-5 text-left">
+                <div>
+                    <label class="block text-xs uppercase font-bold tracking-wider text-slate-400 mb-2">Kullanıcı Adı / اسم المستخدم</label>
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-brand-gold/60 text-sm"></i>
+                        <input type="text" id="auth-username" required placeholder="admin" class="w-full bg-[#030509] border border-slate-700 focus:border-brand-gold rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none transition">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs uppercase font-bold tracking-wider text-slate-400 mb-2">Güvenlik Parolası / كلمة المرور</label>
+                    <div class="relative">
+                        <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-brand-gold/60 text-sm"></i>
+                        <input type="password" id="auth-password" required placeholder="••••••••••••" class="w-full bg-[#030509] border border-slate-700 focus:border-brand-gold rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none transition">
+                    </div>
+                </div>
+
+                <p id="auth-error-msg" class="text-red-400 text-xs text-center font-bold hidden"></p>
+
+                <button type="submit" class="w-full bg-brand-gold text-black font-bold py-3.5 rounded-xl text-sm tracking-wider uppercase hover:bg-yellow-500 transition shadow-lg mt-2 flex items-center justify-center gap-2">
+                    <i class="fas fa-sign-in-alt"></i> Sisteme Giriş Yap
+                </button>
+            </form>
+        </div>
+    </div>
 
     <!-- نافذة منبثقة: إضافة فندق / شقة -->
     <div id="hotel-modal" class="modal-overlay">
@@ -229,10 +267,13 @@
             </button>
         </nav>
 
-        <div class="p-6 border-t border-slate-100 dark:border-brand-gold/20">
-            <a href="index.html" target="_blank" class="flex items-center justify-center gap-3 w-full bg-brand-gold text-white dark:bg-transparent dark:border dark:border-brand-gold dark:text-brand-gold hover:bg-yellow-600 dark:hover:bg-brand-gold dark:hover:text-black py-4 rounded-xl text-xs font-bold uppercase tracking-wider transition shadow-lg">
+        <div class="p-6 border-t border-slate-100 dark:border-brand-gold/20 space-y-3">
+            <a href="index.html" target="_blank" class="flex items-center justify-center gap-3 w-full bg-brand-gold text-white dark:bg-transparent dark:border dark:border-brand-gold dark:text-brand-gold hover:bg-yellow-600 dark:hover:bg-brand-gold dark:hover:text-black py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition shadow-md">
                 <i class="fas fa-external-link-alt"></i> <span data-i18n="view_site">Siteyi Görüntüle</span>
             </a>
+            <button onclick="logoutAdmin()" class="flex items-center justify-center gap-2 w-full text-red-500 hover:bg-red-500/10 py-2.5 rounded-xl text-xs font-bold tracking-wider transition">
+                <i class="fas fa-lock"></i> <span data-i18n="btn_logout">Güvenli Çıkış</span>
+            </button>
         </div>
     </aside>
 
@@ -256,7 +297,7 @@
                 <div class="flex items-center gap-5 pl-8 border-l border-slate-200 dark:border-brand-gold/20" id="user-profile-divider">
                     <div class="text-right hidden md:block">
                         <div class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="admin_title">Genel Yönetici</div>
-                        <div class="text-[10px] text-brand-gold tracking-widest uppercase font-bold mt-1">Admin</div>
+                        <div class="text-[10px] text-brand-gold tracking-widest uppercase font-bold mt-1">Admin Authorized</div>
                     </div>
                     <div class="w-12 h-12 rounded-full border border-brand-gold bg-slate-50 dark:bg-brand-dark flex items-center justify-center text-brand-gold font-luxury font-bold text-xl shadow-md">
                         U
@@ -307,7 +348,7 @@
                 </div>
             </div>
 
-            <!-- 2. الفنادق والشقق (مفعل بالكامل) -->
+            <!-- 2. الفنادق والشقق -->
             <div id="view-hotels" class="view-section hidden animate-[fadeIn_0.5s_ease]">
                 <div class="flex justify-between items-end mb-12">
                     <div>
@@ -352,7 +393,7 @@
                 </div>
             </div>
 
-            <!-- 3. الطيران (مفعل بالكامل) -->
+            <!-- 3. الطيران -->
             <div id="view-flights" class="view-section hidden animate-[fadeIn_0.5s_ease]">
                 <div class="flex justify-between items-end mb-12">
                     <div>
@@ -509,6 +550,48 @@
     </main>
 
     <script>
+        // إعدادات الأمان الخاصة بكلمة السر واسم المستخدم
+        const ADMIN_CREDENTIALS = {
+            allowedUsers: ['admin', 'ucuzakal'],
+            pass: 'M.N@9876543210'
+        };
+
+        function checkAuthStatus() {
+            const isAuth = sessionStorage.getItem('ucuzakal_admin_auth');
+            const lockModal = document.getElementById('admin-auth-lock');
+            if (isAuth === 'true') {
+                if (lockModal) lockModal.classList.add('hidden');
+            } else {
+                if (lockModal) lockModal.classList.remove('hidden');
+            }
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const u = document.getElementById('auth-username').value.trim();
+            const p = document.getElementById('auth-password').value.trim();
+            const errorElem = document.getElementById('auth-error-msg');
+
+            if (ADMIN_CREDENTIALS.allowedUsers.includes(u.toLowerCase()) && p === ADMIN_CREDENTIALS.pass) {
+                sessionStorage.setItem('ucuzakal_admin_auth', 'true');
+                document.getElementById('admin-auth-lock').classList.add('hidden');
+                errorElem.classList.add('hidden');
+                showToast('auth_success');
+                // استدعاء البيانات الحية
+                if (window.loadFirestoreHotels) window.loadFirestoreHotels();
+                if (window.loadFirestoreFlights) window.loadFirestoreFlights();
+                if (window.loadPublishedArticles) window.loadPublishedArticles();
+            } else {
+                errorElem.textContent = "Hatalı kullanıcı adı veya parola! / اسم المستخدم أو كلمة السر غير صحيحة!";
+                errorElem.classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            sessionStorage.removeItem('ucuzakal_admin_auth');
+            location.reload();
+        }
+
         const ADMIN_TRANSLATIONS = {
             tr: {
                 dir: "ltr",
@@ -560,6 +643,7 @@
                 th_action: "İşlemler",
                 btn_cancel: "İptal",
                 btn_save: "Kaydet",
+                btn_logout: "Güvenli Çıkış",
                 loading_hotels: "Tesisler yükleniyor...",
                 loading_flights: "Uçuşlar yükleniyor...",
                 loading_articles: "Makaleler yükleniyor...",
@@ -570,7 +654,8 @@
                 toast_saved_hotel: "Konaklama başarıyla kaydedildi!",
                 toast_saved_flight: "Uçuş rotası başarıyla kaydedildi!",
                 toast_deleted: "Kayıt başarıyla silindi.",
-                toast_fill_fields: "Lütfen gerekli alanları doldurunuz!"
+                toast_fill_fields: "Lütfen gerekli alanları doldurunuz!",
+                toast_auth_success: "Güvenli giriş onaylandı, hoş geldiniz!"
             },
             ar: {
                 dir: "rtl",
@@ -622,6 +707,7 @@
                 th_action: "الإجراء",
                 btn_cancel: "إلغاء",
                 btn_save: "حفظ",
+                btn_logout: "تسجيل الخروج الآمن",
                 loading_hotels: "جاري تحميل عروض الفنادق...",
                 loading_flights: "جاري تحميل عروض الطيران...",
                 loading_articles: "جاري تحميل المقالات...",
@@ -632,7 +718,8 @@
                 toast_saved_hotel: "تم حفظ عرض الإقامة بنجاح في Firestore!",
                 toast_saved_flight: "تم حفظ مسار الطيران بنجاح في Firestore!",
                 toast_deleted: "تم حذف السجل بنجاح.",
-                toast_fill_fields: "يرجى ملء جميع الحقول المطلوبة!"
+                toast_fill_fields: "يرجى ملء جميع الحقول المطلوبة!",
+                toast_auth_success: "تم تأكيد الدخول الآمن بنجاح!"
             }
         };
 
@@ -733,11 +820,12 @@
         }
 
         window.addEventListener('DOMContentLoaded', () => {
+            checkAuthStatus();
             changeAdminLanguage('tr');
         });
     </script>
 
-    <!-- الربط البرمجي مع Firebase SDK & Firestore -->
+    <!-- وحدة Firebase & Cloud Firestore -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { 
@@ -809,6 +897,7 @@
 
         window.loadFirestoreHotels = async function() {
             const tbody = document.getElementById('hotels-table-body');
+            if (!tbody) return;
             tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-slate-400"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i></td></tr>`;
             try {
                 const q = query(collection(db, "hotels"), orderBy("createdAt", "desc"));
@@ -894,6 +983,7 @@
 
         window.loadFirestoreFlights = async function() {
             const tbody = document.getElementById('flights-table-body');
+            if (!tbody) return;
             tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-slate-400"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i></td></tr>`;
             try {
                 const q = query(collection(db, "flights"), orderBy("createdAt", "desc"));
@@ -973,6 +1063,7 @@
 
         window.loadPublishedArticles = async function() {
             const tableBody = document.getElementById('articles-table-body');
+            if (!tableBody) return;
             tableBody.innerHTML = `<tr><td colspan="4" class="py-12 text-center text-slate-400"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i></td></tr>`;
             try {
                 const q = query(collection(db, "articles"), orderBy("createdAt", "desc"));
@@ -1015,10 +1106,12 @@
             }
         };
 
-        // تشغيل التحميل التلقائي لكافة الجداول
-        window.loadFirestoreHotels();
-        window.loadFirestoreFlights();
-        window.loadPublishedArticles();
+        // استدعاء البيانات إذا كانت الجلسة مسجلة مسبقاً
+        if (sessionStorage.getItem('ucuzakal_admin_auth') === 'true') {
+            window.loadFirestoreHotels();
+            window.loadFirestoreFlights();
+            window.loadPublishedArticles();
+        }
     </script>
 </body>
 </html>
