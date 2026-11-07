@@ -84,7 +84,6 @@
         }
         .ultra-luxury-card:hover .gold-divider { width: 85px; }
 
-        /* نافذة المقال المنبثقة */
         #article-modal {
             position: fixed; inset: 0; background: rgba(3, 5, 8, 0.85); 
             backdrop-filter: blur(12px); z-index: 99999;
@@ -93,7 +92,6 @@
         }
         #article-modal.active { opacity: 1; pointer-events: auto; }
 
-        /* شاشة التحويل السينمائية لحجوزات الطيران والفنادق */
         #cinematic-overlay {
             position: fixed; inset: 0; background: rgba(3, 5, 8, 0.99); 
             backdrop-filter: blur(15px); z-index: 999999;
@@ -377,7 +375,7 @@
         </div>
     </section>
 
-    <!-- قسم المدونة السياحية (SEO Blog) مع دالة الفتح التفاعلية -->
+    <!-- قسم المدونة السياحية (SEO Blog) المربوط بـ Firestore -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="blog_sub">SEYAHAT REHBERİ</span>
@@ -385,45 +383,12 @@
             <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- مقال 1 -->
-            <article class="ultra-luxury-card group cursor-pointer" onclick="openArticleModal(1)">
-                <div class="img-frame">
-                    <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=90" alt="Antalya Rehberi" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6">
-                    <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">ANTALYA</span>
-                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition" data-i18n="blog1_title">Antalya'nın Gizli Cennetleri ve Lüks Koyları</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3" data-i18n="blog1_desc">Akdeniz'in masmavi sularında dinlenmek ve kalabalıktan uzak, seçkin plaj kulüplerini keşfetmek isteyenler için özel rota rehberi.</p>
-                    <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition"><span data-i18n="read_more">Devamını Oku</span> <i class="fas fa-arrow-right text-[10px]"></i></span>
-                </div>
-            </article>
-
-            <!-- مقال 2 -->
-            <article class="ultra-luxury-card group cursor-pointer" onclick="openArticleModal(2)">
-                <div class="img-frame">
-                    <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=800&q=90" alt="İstanbul Boğazı" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6">
-                    <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">İSTANBUL</span>
-                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition" data-i18n="blog2_title">Boğaziçi'nde Tarihi Saraylar ve Gurme Deneyimler</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3" data-i18n="blog2_desc">İki kıtanın buluştuğu eşsiz şehirde, Osmanlı saray otellerinden Michelin yıldızlı restoranlara uzanan unutulmaz bir deneyim.</p>
-                    <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition"><span data-i18n="read_more">Devamını Oku</span> <i class="fas fa-arrow-right text-[10px]"></i></span>
-                </div>
-            </article>
-
-            <!-- مقال 3 -->
-            <article class="ultra-luxury-card group cursor-pointer" onclick="openArticleModal(3)">
-                <div class="img-frame">
-                    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=90" alt="Karadeniz Doğası" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6">
-                    <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">TRABZON</span>
-                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition" data-i18n="blog3_title">Karadeniz Yaylalarında Sislerin Arasında Huzur</h3>
-                    <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3" data-i18n="blog3_desc">Uzungöl ve Ayder yaylalarının serin havasında, doğanın kalbinde lüks ahşap rezidanslarda konaklamanın tüm incelikleri.</p>
-                    <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition"><span data-i18n="read_more">Devamını Oku</span> <i class="fas fa-arrow-right text-[10px]"></i></span>
-                </div>
-            </article>
+        <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- مؤشر التحميل المؤقت -->
+            <div class="col-span-full py-16 text-center text-slate-400">
+                <i class="fas fa-spinner fa-spin text-3xl text-brand-gold mb-3"></i>
+                <p class="text-sm font-bold tracking-wider uppercase">Makaleler Hazırlanıyor...</p>
+            </div>
         </div>
     </section>
 
@@ -493,10 +458,13 @@
         </div>
     </footer>
 
-    <!-- سكربتات التحكم والترجمة ومحتوى المقالات الكاملة -->
+    <!-- سكربتات التحكم والترجمة ومستودع المقالات الافتراضية -->
     <script>
-        const ARTICLES_DATA = {
-            1: {
+        window.ARTICLES_MAP = {};
+
+        const DEFAULT_ARTICLES = [
+            {
+                id: 'def-1',
                 category: "ANTALYA",
                 image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=90",
                 titles: {
@@ -512,7 +480,8 @@
                     ru: "<p>Анталья — это не только знаменитые курорты, но и уединенные бирюзовые бухты Средиземного моря высочайшего класса.</p><p>Бухты Каша, нетронутые пляжи и частные курорты Белека создают непревзойденное сочетание уединения, премиального комфорта и живописных закатов у подножия Таврских гор.</p>"
                 }
             },
-            2: {
+            {
+                id: 'def-2',
                 category: "İSTANBUL",
                 image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1200&q=90",
                 titles: {
@@ -528,7 +497,8 @@
                     ru: "<p>Стамбул — город, где встречаются две цивилизации. Дворцовые отели на берегах Босфора дарят гостям непревзойденную атмосферу османского великолепия.</p><p>Вид на пролив и гастрономические шедевры ресторанов со звездами Мишлен превращают пребывание в Стамбуле в незабываемое путешествие высокого класса.</p>"
                 }
             },
-            3: {
+            {
+                id: 'def-3',
                 category: "TRABZON",
                 image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=90",
                 titles: {
@@ -544,15 +514,28 @@
                     ru: "<p>Прохладные плато Черноморского региона Турции — это царство нетронутой изумрудной природы и горных озер.</p><p>Премиальные деревянные шале в Узунгёле и Айдере позволяют насладиться покоем в облаках, чистейшим воздухом и гостеприимством вдали от городской суеты.</p>"
                 }
             }
-        };
+        ];
 
-        function openArticleModal(id) {
-            const article = ARTICLES_DATA[id];
+        // تسجيل المقالات الافتراضية
+        DEFAULT_ARTICLES.forEach(art => {
+            window.ARTICLES_MAP[art.id] = art;
+        });
+
+        window.openArticleModal = function(id) {
+            const article = window.ARTICLES_MAP[id];
             if (!article) return;
 
             const currentLang = document.documentElement.lang || 'tr';
-            const title = article.titles[currentLang] || article.titles['tr'] || article.titles['en'];
-            const body = article.bodies[currentLang] || article.bodies['tr'] || article.bodies['en'];
+            let title = '';
+            let body = '';
+
+            if (article.titles) {
+                title = article.titles[currentLang] || article.titles['tr'] || article.titles['en'];
+                body = article.bodies[currentLang] || article.bodies['tr'] || article.bodies['en'];
+            } else {
+                title = article.title;
+                body = article.body;
+            }
 
             document.getElementById('modal-img').src = article.image;
             document.getElementById('modal-category').textContent = article.category;
@@ -562,19 +545,19 @@
             const modal = document.getElementById('article-modal');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
-        }
+        };
 
-        function hideArticleModal() {
+        window.hideArticleModal = function() {
             const modal = document.getElementById('article-modal');
             modal.classList.remove('active');
             document.body.style.overflow = 'auto';
-        }
+        };
 
-        function closeArticleModal(e) {
+        window.closeArticleModal = function(e) {
             if (e.target.id === 'article-modal') {
-                hideArticleModal();
+                window.hideArticleModal();
             }
-        }
+        };
 
         function toggleTheme() {
             const html = document.documentElement;
@@ -661,12 +644,6 @@
                 f6_desc: "Ege'nin incisi İzmir'e, Suudi Arabistan'dan ekonomik ve konforlu direkt köprü.",
                 blog_sub: "SEYAHAT REHBERİ",
                 blog_heading: "UcuzaKal Seyahat Günlüğü",
-                blog1_title: "Antalya'nın Gizli Cennetleri ve Lüks Koyları",
-                blog1_desc: "Akdeniz'in masmavi sularında dinlenmek ve kalabalıktan uzak, seçkin plaj kulüplerini keşfetmek isteyenler için özel rota rehberi.",
-                blog2_title: "Boğaziçi'nde Tarihi Saraylar ve Gurme Deneyimler",
-                blog2_desc: "İki kıtanın buluştuğu eşsiz şehirde, Osmanlı saray otellerinden Michelin yıldızlı restoranlara uzanan unutulmaz bir deneyim.",
-                blog3_title: "Karadeniz Yaylalarında Sislerin Arasında Huzur",
-                blog3_desc: "Uzungöl ve Ayder yaylalarının serin havasında, doğanın kalbinde lüks ahşap rezidanslarda konaklamanın tüm incelikleri.",
                 read_more: "Devamını Oku",
                 about_heading: "Biz Kimiz?",
                 about_text_1: "UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.",
@@ -703,12 +680,6 @@
                 f6_desc: "رحلة مباشرة تجمع بين الراحة والاقتصاد من المملكة العربية السعودية إلى لؤلؤة إيجه.",
                 blog_sub: "دليل السفر",
                 blog_heading: "يوميات UcuzaKal السياحية",
-                blog1_title: "جنات أنطاليا المخفية وخلجانها الفاخرة",
-                blog1_desc: "دليل مسارات حصري للباحثين عن الاستجمام في المياه الصافية واستكشاف الشواطئ الهادئة بعيداً عن الصخب.",
-                blog2_title: "قصور البوسفور التاريخية وتجارب التذوق الراقية",
-                blog2_desc: "في المدينة التي تلتقي فيها قارتان، تجربة لا تُنسى تمتد من فنادق القصور العثمانية إلى مطاعم ميشلان.",
-                blog3_title: "السكينة بين غيوم مرتفعات البحر الأسود",
-                blog3_desc: "أسرار الإقامة الفاخرة في الأكواخ الخشبية الراقية وسط أجواء أوزنجول وأيدر العليلة وطبيعتها البكر.",
                 read_more: "اقرأ المزيد",
                 about_heading: "من نحن؟",
                 about_text_1: "UcuzaKal Türkiye هي منصة سفر مستقلة تجمع لك أفضل عروض الإقامة ورحلات الطيران في أرقى الوجهات التركية. هدفنا هو تقديم أدق الأسعار بشفافية تامة، وتحويل تخطيط سفرك إلى تجربة استثنائية تلبي ذوقك الرفيع.",
@@ -745,12 +716,6 @@
                 f6_desc: "Comfortable and efficient direct link from Riyadh to the Aegean gem of Izmir.",
                 blog_sub: "TRAVEL JOURNAL",
                 blog_heading: "UcuzaKal Travel Journal",
-                blog1_title: "Antalya's Hidden Havens & Exclusive Bays",
-                blog1_desc: "A curated guide for travelers seeking pristine waters and peaceful private beach retreats.",
-                blog2_title: "Bosphorus Palaces & Fine Dining Experiences",
-                blog2_desc: "Unforgettable journeys bridging two continents, from Ottoman palace stays to culinary excellence.",
-                blog3_title: "Tranquility Amidst Black Sea Plateaus",
-                blog3_desc: "Discover the luxury of boutique wooden lodges nestled high in misty Uzungöl hills.",
                 read_more: "Read More",
                 about_heading: "Who Are We?",
                 about_text_1: "UcuzaKal Türkiye is an independent travel platform that carefully curates the finest accommodation and flight deals across Turkey's elite destinations.",
@@ -787,12 +752,6 @@
                 f6_desc: "Прямой и удобный рейс из Эр-Рияда в жемчужину Эгейского моря — Измир.",
                 blog_sub: "ПУТЕВОДИТЕЛЬ",
                 blog_heading: "Дневник путешествий UcuzaKal",
-                blog1_title: "Тайные бухты и эксклюзивный отдых в Анталье",
-                blog1_desc: "Гид для тех, кто ищет уединения и чистейших бирюзовых вод вдали от суеты.",
-                blog2_title: "Дворцы Босфора и гастрономические открытия",
-                blog2_desc: "Путешествие в османскую роскошь отелей-дворцов и ресторанов с высокими наградами.",
-                blog3_title: "Умиротворение среди туманных плато Черного моря",
-                blog3_desc: "Искусство отдыха в премиальных деревянных шале среди горных хребтов Узунгёля.",
                 read_more: "Читать далее",
                 about_heading: "О нас",
                 about_text_1: "UcuzaKal Türkiye — независимая туристическая платформа, тщательно собирающая лучшие предложения.",
@@ -821,6 +780,10 @@
                 if (dict[key]) { el.placeholder = dict[key]; }
             });
             localStorage.setItem('ucuzakal_lang', lang);
+
+            if (window.renderBlogCards) {
+                window.renderBlogCards();
+            }
         }
 
         window.addEventListener('DOMContentLoaded', () => {
@@ -830,10 +793,11 @@
         });
     </script>
 
-    <!-- ربط Firebase المصادقة -->
+    <!-- ربط Firebase Auth و Cloud Firestore لجلب المقالات بشكل ديناميكي -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, getDocs, query, orderBy } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyDcMOlstkYaLBOjnJOYk24U6_724pqEw1U",
@@ -847,8 +811,8 @@
 
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
+        const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
-        
         const authBtn = document.getElementById('auth-btn');
 
         window.loginWithGoogle = function() {
@@ -882,6 +846,81 @@
                 if (textElem) textElem.textContent = dict["google_login"];
             }
         });
+
+        // دالة توليد بطاقات المقالات في واجهة المستخدم
+        window.renderBlogCards = function() {
+            const container = document.getElementById('blog-container');
+            if (!container) return;
+
+            const currentLang = document.documentElement.lang || 'tr';
+            const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
+            const readMoreText = dict.read_more || "Devamını Oku";
+
+            const articlesList = Object.values(window.ARTICLES_MAP);
+            if (articlesList.length === 0) return;
+
+            let html = '';
+            articlesList.forEach(art => {
+                let title = '';
+                let bodySnippet = '';
+
+                if (art.titles) {
+                    title = art.titles[currentLang] || art.titles['tr'] || art.titles['en'];
+                    const bodyText = art.bodies[currentLang] || art.bodies['tr'] || art.bodies['en'];
+                    bodySnippet = bodyText.replace(/<[^>]*>?/gm, '');
+                } else {
+                    title = art.title;
+                    bodySnippet = (art.body || '').replace(/<[^>]*>?/gm, '');
+                }
+
+                html += `
+                    <article class="ultra-luxury-card group cursor-pointer" onclick="window.openArticleModal('${art.id}')">
+                        <div class="img-frame">
+                            <img src="${art.image}" alt="${title}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">${art.category || 'TÜRKİYE'}</span>
+                            <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2">${title}</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">${bodySnippet}</p>
+                            <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition">
+                                <span>${readMoreText}</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                            </span>
+                        </div>
+                    </article>
+                `;
+            });
+
+            container.innerHTML = html;
+        };
+
+        // استرجاع المقالات من Firestore
+        async function fetchArticlesFromFirestore() {
+            try {
+                const q = query(collection(db, "articles"), orderBy("createdAt", "desc"));
+                const querySnapshot = await getDocs(q);
+
+                if (!querySnapshot.empty) {
+                    // إذا وُجدت مقالات حقيقية في قاعدة البيانات، نعرضها أولاً
+                    window.ARTICLES_MAP = {};
+                    querySnapshot.forEach(docSnap => {
+                        const data = docSnap.data();
+                        window.ARTICLES_MAP[docSnap.id] = {
+                            id: docSnap.id,
+                            category: data.category || 'TÜRKİYE',
+                            image: data.image || 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=90',
+                            title: data.title,
+                            body: data.body
+                        };
+                    });
+                }
+            } catch (err) {
+                console.warn("Firestore fetch notice (using defaults):", err.message);
+            } finally {
+                window.renderBlogCards();
+            }
+        }
+
+        fetchArticlesFromFirestore();
     </script>
 </body>
 </html>
