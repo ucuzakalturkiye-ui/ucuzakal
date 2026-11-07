@@ -45,7 +45,6 @@
         }
         .title-glow { animation: elegantGlow 4s infinite ease-in-out; }
 
-        /* تأثير البطاقات المتحفية الفاخرة */
         .ultra-luxury-card {
             background: #ffffff;
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -85,7 +84,16 @@
         }
         .ultra-luxury-card:hover .gold-divider { width: 85px; }
 
-        /* شاشة التحويل السينمائية */
+        /* نافذة المقال المنبثقة */
+        #article-modal {
+            position: fixed; inset: 0; background: rgba(3, 5, 8, 0.85); 
+            backdrop-filter: blur(12px); z-index: 99999;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        #article-modal.active { opacity: 1; pointer-events: auto; }
+
+        /* شاشة التحويل السينمائية لحجوزات الطيران والفنادق */
         #cinematic-overlay {
             position: fixed; inset: 0; background: rgba(3, 5, 8, 0.99); 
             backdrop-filter: blur(15px); z-index: 999999;
@@ -103,7 +111,23 @@
 </head>
 <body class="bg-[#FCFBF9] dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg antialiased">
 
-    <!-- نافذة التوجيه السينمائية -->
+    <!-- نافذة قراءة المقال بالكامل (Modal) -->
+    <div id="article-modal" onclick="closeArticleModal(event)">
+        <div class="relative bg-white dark:bg-[#070b14] border border-brand-gold/30 rounded-3xl w-11/12 max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl p-6 sm:p-10" onclick="event.stopPropagation()">
+            <button onclick="hideArticleModal()" class="absolute top-5 right-5 w-10 h-10 rounded-full border border-brand-gold/40 flex items-center justify-center text-slate-600 dark:text-gray-300 hover:text-brand-gold transition">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="h-60 sm:h-80 w-full overflow-hidden rounded-2xl mb-6">
+                <img id="modal-img" src="" alt="Article Banner" class="w-full h-full object-cover">
+            </div>
+            <span id="modal-category" class="text-brand-gold text-xs tracking-widest font-bold uppercase block mb-2"></span>
+            <h2 id="modal-title" class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight"></h2>
+            <div class="w-16 h-[2px] bg-brand-gold mb-6"></div>
+            <div id="modal-body" class="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4"></div>
+        </div>
+    </div>
+
+    <!-- نافذة التوجيه السينمائية للحجوزات -->
     <div id="cinematic-overlay">
         <div class="text-center p-6">
             <div class="relative w-24 h-24 mx-auto mb-8 flex items-center justify-center">
@@ -133,7 +157,6 @@
             </a>
 
             <div class="flex items-center gap-2 sm:gap-4">
-                <!-- قائمة اللغات الواضحة في كلا الوضعين -->
                 <div class="relative">
                     <select id="lang-switcher" onchange="changeLanguage(this.value)" class="bg-slate-100 dark:bg-[#0a0f1a] text-slate-900 dark:text-white border border-brand-gold/40 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-brand-gold cursor-pointer transition shadow-sm appearance-none pr-8">
                         <option value="tr" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Türkçe</option>
@@ -157,7 +180,6 @@
                     <i id="theme-icon" class="fas fa-sun text-sm"></i>
                 </button>
 
-                <!-- زر تسجيل الدخول المربوط بـ Firebase -->
                 <button id="auth-btn" onclick="window.loginWithGoogle()" class="flex items-center justify-center gap-2 bg-slate-900 dark:bg-brand-gold text-white dark:text-black px-4 py-2 rounded-full text-xs sm:text-sm font-bold hover:opacity-90 transition shadow-lg">
                     <i class="fab fa-google"></i>
                     <span data-i18n="google_login" id="auth-text">Gmail Girişi</span>
@@ -166,7 +188,7 @@
         </div>
     </header>
 
-    <!-- واجهة الهيرو الاستعراضية -->
+    <!-- الهيرو -->
     <section class="relative py-28 sm:py-44 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center">
         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-110" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2500&q=100');"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-brand-dark"></div>
@@ -181,7 +203,7 @@
         </div>
     </section>
 
-    <!-- قسم الفنادق والشقق (3 أنطاليا + 3 لباقي الوجهات) -->
+    <!-- عروض الفنادق والشقق (3 أنطاليا + 3 لباقي الوجهات) -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="hotels_sub">ÖZEL SEÇKİ</span>
@@ -190,8 +212,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <!-- أنطاليا 1 -->
             <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
                 <div class="img-frame">
                     <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90" alt="Antalya" class="w-full h-full object-cover">
@@ -201,9 +221,7 @@
                     <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">ANTALYA</span>
                     <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Maxx Royal Belek</h3>
                     <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h1_desc">
-                        Akdeniz kıyılarında özel alanlar sunan, doğa ile iç içe, ayrıcalıklı tasarıma sahip konfor alanı.
-                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h1_desc">Akdeniz kıyılarında özel alanlar sunan, doğa ile iç içe, ayrıcalıklı tasarıma sahip konfor alanı.</p>
                     <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                         <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
                         <span class="font-luxury text-xl font-bold text-brand-gold">€319</span>
@@ -211,7 +229,6 @@
                 </div>
             </div>
 
-            <!-- أنطاليا 2 -->
             <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
                 <div class="img-frame">
                     <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90" alt="Antalya Resort" class="w-full h-full object-cover">
@@ -221,9 +238,7 @@
                     <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">ANTALYA</span>
                     <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Rixos Premium</h3>
                     <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h2_desc">
-                        Toros dağlarının eteklerinde, turkuaz sulara nazır ultra her şey dahil lüks deneyim.
-                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h2_desc">Toros dağlarının eteklerinde, turkuaz sulara nazır ultra her şey dahil lüks deneyim.</p>
                     <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                         <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
                         <span class="font-luxury text-xl font-bold text-brand-gold">€285</span>
@@ -231,7 +246,6 @@
                 </div>
             </div>
 
-            <!-- أنطاليا 3 -->
             <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
                 <div class="img-frame">
                     <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=90" alt="Antalya Luxury" class="w-full h-full object-cover">
@@ -241,9 +255,7 @@
                     <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">ANTALYA</span>
                     <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Akra Hotel</h3>
                     <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h3_desc">
-                        Şehir merkezinde falezler üzerinde yükselen, Akdeniz'in sonsuz maviliğine açılan prestijli adres.
-                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h3_desc">Şehir merkezinde falezler üzerinde yükselen, Akdeniz'in sonsuz maviliğine açılan prestijli adres.</p>
                     <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                         <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
                         <span class="font-luxury text-xl font-bold text-brand-gold">€195</span>
@@ -251,7 +263,6 @@
                 </div>
             </div>
 
-            <!-- إسطنبول -->
             <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
                 <div class="img-frame">
                     <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90" alt="Istanbul" class="w-full h-full object-cover">
@@ -261,9 +272,7 @@
                     <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">İSTANBUL</span>
                     <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Çırağan Palace</h3>
                     <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h4_desc">
-                        Boğaziçi'nin kalbinde, eşsiz konforu ve kusursuz manzarasıyla öne çıkan seçkin bir deneyim.
-                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h4_desc">Boğaziçi'nin kalbinde, eşsiz konforu ve kusursuz manzarasıyla öne çıkan seçkin bir deneyim.</p>
                     <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                         <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
                         <span class="font-luxury text-xl font-bold text-brand-gold">€269</span>
@@ -271,7 +280,6 @@
                 </div>
             </div>
 
-            <!-- طرابزون -->
             <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
                 <div class="img-frame">
                     <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=90" alt="Trabzon" class="w-full h-full object-cover">
@@ -281,9 +289,7 @@
                     <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">TRABZON</span>
                     <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Royal Uzungöl</h3>
                     <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h5_desc">
-                        Göl manzaralı, huzur dolu mimarisiyle doğanın kalbinde eşsiz ve sakin bir dinlenme noktası.
-                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h5_desc">Göl manzaralı, huzur dolu mimarisiyle doğanın kalbinde eşsiz ve sakin bir dinlenme noktası.</p>
                     <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                         <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
                         <span class="font-luxury text-xl font-bold text-brand-gold">€72</span>
@@ -291,7 +297,6 @@
                 </div>
             </div>
 
-            <!-- بورصة -->
             <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
                 <div class="img-frame">
                     <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=90" alt="Bursa" class="w-full h-full object-cover">
@@ -301,20 +306,17 @@
                     <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">BURSA</span>
                     <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Almira Termal</h3>
                     <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h6_desc">
-                        Uludağ manzarasına karşı şifalı olanaklarla harmanlanmış, bedeni ve ruhu dinlendiren bir ortam.
-                    </p>
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h6_desc">Uludağ manzarasına karşı şifalı olanaklarla harmanlanmış, bedeni ve ruhu dinlendiren bir ortam.</p>
                     <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                         <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
                         <span class="font-luxury text-xl font-bold text-brand-gold">€95</span>
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
 
-    <!-- قسم الطيران (محلي، روسيا، دول عربية) -->
+    <!-- عروض الطيران -->
     <section class="border-y border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#020306]/50 py-16 sm:py-24 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -324,8 +326,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- محلي 1 -->
                 <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
                     <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
                     <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">İstanbul ⇄ Antalya</h3>
@@ -334,7 +334,6 @@
                     <span class="font-luxury text-2xl font-bold text-brand-gold">€45</span>
                 </div>
 
-                <!-- محلي 2 -->
                 <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
                     <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
                     <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">Ankara ⇄ Trabzon</h3>
@@ -343,7 +342,6 @@
                     <span class="font-luxury text-2xl font-bold text-brand-gold">€38</span>
                 </div>
 
-                <!-- روسيا 1 -->
                 <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
                     <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
                     <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">Moskova ⇄ İstanbul</h3>
@@ -352,7 +350,6 @@
                     <span class="font-luxury text-2xl font-bold text-brand-gold">€155</span>
                 </div>
 
-                <!-- روسيا 2 -->
                 <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
                     <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
                     <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">St. Petersburg ⇄ Antalya</h3>
@@ -361,7 +358,6 @@
                     <span class="font-luxury text-2xl font-bold text-brand-gold">€180</span>
                 </div>
 
-                <!-- الدول العربية 1 -->
                 <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
                     <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
                     <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">Dubai ⇄ İstanbul</h3>
@@ -370,7 +366,6 @@
                     <span class="font-luxury text-2xl font-bold text-brand-gold">€210</span>
                 </div>
 
-                <!-- الدول العربية 2 -->
                 <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
                     <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
                     <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">Riyad ⇄ İzmir</h3>
@@ -378,12 +373,11 @@
                     <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed" data-i18n="f6_desc">Ege'nin incisi İzmir'e, Suudi Arabistan'dan ekonomik ve konforlu direkt köprü.</p>
                     <span class="font-luxury text-2xl font-bold text-brand-gold">€165</span>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- قسم المدونة السياحية (SEO Blog) -->
+    <!-- قسم المدونة السياحية (SEO Blog) مع دالة الفتح التفاعلية -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="blog_sub">SEYAHAT REHBERİ</span>
@@ -392,7 +386,8 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <article class="ultra-luxury-card group cursor-pointer">
+            <!-- مقال 1 -->
+            <article class="ultra-luxury-card group cursor-pointer" onclick="openArticleModal(1)">
                 <div class="img-frame">
                     <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=90" alt="Antalya Rehberi" class="w-full h-full object-cover">
                 </div>
@@ -404,7 +399,8 @@
                 </div>
             </article>
 
-            <article class="ultra-luxury-card group cursor-pointer">
+            <!-- مقال 2 -->
+            <article class="ultra-luxury-card group cursor-pointer" onclick="openArticleModal(2)">
                 <div class="img-frame">
                     <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=800&q=90" alt="İstanbul Boğazı" class="w-full h-full object-cover">
                 </div>
@@ -416,7 +412,8 @@
                 </div>
             </article>
 
-            <article class="ultra-luxury-card group cursor-pointer">
+            <!-- مقال 3 -->
+            <article class="ultra-luxury-card group cursor-pointer" onclick="openArticleModal(3)">
                 <div class="img-frame">
                     <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=90" alt="Karadeniz Doğası" class="w-full h-full object-cover">
                 </div>
@@ -433,9 +430,7 @@
     <!-- قسم من نحن -->
     <section class="py-20 sm:py-28 px-4 border-t border-slate-200 dark:border-white/10">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-8" data-i18n="about_heading">
-                Biz Kimiz?
-            </h2>
+            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-8" data-i18n="about_heading">Biz Kimiz?</h2>
             <div class="w-12 h-[1px] bg-brand-gold mx-auto mb-8"></div>
             <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-lg leading-relaxed font-light mb-6" data-i18n="about_text_1">
                 UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.
@@ -446,7 +441,7 @@
         </div>
     </section>
 
-    <!-- قسم مشاركة التقييمات -->
+    <!-- قسم التقييمات -->
     <section class="max-w-3xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-white/10">
         <div class="text-center mb-10">
             <h2 class="font-luxury text-3xl sm:text-4xl text-slate-900 dark:text-white font-bold mb-3" data-i18n="ratings_heading">İzlenimlerinizi Paylaşın</h2>
@@ -498,8 +493,89 @@
         </div>
     </footer>
 
-    <!-- سكربتات الواجهة واللغات والتحويل -->
+    <!-- سكربتات التحكم والترجمة ومحتوى المقالات الكاملة -->
     <script>
+        const ARTICLES_DATA = {
+            1: {
+                category: "ANTALYA",
+                image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=90",
+                titles: {
+                    tr: "Antalya'nın Gizli Cennetleri ve Lüks Koyları",
+                    ar: "جنات أنطاليا المخفية وخلجانها الفاخرة",
+                    en: "Antalya's Hidden Havens & Exclusive Bays",
+                    ru: "Тайные бухты и эксклюзивный отдых в Анталье"
+                },
+                bodies: {
+                    tr: "<p>Antalya, yalnızca kitle turizmi ile değil; sakin koyları, turkuaz suları ve dünya standartlarındaki seçkin tatil köyleriyle Akdeniz'in en değerli rotalarından biridir.</p><p>Kaş ve Kalkan civarındaki butik koylar, teknelerle ulaşılabilen bakir plajlar ve Belek kıyılarındaki özel golf rezidansları, konfor ve mahremiyeti bir arada arayan gezginler için eşsiz olanaklar sunmaktadır. Özellikle gün batımında Toros dağlarının gölgesinde Akdeniz meltemini hissetmek, unutulmaz bir seyahatin ilk adımıdır.</p>",
+                    ar: "<p>لا تقتصر أنطاليا على المنتجعات الشهيرة فحسب؛ بل تحتضن خلجاناً فيروزية معزولة ومحميات طبيعية تجعلها من أكثر وجهات البحر الأبيض المتوسط تميزاً وفخامة.</p><p>توفر مناطق مثل كاش وكالكان وشواطئ بيليك الخاصة ملاذات تجمع بين الراحة والخصوصية والخدمات الملكية الشاملة. الاستمتاع بنسيم البحر العليل تحت ظلال جبال طوروس عند الغروب هو بداية لتجربة سياحية لا تُنسى في الساحل التركي الفيروزي.</p>",
+                    en: "<p>Antalya is not just a destination for mass tourism; it is home to secluded turquoise coves and world-class luxury resorts along the Turkish Riviera.</p><p>From the boutique bays of Kaş to the private golf estates of Belek, the region presents absolute tranquility, privacy, and impeccable hospitality designed for discerning travelers.</p>",
+                    ru: "<p>Анталья — это не только знаменитые курорты, но и уединенные бирюзовые бухты Средиземного моря высочайшего класса.</p><p>Бухты Каша, нетронутые пляжи и частные курорты Белека создают непревзойденное сочетание уединения, премиального комфорта и живописных закатов у подножия Таврских гор.</p>"
+                }
+            },
+            2: {
+                category: "İSTANBUL",
+                image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1200&q=90",
+                titles: {
+                    tr: "Boğaziçi'nde Tarihi Saraylar ve Gurme Deneyimler",
+                    ar: "قصور البوسفور التاريخية وتجارب التذوق الراقية",
+                    en: "Bosphorus Palaces & Fine Dining Experiences",
+                    ru: "Дворцы Босфора и гастрономические открытия"
+                },
+                bodies: {
+                    tr: "<p>Doğu ile Batı'nın, kadim tarih ile modern yaşamın kesiştiği İstanbul, Boğaz kıyısındaki saray otelleriyle konuklarına asırlık bir zarafet yaşatır.</p><p>Çırağan ve çevresinde konaklarken sabah Boğaz vapurlarının sesleriyle uyanmak, akşam ise uluslararası gastronomi ödüllü şeflerin hazırladığı özel menüleri tatmak kentin zenginliğini hissettirir. Tarihi yarımadanın ihtişamı ve Galata'nın dinamizmi seyahatinizi bir başyapıta dönüştürür.</p>",
+                    ar: "<p>في المدينة التي تلتقي فيها قارتان، تمنحك فنادق القصور العثمانية الواقعة على ضفاف البوسفور تجربة أصيلة تحاكي عبق التاريخ وأناقة الحاضر.</p><p>الاستيقاظ على مشهد المضيق الساحر، وتذوق أطباق استثنائية من إعداد طهاة حاصلين على نجوم ميشلان يمزجون بين فنون الطهي التركية والعالمية، يجعل من كل دقيقة في إسطنبول ذكرى استثنائية راقية.</p>",
+                    en: "<p>Where two continents meet, Istanbul offers centuries of heritage reflected through majestic palace hotels situated directly on the Bosphorus waterfront.</p><p>Waking up to waterfront views and dining at award-winning Michelin-star restaurants crafts an unforgettable cultural and culinary journey.</p>",
+                    ru: "<p>Стамбул — город, где встречаются две цивилизации. Дворцовые отели на берегах Босфора дарят гостям непревзойденную атмосферу османского великолепия.</p><p>Вид на пролив и гастрономические шедевры ресторанов со звездами Мишлен превращают пребывание в Стамбуле в незабываемое путешествие высокого класса.</p>"
+                }
+            },
+            3: {
+                category: "TRABZON",
+                image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=90",
+                titles: {
+                    tr: "Karadeniz Yaylalarında Sislerin Arasında Huzur",
+                    ar: "السكينة بين غيوم مرتفعات البحر الأسود",
+                    en: "Tranquility Amidst Black Sea Plateaus",
+                    ru: "Умиротворение среди туманных плато Черного моря"
+                },
+                bodies: {
+                    tr: "<p>Karadeniz'in serin yaylaları, yeşilin binbir tonu ve dağların arasına gizlenmiş berrak gölleriyle doğa aşıklarına huzurlu bir sığınak sunar.</p><p>Uzungöl ve Ayder yaylalarındaki özel ahşap rezidanslar, doğallığı modern konforla buluşturur. Sabah erken saatlerde vadileri kaplayan sis perdesini izlemek, organik Karadeniz lezzetlerini tatmak ve şelale sesleri eşliğinde dinlenmek ruhu tazeleyen eşsiz bir deneyimdir.</p>",
+                    ar: "<p>تتميز مرتفعات البحر الأسود بطبيعتها الخضراء البكر، وهوائها العليل، وغيومها التي تعانق قمم الجبال في مشهد ساحر يبعث على الراحة والهدوء.</p><p>توفر الأكواخ والشقق الخشبية الفاخرة في أوزنجول ومرتفعات أيدر فرصة للهروب من صخب المدن والاستمتاع بتناول الإفطار الريفي الطازج، والمشي بمحاذاة الشلالات الجبلية والأنهار المتدفقة.</p>",
+                    en: "<p>The mist-covered highlands of the Black Sea provide an idyllic mountain retreat characterized by emerald pine forests and serene alpine lakes.</p><p>Staying in premium wooden chalet residences allows travelers to reconnect with pure nature while enjoying elevated privacy, soothing waterfall landscapes, and authentic regional hospitality.</p>",
+                    ru: "<p>Прохладные плато Черноморского региона Турции — это царство нетронутой изумрудной природы и горных озер.</p><p>Премиальные деревянные шале в Узунгёле и Айдере позволяют насладиться покоем в облаках, чистейшим воздухом и гостеприимством вдали от городской суеты.</p>"
+                }
+            }
+        };
+
+        function openArticleModal(id) {
+            const article = ARTICLES_DATA[id];
+            if (!article) return;
+
+            const currentLang = document.documentElement.lang || 'tr';
+            const title = article.titles[currentLang] || article.titles['tr'] || article.titles['en'];
+            const body = article.bodies[currentLang] || article.bodies['tr'] || article.bodies['en'];
+
+            document.getElementById('modal-img').src = article.image;
+            document.getElementById('modal-category').textContent = article.category;
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-body').innerHTML = body;
+
+            const modal = document.getElementById('article-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideArticleModal() {
+            const modal = document.getElementById('article-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        function closeArticleModal(e) {
+            if (e.target.id === 'article-modal') {
+                hideArticleModal();
+            }
+        }
+
         function toggleTheme() {
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');
