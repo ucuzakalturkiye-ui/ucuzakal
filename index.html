@@ -7,7 +7,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -19,12 +19,14 @@
                 extend: {
                     fontFamily: {
                         luxury: ['Playfair Display', 'Amiri', 'serif'],
-                        sans: ['Cairo', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
                     },
                     colors: {
                         brand: {
                             gold: '#D4AF37',
                             dark: '#030508',
+                            surface: '#0A0F1A',
+                            cardDark: 'rgba(12, 17, 29, 0.85)'
                         }
                     }
                 }
@@ -43,47 +45,47 @@
         }
         .title-glow { animation: elegantGlow 4s infinite ease-in-out; }
 
+        /* تأثير البطاقات المتحفية الفاخرة */
         .ultra-luxury-card {
-            background: transparent;
+            background: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.2);
             position: relative;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            border: 1px solid transparent;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
         }
+        .dark .ultra-luxury-card {
+            background: rgba(10, 15, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+        .ultra-luxury-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.8);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15);
+        }
+
         .img-frame {
             position: relative;
             overflow: hidden;
-            border-radius: 4px;
-            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 260px;
         }
-        .img-frame::after {
-            content: '';
-            position: absolute;
-            inset: 12px;
-            border: 1px solid rgba(212, 175, 55, 0);
-            transition: all 0.8s ease;
-            pointer-events: none;
-            z-index: 10;
+        .img-frame img {
+            transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .ultra-luxury-card:hover .img-frame::after {
-            border: 1px solid rgba(212, 175, 55, 0.8);
-            inset: 16px;
-        }
-        .ultra-luxury-card:hover { transform: translateY(-12px); }
-        .ultra-luxury-card img {
-            transition: transform 2s cubic-bezier(0.16, 1, 0.3, 1), filter 1s ease;
-            filter: brightness(0.9);
-        }
-        .ultra-luxury-card:hover img {
+        .ultra-luxury-card:hover .img-frame img {
             transform: scale(1.08);
-            filter: brightness(1.1);
         }
-        .card-content { padding: 2rem 1rem 1rem 1rem; text-align: center; }
+
         .gold-divider {
-            width: 30px; height: 1px; background-color: #D4AF37;
+            width: 35px; height: 1px; background-color: #D4AF37;
             margin: 1rem auto; transition: width 0.6s ease;
         }
-        .ultra-luxury-card:hover .gold-divider { width: 80px; }
+        .ultra-luxury-card:hover .gold-divider { width: 85px; }
 
+        /* شاشة التحويل السينمائية */
         #cinematic-overlay {
             position: fixed; inset: 0; background: rgba(3, 5, 8, 0.99); 
             backdrop-filter: blur(15px); z-index: 999999;
@@ -99,59 +101,64 @@
         body { transition: background-color 0.5s ease, color 0.5s ease; }
     </style>
 </head>
-<body class="bg-[#FCFBF9] dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg">
+<body class="bg-[#FCFBF9] dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg antialiased">
 
+    <!-- نافذة التوجيه السينمائية -->
     <div id="cinematic-overlay">
-        <div class="text-center p-8">
-            <div class="relative w-28 h-28 mx-auto mb-10 flex items-center justify-center">
+        <div class="text-center p-6">
+            <div class="relative w-24 h-24 mx-auto mb-8 flex items-center justify-center">
                 <div class="absolute inset-0 rounded-full border border-brand-gold/30 animate-ping"></div>
-                <div class="w-24 h-24 rounded-full border-t-2 border-b-2 border-brand-gold lens-spin"></div>
-                <i class="fas fa-key text-brand-gold text-2xl absolute"></i>
+                <div class="w-20 h-20 rounded-full border-t-2 border-b-2 border-brand-gold lens-spin"></div>
+                <i class="fas fa-compass text-brand-gold text-2xl absolute"></i>
             </div>
-            <h3 class="font-luxury text-3xl sm:text-4xl text-brand-gold font-bold mb-4 tracking-widest" data-i18n="cinematic_title">Rezervasyon Platformuna Yönlendiriliyorsunuz...</h3>
-            <div class="w-64 h-[1px] bg-slate-800 mx-auto overflow-hidden mt-8">
+            <h3 class="font-luxury text-2xl sm:text-3xl text-brand-gold font-bold mb-3 tracking-wider" data-i18n="cinematic_title">Rezervasyon Platformuna Yönlendiriliyorsunuz...</h3>
+            <div class="w-48 sm:w-64 h-[1px] bg-slate-800 mx-auto overflow-hidden mt-6">
                 <div id="cinematic-bar" class="h-full bg-brand-gold w-0 transition-all duration-[2000ms] ease-out"></div>
             </div>
         </div>
     </div>
 
     <!-- شريط التنقل العلوي -->
-    <header class="sticky top-0 z-50 bg-white/90 dark:bg-brand-dark/90 backdrop-blur-xl border-b border-brand-gold/20 shadow-sm transition-colors">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-4 group">
-                <div class="w-12 h-12 rounded-full border-2 border-brand-gold flex items-center justify-center bg-transparent text-brand-gold font-luxury font-bold text-xl group-hover:bg-brand-gold group-hover:text-white transition duration-700 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+    <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#030508]/95 backdrop-blur-xl border-b border-brand-gold/20 shadow-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border-2 border-brand-gold flex items-center justify-center bg-transparent text-brand-gold font-luxury font-bold text-lg group-hover:bg-brand-gold group-hover:text-black transition duration-500 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
                     U
                 </div>
                 <div>
-                    <span class="text-2xl sm:text-3xl font-luxury font-bold tracking-wide text-slate-900 dark:text-white title-glow block">
+                    <span class="text-xl sm:text-2xl font-luxury font-bold tracking-wide text-slate-900 dark:text-white title-glow block">
                         UcuzaKal Türkiye
                     </span>
                 </div>
             </a>
 
-            <div class="flex items-center gap-4 sm:gap-6">
-                <select id="lang-switcher" onchange="changeLanguage(this.value)" class="bg-transparent text-slate-900 dark:text-white border border-brand-gold/40 rounded-full px-4 py-2 text-sm font-bold focus:outline-none focus:border-brand-gold cursor-pointer transition shadow-sm">
-                    <option value="tr">Türkçe</option>
-                    <option value="ar">العربية</option>
-                    <option value="en">English</option>
-                    <option value="ru">Русский</option>
-                    <option value="es">Español</option>
-                    <option value="zh">中文 (Chinese)</option>
-                    <option value="ku">Kurdî</option>
-                    <option value="fa">فارسی</option>
-                    <option value="az">Azərbaycan</option>
-                    <option value="el">Ελληνικά</option>
-                    <option value="ka">ქართული</option>
-                    <option value="bg">Български</option>
-                    <option value="uk">Українська</option>
-                </select>
+            <div class="flex items-center gap-2 sm:gap-4">
+                <!-- قائمة اللغات الواضحة في كلا الوضعين -->
+                <div class="relative">
+                    <select id="lang-switcher" onchange="changeLanguage(this.value)" class="bg-slate-100 dark:bg-[#0a0f1a] text-slate-900 dark:text-white border border-brand-gold/40 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-brand-gold cursor-pointer transition shadow-sm appearance-none pr-8">
+                        <option value="tr" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Türkçe</option>
+                        <option value="ar" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">العربية</option>
+                        <option value="en" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">English</option>
+                        <option value="ru" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Русский</option>
+                        <option value="es" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Español</option>
+                        <option value="zh" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">中文</option>
+                        <option value="ku" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Kurdî</option>
+                        <option value="fa" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">فارسی</option>
+                        <option value="az" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Azərbaycan</option>
+                        <option value="el" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Ελληνικά</option>
+                        <option value="ka" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">ქართული</option>
+                        <option value="bg" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Български</option>
+                        <option value="uk" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Українська</option>
+                    </select>
+                    <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-[10px] pointer-events-none"></i>
+                </div>
 
-                <button onclick="toggleTheme()" class="w-10 h-10 flex items-center justify-center text-slate-700 dark:text-brand-gold border border-brand-gold/30 rounded-full hover:bg-brand-gold hover:text-white transition duration-300" title="Tema">
+                <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center text-slate-700 dark:text-brand-gold border border-brand-gold/30 rounded-full hover:bg-brand-gold hover:text-black transition duration-300">
                     <i id="theme-icon" class="fas fa-sun text-sm"></i>
                 </button>
 
                 <!-- زر تسجيل الدخول المربوط بـ Firebase -->
-                <button id="auth-btn" onclick="window.loginWithGoogle()" class="hidden md:flex items-center justify-center gap-2 bg-slate-900 dark:bg-brand-gold text-white dark:text-brand-dark px-6 py-2.5 rounded-full text-sm font-bold hover:opacity-90 transition shadow-lg">
+                <button id="auth-btn" onclick="window.loginWithGoogle()" class="flex items-center justify-center gap-2 bg-slate-900 dark:bg-brand-gold text-white dark:text-black px-4 py-2 rounded-full text-xs sm:text-sm font-bold hover:opacity-90 transition shadow-lg">
                     <i class="fab fa-google"></i>
                     <span data-i18n="google_login" id="auth-text">Gmail Girişi</span>
                 </button>
@@ -159,139 +166,147 @@
         </div>
     </header>
 
-    <section class="relative py-48 lg:py-64 px-4 overflow-hidden text-center flex items-center justify-center">
+    <!-- واجهة الهيرو الاستعراضية -->
+    <section class="relative py-28 sm:py-44 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center">
         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-110" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2500&q=100');"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-brand-dark"></div>
         
-        <div class="max-w-5xl mx-auto relative z-10 text-white">
-            <h1 class="font-luxury text-4xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-8 title-glow tracking-widest" data-i18n="hero_title">
+        <div class="max-w-4xl mx-auto relative z-10 text-white">
+            <h1 class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 title-glow tracking-wide" data-i18n="hero_title">
                 Seçkin Rotaları Lüksle Keşfedin
             </h1>
-            <p class="text-white/80 text-lg sm:text-xl max-w-3xl mx-auto font-light leading-relaxed mb-10" data-i18n="hero_subtitle">
+            <p class="text-white/80 text-sm sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-8" data-i18n="hero_subtitle">
                 Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.
             </p>
         </div>
     </section>
 
-    <!-- قسم الوجهات الفاخرة -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
-        <div class="text-center max-w-3xl mx-auto mb-24">
-            <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-4" data-i18n="hotels_sub">ÖZEL SEÇKİ</span>
-            <h2 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-8" data-i18n="hotels_heading">Özel Seçki Koleksiyonu</h2>
+    <!-- قسم الفنادق والشقق (3 أنطاليا + 3 لباقي الوجهات) -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="hotels_sub">ÖZEL SEÇKİ</span>
+            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="hotels_heading">Özel Seçki Koleksiyonu</h2>
             <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- أنطاليا 1 -->
             <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90" alt="Istanbul" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
-                </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">İSTANBUL</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">Çırağan Palace</h3>
-                    <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h1_desc">
-                        Boğaziçi'nin kalbinde, eşsiz konforu ve kusursuz manzarasıyla öne çıkan seçkin bir deneyim.
-                    </p>
-                    <div class="flex justify-center items-center gap-4">
-                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€269</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
+                <div class="img-frame">
                     <img src="https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90" alt="Antalya" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
                 </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">ANTALYA</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">Maxx Royal Belek</h3>
+                <div class="p-6 text-center">
+                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">ANTALYA</span>
+                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Maxx Royal Belek</h3>
                     <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h2_desc">
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h1_desc">
                         Akdeniz kıyılarında özel alanlar sunan, doğa ile iç içe, ayrıcalıklı tasarıma sahip konfor alanı.
                     </p>
-                    <div class="flex justify-center items-center gap-4">
+                    <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                         <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€319</span>
+                        <span class="font-luxury text-xl font-bold text-brand-gold">€319</span>
                     </div>
                 </div>
             </div>
 
+            <!-- أنطاليا 2 -->
             <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=90" alt="Trabzon" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
+                <div class="img-frame">
+                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90" alt="Antalya Resort" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
                 </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">TRABZON</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">Royal Uzungöl</h3>
+                <div class="p-6 text-center">
+                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">ANTALYA</span>
+                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Rixos Premium</h3>
                     <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h3_desc">
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h2_desc">
+                        Toros dağlarının eteklerinde, turkuaz sulara nazır ultra her şey dahil lüks deneyim.
+                    </p>
+                    <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
+                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
+                        <span class="font-luxury text-xl font-bold text-brand-gold">€285</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- أنطاليا 3 -->
+            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
+                <div class="img-frame">
+                    <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=90" alt="Antalya Luxury" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
+                </div>
+                <div class="p-6 text-center">
+                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">ANTALYA</span>
+                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Akra Hotel</h3>
+                    <div class="gold-divider"></div>
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h3_desc">
+                        Şehir merkezinde falezler üzerinde yükselen, Akdeniz'in sonsuz maviliğine açılan prestijli adres.
+                    </p>
+                    <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
+                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
+                        <span class="font-luxury text-xl font-bold text-brand-gold">€195</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- إسطنبول -->
+            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
+                <div class="img-frame">
+                    <img src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90" alt="Istanbul" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
+                </div>
+                <div class="p-6 text-center">
+                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">İSTANBUL</span>
+                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Çırağan Palace</h3>
+                    <div class="gold-divider"></div>
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h4_desc">
+                        Boğaziçi'nin kalbinde, eşsiz konforu ve kusursuz manzarasıyla öne çıkan seçkin bir deneyim.
+                    </p>
+                    <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
+                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
+                        <span class="font-luxury text-xl font-bold text-brand-gold">€269</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- طرابزون -->
+            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
+                <div class="img-frame">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=90" alt="Trabzon" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
+                </div>
+                <div class="p-6 text-center">
+                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">TRABZON</span>
+                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Royal Uzungöl</h3>
+                    <div class="gold-divider"></div>
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h5_desc">
                         Göl manzaralı, huzur dolu mimarisiyle doğanın kalbinde eşsiz ve sakin bir dinlenme noktası.
                     </p>
-                    <div class="flex justify-center items-center gap-4">
+                    <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                         <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€72</span>
+                        <span class="font-luxury text-xl font-bold text-brand-gold">€72</span>
                     </div>
                 </div>
             </div>
 
+            <!-- بورصة -->
             <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90" alt="Bursa" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
+                <div class="img-frame">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=90" alt="Bursa" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
                 </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">BURSA</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">Almira Termal</h3>
+                <div class="p-6 text-center">
+                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">BURSA</span>
+                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">Almira Termal</h3>
                     <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h4_desc">
+                    <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6" data-i18n="h6_desc">
                         Uludağ manzarasına karşı şifalı olanaklarla harmanlanmış, bedeni ve ruhu dinlendiren bir ortam.
                     </p>
-                    <div class="flex justify-center items-center gap-4">
+                    <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                         <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€95</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=90" alt="Ankara" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
-                </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">ANKARA</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">JW Marriott</h3>
-                    <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h5_desc">
-                        Başkentin merkezinde, modern detayları ve yüksek ağırlama standartlarıyla öne çıkan prestijli adres.
-                    </p>
-                    <div class="flex justify-center items-center gap-4">
-                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€145</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('https://www.trivago.com.tr')">
-                <div class="img-frame h-[450px]">
-                    <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=90" alt="Izmir" class="w-full h-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700 z-0"></div>
-                </div>
-                <div class="card-content">
-                    <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-3">İZMİR</span>
-                    <h3 class="font-luxury text-3xl font-bold text-slate-900 dark:text-white">Swissôtel</h3>
-                    <div class="gold-divider"></div>
-                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed font-light mb-6 px-2" data-i18n="h6_desc">
-                        Ege rüzgarlarına nazır, kordon boyunda konumlanmış, sanatla iç içe ferah bir yaşam alanı.
-                    </p>
-                    <div class="flex justify-center items-center gap-4">
-                        <span class="text-slate-400 text-[10px] uppercase tracking-widest" data-i18n="starting_from">Başlayan Fiyatlar</span>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€130</span>
+                        <span class="font-luxury text-xl font-bold text-brand-gold">€95</span>
                     </div>
                 </div>
             </div>
@@ -299,67 +314,146 @@
         </div>
     </main>
 
-    <!-- قسم الطيران -->
-    <section class="border-y border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#020306]/50 py-32 backdrop-blur-sm">
+    <!-- قسم الطيران (محلي، روسيا، دول عربية) -->
+    <section class="border-y border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#020306]/50 py-16 sm:py-24 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-20">
-                <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-4" data-i18n="flights_sub">GÖKLERDEKİ ZARAFET</span>
-                <h2 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="flights_heading">Ayrıcalıklı Uçuşlar</h2>
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="flights_sub">GÖKLERDEKİ ZARAFET</span>
+                <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="flights_heading">Ayrıcalıklı Uçuşlar</h2>
                 <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <div class="ultra-luxury-card p-12 cursor-pointer text-center group bg-white/80 dark:bg-[#030508]/80 rounded-xl" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
-                    <i class="fas fa-plane text-brand-gold text-4xl mb-6 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-2">İstanbul ⇄ Antalya</h3>
-                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-6 font-bold">Türk Hava Yolları</span>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 font-light mb-10 leading-relaxed" data-i18n="f1_desc">Ayrıcalıklı bagaj ve ikram olanaklarıyla kesintisiz ve konforlu direkt geçiş.</p>
-                    <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-brand-gold">€45</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- محلي 1 -->
+                <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
+                    <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
+                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">İstanbul ⇄ Antalya</h3>
+                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">Türk Hava Yolları (Yerel)</span>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed" data-i18n="f1_desc">Ayrıcalıklı bagaj ve ikram olanaklarıyla kesintisiz direkt geçiş.</p>
+                    <span class="font-luxury text-2xl font-bold text-brand-gold">€45</span>
                 </div>
 
-                <div class="ultra-luxury-card p-12 cursor-pointer text-center group bg-white/80 dark:bg-[#030508]/80 rounded-xl" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
-                    <i class="fas fa-plane text-brand-gold text-4xl mb-6 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-2">Ankara ⇄ Trabzon</h3>
-                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-6 font-bold">Pegasus Airlines</span>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 font-light mb-10 leading-relaxed" data-i18n="f2_desc">Kuzeyin serin doğasına uzanan, güvenli, hızlı ve son derece pratik hava köprüsü.</p>
-                    <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-brand-gold">€38</span>
+                <!-- محلي 2 -->
+                <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
+                    <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
+                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">Ankara ⇄ Trabzon</h3>
+                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">Pegasus Airlines (Yerel)</span>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed" data-i18n="f2_desc">Kuzeyin serin doğasına uzanan hızlı ve pratik hava köprüsü.</p>
+                    <span class="font-luxury text-2xl font-bold text-brand-gold">€38</span>
                 </div>
 
-                <div class="ultra-luxury-card p-12 cursor-pointer text-center group bg-white/80 dark:bg-[#030508]/80 rounded-xl" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
-                    <i class="fas fa-plane text-brand-gold text-4xl mb-6 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                    <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-2">İzmir ⇄ İstanbul</h3>
-                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-6 font-bold">AJet Premium</span>
-                    <p class="text-sm text-slate-600 dark:text-slate-400 font-light mb-10 leading-relaxed" data-i18n="f3_desc">Dakik kalkış ve ferah koltuk aralıklarıyla Ege kıyılarından metropole huzurlu yolculuk.</p>
-                    <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-brand-gold">€32</span>
+                <!-- روسيا 1 -->
+                <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
+                    <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
+                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">Moskova ⇄ İstanbul</h3>
+                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">Aeroflot (Rusya)</span>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed" data-i18n="f3_desc">Rusya'nın başkentinden Boğaz'ın incisine uluslararası konforla direkt hat.</p>
+                    <span class="font-luxury text-2xl font-bold text-brand-gold">€155</span>
                 </div>
+
+                <!-- روسيا 2 -->
+                <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
+                    <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
+                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">St. Petersburg ⇄ Antalya</h3>
+                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">Turkish Airlines (Rusya)</span>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed" data-i18n="f4_desc">Kuzeyin incisinden Akdeniz'in güneşli sahil şeridine keyifli seyahat.</p>
+                    <span class="font-luxury text-2xl font-bold text-brand-gold">€180</span>
+                </div>
+
+                <!-- الدول العربية 1 -->
+                <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
+                    <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
+                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">Dubai ⇄ İstanbul</h3>
+                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">Emirates & THY (Arap Körfezi)</span>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed" data-i18n="f5_desc">Lüks kabin hizmetleri ve geniş ikram seçenekleriyle Körfez'den İstanbul'a.</p>
+                    <span class="font-luxury text-2xl font-bold text-brand-gold">€210</span>
+                </div>
+
+                <!-- الدول العربية 2 -->
+                <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('https://www.skyscanner.com.tr')">
+                    <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
+                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">Riyad ⇄ İzmir</h3>
+                    <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">Flynas (Arap Körfezi)</span>
+                    <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed" data-i18n="f6_desc">Ege'nin incisi İzmir'e, Suudi Arabistan'dan ekonomik ve konforlu direkt köprü.</p>
+                    <span class="font-luxury text-2xl font-bold text-brand-gold">€165</span>
+                </div>
+
             </div>
         </div>
     </section>
 
+    <!-- قسم المدونة السياحية (SEO Blog) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="blog_sub">SEYAHAT REHBERİ</span>
+            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="blog_heading">UcuzaKal Seyahat Günlüğü</h2>
+            <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <article class="ultra-luxury-card group cursor-pointer">
+                <div class="img-frame">
+                    <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=800&q=90" alt="Antalya Rehberi" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">ANTALYA</span>
+                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition" data-i18n="blog1_title">Antalya'nın Gizli Cennetleri ve Lüks Koyları</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3" data-i18n="blog1_desc">Akdeniz'in masmavi sularında dinlenmek ve kalabalıktan uzak, seçkin plaj kulüplerini keşfetmek isteyenler için özel rota rehberi.</p>
+                    <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition"><span data-i18n="read_more">Devamını Oku</span> <i class="fas fa-arrow-right text-[10px]"></i></span>
+                </div>
+            </article>
+
+            <article class="ultra-luxury-card group cursor-pointer">
+                <div class="img-frame">
+                    <img src="https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=800&q=90" alt="İstanbul Boğazı" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">İSTANBUL</span>
+                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition" data-i18n="blog2_title">Boğaziçi'nde Tarihi Saraylar ve Gurme Deneyimler</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3" data-i18n="blog2_desc">İki kıtanın buluştuğu eşsiz şehirde, Osmanlı saray otellerinden Michelin yıldızlı restoranlara uzanan unutulmaz bir deneyim.</p>
+                    <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition"><span data-i18n="read_more">Devamını Oku</span> <i class="fas fa-arrow-right text-[10px]"></i></span>
+                </div>
+            </article>
+
+            <article class="ultra-luxury-card group cursor-pointer">
+                <div class="img-frame">
+                    <img src="https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=800&q=90" alt="Karadeniz Doğası" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6">
+                    <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">TRABZON</span>
+                    <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition" data-i18n="blog3_title">Karadeniz Yaylalarında Sislerin Arasında Huzur</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3" data-i18n="blog3_desc">Uzungöl ve Ayder yaylalarının serin havasında, doğanın kalbinde lüks ahşap rezidanslarda konaklamanın tüm incelikleri.</p>
+                    <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition"><span data-i18n="read_more">Devamını Oku</span> <i class="fas fa-arrow-right text-[10px]"></i></span>
+                </div>
+            </article>
+        </div>
+    </section>
+
     <!-- قسم من نحن -->
-    <section class="py-32 px-4 relative overflow-hidden">
-        <div class="max-w-4xl mx-auto text-center relative z-10">
-            <h2 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-10 leading-tight" data-i18n="about_heading">
+    <section class="py-20 sm:py-28 px-4 border-t border-slate-200 dark:border-white/10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-8" data-i18n="about_heading">
                 Biz Kimiz?
             </h2>
-            <div class="w-12 h-[1px] bg-brand-gold mx-auto mb-10"></div>
-            <p class="text-slate-700 dark:text-slate-300 text-lg sm:text-xl leading-relaxed font-light mb-8" data-i18n="about_text_1">
+            <div class="w-12 h-[1px] bg-brand-gold mx-auto mb-8"></div>
+            <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-lg leading-relaxed font-light mb-6" data-i18n="about_text_1">
                 UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.
             </p>
-            <p class="text-slate-700 dark:text-slate-300 text-lg sm:text-xl leading-relaxed font-light" data-i18n="about_text_2">
+            <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-lg leading-relaxed font-light" data-i18n="about_text_2">
                 Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.
             </p>
         </div>
     </section>
 
-    <!-- قسم التقييم -->
-    <section class="max-w-3xl mx-auto px-4 py-24 border-t border-slate-200 dark:border-white/10">
-        <div class="text-center mb-16">
-            <h2 class="font-luxury text-4xl text-slate-900 dark:text-white font-bold mb-4" data-i18n="ratings_heading">İzlenimlerinizi Paylaşın</h2>
+    <!-- قسم مشاركة التقييمات -->
+    <section class="max-w-3xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-white/10">
+        <div class="text-center mb-10">
+            <h2 class="font-luxury text-3xl sm:text-4xl text-slate-900 dark:text-white font-bold mb-3" data-i18n="ratings_heading">İzlenimlerinizi Paylaşın</h2>
         </div>
         
-        <div class="bg-white dark:bg-[#04070C] p-10 md:p-16 rounded-[2rem] border border-slate-200 dark:border-white/5 shadow-2xl text-center">
-            <div id="star-container" class="flex justify-center gap-5 text-3xl text-slate-300 dark:text-slate-700 mb-12 cursor-pointer">
+        <div class="bg-white dark:bg-[#04070C] p-6 sm:p-12 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl text-center">
+            <div id="star-container" class="flex justify-center gap-3 sm:gap-4 text-2xl text-slate-300 dark:text-slate-700 mb-8 cursor-pointer">
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(1)"></i>
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(2)"></i>
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(3)"></i>
@@ -367,45 +461,44 @@
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(5)"></i>
             </div>
             
-            <div class="flex flex-col gap-8 max-w-md mx-auto">
-                <input type="text" id="user-review-name" data-i18n-placeholder="review_name_placeholder" placeholder="Adınız Soyadınız" class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition">
-                <textarea id="user-review-text" rows="1" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..." class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition resize-none"></textarea>
-                <button onclick="submitReview()" class="mt-8 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-4 rounded-full text-xs tracking-[0.2em] uppercase hover:opacity-80 transition" data-i18n="submit_review_btn">
+            <div class="flex flex-col gap-6 max-w-md mx-auto">
+                <input type="text" id="user-review-name" data-i18n-placeholder="review_name_placeholder" placeholder="Adınız Soyadınız" class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition">
+                <textarea id="user-review-text" rows="1" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..." class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition resize-none"></textarea>
+                <button onclick="submitReview()" class="mt-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3.5 rounded-full text-xs tracking-widest uppercase hover:opacity-80 transition" data-i18n="submit_review_btn">
                     Gönder
                 </button>
             </div>
-            <p id="review-success-msg" class="text-brand-gold text-sm text-center font-bold mt-8 hidden" data-i18n="review_success">
+            <p id="review-success-msg" class="text-brand-gold text-xs sm:text-sm text-center font-bold mt-6 hidden" data-i18n="review_success">
                 Zarif geri bildiriminiz için teşekkür ederiz.
             </p>
         </div>
     </section>
 
     <!-- الفوتر -->
-    <footer class="bg-white dark:bg-[#020306] border-t border-slate-200 dark:border-white/5 pt-20 pb-12 transition-colors duration-500">
+    <footer class="bg-white dark:bg-[#020306] border-t border-slate-200 dark:border-white/5 pt-16 pb-12 transition-colors duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col items-center justify-center gap-12 mb-16">
-                
+            <div class="flex flex-col items-center justify-center gap-8 mb-12">
                 <div class="text-center">
-                    <span class="font-luxury text-4xl font-bold text-slate-900 dark:text-white block title-glow">UcuzaKal Türkiye</span>
+                    <span class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white block title-glow">UcuzaKal Türkiye</span>
                 </div>
 
-                <div class="flex gap-6 sm:gap-8 items-center flex-wrap justify-center">
-                    <a href="https://www.instagram.com/ucuzakalturkiye/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);" title="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.facebook.com/profile.php?id=61596063752611" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://x.com/UcuzaKalTr" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg border border-slate-700" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
-                    <a href="https://tr.pinterest.com/ucuzakal/" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-[#E60023] flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
-                    <a href="https://www.tiktok.com/@ucuzakaltr" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-black flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg border border-slate-700 shadow-[#ff0050]/20" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.youtube.com/channel/UCVgRlsTwyH4dnwdn9bJM5Dg" target="_blank" rel="noopener noreferrer" class="w-12 h-12 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-2xl transition-transform hover:scale-110 shadow-lg" title="YouTube"><i class="fab fa-youtube"></i></a>
+                <div class="flex gap-4 sm:gap-6 items-center flex-wrap justify-center">
+                    <a href="https://www.instagram.com/ucuzakalturkiye/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-white text-xl transition-transform hover:scale-110 shadow-lg" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61596063752611" target="_blank" rel="noopener noreferrer" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-xl transition-transform hover:scale-110 shadow-lg" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://x.com/UcuzaKalTr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black flex items-center justify-center text-white text-xl transition-transform hover:scale-110 shadow-lg border border-slate-700" title="X (Twitter)"><i class="fab fa-x-twitter"></i></a>
+                    <a href="https://tr.pinterest.com/ucuzakal/" target="_blank" rel="noopener noreferrer" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#E60023] flex items-center justify-center text-white text-xl transition-transform hover:scale-110 shadow-lg" title="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="https://www.tiktok.com/@ucuzakaltr" target="_blank" rel="noopener noreferrer" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black flex items-center justify-center text-white text-xl transition-transform hover:scale-110 shadow-lg border border-slate-700" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.youtube.com/channel/UCVgRlsTwyH4dnwdn9bJM5Dg" target="_blank" rel="noopener noreferrer" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-xl transition-transform hover:scale-110 shadow-lg" title="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
 
-            <div class="text-center text-sm text-slate-500 dark:text-slate-400 font-bold" data-i18n="rights">
+            <div class="text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold" data-i18n="rights">
                 Tüm hakları saklıdır UcuzaKal Türkiye
             </div>
         </div>
     </footer>
 
-    <!-- سكربتات الواجهة واللغات القديمة -->
+    <!-- سكربتات الواجهة واللغات والتحويل -->
     <script>
         function toggleTheme() {
             const html = document.documentElement;
@@ -413,12 +506,12 @@
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
                 html.classList.add('light');
-                icon.className = "fas fa-moon text-lg text-slate-700 transition";
+                icon.className = "fas fa-moon text-sm text-slate-700";
                 localStorage.setItem('ucuzakal_theme', 'light');
             } else {
                 html.classList.remove('light');
                 html.classList.add('dark');
-                icon.className = "fas fa-sun text-lg text-brand-gold transition";
+                icon.className = "fas fa-sun text-sm text-brand-gold";
                 localStorage.setItem('ucuzakal_theme', 'dark');
             }
         }
@@ -427,10 +520,7 @@
             document.documentElement.classList.remove('dark');
             document.documentElement.classList.add('light');
             const icon = document.getElementById('theme-icon');
-            if(icon) icon.className = "fas fa-moon text-lg text-slate-700 transition";
-        } else {
-            const icon = document.getElementById('theme-icon');
-            if(icon) icon.className = "fas fa-sun text-lg text-brand-gold transition";
+            if(icon) icon.className = "fas fa-moon text-sm text-slate-700";
         }
 
         function triggerCinematicRedirect(url) {
@@ -462,7 +552,7 @@
             const name = document.getElementById('user-review-name').value;
             const text = document.getElementById('user-review-text').value;
             if(!name || !text || selectedRating === 0) {
-                alert("Lütfen değerlendirmenizi tamamlayınız.");
+                alert("Lütfen tüm alanları doldurunuz.");
                 return;
             }
             document.getElementById('review-success-msg').classList.remove('hidden');
@@ -478,23 +568,34 @@
                 hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.",
                 hotels_sub: "ÖZEL SEÇKİ",
                 hotels_heading: "Özel Seçki Koleksiyonu",
-                h1_desc: "Boğaziçi'nin kalbinde, eşsiz konforu ve kusursuz manzarasıyla öne çıkan seçkin bir deneyim.",
-                h2_desc: "Akdeniz kıyılarında özel alanlar sunan, doğa ile iç içe, ayrıcalıklı tasarıma sahip konfor alanı.",
-                h3_desc: "Göl manzaralı, huzur dolu mimarisiyle doğanın kalbinde eşsiz ve sakin bir dinlenme noktası.",
-                h4_desc: "Uludağ manzarasına karşı şifalı olanaklarla harmanlanmış, bedeni ve ruhu dinlendiren bir ortam.",
-                h5_desc: "Başkentin merkezinde, modern detayları ve yüksek ağırlama standartlarıyla öne çıkan prestijli adres.",
-                h6_desc: "Ege rüzgarlarına nazır, kordon boyunda konumlanmış, sanatla iç içe ferah bir yaşam alanı.",
+                h1_desc: "Akdeniz kıyılarında özel alanlar sunan, doğa ile iç içe ayrıcalıklı tasarıma sahip konfor alanı.",
+                h2_desc: "Toros dağlarının eteklerinde, turkuaz sulara nazır ultra her şey dahil lüks deneyim.",
+                h3_desc: "Şehir merkezinde falezler üzerinde yükselen, Akdeniz'in sonsuz maviliğine açılan prestijli adres.",
+                h4_desc: "Boğaziçi'nin kalbinde, eşsiz konforu ve kusursuz manzarasıyla öne çıkan seçkin bir deneyim.",
+                h5_desc: "Göl manzaralı, huzur dolu mimarisiyle doğanın kalbinde eşsiz ve sakin bir dinlenme noktası.",
+                h6_desc: "Uludağ manzarasına karşı şifalı olanaklarla harmanlanmış, bedeni ve ruhu dinlendiren bir ortam.",
                 starting_from: "Başlayan Fiyatlar",
                 flights_sub: "GÖKLERDEKİ ZARAFET",
                 flights_heading: "Ayrıcalıklı Uçuşlar",
-                f1_desc: "Ayrıcalıklı bagaj ve ikram olanaklarıyla kesintisiz ve konforlu direkt geçiş.",
-                f2_desc: "Kuzeyin serin doğasına uzanan, güvenli, hızlı ve son derece pratik hava köprüsü.",
-                f3_desc: "Dakik kalkış ve ferah koltuk aralıklarıyla Ege kıyılarından metropole huzurlu yolculuk.",
+                f1_desc: "Ayrıcalıklı bagaj ve ikram olanaklarıyla kesintisiz direkt geçiş.",
+                f2_desc: "Kuzeyin serin doğasına uzanan hızlı ve pratik hava köprüsü.",
+                f3_desc: "Rusya'nın başkentinden Boğaz'ın incisine uluslararası konforla direkt hat.",
+                f4_desc: "Kuzeyin incisinden Akdeniz'in güneşli sahil şeridine keyifli seyahat.",
+                f5_desc: "Lüks kabin hizmetleri ve geniş ikram seçenekleriyle Körfez'den İstanbul'a.",
+                f6_desc: "Ege'nin incisi İzmir'e, Suudi Arabistan'dan ekonomik ve konforlu direkt köprü.",
+                blog_sub: "SEYAHAT REHBERİ",
+                blog_heading: "UcuzaKal Seyahat Günlüğü",
+                blog1_title: "Antalya'nın Gizli Cennetleri ve Lüks Koyları",
+                blog1_desc: "Akdeniz'in masmavi sularında dinlenmek ve kalabalıktan uzak, seçkin plaj kulüplerini keşfetmek isteyenler için özel rota rehberi.",
+                blog2_title: "Boğaziçi'nde Tarihi Saraylar ve Gurme Deneyimler",
+                blog2_desc: "İki kıtanın buluştuğu eşsiz şehirde, Osmanlı saray otellerinden Michelin yıldızlı restoranlara uzanan unutulmaz bir deneyim.",
+                blog3_title: "Karadeniz Yaylalarında Sislerin Arasında Huzur",
+                blog3_desc: "Uzungöl ve Ayder yaylalarının serin havasında, doğanın kalbinde lüks ahşap rezidanslarda konaklamanın tüm incelikleri.",
+                read_more: "Devamını Oku",
                 about_heading: "Biz Kimiz?",
                 about_text_1: "UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.",
                 about_text_2: "Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.",
                 ratings_heading: "İzlenimlerinizi Paylaşın",
-                ratings_desc: "Rehberliğimize dair samimi düşünceleriniz bizim için değerlidir.",
                 review_name_placeholder: "Adınız Soyadınız",
                 review_text_placeholder: "Düşünceleriniz...",
                 submit_review_btn: "Gönder",
@@ -509,23 +610,34 @@
                 hero_subtitle: "مختارات إقامة وطيران حصرية مصممة لتلبية ذوقك الرفيع في أبرز وجهات تركيا.",
                 hotels_sub: "مختارات خاصة",
                 hotels_heading: "مجموعة المختارات الخاصة",
-                h1_desc: "في قلب البوسفور، تجربة استثنائية تتميز بالراحة المطلقة والمناظر الخلابة التي لا تُضاهى.",
-                h2_desc: "مساحات مصممة خصيصاً على سواحل المتوسط، توفر أجواءً من الخصوصية المطلقة والرفاهية المندمجة مع الطبيعة.",
-                h3_desc: "ملاذ هادئ يطل على البحيرة، يمنحك استراحة ساحرة وسط الطبيعة الخضراء للبحر الأسود.",
-                h4_desc: "بيئة مريحة للجسد والروح، تمزج بين المرافق الحرارية الشافية والإطلالة البانورامية على جبل أولوداغ.",
-                h5_desc: "في قلب العاصمة، عنوان مرموق يتألق بتفاصيل حديثة ومعايير ضيافة احترافية تلبي تطلعاتك.",
-                h6_desc: "مساحة معيشة فسيحة تعانق نسيم إيجه، مدمجة بلمسات فنية معاصرة على طول الكورنيش.",
+                h1_desc: "مساحات خاصة على سواحل المتوسط، توفر أجواءً من الخصوصية المطلقة والرفاهية مع الطبيعة.",
+                h2_desc: "عند سفوح جبال طوروس، تجربة شاملة كلياً فائقة الفخامة تطل على المياه الفيروزية.",
+                h3_desc: "صرح مرموق يرتفع فوق المنحدرات الصخرية بقلب المدينة ليطل على أفق المتوسط اللانهائي.",
+                h4_desc: "في قلب البوسفور، تجربة استثنائية تتميز بالراحة المطلقة والمناظر الخلابة التي لا تُضاهى.",
+                h5_desc: "ملاذ هادئ يطل على البحيرة، يمنحك استراحة ساحرة وسط الطبيعة الخضراء للبحر الأسود.",
+                h6_desc: "بيئة مريحة للجسد والروح، تمزج بين المرافق الحرارية الشافية والإطلالة البانورامية على أولوداغ.",
                 starting_from: "الأسعار تبدأ من",
                 flights_sub: "أناقة الأجواء",
                 flights_heading: "مسارات الرحلات الحصرية",
-                f1_desc: "انتقال مباشر ومريح دون انقطاع، مصحوباً بامتيازات الأمتعة والخدمات الرفيعة في الأجواء.",
+                f1_desc: "انتقال مباشر ومريح دون انقطاع، مصحوباً بامتيازات الأمتعة والخدمات الرفيعة.",
                 f2_desc: "جسر جوي آمن وسريع، يمتد بك نحو الطبيعة الباردة والمنعشة في الشمال التركي.",
-                f3_desc: "رحلة هادئة من سواحل إيجه إلى العاصمة، تتميز بدقة المواعيد ومقاعد ذات مساحات رحبة.",
+                f3_desc: "خط دولي مباشر يربط العاصمة الروسية بمدينة البوسفور بأعلى معايير الراحة.",
+                f4_desc: "رحلة مباشرة ممتعة من لؤلؤة الشمال الروسي إلى شواطئ البحر الأبيض المتوسط المشمسة.",
+                f5_desc: "خدمات مقصورة فاخرة وخيارات ضيافة واسعة تنقلك من الخليج العربي إلى إسطنبول.",
+                f6_desc: "رحلة مباشرة تجمع بين الراحة والاقتصاد من المملكة العربية السعودية إلى لؤلؤة إيجه.",
+                blog_sub: "دليل السفر",
+                blog_heading: "يوميات UcuzaKal السياحية",
+                blog1_title: "جنات أنطاليا المخفية وخلجانها الفاخرة",
+                blog1_desc: "دليل مسارات حصري للباحثين عن الاستجمام في المياه الصافية واستكشاف الشواطئ الهادئة بعيداً عن الصخب.",
+                blog2_title: "قصور البوسفور التاريخية وتجارب التذوق الراقية",
+                blog2_desc: "في المدينة التي تلتقي فيها قارتان، تجربة لا تُنسى تمتد من فنادق القصور العثمانية إلى مطاعم ميشلان.",
+                blog3_title: "السكينة بين غيوم مرتفعات البحر الأسود",
+                blog3_desc: "أسرار الإقامة الفاخرة في الأكواخ الخشبية الراقية وسط أجواء أوزنجول وأيدر العليلة وطبيعتها البكر.",
+                read_more: "اقرأ المزيد",
                 about_heading: "من نحن؟",
                 about_text_1: "UcuzaKal Türkiye هي منصة سفر مستقلة تجمع لك أفضل عروض الإقامة ورحلات الطيران في أرقى الوجهات التركية. هدفنا هو تقديم أدق الأسعار بشفافية تامة، وتحويل تخطيط سفرك إلى تجربة استثنائية تلبي ذوقك الرفيع.",
                 about_text_2: "تم تصميم وتنسيق كل مسار بعناية فائقة لضمان ألا يكون سفرك مجرد وجهة وصول؛ بل ليبقى كذكرى نبيلة لا تُنسى تلبي كافة توقعاتك.",
                 ratings_heading: "شاركنا انطباعاتك",
-                ratings_desc: "أفكارك الصادقة حول توجيهاتنا قيمة للغاية بالنسبة لنا.",
                 review_name_placeholder: "الاسم الكريم...",
                 review_text_placeholder: "اكتب انطباعاتك هنا...",
                 submit_review_btn: "إرسال",
@@ -540,340 +652,83 @@
                 hero_subtitle: "Exclusive accommodation and flight opportunities carefully compiled for you in Turkey's most popular destinations.",
                 hotels_sub: "EXCLUSIVE SELECTION",
                 hotels_heading: "Special Selection Collection",
-                h1_desc: "An outstanding experience in the heart of the Bosphorus, standing out with its unique comfort and flawless view.",
-                h2_desc: "A comfort zone with privileged design, intertwined with nature, offering private spaces on the Mediterranean shores.",
-                h3_desc: "A peaceful break in the green nature of the Black Sea with its serene architecture overlooking the lake.",
-                h4_desc: "An environment that rests the body and soul, blended with healing thermal facilities against the view of Uludağ.",
-                h5_desc: "A prestigious address in the center of the capital, standing out with modern details and high hospitality standards.",
-                h6_desc: "A spacious living area intertwined with contemporary art, located along the promenade, facing the Aegean winds.",
+                h1_desc: "A privileged comfort zone with exceptional design offering private spaces on the Mediterranean shores.",
+                h2_desc: "At the foothills of Taurus Mountains, an ultra-all-inclusive experience facing turquoise waters.",
+                h3_desc: "A prestigious address rising on urban cliffs, opening into the endless blue of the Mediterranean.",
+                h4_desc: "An outstanding experience in the heart of the Bosphorus with unique comfort and flawless view.",
+                h5_desc: "A serene getaway overlooking the lake amidst the lush green nature of the Black Sea.",
+                h6_desc: "A rejuvenating haven blending healing thermal facilities against majestic Uludağ vistas.",
                 starting_from: "Rates Starting From",
                 flights_sub: "ELEGANCE IN THE SKIES",
                 flights_heading: "Privileged Flights",
-                f1_desc: "Uninterrupted and comfortable direct transit with privileged baggage and catering facilities.",
-                f2_desc: "A safe, fast, and highly practical air bridge extending to the cool nature of the North.",
-                f3_desc: "A peaceful journey from the Aegean shores to the metropolis with punctual departures and spacious seating.",
+                f1_desc: "Uninterrupted direct transit with privileged baggage and hospitality services.",
+                f2_desc: "A fast and practical aerial route leading directly into refreshing Northern nature.",
+                f3_desc: "A direct international connection between Moscow and Istanbul with premier comfort.",
+                f4_desc: "Seamless journey from St. Petersburg directly to the sunny shores of Antalya.",
+                f5_desc: "Luxury cabin hospitality and gourmet catering connecting the Arabian Gulf to Istanbul.",
+                f6_desc: "Comfortable and efficient direct link from Riyadh to the Aegean gem of Izmir.",
+                blog_sub: "TRAVEL JOURNAL",
+                blog_heading: "UcuzaKal Travel Journal",
+                blog1_title: "Antalya's Hidden Havens & Exclusive Bays",
+                blog1_desc: "A curated guide for travelers seeking pristine waters and peaceful private beach retreats.",
+                blog2_title: "Bosphorus Palaces & Fine Dining Experiences",
+                blog2_desc: "Unforgettable journeys bridging two continents, from Ottoman palace stays to culinary excellence.",
+                blog3_title: "Tranquility Amidst Black Sea Plateaus",
+                blog3_desc: "Discover the luxury of boutique wooden lodges nestled high in misty Uzungöl hills.",
+                read_more: "Read More",
                 about_heading: "Who Are We?",
-                about_text_1: "UcuzaKal Türkiye is an independent travel platform that carefully curates the finest accommodation and flight deals across Turkey's elite destinations. Our goal is to provide accurate pricing with complete transparency, turning your travel planning into an art form.",
-                about_text_2: "Each meticulously compiled route is designed so that your travel is not just a destination; but remains as a flawless and unforgettable experience that meets your expectations.",
+                about_text_1: "UcuzaKal Türkiye is an independent travel platform that carefully curates the finest accommodation and flight deals across Turkey's elite destinations.",
+                about_text_2: "Each meticulously compiled route is designed so that your journey becomes an unforgettable standard of elegance.",
                 ratings_heading: "Share Your Impressions",
-                ratings_desc: "Your sincere thoughts about our guidance are valuable to us.",
                 review_name_placeholder: "Full Name",
                 review_text_placeholder: "Your thoughts...",
                 submit_review_btn: "Submit",
                 review_success: "Thank you for your elegant feedback.",
                 rights: "All rights reserved UcuzaKal Türkiye",
                 google_login: "Login with Gmail",
-                cinematic_title: "Redirecting to the Booking Platform..."
-            },
-            zh: {
-                dir: "ltr",
-                hero_title: "在奢华中发现精英路线",
-                hero_subtitle: "为您精心挑选土耳其最热门目的地的专属住宿和航班机会。",
-                hotels_sub: "专属精选",
-                hotels_heading: "特别精选系列",
-                h1_desc: "在博斯普鲁斯海峡中心的卓越体验，以其独特的舒适和无瑕的美景脱颖而出。",
-                h2_desc: "与自然交织的尊贵设计舒适区，在地中海沿岸提供私人空间。",
-                h3_desc: "在黑海绿色大自然中的宁静假期，拥有俯瞰湖泊的宁静建筑。",
-                h4_desc: "在乌鲁达山的美景下，融合了治愈系温泉设施，让身心得到休息。",
-                h5_desc: "位于首都中心的尊贵地标，以现代细节和高标准的款待脱颖而出。",
-                h6_desc: "宽敞的生活空间与当代艺术交织，沿着海滨长廊，迎着爱琴海的微风。",
-                starting_from: "起步价",
-                flights_sub: "云端优雅",
-                flights_heading: "尊享航班",
-                f1_desc: "提供尊享行李和餐饮服务，享受不间断且舒适的直达旅程。",
-                f2_desc: "安全、快速且非常实用的空中桥梁，直达北部的清凉大自然。",
-                f3_desc: "从爱琴海沿岸到大都市的宁静之旅，准时起飞，座位宽敞。",
-                about_heading: "我们是谁？",
-                about_text_1: "UcuzaKal Türkiye 是一个独立的旅游平台，精心策划土耳其精英目的地的最佳住宿和航班优惠。我们的目标是通过完全透明的准确定价，将您的旅行计划变成一种艺术。",
-                about_text_2: "每条精心编制的路线都旨在让您的旅行不仅是一个目的地，而且能满足您的期望，成为一段完美无瑕且令人难忘的经历。",
-                ratings_heading: "分享您的印象",
-                ratings_desc: "您对我们指南的真诚想法对我们来说非常宝贵。",
-                review_name_placeholder: "全名",
-                review_text_placeholder: "您的想法...",
-                submit_review_btn: "提交",
-                review_success: "感谢您优雅的反馈。",
-                rights: "版权所有 UcuzaKal Türkiye",
-                google_login: "使用 Gmail 登录",
-                cinematic_title: "正在重定向至预订平台..."
-            },
-            ku: {
-                dir: "ltr",
-                hero_title: "Di Luksê de Rêyên Bijarte Kêşf Bikin",
-                hero_subtitle: "Derfetên rûniştin û firînê yên taybet ji bo we li cihên herî delal ên Tirkiyeyê hatine amadekirin.",
-                hotels_sub: "KOLEKSİYONA TAYBET",
-                hotels_heading: "Bijarteyên Taybet",
-                h1_desc: "Li dilê Bosforê, bi rehetiyek bêhempa û dîmenek bêkêmasî ezmûnek taybet.",
-                h2_desc: "Li peravên Deryaya Spî, qadek rehet a bi sêwirana taybet û bi xwezayê re têkel.",
-                h3_desc: "Li nav xwezaya kesk a Deryaya Reş, bi mîmariya xwe ya aram û dîmena golê, navberek aram.",
-                h4_desc: "Li hemberî dîmena Uludağê, derdorek ku can û ruh bi derfetên termal rehet dike.",
-                h5_desc: "Li navenda paytextê, navnîşanek bi prestîj ku bi hûrguliyên nûjen û standardên bilind derdikeve pêş.",
-                h6_desc: "Li perava Egeyê, qadek jiyanê ya berfireh û bi hunerê re têkel.",
-                starting_from: "Bihayên Destpêkê",
-                flights_sub: "ZERAFETA LI EZMANAN",
-                flights_heading: "Firînên Taybet",
-                f1_desc: "Bi derfetên taybet ên bagaj û xwarinê re, derbasbûnek yekser û rehet.",
-                f2_desc: "Pireke asmanî ya ewle û bilez ku digihîje xwezaya hênik a Bakur.",
-                f3_desc: "Gerek aram ji peravên Egeyê ber bi metropolê ve bi rabûnên di wextê xwe de.",
-                about_heading: "Em Kî Ne?",
-                about_text_1: "UcuzaKal Türkiye platformek geştê ya serbixwe ye. Armanca me ew e ku em bi şefafiyeta tevahî bihayên rast pêşkêş bikin.",
-                about_text_2: "Her rotek ku bi baldarî hatiye amadekirin, wisa hatiye sêwirandin ku ne tenê bibe cihê çûyînê, lê bibe ezmûnek bêkêmasî.",
-                ratings_heading: "Ramanên Xwe Parve Bikin",
-                ratings_desc: "Ramanên we yên jidil ji bo me pir giranbaha ne.",
-                review_name_placeholder: "Nav û Paşnav",
-                review_text_placeholder: "Ramanên we...",
-                submit_review_btn: "Bişîne",
-                review_success: "Ji bo berteka we ya bedew spas.",
-                rights: "Hemû maf parastî ne UcuzaKal Türkiye",
-                google_login: "Bi Gmail Têkeve",
-                cinematic_title: "Ber bi Platforma Veqetandinê ve Tê Beralîkirin..."
+                cinematic_title: "Redirecting to Booking Platform..."
             },
             ru: {
                 dir: "ltr",
                 hero_title: "Откройте для себя элитные маршруты в роскоши",
-                hero_subtitle: "Эксклюзивные предложения по размещению и перелетам, тщательно собранные для вас в самых популярных местах Турции.",
+                hero_subtitle: "Эксклюзивные предложения по размещению и перелетам в лучших уголках Турции.",
                 hotels_sub: "СПЕЦИАЛЬНЫЙ ВЫБОР",
                 hotels_heading: "Специальная коллекция",
-                h1_desc: "Выдающийся опыт в самом сердце Босфора, выделяющийся своим уникальным комфортом и безупречным видом.",
-                h2_desc: "Зона комфорта с привилегированным дизайном, сливающаяся с природой, предлагающая частные пространства на берегу Средиземного моря.",
-                h3_desc: "Спокойный отдых в зеленой природе Черного моря с безмятежной архитектурой с видом на озеро.",
-                h4_desc: "Среда, которая дает отдых телу и душе, смешанная с целебными термальными источниками с видом на Улудаг.",
-                h5_desc: "Престижный адрес в центре столицы, выделяющийся современными деталями и высокими стандартами гостеприимства.",
-                h6_desc: "Просторное жизненное пространство, переплетенное с современным искусством, расположенное вдоль набережной.",
+                h1_desc: "Привилегированная зона отдыха на средиземноморском побережье среди дивной природы.",
+                h2_desc: "У подножия Таврских гор, ультра все включено с видом на лазурные морские просторы.",
+                h3_desc: "Престижный отель на утесах города, открывающий бесконечную синеву Средиземного моря.",
+                h4_desc: "Выдающийся комфорт и безупречный вид в самом сердце пролива Босфор.",
+                h5_desc: "Безмятежный отдых на лоне зеленой природы Черного моря с видом на гладь озера.",
+                h6_desc: "Целебные термальные источники и спокойствие с панорамой заснеженного Улудага.",
                 starting_from: "Цены от",
                 flights_sub: "ЭЛЕГАНТНОСТЬ В НЕБЕ",
                 flights_heading: "Привилегированные рейсы",
-                f1_desc: "Бесперебойный и комфортный прямой транзит с привилегированным багажом и питанием.",
-                f2_desc: "Безопасный, быстрый и очень практичный воздушный мост, тянущийся к прохладной природе Севера.",
-                f3_desc: "Спокойное путешествие от берегов Эгейского моря до мегаполиса с пунктуальными вылетами и просторными местами.",
-                about_heading: "Кто мы?",
-                about_text_1: "UcuzaKal Türkiye — это независимая туристическая платформа. Наша цель — обеспечить точные цены с полной прозрачностью, превратив планирование путешествий в искусство.",
-                about_text_2: "Каждый тщательно составленный маршрут разработан так, чтобы ваше путешествие было не просто пунктом назначения, а осталось безупречным и незабываемым опытом.",
+                f1_desc: "Прямой комфортный перелет с расширенным сервисом багажа и питания.",
+                f2_desc: "Быстрый воздушный мост к прохладе и свежести северной природы.",
+                f3_desc: "Прямой рейс из Москвы в сердце Стамбула с высоким международным стандартом.",
+                f4_desc: "Удобный перелет из Санкт-Петербурга к теплому солнечному побережью Антальи.",
+                f5_desc: "Премиальное обслуживание на рейсах из Персидского залива в Стамбул.",
+                f6_desc: "Прямой и удобный рейс из Эр-Рияда в жемчужину Эгейского моря — Измир.",
+                blog_sub: "ПУТЕВОДИТЕЛЬ",
+                blog_heading: "Дневник путешествий UcuzaKal",
+                blog1_title: "Тайные бухты и эксклюзивный отдых в Анталье",
+                blog1_desc: "Гид для тех, кто ищет уединения и чистейших бирюзовых вод вдали от суеты.",
+                blog2_title: "Дворцы Босфора и гастрономические открытия",
+                blog2_desc: "Путешествие в османскую роскошь отелей-дворцов и ресторанов с высокими наградами.",
+                blog3_title: "Умиротворение среди туманных плато Черного моря",
+                blog3_desc: "Искусство отдыха в премиальных деревянных шале среди горных хребтов Узунгёля.",
+                read_more: "Читать далее",
+                about_heading: "О нас",
+                about_text_1: "UcuzaKal Türkiye — независимая туристическая платформа, тщательно собирающая лучшие предложения.",
+                about_text_2: "Каждый маршрут составлен для того, чтобы ваше путешествие стало безупречным опытом.",
                 ratings_heading: "Поделитесь впечатлениями",
-                ratings_desc: "Ваши искренние мысли о нашем руководстве ценны для нас.",
                 review_name_placeholder: "Имя Фамилия",
-                review_text_placeholder: "Ваши мысли...",
+                review_text_placeholder: "Ваш отзыв...",
                 submit_review_btn: "Отправить",
-                review_success: "Благодарим вас за элегантный отзыв.",
+                review_success: "Благодарим за ваш отзыв.",
                 rights: "Все права защищены UcuzaKal Türkiye",
                 google_login: "Войти через Gmail",
                 cinematic_title: "Перенаправление на платформу бронирования..."
-            },
-            es: {
-                dir: "ltr",
-                hero_title: "Descubra Rutas de Élite en Lujo",
-                hero_subtitle: "Oportunidades exclusivas de alojamiento y vuelos cuidadosamente compiladas para usted.",
-                hotels_sub: "SELECCIÓN EXCLUSIVA",
-                hotels_heading: "Colección de Selección Especial",
-                h1_desc: "Una experiencia excepcional en el corazón del Bósforo, que destaca por su comodidad única y vistas impecables.",
-                h2_desc: "Una zona de confort con diseño privilegiado, entrelazada con la naturaleza, que ofrece espacios privados.",
-                h3_desc: "Un descanso pacífico en la verde naturaleza del Mar Negro con su serena arquitectura frente al lago.",
-                h4_desc: "Un ambiente que descansa cuerpo y alma, mezclado con instalaciones termales curativas frente al monte Uludağ.",
-                h5_desc: "Una dirección prestigiosa en el centro de la capital, que destaca por detalles modernos y altos estándares de hospitalidad.",
-                h6_desc: "Una amplia sala de estar entrelazada con arte contemporáneo, ubicada a lo largo del paseo marítimo.",
-                starting_from: "Tarifas desde",
-                flights_sub: "ELEGANCIA EN LOS CIELOS",
-                flights_heading: "Vuelos Privilegiados",
-                f1_desc: "Tránsito directo ininterrumpido y cómodo con franquicia de equipaje y servicios de catering privilegiados.",
-                f2_desc: "Un puente aéreo seguro, rápido y muy práctico que se extiende hasta la fresca naturaleza del norte.",
-                f3_desc: "Un viaje tranquilo desde las costas del Egeo hasta la metrópolis con salidas puntuales.",
-                about_heading: "¿Quiénes somos?",
-                about_text_1: "UcuzaKal Türkiye es una plataforma de viajes independiente. Nuestro objetivo es proporcionar precios precisos con total transparencia.",
-                about_text_2: "Cada ruta meticulosamente compilada está diseñada para que su viaje no sea solo un destino, sino que siga siendo una experiencia impecable e inolvidable.",
-                ratings_heading: "Comparte tus impresiones",
-                ratings_desc: "Sus pensamientos sinceros sobre nuestra orientación son valiosos para nosotros.",
-                review_name_placeholder: "Nombre completo",
-                review_text_placeholder: "Tus pensamientos...",
-                submit_review_btn: "Enviar",
-                review_success: "Gracias por sus elegantes comentarios.",
-                rights: "Todos los derechos reservados UcuzaKal Türkiye",
-                google_login: "Entrar con Gmail",
-                cinematic_title: "Redirigiendo a la plataforma de reservas..."
-            },
-            fa: {
-                dir: "rtl",
-                hero_title: "مسیرهای نخبگان را در تجمل کشف کنید",
-                hero_subtitle: "فرصت‌های اقامت و پرواز منحصر به فرد که با دقت برای شما گردآوری شده است.",
-                hotels_sub: "انتخاب ویژه",
-                hotels_heading: "مجموعه انتخاب ویژه",
-                h1_desc: "یک تجربه برجسته در قلب بسفر، که با راحتی منحصر به فرد و چشم‌انداز بی‌عیب و نقص متمایز است.",
-                h2_desc: "یک منطقه راحتی با طراحی ویژه، در هم آمیخته با طبیعت، که فضاهای خصوصی را در سواحل مدیترانه ارائه می‌دهد.",
-                h3_desc: "یک استراحت آرام در طبیعت سبز دریای سیاه با معماری آرام رو به دریاچه.",
-                h4_desc: "محیطی که به جسم و روح آرامش می‌بخشد، آمیخته با امکانات حرارتی شفابخش در برابر چشم‌انداز اولوداغ.",
-                h5_desc: "یک آدرس معتبر در مرکز پایتخت، که با جزئیات مدرن و استانداردهای بالای مهمان‌نوازی متمایز است.",
-                h6_desc: "یک فضای نشیمن بزرگ در هم آمیخته با هنر معاصر، واقع در امتداد تفرجگاه ساحلی، رو به بادهای اژه.",
-                starting_from: "نرخ از",
-                flights_sub: "ظرافت در آسمان",
-                flights_heading: "پروازهای ویژه",
-                f1_desc: "ترانزیت مستقیم بدون وقفه و راحت با بار ویژه و امکانات پذیرایی.",
-                f2_desc: "یک پل هوایی امن، سریع و بسیار کاربردی که به طبیعت خنک شمال امتداد می‌یابد.",
-                f3_desc: "سفری آرام از سواحل اژه به کلانشهر با خروج به موقع و صندلی‌های جادار.",
-                about_heading: "ما کیستیم؟",
-                about_text_1: "UcuzaKal Türkiye یک پلتفرم سفر مستقل است. هدف ما ارائه قیمت دقیق با شفافیت کامل است تا برنامه‌ریزی سفر شما به یک هنر تبدیل شود.",
-                about_text_2: "هر مسیر که با دقت گردآوری شده است، به گونه‌ای طراحی شده است که سفر شما فقط یک مقصد نباشد؛ بلکه به عنوان یک تجربه بی‌عیب و نقص و فراموش‌نشدنی باقی بماند.",
-                ratings_heading: "نظرات خود را به اشتراک بگذارید",
-                ratings_desc: "افکار صمیمانه شما درباره راهنمایی ما برای ما ارزشمند است.",
-                review_name_placeholder: "نام و نام خانوادگی",
-                review_text_placeholder: "نظرات شما...",
-                submit_review_btn: "ارسال",
-                review_success: "از بازخورد زیبا و ارزشمند شما سپاسگزاریم.",
-                rights: "تمامی حقوق محفوظ است UcuzaKal Türkiye",
-                google_login: "ورود با جیمیل",
-                cinematic_title: "در حال انتقال به پلتفرم رزرو..."
-            },
-            az: {
-                dir: "ltr",
-                hero_title: "Seçkin Rotaları Lükslə Kəşf Edin",
-                hero_subtitle: "Sizin üçün diqqətlə toplanmış eksklüziv konaklama və uçuş fürsətləri.",
-                hotels_sub: "XÜSUSİ SEÇİM",
-                hotels_heading: "Xüsusi Seçim Kolleksiyası",
-                h1_desc: "Boğazın qəlbində, bənzərsiz rahatlığı və qüsursuz mənzərəsi ilə seçilən mükəmməl bir təcrübə.",
-                h2_desc: "Aralıq dənizi sahillərində təbiətlə iç-içə, xüsusi dizaynlı və şəxsi məkanlar təqdim edən rahatlıq zonası.",
-                h3_desc: "Qara dənizin yaşıl təbiətində, göl mənzərəli sakit memarlığı ilə dinc bir fasilə.",
-                h4_desc: "Uludağ mənzərəsinə qarşı şəfalı termal imkanlarla harmoniya təşkil edən, bədəni və ruhu dincəldən mühit.",
-                h5_desc: "Paytaxtın mərkəzində müasir detalları və yüksək qonaqpərvərlik standartları ilə seçilən prestijli ünvan.",
-                h6_desc: "Egey küləklərinə qarşı kordon boyu yerləşən, müasir sənətlə iç-içə geniş yaşayış sahəsi.",
-                starting_from: "Başlayan Qiymətlər",
-                flights_sub: "SƏMADA ZƏRAFƏT",
-                flights_heading: "Xüsusi Uçuşlar",
-                f1_desc: "Xüsusi baqaj və iaşə imkanları ilə kəsintisiz və rahat birbaşa tranzit.",
-                f2_desc: "Şimalın sərin təbiətinə uzanan təhlükəsiz, sürətli və son dərəcə praktik hava körpüsü.",
-                f3_desc: "Dəqiq qalxış və geniş oturacaq aralıqları ilə Egey sahillərindən metropola dinc səyahət.",
-                about_heading: "Biz Kimik?",
-                about_text_1: "UcuzaKal Türkiye müstəqil bir səyahət platformasıdır. Məqsədimiz şəffaf və ən doğru qiymətləri təqdim edərək səyahət planlamasını bir sənət növünə çevirməkdir.",
-                about_text_2: "Diqqətlə toplanmış hər bir marşrut, səyahətinizin sadəcə bir təyinat nöqtəsi olmaması, qüsursuz bir xatirə kimi qalması üçün dizayn edilmişdir.",
-                ratings_heading: "Təəssüratlarınızı Bölüşün",
-                ratings_desc: "Rəhbərliyimiz haqqında səmimi fikirləriniz bizim üçün dəyərlidir.",
-                review_name_placeholder: "Adınız və Soyadınız",
-                review_text_placeholder: "Düşüncələriniz...",
-                submit_review_btn: "Göndər",
-                review_success: "Zərif rəyiniz üçün təşəkkür edirik.",
-                rights: "Bütün hüquqlar qorunur UcuzaKal Türkiye",
-                google_login: "Gmail ilə Daxil Ol",
-                cinematic_title: "Rezervasiya Platformasına Yönləndirilirsiniz..."
-            },
-            el: {
-                dir: "ltr",
-                hero_title: "Ανακαλύψτε Ελίτ Διαδρομές σε Πολυτέλεια",
-                hero_subtitle: "Αποκλειστικές ευκαιρίες διαμονής και πτήσεων προσεκτικά συγκεντρωμένες για εσάς.",
-                hotels_sub: "ΕΙΔΙΚΗ ΕΠΙΛΟΓΗ",
-                hotels_heading: "Συλλογή Ειδικής Επιλογής",
-                h1_desc: "Μια εξαιρετική εμπειρία στην καρδιά του Βοσπόρου, που ξεχωρίζει για τη μοναδική άνεση.",
-                h2_desc: "Μια ζώνη άνεσης με προνομιακό σχεδιασμό, συνυφασμένη με τη φύση.",
-                h3_desc: "Ένα γαλήνιο διάλειμμα στην πράσινη φύση της Μαύρης Θάλασσας με γαλήνια αρχιτεκτονική.",
-                h4_desc: "Ένα περιβάλλον που ξεκουράζει σώμα και ψυχή, σε συνδυασμό με ιαματικές εγκαταστάσεις.",
-                h5_desc: "Μια αριστοκρατική διεύθυνση στο κέντρο της πρωτεύουσας, με σύγχρονες λεπτομέρειες.",
-                h6_desc: "Ένας ευρύχωρος χώρος διαβίωσης συνυφασμένος με τη σύγχρονη τέχνη.",
-                starting_from: "Τιμές από",
-                flights_sub: "ΚΟΜΨΟΤΗΤΑ ΣΤΟΥΣ ΟΥΡΑΝΟΥΣ",
-                flights_heading: "Προνομιακές Πτήσεις",
-                f1_desc: "Αδιάλειπτη και άνετη απευθείας διέλευση με προνομιακές παροχές αποσκευών.",
-                f2_desc: "Μια ασφαλής, γρήγορη και εξαιρετικά πρακτική αερογέφυρα προς τη φύση του Βορρά.",
-                f3_desc: "Ένα ειρηνικό ταξίδι από τις ακτές του Αιγαίου στη μητρόπολη με ακριβείς αναχωρήσεις.",
-                about_heading: "Ποιοι Είμαστε;",
-                about_text_1: "Το UcuzaKal Türkiye είναι μια ανεξάρτητη ταξιδιωτική πλατφόρμα. Στόχος μας είναι να μετατρέψουμε τον ταξιδιωτικό σχεδιασμό σε τέχνη μέσω διαφάνειας.",
-                about_text_2: "Κάθε προσεκτικά καταρτισμένη διαδρομή έχει σχεδιαστεί έτσι ώστε το ταξίδι σας να μην είναι απλώς ένας προορισμός, αλλά μια άψογη εμπειρία.",
-                ratings_heading: "Μοιραστείτε τις Εντυπώσεις σας",
-                ratings_desc: "Οι ειλικρινείς σκέψεις σας για την καθοδήγησή μας είναι πολύτιμες για εμάς.",
-                review_name_placeholder: "Ονοματεπώνυμο",
-                review_text_placeholder: "Οι σκέψεις σας...",
-                submit_review_btn: "Αποστολή",
-                review_success: "Σας ευχαριστούμε για την κομψή ανταπόκρισή σας.",
-                rights: "Όλα τα δικαιώματα διατηρούνται UcuzaKal Türkiye",
-                google_login: "Σύνδεση με Gmail",
-                cinematic_title: "Ανακατεύθυνση στην Πλατφόρμα Κράτησης..."
-            },
-            ka: {
-                dir: "ltr",
-                hero_title: "აღმოაჩინეთ ელიტარული მარშრუტები ფუფუნებაში",
-                hero_subtitle: "ექსკლუზიური განთავსებისა და ფრენის შესაძლებლობები საგულდაგულოდ შედგენილი თქვენთვის.",
-                hotels_sub: "ექსკლუზიური შერჩევა",
-                hotels_heading: "სპეციალური შერჩევის კოლექცია",
-                h1_desc: "გამორჩეული გამოცდილება ბოსფორის გულში, რომელიც გამოირჩევა უნიკალური კომფორტით.",
-                h2_desc: "კომფორტის ზონა პრივილეგირებული დიზაინით, ბუნებასთან გადაჯაჭვული.",
-                h3_desc: "მშვიდობიანი შესვენება შავი ზღვის მწვანე ბუნებაში თავისი წყნარი არქიტექტურით ტბის ხედით.",
-                h4_desc: "გარემო, რომელიც ასვენებს სხეულსა და სულს, შერწყმული სამკურნალო თერმულ ობიექტებთან.",
-                h5_desc: "პრესტიჟული მისამართი დედაქალაქის ცენტრში, რომელიც გამოირჩევა თანამედროვე დეტალებით.",
-                h6_desc: "ფართო საცხოვრებელი ფართი გადაჯაჭვული თანამედროვე ხელოვნებასთან სასეირნო გზის გასწვრივ.",
-                starting_from: "ფასები",
-                flights_sub: "ელეგანტურობა ცაში",
-                flights_heading: "პრივილეგირებული ფრენები",
-                f1_desc: "უწყვეტი და კომფორტული პირდაპირი ტრანზიტი პრივილეგირებული ბარგით.",
-                f2_desc: "უსაფრთხო, სწრაფი და უაღრესად პრაქტიკული საჰაერო ხიდი, რომელიც ვრცელდება ჩრდილოეთის ბუნებამდე.",
-                f3_desc: "მშვიდობიანი მოგზაურობა ეგეოსის სანაპიროებიდან მეტროპოლიამდე პუნქტუალური გამგზავრებით.",
-                about_heading: "ვინ ვართ ჩვენ?",
-                about_text_1: "UcuzaKal Türkiye არის დამოუკიდებელი სამოგზაურო პლატფორმა. ჩვენი მიზანია მოგზაურობის დაგეგმვა ხელოვნების ფორმად ვაქციოთ გამჭვირვალობით.",
-                about_text_2: "თითოეული ზედმიწევნით შედგენილი მარშრუტი შექმნილია ისე, რომ თქვენი მოგზაურობა არ იყოს მხოლოდ დანიშნულების ადგილი, არამედ უნაკლო გამოცდილება.",
-                ratings_heading: "გააზიარეთ თქვენი შთაბეჭდილებები",
-                ratings_desc: "თქვენი გულწრფელი აზრები ჩვენი ხელმძღვანელობის შესახებ ძვირფასია ჩვენთვის.",
-                review_name_placeholder: "სახელი და გვარი",
-                review_text_placeholder: "თქვენი აზრები...",
-                submit_review_btn: "გაგზავნა",
-                review_success: "გმადლობთ ელეგანტური უკუკავშირისთვის.",
-                rights: "ყველა უფლება დაცულია UcuzaKal Türkiye",
-                google_login: "Gmail-ით შესვლა",
-                cinematic_title: "გადამისამართება ჯავშნის პლატფორმაზე..."
-            },
-            bg: {
-                dir: "ltr",
-                hero_title: "Открийте елитни маршрути в лукс",
-                hero_subtitle: "Ексклузивни възможности за настаняване и полети, внимателно събрани за вас.",
-                hotels_sub: "ЕКСКЛУЗИВНА СЕЛЕКЦИЯ",
-                hotels_heading: "Специална селекция колекция",
-                h1_desc: "Изключително преживяване в сърцето на Босфора, открояващо се със своя уникален комфорт.",
-                h2_desc: "Зона на комфорт с привилегирован дизайн, преплетена с природата.",
-                h3_desc: "Спокойна почивка в зелената природа на Черно море с нейната спокойна архитектура.",
-                h4_desc: "Среда, която дава почивка на тялото и душата, смесена с лечебни термални съоръжения.",
-                h5_desc: "Престижен адрес в центъра на столицата, открояващ се с модерни детайли.",
-                h6_desc: "Просторна всекидневна зона, преплетена със съвременно изкуство, разположена покрай алеята.",
-                starting_from: "Цени от",
-                flights_sub: "ЕЛЕГАНТНОСТ В НЕБЕТО",
-                flights_heading: "Привилегировани полети",
-                f1_desc: "Непрекъснат и удобен директен транзит с привилегирован багаж.",
-                f2_desc: "Безопасен, бърз и изключително практичен въздушен мост към природата на севера.",
-                f3_desc: "Спокойно пътуване от бреговете на Егейско море до метрополиса с точни заминавания.",
-                about_heading: "Кои сме ние?",
-                about_text_1: "UcuzaKal Türkiye е независима платформа за пътуване. Нашата цел е да превърнем планирането на пътуването в изкуство чрез прозрачност.",
-                about_text_2: "Всеки щателно съставен маршрут е проектиран така, че пътуването ви да не е просто дестинация, а безупречно изживяване.",
-                ratings_heading: "Споделете вашите впечатления",
-                ratings_desc: "Вашите искрени мисли за нашите насоки са ценни за нас.",
-                review_name_placeholder: "Име и фамилия",
-                review_text_placeholder: "Вашите мисли...",
-                submit_review_btn: "Изпрати",
-                review_success: "Благодарим ви за елегантната обратна връзка.",
-                rights: "Всички права запазени UcuzaKal Türkiye",
-                google_login: "Вход с Gmail",
-                cinematic_title: "Пренасочване към платформата за резервации..."
-            },
-            uk: {
-                dir: "ltr",
-                hero_title: "Відкрийте елітні маршрути в розкоші",
-                hero_subtitle: "Ексклюзивні можливості проживання та перельотів, ретельно зібрані для вас.",
-                hotels_sub: "ЕКСКЛЮЗИВНА КОЛЕКЦІЯ",
-                hotels_heading: "Спеціальна колекція",
-                h1_desc: "Видатний досвід у серці Босфору, що виділяється своїм унікальним комфортом.",
-                h2_desc: "Зона комфорту з привілейованим дизайном, переплетена з природою.",
-                h3_desc: "Спокійний відпочинок у зеленій природі Чорного моря з її безтурботною архітектурою.",
-                h4_desc: "Середовище, яке дає відпочинок тілу і душі, змішане з цілющими термальними джерелами.",
-                h5_desc: "Престижна адреса в центрі столиці, що виділяється сучасними деталями.",
-                h6_desc: "Простора вітальня, переплетена з сучасним мистецтвом, розташована вздовж набережної.",
-                starting_from: "Ціни від",
-                flights_sub: "ЕЛЕГАНТНІСТЬ У НЕБІ",
-                flights_heading: "Привілейовані рейси",
-                f1_desc: "Безперебійний і зручний прямий транзит із привілейованим багажем.",
-                f2_desc: "Безпечний, швидкий і надзвичайно практичний повітряний міст до природи півночі.",
-                f3_desc: "Спокійна подорож від берегів Егейського моря до мегаполісу з пунктуальними вильотами.",
-                about_heading: "Хто ми?",
-                about_text_1: "UcuzaKal Türkiye — це незалежна туристична платформа. Наша мета — перетворити планування подорожей на мистецтво через прозорість.",
-                about_text_2: "Кожен ретельно складений маршрут розроблений так, щоб ваша подорож була не просто пунктом призначення, а бездоганним досвідом.",
-                ratings_heading: "Поділіться своїми враженнями",
-                ratings_desc: "Ваші щирі думки про наші настанови цінні для нас.",
-                review_name_placeholder: "Ім'я та прізвище",
-                review_text_placeholder: "Ваші думки...",
-                submit_review_btn: "Надіслати",
-                review_success: "Дякуємо за ваш елегантний відгук.",
-                rights: "Усі права захищені UcuzaKal Türkiye",
-                google_login: "Увійти через Gmail",
-                cinematic_title: "Перенаправлення на платформу бронювання..."
             }
         };
 
@@ -899,12 +754,11 @@
         });
     </script>
 
-    <!-- كود ربط Firebase المباشر -->
+    <!-- ربط Firebase المصادقة -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        // كود الربط الخاص بك
         const firebaseConfig = {
             apiKey: "AIzaSyDcMOlstkYaLBOjnJOYk24U6_724pqEw1U",
             authDomain: "ucuzakal-5e2a8.firebaseapp.com",
@@ -920,48 +774,36 @@
         const provider = new GoogleAuthProvider();
         
         const authBtn = document.getElementById('auth-btn');
-        const authText = document.getElementById('auth-text');
 
-        // دالة تسجيل الدخول
         window.loginWithGoogle = function() {
-            signInWithPopup(auth, provider).then((result) => {
-                const user = result.user;
-                console.log("تم تسجيل الدخول بنجاح:", user.displayName);
-            }).catch((error) => {
-                console.error("فشل تسجيل الدخول:", error.message);
-                alert("حدث خطأ أثناء تسجيل الدخول: " + error.message);
+            signInWithPopup(auth, provider).catch((error) => {
+                console.error("Authentication Error:", error.message);
             });
         };
 
-        // دالة تسجيل الخروج
         window.logoutGoogle = function() {
-            signOut(auth).then(() => {
-                console.log("تم تسجيل الخروج");
-            });
+            signOut(auth);
         };
 
-        // مراقبة حالة المستخدم (هل هو مسجل أم لا) لتغيير شكل الزر
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // إذا كان مسجلاً، اظهر صورته واسمه
                 authBtn.innerHTML = `
-                    <img src="${user.photoURL}" alt="Profile" class="w-6 h-6 rounded-full border border-brand-gold"> 
-                    <span class="hidden md:inline font-bold">${user.displayName.split(' ')[0]}</span>
+                    <img src="${user.photoURL}" alt="User" class="w-5 h-5 rounded-full border border-brand-gold"> 
+                    <span class="font-bold text-xs">${user.displayName.split(' ')[0]}</span>
                 `;
                 authBtn.onclick = window.logoutGoogle;
                 authBtn.title = "Çıkış Yap / تسجيل الخروج";
             } else {
-                // إذا لم يكن مسجلاً، اظهر زر Gmail
                 authBtn.innerHTML = `
                     <i class="fab fa-google"></i>
-                    <span data-i18n="google_login" class="hidden md:inline" id="auth-text">Gmail Girişi</span>
+                    <span data-i18n="google_login" id="auth-text">Gmail Girişi</span>
                 `;
                 authBtn.onclick = window.loginWithGoogle;
                 authBtn.title = "Giriş Yap / تسجيل الدخول";
-                // تحديث نص الزر ليتوافق مع اللغة الحالية
                 const lang = document.documentElement.lang || 'tr';
                 const dict = TRANSLATIONS[lang] || TRANSLATIONS.tr;
-                document.getElementById('auth-text').textContent = dict["google_login"];
+                const textElem = document.getElementById('auth-text');
+                if (textElem) textElem.textContent = dict["google_login"];
             }
         });
     </script>
