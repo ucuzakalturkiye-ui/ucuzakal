@@ -1,19 +1,17 @@
 <!DOCTYPE html>
-<html lang="tr" dir="rtl" class="dark">
+<html lang="tr" dir="ltr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UcuzaKal Yönetim Paneli | لوحة القيادة الملكية</title>
+    <title>UcuzaKal Yönetim Paneli | Admin Dashboard</title>
     
-    <!-- خطوط فائقة الوضوح والفخامة -->
+    <!-- خطوط احترافية (Playfair و Jakarta للتركية، Cairo للعربية) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- FontAwesome & Tailwind CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
         tailwind.config = {
@@ -21,14 +19,15 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Cairo', 'sans-serif'],
+                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
                         luxury: ['Playfair Display', 'serif'],
                     },
                     colors: {
                         brand: {
                             gold: '#D4AF37',
-                            dark: '#030508', /* أسود ملكي عميق جداً */
-                            surface: '#0A0F1A', /* كحلي زجاجي للبطاقات */
+                            dark: '#030509', /* كحلي/أسود عميق واحترافي */
+                            surface: '#0A0F1A',
+                            border: 'rgba(212, 175, 55, 0.2)'
                         }
                     }
                 }
@@ -37,37 +36,48 @@
     </script>
 
     <style>
-        /* شريط تمرير أنيق */
-        ::-webkit-scrollbar { width: 5px; }
+        ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
         
-        /* تأثيرات النوافذ والأزرار */
-        .nav-item { transition: all 0.3s ease; border-right: 3px solid transparent; }
+        /* القائمة الجانبية وتأثيراتها */
+        .nav-item { transition: all 0.3s ease; border-left: 3px solid transparent; }
+        html[dir="rtl"] .nav-item { border-left: none; border-right: 3px solid transparent; }
+        
         .nav-item.active {
-            background: linear-gradient(90deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+            background: linear-gradient(90deg, rgba(212,175,55,0.08) 0%, transparent 100%);
             color: #D4AF37 !important;
+            border-left: 3px solid #D4AF37;
+        }
+        html[dir="rtl"] .nav-item.active {
+            background: linear-gradient(-90deg, rgba(212,175,55,0.08) 0%, transparent 100%);
+            border-left: none;
             border-right: 3px solid #D4AF37;
         }
         
-        .luxury-panel {
-            background: rgba(10, 15, 26, 0.8);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        /* البطاقات الاحترافية (لوحات العمل) */
+        .admin-panel {
+            background: rgba(10, 15, 26, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--tw-colors-brand-border);
+            border-radius: 24px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
         }
 
-        /* نظام التنبيهات المنبثقة الفاخر */
+        /* نظام التنبيهات */
         #toast-container {
-            position: fixed; bottom: 20px; left: 20px; z-index: 9999;
-            display: flex; flex-direction: column; gap: 10px;
+            position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+            display: flex; flex-direction: column; gap: 12px;
         }
+        html[dir="rtl"] #toast-container { right: auto; left: 24px; }
+        
         .toast {
-            background: #D4AF37; color: #000; font-weight: bold;
-            padding: 12px 24px; border-radius: 8px; font-size: 13px;
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+            background: #D4AF37; color: #000; font-weight: 600;
+            padding: 12px 24px; border-radius: 8px; font-size: 14px;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
             opacity: 0; transform: translateY(20px);
-            animation: slideIn 0.4s forwards, fadeOut 0.4s 2.6s forwards;
+            animation: slideIn 0.4s forwards, fadeOut 0.4s 3s forwards;
+            font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
         }
         @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeOut { to { opacity: 0; transform: translateY(20px); } }
@@ -75,42 +85,40 @@
         body { transition: background-color 0.4s ease, color 0.4s ease; }
     </style>
 </head>
-<body class="bg-[#F8F9FA] dark:bg-brand-dark text-slate-800 dark:text-slate-100 flex h-screen overflow-hidden selection:bg-brand-gold selection:text-black">
+<body class="bg-[#F8F9FA] dark:bg-brand-dark text-slate-800 dark:text-slate-100 flex h-screen overflow-hidden">
 
-    <!-- حاوية التنبيهات -->
     <div id="toast-container"></div>
 
     <!-- القائمة الجانبية (Sidebar) -->
-    <aside class="w-72 bg-white dark:bg-[#06090F] border-l border-brand-gold/20 flex flex-col z-20 shadow-2xl">
-        <div class="h-24 flex items-center justify-center border-b border-brand-gold/20">
+    <aside class="w-[280px] bg-white dark:bg-[#04060B] border-r border-brand-gold/20 flex flex-col z-20 shadow-2xl transition-all" id="sidebar">
+        <div class="h-24 flex items-center justify-center border-b border-brand-gold/20 relative">
             <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-white flex flex-col items-center">
                 Ucuza<span class="text-brand-gold">Kal</span>
-                <span class="text-[10px] uppercase tracking-[0.3em] text-brand-gold mt-1 font-sans">Yönetim Paneli</span>
+                <span class="text-[9px] uppercase tracking-[0.3em] text-brand-gold mt-1.5 font-sans font-bold" data-i18n="admin_subtitle">Yönetim Paneli</span>
             </span>
         </div>
         
         <nav class="flex-1 px-4 py-8 space-y-2 overflow-y-auto">
-            <!-- أزرار تعمل بالكامل للتنقل بين الأقسام -->
-            <button onclick="switchTab('dashboard', this)" class="nav-item active w-full flex items-center gap-4 px-4 py-3.5 rounded-l-xl text-sm font-bold text-gray-500 hover:text-brand-gold transition">
-                <i class="fas fa-chart-pie w-5 text-lg"></i> إحصائيات المنصة
+            <button onclick="switchTab('dashboard', this)" class="nav-item active w-full flex items-center gap-4 px-5 py-4 rounded-r-xl text-sm font-semibold text-gray-500 hover:text-brand-gold transition">
+                <i class="fas fa-chart-pie w-5 text-lg"></i> <span data-i18n="nav_dashboard">Platform İstatistikleri</span>
             </button>
-            <button onclick="switchTab('hotels', this)" class="nav-item w-full flex items-center gap-4 px-4 py-3.5 rounded-l-xl text-sm font-bold text-gray-500 hover:text-brand-gold transition">
-                <i class="fas fa-hotel w-5 text-lg"></i> عروض الفنادق والشقق
+            <button onclick="switchTab('hotels', this)" class="nav-item w-full flex items-center gap-4 px-5 py-4 rounded-r-xl text-sm font-semibold text-gray-500 hover:text-brand-gold transition">
+                <i class="fas fa-hotel w-5 text-lg"></i> <span data-i18n="nav_hotels">Otel ve Rezidanslar</span>
             </button>
-            <button onclick="switchTab('flights', this)" class="nav-item w-full flex items-center gap-4 px-4 py-3.5 rounded-l-xl text-sm font-bold text-gray-500 hover:text-brand-gold transition">
-                <i class="fas fa-plane-departure w-5 text-lg"></i> عروض تذاكر الطيران
+            <button onclick="switchTab('flights', this)" class="nav-item w-full flex items-center gap-4 px-5 py-4 rounded-r-xl text-sm font-semibold text-gray-500 hover:text-brand-gold transition">
+                <i class="fas fa-plane-departure w-5 text-lg"></i> <span data-i18n="nav_flights">Uçuş Yönetimi</span>
             </button>
-            <button onclick="switchTab('blog', this)" class="nav-item w-full flex items-center gap-4 px-4 py-3.5 rounded-l-xl text-sm font-bold text-gray-500 hover:text-brand-gold transition">
-                <i class="fas fa-pen-nib w-5 text-lg"></i> محرر المقالات (SEO)
+            <button onclick="switchTab('blog', this)" class="nav-item w-full flex items-center gap-4 px-5 py-4 rounded-r-xl text-sm font-semibold text-gray-500 hover:text-brand-gold transition">
+                <i class="fas fa-pen-nib w-5 text-lg"></i> <span data-i18n="nav_blog">İçerik Yönetimi (SEO)</span>
             </button>
-            <button onclick="switchTab('reviews', this)" class="nav-item w-full flex items-center gap-4 px-4 py-3.5 rounded-l-xl text-sm font-bold text-gray-500 hover:text-brand-gold transition">
-                <i class="fas fa-star w-5 text-lg"></i> التقييمات ومصادر الزوار
+            <button onclick="switchTab('reviews', this)" class="nav-item w-full flex items-center gap-4 px-5 py-4 rounded-r-xl text-sm font-semibold text-gray-500 hover:text-brand-gold transition">
+                <i class="fas fa-star w-5 text-lg"></i> <span data-i18n="nav_reviews">Değerlendirmeler & Trafik</span>
             </button>
         </nav>
 
         <div class="p-6 border-t border-brand-gold/20">
-            <a href="index.html" target="_blank" class="flex items-center justify-center gap-2 w-full bg-transparent border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black py-3 rounded-xl text-sm font-bold transition">
-                <i class="fas fa-external-link-alt"></i> عرض الموقع المباشر
+            <a href="index.html" target="_blank" class="flex items-center justify-center gap-3 w-full bg-transparent border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-black py-3.5 rounded-xl text-xs font-bold uppercase tracking-wider transition">
+                <i class="fas fa-external-link-alt"></i> <span data-i18n="view_site">Siteyi Görüntüle</span>
             </a>
         </div>
     </aside>
@@ -118,106 +126,105 @@
     <!-- منطقة المحتوى الرئيسية -->
     <main class="flex-1 flex flex-col h-screen overflow-hidden bg-gray-50 dark:bg-brand-dark relative">
         
-        <!-- خلفية نقش خفيف للفخامة -->
-        <div class="absolute inset-0 pointer-events-none opacity-5" style="background-image: url('data:image/svg+xml,%3Csvg width=\'40\' height=\'40\' viewBox=\'0 0 40 40\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 40L40 0H20L0 20M40 40V20L20 40\' fill=\'%23d4af37\' fill-rule=\'evenodd\'/%3E%3C/svg%3E');"></div>
-
         <!-- الشريط العلوي -->
-        <header class="h-24 bg-white/80 dark:bg-brand-surface/80 backdrop-blur-md border-b border-brand-gold/20 flex items-center justify-between px-10 relative z-10">
-            <div class="flex items-center bg-gray-100 dark:bg-[#030508] rounded-full px-5 py-2.5 w-[400px] border border-brand-gold/30 focus-within:border-brand-gold transition">
-                <i class="fas fa-search text-brand-gold mr-3"></i>
-                <input type="text" placeholder="ابحث في الإحصائيات أو العروض..." class="bg-transparent border-none outline-none text-sm w-full text-slate-800 dark:text-white placeholder-gray-500">
+        <header class="h-24 bg-white/90 dark:bg-brand-surface/90 backdrop-blur-xl border-b border-brand-gold/20 flex items-center justify-between px-10 relative z-10">
+            <!-- اختيار اللغة للوحة التحكم -->
+            <div class="flex items-center gap-4">
+                <div class="relative">
+                    <select id="admin-lang" onchange="changeAdminLanguage(this.value)" class="bg-gray-100 dark:bg-[#030509] text-slate-900 dark:text-white border border-brand-gold/30 rounded-full px-5 py-2.5 text-sm font-bold focus:outline-none focus:border-brand-gold cursor-pointer transition appearance-none pr-10 pl-5 outline-none shadow-sm">
+                        <option value="tr">Türkçe (TR)</option>
+                        <option value="ar">العربية (AR)</option>
+                    </select>
+                    <i class="fas fa-globe absolute right-4 top-1/2 transform -translate-y-1/2 text-brand-gold text-sm pointer-events-none"></i>
+                </div>
             </div>
 
             <div class="flex items-center gap-6">
-                <button onclick="toggleTheme()" class="text-brand-gold hover:opacity-70 transition text-xl" title="تغيير المظهر">
+                <button onclick="toggleTheme()" class="text-gray-400 hover:text-brand-gold transition text-xl">
                     <i id="theme-icon" class="fas fa-sun"></i>
                 </button>
-                <button onclick="showToast('لا توجد إشعارات جديدة حالياً')" class="text-gray-400 hover:text-brand-gold transition text-xl">
-                    <i class="fas fa-bell"></i>
-                </button>
-                <div class="flex items-center gap-3 pl-6 border-l border-brand-gold/20">
-                    <div class="text-left hidden md:block">
-                        <div class="text-sm font-bold text-slate-900 dark:text-white">المدير العام</div>
-                        <div class="text-xs text-brand-gold tracking-widest uppercase">Admin</div>
+                <div class="flex items-center gap-4 pl-6 border-l border-brand-gold/20" id="user-profile-divider">
+                    <div class="text-right hidden md:block">
+                        <div class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="admin_title">Genel Yönetici</div>
+                        <div class="text-[10px] text-brand-gold tracking-widest uppercase">Admin</div>
                     </div>
-                    <div class="w-11 h-11 rounded-full border border-brand-gold bg-brand-dark flex items-center justify-center text-brand-gold font-luxury font-bold text-lg">
+                    <div class="w-12 h-12 rounded-full border border-brand-gold bg-brand-dark flex items-center justify-center text-brand-gold font-luxury font-bold text-xl shadow-[0_0_10px_rgba(212,175,55,0.2)]">
                         U
                     </div>
                 </div>
             </div>
         </header>
 
-        <!-- مساحة العمل القابلة للتمرير (تتغير حسب القسم) -->
+        <!-- مساحة العمل القابلة للتمرير -->
         <div class="flex-1 overflow-y-auto p-10 relative z-10">
             
-            <!-- ================== 1. قسم الإحصائيات ================== -->
+            <!-- 1. الإحصائيات -->
             <div id="view-dashboard" class="view-section block animate-[fadeIn_0.5s_ease]">
                 <div class="flex justify-between items-end mb-10">
                     <div>
-                        <h1 class="font-luxury text-4xl font-bold text-slate-900 dark:text-white mb-2">إحصائيات المنصة</h1>
-                        <p class="text-gray-500 dark:text-gray-400 font-semibold">بانتظار ربط قواعد البيانات لجلب الأرقام الحقيقية.</p>
+                        <h1 class="font-luxury text-4xl font-bold text-slate-900 dark:text-white mb-3" data-i18n="dash_title">Platform İstatistikleri</h1>
+                        <p class="text-gray-500 dark:text-gray-400 font-medium" data-i18n="dash_subtitle">Gerçek verileri çekmek için veritabanı bağlantısı bekleniyor.</p>
                     </div>
-                    <button onclick="showToast('سيتم تفعيل التصدير بعد ربط قاعدة البيانات')" class="bg-brand-gold text-black px-6 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-500 transition flex items-center gap-2">
-                        <i class="fas fa-download"></i> استخراج التقرير
+                    <button onclick="showToast('export_msg')" class="bg-brand-gold text-black px-6 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-500 transition flex items-center gap-2">
+                        <i class="fas fa-download"></i> <span data-i18n="export_btn">Raporu İndir</span>
                     </button>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                    <!-- هيكل فارغ للرسم البياني الأول -->
-                    <div class="luxury-panel p-8 rounded-[2rem]">
-                        <h3 class="font-bold text-xl mb-6 text-slate-900 dark:text-white flex items-center gap-2">
-                            <i class="fas fa-chart-line text-brand-gold"></i> حركة الزوار
+                    <!-- هيكل فارغ 1 -->
+                    <div class="admin-panel p-10">
+                        <h3 class="font-bold text-xl mb-8 text-slate-900 dark:text-white flex items-center gap-3">
+                            <i class="fas fa-chart-line text-brand-gold"></i> <span data-i18n="traffic_title">Ziyaretçi Akışı</span>
                         </h3>
-                        <div class="h-64 flex flex-col items-center justify-center border-2 border-dashed border-brand-gold/20 rounded-xl text-gray-500">
-                            <i class="fas fa-database text-4xl mb-4 text-brand-gold/50"></i>
-                            <p class="font-bold">المخطط البياني فارغ</p>
-                            <p class="text-xs mt-1">سيتم رسم البيانات فور توافد الزوار الفعليين.</p>
+                        <div class="h-72 flex flex-col items-center justify-center border border-dashed border-brand-gold/30 rounded-2xl text-gray-500 bg-black/10">
+                            <i class="fas fa-database text-5xl mb-5 text-brand-gold/40"></i>
+                            <p class="font-bold text-lg text-slate-300" data-i18n="empty_chart">Grafik Verisi Bekleniyor</p>
+                            <p class="text-sm mt-2 font-light" data-i18n="empty_chart_sub">Ziyaretçi akışı başladığında veriler burada şekillenecektir.</p>
                         </div>
                     </div>
-                    <!-- هيكل فارغ للرسم البياني الثاني -->
-                    <div class="luxury-panel p-8 rounded-[2rem]">
-                        <h3 class="font-bold text-xl mb-6 text-slate-900 dark:text-white flex items-center gap-2">
-                            <i class="fas fa-chart-pie text-brand-gold"></i> مصادر الترافيك
+                    <!-- هيكل فارغ 2 -->
+                    <div class="admin-panel p-10">
+                        <h3 class="font-bold text-xl mb-8 text-slate-900 dark:text-white flex items-center gap-3">
+                            <i class="fas fa-globe text-brand-gold"></i> <span data-i18n="sources_title">Trafik Kaynakları</span>
                         </h3>
-                        <div class="h-64 flex flex-col items-center justify-center border-2 border-dashed border-brand-gold/20 rounded-xl text-gray-500">
-                            <i class="fas fa-globe text-4xl mb-4 text-brand-gold/50"></i>
-                            <p class="font-bold">لا توجد مصادر مسجلة بعد</p>
-                            <p class="text-xs mt-1">بانتظار حركة المرور من جوجل والسوشيال ميديا.</p>
+                        <div class="h-72 flex flex-col items-center justify-center border border-dashed border-brand-gold/30 rounded-2xl text-gray-500 bg-black/10">
+                            <i class="fas fa-project-diagram text-5xl mb-5 text-brand-gold/40"></i>
+                            <p class="font-bold text-lg text-slate-300" data-i18n="empty_sources">Henüz Kaynak Kaydedilmedi</p>
+                            <p class="text-sm mt-2 font-light" data-i18n="empty_sources_sub">Arama motorları ve sosyal medyadan gelen trafik bekleniyor.</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ================== 2. قسم عروض الفنادق والشقق ================== -->
+            <!-- 2. الفنادق والشقق -->
             <div id="view-hotels" class="view-section hidden animate-[fadeIn_0.5s_ease]">
                 <div class="flex justify-between items-end mb-10">
                     <div>
-                        <h1 class="font-luxury text-4xl font-bold text-slate-900 dark:text-white mb-2">إدارة الفنادق والشقق الفندقية</h1>
-                        <p class="text-gray-500 dark:text-gray-400 font-semibold">إضافة وجهات الإقامة في (أنطاليا، إسطنبول، طرابزون، بورصة، أنقرة، إزمير).</p>
+                        <h1 class="font-luxury text-4xl font-bold text-slate-900 dark:text-white mb-3" data-i18n="hotels_title">Otel ve Rezidans Yönetimi</h1>
+                        <p class="text-gray-500 dark:text-gray-400 font-medium" data-i18n="hotels_subtitle">Konaklama destinasyonlarını (Antalya, İstanbul, Trabzon, Bursa, Ankara, İzmir) yönetin.</p>
                     </div>
-                    <button onclick="showToast('نافذة إضافة فندق ستعمل بعد برمجة الباك إند')" class="bg-brand-gold text-black px-6 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-500 transition flex items-center gap-2">
-                        <i class="fas fa-plus"></i> إضافة عرض إقامة جديد
+                    <button onclick="showToast('add_hotel_msg')" class="bg-brand-gold text-black px-6 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-500 transition flex items-center gap-2">
+                        <i class="fas fa-plus"></i> <span data-i18n="add_hotel_btn">Yeni Konaklama Ekle</span>
                     </button>
                 </div>
 
-                <div class="luxury-panel rounded-[2rem] overflow-hidden">
-                    <table class="w-full text-right text-sm">
-                        <thead class="text-xs text-gray-400 bg-black/40 uppercase border-b border-brand-gold/20">
+                <div class="admin-panel overflow-hidden">
+                    <table class="w-full text-left rtl:text-right text-sm" id="hotels-table">
+                        <thead class="text-xs text-gray-400 bg-black/60 uppercase border-b border-brand-gold/20">
                             <tr>
-                                <th class="px-8 py-5">صورة العرض</th>
-                                <th class="px-8 py-5">اسم الفندق / الشقة</th>
-                                <th class="px-8 py-5">المدينة (الوجهة)</th>
-                                <th class="px-8 py-5">رابط الإحالة (Affiliate)</th>
-                                <th class="px-8 py-5 text-center">التحكم</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_image">Görsel</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_name">Tesis Adı</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_location">Destinasyon</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_affiliate">Affiliate Linki</th>
+                                <th class="px-8 py-6 font-bold text-center" data-i18n="th_action">İşlemler</th>
                             </tr>
                         </thead>
-                        <!-- بدون بيانات وهمية، واجهة فارغة احترافية -->
                         <tbody>
                             <tr>
-                                <td colspan="5" class="py-24 text-center">
-                                    <i class="fas fa-bed text-5xl mb-5 text-brand-gold/40"></i>
-                                    <h3 class="text-lg font-bold text-white mb-2">لا توجد عروض فنادق مسجلة</h3>
-                                    <p class="text-gray-500 text-sm">اضغط على زر "إضافة عرض إقامة جديد" للبدء في نشر العروض.</p>
+                                <td colspan="5" class="py-32 text-center">
+                                    <i class="fas fa-bed text-6xl mb-6 text-brand-gold/30"></i>
+                                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="empty_hotels">Kayıtlı Tesis Bulunmuyor</h3>
+                                    <p class="text-gray-500 text-sm" data-i18n="empty_hotels_sub">Teklifleri yayınlamaya başlamak için 'Yeni Konaklama Ekle' butonunu kullanın.</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -225,36 +232,35 @@
                 </div>
             </div>
 
-            <!-- ================== 3. قسم عروض الطيران ================== -->
+            <!-- 3. الطيران -->
             <div id="view-flights" class="view-section hidden animate-[fadeIn_0.5s_ease]">
                 <div class="flex justify-between items-end mb-10">
                     <div>
-                        <h1 class="font-luxury text-4xl font-bold text-slate-900 dark:text-white mb-2">إدارة عروض تذاكر الطيران</h1>
-                        <p class="text-gray-500 dark:text-gray-400 font-semibold">تحديث روابط الإحالة وأسعار خطوط الطيران بين المدن التركية.</p>
+                        <h1 class="font-luxury text-4xl font-bold text-slate-900 dark:text-white mb-3" data-i18n="flights_title">Uçuş Yönetimi</h1>
+                        <p class="text-gray-500 dark:text-gray-400 font-medium" data-i18n="flights_subtitle">Türkiye içi uçuş rotalarını ve affiliate bağlantılarını güncelleyin.</p>
                     </div>
-                    <button onclick="showToast('نافذة إضافة طيران ستعمل بعد برمجة الباك إند')" class="bg-brand-gold text-black px-6 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-500 transition flex items-center gap-2">
-                        <i class="fas fa-plus"></i> إضافة مسار طيران جديد
+                    <button onclick="showToast('add_flight_msg')" class="bg-brand-gold text-black px-6 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-500 transition flex items-center gap-2">
+                        <i class="fas fa-plus"></i> <span data-i18n="add_flight_btn">Yeni Uçuş Rotası Ekle</span>
                     </button>
                 </div>
 
-                <div class="luxury-panel rounded-[2rem] overflow-hidden">
-                    <table class="w-full text-right text-sm">
-                        <thead class="text-xs text-gray-400 bg-black/40 uppercase border-b border-brand-gold/20">
+                <div class="admin-panel overflow-hidden">
+                    <table class="w-full text-left rtl:text-right text-sm" id="flights-table">
+                        <thead class="text-xs text-gray-400 bg-black/60 uppercase border-b border-brand-gold/20">
                             <tr>
-                                <th class="px-8 py-5">شركة الطيران</th>
-                                <th class="px-8 py-5">مسار الرحلة (الوجهة)</th>
-                                <th class="px-8 py-5">السعر الابتدائي</th>
-                                <th class="px-8 py-5">رابط الإحالة (Affiliate)</th>
-                                <th class="px-8 py-5 text-center">التحكم</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_airline">Hava Yolu</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_route">Rota</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_price">Başlangıç Fiyatı</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_affiliate">Affiliate Linki</th>
+                                <th class="px-8 py-6 font-bold text-center" data-i18n="th_action">İşlemler</th>
                             </tr>
                         </thead>
-                        <!-- بدون بيانات وهمية -->
                         <tbody>
                             <tr>
-                                <td colspan="5" class="py-24 text-center">
-                                    <i class="fas fa-plane-departure text-5xl mb-5 text-brand-gold/40"></i>
-                                    <h3 class="text-lg font-bold text-white mb-2">لا توجد مسارات طيران مسجلة</h3>
-                                    <p class="text-gray-500 text-sm">أضف روابط الإحالة الخاصة بالطيران لتبدأ بالظهور للزوار.</p>
+                                <td colspan="5" class="py-32 text-center">
+                                    <i class="fas fa-plane-departure text-6xl mb-6 text-brand-gold/30"></i>
+                                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="empty_flights">Kayıtlı Uçuş Rotası Bulunmuyor</h3>
+                                    <p class="text-gray-500 text-sm" data-i18n="empty_flights_sub">Ziyaretçilere sunmak için uçuş affiliate linklerini ekleyin.</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -262,80 +268,75 @@
                 </div>
             </div>
 
-            <!-- ================== 4. محرر المقالات ================== -->
+            <!-- 4. محرر المقالات (SEO) -->
             <div id="view-blog" class="view-section hidden animate-[fadeIn_0.5s_ease]">
                 <div class="max-w-5xl mx-auto">
                     <div class="flex justify-between items-center mb-10">
                         <div>
-                            <h1 class="font-luxury text-4xl font-bold text-slate-900 dark:text-white mb-2">نشر المقالات (SEO)</h1>
-                            <p class="text-gray-500 dark:text-gray-400 font-semibold">محرر متقدم لكتابة مقالات احترافية عن أفضل الوجهات التركية.</p>
+                            <h1 class="font-luxury text-4xl font-bold text-slate-900 dark:text-white mb-3" data-i18n="blog_title">İçerik Yönetimi (SEO)</h1>
+                            <p class="text-gray-500 dark:text-gray-400 font-medium" data-i18n="blog_subtitle">Türkiye'nin en iyi destinasyonları hakkında profesyonel makaleler oluşturun.</p>
                         </div>
                         <div class="flex gap-4">
-                            <button onclick="showToast('تم حفظ المقال كمسودة')" class="bg-transparent border border-brand-gold text-brand-gold px-6 py-2.5 rounded-xl text-sm font-bold transition hover:bg-brand-gold hover:text-black">
-                                حفظ مسودة
+                            <button onclick="showToast('draft_msg')" class="bg-transparent border border-brand-gold text-brand-gold px-8 py-3 rounded-xl text-sm font-bold transition hover:bg-brand-gold hover:text-black" data-i18n="save_draft">
+                                Taslak Olarak Kaydet
                             </button>
-                            <button onclick="showToast('سيتم تفعيل النشر بعد استكمال ربط قاعدة البيانات')" class="bg-brand-gold text-black px-6 py-2.5 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-500 transition flex items-center gap-2">
-                                <i class="fas fa-paper-plane"></i> نشر المقال
+                            <button onclick="showToast('publish_msg')" class="bg-brand-gold text-black px-8 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-500 transition flex items-center gap-2">
+                                <i class="fas fa-paper-plane"></i> <span data-i18n="publish_btn">Makaleyi Yayınla</span>
                             </button>
                         </div>
                     </div>
 
-                    <div class="luxury-panel rounded-[2rem] p-10 min-h-[600px]">
-                        <div onclick="showToast('خاصية رفع الصور ستعمل لاحقاً')" class="w-full h-56 rounded-2xl border-2 border-dashed border-brand-gold/30 flex flex-col items-center justify-center text-gray-400 hover:border-brand-gold hover:text-brand-gold transition cursor-pointer mb-8 bg-black/20">
-                            <i class="fas fa-camera text-4xl mb-3"></i>
-                            <span class="font-bold">أضف صورة غلاف المقال</span>
+                    <div class="admin-panel p-12 min-h-[650px]">
+                        <div onclick="showToast('img_upload_msg')" class="w-full h-64 rounded-2xl border border-dashed border-brand-gold/40 flex flex-col items-center justify-center text-gray-500 hover:border-brand-gold hover:text-brand-gold transition cursor-pointer mb-10 bg-black/30">
+                            <i class="fas fa-camera text-5xl mb-4"></i>
+                            <span class="font-bold tracking-wide" data-i18n="cover_image">Kapak Görseli Ekle</span>
                         </div>
-                        <input type="text" placeholder="عنوان المقال (مثال: أفضل الأماكن في طرابزون)..." class="w-full bg-transparent border-none outline-none text-3xl font-black text-white mb-6 placeholder-gray-600 focus:ring-0">
-                        <div class="flex gap-2 border-b border-brand-gold/20 pb-4 mb-6">
-                            <button onclick="showToast('تنسيق: عريض')" class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-brand-gold/10 transition"><i class="fas fa-bold"></i></button>
-                            <button onclick="showToast('تنسيق: مائل')" class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-brand-gold/10 transition"><i class="fas fa-italic"></i></button>
-                            <button onclick="showToast('تنسيق: عنوان فرعي')" class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-brand-gold/10 transition"><i class="fas fa-heading"></i></button>
-                            <div class="w-px h-8 bg-brand-gold/20 mx-2 mt-1"></div>
-                            <button onclick="showToast('إدراج رابط')" class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-brand-gold/10 transition"><i class="fas fa-link"></i></button>
-                            <button onclick="showToast('إدراج صورة')" class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-brand-gold/10 transition"><i class="far fa-image"></i></button>
+                        <input type="text" id="article-title" placeholder="Makale Başlığı..." class="w-full bg-transparent border-none outline-none text-4xl font-bold text-white mb-8 placeholder-gray-600 focus:ring-0">
+                        <div class="flex gap-3 border-b border-brand-gold/20 pb-5 mb-8">
+                            <button class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-brand-gold/10 transition"><i class="fas fa-bold"></i></button>
+                            <button class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-brand-gold/10 transition"><i class="fas fa-italic"></i></button>
+                            <button class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-brand-gold/10 transition"><i class="fas fa-heading"></i></button>
+                            <div class="w-px h-8 bg-brand-gold/20 mx-3 mt-1"></div>
+                            <button class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-brand-gold/10 transition"><i class="fas fa-link"></i></button>
+                            <button class="w-10 h-10 rounded-lg flex items-center justify-center text-gray-400 hover:text-brand-gold hover:bg-brand-gold/10 transition"><i class="far fa-image"></i></button>
                         </div>
-                        <div class="outline-none text-lg text-gray-300 leading-relaxed min-h-[300px]" contenteditable="true">
-                            <!-- يمكن للمستخدم الكتابة هنا -->
-                        </div>
+                        <div class="outline-none text-lg text-gray-300 leading-relaxed min-h-[300px]" contenteditable="true"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- ================== 5. قسم التقييمات ومصادر الزوار ================== -->
+            <!-- 5. التقييمات والمصادر -->
             <div id="view-reviews" class="view-section hidden animate-[fadeIn_0.5s_ease]">
                 <div class="flex justify-between items-center mb-10">
                     <div>
-                        <h1 class="font-luxury text-4xl font-bold text-slate-900 dark:text-white mb-2">تقييمات ومصادر الزوار</h1>
-                        <p class="text-gray-500 dark:text-gray-400 font-semibold">متابعة التقييمات الحقيقية ومعرفة منصة القدوم (Google, YouTube, TikTok...).</p>
+                        <h1 class="font-luxury text-4xl font-bold text-slate-900 dark:text-white mb-3" data-i18n="reviews_title">Değerlendirmeler ve Trafik</h1>
+                        <p class="text-gray-500 dark:text-gray-400 font-medium" data-i18n="reviews_subtitle">Gerçek değerlendirmeleri ve trafik kaynaklarını (Google, YouTube, TikTok...) takip edin.</p>
                     </div>
                 </div>
                 
-                <div class="luxury-panel rounded-[2rem] overflow-hidden">
-                    <table class="w-full text-right text-sm">
-                        <thead class="text-xs text-gray-400 bg-black/40 uppercase border-b border-brand-gold/20">
+                <div class="admin-panel overflow-hidden">
+                    <table class="w-full text-left rtl:text-right text-sm" id="reviews-table">
+                        <thead class="text-xs text-gray-400 bg-black/60 uppercase border-b border-brand-gold/20">
                             <tr>
-                                <th class="px-8 py-5">الزائر / المشترك</th>
-                                <th class="px-8 py-5">مصدر الزيارة (Traffic)</th>
-                                <th class="px-8 py-5">التقييم (النجوم)</th>
-                                <th class="px-8 py-5">الرأي / الملاحظات</th>
-                                <th class="px-8 py-5 text-center">التحكم</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_user">Ziyaretçi</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_source">Trafik Kaynağı</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_rating">Değerlendirme</th>
+                                <th class="px-8 py-6 font-bold" data-i18n="th_review">Yorum</th>
+                                <th class="px-8 py-6 font-bold text-center" data-i18n="th_action">İşlemler</th>
                             </tr>
                         </thead>
-                        <!-- بدون بيانات وهمية -->
                         <tbody>
                             <tr>
-                                <td colspan="5" class="py-24 text-center">
-                                    <div class="flex justify-center gap-4 mb-5 text-2xl text-brand-gold/30">
+                                <td colspan="5" class="py-32 text-center">
+                                    <div class="flex justify-center gap-6 mb-8 text-3xl text-brand-gold/30">
                                         <i class="fab fa-google"></i>
                                         <i class="fab fa-youtube"></i>
                                         <i class="fab fa-tiktok"></i>
                                         <i class="fab fa-instagram"></i>
                                         <i class="fab fa-x-twitter"></i>
-                                        <i class="fab fa-pinterest"></i>
-                                        <i class="fab fa-facebook"></i>
                                     </div>
-                                    <h3 class="text-lg font-bold text-white mb-2">قاعدة التقييمات فارغة حالياً</h3>
-                                    <p class="text-gray-500 text-sm">ستظهر هنا التقييمات الحقيقية للمستخدمين مع أيقونة المنصة التي أتوا منها فور ربط قاعدة البيانات.</p>
+                                    <h3 class="text-xl font-bold text-white mb-3" data-i18n="empty_reviews">Değerlendirme Veritabanı Şu An Boş</h3>
+                                    <p class="text-gray-500 text-sm" data-i18n="empty_reviews_sub">Veritabanı bağlandığında, gerçek kullanıcı yorumları ve geldikleri platformlar burada görünecektir.</p>
                                 </td>
                             </tr>
                         </tbody>
@@ -346,8 +347,162 @@
         </div>
     </main>
 
-    <!-- السكريبتات لإدارة الأزرار والتنقلات -->
+    <!-- نظام اللغات والتنقلات -->
     <script>
+        // قاموس اللغات للوحة التحكم
+        const ADMIN_TRANSLATIONS = {
+            tr: {
+                dir: "ltr",
+                admin_subtitle: "Yönetim Paneli",
+                nav_dashboard: "Platform İstatistikleri",
+                nav_hotels: "Otel ve Rezidanslar",
+                nav_flights: "Uçuş Yönetimi",
+                nav_blog: "İçerik Yönetimi (SEO)",
+                nav_reviews: "Değerlendirmeler & Trafik",
+                view_site: "Siteyi Görüntüle",
+                google_login: "Gmail Girişi",
+                admin_title: "Genel Yönetici",
+                dash_title: "Platform İstatistikleri",
+                dash_subtitle: "Gerçek verileri çekmek için veritabanı bağlantısı bekleniyor.",
+                export_btn: "Raporu İndir",
+                traffic_title: "Ziyaretçi Akışı",
+                empty_chart: "Grafik Verisi Bekleniyor",
+                empty_chart_sub: "Ziyaretçi akışı başladığında veriler burada şekillenecektir.",
+                sources_title: "Trafik Kaynakları",
+                empty_sources: "Henüz Kaynak Kaydedilmedi",
+                empty_sources_sub: "Arama motorları ve sosyal medyadan gelen trafik bekleniyor.",
+                hotels_title: "Otel ve Rezidans Yönetimi",
+                hotels_subtitle: "Konaklama destinasyonlarını (Antalya, İstanbul, Trabzon, Bursa, Ankara, İzmir) yönetin.",
+                add_hotel_btn: "Yeni Konaklama Ekle",
+                th_image: "Görsel",
+                th_name: "Tesis Adı",
+                th_location: "Destinasyon",
+                th_affiliate: "Affiliate Linki",
+                th_action: "İşlemler",
+                empty_hotels: "Kayıtlı Tesis Bulunmuyor",
+                empty_hotels_sub: "Teklifleri yayınlamaya başlamak için 'Yeni Konaklama Ekle' butonunu kullanın.",
+                flights_title: "Uçuş Yönetimi",
+                flights_subtitle: "Türkiye içi uçuş rotalarını ve affiliate bağlantılarını güncelleyin.",
+                add_flight_btn: "Yeni Uçuş Rotası Ekle",
+                th_airline: "Hava Yolu",
+                th_route: "Rota",
+                th_price: "Başlangıç Fiyatı",
+                empty_flights: "Kayıtlı Uçuş Rotası Bulunmuyor",
+                empty_flights_sub: "Ziyaretçilere sunmak için uçuş affiliate linklerini ekleyin.",
+                blog_title: "İçerik Yönetimi (SEO)",
+                blog_subtitle: "Türkiye'nin en iyi destinasyonları hakkında profesyonel makaleler oluşturun.",
+                save_draft: "Taslak Olarak Kaydet",
+                publish_btn: "Makaleyi Yayınla",
+                cover_image: "Kapak Görseli Ekle",
+                article_placeholder: "Makale Başlığı...",
+                reviews_title: "Değerlendirmeler ve Trafik",
+                reviews_subtitle: "Gerçek değerlendirmeleri ve trafik kaynaklarını (Google, YouTube, TikTok...) takip edin.",
+                th_user: "Ziyaretçi",
+                th_source: "Trafik Kaynağı",
+                th_rating: "Değerlendirme",
+                th_review: "Yorum",
+                empty_reviews: "Değerlendirme Veritabanı Şu An Boş",
+                empty_reviews_sub: "Veritabanı bağlandığında, gerçek kullanıcı yorumları ve geldikleri platformlar burada görünecektir.",
+                // رسائل التنبيه
+                toast_export_msg: "Veritabanı bağlandıktan sonra dışa aktarma aktif olacaktır.",
+                toast_add_hotel_msg: "Backend programlamasından sonra yeni tesis eklenebilir.",
+                toast_add_flight_msg: "Backend programlamasından sonra yeni rota eklenebilir.",
+                toast_draft_msg: "Makale taslak olarak kaydedildi.",
+                toast_publish_msg: "Veritabanı bağlandıktan sonra yayınlama aktif olacaktır.",
+                toast_img_upload_msg: "Görsel yükleme özelliği yakında aktif edilecek."
+            },
+            ar: {
+                dir: "rtl",
+                admin_subtitle: "لوحة القيادة",
+                nav_dashboard: "إحصائيات المنصة",
+                nav_hotels: "الفنادق والشقق الفندقية",
+                nav_flights: "عروض تذاكر الطيران",
+                nav_blog: "محرر المقالات (SEO)",
+                nav_reviews: "التقييمات ومصادر الزيارات",
+                view_site: "عرض الموقع المباشر",
+                google_login: "دخول Gmail",
+                admin_title: "المدير العام",
+                dash_title: "إحصائيات المنصة",
+                dash_subtitle: "بانتظار ربط قواعد البيانات لجلب الأرقام الحقيقية.",
+                export_btn: "استخراج التقرير",
+                traffic_title: "حركة الزوار",
+                empty_chart: "المخطط البياني فارغ",
+                empty_chart_sub: "سيتم رسم البيانات فور توافد الزوار الفعليين.",
+                sources_title: "مصادر الترافيك",
+                empty_sources: "لا توجد مصادر مسجلة بعد",
+                empty_sources_sub: "بانتظار حركة المرور من محركات البحث والسوشيال ميديا.",
+                hotels_title: "إدارة الفنادق والشقق",
+                hotels_subtitle: "إضافة وتعديل وجهات الإقامة (أنطاليا، إسطنبول، طرابزون، بورصة، أنقرة، إزمير).",
+                add_hotel_btn: "إضافة عرض إقامة",
+                th_image: "صورة العرض",
+                th_name: "اسم الوجهة",
+                th_location: "المدينة",
+                th_affiliate: "رابط الإحالة",
+                th_action: "التحكم",
+                empty_hotels: "لا توجد عروض مسجلة",
+                empty_hotels_sub: "استخدم زر 'إضافة عرض إقامة' للبدء بنشر العروض.",
+                flights_title: "إدارة عروض الطيران",
+                flights_subtitle: "تحديث روابط الإحالة وأسعار الطيران بين المدن التركية.",
+                add_flight_btn: "إضافة مسار طيران",
+                th_airline: "شركة الطيران",
+                th_route: "مسار الرحلة",
+                th_price: "السعر",
+                empty_flights: "لا توجد مسارات طيران مسجلة",
+                empty_flights_sub: "أضف روابط الإحالة الخاصة بالطيران لتبدأ بالظهور.",
+                blog_title: "نشر المقالات (SEO)",
+                blog_subtitle: "محرر متقدم لكتابة مقالات احترافية عن أفضل الوجهات.",
+                save_draft: "حفظ كمسودة",
+                publish_btn: "نشر المقال",
+                cover_image: "أضف صورة الغلاف",
+                article_placeholder: "عنوان المقال...",
+                reviews_title: "تقييمات ومصادر الزوار",
+                reviews_subtitle: "متابعة التقييمات الحقيقية ومعرفة منصة القدوم (Google, YouTube, TikTok...).",
+                th_user: "الزائر",
+                th_source: "مصدر الزيارة",
+                th_rating: "التقييم",
+                th_review: "الرأي",
+                empty_reviews: "قاعدة التقييمات فارغة حالياً",
+                empty_reviews_sub: "ستظهر التقييمات مع منصة القدوم فور ربط قاعدة البيانات.",
+                // رسائل التنبيه
+                toast_export_msg: "سيتم تفعيل التصدير بعد ربط قاعدة البيانات.",
+                toast_add_hotel_msg: "نافذة الإضافة ستعمل بعد برمجة الباك إند.",
+                toast_add_flight_msg: "نافذة الطيران ستعمل بعد برمجة الباك إند.",
+                toast_draft_msg: "تم حفظ المقال كمسودة.",
+                toast_publish_msg: "سيتم تفعيل النشر بعد استكمال ربط قاعدة البيانات.",
+                toast_img_upload_msg: "خاصية رفع الصور ستعمل لاحقاً."
+            }
+        };
+
+        let currentLang = 'tr';
+
+        function changeAdminLanguage(lang) {
+            currentLang = lang;
+            const dict = ADMIN_TRANSLATIONS[lang];
+            document.documentElement.lang = lang;
+            document.documentElement.dir = dict.dir;
+            
+            // تعديل اتجاه الحدود في القائمة الجانبية
+            if(lang === 'ar') {
+                document.getElementById('user-profile-divider').classList.remove('border-l', 'pl-6');
+                document.getElementById('user-profile-divider').classList.add('border-r', 'pr-6');
+                document.getElementById('sidebar').classList.remove('border-r');
+                document.getElementById('sidebar').classList.add('border-l');
+            } else {
+                document.getElementById('user-profile-divider').classList.remove('border-r', 'pr-6');
+                document.getElementById('user-profile-divider').classList.add('border-l', 'pl-6');
+                document.getElementById('sidebar').classList.remove('border-l');
+                document.getElementById('sidebar').classList.add('border-r');
+            }
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) el.innerHTML = dict[key];
+            });
+
+            const titleInput = document.getElementById('article-title');
+            if(titleInput) titleInput.placeholder = dict.article_placeholder;
+        }
+
         // تغيير الثيم
         function toggleTheme() {
             const html = document.documentElement;
@@ -361,43 +516,41 @@
             }
         }
 
-        // نظام التنقل بين الأقسام يعمل بالكامل
+        // التنقل بين الأقسام
         function switchTab(tabId, element) {
-            // إخفاء كافة الأقسام
             document.querySelectorAll('.view-section').forEach(el => {
                 el.classList.add('hidden');
                 el.classList.remove('block');
             });
             
-            // إظهار القسم المطلوب
             const target = document.getElementById('view-' + tabId);
             if (target) {
                 target.classList.remove('hidden');
                 target.classList.add('block');
             }
             
-            // تحديث تصميم الأزرار الجانبية
-            document.querySelectorAll('.nav-item').forEach(el => {
-                el.classList.remove('active');
-                el.classList.remove('text-brand-gold');
-            });
-            element.classList.add('active');
-            element.classList.add('text-brand-gold');
+            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active', 'text-brand-gold'));
+            element.classList.add('active', 'text-brand-gold');
         }
 
-        // نظام التنبيهات المنبثقة للأزرار (Toast Notification)
-        function showToast(message) {
+        // نظام التنبيهات مع الترجمة
+        function showToast(msgKey) {
+            const dict = ADMIN_TRANSLATIONS[currentLang];
+            const message = dict['toast_' + msgKey] || msgKey;
+
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = `<i class="fas fa-info-circle mr-2"></i> ${message}`;
+            toast.className = 'toast flex items-center gap-3';
+            toast.innerHTML = `<i class="fas fa-info-circle text-lg"></i> <span>${message}</span>`;
             container.appendChild(toast);
             
-            // حذف العنصر من DOM بعد انتهاء الحركة
-            setTimeout(() => {
-                toast.remove();
-            }, 3000);
+            setTimeout(() => toast.remove(), 3400);
         }
+
+        // التهيئة المبدئية
+        window.addEventListener('DOMContentLoaded', () => {
+            changeAdminLanguage('tr');
+        });
     </script>
 </body>
 </html>
