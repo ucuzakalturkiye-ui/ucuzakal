@@ -339,7 +339,6 @@
                                 <i class="fab fa-facebook"></i>
                                 <i class="fab fa-pinterest"></i>
                                 <i class="fab fa-instagram"></i>
-                                <i class="fab fa-tiktok"></i>
                             </div>
                             <p class="font-bold text-lg text-slate-800 dark:text-slate-300 mb-1" data-i18n="empty_sources">Henüz Kaynak Kaydedilmedi</p>
                             <p class="text-xs text-slate-500" data-i18n="empty_sources_sub">Arama motorları ve sosyal medyadan gelen trafik bekleniyor.</p>
@@ -525,24 +524,40 @@
                 </div>
             </div>
 
-            <!-- 5. التقييمات والمصادر -->
+            <!-- 5. التقييمات ومصادر الزيارات (Firestore Live) -->
             <div id="view-reviews" class="view-section hidden animate-[fadeIn_0.5s_ease]">
                 <div class="flex justify-between items-center mb-12">
                     <div>
                         <h1 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4" data-i18n="reviews_title">Değerlendirmeler ve Trafik</h1>
-                        <p class="text-slate-500 dark:text-gray-400 font-medium text-lg" data-i18n="reviews_subtitle">Gerçek değerlendirmeleri ve trafik kaynaklarını takip edin.</p>
+                        <p class="text-slate-500 dark:text-gray-400 font-medium text-lg" data-i18n="reviews_subtitle">Gerçek kullanıcı değerlendirmelerini ve geldikleri trafik platformlarını takip edin.</p>
                     </div>
+                    <button onclick="loadFirestoreReviews()" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-1 border border-brand-gold/40 px-4 py-2 rounded-xl">
+                        <i class="fas fa-sync-alt"></i> <span data-i18n="refresh">Yenile</span>
+                    </button>
                 </div>
-                <div class="admin-panel p-20 text-center text-slate-400">
-                    <div class="flex justify-center gap-6 mb-6 text-4xl text-slate-300 dark:text-brand-gold/30">
-                        <i class="fab fa-google"></i>
-                        <i class="fab fa-facebook"></i>
-                        <i class="fab fa-pinterest"></i>
-                        <i class="fab fa-instagram"></i>
-                        <i class="fab fa-tiktok"></i>
+                
+                <div class="admin-panel overflow-hidden p-8">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left rtl:text-right text-sm">
+                            <thead class="text-xs text-slate-600 dark:text-gray-300 bg-slate-100 dark:bg-black/60 uppercase border-b border-slate-200 dark:border-brand-gold/20">
+                                <tr>
+                                    <th class="px-6 py-4 font-bold" data-i18n="th_user">Ziyaretçi</th>
+                                    <th class="px-6 py-4 font-bold" data-i18n="th_source">Trafik Kaynağı</th>
+                                    <th class="px-6 py-4 font-bold" data-i18n="th_rating">Puan</th>
+                                    <th class="px-6 py-4 font-bold" data-i18n="th_review">Yorum</th>
+                                    <th class="px-6 py-4 font-bold text-center" data-i18n="th_action">İşlemler</th>
+                                </tr>
+                            </thead>
+                            <tbody id="reviews-table-body">
+                                <tr>
+                                    <td colspan="5" class="py-12 text-center text-slate-400">
+                                        <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
+                                        <p>Değerlendirmeler yükleniyor...</p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <h3 class="text-2xl font-bold text-slate-800 dark:text-white mb-2" data-i18n="empty_reviews">Değerlendirme Veritabanı Şu An Boş</h3>
-                    <p class="text-slate-500 text-sm" data-i18n="empty_reviews_sub">Kullanıcı yorumları geldikçe burada listelenecektir.</p>
                 </div>
             </div>
 
@@ -550,7 +565,6 @@
     </main>
 
     <script>
-        // إعدادات الأمان الخاصة بكلمة السر واسم المستخدم
         const ADMIN_CREDENTIALS = {
             allowedUsers: ['admin', 'ucuzakal'],
             pass: 'M.N@9876543210'
@@ -577,10 +591,10 @@
                 document.getElementById('admin-auth-lock').classList.add('hidden');
                 errorElem.classList.add('hidden');
                 showToast('auth_success');
-                // استدعاء البيانات الحية
                 if (window.loadFirestoreHotels) window.loadFirestoreHotels();
                 if (window.loadFirestoreFlights) window.loadFirestoreFlights();
                 if (window.loadPublishedArticles) window.loadPublishedArticles();
+                if (window.loadFirestoreReviews) window.loadFirestoreReviews();
             } else {
                 errorElem.textContent = "Hatalı kullanıcı adı veya parola! / اسم المستخدم أو كلمة السر غير صحيحة!";
                 errorElem.classList.remove('hidden');
@@ -640,6 +654,10 @@
                 th_dest: "Kategori",
                 th_title: "Başlık",
                 th_date: "Tarih",
+                th_user: "Ziyaretçi",
+                th_source: "Trafik Kaynağı",
+                th_rating: "Puan",
+                th_review: "Yorum",
                 th_action: "İşlemler",
                 btn_cancel: "İptal",
                 btn_save: "Kaydet",
@@ -648,9 +666,7 @@
                 loading_flights: "Uçuşlar yükleniyor...",
                 loading_articles: "Makaleler yükleniyor...",
                 reviews_title: "Değerlendirmeler ve Trafik",
-                reviews_subtitle: "Gerçek değerlendirmeleri ve trafik kaynaklarını takip edin.",
-                empty_reviews: "Değerlendirme Veritabanı Şu An Boş",
-                empty_reviews_sub: "Kullanıcı yorumları geldikçe burada listelenecektir.",
+                reviews_subtitle: "Gerçek kullanıcı değerlendirmelerini ve geldikleri trafik platformlarını takip edin.",
                 toast_saved_hotel: "Konaklama başarıyla kaydedildi!",
                 toast_saved_flight: "Uçuş rotası başarıyla kaydedildi!",
                 toast_deleted: "Kayıt başarıyla silindi.",
@@ -704,6 +720,10 @@
                 th_dest: "التصنيف",
                 th_title: "العنوان",
                 th_date: "التاريخ",
+                th_user: "الزائر",
+                th_source: "مصدر الترافيك",
+                th_rating: "التقييم",
+                th_review: "التعليق",
                 th_action: "الإجراء",
                 btn_cancel: "إلغاء",
                 btn_save: "حفظ",
@@ -713,8 +733,6 @@
                 loading_articles: "جاري تحميل المقالات...",
                 reviews_title: "تقييمات ومصادر الزوار",
                 reviews_subtitle: "متابعة التقييمات ومصادر الزيارات القادمة.",
-                empty_reviews: "قاعدة التقييمات فارغة حالياً",
-                empty_reviews_sub: "ستظهر تقييمات الزوار هنا فور ورودها.",
                 toast_saved_hotel: "تم حفظ عرض الإقامة بنجاح في Firestore!",
                 toast_saved_flight: "تم حفظ مسار الطيران بنجاح في Firestore!",
                 toast_deleted: "تم حذف السجل بنجاح.",
@@ -784,334 +802,4 @@
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             toast.className = 'toast flex items-center gap-3';
-            toast.innerHTML = `<i class="fas fa-check-circle text-xl"></i> <span>${message}</span>`;
-            container.appendChild(toast);
-            
-            setTimeout(() => toast.remove(), 4000);
-        }
-
-        function formatDoc(cmd, value = null) {
-            document.execCommand(cmd, false, value);
-        }
-
-        function openHotelModal() {
-            document.getElementById('hotel-modal').classList.add('active');
-        }
-        function closeHotelModal() {
-            document.getElementById('hotel-modal').classList.remove('active');
-        }
-
-        function openFlightModal() {
-            document.getElementById('flight-modal').classList.add('active');
-        }
-        function closeFlightModal() {
-            document.getElementById('flight-modal').classList.remove('active');
-        }
-
-        function saveArticleDraft() {
-            const data = {
-                category: document.getElementById('article-category').value,
-                img: document.getElementById('article-img').value,
-                title: document.getElementById('article-title').value,
-                body: document.getElementById('article-body').innerHTML
-            };
-            localStorage.setItem('ucuzakal_article_draft', JSON.stringify(data));
-            showToast('draft');
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            checkAuthStatus();
-            changeAdminLanguage('tr');
-        });
-    </script>
-
-    <!-- وحدة Firebase & Cloud Firestore -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { 
-            getFirestore, 
-            collection, 
-            addDoc, 
-            getDocs, 
-            deleteDoc, 
-            doc, 
-            serverTimestamp, 
-            query, 
-            orderBy 
-        } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDcMOlstkYaLBOjnJOYk24U6_724pqEw1U",
-            authDomain: "ucuzakal-5e2a8.firebaseapp.com",
-            projectId: "ucuzakal-5e2a8",
-            storageBucket: "ucuzakal-5e2a8.firebasestorage.app",
-            messagingSenderId: "111148178418",
-            appId: "1:111148178418:web:f885dc545e0627516ca96b",
-            measurementId: "G-ST7LSMMXEB"
-        };
-
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        /* =================== إدارة الفنادق (Hotels) =================== */
-        window.saveHotelToFirestore = async function() {
-            const name = document.getElementById('hotel-name').value.trim();
-            const city = document.getElementById('hotel-city').value;
-            const price = document.getElementById('hotel-price').value.trim();
-            const img = document.getElementById('hotel-img').value.trim() || 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=90';
-            const affiliate = document.getElementById('hotel-affiliate').value.trim() || 'https://www.trivago.com.tr';
-            const btn = document.getElementById('btn-save-hotel');
-
-            if (!name || !price) {
-                showToast('fill_fields');
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
-            try {
-                await addDoc(collection(db, "hotels"), {
-                    name,
-                    city,
-                    price: Number(price),
-                    image: img,
-                    affiliateUrl: affiliate,
-                    createdAt: serverTimestamp()
-                });
-
-                showToast('saved_hotel');
-                document.getElementById('hotel-name').value = '';
-                document.getElementById('hotel-price').value = '';
-                document.getElementById('hotel-img').value = '';
-                document.getElementById('hotel-affiliate').value = '';
-                closeHotelModal();
-                await window.loadFirestoreHotels();
-            } catch(e) {
-                alert("Hata: " + e.message);
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-save"></i> <span>' + ADMIN_TRANSLATIONS[currentAdminLang].btn_save + '</span>';
-            }
-        };
-
-        window.loadFirestoreHotels = async function() {
-            const tbody = document.getElementById('hotels-table-body');
-            if (!tbody) return;
-            tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-slate-400"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i></td></tr>`;
-            try {
-                const q = query(collection(db, "hotels"), orderBy("createdAt", "desc"));
-                const snap = await getDocs(q);
-                if (snap.empty) {
-                    tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-slate-400">Henüz kayıtlı otel bulunmuyor.</td></tr>`;
-                    return;
-                }
-                let html = '';
-                snap.forEach(docSnap => {
-                    const data = docSnap.data();
-                    html += `
-                        <tr class="border-b border-slate-100 dark:border-brand-gold/10 hover:bg-slate-50/50 dark:hover:bg-white/5 transition">
-                            <td class="px-6 py-4 font-bold text-slate-900 dark:text-white flex items-center gap-3">
-                                <img src="${data.image}" class="w-10 h-10 rounded-lg object-cover">
-                                <span>${data.name}</span>
-                            </td>
-                            <td class="px-6 py-4 font-bold text-brand-gold">${data.city}</td>
-                            <td class="px-6 py-4 font-bold">€${data.price}</td>
-                            <td class="px-6 py-4"><a href="${data.affiliateUrl}" target="_blank" class="text-xs text-brand-gold underline truncate max-w-[150px] inline-block">Affiliate Link</a></td>
-                            <td class="px-6 py-4 text-center">
-                                <button onclick="deleteHotelDoc('${docSnap.id}')" class="text-red-500 hover:text-red-700 transition p-2 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                tbody.innerHTML = html;
-            } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-red-500">${e.message}</td></tr>`;
-            }
-        };
-
-        window.deleteHotelDoc = async function(id) {
-            if(!confirm("Bu kaydı silmek istediğinize emin misiniz? / هل أنت متأكد من الحذف؟")) return;
-            try {
-                await deleteDoc(doc(db, "hotels", id));
-                showToast('deleted');
-                await window.loadFirestoreHotels();
-            } catch(e) { alert(e.message); }
-        };
-
-        /* =================== إدارة الطيران (Flights) =================== */
-        window.saveFlightToFirestore = async function() {
-            const airline = document.getElementById('flight-airline').value.trim();
-            const route = document.getElementById('flight-route').value.trim();
-            const region = document.getElementById('flight-region').value;
-            const price = document.getElementById('flight-price').value.trim();
-            const affiliate = document.getElementById('flight-affiliate').value.trim() || 'https://www.skyscanner.com.tr';
-            const btn = document.getElementById('btn-save-flight');
-
-            if (!airline || !route || !price) {
-                showToast('fill_fields');
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
-            try {
-                await addDoc(collection(db, "flights"), {
-                    airline,
-                    route,
-                    region,
-                    price: Number(price),
-                    affiliateUrl: affiliate,
-                    createdAt: serverTimestamp()
-                });
-
-                showToast('saved_flight');
-                document.getElementById('flight-airline').value = '';
-                document.getElementById('flight-route').value = '';
-                document.getElementById('flight-price').value = '';
-                document.getElementById('flight-affiliate').value = '';
-                closeFlightModal();
-                await window.loadFirestoreFlights();
-            } catch(e) {
-                alert("Hata: " + e.message);
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-save"></i> <span>' + ADMIN_TRANSLATIONS[currentAdminLang].btn_save + '</span>';
-            }
-        };
-
-        window.loadFirestoreFlights = async function() {
-            const tbody = document.getElementById('flights-table-body');
-            if (!tbody) return;
-            tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-slate-400"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i></td></tr>`;
-            try {
-                const q = query(collection(db, "flights"), orderBy("createdAt", "desc"));
-                const snap = await getDocs(q);
-                if (snap.empty) {
-                    tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-slate-400">Henüz kayıtlı uçuş rotası bulunmuyor.</td></tr>`;
-                    return;
-                }
-                let html = '';
-                snap.forEach(docSnap => {
-                    const data = docSnap.data();
-                    html += `
-                        <tr class="border-b border-slate-100 dark:border-brand-gold/10 hover:bg-slate-50/50 dark:hover:bg-white/5 transition">
-                            <td class="px-6 py-4 font-bold text-slate-900 dark:text-white">${data.airline}</td>
-                            <td class="px-6 py-4 font-bold">${data.route}</td>
-                            <td class="px-6 py-4 font-bold text-brand-gold text-xs">${data.region}</td>
-                            <td class="px-6 py-4 font-bold">€${data.price}</td>
-                            <td class="px-6 py-4 text-center">
-                                <button onclick="deleteFlightDoc('${docSnap.id}')" class="text-red-500 hover:text-red-700 transition p-2 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                tbody.innerHTML = html;
-            } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-red-500">${e.message}</td></tr>`;
-            }
-        };
-
-        window.deleteFlightDoc = async function(id) {
-            if(!confirm("Bu kaydı silmek istediğinize emin misiniz? / هل أنت متأكد من الحذف؟")) return;
-            try {
-                await deleteDoc(doc(db, "flights", id));
-                showToast('deleted');
-                await window.loadFirestoreFlights();
-            } catch(e) { alert(e.message); }
-        };
-
-        /* =================== إدارة المقالات (Articles) =================== */
-        window.publishArticleToFirestore = async function() {
-            const category = document.getElementById('article-category').value;
-            const img = document.getElementById('article-img').value.trim() || 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=90';
-            const title = document.getElementById('article-title').value.trim();
-            const body = document.getElementById('article-body').innerHTML.trim();
-            const btn = document.getElementById('btn-publish');
-
-            if (!title || !body || body === '<br>') {
-                showToast('fill_fields');
-                return;
-            }
-
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
-            try {
-                await addDoc(collection(db, "articles"), {
-                    category,
-                    image: img,
-                    title,
-                    body,
-                    createdAt: serverTimestamp()
-                });
-
-                showToast('published');
-                document.getElementById('article-title').value = '';
-                document.getElementById('article-body').innerHTML = '';
-                document.getElementById('article-img').value = '';
-                localStorage.removeItem('ucuzakal_article_draft');
-                await window.loadPublishedArticles();
-            } catch (err) {
-                alert("Hata: " + err.message);
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>' + ADMIN_TRANSLATIONS[currentAdminLang].publish_btn + '</span>';
-            }
-        };
-
-        window.loadPublishedArticles = async function() {
-            const tableBody = document.getElementById('articles-table-body');
-            if (!tableBody) return;
-            tableBody.innerHTML = `<tr><td colspan="4" class="py-12 text-center text-slate-400"><i class="fas fa-spinner fa-spin text-2xl mb-2"></i></td></tr>`;
-            try {
-                const q = query(collection(db, "articles"), orderBy("createdAt", "desc"));
-                const querySnapshot = await getDocs(q);
-
-                if (querySnapshot.empty) {
-                    tableBody.innerHTML = `<tr><td colspan="4" class="py-12 text-center text-slate-400">Henüz yayınlanmış bir makale bulunmuyor.</td></tr>`;
-                    return;
-                }
-
-                let html = '';
-                querySnapshot.forEach((docSnap) => {
-                    const data = docSnap.data();
-                    const date = data.createdAt ? new Date(data.createdAt.toDate()).toLocaleDateString() : '-';
-                    html += `
-                        <tr class="border-b border-slate-100 dark:border-brand-gold/10 hover:bg-slate-50/50 dark:hover:bg-white/5 transition">
-                            <td class="px-6 py-4 font-bold text-brand-gold">${data.category || 'ANTALYA'}</td>
-                            <td class="px-6 py-4 font-bold text-slate-800 dark:text-white">${data.title}</td>
-                            <td class="px-6 py-4 text-xs text-slate-500">${date}</td>
-                            <td class="px-6 py-4 text-center">
-                                <button onclick="deleteArticle('${docSnap.id}')" class="text-red-500 hover:text-red-700 transition p-2 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg"><i class="fas fa-trash-alt"></i></button>
-                            </td>
-                        </tr>
-                    `;
-                });
-                tableBody.innerHTML = html;
-            } catch (err) {
-                tableBody.innerHTML = `<tr><td colspan="4" class="py-12 text-center text-red-500">${err.message}</td></tr>`;
-            }
-        };
-
-        window.deleteArticle = async function(id) {
-            if (!confirm("Bu makaleyi silmek istediğinizden emin misiniz? / هل أنت متأكد من الحذف؟")) return;
-            try {
-                await deleteDoc(doc(db, "articles", id));
-                showToast('deleted');
-                await window.loadPublishedArticles();
-            } catch (err) {
-                alert("Hata: " + err.message);
-            }
-        };
-
-        // استدعاء البيانات إذا كانت الجلسة مسجلة مسبقاً
-        if (sessionStorage.getItem('ucuzakal_admin_auth') === 'true') {
-            window.loadFirestoreHotels();
-            window.loadFirestoreFlights();
-            window.loadPublishedArticles();
-        }
-    </script>
-</body>
-</html>
+            toast.innerHTML = `<i class="fas fa-check-circle text-xl"></i>
