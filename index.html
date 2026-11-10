@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UcuzaKal Yönetim Paneli | لوحة القيادة الفاخرة</title>
+    <title>UcuzaKal Türkiye | Seçkin Seyahat ve Rezervasyon Platformu</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-
+    
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
+                        luxury: ['Playfair Display', 'Amiri', 'serif'],
                         sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
-                        luxury: ['Playfair Display', 'serif'],
                     },
                     colors: {
                         brand: {
                             gold: '#D4AF37',
-                            dark: '#030509',
+                            dark: '#030508',
                             surface: '#0A0F1A',
-                            lightbg: '#F8F9FA',
+                            cardDark: 'rgba(12, 17, 29, 0.85)'
                         }
                     }
                 }
@@ -35,771 +35,1039 @@
     </script>
 
     <style>
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 10px; }
-        
-        .nav-item { transition: all 0.4s ease; border-left: 3px solid transparent; }
-        html[dir="rtl"] .nav-item { border-left: none; border-right: 3px solid transparent; }
-        
-        .nav-item.active {
-            background: linear-gradient(90deg, rgba(212,175,55,0.1) 0%, transparent 100%);
-            color: #D4AF37 !important;
-            border-left: 3px solid #D4AF37;
+        .premium-bg {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
-        html[dir="rtl"] .nav-item.active {
-            background: linear-gradient(-90deg, rgba(212,175,55,0.1) 0%, transparent 100%);
-            border-left: none;
-            border-right: 3px solid #D4AF37;
-        }
-        
-        .admin-panel {
-            background: #ffffff;
-            border: 1px solid rgba(0,0,0,0.06);
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            transition: all 0.4s ease;
-        }
-        .dark .admin-panel {
-            background: rgba(10, 15, 26, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-
-        .modal-overlay {
-            position: fixed; inset: 0; background: rgba(3, 5, 8, 0.85);
-            backdrop-filter: blur(8px); z-index: 9999;
-            display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
-        }
-        .modal-overlay.active { opacity: 1; pointer-events: auto; }
-
         @keyframes elegantGlow {
             0% { text-shadow: 0 0 10px rgba(212,175,55,0.2); }
-            50% { text-shadow: 0 0 20px rgba(212,175,55,0.6), 0 0 30px rgba(255,255,255,0.1); }
+            50% { text-shadow: 0 0 25px rgba(212,175,55,0.7), 0 0 35px rgba(255,255,255,0.2); }
             100% { text-shadow: 0 0 10px rgba(212,175,55,0.2); }
         }
         .title-glow { animation: elegantGlow 4s infinite ease-in-out; }
 
-        #toast-container {
-            position: fixed; bottom: 30px; right: 30px; z-index: 100000;
-            display: flex; flex-direction: column; gap: 15px;
+        .ultra-luxury-card {
+            background: #ffffff;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
         }
-        html[dir="rtl"] #toast-container { right: auto; left: 30px; }
-        
-        .toast {
-            background: #D4AF37; color: #000; font-weight: 700;
-            padding: 14px 28px; border-radius: 12px; font-size: 14px;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
-            opacity: 0; transform: translateY(20px);
-            animation: slideIn 0.5s forwards, fadeOut 0.5s 3.5s forwards;
+        .dark .ultra-luxury-card {
+            background: rgba(10, 15, 26, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
-        @keyframes slideIn { to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeOut { to { opacity: 0; transform: translateY(20px); } }
+        .ultra-luxury-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(212, 175, 55, 0.8);
+            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15);
+        }
 
-        body { transition: background-color 0.4s ease, color 0.4s ease; }
+        .img-frame {
+            position: relative;
+            overflow: hidden;
+            height: 260px;
+        }
+        .img-frame img {
+            transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .ultra-luxury-card:hover .img-frame img {
+            transform: scale(1.08);
+        }
+
+        .gold-divider {
+            width: 35px; height: 1px; background-color: #D4AF37;
+            margin: 1rem auto; transition: width 0.6s ease;
+        }
+        .ultra-luxury-card:hover .gold-divider { width: 85px; }
+
+        #article-modal {
+            position: fixed; inset: 0; background: rgba(3, 5, 8, 0.85); 
+            backdrop-filter: blur(12px); z-index: 99999;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+        }
+        #article-modal.active { opacity: 1; pointer-events: auto; }
+
+        #cinematic-overlay {
+            position: fixed; inset: 0; background: rgba(3, 5, 8, 0.99); 
+            backdrop-filter: blur(15px); z-index: 999999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.6s ease;
+        }
+        #cinematic-overlay.active { opacity: 1; pointer-events: auto; }
+        @keyframes smoothSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .lens-spin { animation: smoothSpin 10s linear infinite; }
+        body { transition: background-color 0.5s ease, color 0.5s ease; }
+
+        .social-channel-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 9999px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+            text-decoration: none;
+        }
+        .social-channel-item:hover {
+            transform: translateX(4px);
+            background: rgba(212, 175, 55, 0.18);
+            border-color: #D4AF37;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+        }
+        html[dir="rtl"] .social-channel-item:hover {
+            transform: translateX(-4px);
+        }
+        .lang-pill {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: #D4AF37;
+            color: #030508;
+            transition: transform 0.3s ease;
+        }
+        .social-channel-item:hover .lang-pill {
+            transform: scale(1.1);
+        }
     </style>
 </head>
-<body class="bg-brand-lightbg dark:bg-brand-dark text-slate-800 dark:text-slate-100 flex h-screen overflow-hidden">
+<body class="bg-[#FCFBF9] dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg antialiased">
 
-    <div id="toast-container"></div>
-
-    <!-- شاشة تسجيل الدخول الأمنية للوحة الإدارة (Admin Security Lock Screen) -->
-    <div id="admin-auth-lock" class="fixed inset-0 z-[99999] bg-[#030509] flex items-center justify-center p-4">
-        <div class="w-full max-w-md bg-[#0A0F1A] border border-brand-gold/30 rounded-3xl p-8 sm:p-10 shadow-2xl text-center relative overflow-hidden">
-            <div class="absolute -top-24 -left-24 w-48 h-48 bg-brand-gold/10 rounded-full blur-3xl pointer-events-none"></div>
-            
-            <div class="w-16 h-16 rounded-full border-2 border-brand-gold flex items-center justify-center mx-auto mb-6 bg-brand-gold/10 text-brand-gold text-2xl shadow-[0_0_20px_rgba(212,175,55,0.2)]">
-                <i class="fas fa-shield-alt"></i>
-            </div>
-            
-            <h2 class="font-luxury text-3xl font-bold text-white mb-2 title-glow">Ucuza<span class="text-brand-gold">Kal</span></h2>
-            <p class="text-xs text-brand-gold uppercase tracking-[0.25em] font-bold mb-8">Güvenli Yönetim Girişi</p>
-
-            <form onsubmit="handleAdminLogin(event)" class="space-y-5 text-left">
-                <div>
-                    <label class="block text-xs uppercase font-bold tracking-wider text-slate-400 mb-2">Kullanıcı Adı / اسم المستخدم</label>
-                    <div class="relative">
-                        <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-brand-gold/60 text-sm"></i>
-                        <input type="text" id="auth-username" required placeholder="admin" class="w-full bg-[#030509] border border-slate-700 focus:border-brand-gold rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none transition">
-                    </div>
-                </div>
-
-                <div>
-                    <label class="block text-xs uppercase font-bold tracking-wider text-slate-400 mb-2">Güvenlik Parolası / كلمة المرور</label>
-                    <div class="relative">
-                        <i class="fas fa-lock absolute left-4 top-1/2 -translate-y-1/2 text-brand-gold/60 text-sm"></i>
-                        <input type="password" id="auth-password" required placeholder="••••••••••••" class="w-full bg-[#030509] border border-slate-700 focus:border-brand-gold rounded-xl pl-11 pr-4 py-3 text-sm text-white focus:outline-none transition">
-                    </div>
-                </div>
-
-                <p id="auth-error-msg" class="text-red-400 text-xs text-center font-bold hidden"></p>
-
-                <button type="submit" class="w-full bg-brand-gold text-black font-bold py-3.5 rounded-xl text-sm tracking-wider uppercase hover:bg-yellow-500 transition shadow-lg mt-2 flex items-center justify-center gap-2">
-                    <i class="fas fa-sign-in-alt"></i> Sisteme Giriş Yap
-                </button>
-            </form>
-        </div>
-    </div>
-
-    <!-- نافذة منبثقة: إضافة فندق / شقة -->
-    <div id="hotel-modal" class="modal-overlay">
-        <div class="bg-white dark:bg-[#070b14] border border-brand-gold/30 rounded-3xl w-11/12 max-w-xl p-8 shadow-2xl relative">
-            <button onclick="closeHotelModal()" class="absolute top-5 right-5 text-slate-400 hover:text-brand-gold text-xl">
+    <!-- نافذة قراءة المقال بالكامل (Modal) -->
+    <div id="article-modal" onclick="closeArticleModal(event)">
+        <div class="relative bg-white dark:bg-[#070b14] border border-brand-gold/30 rounded-3xl w-11/12 max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl p-6 sm:p-10" onclick="event.stopPropagation()">
+            <button onclick="hideArticleModal()" class="absolute top-5 right-5 w-10 h-10 rounded-full border border-brand-gold/40 flex items-center justify-center text-slate-600 dark:text-gray-300 hover:text-brand-gold transition">
                 <i class="fas fa-times"></i>
             </button>
-            <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                <i class="fas fa-hotel text-brand-gold"></i> <span data-i18n="add_hotel_btn">Yeni Konaklama Ekle</span>
-            </h3>
-            <div class="space-y-4">
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" data-i18n="th_name">Tesis Adı</label>
-                    <input type="text" id="hotel-name" placeholder="Örn: Maxx Royal Belek" class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" data-i18n="th_location">Destinasyon</label>
-                        <select id="hotel-city" class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-brand-gold">
-                            <option value="ANTALYA">ANTALYA</option>
-                            <option value="İSTANBUL">İSTANBUL</option>
-                            <option value="TRABZON">TRABZON</option>
-                            <option value="BURSA">BURSA</option>
-                            <option value="ANKARA">ANKARA</option>
-                            <option value="İZMİR">İZMİR</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" data-i18n="th_price">Başlangıç Fiyatı (€)</label>
-                        <input type="number" id="hotel-price" placeholder="Örn: 250" class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
-                    </div>
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" data-i18n="th_image">Görsel URL</label>
-                    <input type="url" id="hotel-img" placeholder="https://images.unsplash.com/..." class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
-                </div>
-                <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" data-i18n="th_affiliate">Affiliate Linki</label>
-                    <input type="url" id="hotel-affiliate" placeholder="https://www.trivago.com.tr/..." class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
-                </div>
-                <div class="flex justify-end gap-3 pt-4">
-                    <button onclick="closeHotelModal()" class="px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition" data-i18n="btn_cancel">İptal</button>
-                    <button id="btn-save-hotel" onclick="saveHotelToFirestore()" class="bg-brand-gold text-white dark:text-black px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-yellow-600 transition flex items-center gap-2">
-                        <i class="fas fa-save"></i> <span data-i18n="btn_save">Kaydet</span>
-                    </button>
-                </div>
+            <div class="h-60 sm:h-80 w-full overflow-hidden rounded-2xl mb-6">
+                <img id="modal-img" src="" alt="Article Banner" class="w-full h-full object-cover">
+            </div>
+            <span id="modal-category" class="text-brand-gold text-xs tracking-widest font-bold uppercase block mb-2"></span>
+            <h2 id="modal-title" class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight"></h2>
+            <div class="w-16 h-[2px] bg-brand-gold mb-6"></div>
+            <div id="modal-body" class="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4"></div>
+        </div>
+    </div>
+
+    <!-- نافذة التوجيه السينمائية للحجوزات -->
+    <div id="cinematic-overlay">
+        <div class="text-center p-6">
+            <div class="relative w-24 h-24 mx-auto mb-8 flex items-center justify-center">
+                <div class="absolute inset-0 rounded-full border border-brand-gold/30 animate-ping"></div>
+                <div class="w-20 h-20 rounded-full border-t-2 border-b-2 border-brand-gold lens-spin"></div>
+                <i class="fas fa-compass text-brand-gold text-2xl absolute"></i>
+            </div>
+            <h3 class="font-luxury text-2xl sm:text-3xl text-brand-gold font-bold mb-3 tracking-wider" data-i18n="cinematic_title">Rezervasyon Platformuna Yönlendiriliyorsunuz...</h3>
+            <div class="w-48 sm:w-64 h-[1px] bg-slate-800 mx-auto overflow-hidden mt-6">
+                <div id="cinematic-bar" class="h-full bg-brand-gold w-0 transition-all duration-[2000ms] ease-out"></div>
             </div>
         </div>
     </div>
 
-    <!-- نافذة منبثقة: إضافة مسار طيران -->
-    <div id="flight-modal" class="modal-overlay">
-        <div class="bg-white dark:bg-[#070b14] border border-brand-gold/30 rounded-3xl w-11/12 max-w-xl p-8 shadow-2xl relative">
-            <button onclick="closeFlightModal()" class="absolute top-5 right-5 text-slate-400 hover:text-brand-gold text-xl">
-                <i class="fas fa-times"></i>
-            </button>
-            <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-6 flex items-center gap-3">
-                <i class="fas fa-plane text-brand-gold"></i> <span data-i18n="add_flight_btn">Yeni Uçuş Rotası Ekle</span>
-            </h3>
-            <div class="space-y-4">
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" data-i18n="th_airline">Hava Yolu</label>
-                        <input type="text" id="flight-airline" placeholder="Örn: Türk Hava Yolları" class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" data-i18n="flight_category">Bölge / Kategori</label>
-                        <select id="flight-region" class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-brand-gold">
-                            <option value="Yerel">Yerel (Türkiye İçi)</option>
-                            <option value="Rusya">Rusya ⇄ Türkiye</option>
-                            <option value="Arap Körfezi">Arap Ülkeleri ⇄ Türkiye</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" data-i18n="th_route">Rota</label>
-                        <input type="text" id="flight-route" placeholder="Örn: İstanbul ⇄ Antalya" class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
-                    </div>
-                    <div>
-                        <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" data-i18n="th_price">Başlangıç Fiyatı (€)</label>
-                        <input type="number" id="flight-price" placeholder="Örn: 45" class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
-                    </div>
+    <!-- شريط التنقل العلوي -->
+    <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#030508]/95 backdrop-blur-xl border-b border-brand-gold/20 shadow-sm transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-full border-2 border-brand-gold flex items-center justify-center bg-transparent text-brand-gold font-luxury font-bold text-lg group-hover:bg-brand-gold group-hover:text-black transition duration-500 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+                    U
                 </div>
                 <div>
-                    <label class="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-1" data-i18n="th_affiliate">Affiliate Linki</label>
-                    <input type="url" id="flight-affiliate" placeholder="https://www.skyscanner.com.tr/..." class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
+                    <span class="text-xl sm:text-2xl font-luxury font-bold tracking-wide text-slate-900 dark:text-white title-glow block">
+                        UcuzaKal Türkiye
+                    </span>
                 </div>
-                <div class="flex justify-end gap-3 pt-4">
-                    <button onclick="closeFlightModal()" class="px-5 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 text-sm font-bold hover:bg-slate-100 dark:hover:bg-slate-800 transition" data-i18n="btn_cancel">İptal</button>
-                    <button id="btn-save-flight" onclick="saveFlightToFirestore()" class="bg-brand-gold text-white dark:text-black px-6 py-2.5 rounded-xl text-sm font-bold hover:bg-yellow-600 transition flex items-center gap-2">
-                        <i class="fas fa-save"></i> <span data-i18n="btn_save">Kaydet</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- الشريط الجانبي (Sidebar) -->
-    <aside class="w-[280px] bg-white dark:bg-[#030408] border-r border-slate-200 dark:border-brand-gold/20 flex flex-col z-20 shadow-xl transition-all" id="sidebar">
-        <div class="h-28 flex items-center justify-center border-b border-slate-100 dark:border-brand-gold/20 relative">
-            <span class="font-luxury text-3xl font-bold text-slate-900 dark:text-white flex flex-col items-center title-glow">
-                Ucuza<span class="text-brand-gold">Kal</span>
-                <span class="text-[9px] uppercase tracking-[0.3em] text-brand-gold mt-2 font-sans font-bold" data-i18n="admin_subtitle">Yönetim Paneli</span>
-            </span>
-        </div>
-        
-        <nav class="flex-1 px-4 py-8 space-y-3 overflow-y-auto">
-            <button onclick="switchTab('dashboard', this)" class="nav-item active w-full flex items-center gap-4 px-5 py-4 rounded-r-xl text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-brand-gold transition">
-                <i class="fas fa-chart-pie w-5 text-lg"></i> <span data-i18n="nav_dashboard">Platform İstatistikleri</span>
-            </button>
-            <button onclick="switchTab('hotels', this)" class="nav-item w-full flex items-center gap-4 px-5 py-4 rounded-r-xl text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-brand-gold transition">
-                <i class="fas fa-hotel w-5 text-lg"></i> <span data-i18n="nav_hotels">Otel ve Rezidanslar</span>
-            </button>
-            <button onclick="switchTab('flights', this)" class="nav-item w-full flex items-center gap-4 px-5 py-4 rounded-r-xl text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-brand-gold transition">
-                <i class="fas fa-plane-departure w-5 text-lg"></i> <span data-i18n="nav_flights">Uçuş Yönetimi</span>
-            </button>
-            <button onclick="switchTab('blog', this)" class="nav-item w-full flex items-center gap-4 px-5 py-4 rounded-r-xl text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-brand-gold transition">
-                <i class="fas fa-pen-nib w-5 text-lg"></i> <span data-i18n="nav_blog">İçerik Yönetimi (SEO)</span>
-            </button>
-            <button onclick="switchTab('reviews', this)" class="nav-item w-full flex items-center gap-4 px-5 py-4 rounded-r-xl text-sm font-bold text-slate-600 dark:text-gray-400 hover:text-brand-gold transition">
-                <i class="fas fa-star w-5 text-lg"></i> <span data-i18n="nav_reviews">Değerlendirmeler & Trafik</span>
-            </button>
-        </nav>
-
-        <div class="p-6 border-t border-slate-100 dark:border-brand-gold/20 space-y-3">
-            <a href="index.html" target="_blank" class="flex items-center justify-center gap-3 w-full bg-brand-gold text-white dark:bg-transparent dark:border dark:border-brand-gold dark:text-brand-gold hover:bg-yellow-600 dark:hover:bg-brand-gold dark:hover:text-black py-3 rounded-xl text-xs font-bold uppercase tracking-wider transition shadow-md">
-                <i class="fas fa-external-link-alt"></i> <span data-i18n="view_site">Siteyi Görüntüle</span>
             </a>
-            <button onclick="logoutAdmin()" class="flex items-center justify-center gap-2 w-full text-red-500 hover:bg-red-500/10 py-2.5 rounded-xl text-xs font-bold tracking-wider transition">
-                <i class="fas fa-lock"></i> <span data-i18n="btn_logout">Güvenli Çıkış</span>
-            </button>
-        </div>
-    </aside>
 
-    <!-- منطقة العمل الرئيسية -->
-    <main class="flex-1 flex flex-col h-screen overflow-hidden relative">
-        <header class="h-28 bg-white/95 dark:bg-brand-surface/90 backdrop-blur-xl border-b border-slate-200 dark:border-brand-gold/20 flex items-center justify-between px-12 relative z-10 shadow-sm">
-            <div class="flex items-center gap-4">
+            <div class="flex items-center gap-2 sm:gap-4">
                 <div class="relative">
-                    <select id="admin-lang" onchange="changeAdminLanguage(this.value)" class="bg-gray-50 dark:bg-[#030509] text-slate-900 dark:text-white border border-slate-200 dark:border-brand-gold/30 rounded-full px-6 py-3 text-sm font-bold focus:outline-none focus:border-brand-gold cursor-pointer transition appearance-none pr-12 pl-6 shadow-sm">
-                        <option value="tr">Türkçe (TR)</option>
-                        <option value="ar">العربية (AR)</option>
+                    <select id="lang-switcher" onchange="changeLanguage(this.value)" class="bg-slate-100 dark:bg-[#0a0f1a] text-slate-900 dark:text-white border border-brand-gold/40 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-brand-gold cursor-pointer transition shadow-sm appearance-none pr-8">
+                        <option value="tr" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Türkçe</option>
+                        <option value="ar" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">العربية</option>
+                        <option value="en" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">English</option>
+                        <option value="ru" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Русский</option>
+                        <option value="es" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Español</option>
+                        <option value="zh" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">中文</option>
+                        <option value="ku" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Kurdî</option>
+                        <option value="fa" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">فارسی</option>
+                        <option value="az" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Azərbaycan</option>
+                        <option value="el" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Ελληνικά</option>
+                        <option value="ka" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">ქართული</option>
+                        <option value="bg" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Български</option>
+                        <option value="uk" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Українська</option>
                     </select>
-                    <i class="fas fa-globe absolute right-5 top-1/2 transform -translate-y-1/2 text-brand-gold text-sm pointer-events-none"></i>
+                    <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-[10px] pointer-events-none"></i>
                 </div>
-            </div>
 
-            <div class="flex items-center gap-8">
-                <button onclick="toggleTheme()" class="text-slate-400 dark:text-gray-400 hover:text-brand-gold transition text-2xl">
-                    <i id="theme-icon" class="fas fa-sun"></i>
+                <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center text-slate-700 dark:text-brand-gold border border-brand-gold/30 rounded-full hover:bg-brand-gold hover:text-black transition duration-300">
+                    <i id="theme-icon" class="fas fa-sun text-sm"></i>
                 </button>
-                <div class="flex items-center gap-5 pl-8 border-l border-slate-200 dark:border-brand-gold/20" id="user-profile-divider">
-                    <div class="text-right hidden md:block">
-                        <div class="text-sm font-bold text-slate-900 dark:text-white" data-i18n="admin_title">Genel Yönetici</div>
-                        <div class="text-[10px] text-brand-gold tracking-widest uppercase font-bold mt-1">Admin Authorized</div>
-                    </div>
-                    <div class="w-12 h-12 rounded-full border border-brand-gold bg-slate-50 dark:bg-brand-dark flex items-center justify-center text-brand-gold font-luxury font-bold text-xl shadow-md">
-                        U
-                    </div>
-                </div>
+
+                <button id="auth-btn" onclick="window.loginWithGoogle()" class="flex items-center justify-center gap-2 bg-slate-900 dark:bg-brand-gold text-white dark:text-black px-4 py-2 rounded-full text-xs sm:text-sm font-bold hover:opacity-90 transition shadow-lg">
+                    <i class="fab fa-google"></i>
+                    <span data-i18n="google_login" id="auth-text">Gmail Girişi</span>
+                </button>
             </div>
-        </header>
+        </div>
+    </header>
 
-        <!-- المحتوى القابل للتمرير -->
-        <div class="flex-1 overflow-y-auto p-12 relative z-10">
-            
-            <!-- 1. الإحصائيات -->
-            <div id="view-dashboard" class="view-section block animate-[fadeIn_0.5s_ease]">
-                <div class="flex justify-between items-end mb-12">
-                    <div>
-                        <h1 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4" data-i18n="dash_title">Platform İstatistikleri</h1>
-                        <p class="text-slate-500 dark:text-gray-400 font-medium text-lg" data-i18n="dash_subtitle">Gerçek verileri çekmek için veritabanı bağlantısı bekleniyor.</p>
-                    </div>
-                </div>
+    <!-- الهيرو -->
+    <section class="relative py-28 sm:py-44 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-110" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2500&q=100');"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-brand-dark"></div>
+        
+        <div class="max-w-4xl mx-auto relative z-10 text-white">
+            <h1 class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 title-glow tracking-wide" data-i18n="hero_title">
+                Seçkin Rotaları Lüksle Keşfedin
+            </h1>
+            <p class="text-white/80 text-sm sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-8" data-i18n="hero_subtitle">
+                Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.
+            </p>
+        </div>
+    </section>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
-                    <div class="admin-panel p-10">
-                        <h3 class="font-bold text-2xl mb-8 text-slate-900 dark:text-white flex items-center gap-3">
-                            <i class="fas fa-chart-line text-brand-gold"></i> <span data-i18n="traffic_title">Ziyaretçi Akışı</span>
-                        </h3>
-                        <div class="h-72 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 dark:border-brand-gold/30 rounded-3xl text-slate-500 bg-slate-50 dark:bg-black/10">
-                            <i class="fas fa-database text-5xl mb-4 text-slate-300 dark:text-brand-gold/40"></i>
-                            <p class="font-bold text-lg text-slate-800 dark:text-slate-300 mb-1" data-i18n="empty_chart">Grafik Verisi Bekleniyor</p>
-                            <p class="text-xs text-slate-500" data-i18n="empty_chart_sub">Ziyaretçi akışı başladığında veriler burada şekillenecektir.</p>
-                        </div>
-                    </div>
-                    <div class="admin-panel p-10">
-                        <h3 class="font-bold text-2xl mb-8 text-slate-900 dark:text-white flex items-center gap-3">
-                            <i class="fas fa-globe text-brand-gold"></i> <span data-i18n="sources_title">Trafik Kaynakları</span>
-                        </h3>
-                        <div class="h-72 flex flex-col items-center justify-center border-2 border-dashed border-slate-200 dark:border-brand-gold/30 rounded-3xl text-slate-500 bg-slate-50 dark:bg-black/10">
-                            <div class="flex gap-4 mb-4 text-3xl text-slate-300 dark:text-brand-gold/40">
-                                <i class="fab fa-google"></i>
-                                <i class="fab fa-facebook"></i>
-                                <i class="fab fa-pinterest"></i>
-                                <i class="fab fa-instagram"></i>
-                            </div>
-                            <p class="font-bold text-lg text-slate-800 dark:text-slate-300 mb-1" data-i18n="empty_sources">Henüz Kaynak Kaydedilmedi</p>
-                            <p class="text-xs text-slate-500" data-i18n="empty_sources_sub">Arama motorları ve sosyal medyadan gelen trafik bekleniyor.</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- عروض الفنادق والشقق (Firestore Dynamic Grid) -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="hotels_sub">ÖZEL SEÇKİ</span>
+            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="hotels_heading">Özel Seçki Koleksiyonu</h2>
+            <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
+        </div>
+
+        <div id="hotels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="col-span-full py-16 text-center text-slate-400">
+                <i class="fas fa-spinner fa-spin text-3xl text-brand-gold mb-3"></i>
+                <p class="text-sm font-bold tracking-wider uppercase">Konaklama Fırsatları Yükleniyor...</p>
             </div>
-
-            <!-- 2. الفنادق والشقق -->
-            <div id="view-hotels" class="view-section hidden animate-[fadeIn_0.5s_ease]">
-                <div class="flex justify-between items-end mb-12">
-                    <div>
-                        <h1 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4" data-i18n="hotels_title">Otel ve Rezidans Yönetimi</h1>
-                        <p class="text-slate-500 dark:text-gray-400 font-medium text-lg" data-i18n="hotels_subtitle">Konaklama destinasyonlarını yönetin ve Firestore'a kaydedin.</p>
-                    </div>
-                    <button onclick="openHotelModal()" class="bg-brand-gold text-white dark:text-black px-7 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-600 transition flex items-center gap-3">
-                        <i class="fas fa-plus"></i> <span data-i18n="add_hotel_btn">Yeni Konaklama Ekle</span>
-                    </button>
-                </div>
-
-                <div class="admin-panel overflow-hidden p-8">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-bold text-xl text-slate-900 dark:text-white flex items-center gap-3">
-                            <i class="fas fa-bed text-brand-gold"></i> <span data-i18n="hotels_list">Kayıtlı Konaklamalar (Firestore)</span>
-                        </h3>
-                        <button onclick="loadFirestoreHotels()" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-1">
-                            <i class="fas fa-sync-alt"></i> <span data-i18n="refresh">Yenile</span>
-                        </button>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left rtl:text-right text-sm">
-                            <thead class="text-xs text-slate-600 dark:text-gray-300 bg-slate-100 dark:bg-black/60 uppercase border-b border-slate-200 dark:border-brand-gold/20">
-                                <tr>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_name">Tesis Adı</th>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_location">Şehir</th>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_price">Fiyat</th>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_affiliate">Link</th>
-                                    <th class="px-6 py-4 font-bold text-center" data-i18n="th_action">İşlemler</th>
-                                </tr>
-                            </thead>
-                            <tbody id="hotels-table-body">
-                                <tr>
-                                    <td colspan="5" class="py-12 text-center text-slate-400">
-                                        <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
-                                        <p data-i18n="loading_hotels">Tesisler yükleniyor...</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. الطيران -->
-            <div id="view-flights" class="view-section hidden animate-[fadeIn_0.5s_ease]">
-                <div class="flex justify-between items-end mb-12">
-                    <div>
-                        <h1 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4" data-i18n="flights_title">Uçuş Yönetimi</h1>
-                        <p class="text-slate-500 dark:text-gray-400 font-medium text-lg" data-i18n="flights_subtitle">Uçuş rotalarını güncelleyin ve Firestore'a kaydedin.</p>
-                    </div>
-                    <button onclick="openFlightModal()" class="bg-brand-gold text-white dark:text-black px-7 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-600 transition flex items-center gap-3">
-                        <i class="fas fa-plus"></i> <span data-i18n="add_flight_btn">Yeni Uçuş Rotası Ekle</span>
-                    </button>
-                </div>
-
-                <div class="admin-panel overflow-hidden p-8">
-                    <div class="flex justify-between items-center mb-6">
-                        <h3 class="font-bold text-xl text-slate-900 dark:text-white flex items-center gap-3">
-                            <i class="fas fa-plane text-brand-gold"></i> <span data-i18n="flights_list">Kayıtlı Uçuşlar (Firestore)</span>
-                        </h3>
-                        <button onclick="loadFirestoreFlights()" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-1">
-                            <i class="fas fa-sync-alt"></i> <span data-i18n="refresh">Yenile</span>
-                        </button>
-                    </div>
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left rtl:text-right text-sm">
-                            <thead class="text-xs text-slate-600 dark:text-gray-300 bg-slate-100 dark:bg-black/60 uppercase border-b border-slate-200 dark:border-brand-gold/20">
-                                <tr>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_airline">Hava Yolu</th>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_route">Rota</th>
-                                    <th class="px-6 py-4 font-bold" data-i18n="flight_category">Bölge</th>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_price">Fiyat</th>
-                                    <th class="px-6 py-4 font-bold text-center" data-i18n="th_action">İşlemler</th>
-                                </tr>
-                            </thead>
-                            <tbody id="flights-table-body">
-                                <tr>
-                                    <td colspan="5" class="py-12 text-center text-slate-400">
-                                        <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
-                                        <p data-i18n="loading_flights">Uçuşlar yükleniyor...</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. محرر المقالات (SEO) -->
-            <div id="view-blog" class="view-section hidden animate-[fadeIn_0.5s_ease]">
-                <div class="max-w-6xl mx-auto space-y-12">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <h1 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-3" data-i18n="blog_title">İçerik Yönetimi (SEO)</h1>
-                            <p class="text-slate-500 dark:text-gray-400 font-medium text-base" data-i18n="blog_subtitle">Türkiye destinasyonları hakkında makaleler oluşturun ve Cloud Firestore'a yayınlayın.</p>
-                        </div>
-                        <div class="flex gap-4">
-                            <button onclick="saveArticleDraft()" class="bg-transparent border-2 border-brand-gold text-brand-gold px-6 py-3 rounded-xl text-sm font-bold transition hover:bg-brand-gold hover:text-white dark:hover:text-black" data-i18n="save_draft">
-                                Taslak Olarak Kaydet
-                            </button>
-                            <button id="btn-publish" onclick="publishArticleToFirestore()" class="bg-brand-gold text-white dark:text-black px-7 py-3 rounded-xl text-sm font-bold shadow-lg hover:bg-yellow-600 transition flex items-center gap-3">
-                                <i class="fas fa-paper-plane"></i> <span data-i18n="publish_btn">Makaleyi Yayınla</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="admin-panel p-10 space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label class="block text-xs uppercase tracking-wider font-bold mb-2 text-slate-500 dark:text-gray-400" data-i18n="label_category">Destinasyon / Kategori</label>
-                                <select id="article-category" class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm font-bold focus:outline-none focus:border-brand-gold">
-                                    <option value="ANTALYA">ANTALYA</option>
-                                    <option value="İSTANBUL">İSTANBUL</option>
-                                    <option value="TRABZON">TRABZON</option>
-                                    <option value="BURSA">BURSA</option>
-                                    <option value="ANKARA">ANKARA</option>
-                                    <option value="İZMİR">İZMİR</option>
-                                </select>
-                            </div>
-                            <div>
-                                <label class="block text-xs uppercase tracking-wider font-bold mb-2 text-slate-500 dark:text-gray-400" data-i18n="label_img_url">Kapak Görseli URL</label>
-                                <input type="url" id="article-img" placeholder="https://images.unsplash.com/..." class="w-full bg-slate-50 dark:bg-black/30 border border-slate-200 dark:border-brand-gold/30 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-brand-gold">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs uppercase tracking-wider font-bold mb-2 text-slate-500 dark:text-gray-400" data-i18n="label_title">Makale Başlığı</label>
-                            <input type="text" id="article-title" placeholder="Makale Başlığı Giriniz..." class="w-full bg-transparent border-b-2 border-slate-200 dark:border-brand-gold/30 pb-3 text-2xl font-bold text-slate-900 dark:text-white outline-none focus:border-brand-gold">
-                        </div>
-
-                        <div class="flex gap-2 border-y border-slate-100 dark:border-brand-gold/20 py-3">
-                            <button onclick="formatDoc('bold')" class="w-10 h-10 rounded-lg hover:bg-slate-100 dark:hover:bg-brand-gold/10 text-slate-600 dark:text-gray-300 hover:text-brand-gold font-bold"><i class="fas fa-bold"></i></button>
-                            <button onclick="formatDoc('italic')" class="w-10 h-10 rounded-lg hover:bg-slate-100 dark:hover:bg-brand-gold/10 text-slate-600 dark:text-gray-300 hover:text-brand-gold"><i class="fas fa-italic"></i></button>
-                            <button onclick="formatDoc('insertUnorderedList')" class="w-10 h-10 rounded-lg hover:bg-slate-100 dark:hover:bg-brand-gold/10 text-slate-600 dark:text-gray-300 hover:text-brand-gold"><i class="fas fa-list-ul"></i></button>
-                        </div>
-
-                        <div>
-                            <label class="block text-xs uppercase tracking-wider font-bold mb-2 text-slate-500 dark:text-gray-400" data-i18n="label_content">Makale İçeriği</label>
-                            <div id="article-body" contenteditable="true" class="min-h-[200px] p-5 bg-slate-50 dark:bg-black/20 rounded-2xl border border-slate-200 dark:border-brand-gold/20 outline-none text-base leading-relaxed text-slate-800 dark:text-gray-200"></div>
-                        </div>
-                    </div>
-
-                    <div class="admin-panel overflow-hidden p-8">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 class="font-bold text-xl text-slate-900 dark:text-white flex items-center gap-3">
-                                <i class="fas fa-newspaper text-brand-gold"></i> <span data-i18n="published_articles">Yayınlanan Makaleler (Firestore)</span>
-                            </h3>
-                            <button onclick="loadPublishedArticles()" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-1">
-                                <i class="fas fa-sync-alt"></i> <span data-i18n="refresh">Yenile</span>
-                            </button>
-                        </div>
-                        <div class="overflow-x-auto">
-                            <table class="w-full text-left rtl:text-right text-sm">
-                                <thead class="text-xs text-slate-600 dark:text-gray-300 bg-slate-100 dark:bg-black/60 uppercase border-b border-slate-200 dark:border-brand-gold/20">
-                                    <tr>
-                                        <th class="px-6 py-4 font-bold" data-i18n="th_dest">Kategori</th>
-                                        <th class="px-6 py-4 font-bold" data-i18n="th_title">Başlık</th>
-                                        <th class="px-6 py-4 font-bold" data-i18n="th_date">Tarih</th>
-                                        <th class="px-6 py-4 font-bold text-center" data-i18n="th_action">İşlemler</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="articles-table-body">
-                                    <tr>
-                                        <td colspan="4" class="py-12 text-center text-slate-400">
-                                            <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
-                                            <p data-i18n="loading_articles">Makaleler yükleniyor...</p>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5. التقييمات ومصادر الزيارات (Firestore Live) -->
-            <div id="view-reviews" class="view-section hidden animate-[fadeIn_0.5s_ease]">
-                <div class="flex justify-between items-center mb-12">
-                    <div>
-                        <h1 class="font-luxury text-4xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4" data-i18n="reviews_title">Değerlendirmeler ve Trafik</h1>
-                        <p class="text-slate-500 dark:text-gray-400 font-medium text-lg" data-i18n="reviews_subtitle">Gerçek kullanıcı değerlendirmelerini ve geldikleri trafik platformlarını takip edin.</p>
-                    </div>
-                    <button onclick="loadFirestoreReviews()" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-1 border border-brand-gold/40 px-4 py-2 rounded-xl">
-                        <i class="fas fa-sync-alt"></i> <span data-i18n="refresh">Yenile</span>
-                    </button>
-                </div>
-                
-                <div class="admin-panel overflow-hidden p-8">
-                    <div class="overflow-x-auto">
-                        <table class="w-full text-left rtl:text-right text-sm">
-                            <thead class="text-xs text-slate-600 dark:text-gray-300 bg-slate-100 dark:bg-black/60 uppercase border-b border-slate-200 dark:border-brand-gold/20">
-                                <tr>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_user">Ziyaretçi</th>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_source">Trafik Kaynağı</th>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_rating">Puan</th>
-                                    <th class="px-6 py-4 font-bold" data-i18n="th_review">Yorum</th>
-                                    <th class="px-6 py-4 font-bold text-center" data-i18n="th_action">İşlemler</th>
-                                </tr>
-                            </thead>
-                            <tbody id="reviews-table-body">
-                                <tr>
-                                    <td colspan="5" class="py-12 text-center text-slate-400">
-                                        <i class="fas fa-spinner fa-spin text-2xl mb-2"></i>
-                                        <p>Değerlendirmeler yükleniyor...</p>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </main>
 
-    <script>
-        const ADMIN_CREDENTIALS = {
-            allowedUsers: ['admin', 'ucuzakal'],
-            pass: 'M.N@9876543210'
-        };
+    <!-- عروض الطيران (Firestore Dynamic Grid) -->
+    <section class="border-y border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#020306]/50 py-16 sm:py-24 backdrop-blur-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="flights_sub">GÖKLERDEKİ ZARAFET</span>
+                <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="flights_heading">Ayrıcalıklı Uçuşlar</h2>
+                <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
+            </div>
 
-        function checkAuthStatus() {
-            const isAuth = sessionStorage.getItem('ucuzakal_admin_auth');
-            const lockModal = document.getElementById('admin-auth-lock');
-            if (isAuth === 'true') {
-                if (lockModal) lockModal.classList.add('hidden');
-            } else {
-                if (lockModal) lockModal.classList.remove('hidden');
-            }
-        }
+            <div id="flights-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="col-span-full py-16 text-center text-slate-400">
+                    <i class="fas fa-spinner fa-spin text-3xl text-brand-gold mb-3"></i>
+                    <p class="text-sm font-bold tracking-wider uppercase">Uçuş Seferleri Yükleniyor...</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function handleAdminLogin(e) {
-            e.preventDefault();
-            const u = document.getElementById('auth-username').value.trim();
-            const p = document.getElementById('auth-password').value.trim();
-            const errorElem = document.getElementById('auth-error-msg');
+    <!-- قسم المدونة السياحية (SEO Blog) -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="blog_sub">SEYAHAT REHBERİ</span>
+            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="blog_heading">UcuzaKal Seyahat Günlüğü</h2>
+            <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
+        </div>
 
-            if (ADMIN_CREDENTIALS.allowedUsers.includes(u.toLowerCase()) && p === ADMIN_CREDENTIALS.pass) {
-                sessionStorage.setItem('ucuzakal_admin_auth', 'true');
-                document.getElementById('admin-auth-lock').classList.add('hidden');
-                errorElem.classList.add('hidden');
-                showToast('auth_success');
-                if (window.loadFirestoreHotels) window.loadFirestoreHotels();
-                if (window.loadFirestoreFlights) window.loadFirestoreFlights();
-                if (window.loadPublishedArticles) window.loadPublishedArticles();
-                if (window.loadFirestoreReviews) window.loadFirestoreReviews();
-            } else {
-                errorElem.textContent = "Hatalı kullanıcı adı veya parola! / اسم المستخدم أو كلمة السر غير صحيحة!";
-                errorElem.classList.remove('hidden');
-            }
-        }
+        <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="col-span-full py-16 text-center text-slate-400">
+                <i class="fas fa-spinner fa-spin text-3xl text-brand-gold mb-3"></i>
+                <p class="text-sm font-bold tracking-wider uppercase">Makaleler Hazırlanıyor...</p>
+            </div>
+        </div>
+    </section>
 
-        function logoutAdmin() {
-            sessionStorage.removeItem('ucuzakal_admin_auth');
-            location.reload();
-        }
+    <!-- قسم من نحن -->
+    <section class="py-20 sm:py-28 px-4 border-t border-slate-200 dark:border-white/10">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-8" data-i18n="about_heading">Biz Kimiz?</h2>
+            <div class="w-12 h-[1px] bg-brand-gold mx-auto mb-8"></div>
+            <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-lg leading-relaxed font-light mb-6" data-i18n="about_text_1">
+                UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.
+            </p>
+            <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-lg leading-relaxed font-light" data-i18n="about_text_2">
+                Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.
+            </p>
+        </div>
+    </section>
 
-        const ADMIN_TRANSLATIONS = {
-            tr: {
-                dir: "ltr",
-                admin_subtitle: "Yönetim Paneli",
-                nav_dashboard: "Platform İstatistikleri",
-                nav_hotels: "Otel ve Rezidanslar",
-                nav_flights: "Uçuş Yönetimi",
-                nav_blog: "İçerik Yönetimi (SEO)",
-                nav_reviews: "Değerlendirmeler & Trafik",
-                view_site: "Siteyi Görüntüle",
-                admin_title: "Genel Yönetici",
-                dash_title: "Platform İstatistikleri",
-                dash_subtitle: "Gerçek verileri çekmek için veritabanı bağlantısı bekleniyor.",
-                traffic_title: "Ziyaretçi Akışı",
-                empty_chart: "Grafik Verisi Bekleniyor",
-                empty_chart_sub: "Ziyaretçi akışı başladığında veriler burada şekillenecektir.",
-                sources_title: "Trafik Kaynakları",
-                empty_sources: "Henüz Kaynak Kaydedilmedi",
-                empty_sources_sub: "Arama motorları ve sosyal medyadan gelen trafik bekleniyor.",
-                hotels_title: "Otel ve Rezidans Yönetimi",
-                hotels_subtitle: "Konaklama destinasyonlarını yönetin ve Firestore'a kaydedin.",
-                add_hotel_btn: "Yeni Konaklama Ekle",
-                hotels_list: "Kayıtlı Konaklamalar (Firestore)",
-                flights_title: "Uçuş Yönetimi",
-                flights_subtitle: "Uçuş rotalarını güncelleyin ve Firestore'a kaydedin.",
-                add_flight_btn: "Yeni Uçuş Rotası Ekle",
-                flights_list: "Kayıtlı Uçuşlar (Firestore)",
-                flight_category: "Bölge / Kategori",
-                blog_title: "İçerik Yönetimi (SEO)",
-                blog_subtitle: "Türkiye destinasyonları hakkında makaleler oluşturun ve Cloud Firestore'a yayınlayın.",
-                save_draft: "Taslak Olarak Kaydet",
-                publish_btn: "Makaleyi Yayınla",
-                label_category: "Destinasyon / Kategori",
-                label_img_url: "Kapak Görseli URL",
-                label_title: "Makale Başlığı",
-                label_content: "Makale İçeriği",
-                published_articles: "Yayınlanan Makaleler (Firestore)",
-                refresh: "Yenile",
-                th_name: "Tesis Adı",
-                th_location: "Destinasyon / Şehir",
-                th_price: "Fiyat (€)",
-                th_image: "Görsel URL",
-                th_affiliate: "Affiliate Linki",
-                th_airline: "Hava Yolu",
-                th_route: "Rota",
-                th_dest: "Kategori",
-                th_title: "Başlık",
-                th_date: "Tarih",
-                th_user: "Ziyaretçi",
-                th_source: "Trafik Kaynağı",
-                th_rating: "Puan",
-                th_review: "Yorum",
-                th_action: "İşlemler",
-                btn_cancel: "İptal",
-                btn_save: "Kaydet",
-                btn_logout: "Güvenli Çıkış",
-                loading_hotels: "Tesisler yükleniyor...",
-                loading_flights: "Uçuşlar yükleniyor...",
-                loading_articles: "Makaleler yükleniyor...",
-                reviews_title: "Değerlendirmeler ve Trafik",
-                reviews_subtitle: "Gerçek kullanıcı değerlendirmelerini ve geldikleri trafik platformlarını takip edin.",
-                toast_saved_hotel: "Konaklama başarıyla kaydedildi!",
-                toast_saved_flight: "Uçuş rotası başarıyla kaydedildi!",
-                toast_deleted: "Kayıt başarıyla silindi.",
-                toast_fill_fields: "Lütfen gerekli alanları doldurunuz!",
-                toast_auth_success: "Güvenli giriş onaylandı, hoş geldiniz!"
-            },
-            ar: {
-                dir: "rtl",
-                admin_subtitle: "لوحة القيادة",
-                nav_dashboard: "إحصائيات المنصة",
-                nav_hotels: "الفنادق والشقق الفندقية",
-                nav_flights: "عروض تذاكر الطيران",
-                nav_blog: "محرر المقالات (SEO)",
-                nav_reviews: "التقييمات ومصادر الزيارات",
-                view_site: "عرض الموقع المباشر",
-                admin_title: "المدير العام",
-                dash_title: "إحصائيات المنصة",
-                dash_subtitle: "بانتظار ربط قواعد البيانات لجلب الأرقام الحقيقية.",
-                traffic_title: "حركة الزوار",
-                empty_chart: "المخطط البياني فارغ",
-                empty_chart_sub: "سيتم رسم البيانات فور توافد الزوار الفعليين.",
-                sources_title: "مصادر الترافيك",
-                empty_sources: "لا توجد مصادر مسجلة بعد",
-                empty_sources_sub: "بانتظار حركة المرور من محركات البحث والسوشيال ميديا.",
-                hotels_title: "إدارة الفنادق والشقق",
-                hotels_subtitle: "إضافة وتعديل عروض الإقامة وحفظها في قاعدة بيانات Firestore.",
-                add_hotel_btn: "إضافة عرض إقامة",
-                hotels_list: "عروض الإقامة المسجلة (Firestore)",
-                flights_title: "إدارة عروض الطيران",
-                flights_subtitle: "إضافة مسارات الطيران وحفظها في قاعدة بيانات Firestore.",
-                add_flight_btn: "إضافة مسار طيران",
-                flights_list: "مسارات الطيران المسجلة (Firestore)",
-                flight_category: "المنطقة / التصنيف",
-                blog_title: "نشر المقالات (SEO)",
-                blog_subtitle: "اكتب مقالات حصرية وانشرها فوراً على قاعدة بيانات Cloud Firestore.",
-                save_draft: "حفظ كمسودة",
-                publish_btn: "نشر المقال",
-                label_category: "الوجهة / التصنيف",
-                label_img_url: "رابط صورة الغلاف (URL)",
-                label_title: "عنوان المقال",
-                label_content: "محتوى المقال",
-                published_articles: "المقالات المنشورة (Firestore)",
-                refresh: "تحديث",
-                th_name: "اسم الوجهة / التيسير",
-                th_location: "المدينة",
-                th_price: "السعر (€)",
-                th_image: "رابط الصورة",
-                th_affiliate: "رابط الإحالة",
-                th_airline: "شركة الطيران",
-                th_route: "مسار الرحلة",
-                th_dest: "التصنيف",
-                th_title: "العنوان",
-                th_date: "التاريخ",
-                th_user: "الزائر",
-                th_source: "مصدر الترافيك",
-                th_rating: "التقييم",
-                th_review: "التعليق",
-                th_action: "الإجراء",
-                btn_cancel: "إلغاء",
-                btn_save: "حفظ",
-                btn_logout: "تسجيل الخروج الآمن",
-                loading_hotels: "جاري تحميل عروض الفنادق...",
-                loading_flights: "جاري تحميل عروض الطيران...",
-                loading_articles: "جاري تحميل المقالات...",
-                reviews_title: "تقييمات ومصادر الزوار",
-                reviews_subtitle: "متابعة التقييمات ومصادر الزيارات القادمة.",
-                toast_saved_hotel: "تم حفظ عرض الإقامة بنجاح في Firestore!",
-                toast_saved_flight: "تم حفظ مسار الطيران بنجاح في Firestore!",
-                toast_deleted: "تم حذف السجل بنجاح.",
-                toast_fill_fields: "يرجى ملء جميع الحقول المطلوبة!",
-                toast_auth_success: "تم تأكيد الدخول الآمن بنجاح!"
-            }
-        };
-
-        let currentAdminLang = 'tr';
-
-        function changeAdminLanguage(lang) {
-            currentAdminLang = lang;
-            const dict = ADMIN_TRANSLATIONS[lang];
-            document.documentElement.lang = lang;
-            document.documentElement.dir = dict.dir;
+    <!-- قسم التقييمات التفاعلي المربوط بـ Firestore -->
+    <section class="max-w-3xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-white/10">
+        <div class="text-center mb-10">
+            <h2 class="font-luxury text-3xl sm:text-4xl text-slate-900 dark:text-white font-bold mb-3" data-i18n="ratings_heading">İzlenimlerinizi Paylaşın</h2>
+        </div>
+        
+        <div class="bg-white dark:bg-[#04070C] p-6 sm:p-12 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl text-center">
+            <div id="star-container" class="flex justify-center gap-3 sm:gap-4 text-2xl text-slate-300 dark:text-slate-700 mb-8 cursor-pointer">
+                <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(1)"></i>
+                <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(2)"></i>
+                <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(3)"></i>
+                <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(4)"></i>
+                <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(5)"></i>
+            </div>
             
-            if(lang === 'ar') {
-                document.getElementById('user-profile-divider').classList.remove('border-l', 'pl-8');
-                document.getElementById('user-profile-divider').classList.add('border-r', 'pr-8');
-                document.getElementById('sidebar').classList.remove('border-r');
-                document.getElementById('sidebar').classList.add('border-l');
+            <div class="flex flex-col gap-6 max-w-md mx-auto">
+                <input type="text" id="user-review-name" data-i18n-placeholder="review_name_placeholder" placeholder="Adınız Soyadınız" class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition">
+                <textarea id="user-review-text" rows="2" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..." class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition resize-none"></textarea>
+                <button id="btn-submit-review" onclick="window.submitReview()" class="mt-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3.5 rounded-full text-xs tracking-widest uppercase hover:opacity-80 transition flex items-center justify-center gap-2">
+                    <span data-i18n="submit_review_btn">Gönder</span>
+                </button>
+            </div>
+            <p id="review-success-msg" class="text-brand-gold text-xs sm:text-sm text-center font-bold mt-6 hidden" data-i18n="review_success">
+                Zarif geri bildiriminiz için teşekkür ederiz.
+            </p>
+        </div>
+    </section>
+
+    <!-- الفوتر مع تقسيم شبكات التواصل الاجتماعي (TR, RU, AR) مع تأثيرات متحركة فاخرة -->
+    <footer class="bg-white dark:bg-[#020306] border-t border-slate-200 dark:border-white/5 pt-16 pb-12 transition-colors duration-500">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <span class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white block title-glow">UcuzaKal Türkiye</span>
+                <span class="text-brand-gold text-xs tracking-[0.3em] uppercase font-bold mt-2 inline-block">Global Resmi Kanallarımız</span>
+            </div>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-16">
+                <!-- 1. فيسبوك -->
+                <div class="flex flex-col items-center text-center space-y-3">
+                    <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-xl shadow-md mb-1">
+                        <i class="fab fa-facebook-f"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Facebook</span>
+                    <div class="flex flex-col gap-2 w-full max-w-[130px]">
+                        <a href="https://www.facebook.com/profile.php?id=61596063752611" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Facebook Türkiye">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
+                            <span class="lang-pill">TR</span>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61596363298777" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Facebook Россия">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
+                            <span class="lang-pill">RU</span>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61596182676675" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="فيسبوك عربي">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
+                            <span class="lang-pill">AR</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. إنستغرام -->
+                <div class="flex flex-col items-center text-center space-y-3">
+                    <div class="w-11 h-11 rounded-full flex items-center justify-center text-white text-xl shadow-md mb-1" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Instagram</span>
+                    <div class="flex flex-col gap-2 w-full max-w-[130px]">
+                        <a href="https://www.instagram.com/ucuzakalturkiye/" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Instagram Türkiye">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
+                            <span class="lang-pill">TR</span>
+                        </a>
+                        <a href="https://www.instagram.com/ucuzakal.r/" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Instagram Россия">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
+                            <span class="lang-pill">RU</span>
+                        </a>
+                        <a href="https://www.instagram.com/ucuzakal.a/" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="إنستغرام عربي">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
+                            <span class="lang-pill">AR</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. بنترست -->
+                <div class="flex flex-col items-center text-center space-y-3">
+                    <div class="w-11 h-11 rounded-full bg-[#E60023] flex items-center justify-center text-white text-xl shadow-md mb-1">
+                        <i class="fab fa-pinterest-p"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Pinterest</span>
+                    <div class="flex flex-col gap-2 w-full max-w-[130px]">
+                        <a href="https://tr.pinterest.com/ucuzakal/" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Pinterest Türkiye">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
+                            <span class="lang-pill">TR</span>
+                        </a>
+                        <a href="https://www.pinterest.com/UcuzaKal00RU/?actingBusinessId=1067775530310396233" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Pinterest Россия">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
+                            <span class="lang-pill">RU</span>
+                        </a>
+                        <a href="https://www.pinterest.com/ARucuzakal/" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="بنترست عربي">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
+                            <span class="lang-pill">AR</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. إكس (تويتر) -->
+                <div class="flex flex-col items-center text-center space-y-3">
+                    <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white text-xl shadow-md border border-slate-700 mb-1">
+                        <i class="fab fa-x-twitter"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">X (Twitter)</span>
+                    <div class="flex flex-col gap-2 w-full max-w-[130px]">
+                        <a href="https://x.com/UcuzaKalTr" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="X Türkiye">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
+                            <span class="lang-pill">TR</span>
+                        </a>
+                        <a href="https://x.com/UcuzaKal" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="X Россия">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
+                            <span class="lang-pill">RU</span>
+                        </a>
+                        <a href="https://x.com/ucuzaKalAR" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="إكس عربي">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
+                            <span class="lang-pill">AR</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. تيك توك -->
+                <div class="flex flex-col items-center text-center space-y-3">
+                    <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white text-xl shadow-md border border-slate-700 mb-1">
+                        <i class="fab fa-tiktok"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">TikTok</span>
+                    <div class="flex flex-col gap-2 w-full max-w-[130px]">
+                        <a href="https://www.tiktok.com/@ucuzakal.tr" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="TikTok Türkiye">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
+                            <span class="lang-pill">TR</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@ucuzakal.ru?lang=ru-RU" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="TikTok Россия">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
+                            <span class="lang-pill">RU</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@ucuzakal.ar?lang=ar" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="تيك توك عربي">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
+                            <span class="lang-pill">AR</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 6. يوتيوب -->
+                <div class="flex flex-col items-center text-center space-y-3">
+                    <div class="w-11 h-11 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-xl shadow-md mb-1">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">YouTube</span>
+                    <div class="flex flex-col gap-2 w-full max-w-[130px]">
+                        <a href="https://www.youtube.com/@UcuzaKalT%C3%Bcrkiye" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="YouTube Türkiye">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
+                            <span class="lang-pill">TR</span>
+                        </a>
+                        <a href="https://www.youtube.com/@UcuzaKal.R" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="YouTube Россия">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
+                            <span class="lang-pill">RU</span>
+                        </a>
+                        <a href="https://www.youtube.com/@UcuzaKal0AR" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="يوتيوب عربي">
+                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
+                            <span class="lang-pill">AR</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold border-t border-slate-200 dark:border-white/5 pt-8" data-i18n="rights">
+                Tüm hakları saklıdır UcuzaKal Türkiye
+            </div>
+        </div>
+    </footer>
+
+    <!-- سكربتات التحكم واللغات والبيانات الافتراضية -->
+    <script>
+        window.ARTICLES_MAP = {};
+        window.HOTELS_DATA = [];
+        window.FLIGHTS_DATA = [];
+
+        const DEFAULT_HOTELS = [
+            { name: "Maxx Royal Belek", city: "ANTALYA", price: 319, image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h1_desc" },
+            { name: "Rixos Premium", city: "ANTALYA", price: 285, image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h2_desc" },
+            { name: "Akra Hotel", city: "ANTALYA", price: 195, image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h3_desc" },
+            { name: "Çırağan Palace", city: "İSTANBUL", price: 269, image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h4_desc" },
+            { name: "Royal Uzungöl", city: "TRABZON", price: 72, image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h5_desc" },
+            { name: "Almira Termal", city: "BURSA", price: 95, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h6_desc" }
+        ];
+
+        const DEFAULT_FLIGHTS = [
+            { airline: "Türk Hava Yolları", route: "İstanbul ⇄ Antalya", region: "Yerel", price: 45, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f1_desc" },
+            { airline: "Pegasus Airlines", route: "Ankara ⇄ Trabzon", region: "Yerel", price: 38, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f2_desc" },
+            { airline: "Aeroflot", route: "Moskova ⇄ İstanbul", region: "Rusya", price: 155, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f3_desc" },
+            { airline: "Turkish Airlines", route: "St. Petersburg ⇄ Antalya", region: "Rusya", price: 180, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f4_desc" },
+            { airline: "Emirates & THY", route: "Dubai ⇄ İstanbul", region: "Arap Körfezi", price: 210, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f5_desc" },
+            { airline: "Flynas", route: "Riyad ⇄ İzmir", region: "Arap Körfezi", price: 165, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f6_desc" }
+        ];
+
+        const DEFAULT_ARTICLES = [
+            {
+                id: 'def-1',
+                category: "ANTALYA",
+                image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=90",
+                titles: {
+                    tr: "Antalya'nın Gizli Cennetleri ve Lüks Koyları",
+                    ar: "جنات أنطاليا المخفية وخلجانها الفاخرة",
+                    en: "Antalya's Hidden Havens & Exclusive Bays",
+                    ru: "Тайные бухты и эксклюзивный отдых в Анталье"
+                },
+                bodies: {
+                    tr: "<p>Antalya, yalnızca kitle turizmi ile değil; sakin koyları, turkuaz suları ve dünya standartlarındaki seçkin tatil köyleriyle Akdeniz'in en değerli rotalarından biridir.</p><p>Kaş ve Kalkan civarındaki butik koylar, teknelerle ulaşılabilen bakir plajlar ve Belek kıyılarındaki özel golf rezidansları, konfor ve mahremiyeti bir arada arayan gezginler için eşsiz olanaklar sunmaktadır.</p>",
+                    ar: "<p>لا تقتصر أنطاليا على المنتجعات الشهيرة فحسب؛ بل تحتضن خلجاناً فيروزية معزولة ومحميات طبيعية تجعلها من أكثر وجهات البحر الأبيض المتوسط تميزاً وفخامة.</p><p>توفر مناطق مثل كاش وكالكان وشواطئ بيليك الخاصة ملاذات تجمع بين الراحة والخصوصية والخدمات الملكية الشاملة.</p>",
+                    en: "<p>Antalya is not just a destination for mass tourism; it is home to secluded turquoise coves and world-class luxury resorts along the Turkish Riviera.</p>",
+                    ru: "<p>Анталья — это не только знаменитые курорты, но и уединенные бирюзовые бухты Средиземного моря высочайшего класса.</p>"
+                }
+            },
+            {
+                id: 'def-2',
+                category: "İSTANBUL",
+                image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1200&q=90",
+                titles: {
+                    tr: "Boğaziçi'nde Tarihi Saraylar ve Gurme Deneyimler",
+                    ar: "قصور البوسفور التاريخية وتجارب التذوق الراقية",
+                    en: "Bosphorus Palaces & Fine Dining Experiences",
+                    ru: "Дворцы Босфора и гастрономические открытия"
+                },
+                bodies: {
+                    tr: "<p>Doğu ile Batı'nın kesiştiği İstanbul, Boğaz kıyısındaki saray otelleriyle konuklarına asırlık bir zarafet yaşatır.</p><p>Çırağan ve çevresinde konaklarken sabah Boğaz vapurlarının sesleriyle uyanmak, akşam ise uluslararası gastronomi ödüllü şeflerin hazırladığı menüleri tatmak eşsizdir.</p>",
+                    ar: "<p>في المدينة التي تلتقي فيها قارتان، تمنحك فنادق القصور العثمانية الواقعة على ضفاف البوسفور تجربة أصيلة تحاكي عبق التاريخ وأناقة الحاضر.</p>",
+                    en: "<p>Where two continents meet, Istanbul offers centuries of heritage reflected through majestic palace hotels situated on the Bosphorus.</p>",
+                    ru: "<p>Стамбул — город, где встречаются две цивилизации. Дворцовые отели на берегах Босфора дарят гостям непревзойденную атмосферу османского великолепия.</p>"
+                }
+            },
+            {
+                id: 'def-3',
+                category: "TRABZON",
+                image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=90",
+                titles: {
+                    tr: "Karadeniz Yaylalarında Sislerin Arasında Huzur",
+                    ar: "السكينة بين غيوم مرتفعات البحر الأسود",
+                    en: "Tranquility Amidst Black Sea Plateaus",
+                    ru: "Умиротворение среди туманных плато Черного моря"
+                },
+                bodies: {
+                    tr: "<p>Karadeniz'in serin yaylaları, yeşilin binbir tonu ve dağların arasına gizlenmiş berrak gölleriyle doğa aşıklarına huzurlu bir sığınak sunar.</p><p>Uzungöl ve Ayder yaylalarındaki özel ahşap rezidanslar, doğallığı modern konforla buluşturur.</p>",
+                    ar: "<p>تتميز مرتفعات البحر الأسود بطبيعتها الخضراء البكر، وهوائها العليل، وغيومها التي تعانق قمم الجبال في مشهد ساحر يبعث على الراحة والهدوء.</p>",
+                    en: "<p>The mist-covered highlands of the Black Sea provide an idyllic mountain retreat characterized by emerald pine forests.</p>",
+                    ru: "<p>Прохладные плато Черноморского региона Турции — это царство нетронутой изумрудной природы и горных озер.</p>"
+                }
+            }
+        ];
+
+        DEFAULT_ARTICLES.forEach(art => { window.ARTICLES_MAP[art.id] = art; });
+
+        window.openArticleModal = function(id) {
+            const article = window.ARTICLES_MAP[id];
+            if (!article) return;
+
+            const currentLang = document.documentElement.lang || 'tr';
+            let title = '';
+            let body = '';
+
+            if (article.titles) {
+                title = article.titles[currentLang] || article.titles['tr'] || article.titles['en'];
+                body = article.bodies[currentLang] || article.bodies['tr'] || article.bodies['en'];
             } else {
-                document.getElementById('user-profile-divider').classList.remove('border-r', 'pr-8');
-                document.getElementById('user-profile-divider').classList.add('border-l', 'pl-8');
-                document.getElementById('sidebar').classList.remove('border-l');
-                document.getElementById('sidebar').classList.add('border-r');
+                title = article.title;
+                body = article.body;
             }
 
-            document.querySelectorAll('[data-i18n]').forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if (dict[key]) el.innerHTML = dict[key];
-            });
-        }
+            document.getElementById('modal-img').src = article.image;
+            document.getElementById('modal-category').textContent = article.category;
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-body').innerHTML = body;
+
+            const modal = document.getElementById('article-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
+
+        window.hideArticleModal = function() {
+            const modal = document.getElementById('article-modal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        window.closeArticleModal = function(e) {
+            if (e.target.id === 'article-modal') {
+                window.hideArticleModal();
+            }
+        };
 
         function toggleTheme() {
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark');
-                icon.className = "fas fa-moon";
+                html.classList.add('light');
+                icon.className = "fas fa-moon text-sm text-slate-700";
+                localStorage.setItem('ucuzakal_theme', 'light');
             } else {
+                html.classList.remove('light');
                 html.classList.add('dark');
-                icon.className = "fas fa-sun";
+                icon.className = "fas fa-sun text-sm text-brand-gold";
+                localStorage.setItem('ucuzakal_theme', 'dark');
             }
         }
+        
+        if (localStorage.getItem('ucuzakal_theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            const icon = document.getElementById('theme-icon');
+            if(icon) icon.className = "fas fa-moon text-sm text-slate-700";
+        }
 
-        function switchTab(tabId, element) {
-            document.querySelectorAll('.view-section').forEach(el => {
-                el.classList.add('hidden');
-                el.classList.remove('block');
+        function triggerCinematicRedirect(url) {
+            const overlay = document.getElementById('cinematic-overlay');
+            const bar = document.getElementById('cinematic-bar');
+            overlay.classList.add('active');
+            setTimeout(() => { bar.style.width = '100%'; }, 50);
+            setTimeout(() => {
+                window.open(url, '_blank');
+                overlay.classList.remove('active');
+                bar.style.width = '0%';
+            }, 2000); 
+        }
+
+        window.selectedRating = 0;
+        window.rateStar = function(stars) {
+            window.selectedRating = stars;
+            const starIcons = document.querySelectorAll('#star-container i');
+            starIcons.forEach((icon, idx) => {
+                if (idx < stars) {
+                    icon.className = "fas fa-star text-brand-gold transition duration-300";
+                } else {
+                    icon.className = "far fa-star text-slate-300 dark:text-slate-700 transition duration-300";
+                }
             });
-            
-            const target = document.getElementById('view-' + tabId);
-            if (target) {
-                target.classList.remove('hidden');
-                target.classList.add('block');
+        };
+
+        const TRANSLATIONS = {
+            tr: {
+                dir: "ltr",
+                hero_title: "Seçkin Rotaları Lüksle Keşfedin",
+                hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.",
+                hotels_sub: "ÖZEL SEÇKİ",
+                hotels_heading: "Özel Seçki Koleksiyonu",
+                starting_from: "Başlayan Fiyatlar",
+                h1_desc: "Akdeniz kıyılarında özel alanlar sunan, doğa ile iç içe ayrıcalıklı tasarıma sahip konfor alanı.",
+                h2_desc: "Toros dağlarının eteklerinde, turkuaz sulara nazır ultra her şey dahil lüks deneyim.",
+                h3_desc: "Şehir merkezinde falezler üzerinde yükselen, Akdeniz'in sonsuz maviliğine açılan prestijli adres.",
+                h4_desc: "Boğaziçi'nin kalbinde, eşsiz konforu ve kusursuz manzarasıyla öne çıkan seçkin bir deneyim.",
+                h5_desc: "Göl manzaralı, huzur dolu mimarisiyle doğanın kalbinde eşsiz ve sakin bir dinlenme noktası.",
+                h6_desc: "Uludağ manzarasına karşı şifalı olanaklarla harmanlanmış, bedeni ve ruhu dinlendiren bir ortam.",
+                flights_sub: "GÖKLERDEKİ ZARAFET",
+                flights_heading: "Ayrıcalıklı Uçuşlar",
+                f1_desc: "Ayrıcalıklı bagaj ve ikram olanaklarıyla kesintisiz direkt geçiş.",
+                f2_desc: "Kuzeyin serin doğasına uzanan hızlı ve pratik hava köprüsü.",
+                f3_desc: "Rusya'nın başkentinden Boğaz'ın incisine uluslararası konforla direkt hat.",
+                f4_desc: "Kuzeyin incisinden Akdeniz'in güneşli sahil şeridine keyifli seyahat.",
+                f5_desc: "Lüks kabin hizmetleri ve geniş ikram seçenekleriyle Körfez'den İstanbul'a.",
+                f6_desc: "Ege'nin incisi İzmir'e, Suudi Arabistan'dan ekonomik ve konforlu direkt köprü.",
+                blog_sub: "SEYAHAT REHBERİ",
+                blog_heading: "UcuzaKal Seyahat Günlüğü",
+                read_more: "Devamını Oku",
+                about_heading: "Biz Kimiz?",
+                about_text_1: "UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.",
+                about_text_2: "Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.",
+                ratings_heading: "İzlenimlerinizi Paylaşın",
+                review_name_placeholder: "Adınız Soyadınız",
+                review_text_placeholder: "Düşünceleriniz...",
+                submit_review_btn: "Gönder",
+                review_success: "Zarif geri bildiriminiz için teşekkür ederiz.",
+                rights: "Tüm hakları saklıdır UcuzaKal Türkiye",
+                google_login: "Gmail Girişi",
+                cinematic_title: "Rezervasyon Platformuna Yönlendiriliyorsunuz..."
+            },
+            ar: {
+                dir: "rtl",
+                hero_title: "اكتشف روعة الوجهات الفاخرة",
+                hero_subtitle: "مختارات إقامة وطيران حصرية مصممة لتلبية ذوقك الرفيع في أبرز وجهات تركيا.",
+                hotels_sub: "مختارات خاصة",
+                hotels_heading: "مجموعة المختارات الخاصة",
+                starting_from: "الأسعار تبدأ من",
+                h1_desc: "مساحات خاصة على سواحل المتوسط، توفر أجواءً من الخصوصية المطلقة والرفاهية مع الطبيعة.",
+                h2_desc: "عند سفوح جبال طوروس، تجربة شاملة كلياً فائقة الفخامة تطل على المياه الفيروزية.",
+                h3_desc: "صرح مرموق يرتفع فوق المنحدرات الصخرية بقلب المدينة ليطل على أفق المتوسط اللانهائي.",
+                h4_desc: "في قلب البوسفور، تجربة استثنائية تتميز بالراحة المطلقة والمناظر الخلابة التي لا تُضاهى.",
+                h5_desc: "ملاذ هادئ يطل على البحيرة، يمنحك استراحة ساحرة وسط الطبيعة الخضراء للبحر الأسود.",
+                h6_desc: "بيئة مريحة للجسد والروح، تمزج بين المرافق الحرارية الشافية والإطلالة البانورامية على أولوداغ.",
+                flights_sub: "أناقة الأجواء",
+                flights_heading: "مسارات الرحلات الحصرية",
+                f1_desc: "انتقال مباشر ومريح دون انقطاع، مصحوباً بامتيازات الأمتعة والخدمات الرفيعة.",
+                f2_desc: "جسر جوي آمن وسريع، يمتد بك نحو الطبيعة الباردة والمنعشة في الشمال التركي.",
+                f3_desc: "خط دولي مباشر يربط العاصمة الروسية بمدينة البوسفور بأعلى معايير الراحة.",
+                f4_desc: "رحلة مباشرة ممتعة من لؤلؤة الشمال الروسي إلى شواطئ البحر الأبيض المتوسط المشمسة.",
+                f5_desc: "خدمات مقصورة فاخرة وخيارات ضيافة واسعة تنقلك من الخليج العربي إلى إسطنبول.",
+                f6_desc: "رحلة مباشرة تجمع بين الراحة والاقتصاد من المملكة العربية السعودية إلى لؤلؤة إيجه.",
+                blog_sub: "دليل السفر",
+                blog_heading: "يوميات UcuzaKal السياحية",
+                read_more: "اقرأ المزيد",
+                about_heading: "من نحن؟",
+                about_text_1: "UcuzaKal Türkiye هي منصة سفر مستقلة تجمع لك أفضل عروض الإقامة ورحلات الطيران في أرقى الوجهات التركية. هدفنا هو تقديم أدق الأسعار بشفافية تامة، وتحويل تخطيط سفرك إلى تجربة استثنائية تلبي ذوقك الرفيع.",
+                about_text_2: "تم تصميم وتنسيق كل مسار بعناية فائقة لضمان ألا يكون سفرك مجرد وجهة وصول؛ بل ليبقى كذكرى نبيلة لا تُنسى تلبي كافة توقعاتك.",
+                ratings_heading: "شاركنا انطباعاتك",
+                review_name_placeholder: "الاسم الكريم...",
+                review_text_placeholder: "اكتب انطباعاتك هنا...",
+                submit_review_btn: "إرسال",
+                review_success: "نقدر لك هذا التقييم الراقي، شكراً لثقتك.",
+                rights: "جميع الحقوق محفوظة UcuzaKal Türkiye",
+                google_login: "دخول Gmail",
+                cinematic_title: "جاري تحويلك لمنصة الحجز..."
+            },
+            en: {
+                dir: "ltr",
+                hero_title: "Discover Elite Routes in Luxury",
+                hero_subtitle: "Exclusive accommodation and flight opportunities carefully compiled for you in Turkey's most popular destinations.",
+                hotels_sub: "EXCLUSIVE SELECTION",
+                hotels_heading: "Special Selection Collection",
+                starting_from: "Rates Starting From",
+                h1_desc: "A privileged comfort zone with exceptional design offering private spaces on the Mediterranean shores.",
+                h2_desc: "At the foothills of Taurus Mountains, an ultra-all-inclusive experience facing turquoise waters.",
+                h3_desc: "A prestigious address rising on urban cliffs, opening into the endless blue of the Mediterranean.",
+                h4_desc: "An outstanding experience in the heart of the Bosphorus with unique comfort and flawless view.",
+                h5_desc: "A serene getaway overlooking the lake amidst the lush green nature of the Black Sea.",
+                h6_desc: "A rejuvenating haven blending healing thermal facilities against majestic Uludağ vistas.",
+                flights_sub: "ELEGANCE IN THE SKIES",
+                flights_heading: "Privileged Flights",
+                f1_desc: "Uninterrupted direct transit with privileged baggage and hospitality services.",
+                f2_desc: "A fast and practical aerial route leading directly into refreshing Northern nature.",
+                f3_desc: "A direct international connection between Moscow and Istanbul with premier comfort.",
+                f4_desc: "Seamless journey from St. Petersburg directly to the sunny shores of Antalya.",
+                f5_desc: "Luxury cabin hospitality and gourmet catering connecting the Arabian Gulf to Istanbul.",
+                f6_desc: "Comfortable and efficient direct link from Riyadh to the Aegean gem of Izmir.",
+                blog_sub: "TRAVEL JOURNAL",
+                blog_heading: "UcuzaKal Travel Journal",
+                read_more: "Read More",
+                about_heading: "Who Are We?",
+                about_text_1: "UcuzaKal Türkiye is an independent travel platform that carefully curates the finest accommodation and flight deals across Turkey's elite destinations.",
+                about_text_2: "Each meticulously compiled route is designed so that your journey becomes an unforgettable standard of elegance.",
+                ratings_heading: "Share Your Impressions",
+                review_name_placeholder: "Full Name",
+                review_text_placeholder: "Your thoughts...",
+                submit_review_btn: "Submit",
+                review_success: "Thank you for your elegant feedback.",
+                rights: "All rights reserved UcuzaKal Türkiye",
+                google_login: "Login with Gmail",
+                cinematic_title: "Redirecting to Booking Platform..."
+            },
+            ru: {
+                dir: "ltr",
+                hero_title: "Откройте для себя элитные маршруты в роскоши",
+                hero_subtitle: "Эксклюзивные предложения по размещению и перелетам в лучших уголках Турции.",
+                hotels_sub: "СПЕЦИАЛЬНЫЙ ВЫБОР",
+                hotels_heading: "Специальная коллекция",
+                starting_from: "Цены от",
+                h1_desc: "Привилегированная зона отдыха на средиземноморском побережье среди дивной природы.",
+                h2_desc: "У подножия Таврских гор, ультра все включено с видом на лазурные морские просторы.",
+                h3_desc: "Престижный отель на утесах города, открывающий бесконечную синеву Средиземного моря.",
+                h4_desc: "Выдающийся комфорт и безупречный вид в самом сердце пролива Босфор.",
+                h5_desc: "Безмятежный отдых на лоне зеленой природы Черного моря с видом на гладь озера.",
+                h6_desc: "Целебные термальные источники и спокойствие с панорамой заснеженного Улудага.",
+                flights_sub: "ЭЛЕГАНТНОСТЬ В НЕБЕ",
+                flights_heading: "Привилегированные рейсы",
+                f1_desc: "Прямой комфортный перелет с расширенным сервисом багажа и питания.",
+                f2_desc: "Быстрый воздушный мост к прохладе и свежести северной природы.",
+                f3_desc: "Прямой рейс из Москвы в сердце Стамбула с высоким международным стандартом.",
+                f4_desc: "Удобный перелет из Санкт-Петербурга к теплому солнечному побережью Антальи.",
+                f5_desc: "Премиальное обслуживание на рейсах из Персидского залива в Стамбул.",
+                f6_desc: "Прямой и удобный рейс из Эр-Рияда в жемчужину Эгейского моря — Измир.",
+                blog_sub: "ПУТЕВОДИТЕЛЬ",
+                blog_heading: "Дневник путешествий UcuzaKal",
+                read_more: "Читать далее",
+                about_heading: "О нас",
+                about_text_1: "UcuzaKal Türkiye — независимая туристическая платформа, тщательно собирающая лучшие предложения.",
+                about_text_2: "Каждый маршрут составлен для того, чтобы ваше путешествие стало безупречным опытом.",
+                ratings_heading: "Поделитесь впечатлениями",
+                review_name_placeholder: "Имя Фамилия",
+                review_text_placeholder: "Ваш отзыв...",
+                submit_review_btn: "Отправить",
+                review_success: "Благодарим за ваш отзыв.",
+                rights: "Все права защищены UcuzaKal Türkiye",
+                google_login: "Войти через Gmail",
+                cinematic_title: "Перенаправление на платформу бронирования..."
             }
-            
-            document.querySelectorAll('.nav-item').forEach(el => el.classList.remove('active', 'text-brand-gold'));
-            element.classList.add('active', 'text-brand-gold');
+        };
+
+        function changeLanguage(lang) {
+            const dict = TRANSLATIONS[lang] || TRANSLATIONS.tr;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = dict.dir;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) { el.textContent = dict[key]; }
+            });
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (dict[key]) { el.placeholder = dict[key]; }
+            });
+            localStorage.setItem('ucuzakal_lang', lang);
+
+            if (window.renderHotels) window.renderHotels();
+            if (window.renderFlights) window.renderFlights();
+            if (window.renderBlogCards) window.renderBlogCards();
         }
 
-        function showToast(msgKey) {
-            const dict = ADMIN_TRANSLATIONS[currentAdminLang];
-            const message = dict['toast_' + msgKey] || msgKey;
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('ucuzakal_lang') || 'tr';
+            const switcher = document.getElementById('lang-switcher');
+            if (switcher) { switcher.value = savedLang; changeLanguage(savedLang); }
+        });
+    </script>
 
-            const container = document.getElementById('toast-container');
-            const toast = document.createElement('div');
-            toast.className = 'toast flex items-center gap-3';
-            toast.innerHTML = `<i class="fas fa-check-circle text-xl"></i>
+    <!-- ربط Firebase Auth و Cloud Firestore لجلب العروض والمقالات وحفظ التقييمات -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDcMOlstkYaLBOjnJOYk24U6_724pqEw1U",
+            authDomain: "ucuzakal-5e2a8.firebaseapp.com",
+            projectId: "ucuzakal-5e2a8",
+            storageBucket: "ucuzakal-5e2a8.firebasestorage.app",
+            messagingSenderId: "111148178418",
+            appId: "1:111148178418:web:f885dc545e0627516ca96b",
+            measurementId: "G-ST7LSMMXEB"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const provider = new GoogleAuthProvider();
+        const authBtn = document.getElementById('auth-btn');
+
+        window.loginWithGoogle = function() {
+            signInWithPopup(auth, provider).catch((error) => {
+                console.error("Authentication Error:", error.message);
+            });
+        };
+
+        window.logoutGoogle = function() {
+            signOut(auth);
+        };
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                authBtn.innerHTML = `
+                    <img src="${user.photoURL}" alt="User" class="w-5 h-5 rounded-full border border-brand-gold"> 
+                    <span class="font-bold text-xs">${user.displayName.split(' ')[0]}</span>
+                `;
+                authBtn.onclick = window.logoutGoogle;
+                authBtn.title = "Çıkış Yap / تسجيل الخروج";
+            } else {
+                authBtn.innerHTML = `
+                    <i class="fab fa-google"></i>
+                    <span data-i18n="google_login" id="auth-text">Gmail Girişi</span>
+                `;
+                authBtn.onclick = window.loginWithGoogle;
+                authBtn.title = "Giriş Yap / تسجيل الدخول";
+                const lang = document.documentElement.lang || 'tr';
+                const dict = TRANSLATIONS[lang] || TRANSLATIONS.tr;
+                const textElem = document.getElementById('auth-text');
+                if (textElem) textElem.textContent = dict["google_login"];
+            }
+        });
+
+        // عرض بطاقات الفنادق
+        window.renderHotels = function() {
+            const container = document.getElementById('hotels-container');
+            if (!container) return;
+            const currentLang = document.documentElement.lang || 'tr';
+            const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
+            const startingText = dict.starting_from || "Başlayan Fiyatlar";
+
+            const list = window.HOTELS_DATA.length > 0 ? window.HOTELS_DATA : DEFAULT_HOTELS;
+            let html = '';
+
+            list.forEach(hotel => {
+                const desc = hotel.desc_key ? (dict[hotel.desc_key] || '') : (hotel.description || 'Seçkin konfor alanı ve ayrıcalıklı rezervasyon fırsatı.');
+                html += `
+                    <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('${hotel.affiliateUrl}')">
+                        <div class="img-frame">
+                            <img src="${hotel.image}" alt="${hotel.name}" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
+                        </div>
+                        <div class="p-6 text-center">
+                            <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">${hotel.city}</span>
+                            <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">${hotel.name}</h3>
+                            <div class="gold-divider"></div>
+                            <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6 line-clamp-2">${desc}</p>
+                            <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
+                                <span class="text-slate-400 text-[10px] uppercase tracking-widest">${startingText}</span>
+                                <span class="font-luxury text-xl font-bold text-brand-gold">€${hotel.price}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        };
+
+        // عرض بطاقات الطيران
+        window.renderFlights = function() {
+            const container = document.getElementById('flights-container');
+            if (!container) return;
+            const currentLang = document.documentElement.lang || 'tr';
+            const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
+
+            const list = window.FLIGHTS_DATA.length > 0 ? window.FLIGHTS_DATA : DEFAULT_FLIGHTS;
+            let html = '';
+
+            list.forEach(flight => {
+                const desc = flight.desc_key ? (dict[flight.desc_key] || '') : (flight.description || 'Ayrıcalıklı bagaj ve ikram olanaklarıyla direkt geçiş.');
+                html += `
+                    <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('${flight.affiliateUrl}')">
+                        <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
+                        <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">${flight.route}</h3>
+                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">${flight.airline} (${flight.region})</span>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed line-clamp-2">${desc}</p>
+                        <span class="font-luxury text-2xl font-bold text-brand-gold">€${flight.price}</span>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        };
+
+        // عرض بطاقات المدونة
+        window.renderBlogCards = function() {
+            const container = document.getElementById('blog-container');
+            if (!container) return;
+            const currentLang = document.documentElement.lang || 'tr';
+            const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
+            const readMoreText = dict.read_more || "Devamını Oku";
+
+            const articlesList = Object.values(window.ARTICLES_MAP);
+            if (articlesList.length === 0) return;
+
+            let html = '';
+            articlesList.forEach(art => {
+                let title = '';
+                let bodySnippet = '';
+
+                if (art.titles) {
+                    title = art.titles[currentLang] || art.titles['tr'] || art.titles['en'];
+                    const bodyText = art.bodies[currentLang] || art.bodies['tr'] || art.bodies['en'];
+                    bodySnippet = bodyText.replace(/<[^>]*>?/gm, '');
+                } else {
+                    title = art.title;
+                    bodySnippet = (art.body || '').replace(/<[^>]*>?/gm, '');
+                }
+
+                html += `
+                    <article class="ultra-luxury-card group cursor-pointer" onclick="window.openArticleModal('${art.id}')">
+                        <div class="img-frame">
+                            <img src="${art.image}" alt="${title}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="p-6">
+                            <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">${art.category || 'TÜRKİYE'}</span>
+                            <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2">${title}</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">${bodySnippet}</p>
+                            <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition">
+                                <span>${readMoreText}</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                            </span>
+                        </div>
+                    </article>
+                `;
+            });
+            container.innerHTML = html;
+        };
+
+        // رصد مصدر الزيارة (UTM / Referrer)
+        function detectTrafficSource() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const utm = urlParams.get('utm_source');
+            if (utm) return utm.toUpperCase();
+
+            const ref = document.referrer.toLowerCase();
+            if (ref.includes('facebook')) return 'FACEBOOK';
+            if (ref.includes('pinterest')) return 'PINTEREST';
+            if (ref.includes('instagram')) return 'INSTAGRAM';
+            if (ref.includes('tiktok')) return 'TIKTOK';
+            if (ref.includes('t.co') || ref.includes('twitter') || ref.includes('x.com')) return 'X (TWITTER)';
+            if (ref.includes('youtube')) return 'YOUTUBE';
+            if (ref.includes('google')) return 'GOOGLE';
+            return 'DIRECT';
+        }
+
+        // إرسال التقييم إلى Firestore
+        window.submitReview = async function() {
+            const nameInput = document.getElementById('user-review-name');
+            const textInput = document.getElementById('user-review-text');
+            const btn = document.getElementById('btn-submit-review');
+            const name = nameInput ? nameInput.value.trim() : '';
+            const text = textInput ? textInput.value.trim() : '';
+
+            if (!name || !text || window.selectedRating === 0) {
+                alert("Lütfen yıldız seçimi yapıp isim ve yorum alanlarını doldurunuz. / يرجى اختيار النجوم وكتابة الاسم والتعليق!");
+                return;
+            }
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
+
+            try {
+                await addDoc(collection(db, "reviews"), {
+                    userName: name,
+                    reviewText: text,
+                    rating: Number(window.selectedRating),
+                    source: detectTrafficSource(),
+                    createdAt: serverTimestamp()
+                });
+
+                document.getElementById('review-success-msg').classList.remove('hidden');
+                nameInput.value = '';
+                textInput.value = '';
+                window.rateStar(0);
+                alert("Teşekkürler! Değerlendirmeniz başarıyla kaydedildi. / تم حفظ تقييمك بنجاح في قاعدة البيانات!");
+            } catch(e) {
+                console.error("Firestore Review Error:", e);
+                alert("Kayıt hatası: " + e.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<span data-i18n="submit_review_btn">' + (TRANSLATIONS[document.documentElement.lang || 'tr']?.submit_review_btn || 'Gönder') + '</span>';
+            }
+        };
+
+        // جلب البيانات من Cloud Firestore
+        async function fetchAllFirestoreData() {
+            try {
+                const hotelsSnap = await getDocs(query(collection(db, "hotels"), orderBy("createdAt", "desc")));
+                if (!hotelsSnap.empty) {
+                    window.HOTELS_DATA = [];
+                    hotelsSnap.forEach(d => window.HOTELS_DATA.push(d.data()));
+                }
+            } catch(e) { console.warn("Hotels fetch notice:", e.message); }
+            window.renderHotels();
+
+            try {
+                const flightsSnap = await getDocs(query(collection(db, "flights"), orderBy("createdAt", "desc")));
+                if (!flightsSnap.empty) {
+                    window.FLIGHTS_DATA = [];
+                    flightsSnap.forEach(d => window.FLIGHTS_DATA.push(d.data()));
+                }
+            } catch(e) { console.warn("Flights fetch notice:", e.message); }
+            window.renderFlights();
+
+            try {
+                const articlesSnap = await getDocs(query(collection(db, "articles"), orderBy("createdAt", "desc")));
+                if (!articlesSnap.empty) {
+                    window.ARTICLES_MAP = {};
+                    articlesSnap.forEach(docSnap => {
+                        const data = docSnap.data();
+                        window.ARTICLES_MAP[docSnap.id] = {
+                            id: docSnap.id,
+                            category: data.category || 'TÜRKİYE',
+                            image: data.image || 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=90',
+                            title: data.title,
+                            body: data.body
+                        };
+                    });
+                }
+            } catch(e) { console.warn("Articles fetch notice:", e.message); }
+            window.renderBlogCards();
+        }
+
+        fetchAllFirestoreData();
+    </script>
+</body>
+</html>
