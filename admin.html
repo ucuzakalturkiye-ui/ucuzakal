@@ -1,84 +1,108 @@
 <!DOCTYPE html>
-<html lang="tr" dir="ltr" class="dark">
+<html lang="tr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UcuzaKal | Yönetim Masası (Admin Dashboard)</title>
+    <title>UcuzaKal | Yönetim Masası</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    fontFamily: {
-                        luxury: ['Playfair Display', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            gold: '#D4AF37',
-                            dark: '#030508',
-                            surface: '#0A0F1A',
-                            cardDark: 'rgba(12, 17, 29, 0.85)'
-                        }
-                    }
+        // دالة الدخول الفورية والمستقلة عن أي مكتبة
+        function executeLogin() {
+            var userInput = document.getElementById('admin-user');
+            var passInput = document.getElementById('admin-pass');
+            var errMsg = document.getElementById('login-err');
+
+            if (!userInput || !passInput) {
+                alert("Hata: Giriş alanları bulunamadı.");
+                return;
+            }
+
+            var u = userInput.value.trim();
+            var p = passInput.value.trim();
+
+            if (u === 'admin' && p === 'M.N@9876543210') {
+                sessionStorage.setItem('ucuzakal_admin_logged', 'true');
+                document.getElementById('login-modal').style.display = 'none';
+                document.getElementById('admin-panel').classList.remove('hidden');
+                if (window.fetchReviews) {
+                    window.fetchReviews();
                 }
+            } else {
+                if (errMsg) errMsg.classList.remove('hidden');
+                alert("Hatalı kullanıcı adı veya şifre!\nاسم المستخدم أو كلمة المرور غير صحيحة");
             }
         }
+
+        // تسجيل الدخول عند الضغط على Enter في لوحة المفاتيح
+        function handleKey(e) {
+            if (e.key === 'Enter') {
+                executeLogin();
+            }
+        }
+
+        // استعادة الجلسة في حال كان مسجلاً مسبقاً
+        window.onload = function() {
+            if (sessionStorage.getItem('ucuzakal_admin_logged') === 'true') {
+                var modal = document.getElementById('login-modal');
+                var panel = document.getElementById('admin-panel');
+                if (modal) modal.style.display = 'none';
+                if (panel) panel.classList.remove('hidden');
+                if (window.fetchReviews) window.fetchReviews();
+            }
+        };
     </script>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
 
-    <!-- شاشة تسجيل الدخول والحماية -->
-    <div id="login-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4">
-        <div class="bg-[#0A0F1A] border border-brand-gold/30 rounded-3xl p-8 max-w-md w-full shadow-2xl text-center">
-            <div class="w-16 h-16 rounded-full border-2 border-brand-gold flex items-center justify-center mx-auto mb-4 text-brand-gold text-2xl font-luxury font-bold">
+    <!-- نافذة تسجيل الدخول -->
+    <div id="login-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4">
+        <div class="bg-[#0A0F1A] border border-[#D4AF37]/40 rounded-3xl p-8 max-w-md w-full shadow-2xl text-center">
+            <div class="w-16 h-16 rounded-full border-2 border-[#D4AF37] flex items-center justify-center mx-auto mb-4 text-[#D4AF37] text-2xl font-bold">
                 U
             </div>
-            <h2 class="font-luxury text-2xl font-bold text-white mb-2">UcuzaKal Yönetim Girişi</h2>
-            <p class="text-xs text-slate-400 mb-6">Lütfen devam etmek için yetkili kimlik bilgilerinizi giriniz.</p>
+            <h2 class="text-2xl font-bold text-white mb-2">UcuzaKal Yönetim Girişi</h2>
+            <p class="text-xs text-slate-400 mb-6">Devam etmek için yetkili bilgilerinizi giriniz.</p>
             
             <div class="space-y-4 text-left">
                 <div>
-                    <label class="text-xs text-slate-300 font-bold block mb-1">Kullanıcı Adı</label>
-                    <input type="text" id="admin-user" value="admin" class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition">
+                    <label class="text-xs text-slate-300 font-bold block mb-1">Kullanıcı Adı (اسم المستخدم)</label>
+                    <input type="text" id="admin-user" value="admin" onkeypress="handleKey(event)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#D4AF37]">
                 </div>
                 <div>
-                    <label class="text-xs text-slate-300 font-bold block mb-1">Şifre</label>
-                    <input type="password" id="admin-pass" placeholder="••••••••••••" class="w-full bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-gold transition">
+                    <label class="text-xs text-slate-300 font-bold block mb-1">Şifre (كلمة المرور)</label>
+                    <input type="password" id="admin-pass" placeholder="••••••••••••" onkeypress="handleKey(event)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#D4AF37]">
                 </div>
                 <div id="login-err" class="text-red-400 text-xs font-bold hidden text-center">
-                    Hatalı kullanıcı adı veya şifre! / بيانات الدخول غير صحيحة
+                    Hatalı kullanıcı adı veya şifre!
                 </div>
-                <button type="button" onclick="loginAdmin()" class="w-full bg-brand-gold hover:bg-yellow-500 text-black font-bold py-3.5 rounded-xl text-sm transition shadow-lg mt-2">
+                <button type="button" id="btn-login" onclick="executeLogin()" class="w-full bg-[#D4AF37] hover:bg-yellow-500 text-black font-bold py-3.5 rounded-xl text-sm transition shadow-lg cursor-pointer">
                     Sisteme Giriş Yap
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- لوحة التحكم الرئيسية -->
+    <!-- واجهة الإدارة بعد تسجيل الدخول -->
     <div id="admin-panel" class="hidden min-h-screen flex flex-col md:flex-row">
-        <!-- الشريط الجانبي -->
-        <aside class="w-full md:w-64 bg-[#0A0F1A] border-r border-brand-gold/20 p-6 flex flex-col justify-between">
+        <!-- القائمة الجانبية -->
+        <aside class="w-full md:w-64 bg-[#0A0F1A] border-r border-[#D4AF37]/20 p-6 flex flex-col justify-between">
             <div>
                 <div class="flex items-center gap-3 mb-8">
-                    <div class="w-10 h-10 rounded-full border border-brand-gold flex items-center justify-center text-brand-gold font-luxury font-bold">U</div>
+                    <div class="w-10 h-10 rounded-full border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-bold">U</div>
                     <div>
-                        <h1 class="font-luxury font-bold text-lg text-white">UcuzaKal</h1>
-                        <span class="text-[10px] text-brand-gold tracking-widest uppercase font-bold">Yönetim Masası</span>
+                        <h1 class="font-bold text-lg text-white">UcuzaKal</h1>
+                        <span class="text-[10px] text-[#D4AF37] tracking-widest uppercase font-bold">Yönetim Masası</span>
                     </div>
                 </div>
 
                 <nav class="space-y-2">
-                    <button onclick="switchTab('reviews')" id="tab-btn-reviews" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold bg-brand-gold text-black transition">
+                    <button onclick="switchTab('reviews')" id="tab-btn-reviews" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold bg-[#D4AF37] text-black transition">
                         <i class="fas fa-star"></i>
                         <span>Değerlendirmeler & Trafik</span>
                     </button>
@@ -98,7 +122,7 @@
             </div>
 
             <div class="pt-6 border-t border-slate-800">
-                <button onclick="logoutAdmin()" class="w-full flex items-center justify-center gap-2 text-xs text-red-400 hover:text-red-300 font-bold py-2">
+                <button onclick="sessionStorage.removeItem('ucuzakal_admin_logged'); location.reload();" class="w-full flex items-center justify-center gap-2 text-xs text-red-400 hover:text-red-300 font-bold py-2">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Çıkış Yap</span>
                 </button>
@@ -108,14 +132,14 @@
         <!-- المحتوى الداخلي -->
         <main class="flex-1 p-6 sm:p-10 bg-slate-950 overflow-y-auto">
             
-            <!-- 1. قسم التقييمات والزيارات -->
+            <!-- 1. تبويب التقييمات ومصادر الزيارات -->
             <section id="tab-reviews" class="space-y-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-2xl font-luxury font-bold text-white">Müşteri Değerlendirmeleri ve Trafik</h2>
+                        <h2 class="text-2xl font-bold text-white">Müşteri Değerlendirmeleri ve Trafik</h2>
                         <p class="text-xs text-slate-400">Site üzerinden gelen puanlar, yorumlar ve UTM/Referrer kaynakları.</p>
                     </div>
-                    <button onclick="window.fetchReviews()" class="bg-brand-gold/10 border border-brand-gold/40 text-brand-gold px-4 py-2 rounded-xl text-xs font-bold hover:bg-brand-gold hover:text-black transition flex items-center gap-2">
+                    <button onclick="window.fetchReviews()" class="bg-[#D4AF37]/10 border border-[#D4AF37]/40 text-[#D4AF37] px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#D4AF37] hover:text-black transition flex items-center gap-2">
                         <i class="fas fa-sync-alt"></i> Yenile
                     </button>
                 </div>
@@ -123,7 +147,7 @@
                 <div class="bg-[#0A0F1A] border border-white/5 rounded-2xl overflow-hidden shadow-xl">
                     <div class="overflow-x-auto">
                         <table class="w-full text-left text-sm text-slate-300">
-                            <thead class="bg-white/5 text-[11px] text-brand-gold uppercase tracking-wider">
+                            <thead class="bg-white/5 text-[11px] text-[#D4AF37] uppercase tracking-wider">
                                 <tr>
                                     <th class="px-6 py-4">Kullanıcı</th>
                                     <th class="px-6 py-4">Trafik Kaynağı</th>
@@ -134,7 +158,7 @@
                             </thead>
                             <tbody id="reviews-tbody">
                                 <tr>
-                                    <td colspan="5" class="py-12 text-center text-slate-500">Kayıtlar aranıyor...</td>
+                                    <td colspan="5" class="py-12 text-center text-slate-500">Kayıtlar taranıyor...</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -142,82 +166,79 @@
                 </div>
             </section>
 
-            <!-- 2. قسم الفنادق -->
+            <!-- 2. تبويب الفنادق -->
             <section id="tab-hotels" class="space-y-6 hidden">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-2xl font-luxury font-bold text-white">Otel & Konaklama Teklifleri</h2>
-                        <p class="text-xs text-slate-400">Ana sayfada yayınlanan otelleri yönetin veya yenisini ekleyin.</p>
+                        <h2 class="text-2xl font-bold text-white">Otel & Konaklama Teklifleri</h2>
+                        <p class="text-xs text-slate-400">Ana sayfadaki otelleri yönetin.</p>
                     </div>
-                    <button onclick="toggleHotelForm()" class="bg-brand-gold text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 transition">
+                    <button onclick="document.getElementById('hotel-form-box').classList.toggle('hidden')" class="bg-[#D4AF37] text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 transition">
                         + Yeni Otel Ekle
                     </button>
                 </div>
 
-                <div id="hotel-form-box" class="bg-[#0A0F1A] border border-brand-gold/30 p-6 rounded-2xl space-y-4 hidden">
-                    <h3 class="font-bold text-sm text-white">Yeni Otel Kartı Bilgileri</h3>
+                <div id="hotel-form-box" class="bg-[#0A0F1A] border border-[#D4AF37]/30 p-6 rounded-2xl space-y-4 hidden">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <input type="text" id="h-name" placeholder="Otel Adı" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
                         <input type="text" id="h-city" placeholder="Şehir (örn: ANTALYA)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="number" id="h-price" placeholder="Başlangıç Fiyatı (€)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="text" id="h-affiliate" placeholder="Affiliate Linki (Trivago/Travelpayouts)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
+                        <input type="number" id="h-price" placeholder="Fiyat (€)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
+                        <input type="text" id="h-affiliate" placeholder="Affiliate Linki" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
                         <input type="text" id="h-img" placeholder="Görsel URL" class="col-span-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
                         <textarea id="h-desc" placeholder="Açıklama" class="col-span-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white h-20"></textarea>
                     </div>
-                    <button onclick="saveHotel()" class="bg-brand-gold text-black px-6 py-2.5 rounded-xl text-xs font-bold">Kaydet</button>
+                    <button onclick="window.saveHotel()" class="bg-[#D4AF37] text-black px-6 py-2.5 rounded-xl text-xs font-bold">Kaydet</button>
                 </div>
 
                 <div id="hotels-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </section>
 
-            <!-- 3. قسم الطيران -->
+            <!-- 3. تبويب الطيران -->
             <section id="tab-flights" class="space-y-6 hidden">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-2xl font-luxury font-bold text-white">Uçuş Seferleri</h2>
-                        <p class="text-xs text-slate-400">Öne çıkan uçak bileti rotalarını yönetin.</p>
+                        <h2 class="text-2xl font-bold text-white">Uçuş Seferleri</h2>
+                        <p class="text-xs text-slate-400">Uçak bilet rotalarını yönetin.</p>
                     </div>
-                    <button onclick="toggleFlightForm()" class="bg-brand-gold text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 transition">
+                    <button onclick="document.getElementById('flight-form-box').classList.toggle('hidden')" class="bg-[#D4AF37] text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 transition">
                         + Yeni Sefer Ekle
                     </button>
                 </div>
 
-                <div id="flight-form-box" class="bg-[#0A0F1A] border border-brand-gold/30 p-6 rounded-2xl space-y-4 hidden">
-                    <h3 class="font-bold text-sm text-white">Yeni Uçuş Bilgileri</h3>
+                <div id="flight-form-box" class="bg-[#0A0F1A] border border-[#D4AF37]/30 p-6 rounded-2xl space-y-4 hidden">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" id="f-airline" placeholder="Havayolu Şirketi" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
+                        <input type="text" id="f-airline" placeholder="Havayolu" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
                         <input type="text" id="f-route" placeholder="Rota (örn: İstanbul ⇄ Antalya)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
                         <input type="number" id="f-price" placeholder="Fiyat (€)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
                         <input type="text" id="f-region" placeholder="Bölge (Yerel / Rusya / Körfez)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="text" id="f-affiliate" placeholder="Affiliate Bilet Linki" class="col-span-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
+                        <input type="text" id="f-affiliate" placeholder="Bilet Affiliate Linki" class="col-span-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
                     </div>
-                    <button onclick="saveFlight()" class="bg-brand-gold text-black px-6 py-2.5 rounded-xl text-xs font-bold">Kaydet</button>
+                    <button onclick="window.saveFlight()" class="bg-[#D4AF37] text-black px-6 py-2.5 rounded-xl text-xs font-bold">Kaydet</button>
                 </div>
 
                 <div id="flights-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
             </section>
 
-            <!-- 4. قسم المقالات -->
+            <!-- 4. تبويب المقالات -->
             <section id="tab-articles" class="space-y-6 hidden">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-2xl font-luxury font-bold text-white">Blog ve Rehber Makaleleri</h2>
-                        <p class="text-xs text-slate-400">SEO odaklı seyahat makalelerini ekleyin veya güncelleyin.</p>
+                        <h2 class="text-2xl font-bold text-white">Blog Makaleleri</h2>
+                        <p class="text-xs text-slate-400">SEO seyahat makalelerini yönetin.</p>
                     </div>
-                    <button onclick="toggleArticleForm()" class="bg-brand-gold text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 transition">
+                    <button onclick="document.getElementById('article-form-box').classList.toggle('hidden')" class="bg-[#D4AF37] text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 transition">
                         + Yeni Makale Yaz
                     </button>
                 </div>
 
-                <div id="article-form-box" class="bg-[#0A0F1A] border border-brand-gold/30 p-6 rounded-2xl space-y-4 hidden">
-                    <h3 class="font-bold text-sm text-white">Makale İçeriği</h3>
+                <div id="article-form-box" class="bg-[#0A0F1A] border border-[#D4AF37]/30 p-6 rounded-2xl space-y-4 hidden">
                     <div class="space-y-4">
                         <input type="text" id="a-category" placeholder="Kategori (örn: İSTANBUL)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
                         <input type="text" id="a-title" placeholder="Makale Başlığı" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
                         <input type="text" id="a-img" placeholder="Kapak Görseli URL" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <textarea id="a-body" placeholder="Makale Metni (HTML veya düz metin)..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white h-36"></textarea>
+                        <textarea id="a-body" placeholder="Makale Metni..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white h-36"></textarea>
                     </div>
-                    <button onclick="saveArticle()" class="bg-brand-gold text-black px-6 py-2.5 rounded-xl text-xs font-bold">Yayınla</button>
+                    <button onclick="window.saveArticle()" class="bg-[#D4AF37] text-black px-6 py-2.5 rounded-xl text-xs font-bold">Yayınla</button>
                 </div>
 
                 <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
@@ -226,65 +247,26 @@
         </main>
     </div>
 
-    <!-- سكربت التحكم البسيط والمستقل -->
     <script>
-        // التحقق المباشر من جلسة تسجيل الدخول
-        function checkSession() {
-            if (sessionStorage.getItem('ucuzakal_auth') === 'true') {
-                document.getElementById('login-modal').classList.add('hidden');
-                document.getElementById('admin-panel').classList.remove('hidden');
-                if (window.fetchReviews) window.fetchReviews();
-            }
-        }
-
-        // تسجيل الدخول بدون أي تعليق
-        function loginAdmin() {
-            const u = document.getElementById('admin-user').value.trim();
-            const p = document.getElementById('admin-pass').value.trim();
-            const err = document.getElementById('login-err');
-
-            if (u === 'admin' && p === 'M.N@9876543210') {
-                sessionStorage.setItem('ucuzakal_auth', 'true');
-                err.classList.add('hidden');
-                document.getElementById('login-modal').classList.add('hidden');
-                document.getElementById('admin-panel').classList.remove('hidden');
-                if (window.fetchReviews) window.fetchReviews();
-            } else {
-                err.classList.remove('hidden');
-            }
-        }
-
-        function logoutAdmin() {
-            sessionStorage.removeItem('ucuzakal_auth');
-            location.reload();
-        }
-
         function switchTab(tabId) {
             ['reviews', 'hotels', 'flights', 'articles'].forEach(t => {
                 document.getElementById('tab-' + t).classList.add('hidden');
-                const btn = document.getElementById('tab-btn-' + t);
-                btn.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-white/5 transition";
+                var b = document.getElementById('tab-btn-' + t);
+                b.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-white/5 transition";
             });
 
             document.getElementById('tab-' + tabId).classList.remove('hidden');
-            const activeBtn = document.getElementById('tab-btn-' + tabId);
-            activeBtn.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold bg-brand-gold text-black transition";
+            var activeB = document.getElementById('tab-btn-' + tabId);
+            activeB.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold bg-[#D4AF37] text-black transition";
 
             if (tabId === 'reviews' && window.fetchReviews) window.fetchReviews();
             if (tabId === 'hotels' && window.fetchHotels) window.fetchHotels();
             if (tabId === 'flights' && window.fetchFlights) window.fetchFlights();
             if (tabId === 'articles' && window.fetchArticles) window.fetchArticles();
         }
-
-        function toggleHotelForm() { document.getElementById('hotel-form-box').classList.toggle('hidden'); }
-        function toggleFlightForm() { document.getElementById('flight-form-box').classList.toggle('hidden'); }
-        function toggleArticleForm() { document.getElementById('article-form-box').classList.toggle('hidden'); }
-
-        // فحص الجلسة عند بدء تحميل الصفحة
-        window.addEventListener('DOMContentLoaded', checkSession);
     </script>
 
-    <!-- ربط Firebase Firestore للبيانات الحية -->
+    <!-- ربط Firebase Firestore -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -302,7 +284,6 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // جلب التقييمات
         window.fetchReviews = async function() {
             const tbody = document.getElementById('reviews-tbody');
             if (!tbody) return;
@@ -324,11 +305,11 @@
                     let stars = '';
                     const rating = Number(r.rating) || 5;
                     for (let i = 1; i <= 5; i++) {
-                        stars += i <= rating ? '<i class="fas fa-star text-brand-gold text-xs"></i> ' : '<i class="far fa-star text-slate-600 text-xs"></i> ';
+                        stars += i <= rating ? '<i class="fas fa-star text-[#D4AF37] text-xs"></i> ' : '<i class="far fa-star text-slate-600 text-xs"></i> ';
                     }
 
                     const src = r.source || 'DIRECT';
-                    const badgeClass = src === 'DIRECT' ? 'bg-slate-800 text-slate-300' : 'bg-brand-gold text-black';
+                    const badgeClass = src === 'DIRECT' ? 'bg-slate-800 text-slate-300' : 'bg-[#D4AF37] text-black';
 
                     html += `
                         <tr class="border-b border-white/5 hover:bg-white/5 transition">
@@ -337,7 +318,7 @@
                             <td class="px-6 py-4">${stars}</td>
                             <td class="px-6 py-4 text-slate-300 max-w-xs truncate">${r.reviewText || ''}</td>
                             <td class="px-6 py-4 text-center">
-                                <button onclick="window.removeReview('${r.id}')" class="text-red-400 hover:text-red-300 p-2" title="Sil">
+                                <button onclick="window.removeDoc('reviews', '${r.id}')" class="text-red-400 hover:text-red-300 p-2" title="Sil">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>
@@ -350,15 +331,6 @@
             }
         };
 
-        window.removeReview = async function(id) {
-            if (!confirm("Bu değerlendirmeyi silmek istediğinize emin misiniz?")) return;
-            try {
-                await deleteDoc(doc(db, "reviews", id));
-                window.fetchReviews();
-            } catch(e) { alert("Silinemedi: " + e.message); }
-        };
-
-        // حفظ وجلب الفنادق
         window.saveHotel = async function() {
             const name = document.getElementById('h-name').value;
             const city = document.getElementById('h-city').value;
@@ -370,10 +342,7 @@
             if(!name || !price) { alert("Otel adı ve fiyat gereklidir."); return; }
 
             try {
-                await addDoc(collection(db, "hotels"), {
-                    name, city, price, affiliateUrl, image, description,
-                    createdAt: serverTimestamp()
-                });
+                await addDoc(collection(db, "hotels"), { name, city, price, affiliateUrl, image, description, createdAt: serverTimestamp() });
                 document.getElementById('hotel-form-box').classList.add('hidden');
                 window.fetchHotels();
             } catch(e) { alert("Hata: " + e.message); }
@@ -391,12 +360,12 @@
                         <div class="bg-[#0A0F1A] border border-white/5 rounded-2xl p-4 flex flex-col justify-between">
                             <div>
                                 <img src="${h.image}" class="w-full h-36 object-cover rounded-xl mb-3">
-                                <span class="text-[10px] text-brand-gold font-bold uppercase">${h.city}</span>
+                                <span class="text-[10px] text-[#D4AF37] font-bold uppercase">${h.city}</span>
                                 <h4 class="font-bold text-white text-base">${h.name}</h4>
                                 <p class="text-xs text-slate-400 mt-1 line-clamp-2">${h.description || ''}</p>
                             </div>
                             <div class="flex justify-between items-center mt-4 pt-3 border-t border-white/5">
-                                <span class="font-bold text-brand-gold text-lg">€${h.price}</span>
+                                <span class="font-bold text-[#D4AF37] text-lg">€${h.price}</span>
                                 <button onclick="window.removeDoc('hotels', '${d.id}')" class="text-red-400 hover:text-red-300 text-xs font-bold">Sil</button>
                             </div>
                         </div>
@@ -406,7 +375,6 @@
             } catch(e) { console.error(e); }
         };
 
-        // حفظ وجلب رحلات الطيران
         window.saveFlight = async function() {
             const airline = document.getElementById('f-airline').value;
             const route = document.getElementById('f-route').value;
@@ -417,10 +385,7 @@
             if(!airline || !route) { alert("Gerekli alanları doldurunuz."); return; }
 
             try {
-                await addDoc(collection(db, "flights"), {
-                    airline, route, price, region, affiliateUrl,
-                    createdAt: serverTimestamp()
-                });
+                await addDoc(collection(db, "flights"), { airline, route, price, region, affiliateUrl, createdAt: serverTimestamp() });
                 document.getElementById('flight-form-box').classList.add('hidden');
                 window.fetchFlights();
             } catch(e) { alert("Hata: " + e.message); }
@@ -437,12 +402,12 @@
                     html += `
                         <div class="bg-[#0A0F1A] border border-white/5 rounded-2xl p-5 flex flex-col justify-between text-center">
                             <div>
-                                <i class="fas fa-plane text-brand-gold text-2xl mb-2"></i>
+                                <i class="fas fa-plane text-[#D4AF37] text-2xl mb-2"></i>
                                 <h4 class="font-bold text-white text-base">${f.route}</h4>
                                 <span class="text-xs text-slate-400 block mb-2">${f.airline} (${f.region || ''})</span>
                             </div>
                             <div class="flex justify-between items-center mt-4 pt-3 border-t border-white/5">
-                                <span class="font-bold text-brand-gold text-lg">€${f.price}</span>
+                                <span class="font-bold text-[#D4AF37] text-lg">€${f.price}</span>
                                 <button onclick="window.removeDoc('flights', '${d.id}')" class="text-red-400 hover:text-red-300 text-xs font-bold">Sil</button>
                             </div>
                         </div>
@@ -452,7 +417,6 @@
             } catch(e) { console.error(e); }
         };
 
-        // حفظ وجلب المقالات
         window.saveArticle = async function() {
             const category = document.getElementById('a-category').value;
             const title = document.getElementById('a-title').value;
@@ -462,10 +426,7 @@
             if(!title || !body) { alert("Başlık ve içerik gereklidir."); return; }
 
             try {
-                await addDoc(collection(db, "articles"), {
-                    category, title, image, body,
-                    createdAt: serverTimestamp()
-                });
+                await addDoc(collection(db, "articles"), { category, title, image, body, createdAt: serverTimestamp() });
                 document.getElementById('article-form-box').classList.add('hidden');
                 window.fetchArticles();
             } catch(e) { alert("Hata: " + e.message); }
@@ -483,7 +444,7 @@
                         <div class="bg-[#0A0F1A] border border-white/5 rounded-2xl p-4 flex flex-col justify-between">
                             <div>
                                 <img src="${a.image}" class="w-full h-32 object-cover rounded-xl mb-3">
-                                <span class="text-[10px] text-brand-gold font-bold uppercase">${a.category}</span>
+                                <span class="text-[10px] text-[#D4AF37] font-bold uppercase">${a.category}</span>
                                 <h4 class="font-bold text-white text-sm line-clamp-1">${a.title}</h4>
                             </div>
                             <div class="flex justify-end mt-4 pt-3 border-t border-white/5">
@@ -500,14 +461,12 @@
             if(!confirm("Bu kaydı silmek istediğinize emin misiniz?")) return;
             try {
                 await deleteDoc(doc(db, coll, id));
+                if(coll === 'reviews') window.fetchReviews();
                 if(coll === 'hotels') window.fetchHotels();
                 if(coll === 'flights') window.fetchFlights();
                 if(coll === 'articles') window.fetchArticles();
             } catch(e) { alert("Hata: " + e.message); }
         };
-
-        // تفعيل التحقق الأولي إذا كانت الجلسة مسجلة مسبقاً
-        checkSession();
     </script>
 </body>
 </html>
