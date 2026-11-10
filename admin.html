@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="tr" class="dark">
+<html lang="tr" dir="ltr" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UcuzaKal | Yönetim Masası</title>
+    <title>UcuzaKal | Yönetim Masası (Admin Panel)</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,6 +12,145 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        luxury: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            gold: '#D4AF37',
+                            dark: '#030508',
+                            surface: '#0A0F1A',
+                            cardDark: 'rgba(12, 17, 29, 0.85)'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { transition: background-color 0.4s ease, color 0.4s ease; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(10, 15, 26, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+        }
+    </style>
+
+    <script>
+        // إعدادات تسجيل الدخول واللغات والسمة
+        const I18N_ADMIN = {
+            tr: {
+                dir: "ltr",
+                login_title: "UcuzaKal Yönetim Girişi",
+                login_sub: "Lütfen devam etmek için yetkili kimlik bilgilerinizi giriniz.",
+                user_label: "Kullanıcı Adı",
+                pass_label: "Güvenlik Parolası",
+                btn_login: "Sisteme Giriş Yap",
+                tab_reviews: "Ziyaretçi Değerlendirmeleri",
+                tab_hotels: "Otel & Konaklama Teklifleri",
+                tab_flights: "Uçuş Seferleri",
+                tab_articles: "Profesyonel Seyahat Blogu",
+                logout: "Güvenli Çıkış",
+                refresh: "Yenile",
+                add_hotel: "+ Yeni Otel Kartı",
+                add_flight: "+ Yeni Uçuş Ekle",
+                add_article: "+ Yeni Blog Makalesi Yaz",
+                reviews_sub: "Web sitesi üzerinden ziyaretçilerin bıraktığı doğrudan yıldız puanları ve yorumlar.",
+                col_user: "Ziyaretçi Adı",
+                col_rating: "Puan",
+                col_review: "Yorum Metni",
+                col_action: "İşlem",
+                delete: "Sil",
+                save: "Yayınla & Kaydet"
+            },
+            ar: {
+                dir: "rtl",
+                login_title: "لوحة تحكم UcuzaKal",
+                login_sub: "يرجى إدخال بيانات الاعتماد المعتمدة للمتابعة.",
+                user_label: "اسم المستخدم",
+                pass_label: "كلمة المرور",
+                btn_login: "تسجيل الدخول للنظام",
+                tab_reviews: "تقييمات الزوار",
+                tab_hotels: "عروض الإقامة والفنادق",
+                tab_flights: "رحلات الطيران المباشرة",
+                tab_articles: "مدونة السفر والمقالات",
+                logout: "خروج آمن",
+                refresh: "تحديث البيانات",
+                add_hotel: "+ إضافة بطاقة فندق جديدة",
+                add_flight: "+ إضافة رحلة طيران جديدة",
+                add_article: "+ كتابة مقال سياحي جديد",
+                reviews_sub: "التقييمات والآراء الواردة مباشرة من زوار المنصة دون وسوم تعقب.",
+                col_user: "اسم الزائر",
+                col_rating: "التقييم",
+                col_review: "نص الانطباع والتعليق",
+                col_action: "الإجراء",
+                delete: "حذف",
+                save: "نشر وحفظ الآن"
+            },
+            en: {
+                dir: "ltr",
+                login_title: "UcuzaKal Admin Portal",
+                login_sub: "Please enter your authorized credentials to proceed.",
+                user_label: "Username",
+                pass_label: "Password",
+                btn_login: "Sign In to Dashboard",
+                tab_reviews: "Visitor Reviews",
+                tab_hotels: "Hotel & Suite Deals",
+                tab_flights: "Flight Schedules",
+                tab_articles: "Travel Blog Articles",
+                logout: "Sign Out",
+                refresh: "Refresh",
+                add_hotel: "+ Add Hotel Deal",
+                add_flight: "+ Add New Flight",
+                add_article: "+ Publish New Article",
+                reviews_sub: "Direct guest ratings and feedback submitted across the platform.",
+                col_user: "Visitor Name",
+                col_rating: "Rating",
+                col_review: "Review Message",
+                col_action: "Action",
+                delete: "Delete",
+                save: "Save & Publish"
+            }
+        };
+
+        function setLanguage(lang) {
+            const dict = I18N_ADMIN[lang] || I18N_ADMIN.tr;
+            document.documentElement.lang = lang;
+            document.documentElement.dir = dict.dir;
+            localStorage.setItem('ucuzakal_admin_lang', lang);
+
+            document.querySelectorAll('[data-admin-i18n]').forEach(el => {
+                const k = el.getAttribute('data-admin-i18n');
+                if (dict[k]) el.textContent = dict[k];
+            });
+        }
+
+        function toggleAdminTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('admin-theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                html.classList.add('light');
+                icon.className = "fas fa-moon text-slate-800 text-sm";
+                localStorage.setItem('ucuzakal_admin_theme', 'light');
+            } else {
+                html.classList.remove('light');
+                html.classList.add('dark');
+                icon.className = "fas fa-sun text-brand-gold text-sm";
+                localStorage.setItem('ucuzakal_admin_theme', 'dark');
+            }
+        }
+
         function executeLogin() {
             var userInput = document.getElementById('admin-user');
             var passInput = document.getElementById('admin-pass');
@@ -29,7 +168,7 @@
                 if (window.fetchReviews) window.fetchReviews();
             } else {
                 if (errMsg) errMsg.classList.remove('hidden');
-                alert("Hatalı kullanıcı adı veya şifre!\nاسم المستخدم أو كلمة المرور غير صحيحة");
+                alert("Hatalı kullanıcı adı veya parola!\nبيانات الدخول غير صحيحة");
             }
         }
 
@@ -38,6 +177,19 @@
         }
 
         window.onload = function() {
+            const savedTheme = localStorage.getItem('ucuzakal_admin_theme') || 'dark';
+            if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                const icon = document.getElementById('admin-theme-icon');
+                if (icon) icon.className = "fas fa-moon text-slate-800 text-sm";
+            }
+
+            const savedLang = localStorage.getItem('ucuzakal_admin_lang') || 'tr';
+            const sel = document.getElementById('admin-lang-select');
+            if (sel) sel.value = savedLang;
+            setLanguage(savedLang);
+
             if (sessionStorage.getItem('ucuzakal_admin_logged') === 'true') {
                 var modal = document.getElementById('login-modal');
                 var panel = document.getElementById('admin-panel');
@@ -48,30 +200,30 @@
         };
     </script>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
+<body class="bg-slate-100 dark:bg-brand-dark text-slate-900 dark:text-slate-100 font-sans min-h-screen">
 
-    <!-- نافذة تسجيل الدخول -->
-    <div id="login-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md p-4">
-        <div class="bg-[#0A0F1A] border border-[#D4AF37]/40 rounded-3xl p-8 max-w-md w-full shadow-2xl text-center">
-            <div class="w-16 h-16 rounded-full border-2 border-[#D4AF37] flex items-center justify-center mx-auto mb-4 text-[#D4AF37] text-2xl font-bold">
+    <!-- نافذة تسجيل الدخول المؤمنة -->
+    <div id="login-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md p-4">
+        <div class="glass-card rounded-3xl p-8 max-w-md w-full shadow-2xl text-center border border-brand-gold/40">
+            <div class="w-16 h-16 rounded-full border-2 border-brand-gold flex items-center justify-center mx-auto mb-4 text-brand-gold text-2xl font-luxury font-bold">
                 U
             </div>
-            <h2 class="text-2xl font-bold text-white mb-2">UcuzaKal Yönetim Girişi</h2>
-            <p class="text-xs text-slate-400 mb-6">Devam etmek için yetkili bilgilerinizi giriniz.</p>
+            <h2 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white mb-2" data-admin-i18n="login_title">UcuzaKal Yönetim Girişi</h2>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-6" data-admin-i18n="login_sub">Lütfen devam etmek için yetkili kimlik bilgilerinizi giriniz.</p>
             
             <div class="space-y-4 text-left">
                 <div>
-                    <label class="text-xs text-slate-300 font-bold block mb-1">Kullanıcı Adı (اسم المستخدم)</label>
-                    <input type="text" id="admin-user" value="admin" onkeypress="handleKey(event)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#D4AF37]">
+                    <label class="text-xs text-slate-700 dark:text-slate-300 font-bold block mb-1" data-admin-i18n="user_label">Kullanıcı Adı</label>
+                    <input type="text" id="admin-user" value="admin" onkeypress="handleKey(event)" class="w-full bg-white dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold shadow-sm">
                 </div>
                 <div>
-                    <label class="text-xs text-slate-300 font-bold block mb-1">Şifre (كلمة المرور)</label>
-                    <input type="password" id="admin-pass" placeholder="••••••••••••" onkeypress="handleKey(event)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-[#D4AF37]">
+                    <label class="text-xs text-slate-700 dark:text-slate-300 font-bold block mb-1" data-admin-i18n="pass_label">Güvenlik Parolası</label>
+                    <input type="password" id="admin-pass" placeholder="••••••••••••" onkeypress="handleKey(event)" class="w-full bg-white dark:bg-slate-800/90 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 text-sm text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold shadow-sm">
                 </div>
-                <div id="login-err" class="text-red-400 text-xs font-bold hidden text-center">
+                <div id="login-err" class="text-red-500 text-xs font-bold hidden text-center">
                     Hatalı kullanıcı adı veya şifre!
                 </div>
-                <button type="button" onclick="executeLogin()" class="w-full bg-[#D4AF37] hover:bg-yellow-500 text-black font-bold py-3.5 rounded-xl text-sm transition shadow-lg cursor-pointer">
+                <button type="button" onclick="executeLogin()" class="w-full bg-brand-gold hover:bg-yellow-500 text-black font-bold py-3.5 rounded-xl text-sm transition shadow-lg cursor-pointer" data-admin-i18n="btn_login">
                     Sisteme Giriş Yap
                 </button>
             </div>
@@ -80,74 +232,89 @@
 
     <!-- واجهة الإدارة بعد تسجيل الدخول -->
     <div id="admin-panel" class="hidden min-h-screen flex flex-col md:flex-row">
-        <!-- القائمة الجانبية -->
-        <aside class="w-full md:w-64 bg-[#0A0F1A] border-r border-[#D4AF37]/20 p-6 flex flex-col justify-between">
+        
+        <!-- الشريط الجانبي (Sidebar) -->
+        <aside class="w-full md:w-72 bg-white dark:bg-[#0A0F1A] border-r border-slate-200 dark:border-brand-gold/20 p-6 flex flex-col justify-between shadow-sm">
             <div>
-                <div class="flex items-center gap-3 mb-8">
-                    <div class="w-10 h-10 rounded-full border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-bold">U</div>
-                    <div>
-                        <h1 class="font-bold text-lg text-white">UcuzaKal</h1>
-                        <span class="text-[10px] text-[#D4AF37] tracking-widest uppercase font-bold">Yönetim Masası</span>
+                <div class="flex items-center justify-between mb-8">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full border-2 border-brand-gold flex items-center justify-center text-brand-gold font-luxury font-bold text-lg">U</div>
+                        <div>
+                            <h1 class="font-luxury font-bold text-lg text-slate-900 dark:text-white leading-tight">UcuzaKal</h1>
+                            <span class="text-[10px] text-brand-gold tracking-widest uppercase font-bold">Yönetim Masası</span>
+                        </div>
                     </div>
                 </div>
 
+                <!-- أزرار تبديل اللغة والوضع الليلي بالسايدبار -->
+                <div class="flex items-center gap-3 p-3 bg-slate-100 dark:bg-white/5 rounded-2xl mb-6">
+                    <select id="admin-lang-select" onchange="setLanguage(this.value)" class="flex-1 bg-transparent text-xs font-bold text-slate-800 dark:text-white focus:outline-none cursor-pointer">
+                        <option value="tr" class="dark:bg-slate-900">Türkçe (TR)</option>
+                        <option value="ar" class="dark:bg-slate-900">العربية (AR)</option>
+                        <option value="en" class="dark:bg-slate-900">English (EN)</option>
+                    </select>
+                    <button onclick="toggleAdminTheme()" class="w-8 h-8 rounded-full border border-slate-300 dark:border-brand-gold/30 flex items-center justify-center hover:bg-brand-gold hover:text-black transition">
+                        <i id="admin-theme-icon" class="fas fa-sun text-brand-gold text-xs"></i>
+                    </button>
+                </div>
+
                 <nav class="space-y-2">
-                    <button onclick="switchTab('reviews')" id="tab-btn-reviews" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold bg-[#D4AF37] text-black transition">
-                        <i class="fas fa-star"></i>
-                        <span>Değerlendirmeler</span>
+                    <button onclick="switchTab('reviews')" id="tab-btn-reviews" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold bg-brand-gold text-black transition shadow-sm">
+                        <i class="fas fa-star w-4"></i>
+                        <span data-admin-i18n="tab_reviews">Ziyaretçi Değerlendirmeleri</span>
                     </button>
-                    <button onclick="switchTab('hotels')" id="tab-btn-hotels" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-white/5 transition">
-                        <i class="fas fa-hotel"></i>
-                        <span>Otel Teklifleri</span>
+                    <button onclick="switchTab('hotels')" id="tab-btn-hotels" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition">
+                        <i class="fas fa-hotel w-4"></i>
+                        <span data-admin-i18n="tab_hotels">Otel Teklifleri</span>
                     </button>
-                    <button onclick="switchTab('flights')" id="tab-btn-flights" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-white/5 transition">
-                        <i class="fas fa-plane"></i>
-                        <span>Uçuş Seferleri</span>
+                    <button onclick="switchTab('flights')" id="tab-btn-flights" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition">
+                        <i class="fas fa-plane w-4"></i>
+                        <span data-admin-i18n="tab_flights">Uçuş Seferleri</span>
                     </button>
-                    <button onclick="switchTab('articles')" id="tab-btn-articles" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-white/5 transition">
-                        <i class="fas fa-newspaper"></i>
-                        <span>Blog Makaleleri</span>
+                    <button onclick="switchTab('articles')" id="tab-btn-articles" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition">
+                        <i class="fas fa-newspaper w-4"></i>
+                        <span data-admin-i18n="tab_articles">Profesyonel Seyahat Blogu</span>
                     </button>
                 </nav>
             </div>
 
-            <div class="pt-6 border-t border-slate-800">
-                <button onclick="sessionStorage.removeItem('ucuzakal_admin_logged'); location.reload();" class="w-full flex items-center justify-center gap-2 text-xs text-red-400 hover:text-red-300 font-bold py-2">
+            <div class="pt-6 border-t border-slate-200 dark:border-slate-800">
+                <button onclick="sessionStorage.removeItem('ucuzakal_admin_logged'); location.reload();" class="w-full flex items-center justify-center gap-2 text-xs text-red-500 hover:text-red-600 font-bold py-2.5 rounded-xl hover:bg-red-50 dark:hover:bg-red-950/20 transition">
                     <i class="fas fa-sign-out-alt"></i>
-                    <span>Çıkış Yap</span>
+                    <span data-admin-i18n="logout">Güvenli Çıkış</span>
                 </button>
             </div>
         </aside>
 
-        <!-- المحتوى الداخلي -->
-        <main class="flex-1 p-6 sm:p-10 bg-slate-950 overflow-y-auto">
+        <!-- منطقة العمل الرئيسية -->
+        <main class="flex-1 p-6 sm:p-10 overflow-y-auto">
             
-            <!-- 1. تبويب التقييمات (بدون مصادر الزيارات) -->
+            <!-- 1. قسم التقييمات النظيفة -->
             <section id="tab-reviews" class="space-y-6">
-                <div class="flex justify-between items-center">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Ziyaretçi Değerlendirmeleri</h2>
-                        <p class="text-xs text-slate-400">Site üzerinden ziyaretçilerin bıraktığı yıldız puanları ve yorumlar.</p>
+                        <h2 class="text-2xl sm:text-3xl font-luxury font-bold text-slate-900 dark:text-white" data-admin-i18n="tab_reviews">Ziyaretçi Değerlendirmeleri</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1" data-admin-i18n="reviews_sub">Web sitesi üzerinden ziyaretçilerin bıraktığı doğrudan yıldız puanları ve yorumlar.</p>
                     </div>
-                    <button onclick="window.fetchReviews()" class="bg-[#D4AF37]/10 border border-[#D4AF37]/40 text-[#D4AF37] px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#D4AF37] hover:text-black transition flex items-center gap-2">
-                        <i class="fas fa-sync-alt"></i> Yenile
+                    <button onclick="window.fetchReviews()" class="bg-brand-gold/10 border border-brand-gold/40 text-brand-gold px-4 py-2.5 rounded-xl text-xs font-bold hover:bg-brand-gold hover:text-black transition flex items-center gap-2 shadow-sm">
+                        <i class="fas fa-sync-alt"></i> <span data-admin-i18n="refresh">Yenile</span>
                     </button>
                 </div>
 
-                <div class="bg-[#0A0F1A] border border-white/5 rounded-2xl overflow-hidden shadow-xl">
+                <div class="glass-card rounded-2xl overflow-hidden shadow-sm">
                     <div class="overflow-x-auto">
-                        <table class="w-full text-left text-sm text-slate-300">
-                            <thead class="bg-white/5 text-[11px] text-[#D4AF37] uppercase tracking-wider">
+                        <table class="w-full text-left text-sm text-slate-700 dark:text-slate-300">
+                            <thead class="bg-slate-50 dark:bg-white/5 text-[11px] text-brand-gold uppercase tracking-wider border-b border-slate-200 dark:border-white/5">
                                 <tr>
-                                    <th class="px-6 py-4">Kullanıcı (الاسم)</th>
-                                    <th class="px-6 py-4">Puan (التقييم)</th>
-                                    <th class="px-6 py-4">Yorum (التعليق)</th>
-                                    <th class="px-6 py-4 text-center">İşlem (حذف)</th>
+                                    <th class="px-6 py-4" data-admin-i18n="col_user">Ziyaretçi Adı</th>
+                                    <th class="px-6 py-4" data-admin-i18n="col_rating">Puan</th>
+                                    <th class="px-6 py-4" data-admin-i18n="col_review">Yorum Metni</th>
+                                    <th class="px-6 py-4 text-center" data-admin-i18n="col_action">İşlem</th>
                                 </tr>
                             </thead>
                             <tbody id="reviews-tbody">
                                 <tr>
-                                    <td colspan="4" class="py-12 text-center text-slate-500">Kayıtlar yükleniyor...</td>
+                                    <td colspan="4" class="py-12 text-center text-slate-400">Kayıtlar yükleniyor...</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -155,98 +322,129 @@
                 </div>
             </section>
 
-            <!-- 2. تبويب الفنادق -->
+            <!-- 2. قسم الفنادق -->
             <section id="tab-hotels" class="space-y-6 hidden">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Otel & Konaklama Teklifleri</h2>
-                        <p class="text-xs text-slate-400">Ana sayfadaki otelleri yönetin.</p>
+                        <h2 class="text-2xl sm:text-3xl font-luxury font-bold text-slate-900 dark:text-white" data-admin-i18n="tab_hotels">Otel & Konaklama Teklifleri</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Ana sayfadaki lüks otel kartlarını yönetin.</p>
                     </div>
-                    <button onclick="document.getElementById('hotel-form-box').classList.toggle('hidden')" class="bg-[#D4AF37] text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 transition">
+                    <button onclick="document.getElementById('hotel-form-box').classList.toggle('hidden')" class="bg-brand-gold text-black px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-yellow-500 transition shadow-sm" data-admin-i18n="add_hotel">
                         + Yeni Otel Ekle
                     </button>
                 </div>
 
-                <div id="hotel-form-box" class="bg-[#0A0F1A] border border-[#D4AF37]/30 p-6 rounded-2xl space-y-4 hidden">
+                <div id="hotel-form-box" class="glass-card p-6 rounded-2xl space-y-4 hidden shadow-md">
+                    <h3 class="font-bold text-sm text-slate-900 dark:text-white">Otel Bilgileri Formu</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" id="h-name" placeholder="Otel Adı" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="text" id="h-city" placeholder="Şehir (örn: ANTALYA)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="number" id="h-price" placeholder="Fiyat (€)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="text" id="h-affiliate" placeholder="Affiliate Linki" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="text" id="h-img" placeholder="Görsel URL" class="col-span-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <textarea id="h-desc" placeholder="Açıklama" class="col-span-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white h-20"></textarea>
+                        <input type="text" id="h-name" placeholder="Otel Adı (örn: Maxx Royal Belek)" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold">
+                        <input type="text" id="h-city" placeholder="Şehir (örn: ANTALYA)" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold">
+                        <input type="number" id="h-price" placeholder="Başlangıç Fiyatı (€)" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold">
+                        <input type="text" id="h-affiliate" placeholder="Affiliate Rezervasyon Linki" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold">
+                        <input type="text" id="h-img" placeholder="Görsel URL (Unsplash vb.)" class="col-span-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold">
+                        <textarea id="h-desc" placeholder="Otel Hakkında Kısa Açıklama..." class="col-span-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-brand-gold h-20"></textarea>
                     </div>
-                    <button onclick="window.saveHotel()" class="bg-[#D4AF37] text-black px-6 py-2.5 rounded-xl text-xs font-bold">Kaydet</button>
+                    <button onclick="window.saveHotel()" class="bg-brand-gold text-black px-6 py-2.5 rounded-xl text-xs font-bold shadow-sm" data-admin-i18n="save">Kaydet</button>
                 </div>
 
                 <div id="hotels-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </section>
 
-            <!-- 3. تبويب الطيران -->
+            <!-- 3. قسم الطيران -->
             <section id="tab-flights" class="space-y-6 hidden">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Uçuş Seferleri</h2>
-                        <p class="text-xs text-slate-400">Uçak bilet rotalarını yönetin.</p>
+                        <h2 class="text-2xl sm:text-3xl font-luxury font-bold text-slate-900 dark:text-white" data-admin-i18n="tab_flights">Uçuş Seferleri</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Öne çıkan uçak bileti ve rota fırsatları.</p>
                     </div>
-                    <button onclick="document.getElementById('flight-form-box').classList.toggle('hidden')" class="bg-[#D4AF37] text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 transition">
-                        + Yeni Sefer Ekle
+                    <button onclick="document.getElementById('flight-form-box').classList.toggle('hidden')" class="bg-brand-gold text-black px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-yellow-500 transition shadow-sm" data-admin-i18n="add_flight">
+                        + Yeni Uçuş Ekle
                     </button>
                 </div>
 
-                <div id="flight-form-box" class="bg-[#0A0F1A] border border-[#D4AF37]/30 p-6 rounded-2xl space-y-4 hidden">
+                <div id="flight-form-box" class="glass-card p-6 rounded-2xl space-y-4 hidden shadow-md">
+                    <h3 class="font-bold text-sm text-slate-900 dark:text-white">Uçuş Kartı Bilgileri</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" id="f-airline" placeholder="Havayolu" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="text" id="f-route" placeholder="Rota (örn: İstanbul ⇄ Antalya)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="number" id="f-price" placeholder="Fiyat (€)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="text" id="f-region" placeholder="Bölge (Yerel / Rusya / Körfez)" class="bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="text" id="f-affiliate" placeholder="Bilet Affiliate Linki" class="col-span-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
+                        <input type="text" id="f-airline" placeholder="Havayolu Şirketi (örn: THY, Pegasus)" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white">
+                        <input type="text" id="f-route" placeholder="Rota (örn: İstanbul ⇄ Antalya)" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white">
+                        <input type="number" id="f-price" placeholder="Fiyat (€)" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white">
+                        <input type="text" id="f-region" placeholder="Bölge (Yerel / Rusya / Körfez)" class="bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white">
+                        <input type="text" id="f-affiliate" placeholder="Bilet Affiliate Linki" class="col-span-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white">
                     </div>
-                    <button onclick="window.saveFlight()" class="bg-[#D4AF37] text-black px-6 py-2.5 rounded-xl text-xs font-bold">Kaydet</button>
+                    <button onclick="window.saveFlight()" class="bg-brand-gold text-black px-6 py-2.5 rounded-xl text-xs font-bold shadow-sm" data-admin-i18n="save">Kaydet</button>
                 </div>
 
                 <div id="flights-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
             </section>
 
-            <!-- 4. تبويب المقالات -->
+            <!-- 4. قسم وقالب المقالات والمدونة الاحترافي الكامل -->
             <section id="tab-articles" class="space-y-6 hidden">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Blog Makaleleri</h2>
-                        <p class="text-xs text-slate-400">SEO seyahat makalelerini yönetin.</p>
+                        <h2 class="text-2xl sm:text-3xl font-luxury font-bold text-slate-900 dark:text-white" data-admin-i18n="tab_articles">Profesyonel Seyahat Blogu</h2>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">SEO odaklı seyahat rehberleri, kapak görselleri ve zengin içerikler.</p>
                     </div>
-                    <button onclick="document.getElementById('article-form-box').classList.toggle('hidden')" class="bg-[#D4AF37] text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-yellow-500 transition">
-                        + Yeni Makale Yaz
+                    <button onclick="document.getElementById('article-form-box').classList.toggle('hidden')" class="bg-brand-gold text-black px-5 py-2.5 rounded-xl text-xs font-bold hover:bg-yellow-500 transition shadow-sm" data-admin-i18n="add_article">
+                        + Yeni Blog Makalesi Yaz
                     </button>
                 </div>
 
-                <div id="article-form-box" class="bg-[#0A0F1A] border border-[#D4AF37]/30 p-6 rounded-2xl space-y-4 hidden">
-                    <div class="space-y-4">
-                        <input type="text" id="a-category" placeholder="Kategori (örn: İSTANBUL)" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="text" id="a-title" placeholder="Makale Başlığı" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <input type="text" id="a-img" placeholder="Kapak Görseli URL" class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white">
-                        <textarea id="a-body" placeholder="Makale Metni..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2.5 text-xs text-white h-36"></textarea>
+                <!-- نموذج نشر مقال مدونة احترافي متقدم -->
+                <div id="article-form-box" class="glass-card p-6 sm:p-8 rounded-2xl space-y-5 hidden shadow-lg">
+                    <div class="border-b border-slate-200 dark:border-white/10 pb-4">
+                        <h3 class="font-luxury font-bold text-lg text-slate-900 dark:text-white">Yeni Makale Editörü</h3>
+                        <p class="text-xs text-slate-400">Ziyaretçilerin sitede okuyacağı zengin seyahat içeriğini hazırlayın.</p>
                     </div>
-                    <button onclick="window.saveArticle()" class="bg-[#D4AF37] text-black px-6 py-2.5 rounded-xl text-xs font-bold">Yayınla</button>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Kategori / Şehir</label>
+                            <input type="text" id="a-category" placeholder="örn: İSTANBUL, ANTALYA, TRABZON" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white">
+                        </div>
+                        <div>
+                            <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Yazar / Editör</label>
+                            <input type="text" id="a-author" value="UcuzaKal Editörü" placeholder="Yazar adı" class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Makale Başlığı</label>
+                        <input type="text" id="a-title" placeholder="Göz Alıcı Makale Başlığı..." class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white font-bold">
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Kapak Görseli Linki (High-Res Image URL)</label>
+                        <input type="text" id="a-img" placeholder="https://images.unsplash.com/..." class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Kısa Özet (Preview Snippet)</label>
+                        <textarea id="a-snippet" placeholder="Kart üzerinde görünecek 2-3 cümlelik çekici özet..." class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs text-slate-900 dark:text-white h-16"></textarea>
+                    </div>
+                    <div>
+                        <label class="text-xs font-bold text-slate-700 dark:text-slate-300 block mb-1">Makale Tam Metni (HTML Paragraflarını &lt;p&gt; Destekler)</label>
+                        <textarea id="a-body" placeholder="Makalenin tüm paragrafları ve seyahat önerileri..." class="w-full bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 rounded-xl px-4 py-3 text-xs sm:text-sm text-slate-900 dark:text-white h-44"></textarea>
+                    </div>
+                    <div class="flex justify-end pt-2">
+                        <button onclick="window.saveArticle()" class="bg-brand-gold hover:bg-yellow-500 text-black px-8 py-3 rounded-xl text-xs font-bold shadow-lg" data-admin-i18n="save">Yayınla & Kaydet</button>
+                    </div>
                 </div>
 
-                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-3 gap-6"></div>
+                <!-- قالب عرض المقالات كمدونة احترافية -->
+                <div id="articles-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
             </section>
 
         </main>
     </div>
 
+    <!-- سكربت إدارة التبويبات -->
     <script>
         function switchTab(tabId) {
             ['reviews', 'hotels', 'flights', 'articles'].forEach(t => {
                 document.getElementById('tab-' + t).classList.add('hidden');
                 var b = document.getElementById('tab-btn-' + t);
-                b.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-white/5 transition";
+                b.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 transition";
             });
 
             document.getElementById('tab-' + tabId).classList.remove('hidden');
             var activeB = document.getElementById('tab-btn-' + tabId);
-            activeB.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold bg-[#D4AF37] text-black transition";
+            activeB.className = "w-full flex items-center gap-3 px-4 py-3 rounded-xl text-xs sm:text-sm font-bold bg-brand-gold text-black transition shadow-sm";
 
             if (tabId === 'reviews' && window.fetchReviews) window.fetchReviews();
             if (tabId === 'hotels' && window.fetchHotels) window.fetchHotels();
@@ -255,7 +453,7 @@
         }
     </script>
 
-    <!-- ربط Firebase Firestore للبيانات -->
+    <!-- ربط Firebase Firestore الشامل -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -273,7 +471,7 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // جلب التقييمات وعرضها بنظام نظيف وبسيط
+        // 1. جلب التقييمات
         window.fetchReviews = async function() {
             const tbody = document.getElementById('reviews-tbody');
             if (!tbody) return;
@@ -282,7 +480,7 @@
             try {
                 const snap = await getDocs(collection(db, "reviews"));
                 if (snap.empty) {
-                    tbody.innerHTML = `<tr><td colspan="4" class="py-12 text-center text-slate-500 font-bold">Kayıtlı değerlendirme bulunamadı.</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="4" class="py-12 text-center text-slate-400 font-bold">Kayıtlı değerlendirme bulunamadı.</td></tr>`;
                     return;
                 }
 
@@ -295,16 +493,16 @@
                     let stars = '';
                     const rating = Number(r.rating) || 5;
                     for (let i = 1; i <= 5; i++) {
-                        stars += i <= rating ? '<i class="fas fa-star text-[#D4AF37] text-xs"></i> ' : '<i class="far fa-star text-slate-600 text-xs"></i> ';
+                        stars += i <= rating ? '<i class="fas fa-star text-brand-gold text-xs"></i> ' : '<i class="far fa-star text-slate-300 dark:text-slate-600 text-xs"></i> ';
                     }
 
                     html += `
-                        <tr class="border-b border-white/5 hover:bg-white/5 transition">
-                            <td class="px-6 py-4 font-bold text-white">${r.userName || 'İsimsiz'}</td>
+                        <tr class="border-b border-slate-200 dark:border-white/5 hover:bg-slate-50 dark:hover:bg-white/5 transition">
+                            <td class="px-6 py-4 font-bold text-slate-900 dark:text-white">${r.userName || 'İsimsiz'}</td>
                             <td class="px-6 py-4 whitespace-nowrap">${stars}</td>
-                            <td class="px-6 py-4 text-slate-300 max-w-sm">${r.reviewText || ''}</td>
+                            <td class="px-6 py-4 text-slate-600 dark:text-slate-300 max-w-sm">${r.reviewText || ''}</td>
                             <td class="px-6 py-4 text-center">
-                                <button onclick="window.removeDoc('reviews', '${r.id}')" class="text-red-400 hover:text-red-300 p-2" title="Sil">
+                                <button onclick="window.removeDoc('reviews', '${r.id}')" class="text-red-500 hover:text-red-600 p-2 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition" title="Sil">
                                     <i class="fas fa-trash-alt"></i>
                                 </button>
                             </td>
@@ -313,11 +511,11 @@
                 });
                 tbody.innerHTML = html;
             } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-red-400">Hata: ${e.message}</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-red-500">Hata: ${e.message}</td></tr>`;
             }
         };
 
-        // إدارة الفنادق
+        // 2. إدارة الفنادق
         window.saveHotel = async function() {
             const name = document.getElementById('h-name').value;
             const city = document.getElementById('h-city').value;
@@ -344,25 +542,25 @@
                 snap.forEach(d => {
                     const h = d.data();
                     html += `
-                        <div class="bg-[#0A0F1A] border border-white/5 rounded-2xl p-4 flex flex-col justify-between">
+                        <div class="glass-card rounded-2xl p-4 flex flex-col justify-between shadow-sm">
                             <div>
-                                <img src="${h.image}" class="w-full h-36 object-cover rounded-xl mb-3">
-                                <span class="text-[10px] text-[#D4AF37] font-bold uppercase">${h.city}</span>
-                                <h4 class="font-bold text-white text-base">${h.name}</h4>
-                                <p class="text-xs text-slate-400 mt-1 line-clamp-2">${h.description || ''}</p>
+                                <img src="${h.image}" class="w-full h-40 object-cover rounded-xl mb-3">
+                                <span class="text-[10px] text-brand-gold font-bold uppercase tracking-wider">${h.city}</span>
+                                <h4 class="font-luxury font-bold text-slate-900 dark:text-white text-base mt-1">${h.name}</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-2 leading-relaxed">${h.description || ''}</p>
                             </div>
-                            <div class="flex justify-between items-center mt-4 pt-3 border-t border-white/5">
-                                <span class="font-bold text-[#D4AF37] text-lg">€${h.price}</span>
-                                <button onclick="window.removeDoc('hotels', '${d.id}')" class="text-red-400 hover:text-red-300 text-xs font-bold">Sil</button>
+                            <div class="flex justify-between items-center mt-4 pt-3 border-t border-slate-200 dark:border-white/5">
+                                <span class="font-bold text-brand-gold text-lg">€${h.price}</span>
+                                <button onclick="window.removeDoc('hotels', '${d.id}')" class="text-red-500 hover:text-red-600 text-xs font-bold">Sil</button>
                             </div>
                         </div>
                     `;
                 });
-                grid.innerHTML = html || '<p class="col-span-full text-center text-slate-500 py-8">Kayıtlı otel yok.</p>';
+                grid.innerHTML = html || '<p class="col-span-full text-center text-slate-400 py-8">Kayıtlı otel yok.</p>';
             } catch(e) { console.error(e); }
         };
 
-        // إدارة رحلات الطيران
+        // 3. إدارة رحلات الطيران
         window.saveFlight = async function() {
             const airline = document.getElementById('f-airline').value;
             const route = document.getElementById('f-route').value;
@@ -388,35 +586,48 @@
                 snap.forEach(d => {
                     const f = d.data();
                     html += `
-                        <div class="bg-[#0A0F1A] border border-white/5 rounded-2xl p-5 flex flex-col justify-between text-center">
+                        <div class="glass-card rounded-2xl p-5 flex flex-col justify-between text-center shadow-sm">
                             <div>
-                                <i class="fas fa-plane text-[#D4AF37] text-2xl mb-2"></i>
-                                <h4 class="font-bold text-white text-base">${f.route}</h4>
+                                <i class="fas fa-plane text-brand-gold text-2xl mb-3"></i>
+                                <h4 class="font-bold text-slate-900 dark:text-white text-base">${f.route}</h4>
                                 <span class="text-xs text-slate-400 block mb-2">${f.airline} (${f.region || ''})</span>
                             </div>
-                            <div class="flex justify-between items-center mt-4 pt-3 border-t border-white/5">
-                                <span class="font-bold text-[#D4AF37] text-lg">€${f.price}</span>
-                                <button onclick="window.removeDoc('flights', '${d.id}')" class="text-red-400 hover:text-red-300 text-xs font-bold">Sil</button>
+                            <div class="flex justify-between items-center mt-4 pt-3 border-t border-slate-200 dark:border-white/5">
+                                <span class="font-bold text-brand-gold text-lg">€${f.price}</span>
+                                <button onclick="window.removeDoc('flights', '${d.id}')" class="text-red-500 hover:text-red-600 text-xs font-bold">Sil</button>
                             </div>
                         </div>
                     `;
                 });
-                grid.innerHTML = html || '<p class="col-span-full text-center text-slate-500 py-8">Kayıtlı uçuş yok.</p>';
+                grid.innerHTML = html || '<p class="col-span-full text-center text-slate-400 py-8">Kayıtlı uçuş yok.</p>';
             } catch(e) { console.error(e); }
         };
 
-        // إدارة مقالات المدونة
+        // 4. إدارة قالب المقالات والمدونة الاحترافية
         window.saveArticle = async function() {
-            const category = document.getElementById('a-category').value;
-            const title = document.getElementById('a-title').value;
-            const image = document.getElementById('a-img').value;
-            const body = document.getElementById('a-body').value;
+            const category = document.getElementById('a-category').value.trim() || 'TÜRKİYE';
+            const author = document.getElementById('a-author').value.trim() || 'UcuzaKal Editörü';
+            const title = document.getElementById('a-title').value.trim();
+            const image = document.getElementById('a-img').value.trim();
+            const snippet = document.getElementById('a-snippet').value.trim();
+            const body = document.getElementById('a-body').value.trim();
 
-            if(!title || !body) { alert("Başlık ve içerik gereklidir."); return; }
+            if(!title || !body) { alert("Lütfen başlık ve makale metnini doldurunuz."); return; }
 
             try {
-                await addDoc(collection(db, "articles"), { category, title, image, body, createdAt: serverTimestamp() });
+                await addDoc(collection(db, "articles"), {
+                    category,
+                    author,
+                    title,
+                    image: image || 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=90',
+                    snippet: snippet || body.substring(0, 150) + '...',
+                    body,
+                    createdAt: serverTimestamp()
+                });
                 document.getElementById('article-form-box').classList.add('hidden');
+                document.getElementById('a-title').value = '';
+                document.getElementById('a-body').value = '';
+                document.getElementById('a-snippet').value = '';
                 window.fetchArticles();
             } catch(e) { alert("Hata: " + e.message); }
         };
@@ -430,23 +641,33 @@
                 snap.forEach(d => {
                     const a = d.data();
                     html += `
-                        <div class="bg-[#0A0F1A] border border-white/5 rounded-2xl p-4 flex flex-col justify-between">
+                        <article class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between shadow-sm group hover:border-brand-gold transition duration-300">
                             <div>
-                                <img src="${a.image}" class="w-full h-32 object-cover rounded-xl mb-3">
-                                <span class="text-[10px] text-[#D4AF37] font-bold uppercase">${a.category}</span>
-                                <h4 class="font-bold text-white text-sm line-clamp-1">${a.title}</h4>
+                                <div class="h-44 overflow-hidden relative">
+                                    <img src="${a.image}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                                    <span class="absolute top-3 left-3 bg-black/70 backdrop-blur-md text-brand-gold text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">${a.category || 'TÜRKİYE'}</span>
+                                </div>
+                                <div class="p-5">
+                                    <div class="text-[11px] text-slate-400 mb-2 flex items-center gap-2">
+                                        <i class="far fa-user text-brand-gold"></i>
+                                        <span>${a.author || 'Editör'}</span>
+                                    </div>
+                                    <h4 class="font-luxury font-bold text-slate-900 dark:text-white text-lg leading-tight line-clamp-2 mb-2">${a.title}</h4>
+                                    <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed">${a.snippet || a.body || ''}</p>
+                                </div>
                             </div>
-                            <div class="flex justify-end mt-4 pt-3 border-t border-white/5">
-                                <button onclick="window.removeDoc('articles', '${d.id}')" class="text-red-400 hover:text-red-300 text-xs font-bold">Sil</button>
+                            <div class="p-5 pt-0 flex justify-between items-center border-t border-slate-200 dark:border-white/5 mt-2">
+                                <span class="text-[11px] text-brand-gold font-bold">SEO Yayında</span>
+                                <button onclick="window.removeDoc('articles', '${d.id}')" class="text-red-500 hover:text-red-600 text-xs font-bold p-2 hover:bg-red-50 dark:hover:bg-red-950/20 rounded-lg transition">Sil</button>
                             </div>
-                        </div>
+                        </article>
                     `;
                 });
-                grid.innerHTML = html || '<p class="col-span-full text-center text-slate-500 py-8">Kayıtlı makale yok.</p>';
+                grid.innerHTML = html || '<p class="col-span-full text-center text-slate-400 py-8">Kayıtlı makale yok.</p>';
             } catch(e) { console.error(e); }
         };
 
-        // حذف أي مستند
+        // دالة الحذف المباشرة
         window.removeDoc = async function(coll, id) {
             if(!confirm("Bu kaydı silmek istediğinize emin misiniz?")) return;
             try {
