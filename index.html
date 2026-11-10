@@ -6,7 +6,7 @@
     <title>UcuzaKal Türkiye | Seçkin Seyahat ve Rezervasyon Platformu</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&family=Playfair+Display:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -106,6 +106,7 @@
         .lens-spin { animation: smoothSpin 10s linear infinite; }
         body { transition: background-color 0.5s ease, color 0.5s ease; }
 
+        /* تأثيرات حركة أزرار التواصل الاجتماعي الفاخرة */
         .social-channel-item {
             display: inline-flex;
             align-items: center;
@@ -299,7 +300,7 @@
         </div>
     </section>
 
-    <!-- قسم التقييمات التفاعلي المربوط بـ Firestore -->
+    <!-- قسم التقييمات -->
     <section class="max-w-3xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-white/10">
         <div class="text-center mb-10">
             <h2 class="font-luxury text-3xl sm:text-4xl text-slate-900 dark:text-white font-bold mb-3" data-i18n="ratings_heading">İzlenimlerinizi Paylaşın</h2>
@@ -316,9 +317,9 @@
             
             <div class="flex flex-col gap-6 max-w-md mx-auto">
                 <input type="text" id="user-review-name" data-i18n-placeholder="review_name_placeholder" placeholder="Adınız Soyadınız" class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition">
-                <textarea id="user-review-text" rows="2" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..." class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition resize-none"></textarea>
-                <button id="btn-submit-review" onclick="window.submitReview()" class="mt-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3.5 rounded-full text-xs tracking-widest uppercase hover:opacity-80 transition flex items-center justify-center gap-2">
-                    <span data-i18n="submit_review_btn">Gönder</span>
+                <textarea id="user-review-text" rows="1" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..." class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition resize-none"></textarea>
+                <button onclick="submitReview()" class="mt-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3.5 rounded-full text-xs tracking-widest uppercase hover:opacity-80 transition" data-i18n="submit_review_btn">
+                    Gönder
                 </button>
             </div>
             <p id="review-success-msg" class="text-brand-gold text-xs sm:text-sm text-center font-bold mt-6 hidden" data-i18n="review_success">
@@ -335,7 +336,9 @@
                 <span class="text-brand-gold text-xs tracking-[0.3em] uppercase font-bold mt-2 inline-block">Global Resmi Kanallarımız</span>
             </div>
 
+            <!-- شبكة التواصل الاجتماعي المقسمة لكل منصة ولغاتها الثلاث رأسياً -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-16">
+                
                 <!-- 1. فيسبوك -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-xl shadow-md mb-1">
@@ -467,6 +470,7 @@
                         </a>
                     </div>
                 </div>
+
             </div>
 
             <div class="text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold border-t border-slate-200 dark:border-white/5 pt-8" data-i18n="rights">
@@ -475,7 +479,7 @@
         </div>
     </footer>
 
-    <!-- سكربتات التحكم واللغات والبيانات الافتراضية -->
+    <!-- سكربتات الترجمة والوظائف -->
     <script>
         window.ARTICLES_MAP = {};
         window.HOTELS_DATA = [];
@@ -628,9 +632,9 @@
             }, 2000); 
         }
 
-        window.selectedRating = 0;
-        window.rateStar = function(stars) {
-            window.selectedRating = stars;
+        let selectedRating = 0;
+        function rateStar(stars) {
+            selectedRating = stars;
             const starIcons = document.querySelectorAll('#star-container i');
             starIcons.forEach((icon, idx) => {
                 if (idx < stars) {
@@ -639,7 +643,7 @@
                     icon.className = "far fa-star text-slate-300 dark:text-slate-700 transition duration-300";
                 }
             });
-        };
+        }
 
         const TRANSLATIONS = {
             tr: {
@@ -868,7 +872,7 @@
             }
         });
 
-        // عرض بطاقات الفنادق
+        // 1. عرض بطاقات الفنادق
         window.renderHotels = function() {
             const container = document.getElementById('hotels-container');
             if (!container) return;
@@ -903,7 +907,7 @@
             container.innerHTML = html;
         };
 
-        // عرض بطاقات الطيران
+        // 2. عرض بطاقات الطيران
         window.renderFlights = function() {
             const container = document.getElementById('flights-container');
             if (!container) return;
@@ -928,7 +932,7 @@
             container.innerHTML = html;
         };
 
-        // عرض بطاقات المدونة
+        // 3. عرض بطاقات المدونة
         window.renderBlogCards = function() {
             const container = document.getElementById('blog-container');
             if (!container) return;
@@ -972,7 +976,7 @@
             container.innerHTML = html;
         };
 
-        // رصد مصدر الزيارة (UTM / Referrer)
+        // دالة كشف مصدر الزيارة بدقة (UTM / Referrer)
         function detectTrafficSource() {
             const urlParams = new URLSearchParams(window.location.search);
             const utm = urlParams.get('utm_source');
@@ -989,27 +993,23 @@
             return 'DIRECT';
         }
 
-        // إرسال التقييم إلى Firestore
+        // إرسال التقييم مع مصدر الزيارة إلى Firestore
         window.submitReview = async function() {
             const nameInput = document.getElementById('user-review-name');
             const textInput = document.getElementById('user-review-text');
-            const btn = document.getElementById('btn-submit-review');
             const name = nameInput ? nameInput.value.trim() : '';
             const text = textInput ? textInput.value.trim() : '';
 
-            if (!name || !text || window.selectedRating === 0) {
+            if (!name || !text || selectedRating === 0) {
                 alert("Lütfen yıldız seçimi yapıp isim ve yorum alanlarını doldurunuz. / يرجى اختيار النجوم وكتابة الاسم والتعليق!");
                 return;
             }
-
-            btn.disabled = true;
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Gönderiliyor...';
 
             try {
                 await addDoc(collection(db, "reviews"), {
                     userName: name,
                     reviewText: text,
-                    rating: Number(window.selectedRating),
+                    rating: Number(selectedRating),
                     source: detectTrafficSource(),
                     createdAt: serverTimestamp()
                 });
@@ -1017,14 +1017,11 @@
                 document.getElementById('review-success-msg').classList.remove('hidden');
                 nameInput.value = '';
                 textInput.value = '';
-                window.rateStar(0);
+                rateStar(0);
                 alert("Teşekkürler! Değerlendirmeniz başarıyla kaydedildi. / تم حفظ تقييمك بنجاح في قاعدة البيانات!");
             } catch(e) {
                 console.error("Firestore Review Error:", e);
                 alert("Kayıt hatası: " + e.message);
-            } finally {
-                btn.disabled = false;
-                btn.innerHTML = '<span data-i18n="submit_review_btn">' + (TRANSLATIONS[document.documentElement.lang || 'tr']?.submit_review_btn || 'Gönder') + '</span>';
             }
         };
 
