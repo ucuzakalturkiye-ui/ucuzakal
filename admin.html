@@ -12,16 +12,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script>
-        // دالة الدخول الفورية والمستقلة عن أي مكتبة
         function executeLogin() {
             var userInput = document.getElementById('admin-user');
             var passInput = document.getElementById('admin-pass');
             var errMsg = document.getElementById('login-err');
 
-            if (!userInput || !passInput) {
-                alert("Hata: Giriş alanları bulunamadı.");
-                return;
-            }
+            if (!userInput || !passInput) return;
 
             var u = userInput.value.trim();
             var p = passInput.value.trim();
@@ -30,23 +26,17 @@
                 sessionStorage.setItem('ucuzakal_admin_logged', 'true');
                 document.getElementById('login-modal').style.display = 'none';
                 document.getElementById('admin-panel').classList.remove('hidden');
-                if (window.fetchReviews) {
-                    window.fetchReviews();
-                }
+                if (window.fetchReviews) window.fetchReviews();
             } else {
                 if (errMsg) errMsg.classList.remove('hidden');
                 alert("Hatalı kullanıcı adı veya şifre!\nاسم المستخدم أو كلمة المرور غير صحيحة");
             }
         }
 
-        // تسجيل الدخول عند الضغط على Enter في لوحة المفاتيح
         function handleKey(e) {
-            if (e.key === 'Enter') {
-                executeLogin();
-            }
+            if (e.key === 'Enter') executeLogin();
         }
 
-        // استعادة الجلسة في حال كان مسجلاً مسبقاً
         window.onload = function() {
             if (sessionStorage.getItem('ucuzakal_admin_logged') === 'true') {
                 var modal = document.getElementById('login-modal');
@@ -81,7 +71,7 @@
                 <div id="login-err" class="text-red-400 text-xs font-bold hidden text-center">
                     Hatalı kullanıcı adı veya şifre!
                 </div>
-                <button type="button" id="btn-login" onclick="executeLogin()" class="w-full bg-[#D4AF37] hover:bg-yellow-500 text-black font-bold py-3.5 rounded-xl text-sm transition shadow-lg cursor-pointer">
+                <button type="button" onclick="executeLogin()" class="w-full bg-[#D4AF37] hover:bg-yellow-500 text-black font-bold py-3.5 rounded-xl text-sm transition shadow-lg cursor-pointer">
                     Sisteme Giriş Yap
                 </button>
             </div>
@@ -104,7 +94,7 @@
                 <nav class="space-y-2">
                     <button onclick="switchTab('reviews')" id="tab-btn-reviews" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold bg-[#D4AF37] text-black transition">
                         <i class="fas fa-star"></i>
-                        <span>Değerlendirmeler & Trafik</span>
+                        <span>Değerlendirmeler</span>
                     </button>
                     <button onclick="switchTab('hotels')" id="tab-btn-hotels" class="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold text-slate-400 hover:bg-white/5 transition">
                         <i class="fas fa-hotel"></i>
@@ -132,12 +122,12 @@
         <!-- المحتوى الداخلي -->
         <main class="flex-1 p-6 sm:p-10 bg-slate-950 overflow-y-auto">
             
-            <!-- 1. تبويب التقييمات ومصادر الزيارات -->
+            <!-- 1. تبويب التقييمات (بدون مصادر الزيارات) -->
             <section id="tab-reviews" class="space-y-6">
                 <div class="flex justify-between items-center">
                     <div>
-                        <h2 class="text-2xl font-bold text-white">Müşteri Değerlendirmeleri ve Trafik</h2>
-                        <p class="text-xs text-slate-400">Site üzerinden gelen puanlar, yorumlar ve UTM/Referrer kaynakları.</p>
+                        <h2 class="text-2xl font-bold text-white">Ziyaretçi Değerlendirmeleri</h2>
+                        <p class="text-xs text-slate-400">Site üzerinden ziyaretçilerin bıraktığı yıldız puanları ve yorumlar.</p>
                     </div>
                     <button onclick="window.fetchReviews()" class="bg-[#D4AF37]/10 border border-[#D4AF37]/40 text-[#D4AF37] px-4 py-2 rounded-xl text-xs font-bold hover:bg-[#D4AF37] hover:text-black transition flex items-center gap-2">
                         <i class="fas fa-sync-alt"></i> Yenile
@@ -149,16 +139,15 @@
                         <table class="w-full text-left text-sm text-slate-300">
                             <thead class="bg-white/5 text-[11px] text-[#D4AF37] uppercase tracking-wider">
                                 <tr>
-                                    <th class="px-6 py-4">Kullanıcı</th>
-                                    <th class="px-6 py-4">Trafik Kaynağı</th>
-                                    <th class="px-6 py-4">Puan</th>
-                                    <th class="px-6 py-4">Yorum</th>
-                                    <th class="px-6 py-4 text-center">İşlem</th>
+                                    <th class="px-6 py-4">Kullanıcı (الاسم)</th>
+                                    <th class="px-6 py-4">Puan (التقييم)</th>
+                                    <th class="px-6 py-4">Yorum (التعليق)</th>
+                                    <th class="px-6 py-4 text-center">İşlem (حذف)</th>
                                 </tr>
                             </thead>
                             <tbody id="reviews-tbody">
                                 <tr>
-                                    <td colspan="5" class="py-12 text-center text-slate-500">Kayıtlar taranıyor...</td>
+                                    <td colspan="4" class="py-12 text-center text-slate-500">Kayıtlar yükleniyor...</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -266,7 +255,7 @@
         }
     </script>
 
-    <!-- ربط Firebase Firestore -->
+    <!-- ربط Firebase Firestore للبيانات -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
@@ -284,15 +273,16 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
+        // جلب التقييمات وعرضها بنظام نظيف وبسيط
         window.fetchReviews = async function() {
             const tbody = document.getElementById('reviews-tbody');
             if (!tbody) return;
-            tbody.innerHTML = `<tr><td colspan="5" class="py-8 text-center text-slate-400"><i class="fas fa-spinner fa-spin text-xl mb-2"></i><p>Yükleniyor...</p></td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="4" class="py-8 text-center text-slate-400"><i class="fas fa-spinner fa-spin text-xl mb-2"></i><p>Yükleniyor...</p></td></tr>`;
 
             try {
                 const snap = await getDocs(collection(db, "reviews"));
                 if (snap.empty) {
-                    tbody.innerHTML = `<tr><td colspan="5" class="py-12 text-center text-slate-500 font-bold">Kayıtlı değerlendirme bulunamadı.</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="4" class="py-12 text-center text-slate-500 font-bold">Kayıtlı değerlendirme bulunamadı.</td></tr>`;
                     return;
                 }
 
@@ -308,15 +298,11 @@
                         stars += i <= rating ? '<i class="fas fa-star text-[#D4AF37] text-xs"></i> ' : '<i class="far fa-star text-slate-600 text-xs"></i> ';
                     }
 
-                    const src = r.source || 'DIRECT';
-                    const badgeClass = src === 'DIRECT' ? 'bg-slate-800 text-slate-300' : 'bg-[#D4AF37] text-black';
-
                     html += `
                         <tr class="border-b border-white/5 hover:bg-white/5 transition">
                             <td class="px-6 py-4 font-bold text-white">${r.userName || 'İsimsiz'}</td>
-                            <td class="px-6 py-4"><span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${badgeClass}">${src}</span></td>
-                            <td class="px-6 py-4">${stars}</td>
-                            <td class="px-6 py-4 text-slate-300 max-w-xs truncate">${r.reviewText || ''}</td>
+                            <td class="px-6 py-4 whitespace-nowrap">${stars}</td>
+                            <td class="px-6 py-4 text-slate-300 max-w-sm">${r.reviewText || ''}</td>
                             <td class="px-6 py-4 text-center">
                                 <button onclick="window.removeDoc('reviews', '${r.id}')" class="text-red-400 hover:text-red-300 p-2" title="Sil">
                                     <i class="fas fa-trash-alt"></i>
@@ -327,10 +313,11 @@
                 });
                 tbody.innerHTML = html;
             } catch(e) {
-                tbody.innerHTML = `<tr><td colspan="5" class="py-6 text-center text-red-400">Hata: ${e.message}</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-red-400">Hata: ${e.message}</td></tr>`;
             }
         };
 
+        // إدارة الفنادق
         window.saveHotel = async function() {
             const name = document.getElementById('h-name').value;
             const city = document.getElementById('h-city').value;
@@ -375,6 +362,7 @@
             } catch(e) { console.error(e); }
         };
 
+        // إدارة رحلات الطيران
         window.saveFlight = async function() {
             const airline = document.getElementById('f-airline').value;
             const route = document.getElementById('f-route').value;
@@ -417,6 +405,7 @@
             } catch(e) { console.error(e); }
         };
 
+        // إدارة مقالات المدونة
         window.saveArticle = async function() {
             const category = document.getElementById('a-category').value;
             const title = document.getElementById('a-title').value;
@@ -457,6 +446,7 @@
             } catch(e) { console.error(e); }
         };
 
+        // حذف أي مستند
         window.removeDoc = async function(coll, id) {
             if(!confirm("Bu kaydı silmek istediğinize emin misiniz?")) return;
             try {
