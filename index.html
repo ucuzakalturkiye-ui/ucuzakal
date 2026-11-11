@@ -197,13 +197,6 @@
                         <option value="ru" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Русский</option>
                         <option value="es" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Español</option>
                         <option value="zh" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">中文</option>
-                        <option value="ku" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Kurdî</option>
-                        <option value="fa" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">فارسی</option>
-                        <option value="az" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Azərbaycan</option>
-                        <option value="el" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Ελληνικά</option>
-                        <option value="ka" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">ქართული</option>
-                        <option value="bg" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Български</option>
-                        <option value="uk" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Українська</option>
                     </select>
                     <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-[10px] pointer-events-none"></i>
                 </div>
@@ -318,7 +311,7 @@
         </div>
     </section>
 
-    <!-- الفوتر مع تقسيم شبكات التواصل الاجتماعي (TR, RU, AR) مع تأثيرات متحركة فاخرة -->
+    <!-- الفوتر مع تقسيم شبكات التواصل الاجتماعي -->
     <footer class="bg-white dark:bg-[#020306] border-t border-slate-200 dark:border-white/5 pt-16 pb-12 transition-colors duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-12">
@@ -407,7 +400,7 @@
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
-        // مقالات احترافية مؤقتة للمدونة فقط لحين ربط وكيل المدونة لاحقاً
+        // مقالات مؤقتة للمدونة فقط لحين ربط وكيل المدونة لاحقاً
         const DEFAULT_ARTICLES = [
             {
                 id: 'def-1',
@@ -417,13 +410,17 @@
                     tr: "Antalya'nın Gizli Cennetleri ve Lüks Koyları",
                     ar: "جنات أنطاليا المخفية وخلجانها الفاخرة",
                     en: "Antalya's Hidden Havens & Exclusive Bays",
-                    ru: "Тайные бухты и эксклюзивный отдых в Анталье"
+                    ru: "Тайные бухты и эксклюзивный отдых в Анталье",
+                    es: "Los paraísos escondidos y bahías exclusivas de Antalya",
+                    zh: "安塔利亚的隐藏天堂和独特海湾"
                 },
                 bodies: {
                     tr: "<p>Antalya, yalnızca kitle turizmi ile değil; sakin koyları, turkuaz suları ve dünya standartlarındaki seçkin tatil köyleriyle Akdeniz'in en değerli rotalarından biridir.</p><p>Kaş ve Kalkan civarındaki butik koylar, teknelerle ulaşılabilen bakir plajlar ve Belek kıyılarındaki özel golf rezidansları, konfor ve mahremiyeti bir arada arayan gezginler için eşsiz olanaklar sunmaktadır.</p>",
                     ar: "<p>لا تقتصر أنطاليا على المنتجعات الشهيرة فحسب؛ بل تحتضن خلجاناً فيروزية معزولة ومحميات طبيعية تجعلها من أكثر وجهات البحر الأبيض المتوسط تميزاً وفخامة.</p><p>توفر مناطق مثل كاش وكالكان وشواطئ بيليك الخاصة ملاذات تجمع بين الراحة والخصوصية والخدمات الملكية الشاملة.</p>",
                     en: "<p>Antalya is not just a destination for mass tourism; it is home to secluded turquoise coves and world-class luxury resorts along the Turkish Riviera.</p>",
-                    ru: "<p>Анталья — это не только знаменитые курорты, но и уединенные бирюзовые бухты Средиземного моря высочайшего класса.</p>"
+                    ru: "<p>Анталья — это не только знаменитые курорты, но и уединенные бирюзовые бухты Средиземного моря высочайшего класса.</p>",
+                    es: "<p>Antalya no es solo un destino para el turismo masivo; alberga calas turquesas solitarias y resorts de lujo de clase mundial a lo largo de la Riviera turca.</p>",
+                    zh: "<p>安塔利亚不仅仅是大众旅游的目的地；它拥有隐蔽的绿松石海湾和土耳其里维埃拉沿岸的世界级豪华度假胜地。</p>"
                 }
             },
             {
@@ -434,13 +431,17 @@
                     tr: "Boğaziçi'nde Tarihi Saraylar ve Gurme Deneyimler",
                     ar: "قصور البوسفور التاريخية وتجارب التذوق الراقية",
                     en: "Bosphorus Palaces & Fine Dining Experiences",
-                    ru: "Дворцы Босфора и гастрономические открытия"
+                    ru: "Дворцы Босфора и гастрономические открытия",
+                    es: "Palacios del Bósforo y experiencias gastronómicas",
+                    zh: "博斯普鲁斯海峡宫殿与精致餐饮体验"
                 },
                 bodies: {
                     tr: "<p>Doğu ile Batı'nın kesiştiği İstanbul, Boğaz kıyısındaki saray otelleriyle konuklarına asırlık bir zarafet yaşatır.</p><p>Çırağan ve çevresinde konaklarken sabah Boğaz vapurlarının sesleriyle uyanmak, akşam ise uluslararası gastronomi ödüllü şeflerin hazırladığı menüleri tatmak eşsizdir.</p>",
                     ar: "<p>في المدينة التي تلتقي فيها قارتان، تمنحك فنادق القصور العثمانية الواقعة على ضفاف البوسفور تجربة أصيلة تحاكي عبق التاريخ وأناقة الحاضر.</p>",
                     en: "<p>Where two continents meet, Istanbul offers centuries of heritage reflected through majestic palace hotels situated on the Bosphorus.</p>",
-                    ru: "<p>Стамбул — город, где встречаются две цивилизации. Дворцовые отели на берегах Босфора дарят гостям непревзойденную атмосферу османского великолепия.</p>"
+                    ru: "<p>Стамбул — город, где встречаются две цивилизации. Дворцовые отели на берегах Босфора дарят гостям непревзойденную атмосферу османского великолепия.</p>",
+                    es: "<p>Donde se encuentran dos continentes, Estambul ofrece siglos de herencia reflejados a través de majestuosos hoteles palacio situados en el Bósforo.</p>",
+                    zh: "<p>作为两大洲的交汇点，伊斯坦布尔通过坐落在博斯普鲁斯海峡上宏伟的宫殿酒店，展现了数百年的文化遗产。</p>"
                 }
             },
             {
@@ -451,13 +452,17 @@
                     tr: "Karadeniz Yaylalarında Sislerin Arasında Huzur",
                     ar: "السكينة بين غيوم مرتفعات البحر الأسود",
                     en: "Tranquility Amidst Black Sea Plateaus",
-                    ru: "Умиротворение среди туманных плато Черного моря"
+                    ru: "Умиротворение среди туманных плато Черного моря",
+                    es: "Tranquilidad entre las mesetas del Mar Negro",
+                    zh: "黑海高原上的宁静"
                 },
                 bodies: {
                     tr: "<p>Karadeniz'in serin yaylaları, yeşilin binbir tonu ve dağların arasına gizlenmiş berrak gölleriyle doğa aşıklarına huzurlu bir sığınak sunar.</p><p>Uzungöl ve Ayder yaylalarındaki özel ahşap rezidanslar, doğallığı modern konforla buluşturur.</p>",
                     ar: "<p>تتميز مرتفعات البحر الأسود بطبيعتها الخضراء البكر، وهوائها العليل، وغيومها التي تعانق قمم الجبال في مشهد ساحر يبعث على الراحة والهدوء.</p>",
                     en: "<p>The mist-covered highlands of the Black Sea provide an idyllic mountain retreat characterized by emerald pine forests.</p>",
-                    ru: "<p>Прохладные плато Черноморского региона Турции — это царство нетронутой изумрудной природы и горных озер.</p>"
+                    ru: "<p>Прохладные плато Черноморского региона Турции — это царство нетронутой изумрудной природы и горных озер.</p>",
+                    es: "<p>Las tierras altas cubiertas de niebla del Mar Negro proporcionan un idílico refugio montañoso caracterizado por bosques de pinos esmeralda.</p>",
+                    zh: "<p>黑海雾气缭绕的高地提供了一个田园诗般的山区隐居地，以翠绿的松林为特色。</p>"
                 }
             }
         ];
@@ -550,6 +555,7 @@
             });
         }
 
+        // قواميس الترجمة (بما في ذلك التركية كأساس، والإسبانية والصينية)
         const TRANSLATIONS = {
             tr: {
                 dir: "ltr",
@@ -653,7 +659,59 @@
                 google_login: "Войти через Gmail",
                 cinematic_title: "Перенаправление на платформу бронирования...",
                 no_deals_title: "Формирование эксклюзивных предложений",
-                no_deals_desc: "Наши ИИ-ассистенты в данный момент анализируют для вас самые привилегированные предложения по всему миру. Пожалуйста, загляните к нам чуть позже."
+                no_deals_desc: "Наши ИИ-ассистенты в данный момент анализируют для вас самые привилегированные предложения. Пожалуйста, загляните к нам чуть позже."
+            },
+            es: {
+                dir: "ltr",
+                hero_title: "Descubra Rutas de Élite con Lujo",
+                hero_subtitle: "Oportunidades exclusivas de alojamiento y vuelos cuidadosamente compiladas para usted en los destinos más populares de Turquía.",
+                hotels_sub: "SELECCIÓN EXCLUSIVA",
+                hotels_heading: "Colección de Selección Especial",
+                starting_from: "Precios desde",
+                flights_sub: "ELEGANCIA EN LOS CIELOS",
+                flights_heading: "Vuelos Privilegiados",
+                blog_sub: "GUÍA DE VIAJE",
+                blog_heading: "Diario de Viaje UcuzaKal",
+                read_more: "Leer más",
+                about_heading: "¿Quiénes somos?",
+                about_text_1: "UcuzaKal Türkiye es una plataforma de viajes independiente que selecciona cuidadosamente las mejores ofertas de alojamiento y vuelos en los destinos de élite de Turquía.",
+                about_text_2: "Cada ruta está meticulosamente diseñada para que su viaje se convierta en una experiencia de elegancia inolvidable.",
+                ratings_heading: "Comparta sus impresiones",
+                review_name_placeholder: "Nombre completo",
+                review_text_placeholder: "Sus pensamientos...",
+                submit_review_btn: "Enviar",
+                review_success: "Gracias por sus elegantes comentarios.",
+                rights: "Todos los derechos reservados UcuzaKal Türkiye",
+                google_login: "Iniciar sesión con Gmail",
+                cinematic_title: "Redirigiendo a la plataforma de reservas...",
+                no_deals_title: "Compilando Selecciones Exclusivas",
+                no_deals_desc: "Nuestros asistentes de IA están analizando actualmente las oportunidades más privilegiadas para usted. Vuelva a consultar en breve."
+            },
+            zh: {
+                dir: "ltr",
+                hero_title: "在奢华中发现精英路线",
+                hero_subtitle: "为您在土耳其最受欢迎的目的地精心汇编的独家住宿和航班优惠。",
+                hotels_sub: "独家精选",
+                hotels_heading: "特别精选系列",
+                starting_from: "起价",
+                flights_sub: "云端优雅",
+                flights_heading: "尊享航班",
+                blog_sub: "旅行指南",
+                blog_heading: "UcuzaKal 旅行日记",
+                read_more: "阅读更多",
+                about_heading: "关于我们",
+                about_text_1: "UcuzaKal Türkiye 是一个独立的旅行平台，为您精心挑选土耳其精英目的地的最佳住宿和航班优惠。",
+                about_text_2: "每条路线都经过精心设计，让您的旅程成为难忘的优雅体验。",
+                ratings_heading: "分享您的印象",
+                review_name_placeholder: "姓名",
+                review_text_placeholder: "您的想法...",
+                submit_review_btn: "提交",
+                review_success: "感谢您的优雅反馈。",
+                rights: "保留所有权利 UcuzaKal Türkiye",
+                google_login: "使用 Gmail 登录",
+                cinematic_title: "正在重定向至预订平台...",
+                no_deals_title: "正在策划独家精选",
+                no_deals_desc: "我们的 AI 助手目前正在为您分析全球最优惠的机会。请稍后再来探索。"
             }
         };
 
@@ -661,22 +719,27 @@
             const dict = TRANSLATIONS[lang] || TRANSLATIONS.tr;
             document.documentElement.lang = lang;
             document.documentElement.dir = dict.dir;
+            
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
                 if (dict[key]) { el.textContent = dict[key]; }
             });
+            
             document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
                 const key = el.getAttribute('data-i18n-placeholder');
                 if (dict[key]) { el.placeholder = dict[key]; }
             });
+            
             localStorage.setItem('ucuzakal_lang', lang);
 
+            // إعادة رسم العناصر لتطبيق الترجمة على العروض أو رسائل عدم وجود عروض
             if (window.renderHotels) window.renderHotels();
             if (window.renderFlights) window.renderFlights();
             if (window.renderBlogCards) window.renderBlogCards();
         }
 
         window.addEventListener('DOMContentLoaded', () => {
+            // جعل اللغة التركية هي الأساسية والافتراضية دائماً
             const savedLang = localStorage.getItem('ucuzakal_lang') || 'tr';
             const switcher = document.getElementById('lang-switcher');
             if (switcher) { switcher.value = savedLang; changeLanguage(savedLang); }
@@ -760,9 +823,9 @@
                             <div class="absolute inset-0 rounded-full border border-brand-gold/40 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite] opacity-20"></div>
                             <i class="fas fa-gem text-brand-gold text-3xl animate-pulse"></i>
                         </div>
-                        <h3 class="font-luxury text-2xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-4 font-bold tracking-wide">${dict.no_deals_title || 'Özel Seçkiler Derleniyor'}</h3>
+                        <h3 class="font-luxury text-2xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-4 font-bold tracking-wide" data-i18n="no_deals_title">${dict.no_deals_title || 'Özel Seçkiler Derleniyor'}</h3>
                         <div class="w-12 h-[1px] bg-brand-gold/50 mx-auto mb-5"></div>
-                        <p class="text-slate-500 dark:text-slate-400 max-w-md mx-auto text-sm sm:text-base leading-relaxed font-light">${dict.no_deals_desc || 'Lütfen kısa bir süre sonra tekrar keşfedin.'}</p>
+                        <p class="text-slate-500 dark:text-slate-400 max-w-md mx-auto text-sm sm:text-base leading-relaxed font-light" data-i18n="no_deals_desc">${dict.no_deals_desc || 'Lütfen kısa bir süre sonra tekrar keşfedin.'}</p>
                     </div>
                 `;
                 return;
@@ -807,9 +870,9 @@
                             <div class="absolute inset-0 rounded-full border border-brand-gold/40 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite] opacity-20"></div>
                             <i class="fas fa-globe text-brand-gold text-3xl animate-pulse"></i>
                         </div>
-                        <h3 class="font-luxury text-2xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-4 font-bold tracking-wide">${dict.no_deals_title || 'Özel Seçkiler Derleniyor'}</h3>
+                        <h3 class="font-luxury text-2xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-4 font-bold tracking-wide" data-i18n="no_deals_title">${dict.no_deals_title || 'Özel Seçkiler Derleniyor'}</h3>
                         <div class="w-12 h-[1px] bg-brand-gold/50 mx-auto mb-5"></div>
-                        <p class="text-slate-500 dark:text-slate-400 max-w-md mx-auto text-sm sm:text-base leading-relaxed font-light">${dict.no_deals_desc || 'Lütfen kısa bir süre sonra tekrar keşfedin.'}</p>
+                        <p class="text-slate-500 dark:text-slate-400 max-w-md mx-auto text-sm sm:text-base leading-relaxed font-light" data-i18n="no_deals_desc">${dict.no_deals_desc || 'Lütfen kısa bir süre sonra tekrar keşfedin.'}</p>
                     </div>
                 `;
                 return;
