@@ -106,7 +106,6 @@
         .lens-spin { animation: smoothSpin 10s linear infinite; }
         body { transition: background-color 0.5s ease, color 0.5s ease; }
 
-        /* تأثيرات حركة أزرار التواصل الاجتماعي الفاخرة */
         .social-channel-item {
             display: inline-flex;
             align-items: center;
@@ -196,15 +195,6 @@
                         <option value="ar" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">العربية</option>
                         <option value="en" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">English</option>
                         <option value="ru" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Русский</option>
-                        <option value="es" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Español</option>
-                        <option value="zh" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">中文</option>
-                        <option value="ku" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Kurdî</option>
-                        <option value="fa" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">فارسی</option>
-                        <option value="az" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Azərbaycan</option>
-                        <option value="el" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Ελληνικά</option>
-                        <option value="ka" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">ქართული</option>
-                        <option value="bg" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Български</option>
-                        <option value="uk" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Українська</option>
                     </select>
                     <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-[10px] pointer-events-none"></i>
                 </div>
@@ -236,7 +226,7 @@
         </div>
     </section>
 
-    <!-- عروض الفنادق والشقق (Firestore Dynamic Grid) -->
+    <!-- عروض الفنادق والشقق -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="hotels_sub">ÖZEL SEÇKİ</span>
@@ -252,7 +242,7 @@
         </div>
     </main>
 
-    <!-- عروض الطيران (Firestore Dynamic Grid) -->
+    <!-- عروض الطيران -->
     <section class="border-y border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#020306]/50 py-16 sm:py-24 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
@@ -270,7 +260,7 @@
         </div>
     </section>
 
-    <!-- قسم المدونة السياحية (SEO Blog) -->
+    <!-- قسم المدونة السياحية -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="blog_sub">SEYAHAT REHBERİ</span>
@@ -338,139 +328,71 @@
 
             <!-- شبكة التواصل الاجتماعي المقسمة لكل منصة ولغاتها الثلاث رأسياً -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-16">
-                
                 <!-- 1. فيسبوك -->
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-xl shadow-md mb-1">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
+                    <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-xl shadow-md mb-1"><i class="fab fa-facebook-f"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Facebook</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
-                        <a href="https://www.facebook.com/profile.php?id=61596063752611" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Facebook Türkiye">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
-                            <span class="lang-pill">TR</span>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61596363298777" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Facebook Россия">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
-                            <span class="lang-pill">RU</span>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61596182676675" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="فيسبوك عربي">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
-                            <span class="lang-pill">AR</span>
-                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61596063752611" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
+                        <a href="https://www.facebook.com/profile.php?id=61596363298777" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span><span class="lang-pill">RU</span></a>
+                        <a href="https://www.facebook.com/profile.php?id=61596182676675" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
 
                 <!-- 2. إنستغرام -->
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full flex items-center justify-center text-white text-xl shadow-md mb-1" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);">
-                        <i class="fab fa-instagram"></i>
-                    </div>
+                    <div class="w-11 h-11 rounded-full flex items-center justify-center text-white text-xl shadow-md mb-1" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><i class="fab fa-instagram"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Instagram</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
-                        <a href="https://www.instagram.com/ucuzakalturkiye/" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Instagram Türkiye">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
-                            <span class="lang-pill">TR</span>
-                        </a>
-                        <a href="https://www.instagram.com/ucuzakal.r/" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Instagram Россия">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
-                            <span class="lang-pill">RU</span>
-                        </a>
-                        <a href="https://www.instagram.com/ucuzakal.a/" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="إنستغرام عربي">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
-                            <span class="lang-pill">AR</span>
-                        </a>
+                        <a href="https://www.instagram.com/ucuzakalturkiye/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
+                        <a href="https://www.instagram.com/ucuzakal.r/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span><span class="lang-pill">RU</span></a>
+                        <a href="https://www.instagram.com/ucuzakal.a/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
 
                 <!-- 3. بنترست -->
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full bg-[#E60023] flex items-center justify-center text-white text-xl shadow-md mb-1">
-                        <i class="fab fa-pinterest-p"></i>
-                    </div>
+                    <div class="w-11 h-11 rounded-full bg-[#E60023] flex items-center justify-center text-white text-xl shadow-md mb-1"><i class="fab fa-pinterest-p"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Pinterest</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
-                        <a href="https://tr.pinterest.com/ucuzakal/" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Pinterest Türkiye">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
-                            <span class="lang-pill">TR</span>
-                        </a>
-                        <a href="https://www.pinterest.com/UcuzaKal00RU/?actingBusinessId=1067775530310396233" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="Pinterest Россия">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
-                            <span class="lang-pill">RU</span>
-                        </a>
-                        <a href="https://www.pinterest.com/ARucuzakal/" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="بنترست عربي">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
-                            <span class="lang-pill">AR</span>
-                        </a>
+                        <a href="https://tr.pinterest.com/ucuzakal/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
+                        <a href="https://www.pinterest.com/UcuzaKal00RU/?actingBusinessId=1067775530310396233" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span><span class="lang-pill">RU</span></a>
+                        <a href="https://www.pinterest.com/ARucuzakal/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
 
                 <!-- 4. إكس (تويتر) -->
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white text-xl shadow-md border border-slate-700 mb-1">
-                        <i class="fab fa-x-twitter"></i>
-                    </div>
+                    <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white text-xl shadow-md border border-slate-700 mb-1"><i class="fab fa-x-twitter"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">X (Twitter)</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
-                        <a href="https://x.com/UcuzaKalTr" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="X Türkiye">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
-                            <span class="lang-pill">TR</span>
-                        </a>
-                        <a href="https://x.com/UcuzaKal" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="X Россия">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
-                            <span class="lang-pill">RU</span>
-                        </a>
-                        <a href="https://x.com/ucuzaKalAR" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="إكس عربي">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
-                            <span class="lang-pill">AR</span>
-                        </a>
+                        <a href="https://x.com/UcuzaKalTr" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
+                        <a href="https://x.com/UcuzaKal" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span><span class="lang-pill">RU</span></a>
+                        <a href="https://x.com/ucuzaKalAR" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
 
                 <!-- 5. تيك توك -->
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white text-xl shadow-md border border-slate-700 mb-1">
-                        <i class="fab fa-tiktok"></i>
-                    </div>
+                    <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white text-xl shadow-md border border-slate-700 mb-1"><i class="fab fa-tiktok"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">TikTok</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
-                        <a href="https://www.tiktok.com/@ucuzakal.tr" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="TikTok Türkiye">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
-                            <span class="lang-pill">TR</span>
-                        </a>
-                        <a href="https://www.tiktok.com/@ucuzakal.ru?lang=ru-RU" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="TikTok Россия">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
-                            <span class="lang-pill">RU</span>
-                        </a>
-                        <a href="https://www.tiktok.com/@ucuzakal.ar?lang=ar" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="تيك توك عربي">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
-                            <span class="lang-pill">AR</span>
-                        </a>
+                        <a href="https://www.tiktok.com/@ucuzakal.tr" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
+                        <a href="https://www.tiktok.com/@ucuzakal.ru?lang=ru-RU" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span><span class="lang-pill">RU</span></a>
+                        <a href="https://www.tiktok.com/@ucuzakal.ar?lang=ar" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
 
                 <!-- 6. يوتيوب -->
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-xl shadow-md mb-1">
-                        <i class="fab fa-youtube"></i>
-                    </div>
+                    <div class="w-11 h-11 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-xl shadow-md mb-1"><i class="fab fa-youtube"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">YouTube</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
-                        <a href="https://www.youtube.com/@UcuzaKalT%C3%Bcrkiye" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="YouTube Türkiye">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span>
-                            <span class="lang-pill">TR</span>
-                        </a>
-                        <a href="https://www.youtube.com/@UcuzaKal.R" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="YouTube Россия">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span>
-                            <span class="lang-pill">RU</span>
-                        </a>
-                        <a href="https://www.youtube.com/@UcuzaKal0AR" target="_blank" rel="noopener noreferrer" class="social-channel-item justify-between" title="يوتيوب عربي">
-                            <span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span>
-                            <span class="lang-pill">AR</span>
-                        </a>
+                        <a href="https://www.youtube.com/@UcuzaKalT%C3%Bcrkiye" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
+                        <a href="https://www.youtube.com/@UcuzaKal.R" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Русский</span><span class="lang-pill">RU</span></a>
+                        <a href="https://www.youtube.com/@UcuzaKal0AR" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
-
             </div>
 
             <div class="text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold border-t border-slate-200 dark:border-white/5 pt-8" data-i18n="rights">
@@ -484,24 +406,6 @@
         window.ARTICLES_MAP = {};
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
-
-        const DEFAULT_HOTELS = [
-            { name: "Maxx Royal Belek", city: "ANTALYA", price: 319, image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h1_desc" },
-            { name: "Rixos Premium", city: "ANTALYA", price: 285, image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h2_desc" },
-            { name: "Akra Hotel", city: "ANTALYA", price: 195, image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h3_desc" },
-            { name: "Çırağan Palace", city: "İSTANBUL", price: 269, image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h4_desc" },
-            { name: "Royal Uzungöl", city: "TRABZON", price: 72, image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h5_desc" },
-            { name: "Almira Termal", city: "BURSA", price: 95, image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=90", affiliateUrl: "https://www.trivago.com.tr", desc_key: "h6_desc" }
-        ];
-
-        const DEFAULT_FLIGHTS = [
-            { airline: "Türk Hava Yolları", route: "İstanbul ⇄ Antalya", region: "Yerel", price: 45, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f1_desc" },
-            { airline: "Pegasus Airlines", route: "Ankara ⇄ Trabzon", region: "Yerel", price: 38, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f2_desc" },
-            { airline: "Aeroflot", route: "Moskova ⇄ İstanbul", region: "Rusya", price: 155, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f3_desc" },
-            { airline: "Turkish Airlines", route: "St. Petersburg ⇄ Antalya", region: "Rusya", price: 180, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f4_desc" },
-            { airline: "Emirates & THY", route: "Dubai ⇄ İstanbul", region: "Arap Körfezi", price: 210, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f5_desc" },
-            { airline: "Flynas", route: "Riyad ⇄ İzmir", region: "Arap Körfezi", price: 165, affiliateUrl: "https://www.skyscanner.com.tr", desc_key: "f6_desc" }
-        ];
 
         const DEFAULT_ARTICLES = [
             {
@@ -653,20 +557,8 @@
                 hotels_sub: "ÖZEL SEÇKİ",
                 hotels_heading: "Özel Seçki Koleksiyonu",
                 starting_from: "Başlayan Fiyatlar",
-                h1_desc: "Akdeniz kıyılarında özel alanlar sunan, doğa ile iç içe ayrıcalıklı tasarıma sahip konfor alanı.",
-                h2_desc: "Toros dağlarının eteklerinde, turkuaz sulara nazır ultra her şey dahil lüks deneyim.",
-                h3_desc: "Şehir merkezinde falezler üzerinde yükselen, Akdeniz'in sonsuz maviliğine açılan prestijli adres.",
-                h4_desc: "Boğaziçi'nin kalbinde, eşsiz konforu ve kusursuz manzarasıyla öne çıkan seçkin bir deneyim.",
-                h5_desc: "Göl manzaralı, huzur dolu mimarisiyle doğanın kalbinde eşsiz ve sakin bir dinlenme noktası.",
-                h6_desc: "Uludağ manzarasına karşı şifalı olanaklarla harmanlanmış, bedeni ve ruhu dinlendiren bir ortam.",
                 flights_sub: "GÖKLERDEKİ ZARAFET",
                 flights_heading: "Ayrıcalıklı Uçuşlar",
-                f1_desc: "Ayrıcalıklı bagaj ve ikram olanaklarıyla kesintisiz direkt geçiş.",
-                f2_desc: "Kuzeyin serin doğasına uzanan hızlı ve pratik hava köprüsü.",
-                f3_desc: "Rusya'nın başkentinden Boğaz'ın incisine uluslararası konforla direkt hat.",
-                f4_desc: "Kuzeyin incisinden Akdeniz'in güneşli sahil şeridine keyifli seyahat.",
-                f5_desc: "Lüks kabin hizmetleri ve geniş ikram seçenekleriyle Körfez'den İstanbul'a.",
-                f6_desc: "Ege'nin incisi İzmir'e, Suudi Arabistan'dan ekonomik ve konforlu direkt köprü.",
                 blog_sub: "SEYAHAT REHBERİ",
                 blog_heading: "UcuzaKal Seyahat Günlüğü",
                 read_more: "Devamını Oku",
@@ -689,20 +581,8 @@
                 hotels_sub: "مختارات خاصة",
                 hotels_heading: "مجموعة المختارات الخاصة",
                 starting_from: "الأسعار تبدأ من",
-                h1_desc: "مساحات خاصة على سواحل المتوسط، توفر أجواءً من الخصوصية المطلقة والرفاهية مع الطبيعة.",
-                h2_desc: "عند سفوح جبال طوروس، تجربة شاملة كلياً فائقة الفخامة تطل على المياه الفيروزية.",
-                h3_desc: "صرح مرموق يرتفع فوق المنحدرات الصخرية بقلب المدينة ليطل على أفق المتوسط اللانهائي.",
-                h4_desc: "في قلب البوسفور، تجربة استثنائية تتميز بالراحة المطلقة والمناظر الخلابة التي لا تُضاهى.",
-                h5_desc: "ملاذ هادئ يطل على البحيرة، يمنحك استراحة ساحرة وسط الطبيعة الخضراء للبحر الأسود.",
-                h6_desc: "بيئة مريحة للجسد والروح، تمزج بين المرافق الحرارية الشافية والإطلالة البانورامية على أولوداغ.",
                 flights_sub: "أناقة الأجواء",
                 flights_heading: "مسارات الرحلات الحصرية",
-                f1_desc: "انتقال مباشر ومريح دون انقطاع، مصحوباً بامتيازات الأمتعة والخدمات الرفيعة.",
-                f2_desc: "جسر جوي آمن وسريع، يمتد بك نحو الطبيعة الباردة والمنعشة في الشمال التركي.",
-                f3_desc: "خط دولي مباشر يربط العاصمة الروسية بمدينة البوسفور بأعلى معايير الراحة.",
-                f4_desc: "رحلة مباشرة ممتعة من لؤلؤة الشمال الروسي إلى شواطئ البحر الأبيض المتوسط المشمسة.",
-                f5_desc: "خدمات مقصورة فاخرة وخيارات ضيافة واسعة تنقلك من الخليج العربي إلى إسطنبول.",
-                f6_desc: "رحلة مباشرة تجمع بين الراحة والاقتصاد من المملكة العربية السعودية إلى لؤلؤة إيجه.",
                 blog_sub: "دليل السفر",
                 blog_heading: "يوميات UcuzaKal السياحية",
                 read_more: "اقرأ المزيد",
@@ -725,20 +605,8 @@
                 hotels_sub: "EXCLUSIVE SELECTION",
                 hotels_heading: "Special Selection Collection",
                 starting_from: "Rates Starting From",
-                h1_desc: "A privileged comfort zone with exceptional design offering private spaces on the Mediterranean shores.",
-                h2_desc: "At the foothills of Taurus Mountains, an ultra-all-inclusive experience facing turquoise waters.",
-                h3_desc: "A prestigious address rising on urban cliffs, opening into the endless blue of the Mediterranean.",
-                h4_desc: "An outstanding experience in the heart of the Bosphorus with unique comfort and flawless view.",
-                h5_desc: "A serene getaway overlooking the lake amidst the lush green nature of the Black Sea.",
-                h6_desc: "A rejuvenating haven blending healing thermal facilities against majestic Uludağ vistas.",
                 flights_sub: "ELEGANCE IN THE SKIES",
                 flights_heading: "Privileged Flights",
-                f1_desc: "Uninterrupted direct transit with privileged baggage and hospitality services.",
-                f2_desc: "A fast and practical aerial route leading directly into refreshing Northern nature.",
-                f3_desc: "A direct international connection between Moscow and Istanbul with premier comfort.",
-                f4_desc: "Seamless journey from St. Petersburg directly to the sunny shores of Antalya.",
-                f5_desc: "Luxury cabin hospitality and gourmet catering connecting the Arabian Gulf to Istanbul.",
-                f6_desc: "Comfortable and efficient direct link from Riyadh to the Aegean gem of Izmir.",
                 blog_sub: "TRAVEL JOURNAL",
                 blog_heading: "UcuzaKal Travel Journal",
                 read_more: "Read More",
@@ -761,20 +629,8 @@
                 hotels_sub: "СПЕЦИАЛЬНЫЙ ВЫБОР",
                 hotels_heading: "Специальная коллекция",
                 starting_from: "Цены от",
-                h1_desc: "Привилегированная зона отдыха на средиземноморском побережье среди дивной природы.",
-                h2_desc: "У подножия Таврских гор, ультра все включено с видом на лазурные морские просторы.",
-                h3_desc: "Престижный отель на утесах города, открывающий бесконечную синеву Средиземного моря.",
-                h4_desc: "Выдающийся комфорт и безупречный вид в самом сердце пролива Босфор.",
-                h5_desc: "Безмятежный отдых на лоне зеленой природы Черного моря с видом на гладь озера.",
-                h6_desc: "Целебные термальные источники и спокойствие с панорамой заснеженного Улудага.",
                 flights_sub: "ЭЛЕГАНТНОСТЬ В НЕБЕ",
                 flights_heading: "Привилегированные рейсы",
-                f1_desc: "Прямой комфортный перелет с расширенным сервисом багажа и питания.",
-                f2_desc: "Быстрый воздушный мост к прохладе и свежести северной природы.",
-                f3_desc: "Прямой рейс из Москвы в сердце Стамбула с высоким международным стандартом.",
-                f4_desc: "Удобный перелет из Санкт-Петербурга к теплому солнечному побережью Антальи.",
-                f5_desc: "Премиальное обслуживание на рейсах из Персидского залива в Стамбул.",
-                f6_desc: "Прямой и удобный рейс из Эр-Рияда в жемчужину Эгейского моря — Измир.",
                 blog_sub: "ПУТЕВОДИТЕЛЬ",
                 blog_heading: "Дневник путешествий UcuzaKal",
                 read_more: "Читать далее",
@@ -818,13 +674,12 @@
         });
     </script>
 
-    <!-- ربط Firebase Auth و Cloud Firestore لجلب العروض والمقالات وحفظ التقييمات -->
+    <!-- ربط Firebase Auth و Cloud Firestore -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // قاعدة البيانات الأساسية للمستخدمين والتقييمات
         const firebaseConfig = {
             apiKey: "AIzaSyDcMOlstkYaLBOjnJOYk24U6_724pqEw1U",
             authDomain: "ucuzakal-5e2a8.firebaseapp.com",
@@ -840,7 +695,7 @@
         const provider = new GoogleAuthProvider();
         const authBtn = document.getElementById('auth-btn');
 
-        // 🌟 اتصال إضافي بقاعدة بيانات الذكاء الاصطناعي (AI Deals Database) 🌟
+        // اتصال بقاعدة بيانات الذكاء الاصطناعي (AI Deals Database)
         const aiFirebaseConfig = {
             apiKey: firebaseConfig.apiKey, 
             authDomain: "ucuzakal-ai-db-6ccfd.firebaseapp.com",
@@ -881,7 +736,7 @@
             }
         });
 
-        // 1. عرض بطاقات الفنادق
+        // 1. عرض بطاقات الفنادق الحقيقية فقط
         window.renderHotels = function() {
             const container = document.getElementById('hotels-container');
             if (!container) return;
@@ -889,11 +744,17 @@
             const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
             const startingText = dict.starting_from || "Başlayan Fiyatlar";
 
-            const list = window.HOTELS_DATA.length > 0 ? window.HOTELS_DATA : DEFAULT_HOTELS;
-            let html = '';
+            if (window.HOTELS_DATA.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-16 text-center">
+                        <p class="text-slate-500 font-bold text-lg">Şu anda aktif konaklama fırsatı bulunmuyor. Lütfen daha sonra tekrar kontrol edin.<br><br><span dir="rtl">لا توجد عروض إقامة نشطة حالياً. يرجى التحقق لاحقاً.</span></p>
+                    </div>`;
+                return;
+            }
 
-            list.forEach(hotel => {
-                const desc = hotel.desc_key ? (dict[hotel.desc_key] || '') : (hotel.description || 'Seçkin konfor alanı ve ayrıcalıklı rezervasyon fırsatı.');
+            let html = '';
+            window.HOTELS_DATA.forEach(hotel => {
+                const desc = hotel.description || '';
                 html += `
                     <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('${hotel.affiliateUrl}')">
                         <div class="img-frame">
@@ -904,7 +765,6 @@
                             <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">${hotel.city}</span>
                             <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">${hotel.name}</h3>
                             <div class="gold-divider"></div>
-                            <!-- تمت إضافة whitespace-pre-line للحفاظ على أسطر الترجمات من الذكاء الاصطناعي -->
                             <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6 line-clamp-3 whitespace-pre-line">${desc}</p>
                             <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                                 <span class="text-slate-400 text-[10px] uppercase tracking-widest">${startingText}</span>
@@ -917,24 +777,27 @@
             container.innerHTML = html;
         };
 
-        // 2. عرض بطاقات الطيران
+        // 2. عرض بطاقات الطيران الحقيقية فقط
         window.renderFlights = function() {
             const container = document.getElementById('flights-container');
             if (!container) return;
-            const currentLang = document.documentElement.lang || 'tr';
-            const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
 
-            const list = window.FLIGHTS_DATA.length > 0 ? window.FLIGHTS_DATA : DEFAULT_FLIGHTS;
+            if (window.FLIGHTS_DATA.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full py-16 text-center">
+                        <p class="text-slate-500 font-bold text-lg">Şu anda aktif uçuş seferi bulunmuyor. Lütfen daha sonra tekrar kontrol edin.<br><br><span dir="rtl">لا توجد مسارات طيران نشطة حالياً. يرجى التحقق لاحقاً.</span></p>
+                    </div>`;
+                return;
+            }
+
             let html = '';
-
-            list.forEach(flight => {
-                const desc = flight.desc_key ? (dict[flight.desc_key] || '') : (flight.description || 'Ayrıcalıklı bagaj ve ikram olanaklarıyla direkt geçiş.');
+            window.FLIGHTS_DATA.forEach(flight => {
+                const desc = flight.description || '';
                 html += `
                     <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('${flight.affiliateUrl}')">
                         <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
                         <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">${flight.route}</h3>
                         <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">${flight.airline} (${flight.region})</span>
-                        <!-- تمت إضافة whitespace-pre-line -->
                         <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed line-clamp-3 whitespace-pre-line">${desc}</p>
                         <span class="font-luxury text-2xl font-bold text-brand-gold">${flight.price}</span>
                     </div>
@@ -1033,16 +896,15 @@
             }
         };
 
-        // 🚀 جلب البيانات المدمج بين قاعدة الموقع الأساسية وقاعدة الذكاء الاصطناعي 🚀
+        // جلب عروض الذكاء الاصطناعي المعتمدة فقط
         async function fetchAllFirestoreData() {
             try {
-                // جلب عروض الذكاء الاصطناعي المعتمدة فقط (Approved)
                 const aiDealsSnap = await getDocs(query(collection(aiDb, "live_deals"), where("status", "==", "Approved")));
                 
+                window.HOTELS_DATA = [];
+                window.FLIGHTS_DATA = [];
+
                 if (!aiDealsSnap.empty) {
-                    window.HOTELS_DATA = [];
-                    window.FLIGHTS_DATA = [];
-                    
                     const defaultHotelImages = [
                         "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90",
                         "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90",
@@ -1066,8 +928,8 @@
                         } else if (deal.type === "Flight Deal") {
                             window.FLIGHTS_DATA.push({
                                 route: deal.route || "Özel Rota",
-                                airline: "Özel Uçuş",
-                                region: "AI Fırsatı",
+                                airline: "Ayrıcalıklı Uçuş",
+                                region: "UcuzaKal",
                                 price: deal.discount,
                                 affiliateUrl: deal.affiliateLink || '#',
                                 description: deal.marketingContent || ''
@@ -1083,7 +945,6 @@
             window.renderFlights();
 
             try {
-                // جلب مقالات المدونة من قاعدة بياناتك الأساسية
                 const articlesSnap = await getDocs(query(collection(db, "articles"), orderBy("createdAt", "desc")));
                 if (!articlesSnap.empty) {
                     window.ARTICLES_MAP = {};
