@@ -195,6 +195,15 @@
                         <option value="ar" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">العربية</option>
                         <option value="en" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">English</option>
                         <option value="ru" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Русский</option>
+                        <option value="es" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Español</option>
+                        <option value="zh" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">中文</option>
+                        <option value="ku" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Kurdî</option>
+                        <option value="fa" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">فارسی</option>
+                        <option value="az" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Azərbaycan</option>
+                        <option value="el" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Ελληνικά</option>
+                        <option value="ka" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">ქართული</option>
+                        <option value="bg" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Български</option>
+                        <option value="uk" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Українська</option>
                     </select>
                     <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-[10px] pointer-events-none"></i>
                 </div>
@@ -235,10 +244,7 @@
         </div>
 
         <div id="hotels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="col-span-full py-16 text-center text-slate-400">
-                <i class="fas fa-spinner fa-spin text-3xl text-brand-gold mb-3"></i>
-                <p class="text-sm font-bold tracking-wider uppercase">Konaklama Fırsatları Yükleniyor...</p>
-            </div>
+            <!-- سيتم توليد العروض آلياً هنا -->
         </div>
     </main>
 
@@ -252,10 +258,7 @@
             </div>
 
             <div id="flights-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="col-span-full py-16 text-center text-slate-400">
-                    <i class="fas fa-spinner fa-spin text-3xl text-brand-gold mb-3"></i>
-                    <p class="text-sm font-bold tracking-wider uppercase">Uçuş Seferleri Yükleniyor...</p>
-                </div>
+                <!-- سيتم توليد العروض آلياً هنا -->
             </div>
         </div>
     </section>
@@ -269,10 +272,7 @@
         </div>
 
         <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="col-span-full py-16 text-center text-slate-400">
-                <i class="fas fa-spinner fa-spin text-3xl text-brand-gold mb-3"></i>
-                <p class="text-sm font-bold tracking-wider uppercase">Makaleler Hazırlanıyor...</p>
-            </div>
+            <!-- سيتم توليد المقالات آلياً هنا -->
         </div>
     </section>
 
@@ -407,6 +407,7 @@
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
+        // مقالات احترافية مؤقتة للمدونة فقط لحين ربط وكيل المدونة لاحقاً
         const DEFAULT_ARTICLES = [
             {
                 id: 'def-1',
@@ -572,7 +573,9 @@
                 review_success: "Zarif geri bildiriminiz için teşekkür ederiz.",
                 rights: "Tüm hakları saklıdır UcuzaKal Türkiye",
                 google_login: "Gmail Girişi",
-                cinematic_title: "Rezervasyon Platformuna Yönlendiriliyorsunuz..."
+                cinematic_title: "Rezervasyon Platformuna Yönlendiriliyorsunuz...",
+                no_deals_title: "Özel Seçkiler Derleniyor",
+                no_deals_desc: "Yapay zeka asistanlarımız şu anda dünya çapında sizin için en ayrıcalıklı fırsatları analiz ediyor. Lütfen kısa bir süre sonra tekrar keşfedin."
             },
             ar: {
                 dir: "rtl",
@@ -596,7 +599,9 @@
                 review_success: "نقدر لك هذا التقييم الراقي، شكراً لثقتك.",
                 rights: "جميع الحقوق محفوظة UcuzaKal Türkiye",
                 google_login: "دخول Gmail",
-                cinematic_title: "جاري تحويلك لمنصة الحجز..."
+                cinematic_title: "جاري تحويلك لمنصة الحجز...",
+                no_deals_title: "جاري تنسيق مختارات حصرية",
+                no_deals_desc: "يقوم مساعدونا الأذكياء حالياً بتحليل أرقى العروض العالمية خصيصاً لك. يرجى التفضل بزيارتنا مرة أخرى بعد قليل للاطلاع على جديدنا."
             },
             en: {
                 dir: "ltr",
@@ -620,7 +625,9 @@
                 review_success: "Thank you for your elegant feedback.",
                 rights: "All rights reserved UcuzaKal Türkiye",
                 google_login: "Login with Gmail",
-                cinematic_title: "Redirecting to Booking Platform..."
+                cinematic_title: "Redirecting to Booking Platform...",
+                no_deals_title: "Curating Exclusive Selections",
+                no_deals_desc: "Our AI assistants are currently analyzing the most privileged opportunities worldwide for you. Please explore again shortly."
             },
             ru: {
                 dir: "ltr",
@@ -644,7 +651,9 @@
                 review_success: "Благодарим за ваш отзыв.",
                 rights: "Все права защищены UcuzaKal Türkiye",
                 google_login: "Войти через Gmail",
-                cinematic_title: "Перенаправление на платформу бронирования..."
+                cinematic_title: "Перенаправление на платформу бронирования...",
+                no_deals_title: "Формирование эксклюзивных предложений",
+                no_deals_desc: "Наши ИИ-ассистенты в данный момент анализируют для вас самые привилегированные предложения по всему миру. Пожалуйста, загляните к нам чуть позже."
             }
         };
 
@@ -695,7 +704,7 @@
         const provider = new GoogleAuthProvider();
         const authBtn = document.getElementById('auth-btn');
 
-        // اتصال بقاعدة بيانات الذكاء الاصطناعي (AI Deals Database)
+        // اتصال بقاعدة بيانات الذكاء الاصطناعي
         const aiFirebaseConfig = {
             apiKey: firebaseConfig.apiKey, 
             authDomain: "ucuzakal-ai-db-6ccfd.firebaseapp.com",
@@ -736,7 +745,7 @@
             }
         });
 
-        // 1. عرض بطاقات الفنادق الحقيقية فقط
+        // 1. عرض بطاقات الفنادق الحقيقية أو رسالة الانتظار الفاخرة
         window.renderHotels = function() {
             const container = document.getElementById('hotels-container');
             if (!container) return;
@@ -746,9 +755,16 @@
 
             if (window.HOTELS_DATA.length === 0) {
                 container.innerHTML = `
-                    <div class="col-span-full py-16 text-center">
-                        <p class="text-slate-500 font-bold text-lg">Şu anda aktif konaklama fırsatı bulunmuyor. Lütfen daha sonra tekrar kontrol edin.<br><br><span dir="rtl">لا توجد عروض إقامة نشطة حالياً. يرجى التحقق لاحقاً.</span></p>
-                    </div>`;
+                    <div class="col-span-full py-20 flex flex-col items-center justify-center text-center">
+                        <div class="w-24 h-24 mb-8 rounded-full border border-brand-gold/20 flex items-center justify-center bg-gradient-to-tr from-brand-gold/5 to-transparent relative shadow-[0_0_30px_rgba(212,175,55,0.1)]">
+                            <div class="absolute inset-0 rounded-full border border-brand-gold/40 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite] opacity-20"></div>
+                            <i class="fas fa-gem text-brand-gold text-3xl animate-pulse"></i>
+                        </div>
+                        <h3 class="font-luxury text-2xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-4 font-bold tracking-wide">${dict.no_deals_title || 'Özel Seçkiler Derleniyor'}</h3>
+                        <div class="w-12 h-[1px] bg-brand-gold/50 mx-auto mb-5"></div>
+                        <p class="text-slate-500 dark:text-slate-400 max-w-md mx-auto text-sm sm:text-base leading-relaxed font-light">${dict.no_deals_desc || 'Lütfen kısa bir süre sonra tekrar keşfedin.'}</p>
+                    </div>
+                `;
                 return;
             }
 
@@ -777,16 +793,25 @@
             container.innerHTML = html;
         };
 
-        // 2. عرض بطاقات الطيران الحقيقية فقط
+        // 2. عرض بطاقات الطيران الحقيقية أو رسالة الانتظار الفاخرة
         window.renderFlights = function() {
             const container = document.getElementById('flights-container');
             if (!container) return;
+            const currentLang = document.documentElement.lang || 'tr';
+            const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
 
             if (window.FLIGHTS_DATA.length === 0) {
                 container.innerHTML = `
-                    <div class="col-span-full py-16 text-center">
-                        <p class="text-slate-500 font-bold text-lg">Şu anda aktif uçuş seferi bulunmuyor. Lütfen daha sonra tekrar kontrol edin.<br><br><span dir="rtl">لا توجد مسارات طيران نشطة حالياً. يرجى التحقق لاحقاً.</span></p>
-                    </div>`;
+                    <div class="col-span-full py-20 flex flex-col items-center justify-center text-center">
+                        <div class="w-24 h-24 mb-8 rounded-full border border-brand-gold/20 flex items-center justify-center bg-gradient-to-tr from-brand-gold/5 to-transparent relative shadow-[0_0_30px_rgba(212,175,55,0.1)]">
+                            <div class="absolute inset-0 rounded-full border border-brand-gold/40 animate-[ping_3s_cubic-bezier(0,0,0.2,1)_infinite] opacity-20"></div>
+                            <i class="fas fa-globe text-brand-gold text-3xl animate-pulse"></i>
+                        </div>
+                        <h3 class="font-luxury text-2xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-4 font-bold tracking-wide">${dict.no_deals_title || 'Özel Seçkiler Derleniyor'}</h3>
+                        <div class="w-12 h-[1px] bg-brand-gold/50 mx-auto mb-5"></div>
+                        <p class="text-slate-500 dark:text-slate-400 max-w-md mx-auto text-sm sm:text-base leading-relaxed font-light">${dict.no_deals_desc || 'Lütfen kısa bir süre sonra tekrar keşfedin.'}</p>
+                    </div>
+                `;
                 return;
             }
 
@@ -896,7 +921,7 @@
             }
         };
 
-        // جلب عروض الذكاء الاصطناعي المعتمدة فقط
+        // جلب البيانات مع الذكاء الاصطناعي
         async function fetchAllFirestoreData() {
             try {
                 const aiDealsSnap = await getDocs(query(collection(aiDb, "live_deals"), where("status", "==", "Approved")));
