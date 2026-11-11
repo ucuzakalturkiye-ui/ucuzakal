@@ -143,7 +143,7 @@
 </head>
 <body class="bg-[#FCFBF9] dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg antialiased">
 
-    <!-- نافذة قراءة المقال بالكامل -->
+    <!-- نافذة قراءة المقال -->
     <div id="article-modal" onclick="closeArticleModal(event)">
         <div class="relative bg-white dark:bg-[#070b14] border border-brand-gold/30 rounded-3xl w-11/12 max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl p-6 sm:p-10" onclick="event.stopPropagation()">
             <button onclick="hideArticleModal()" class="absolute top-5 right-5 w-10 h-10 rounded-full border border-brand-gold/40 flex items-center justify-center text-slate-600 dark:text-gray-300 hover:text-brand-gold transition">
@@ -159,7 +159,7 @@
         </div>
     </div>
 
-    <!-- نافذة التوجيه السينمائية للحجوزات -->
+    <!-- نافذة التوجيه السينمائية -->
     <div id="cinematic-overlay">
         <div class="text-center p-6">
             <div class="relative w-24 h-24 mx-auto mb-8 flex items-center justify-center">
@@ -198,12 +198,6 @@
                         <option value="es" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Español</option>
                         <option value="zh" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">中文</option>
                         <option value="ku" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Kurdî</option>
-                        <option value="fa" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">فارسی</option>
-                        <option value="az" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Azərbaycan</option>
-                        <option value="el" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Ελληνικά</option>
-                        <option value="ka" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">ქართული</option>
-                        <option value="bg" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Български</option>
-                        <option value="uk" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Українська</option>
                     </select>
                     <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-[10px] pointer-events-none"></i>
                 </div>
@@ -244,7 +238,7 @@
         </div>
 
         <div id="hotels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- سيتم توليد العروض آلياً هنا -->
+            <!-- سيتم توليد العروض أو عبارة عدم الوجود ديناميكياً هنا -->
         </div>
     </main>
 
@@ -258,12 +252,12 @@
             </div>
 
             <div id="flights-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- سيتم توليد العروض آلياً هنا -->
+                <!-- سيتم توليد العروض أو عبارة عدم الوجود ديناميكياً هنا -->
             </div>
         </div>
     </section>
 
-    <!-- قسم المدونة السياحية -->
+    <!-- قسم المدونة -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="blog_sub">SEYAHAT REHBERİ</span>
@@ -272,7 +266,7 @@
         </div>
 
         <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- سيتم توليد المقالات آلياً هنا -->
+            <!-- سيتم توليد المقالات هنا -->
         </div>
     </section>
 
@@ -326,7 +320,7 @@
                 <span class="text-brand-gold text-xs tracking-[0.3em] uppercase font-bold mt-2 inline-block">Global Resmi Kanallarımız</span>
             </div>
 
-            <!-- شبكة التواصل الاجتماعي المقسمة لكل منصة ولغاتها الثلاث رأسياً -->
+            <!-- شبكات التواصل الاجتماعي -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-16">
                 <!-- 1. فيسبوك -->
                 <div class="flex flex-col items-center text-center space-y-3">
@@ -401,12 +395,12 @@
         </div>
     </footer>
 
-    <!-- سكربتات الترجمة والوظائف -->
     <script>
         window.ARTICLES_MAP = {};
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
+        // مقالات المدونة المؤقتة (تظل كما هي لعدم كسر التصميم)
         const DEFAULT_ARTICLES = [
             {
                 id: 'def-1',
@@ -422,8 +416,8 @@
                     ku: "Bihuştên Veşartî û Kendavên Luks ên Antalyayê"
                 },
                 bodies: {
-                    tr: "<p>Antalya, yalnızca kitle turizmi ile değil; sakin koyları, turkuaz suları ve dünya standartlarındaki seçkin tatil köyleriyle Akdeniz'in en değerli rotalarından biridir.</p><p>Kaş ve Kalkan civarındaki butik koylar, teknelerle ulaşılabilen bakir plajlar ve Belek kıyılarındaki özel golf rezidansları, konfor ve mahremiyeti bir arada arayan gezginler için eşsiz olanaklar sunmaktadır.</p>",
-                    ar: "<p>لا تقتصر أنطاليا على المنتجعات الشهيرة فحسب؛ بل تحتضن خلجاناً فيروزية معزولة ومحميات طبيعية تجعلها من أكثر وجهات البحر الأبيض المتوسط تميزاً وفخامة.</p><p>توفر مناطق مثل كاش وكالكان وشواطئ بيليك الخاصة ملاذات تجمع بين الراحة والخصوصية والخدمات الملكية الشاملة.</p>",
+                    tr: "<p>Antalya, yalnızca kitle turizmi ile değil; sakin koyları, turkuaz suları ve dünya standartlarındaki seçkin tatil köyleriyle Akdeniz'in en değerli rotalarından biridir.</p>",
+                    ar: "<p>لا تقتصر أنطاليا على المنتجعات الشهيرة فحسب؛ بل تحتضن خلجاناً فيروزية معزولة ومحميات طبيعية تجعلها من أكثر وجهات البحر الأبيض المتوسط تميزاً وفخامة.</p>",
                     en: "<p>Antalya is not just a destination for mass tourism; it is home to secluded turquoise coves and world-class luxury resorts along the Turkish Riviera.</p>",
                     ru: "<p>Анталья — это не только знаменитые курорты, но и уединенные бирюзовые бухты Средиземного моря высочайшего класса.</p>",
                     es: "<p>Antalya no es solo un destino para el turismo masivo; alberga calas turquesas solitarias y resorts de lujo de clase mundial a lo largo de la Riviera turca.</p>",
@@ -445,7 +439,7 @@
                     ku: "Qesrên Dîrokî û Ezmûnên Gurme yên li Bosforê"
                 },
                 bodies: {
-                    tr: "<p>Doğu ile Batı'nın kesiştiği İstanbul, Boğaz kıyısındaki saray otelleriyle konuklarına asırlık bir zarafet yaşatır.</p><p>Çırağan ve çevresinde konaklarken sabah Boğaz vapurlarının sesleriyle uyanmak, akşam ise uluslararası gastronomi ödüllü şeflerin hazırladığı menüleri tatmak eşsizdir.</p>",
+                    tr: "<p>Doğu ile Batı'nın kesiştiği İstanbul, Boğaz kıyısındaki saray otelleriyle konuklarına asırlık bir zarafet yaşatır.</p>",
                     ar: "<p>في المدينة التي تلتقي فيها قارتان، تمنحك فنادق القصور العثمانية الواقعة على ضفاف البوسفور تجربة أصيلة تحاكي عبق التاريخ وأناقة الحاضر.</p>",
                     en: "<p>Where two continents meet, Istanbul offers centuries of heritage reflected through majestic palace hotels situated on the Bosphorus.</p>",
                     ru: "<p>Стамбул — город, где встречаются две цивилизации. Дворцовые отели на берегах Босфора дарят гостям непревзойденную атмосферу османского великолепия.</p>",
@@ -468,7 +462,7 @@
                     ku: "Aramiya Di Nav Mijê De Li Zozanên Deryaya Reş"
                 },
                 bodies: {
-                    tr: "<p>Karadeniz'in serin yaylaları, yeşilin binbir tonu ve dağların arasına gizlenmiş berrak gölleriyle doğa aşıklarına huzurlu bir sığınak sunar.</p><p>Uzungöl ve Ayder yaylalarındaki özel ahşap rezidanslar, doğallığı modern konforla buluşturur.</p>",
+                    tr: "<p>Karadeniz'in serin yaylaları, yeşilin binbir tonu ve dağların arasına gizlenmiş berrak gölleriyle doğa aşıklarına huzurlu bir sığınak sunar.</p>",
                     ar: "<p>تتميز مرتفعات البحر الأسود بطبيعتها الخضراء البكر، وهوائها العليل، وغيومها التي تعانق قمم الجبال في مشهد ساحر يبعث على الراحة والهدوء.</p>",
                     en: "<p>The mist-covered highlands of the Black Sea provide an idyllic mountain retreat characterized by emerald pine forests.</p>",
                     ru: "<p>Прохладные плато Черноморского региона Турции — это царство нетронутой изумрудной природы и горных озер.</p>",
@@ -490,8 +484,8 @@
             let body = '';
 
             if (article.titles) {
-                title = article.titles[currentLang] || article.titles['tr'] || article.titles['en'];
-                body = article.bodies[currentLang] || article.bodies['tr'] || article.bodies['en'];
+                title = article.titles[currentLang] || article.titles['tr'];
+                body = article.bodies[currentLang] || article.bodies['tr'];
             } else {
                 title = article.title;
                 body = article.body;
@@ -567,7 +561,7 @@
             });
         }
 
-        // قواميس الترجمة (تمت إضافة الكردية، وضبط الإسبانية والصينية، وتحديث نص عدم توفر عروض)
+        // قواميس الترجمة (التركية هي الأساس 100% وتم ضبط العبارة المطلوبة حرفياً)
         const TRANSLATIONS = {
             tr: {
                 dir: "ltr",
@@ -592,8 +586,7 @@
                 rights: "Tüm hakları saklıdır UcuzaKal Türkiye",
                 google_login: "Gmail Girişi",
                 cinematic_title: "Rezervasyon Platformuna Yönlendiriliyorsunuz...",
-                no_deals_title: "Şu Anda Aktif Fırsat Bulunmamaktadır",
-                no_deals_desc: "İçtenlikle özür dileriz, şu anda aktif bir teklifimiz bulunmuyor. Lütfen kısa bir süre sonra bizi tekrar ziyaret ederek onurlandırın."
+                no_deals_text: "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın."
             },
             ar: {
                 dir: "rtl",
@@ -618,8 +611,7 @@
                 rights: "جميع الحقوق محفوظة UcuzaKal Türkiye",
                 google_login: "دخول Gmail",
                 cinematic_title: "جاري تحويلك لمنصة الحجز...",
-                no_deals_title: "لا توجد عروض حالياً",
-                no_deals_desc: "نأسف بشده لا توجد عروض فى الوقت الحالى شرفنا بالزياره بعد قليل."
+                no_deals_text: "نأسف بشده لا توجد عروض فى الوقت الحالى شرفنا بالزياره بعد قليل"
             },
             en: {
                 dir: "ltr",
@@ -644,8 +636,7 @@
                 rights: "All rights reserved UcuzaKal Türkiye",
                 google_login: "Login with Gmail",
                 cinematic_title: "Redirecting to Booking Platform...",
-                no_deals_title: "No Active Deals Currently",
-                no_deals_desc: "We deeply apologize, there are no deals at the moment. Please honor us with a visit shortly."
+                no_deals_text: "There are currently no deals, please honor us with a visit shortly."
             },
             ru: {
                 dir: "ltr",
@@ -670,8 +661,7 @@
                 rights: "Все права защищены UcuzaKal Türkiye",
                 google_login: "Войти через Gmail",
                 cinematic_title: "Перенаправление на платформу бронирования...",
-                no_deals_title: "В настоящее время нет предложений",
-                no_deals_desc: "Приносим глубокие извинения, в данный момент предложений нет. Будем рады видеть вас чуть позже."
+                no_deals_text: "В настоящее время предложений нет, пожалуйста, окажите нам честь своим визитом чуть позже."
             },
             es: {
                 dir: "ltr",
@@ -696,8 +686,7 @@
                 rights: "Todos los derechos reservados UcuzaKal Türkiye",
                 google_login: "Iniciar sesión con Gmail",
                 cinematic_title: "Redirigiendo a la plataforma de reservas...",
-                no_deals_title: "No hay ofertas activas actualmente",
-                no_deals_desc: "Nos disculpamos profundamente, no hay ofertas en este momento. Por favor, hónrenos con una visita en breve."
+                no_deals_text: "Actualmente no hay ofertas, por favor hónrenos con una visita en breve."
             },
             zh: {
                 dir: "ltr",
@@ -722,8 +711,7 @@
                 rights: "保留所有权利 UcuzaKal Türkiye",
                 google_login: "使用 Gmail 登录",
                 cinematic_title: "正在重定向至预订平台...",
-                no_deals_title: "当前没有活跃优惠",
-                no_deals_desc: "我们深表歉意，目前没有任何优惠。请稍后再来访问我们。"
+                no_deals_text: "目前没有任何优惠，请稍后再来访问我们。"
             },
             ku: {
                 dir: "ltr",
@@ -748,8 +736,7 @@
                 rights: "Hemû maf parastî ne UcuzaKal Türkiye",
                 google_login: "Têketina Gmail",
                 cinematic_title: "Ber bi platforma veqetandinê ve tê rêvekirin...",
-                no_deals_title: "Vê Gavê Pêşniyarên Çalak Nînin",
-                no_deals_desc: "Em pir lêborînê dixwazin, niha tu pêşniyar tune. Ji kerema xwe piştî demek kurt serdana me bikin."
+                no_deals_text: "Niha tu pêşniyar nînin, ji kerema xwe piştî demek kurt serdana me bikin."
             }
         };
 
@@ -770,14 +757,14 @@
             
             localStorage.setItem('ucuzakal_lang', lang);
 
-            // إعادة رسم العناصر لتطبيق الترجمة على العروض أو رسائل التصميم الفاخر
+            // تحديث العروض الديناميكية وشاشة الانتظار
             if (window.renderHotels) window.renderHotels();
             if (window.renderFlights) window.renderFlights();
             if (window.renderBlogCards) window.renderBlogCards();
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            // جعل اللغة التركية هي الأساسية والافتراضية دائماً
+            // تثبيت التركية كمرجعية أساسية 100%
             const savedLang = localStorage.getItem('ucuzakal_lang') || 'tr';
             const switcher = document.getElementById('lang-switcher');
             if (switcher) { switcher.value = savedLang; changeLanguage(savedLang); }
@@ -846,13 +833,14 @@
             }
         });
 
-        // 1. عرض بطاقات الفنادق الحقيقية أو الشاشة الفاخرة للانتظار
+        // 1. عرض بطاقات الفنادق الحقيقية أو تصميم الانتظار الفاخر
         window.renderHotels = function() {
             const container = document.getElementById('hotels-container');
             if (!container) return;
             const currentLang = document.documentElement.lang || 'tr';
             const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
             const startingText = dict.starting_from || "Başlayan Fiyatlar";
+            const noDealsText = dict.no_deals_text || "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın.";
 
             if (window.HOTELS_DATA.length === 0) {
                 container.innerHTML = `
@@ -864,9 +852,7 @@
                             <div class="absolute inset-6 rounded-full bg-brand-gold/10 animate-pulse blur-xl"></div>
                             <i class="fas fa-gem text-brand-gold text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
                         </div>
-                        <h3 class="font-luxury text-2xl sm:text-4xl text-slate-800 dark:text-slate-200 mb-6 font-bold tracking-widest relative z-10 title-glow" data-i18n="no_deals_title">${dict.no_deals_title}</h3>
-                        <div class="w-20 h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent mx-auto mb-6 relative z-10"></div>
-                        <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm sm:text-lg leading-relaxed font-light tracking-wide relative z-10" data-i18n="no_deals_desc">${dict.no_deals_desc}</p>
+                        <h3 class="font-luxury text-xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow leading-relaxed max-w-2xl px-4" data-i18n="no_deals_text">${noDealsText}</h3>
                     </div>
                 `;
                 return;
@@ -897,12 +883,13 @@
             container.innerHTML = html;
         };
 
-        // 2. عرض بطاقات الطيران الحقيقية أو الشاشة الفاخرة للانتظار
+        // 2. عرض بطاقات الطيران الحقيقية أو تصميم الانتظار الفاخر
         window.renderFlights = function() {
             const container = document.getElementById('flights-container');
             if (!container) return;
             const currentLang = document.documentElement.lang || 'tr';
             const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
+            const noDealsText = dict.no_deals_text || "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın.";
 
             if (window.FLIGHTS_DATA.length === 0) {
                 container.innerHTML = `
@@ -914,9 +901,7 @@
                             <div class="absolute inset-6 rounded-full bg-brand-gold/10 animate-pulse blur-xl"></div>
                             <i class="fas fa-plane-departure text-brand-gold text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
                         </div>
-                        <h3 class="font-luxury text-2xl sm:text-4xl text-slate-800 dark:text-slate-200 mb-6 font-bold tracking-widest relative z-10 title-glow" data-i18n="no_deals_title">${dict.no_deals_title}</h3>
-                        <div class="w-20 h-[2px] bg-gradient-to-r from-transparent via-brand-gold to-transparent mx-auto mb-6 relative z-10"></div>
-                        <p class="text-slate-500 dark:text-slate-400 max-w-xl mx-auto text-sm sm:text-lg leading-relaxed font-light tracking-wide relative z-10" data-i18n="no_deals_desc">${dict.no_deals_desc}</p>
+                        <h3 class="font-luxury text-xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow leading-relaxed max-w-2xl px-4" data-i18n="no_deals_text">${noDealsText}</h3>
                     </div>
                 `;
                 return;
@@ -955,8 +940,8 @@
                 let bodySnippet = '';
 
                 if (art.titles) {
-                    title = art.titles[currentLang] || art.titles['tr'] || art.titles['en'];
-                    const bodyText = art.bodies[currentLang] || art.bodies['tr'] || art.bodies['en'];
+                    title = art.titles[currentLang] || art.titles['tr'];
+                    const bodyText = art.bodies[currentLang] || art.bodies['tr'];
                     bodySnippet = bodyText.replace(/<[^>]*>?/gm, '');
                 } else {
                     title = art.title;
@@ -1028,7 +1013,7 @@
             }
         };
 
-        // جلب البيانات مع الذكاء الاصطناعي
+        // جلب البيانات من الذكاء الاصطناعي
         async function fetchAllFirestoreData() {
             try {
                 const aiDealsSnap = await getDocs(query(collection(aiDb, "live_deals"), where("status", "==", "Approved")));
