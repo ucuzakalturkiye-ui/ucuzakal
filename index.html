@@ -822,8 +822,9 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+        // قاعدة البيانات الأساسية للمستخدمين والتقييمات
         const firebaseConfig = {
             apiKey: "AIzaSyDcMOlstkYaLBOjnJOYk24U6_724pqEw1U",
             authDomain: "ucuzakal-5e2a8.firebaseapp.com",
@@ -833,12 +834,20 @@
             appId: "1:111148178418:web:f885dc545e0627516ca96b",
             measurementId: "G-ST7LSMMXEB"
         };
-
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
         const provider = new GoogleAuthProvider();
         const authBtn = document.getElementById('auth-btn');
+
+        // 🌟 اتصال إضافي بقاعدة بيانات الذكاء الاصطناعي (AI Deals Database) 🌟
+        const aiFirebaseConfig = {
+            apiKey: firebaseConfig.apiKey, 
+            authDomain: "ucuzakal-ai-db-6ccfd.firebaseapp.com",
+            projectId: "ucuzakal-ai-db-6ccfd"
+        };
+        const aiApp = initializeApp(aiFirebaseConfig, "aiApp");
+        const aiDb = getFirestore(aiApp);
 
         window.loginWithGoogle = function() {
             signInWithPopup(auth, provider).catch((error) => {
@@ -895,10 +904,11 @@
                             <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">${hotel.city}</span>
                             <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">${hotel.name}</h3>
                             <div class="gold-divider"></div>
-                            <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6 line-clamp-2">${desc}</p>
+                            <!-- تمت إضافة whitespace-pre-line للحفاظ على أسطر الترجمات من الذكاء الاصطناعي -->
+                            <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6 line-clamp-3 whitespace-pre-line">${desc}</p>
                             <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                                 <span class="text-slate-400 text-[10px] uppercase tracking-widest">${startingText}</span>
-                                <span class="font-luxury text-xl font-bold text-brand-gold">€${hotel.price}</span>
+                                <span class="font-luxury text-xl font-bold text-brand-gold">${hotel.price}</span>
                             </div>
                         </div>
                     </div>
@@ -924,8 +934,9 @@
                         <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
                         <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">${flight.route}</h3>
                         <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">${flight.airline} (${flight.region})</span>
-                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed line-clamp-2">${desc}</p>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">€${flight.price}</span>
+                        <!-- تمت إضافة whitespace-pre-line -->
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed line-clamp-3 whitespace-pre-line">${desc}</p>
+                        <span class="font-luxury text-2xl font-bold text-brand-gold">${flight.price}</span>
                     </div>
                 `;
             });
@@ -976,7 +987,6 @@
             container.innerHTML = html;
         };
 
-        // دالة كشف مصدر الزيارة بدقة (UTM / Referrer)
         function detectTrafficSource() {
             const urlParams = new URLSearchParams(window.location.search);
             const utm = urlParams.get('utm_source');
@@ -993,7 +1003,6 @@
             return 'DIRECT';
         }
 
-        // إرسال التقييم مع مصدر الزيارة إلى Firestore
         window.submitReview = async function() {
             const nameInput = document.getElementById('user-review-name');
             const textInput = document.getElementById('user-review-text');
@@ -1018,34 +1027,63 @@
                 nameInput.value = '';
                 textInput.value = '';
                 rateStar(0);
-                alert("Teşekkürler! Değerlendirmeniz başarıyla kaydedildi. / تم حفظ تقييمك بنجاح في قاعدة البيانات!");
             } catch(e) {
                 console.error("Firestore Review Error:", e);
                 alert("Kayıt hatası: " + e.message);
             }
         };
 
-        // جلب البيانات من Cloud Firestore
+        // 🚀 جلب البيانات المدمج بين قاعدة الموقع الأساسية وقاعدة الذكاء الاصطناعي 🚀
         async function fetchAllFirestoreData() {
             try {
-                const hotelsSnap = await getDocs(query(collection(db, "hotels"), orderBy("createdAt", "desc")));
-                if (!hotelsSnap.empty) {
+                // جلب عروض الذكاء الاصطناعي المعتمدة فقط (Approved)
+                const aiDealsSnap = await getDocs(query(collection(aiDb, "live_deals"), where("status", "==", "Approved")));
+                
+                if (!aiDealsSnap.empty) {
                     window.HOTELS_DATA = [];
-                    hotelsSnap.forEach(d => window.HOTELS_DATA.push(d.data()));
-                }
-            } catch(e) { console.warn("Hotels fetch notice:", e.message); }
-            window.renderHotels();
-
-            try {
-                const flightsSnap = await getDocs(query(collection(db, "flights"), orderBy("createdAt", "desc")));
-                if (!flightsSnap.empty) {
                     window.FLIGHTS_DATA = [];
-                    flightsSnap.forEach(d => window.FLIGHTS_DATA.push(d.data()));
+                    
+                    const defaultHotelImages = [
+                        "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90",
+                        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90",
+                        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=90",
+                        "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90"
+                    ];
+                    let imgIndex = 0;
+
+                    aiDealsSnap.forEach(doc => {
+                        const deal = doc.data();
+                        if (deal.type === "Hotel Deal") {
+                            window.HOTELS_DATA.push({
+                                name: deal.city + " Fırsatı",
+                                city: deal.city || "TÜRKİYE",
+                                price: deal.discount, 
+                                image: defaultHotelImages[imgIndex % defaultHotelImages.length],
+                                affiliateUrl: deal.affiliateLink || '#',
+                                description: deal.marketingContent || ''
+                            });
+                            imgIndex++;
+                        } else if (deal.type === "Flight Deal") {
+                            window.FLIGHTS_DATA.push({
+                                route: deal.route || "Özel Rota",
+                                airline: "Özel Uçuş",
+                                region: "AI Fırsatı",
+                                price: deal.discount,
+                                affiliateUrl: deal.affiliateLink || '#',
+                                description: deal.marketingContent || ''
+                            });
+                        }
+                    });
                 }
-            } catch(e) { console.warn("Flights fetch notice:", e.message); }
+            } catch(e) { 
+                console.warn("AI Deals fetch notice:", e.message); 
+            }
+            
+            window.renderHotels();
             window.renderFlights();
 
             try {
+                // جلب مقالات المدونة من قاعدة بياناتك الأساسية
                 const articlesSnap = await getDocs(query(collection(db, "articles"), orderBy("createdAt", "desc")));
                 if (!articlesSnap.empty) {
                     window.ARTICLES_MAP = {};
