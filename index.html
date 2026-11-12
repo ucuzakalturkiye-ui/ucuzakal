@@ -792,15 +792,6 @@
         const provider = new GoogleAuthProvider();
         const authBtn = document.getElementById('auth-btn');
 
-        // اتصال بقاعدة بيانات الذكاء الاصطناعي
-        const aiFirebaseConfig = {
-            apiKey: firebaseConfig.apiKey, 
-            authDomain: "ucuzakal-ai-db-6ccfd.firebaseapp.com",
-            projectId: "ucuzakal-ai-db-6ccfd"
-        };
-        const aiApp = initializeApp(aiFirebaseConfig, "aiApp");
-        const aiDb = getFirestore(aiApp);
-
         window.loginWithGoogle = function() {
             signInWithPopup(auth, provider).catch((error) => {
                 console.error("Authentication Error:", error.message);
@@ -1013,49 +1004,51 @@
             }
         };
 
-        // جلب البيانات من الذكاء الاصطناعي
+        // التعديل السحري هنا: جلب البيانات من مجلدات الموقع الأساسية (hotels و flights) وبنفس الأسماء
         async function fetchAllFirestoreData() {
             try {
-                const aiDealsSnap = await getDocs(query(collection(aiDb, "live_deals"), where("status", "==", "Approved")));
-                
                 window.HOTELS_DATA = [];
                 window.FLIGHTS_DATA = [];
 
-                if (!aiDealsSnap.empty) {
-                    const defaultHotelImages = [
-                        "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90",
-                        "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90",
-                        "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=90",
-                        "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90"
-                    ];
-                    let imgIndex = 0;
+                const defaultHotelImages = [
+                    "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90",
+                    "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90",
+                    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=90",
+                    "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90"
+                ];
 
-                    aiDealsSnap.forEach(doc => {
-                        const deal = doc.data();
-                        if (deal.type === "Hotel Deal") {
-                            window.HOTELS_DATA.push({
-                                name: deal.city + " Fırsatı",
-                                city: deal.city || "TÜRKİYE",
-                                price: deal.discount, 
-                                image: defaultHotelImages[imgIndex % defaultHotelImages.length],
-                                affiliateUrl: deal.affiliateLink || '#',
-                                description: deal.marketingContent || ''
-                            });
-                            imgIndex++;
-                        } else if (deal.type === "Flight Deal") {
-                            window.FLIGHTS_DATA.push({
-                                route: deal.route || "Özel Rota",
-                                airline: "Ayrıcalıklı Uçuş",
-                                region: "UcuzaKal",
-                                price: deal.discount,
-                                affiliateUrl: deal.affiliateLink || '#',
-                                description: deal.marketingContent || ''
-                            });
-                        }
+                // 1. جلب بيانات الفنادق من مجلد hotels في قاعدة بياناتك الأساسية (db)
+                const hotelsSnap = await getDocs(query(collection(db, "hotels"), where("status", "==", "Approved")));
+                let imgIndex = 0;
+                hotelsSnap.forEach(doc => {
+                    const deal = doc.data();
+                    window.HOTELS_DATA.push({
+                        name: deal.name || (deal.city + " Fırsatı"),
+                        city: deal.city || "TÜRKİYE",
+                        price: deal.discount, // جلب حقل discount الذي يستخدمه الوكيل كسعر
+                        image: defaultHotelImages[imgIndex % defaultHotelImages.length],
+                        affiliateUrl: deal.affiliateLink || '#', // جلب حقل الرابط
+                        description: deal.marketingContent || '' // جلب المحتوى التسويقي
                     });
-                }
+                    imgIndex++;
+                });
+
+                // 2. جلب بيانات الطيران من مجلد flights في قاعدة بياناتك الأساسية (db)
+                const flightsSnap = await getDocs(query(collection(db, "flights"), where("status", "==", "Approved")));
+                flightsSnap.forEach(doc => {
+                    const deal = doc.data();
+                    window.FLIGHTS_DATA.push({
+                        route: deal.route || "Özel Rota", // جلب اسم المسار
+                        airline: deal.airline || "Ayrıcalıklı Uçuş",
+                        region: "UcuzaKal",
+                        price: deal.discount, // جلب حقل السعر
+                        affiliateUrl: deal.affiliateLink || '#', // جلب حقل الرابط
+                        description: deal.marketingContent || '' // جلب المحتوى التسويقي
+                    });
+                });
+
             } catch(e) { 
-                console.warn("AI Deals fetch notice:", e.message); 
+                console.warn("Deals fetch notice:", e.message); 
             }
             
             window.renderHotels();
