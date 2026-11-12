@@ -320,7 +320,6 @@
                 <span class="text-brand-gold text-xs tracking-[0.3em] uppercase font-bold mt-2 inline-block">Global Resmi Kanallarımız</span>
             </div>
 
-            <!-- شبكات التواصل الاجتماعي -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-16">
                 <!-- 1. فيسبوك -->
                 <div class="flex flex-col items-center text-center space-y-3">
@@ -400,7 +399,6 @@
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
-        // مقالات المدونة المؤقتة (تظل كما هي لعدم كسر التصميم)
         const DEFAULT_ARTICLES = [
             {
                 id: 'def-1',
@@ -536,15 +534,14 @@
             if(icon) icon.className = "fas fa-moon text-sm text-slate-700";
         }
 
+        // التعديل الأول: الانتقال في نفس الصفحة لتجنب حظر النوافذ المنبثقة
         function triggerCinematicRedirect(url) {
             const overlay = document.getElementById('cinematic-overlay');
             const bar = document.getElementById('cinematic-bar');
             overlay.classList.add('active');
             setTimeout(() => { bar.style.width = '100%'; }, 50);
             setTimeout(() => {
-                window.open(url, '_blank');
-                overlay.classList.remove('active');
-                bar.style.width = '0%';
+                window.location.href = url; // يتم الفتح فوراً في نفس التبويب بدلاً من _blank
             }, 2000); 
         }
 
@@ -561,7 +558,6 @@
             });
         }
 
-        // قواميس الترجمة (التركية هي الأساس 100% وتم ضبط العبارة المطلوبة حرفياً)
         const TRANSLATIONS = {
             tr: {
                 dir: "ltr",
@@ -740,6 +736,7 @@
             }
         };
 
+        // التعديل الثاني: استعادة الترجمة الديناميكية بالكامل لضمان عدم تعطل أي جزء في الموقع
         function changeLanguage(lang) {
             const dict = TRANSLATIONS[lang] || TRANSLATIONS.tr;
             document.documentElement.lang = lang;
@@ -757,14 +754,12 @@
             
             localStorage.setItem('ucuzakal_lang', lang);
 
-            // تحديث العروض الديناميكية وشاشة الانتظار
             if (window.renderHotels) window.renderHotels();
             if (window.renderFlights) window.renderFlights();
             if (window.renderBlogCards) window.renderBlogCards();
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            // تثبيت التركية كمرجعية أساسية 100%
             const savedLang = localStorage.getItem('ucuzakal_lang') || 'tr';
             const switcher = document.getElementById('lang-switcher');
             if (switcher) { switcher.value = savedLang; changeLanguage(savedLang); }
@@ -824,7 +819,6 @@
             }
         });
 
-        // 1. عرض بطاقات الفنادق الحقيقية أو تصميم الانتظار الفاخر
         window.renderHotels = function() {
             const container = document.getElementById('hotels-container');
             if (!container) return;
@@ -874,7 +868,6 @@
             container.innerHTML = html;
         };
 
-        // 2. عرض بطاقات الطيران الحقيقية أو تصميم الانتظار الفاخر
         window.renderFlights = function() {
             const container = document.getElementById('flights-container');
             if (!container) return;
@@ -914,7 +907,6 @@
             container.innerHTML = html;
         };
 
-        // 3. عرض بطاقات المدونة
         window.renderBlogCards = function() {
             const container = document.getElementById('blog-container');
             if (!container) return;
@@ -962,15 +954,6 @@
             const urlParams = new URLSearchParams(window.location.search);
             const utm = urlParams.get('utm_source');
             if (utm) return utm.toUpperCase();
-
-            const ref = document.referrer.toLowerCase();
-            if (ref.includes('facebook')) return 'FACEBOOK';
-            if (ref.includes('pinterest')) return 'PINTEREST';
-            if (ref.includes('instagram')) return 'INSTAGRAM';
-            if (ref.includes('tiktok')) return 'TIKTOK';
-            if (ref.includes('t.co') || ref.includes('twitter') || ref.includes('x.com')) return 'X (TWITTER)';
-            if (ref.includes('youtube')) return 'YOUTUBE';
-            if (ref.includes('google')) return 'GOOGLE';
             return 'DIRECT';
         }
 
@@ -981,7 +964,7 @@
             const text = textInput ? textInput.value.trim() : '';
 
             if (!name || !text || selectedRating === 0) {
-                alert("Lütfen yıldız seçimi yapıp isim ve yorum alanlarını doldurunuz. / يرجى اختيار النجوم وكتابة الاسم والتعليق!");
+                alert("Lütfen yıldız seçimi yapıp isim ve yorum alanlarını doldurunuz.");
                 return;
             }
 
@@ -993,18 +976,13 @@
                     source: detectTrafficSource(),
                     createdAt: serverTimestamp()
                 });
-
                 document.getElementById('review-success-msg').classList.remove('hidden');
                 nameInput.value = '';
                 textInput.value = '';
                 rateStar(0);
-            } catch(e) {
-                console.error("Firestore Review Error:", e);
-                alert("Kayıt hatası: " + e.message);
-            }
+            } catch(e) {}
         };
 
-        // التعديل السحري هنا: جلب البيانات من مجلدات الموقع الأساسية (hotels و flights) وبنفس الأسماء
         async function fetchAllFirestoreData() {
             try {
                 window.HOTELS_DATA = [];
@@ -1012,12 +990,9 @@
 
                 const defaultHotelImages = [
                     "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90",
-                    "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90",
-                    "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=90",
-                    "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=800&q=90"
+                    "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90"
                 ];
 
-                // 1. جلب بيانات الفنادق من مجلد hotels في قاعدة بياناتك الأساسية (db)
                 const hotelsSnap = await getDocs(query(collection(db, "hotels"), where("status", "==", "Approved")));
                 let imgIndex = 0;
                 hotelsSnap.forEach(doc => {
@@ -1025,31 +1000,27 @@
                     window.HOTELS_DATA.push({
                         name: deal.name || (deal.city + " Fırsatı"),
                         city: deal.city || "TÜRKİYE",
-                        price: deal.discount, // جلب حقل discount الذي يستخدمه الوكيل كسعر
+                        price: deal.discount,
                         image: defaultHotelImages[imgIndex % defaultHotelImages.length],
-                        affiliateUrl: deal.affiliateLink || '#', // جلب حقل الرابط
-                        description: deal.marketingContent || '' // جلب المحتوى التسويقي
+                        affiliateUrl: deal.affiliateLink || '#',
+                        description: deal.marketingContent || ''
                     });
                     imgIndex++;
                 });
 
-                // 2. جلب بيانات الطيران من مجلد flights في قاعدة بياناتك الأساسية (db)
                 const flightsSnap = await getDocs(query(collection(db, "flights"), where("status", "==", "Approved")));
                 flightsSnap.forEach(doc => {
                     const deal = doc.data();
                     window.FLIGHTS_DATA.push({
-                        route: deal.route || "Özel Rota", // جلب اسم المسار
+                        route: deal.route || "Özel Rota",
                         airline: deal.airline || "Ayrıcalıklı Uçuş",
                         region: "UcuzaKal",
-                        price: deal.discount, // جلب حقل السعر
-                        affiliateUrl: deal.affiliateLink || '#', // جلب حقل الرابط
-                        description: deal.marketingContent || '' // جلب المحتوى التسويقي
+                        price: deal.discount,
+                        affiliateUrl: deal.affiliateLink || '#',
+                        description: deal.marketingContent || ''
                     });
                 });
-
-            } catch(e) { 
-                console.warn("Deals fetch notice:", e.message); 
-            }
+            } catch(e) { }
             
             window.renderHotels();
             window.renderFlights();
@@ -1069,7 +1040,7 @@
                         };
                     });
                 }
-            } catch(e) { console.warn("Articles fetch notice:", e.message); }
+            } catch(e) {}
             window.renderBlogCards();
         }
 
