@@ -238,7 +238,7 @@
         </div>
 
         <div id="hotels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- سيتم توليد العروض أو عبارة عدم الوجود ديناميكياً هنا -->
+            <!-- العروض -->
         </div>
     </main>
 
@@ -252,7 +252,7 @@
             </div>
 
             <div id="flights-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- سيتم توليد العروض أو عبارة عدم الوجود ديناميكياً هنا -->
+                <!-- العروض -->
             </div>
         </div>
     </section>
@@ -266,7 +266,7 @@
         </div>
 
         <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <!-- سيتم توليد المقالات هنا -->
+            <!-- المقالات -->
         </div>
     </section>
 
@@ -321,7 +321,7 @@
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-16">
-                <!-- 1. فيسبوك -->
+                <!-- روابط السوشيال ميديا كما هي بالضبط في كودك الأصلي -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-xl shadow-md mb-1"><i class="fab fa-facebook-f"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Facebook</span>
@@ -331,8 +331,6 @@
                         <a href="https://www.facebook.com/profile.php?id=61596182676675" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
-
-                <!-- 2. إنستغرام -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-11 h-11 rounded-full flex items-center justify-center text-white text-xl shadow-md mb-1" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><i class="fab fa-instagram"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Instagram</span>
@@ -342,8 +340,6 @@
                         <a href="https://www.instagram.com/ucuzakal.a/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
-
-                <!-- 3. بنترست -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-11 h-11 rounded-full bg-[#E60023] flex items-center justify-center text-white text-xl shadow-md mb-1"><i class="fab fa-pinterest-p"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Pinterest</span>
@@ -353,8 +349,6 @@
                         <a href="https://www.pinterest.com/ARucuzakal/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
-
-                <!-- 4. إكس (تويتر) -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white text-xl shadow-md border border-slate-700 mb-1"><i class="fab fa-x-twitter"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">X (Twitter)</span>
@@ -364,8 +358,6 @@
                         <a href="https://x.com/ucuzaKalAR" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
-
-                <!-- 5. تيك توك -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white text-xl shadow-md border border-slate-700 mb-1"><i class="fab fa-tiktok"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">TikTok</span>
@@ -375,8 +367,6 @@
                         <a href="https://www.tiktok.com/@ucuzakal.ar?lang=ar" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
-
-                <!-- 6. يوتيوب -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-11 h-11 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-xl shadow-md mb-1"><i class="fab fa-youtube"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">YouTube</span>
@@ -399,75 +389,55 @@
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
+        // المترجم الديناميكي الجديد لترجمة العروض فوراً
+        function translateDynamicText(text, lang) {
+            if (!text) return '';
+            const t = {
+                "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
+                "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
+                "Antalya": {ar:"أنطاليا", tr:"Antalya", en:"Antalya", ru:"Анталья", es:"Antalya", zh:"安塔利亚", ku:"Antalya"},
+                "Bursa": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса", es:"Bursa", zh:"布尔萨", ku:"Bursa"},
+                "Izmir": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир", es:"Esmirna", zh:"伊兹密尔", ku:"Îzmîr"},
+                "Trabzon": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон", es:"Trebisonda", zh:"特拉布宗", ku:"Trabzon"},
+                "دبي": {ar:"دبي", tr:"Dubai", en:"Dubai", ru:"Дубай", es:"Dubái", zh:"迪拜", ku:"Dubai"},
+                "موسكو": {ar:"موسكو", tr:"Moskova", en:"Moscow", ru:"Москва", es:"Moscú", zh:"莫斯科", ku:"Moskow"},
+                "الرياض": {ar:"الرياض", tr:"Riyad", en:"Riyadh", ru:"Эр-Рияд", es:"Riad", zh:"利雅得", ku:"Riyad"},
+                "جدة": {ar:"جدة", tr:"Cidde", en:"Jeddah", ru:"Джидда", es:"Yeda", zh:"吉达", ku:"Cidde"},
+                "القاهرة": {ar:"القاهرة", tr:"Kahire", en:"Cairo", ru:"Каир", es:"El Cairo", zh:"开罗", ku:"Qahîre"},
+                "الدوحة": {ar:"الدوحة", tr:"Doha", en:"Doha", ru:"Доха", es:"Doha", zh:"多哈", ku:"Doha"},
+                "سانت بطرسبرغ": {ar:"سانت بطرسبرغ", tr:"St. Petersburg", en:"St. Petersburg", ru:"Санкт-Петербург", es:"San Petersburgo", zh:"圣彼得堡", ku:"St. Petersburg"},
+                "فندق مميز في": {ar:"فندق مميز في", tr:"Premium Otel:", en:"Premium Hotel in", ru:"Премиум отель в", es:"Hotel Premium en", zh:"高级酒店在", ku:"Otela Premium li"},
+                "شقة فندقية فاخرة في": {ar:"شقة فندقية فاخرة في", tr:"Lüks Apartman:", en:"Luxury Apartment in", ru:"Роскошные апартаменты в", es:"Apartamento de Lujo en", zh:"豪华公寓在", ku:"Apartmana Luks li"},
+                "عرض فندقي حقيقي بسعر": {ar:"عرض فندقي", tr:"Otel Fırsatı", en:"Hotel Deal", ru:"Предложение отеля", es:"Oferta de Hotel", zh:"酒店优惠", ku:"Fersenda Otelê"},
+                "تذكرة طيران حقيقية لمسار": {ar:"تذكرة طيران", tr:"Uçak Bileti", en:"Flight Ticket", ru:"Авиабилет", es:"Boleto de Vuelo", zh:"机票", ku:"Bilêta Firînê"},
+                "خطوط طيران مجدولة": {ar:"خطوط طيران مجدولة", tr:"Tarifeli Havayolları", en:"Scheduled Airlines", ru:"Регулярные авиалинии", es:"Aerolíneas Regulares", zh:"定期航班", ku:"Rêyên Hewayî yên Bernamekirî"}
+            };
+
+            let res = text;
+            for (let k in t) {
+                const regex = new RegExp(k, "gi");
+                if (regex.test(res)) {
+                    res = res.replace(regex, t[k][lang] || k);
+                }
+            }
+            return res;
+        }
+
         const DEFAULT_ARTICLES = [
             {
-                id: 'def-1',
-                category: "ANTALYA",
-                image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=90",
-                titles: {
-                    tr: "Antalya'nın Gizli Cennetleri ve Lüks Koyları",
-                    ar: "جنات أنطاليا المخفية وخلجانها الفاخرة",
-                    en: "Antalya's Hidden Havens & Exclusive Bays",
-                    ru: "Тайные бухты и эксклюзивный отдых в Анталье",
-                    es: "Los paraísos escondidos y bahías exclusivas de Antalya",
-                    zh: "安塔利亚的隐藏天堂和独特海湾",
-                    ku: "Bihuştên Veşartî û Kendavên Luks ên Antalyayê"
-                },
-                bodies: {
-                    tr: "<p>Antalya, yalnızca kitle turizmi ile değil; sakin koyları, turkuaz suları ve dünya standartlarındaki seçkin tatil köyleriyle Akdeniz'in en değerli rotalarından biridir.</p>",
-                    ar: "<p>لا تقتصر أنطاليا على المنتجعات الشهيرة فحسب؛ بل تحتضن خلجاناً فيروزية معزولة ومحميات طبيعية تجعلها من أكثر وجهات البحر الأبيض المتوسط تميزاً وفخامة.</p>",
-                    en: "<p>Antalya is not just a destination for mass tourism; it is home to secluded turquoise coves and world-class luxury resorts along the Turkish Riviera.</p>",
-                    ru: "<p>Анталья — это не только знаменитые курорты, но и уединенные бирюзовые бухты Средиземного моря высочайшего класса.</p>",
-                    es: "<p>Antalya no es solo un destino para el turismo masivo; alberga calas turquesas solitarias y resorts de lujo de clase mundial a lo largo de la Riviera turca.</p>",
-                    zh: "<p>安塔利亚不仅仅是大众旅游的目的地；它拥有隐蔽的绿松石海湾和土耳其里维埃拉沿岸的世界级豪华度假胜地。</p>",
-                    ku: "<p>Antalya, ne tenê bi tûrîzma girseyî; bi kendavên xwe yên aram û avên tîrêj, yek ji rotayên herî hêja yên Deryaya Spî ye.</p>"
-                }
+                id: 'def-1', category: "ANTALYA", image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=90",
+                titles: { tr: "Antalya'nın Gizli Cennetleri ve Lüks Koyları", ar: "جنات أنطاليا المخفية وخلجانها الفاخرة", en: "Antalya's Hidden Havens & Exclusive Bays", ru: "Тайные бухты и эксклюзивный отдых в Анталье", es: "Los paraísos escondidos y bahías exclusivas de Antalya", zh: "安塔利亚的隐藏天堂和独特海湾", ku: "Bihuştên Veşartî û Kendavên Luks ên Antalyayê" },
+                bodies: { tr: "<p>Antalya, yalnızca kitle turizmi ile değil; sakin koyları, turkuaz suları ve dünya standartlarındaki seçkin tatil köyleriyle Akdeniz'in en değerli rotalarından biridir.</p>", ar: "<p>لا تقتصر أنطاليا على المنتجعات الشهيرة فحسب؛ بل تحتضن خلجاناً فيروزية معزولة ومحميات طبيعية تجعلها من أكثر وجهات البحر الأبيض المتوسط تميزاً وفخامة.</p>", en: "<p>Antalya is not just a destination for mass tourism; it is home to secluded turquoise coves and world-class luxury resorts along the Turkish Riviera.</p>", ru: "<p>Анталья — это не только знаменитые курорты, но и уединенные бирюзовые бухты Средиземного моря высочайшего класса.</p>", es: "<p>Antalya no es solo un destino para el turismo masivo; alberga calas turquesas solitarias y resorts de lujo de clase mundial a lo largo de la Riviera turca.</p>", zh: "<p>安塔利亚不仅仅是大众旅游的目的地；它拥有隐蔽的绿松石海湾和土耳其里维埃拉沿岸的世界级豪华度假胜地。</p>", ku: "<p>Antalya, ne tenê bi tûrîzma girseyî; bi kendavên xwe yên aram û avên tîrêj, yek ji rotayên herî hêja yên Deryaya Spî ye.</p>" }
             },
             {
-                id: 'def-2',
-                category: "İSTANBUL",
-                image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1200&q=90",
-                titles: {
-                    tr: "Boğaziçi'nde Tarihi Saraylar ve Gurme Deneyimler",
-                    ar: "قصور البوسفور التاريخية وتجارب التذوق الراقية",
-                    en: "Bosphorus Palaces & Fine Dining Experiences",
-                    ru: "Дворцы Босфора и гастрономические открытия",
-                    es: "Palacios del Bósforo y experiencias gastronómicas",
-                    zh: "博斯普鲁斯海峡宫殿与精致餐饮体验",
-                    ku: "Qesrên Dîrokî û Ezmûnên Gurme yên li Bosforê"
-                },
-                bodies: {
-                    tr: "<p>Doğu ile Batı'nın kesiştiği İstanbul, Boğaz kıyısındaki saray otelleriyle konuklarına asırlık bir zarafet yaşatır.</p>",
-                    ar: "<p>في المدينة التي تلتقي فيها قارتان، تمنحك فنادق القصور العثمانية الواقعة على ضفاف البوسفور تجربة أصيلة تحاكي عبق التاريخ وأناقة الحاضر.</p>",
-                    en: "<p>Where two continents meet, Istanbul offers centuries of heritage reflected through majestic palace hotels situated on the Bosphorus.</p>",
-                    ru: "<p>Стамбул — город, где встречаются две цивилизации. Дворцовые отели на берегах Босфора дарят гостям непревзойденную атмосферу османского великолепия.</p>",
-                    es: "<p>Donde se encuentran dos continentes, Estambul ofrece siglos de herencia reflejados a través de majestuosos hoteles palacio situados en el Bósforo.</p>",
-                    zh: "<p>作为两大洲的交汇点，伊斯坦布尔通过坐落在博斯普鲁斯海峡上宏伟的宫殿酒店，展现了数百年的文化遗产。</p>",
-                    ku: "<p>Stenbol, cihê ku Rojhilat û Rojava digihîjin hev, bi otêlên qesrê yên li qeraxa Bosforê mêvanên xwe re zerafeteke sedsalî dide jiyîn.</p>"
-                }
+                id: 'def-2', category: "İSTANBUL", image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1200&q=90",
+                titles: { tr: "Boğaziçi'nde Tarihi Saraylar ve Gurme Deneyimler", ar: "قصور البوسفور التاريخية وتجارب التذوق الراقية", en: "Bosphorus Palaces & Fine Dining Experiences", ru: "Дворцы Босфора и гастрономические открытия", es: "Palacios del Bósforo y experiencias gastronómicas", zh: "博斯普鲁斯海峡宫殿与精致餐饮体验", ku: "Qesrên Dîrokî û Ezmûnên Gurme yên li Bosforê" },
+                bodies: { tr: "<p>Doğu ile Batı'nın kesiştiği İstanbul, Boğaz kıyısındaki saray otelleriyle konuklarına asırlık bir zarafet yaşatır.</p>", ar: "<p>في المدينة التي تلتقي فيها قارتان، تمنحك فنادق القصور العثمانية الواقعة على ضفاف البوسفور تجربة أصيلة تحاكي عبق التاريخ وأناقة الحاضر.</p>", en: "<p>Where two continents meet, Istanbul offers centuries of heritage reflected through majestic palace hotels situated on the Bosphorus.</p>", ru: "<p>Стамбул — город, где встречаются две цивилизации. Дворцовые отели на берегах Босфора дарят гостям непревзойденную атмосферу османского великолепия.</p>", es: "<p>Donde se encuentran dos continentes, Estambul ofrece siglos de herencia reflejados a través de majestuosos hoteles palacio situados en el Bósforo.</p>", zh: "<p>作为两大洲的交汇点，伊斯坦布尔通过坐落在博斯普鲁斯海峡上宏伟的宫殿酒店，展现了数百年的文化遗产。</p>", ku: "<p>Stenbol, cihê ku Rojhilat û Rojava digihîjin hev, bi otêlên qesrê yên li qeraxa Bosforê mêvanên xwe re zerafeteke sedsalî dide jiyîn.</p>" }
             },
             {
-                id: 'def-3',
-                category: "TRABZON",
-                image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=90",
-                titles: {
-                    tr: "Karadeniz Yaylalarında Sislerin Arasında Huzur",
-                    ar: "السكينة بين غيوم مرتفعات البحر الأسود",
-                    en: "Tranquility Amidst Black Sea Plateaus",
-                    ru: "Умиротворение среди туманных плато Черного моря",
-                    es: "Tranquilidad entre las mesetas del Mar Negro",
-                    zh: "黑海高原上的宁静",
-                    ku: "Aramiya Di Nav Mijê De Li Zozanên Deryaya Reş"
-                },
-                bodies: {
-                    tr: "<p>Karadeniz'in serin yaylaları, yeşilin binbir tonu ve dağların arasına gizlenmiş berrak gölleriyle doğa aşıklarına huzurlu bir sığınak sunar.</p>",
-                    ar: "<p>تتميز مرتفعات البحر الأسود بطبيعتها الخضراء البكر، وهوائها العليل، وغيومها التي تعانق قمم الجبال في مشهد ساحر يبعث على الراحة والهدوء.</p>",
-                    en: "<p>The mist-covered highlands of the Black Sea provide an idyllic mountain retreat characterized by emerald pine forests.</p>",
-                    ru: "<p>Прохладные плато Черноморского региона Турции — это царство нетронутой изумрудной природы и горных озер.</p>",
-                    es: "<p>Las tierras altas cubiertas de niebla del Mar Negro proporcionan un idílico refugio montañoso caracterizado por bosques de pinos esmeralda.</p>",
-                    zh: "<p>黑海雾气缭绕的高地提供了一个田园诗般的山区隐居地，以翠绿的松林为特色。</p>",
-                    ku: "<p>Zozanên hênik ên Deryaya Reş bi hezar û yek tonên kesk û golên zelal ên di nav çiyayan de veşartî ne, stargehek aram pêşkêş dikin.</p>"
-                }
+                id: 'def-3', category: "TRABZON", image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=90",
+                titles: { tr: "Karadeniz Yaylalarında Sislerin Arasında Huzur", ar: "السكينة بين غيوم مرتفعات البحر الأسود", en: "Tranquility Amidst Black Sea Plateaus", ru: "Умиротворение среди туманных плато Черного моря", es: "Tranquilidad entre las mesetas del Mar Negro", zh: "黑海高原上的宁静", ku: "Aramiya Di Nav Mijê De Li Zozanên Deryaya Reş" },
+                bodies: { tr: "<p>Karadeniz'in serin yaylaları, yeşilin binbir tonu ve dağların arasına gizlenmiş berrak gölleriyle doğa aşıklarına huzurlu bir sığınak sunar.</p>", ar: "<p>تتميز مرتفعات البحر الأسود بطبيعتها الخضراء البكر، وهوائها العليل، وغيومها التي تعانق قمم الجبال في مشهد ساحر يبعث على الراحة والهدوء.</p>", en: "<p>The mist-covered highlands of the Black Sea provide an idyllic mountain retreat characterized by emerald pine forests.</p>", ru: "<p>Прохладные плато Черноморского региона Турции — это царство нетронутой изумрудной природы и горных озер.</p>", es: "<p>Las tierras altas cubiertas de niebla del Mar Negro proporcionan un idílico refugio montañoso caracterizado por bosques de pinos esmeralda.</p>", zh: "<p>黑海雾气缭绕的高地提供了一个田园诗般的山区隐居地，以翠绿的松林为特色。</p>", ku: "<p>Zozanên hênik ên Deryaya Reş bi hezar û yek tonên kesk û golên zelal ên di nav çiyayan de veşartî ne, stargehek aram pêşkêş dikin.</p>" }
             }
         ];
 
@@ -476,24 +446,13 @@
         window.openArticleModal = function(id) {
             const article = window.ARTICLES_MAP[id];
             if (!article) return;
-
             const currentLang = document.documentElement.lang || 'tr';
-            let title = '';
-            let body = '';
-
-            if (article.titles) {
-                title = article.titles[currentLang] || article.titles['tr'];
-                body = article.bodies[currentLang] || article.bodies['tr'];
-            } else {
-                title = article.title;
-                body = article.body;
-            }
-
+            let title = article.titles ? (article.titles[currentLang] || article.titles['tr']) : article.title;
+            let body = article.titles ? (article.bodies[currentLang] || article.bodies['tr']) : article.body;
             document.getElementById('modal-img').src = article.image;
             document.getElementById('modal-category').textContent = article.category;
             document.getElementById('modal-title').textContent = title;
             document.getElementById('modal-body').innerHTML = body;
-
             const modal = document.getElementById('article-modal');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -506,22 +465,18 @@
         };
 
         window.closeArticleModal = function(e) {
-            if (e.target.id === 'article-modal') {
-                window.hideArticleModal();
-            }
+            if (e.target.id === 'article-modal') window.hideArticleModal();
         };
 
         function toggleTheme() {
             const html = document.documentElement;
             const icon = document.getElementById('theme-icon');
             if (html.classList.contains('dark')) {
-                html.classList.remove('dark');
-                html.classList.add('light');
+                html.classList.remove('dark'); html.classList.add('light');
                 icon.className = "fas fa-moon text-sm text-slate-700";
                 localStorage.setItem('ucuzakal_theme', 'light');
             } else {
-                html.classList.remove('light');
-                html.classList.add('dark');
+                html.classList.remove('light'); html.classList.add('dark');
                 icon.className = "fas fa-sun text-sm text-brand-gold";
                 localStorage.setItem('ucuzakal_theme', 'dark');
             }
@@ -534,14 +489,15 @@
             if(icon) icon.className = "fas fa-moon text-sm text-slate-700";
         }
 
-        // التعديل الأول: الانتقال في نفس الصفحة لتجنب حظر النوافذ المنبثقة
+        // التعديل الأول: الانتقال الصاروخي في نفس الصفحة وتخطي الحظر
         function triggerCinematicRedirect(url) {
+            if(!url || url === '#') return;
             const overlay = document.getElementById('cinematic-overlay');
             const bar = document.getElementById('cinematic-bar');
             overlay.classList.add('active');
             setTimeout(() => { bar.style.width = '100%'; }, 50);
             setTimeout(() => {
-                window.location.href = url; // يتم الفتح فوراً في نفس التبويب بدلاً من _blank
+                window.location.href = url; // الفتح المباشر في نفس التبويب
             }, 2000); 
         }
 
@@ -550,193 +506,34 @@
             selectedRating = stars;
             const starIcons = document.querySelectorAll('#star-container i');
             starIcons.forEach((icon, idx) => {
-                if (idx < stars) {
-                    icon.className = "fas fa-star text-brand-gold transition duration-300";
-                } else {
-                    icon.className = "far fa-star text-slate-300 dark:text-slate-700 transition duration-300";
-                }
+                icon.className = idx < stars ? "fas fa-star text-brand-gold transition duration-300" : "far fa-star text-slate-300 dark:text-slate-700 transition duration-300";
             });
         }
 
         const TRANSLATIONS = {
             tr: {
-                dir: "ltr",
-                hero_title: "Seçkin Rotaları Lüksle Keşfedin",
-                hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.",
-                hotels_sub: "ÖZEL SEÇKİ",
-                hotels_heading: "Özel Seçki Koleksiyonu",
-                starting_from: "Başlayan Fiyatlar",
-                flights_sub: "GÖKLERDEKİ ZARAFET",
-                flights_heading: "Ayrıcalıklı Uçuşlar",
-                blog_sub: "SEYAHAT REHBERİ",
-                blog_heading: "UcuzaKal Seyahat Günlüğü",
-                read_more: "Devamını Oku",
-                about_heading: "Biz Kimiz?",
-                about_text_1: "UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.",
-                about_text_2: "Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.",
-                ratings_heading: "İzlenimlerinizi Paylaşın",
-                review_name_placeholder: "Adınız Soyadınız",
-                review_text_placeholder: "Düşünceleriniz...",
-                submit_review_btn: "Gönder",
-                review_success: "Zarif geri bildiriminiz için teşekkür ederiz.",
-                rights: "Tüm hakları saklıdır UcuzaKal Türkiye",
-                google_login: "Gmail Girişi",
-                cinematic_title: "Rezervasyon Platformuna Yönlendiriliyorsunuz...",
-                no_deals_text: "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın."
+                dir: "ltr", hero_title: "Seçkin Rotaları Lüksle Keşfedin", hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.", hotels_sub: "ÖZEL SEÇKİ", hotels_heading: "Özel Seçki Koleksiyonu", starting_from: "Başlayan Fiyatlar", flights_sub: "GÖKLERDEKİ ZARAFET", flights_heading: "Ayrıcalıklı Uçuşlar", blog_sub: "SEYAHAT REHBERİ", blog_heading: "UcuzaKal Seyahat Günlüğü", read_more: "Devamını Oku", about_heading: "Biz Kimiz?", about_text_1: "UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.", about_text_2: "Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.", ratings_heading: "İzlenimlerinizi Paylaşın", review_name_placeholder: "Adınız Soyadınız", review_text_placeholder: "Düşünceleriniz...", submit_review_btn: "Gönder", review_success: "Zarif geri bildiriminiz için teşekkür ederiz.", rights: "Tüm hakları saklıdır UcuzaKal Türkiye", google_login: "Gmail Girişi", cinematic_title: "Rezervasyon Platformuna Yönlendiriliyorsunuz...", no_deals_text: "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın."
             },
             ar: {
-                dir: "rtl",
-                hero_title: "اكتشف روعة الوجهات الفاخرة",
-                hero_subtitle: "مختارات إقامة وطيران حصرية مصممة لتلبية ذوقك الرفيع في أبرز وجهات تركيا.",
-                hotels_sub: "مختارات خاصة",
-                hotels_heading: "مجموعة المختارات الخاصة",
-                starting_from: "الأسعار تبدأ من",
-                flights_sub: "أناقة الأجواء",
-                flights_heading: "مسارات الرحلات الحصرية",
-                blog_sub: "دليل السفر",
-                blog_heading: "يوميات UcuzaKal السياحية",
-                read_more: "اقرأ المزيد",
-                about_heading: "من نحن؟",
-                about_text_1: "UcuzaKal Türkiye هي منصة سفر مستقلة تجمع لك أفضل عروض الإقامة ورحلات الطيران في أرقى الوجهات التركية. هدفنا هو تقديم أدق الأسعار بشفافية تامة، وتحويل تخطيط سفرك إلى تجربة استثنائية تلبي ذوقك الرفيع.",
-                about_text_2: "تم تصميم وتنسيق كل مسار بعناية فائقة لضمان ألا يكون سفرك مجرد وجهة وصول؛ بل ليبقى كذكرى نبيلة لا تُنسى تلبي كافة توقعاتك.",
-                ratings_heading: "شاركنا انطباعاتك",
-                review_name_placeholder: "الاسم الكريم...",
-                review_text_placeholder: "اكتب انطباعاتك هنا...",
-                submit_review_btn: "إرسال",
-                review_success: "نقدر لك هذا التقييم الراقي، شكراً لثقتك.",
-                rights: "جميع الحقوق محفوظة UcuzaKal Türkiye",
-                google_login: "دخول Gmail",
-                cinematic_title: "جاري تحويلك لمنصة الحجز...",
-                no_deals_text: "نأسف بشده لا توجد عروض فى الوقت الحالى شرفنا بالزياره بعد قليل"
+                dir: "rtl", hero_title: "اكتشف روعة الوجهات الفاخرة", hero_subtitle: "مختارات إقامة وطيران حصرية مصممة لتلبية ذوقك الرفيع في أبرز وجهات تركيا.", hotels_sub: "مختارات خاصة", hotels_heading: "مجموعة المختارات الخاصة", starting_from: "الأسعار تبدأ من", flights_sub: "أناقة الأجواء", flights_heading: "مسارات الرحلات الحصرية", blog_sub: "دليل السفر", blog_heading: "يوميات UcuzaKal السياحية", read_more: "اقرأ المزيد", about_heading: "من نحن؟", about_text_1: "UcuzaKal Türkiye هي منصة سفر مستقلة تجمع لك أفضل عروض الإقامة ورحلات الطيران في أرقى الوجهات التركية. هدفنا هو تقديم أدق الأسعار بشفافية تامة، وتحويل تخطيط سفرك إلى تجربة استثنائية تلبي ذوقك الرفيع.", about_text_2: "تم تصميم وتنسيق كل مسار بعناية فائقة لضمان ألا يكون سفرك مجرد وجهة وصول؛ بل ليبقى كذكرى نبيلة لا تُنسى تلبي كافة توقعاتك.", ratings_heading: "شاركنا انطباعاتك", review_name_placeholder: "الاسم الكريم...", review_text_placeholder: "اكتب انطباعاتك هنا...", submit_review_btn: "إرسال", review_success: "نقدر لك هذا التقييم الراقي، شكراً لثقتك.", rights: "جميع الحقوق محفوظة UcuzaKal Türkiye", google_login: "دخول Gmail", cinematic_title: "جاري تحويلك لمنصة الحجز...", no_deals_text: "نأسف بشده لا توجد عروض فى الوقت الحالى شرفنا بالزياره بعد قليل"
             },
             en: {
-                dir: "ltr",
-                hero_title: "Discover Elite Routes in Luxury",
-                hero_subtitle: "Exclusive accommodation and flight opportunities carefully compiled for you in Turkey's most popular destinations.",
-                hotels_sub: "EXCLUSIVE SELECTION",
-                hotels_heading: "Special Selection Collection",
-                starting_from: "Rates Starting From",
-                flights_sub: "ELEGANCE IN THE SKIES",
-                flights_heading: "Privileged Flights",
-                blog_sub: "TRAVEL JOURNAL",
-                blog_heading: "UcuzaKal Travel Journal",
-                read_more: "Read More",
-                about_heading: "Who Are We?",
-                about_text_1: "UcuzaKal Türkiye is an independent travel platform that carefully curates the finest accommodation and flight deals across Turkey's elite destinations.",
-                about_text_2: "Each meticulously compiled route is designed so that your journey becomes an unforgettable standard of elegance.",
-                ratings_heading: "Share Your Impressions",
-                review_name_placeholder: "Full Name",
-                review_text_placeholder: "Your thoughts...",
-                submit_review_btn: "Submit",
-                review_success: "Thank you for your elegant feedback.",
-                rights: "All rights reserved UcuzaKal Türkiye",
-                google_login: "Login with Gmail",
-                cinematic_title: "Redirecting to Booking Platform...",
-                no_deals_text: "There are currently no deals, please honor us with a visit shortly."
+                dir: "ltr", hero_title: "Discover Elite Routes in Luxury", hero_subtitle: "Exclusive accommodation and flight opportunities carefully compiled for you in Turkey's most popular destinations.", hotels_sub: "EXCLUSIVE SELECTION", hotels_heading: "Special Selection Collection", starting_from: "Rates Starting From", flights_sub: "ELEGANCE IN THE SKIES", flights_heading: "Privileged Flights", blog_sub: "TRAVEL JOURNAL", blog_heading: "UcuzaKal Travel Journal", read_more: "Read More", about_heading: "Who Are We?", about_text_1: "UcuzaKal Türkiye is an independent travel platform that carefully curates the finest accommodation and flight deals across Turkey's elite destinations.", about_text_2: "Each meticulously compiled route is designed so that your journey becomes an unforgettable standard of elegance.", ratings_heading: "Share Your Impressions", review_name_placeholder: "Full Name", review_text_placeholder: "Your thoughts...", submit_review_btn: "Submit", review_success: "Thank you for your elegant feedback.", rights: "All rights reserved UcuzaKal Türkiye", google_login: "Login with Gmail", cinematic_title: "Redirecting to Booking Platform...", no_deals_text: "There are currently no deals, please honor us with a visit shortly."
             },
             ru: {
-                dir: "ltr",
-                hero_title: "Откройте для себя элитные маршруты в роскоши",
-                hero_subtitle: "Эксклюзивные предложения по размещению и перелетам в лучших уголках Турции.",
-                hotels_sub: "СПЕЦИАЛЬНЫЙ ВЫБОР",
-                hotels_heading: "Специальная коллекция",
-                starting_from: "Цены от",
-                flights_sub: "ЭЛЕГАНТНОСТЬ В НЕБЕ",
-                flights_heading: "Привилегированные рейсы",
-                blog_sub: "ПУТЕВОДИТЕЛЬ",
-                blog_heading: "Дневник путешествий UcuzaKal",
-                read_more: "Читать далее",
-                about_heading: "О нас",
-                about_text_1: "UcuzaKal Türkiye — независимая туристическая платформа, тщательно собирающая лучшие предложения.",
-                about_text_2: "Каждый маршрут составлен для того, чтобы ваше путешествие стало безупречным опытом.",
-                ratings_heading: "Поделитесь впечатлениями",
-                review_name_placeholder: "Имя Фамилия",
-                review_text_placeholder: "Ваш отзыв...",
-                submit_review_btn: "Отправить",
-                review_success: "Благодарим за ваш отзыв.",
-                rights: "Все права защищены UcuzaKal Türkiye",
-                google_login: "Войти через Gmail",
-                cinematic_title: "Перенаправление на платформу бронирования...",
-                no_deals_text: "В настоящее время предложений нет, пожалуйста, окажите нам честь своим визитом чуть позже."
+                dir: "ltr", hero_title: "Откройте для себя элитные маршруты в роскоши", hero_subtitle: "Эксклюзивные предложения по размещению и перелетам в лучших уголках Турции.", hotels_sub: "СПЕЦИАЛЬНЫЙ ВЫБОР", hotels_heading: "Специальная коллекция", starting_from: "Цены от", flights_sub: "ЭЛЕГАНТНОСТЬ В НЕБЕ", flights_heading: "Привилегированные рейсы", blog_sub: "ПУТЕВОДИТЕЛЬ", blog_heading: "Дневник путешествий UcuzaKal", read_more: "Читать далее", about_heading: "О нас", about_text_1: "UcuzaKal Türkiye — независимая туристическая платформа, тщательно собирающая лучшие предложения.", about_text_2: "Каждый маршрут составлен для того, чтобы ваше путешествие стало безупречным опытом.", ratings_heading: "Поделитесь впечатлениями", review_name_placeholder: "Имя Фамилия", review_text_placeholder: "Ваш отзыв...", submit_review_btn: "Отправить", review_success: "Благодарим за ваш отзыв.", rights: "Все права защищены UcuzaKal Türkiye", google_login: "Войти через Gmail", cinematic_title: "Перенаправление на платформу бронирования...", no_deals_text: "В настоящее время предложений нет, пожалуйста, окажите нам честь своим визитом чуть позже."
             },
             es: {
-                dir: "ltr",
-                hero_title: "Descubra Rutas de Élite con Lujo",
-                hero_subtitle: "Oportunidades exclusivas de alojamiento y vuelos cuidadosamente compiladas para usted en los destinos más populares de Turquía.",
-                hotels_sub: "SELECCIÓN EXCLUSIVA",
-                hotels_heading: "Colección de Selección Especial",
-                starting_from: "Precios desde",
-                flights_sub: "ELEGANCIA EN LOS CIELOS",
-                flights_heading: "Vuelos Privilegiados",
-                blog_sub: "GUÍA DE VIAJE",
-                blog_heading: "Diario de Viaje UcuzaKal",
-                read_more: "Leer más",
-                about_heading: "¿Quiénes somos?",
-                about_text_1: "UcuzaKal Türkiye es una plataforma de viajes independiente que selecciona cuidadosamente las mejores ofertas de alojamiento y vuelos en los destinos de élite de Turquía.",
-                about_text_2: "Cada ruta está meticulosamente diseñada para que su viaje se convierta en una experiencia de elegancia inolvidable.",
-                ratings_heading: "Comparta sus impresiones",
-                review_name_placeholder: "Nombre completo",
-                review_text_placeholder: "Sus pensamientos...",
-                submit_review_btn: "Enviar",
-                review_success: "Gracias por sus elegantes comentarios.",
-                rights: "Todos los derechos reservados UcuzaKal Türkiye",
-                google_login: "Iniciar sesión con Gmail",
-                cinematic_title: "Redirigiendo a la plataforma de reservas...",
-                no_deals_text: "Actualmente no hay ofertas, por favor hónrenos con una visita en breve."
+                dir: "ltr", hero_title: "Descubra Rutas de Élite con Lujo", hero_subtitle: "Oportunidades exclusivas de alojamiento y vuelos cuidadosamente compiladas para usted en los destinos más populares de Turquía.", hotels_sub: "SELECCIÓN EXCLUSIVA", hotels_heading: "Colección de Selección Especial", starting_from: "Precios desde", flights_sub: "ELEGANCIA EN LOS CIELOS", flights_heading: "Vuelos Privilegiados", blog_sub: "GUÍA DE VIAJE", blog_heading: "Diario de Viaje UcuzaKal", read_more: "Leer más", about_heading: "¿Quiénes somos?", about_text_1: "UcuzaKal Türkiye es una plataforma de viajes independiente que selecciona cuidadosamente las mejores ofertas de alojamiento y vuelos en los destinos de élite de Turquía.", about_text_2: "Cada ruta está meticulosamente diseñada para que su viaje se convierta en una experiencia de elegancia inolvidable.", ratings_heading: "Comparta sus impresiones", review_name_placeholder: "Nombre completo", review_text_placeholder: "Sus pensamientos...", submit_review_btn: "Enviar", review_success: "Gracias por sus elegantes comentarios.", rights: "Todos los derechos reservados UcuzaKal Türkiye", google_login: "Iniciar sesión con Gmail", cinematic_title: "Redirigiendo a la plataforma de reservas...", no_deals_text: "Actualmente no hay ofertas, por favor hónrenos con una visita en breve."
             },
             zh: {
-                dir: "ltr",
-                hero_title: "在奢华中发现精英路线",
-                hero_subtitle: "为您在土耳其最受欢迎的目的地精心汇编的独家住宿和航班优惠。",
-                hotels_sub: "独家精选",
-                hotels_heading: "特别精选系列",
-                starting_from: "起价",
-                flights_sub: "云端优雅",
-                flights_heading: "尊享航班",
-                blog_sub: "旅行指南",
-                blog_heading: "UcuzaKal 旅行日记",
-                read_more: "阅读更多",
-                about_heading: "关于我们",
-                about_text_1: "UcuzaKal Türkiye 是一个独立的旅行平台，为您精心挑选土耳其精英目的地的最佳住宿和航班优惠。",
-                about_text_2: "每条路线都经过精心设计，让您的旅程成为难忘的优雅体验。",
-                ratings_heading: "分享您的印象",
-                review_name_placeholder: "姓名",
-                review_text_placeholder: "您的想法...",
-                submit_review_btn: "提交",
-                review_success: "感谢您的优雅反馈。",
-                rights: "保留所有权利 UcuzaKal Türkiye",
-                google_login: "使用 Gmail 登录",
-                cinematic_title: "正在重定向至预订平台...",
-                no_deals_text: "目前没有任何优惠，请稍后再来访问我们。"
+                dir: "ltr", hero_title: "在奢华中发现精英路线", hero_subtitle: "为您在土耳其最受欢迎的目的地精心汇编的独家住宿和航班优惠。", hotels_sub: "独家精选", hotels_heading: "特别精选系列", starting_from: "起价", flights_sub: "云端优雅", flights_heading: "尊享航班", blog_sub: "旅行指南", blog_heading: "UcuzaKal 旅行日记", read_more: "阅读更多", about_heading: "关于我们", about_text_1: "UcuzaKal Türkiye 是一个独立的旅行平台，为您精心挑选土耳其精英目的地的最佳住宿和航班优惠。", about_text_2: "每条路线都经过精心设计，让您的旅程成为难忘的优雅体验。", ratings_heading: "分享您的印象", review_name_placeholder: "姓名", review_text_placeholder: "您的想法...", submit_review_btn: "提交", review_success: "感谢您的优雅反馈。", rights: "保留所有权利 UcuzaKal Türkiye", google_login: "使用 Gmail 登录", cinematic_title: "正在重定向至预订平台...", no_deals_text: "目前没有任何优惠，请稍后再来访问我们。"
             },
             ku: {
-                dir: "ltr",
-                hero_title: "Rêçên Bijarte Bi Luksê Kêf Bikin",
-                hero_subtitle: "Derfetên cîh û firînê yên taybetî li cihên herî populer ên Tirkiyeyê.",
-                hotels_sub: "HILBIJARTINA TAYBET",
-                hotels_heading: "Koleksiyona Hilbijartina Taybet",
-                starting_from: "Bihayên Destpêkê",
-                flights_sub: "ZARAFETA LI EZMANAN",
-                flights_heading: "Firînên Taybet",
-                blog_sub: "REHBERA RÊWÎTIYÊ",
-                blog_heading: "Rojnameya Rêwîtiyê ya UcuzaKal",
-                read_more: "Zêdetir Bixwîne",
-                about_heading: "Em Kî Ne?",
-                about_text_1: "UcuzaKal Türkiye platformeke rêwîtiyê ya serbixwe ye ku derfetên herî baş ên cîh û firînê li cihên elît ên Tirkiyeyê berhev dike.",
-                about_text_2: "Her rêç bi baldarî hatiye sêwirandin da ku rêwîtiya we bibe ezmûneke nayê jibîrkirin.",
-                ratings_heading: "Nêrînên Xwe Parve Bikin",
-                review_name_placeholder: "Nav û Paşnav",
-                review_text_placeholder: "Ramanên we...",
-                submit_review_btn: "Bişîne",
-                review_success: "Ji bo nerînên we yên hêja spas.",
-                rights: "Hemû maf parastî ne UcuzaKal Türkiye",
-                google_login: "Têketina Gmail",
-                cinematic_title: "Ber bi platforma veqetandinê ve tê rêvekirin...",
-                no_deals_text: "Niha tu pêşniyar nînin, ji kerema xwe piştî demek kurt serdana me bikin."
+                dir: "ltr", hero_title: "Rêçên Bijarte Bi Luksê Kêf Bikin", hero_subtitle: "Derfetên cîh û firînê yên taybetî li cihên herî populer ên Tirkiyeyê.", hotels_sub: "HILBIJARTINA TAYBET", hotels_heading: "Koleksiyona Hilbijartina Taybet", starting_from: "Bihayên Destpêkê", flights_sub: "ZARAFETA LI EZMANAN", flights_heading: "Firînên Taybet", blog_sub: "REHBERA RÊWÎTIYÊ", blog_heading: "Rojnameya Rêwîtiyê ya UcuzaKal", read_more: "Zêdetir Bixwîne", about_heading: "Em Kî Ne?", about_text_1: "UcuzaKal Türkiye platformeke rêwîtiyê ya serbixwe ye ku derfetên herî baş ên cîh û firînê li cihên elît ên Tirkiyeyê berhev dike.", about_text_2: "Her rêç bi baldarî hatiye sêwirandin da ku rêwîtiya we bibe ezmûneke nayê jibîrkirin.", ratings_heading: "Nêrînên Xwe Parve Bikin", review_name_placeholder: "Nav û Paşnav", review_text_placeholder: "Ramanên we...", submit_review_btn: "Bişîne", review_success: "Ji bo nerînên we yên hêja spas.", rights: "Hemû maf parastî ne UcuzaKal Türkiye", google_login: "Têketina Gmail", cinematic_title: "Ber bi platforma veqetandinê ve tê rêvekirin...", no_deals_text: "Niha tu pêşniyar nînin, ji kerema xwe piştî demek kurt serdana me bikin."
             }
         };
 
-        // التعديل الثاني: استعادة الترجمة الديناميكية بالكامل لضمان عدم تعطل أي جزء في الموقع
         function changeLanguage(lang) {
             const dict = TRANSLATIONS[lang] || TRANSLATIONS.tr;
             document.documentElement.lang = lang;
@@ -754,6 +551,7 @@
             
             localStorage.setItem('ucuzakal_lang', lang);
 
+            // تحديث العروض الديناميكية لتترجم بالكامل
             if (window.renderHotels) window.renderHotels();
             if (window.renderFlights) window.renderFlights();
             if (window.renderBlogCards) window.renderBlogCards();
@@ -766,7 +564,6 @@
         });
     </script>
 
-    <!-- ربط Firebase Auth و Cloud Firestore -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -788,28 +585,18 @@
         const authBtn = document.getElementById('auth-btn');
 
         window.loginWithGoogle = function() {
-            signInWithPopup(auth, provider).catch((error) => {
-                console.error("Authentication Error:", error.message);
-            });
+            signInWithPopup(auth, provider).catch((error) => console.error("Authentication Error:", error.message));
         };
 
-        window.logoutGoogle = function() {
-            signOut(auth);
-        };
+        window.logoutGoogle = function() { signOut(auth); };
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                authBtn.innerHTML = `
-                    <img src="${user.photoURL}" alt="User" class="w-5 h-5 rounded-full border border-brand-gold"> 
-                    <span class="font-bold text-xs">${user.displayName.split(' ')[0]}</span>
-                `;
+                authBtn.innerHTML = `<img src="${user.photoURL}" alt="User" class="w-5 h-5 rounded-full border border-brand-gold"> <span class="font-bold text-xs">${user.displayName.split(' ')[0]}</span>`;
                 authBtn.onclick = window.logoutGoogle;
                 authBtn.title = "Çıkış Yap / تسجيل الخروج";
             } else {
-                authBtn.innerHTML = `
-                    <i class="fab fa-google"></i>
-                    <span data-i18n="google_login" id="auth-text">Gmail Girişi</span>
-                `;
+                authBtn.innerHTML = `<i class="fab fa-google"></i><span data-i18n="google_login" id="auth-text">Gmail Girişi</span>`;
                 authBtn.onclick = window.loginWithGoogle;
                 authBtn.title = "Giriş Yap / تسجيل الدخول";
                 const lang = document.documentElement.lang || 'tr';
@@ -819,6 +606,7 @@
             }
         });
 
+        // التعديل الثاني: تطبيق المترجم الديناميكي داخل العروض
         window.renderHotels = function() {
             const container = document.getElementById('hotels-container');
             if (!container) return;
@@ -830,40 +618,39 @@
             if (window.HOTELS_DATA.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full py-24 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-[2rem] border border-brand-gold/10 bg-gradient-to-b from-transparent to-brand-gold/5 shadow-[inset_0_0_50px_rgba(212,175,55,0.02)]">
-                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNkNGFmMzciIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+')] opacity-20"></div>
                         <div class="w-32 h-32 mb-8 rounded-full flex items-center justify-center relative z-10">
                             <div class="absolute inset-0 rounded-full border-t-2 border-r-2 border-brand-gold/40 animate-[spin_8s_linear_infinite]"></div>
                             <div class="absolute inset-3 rounded-full border-b-2 border-l-2 border-brand-gold/30 animate-[spin_12s_linear_infinite_reverse]"></div>
-                            <div class="absolute inset-6 rounded-full bg-brand-gold/10 animate-pulse blur-xl"></div>
                             <i class="fas fa-gem text-brand-gold text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
                         </div>
-                        <h3 class="font-luxury text-xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow leading-relaxed max-w-2xl px-4" data-i18n="no_deals_text">${noDealsText}</h3>
-                    </div>
-                `;
+                        <h3 class="font-luxury text-xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${noDealsText}</h3>
+                    </div>`;
                 return;
             }
 
             let html = '';
             window.HOTELS_DATA.forEach(hotel => {
-                const desc = hotel.description || '';
+                const trCity = translateDynamicText(hotel.city, currentLang);
+                const trName = translateDynamicText(hotel.name, currentLang);
+                const trDesc = translateDynamicText(hotel.description, currentLang);
+                
                 html += `
                     <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('${hotel.affiliateUrl}')">
                         <div class="img-frame">
-                            <img src="${hotel.image}" alt="${hotel.name}" class="w-full h-full object-cover">
+                            <img src="${hotel.image}" alt="${trName}" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
                         </div>
                         <div class="p-6 text-center">
-                            <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">${hotel.city}</span>
-                            <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">${hotel.name}</h3>
+                            <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">${trCity}</span>
+                            <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">${trName}</h3>
                             <div class="gold-divider"></div>
-                            <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6 line-clamp-3 whitespace-pre-line">${desc}</p>
+                            <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6 line-clamp-3">${trDesc}</p>
                             <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
                                 <span class="text-slate-400 text-[10px] uppercase tracking-widest">${startingText}</span>
                                 <span class="font-luxury text-xl font-bold text-brand-gold">${hotel.price}</span>
                             </div>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             });
             container.innerHTML = html;
         };
@@ -878,31 +665,30 @@
             if (window.FLIGHTS_DATA.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full py-24 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-[2rem] border border-brand-gold/10 bg-gradient-to-b from-transparent to-brand-gold/5 shadow-[inset_0_0_50px_rgba(212,175,55,0.02)]">
-                        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjEiIGZpbGw9IiNkNGFmMzciIGZpbGwtb3BhY2l0eT0iMC4xIi8+PC9zdmc+')] opacity-20"></div>
                         <div class="w-32 h-32 mb-8 rounded-full flex items-center justify-center relative z-10">
                             <div class="absolute inset-0 rounded-full border-t-2 border-r-2 border-brand-gold/40 animate-[spin_8s_linear_infinite]"></div>
                             <div class="absolute inset-3 rounded-full border-b-2 border-l-2 border-brand-gold/30 animate-[spin_12s_linear_infinite_reverse]"></div>
-                            <div class="absolute inset-6 rounded-full bg-brand-gold/10 animate-pulse blur-xl"></div>
                             <i class="fas fa-plane-departure text-brand-gold text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
                         </div>
-                        <h3 class="font-luxury text-xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow leading-relaxed max-w-2xl px-4" data-i18n="no_deals_text">${noDealsText}</h3>
-                    </div>
-                `;
+                        <h3 class="font-luxury text-xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${noDealsText}</h3>
+                    </div>`;
                 return;
             }
 
             let html = '';
             window.FLIGHTS_DATA.forEach(flight => {
-                const desc = flight.description || '';
+                const trRoute = translateDynamicText(flight.route, currentLang);
+                const trAirline = translateDynamicText(flight.airline, currentLang);
+                const trDesc = translateDynamicText(flight.description, currentLang);
+                
                 html += `
                     <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('${flight.affiliateUrl}')">
                         <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                        <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">${flight.route}</h3>
-                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">${flight.airline} (${flight.region})</span>
-                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed line-clamp-3 whitespace-pre-line">${desc}</p>
+                        <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">${trRoute}</h3>
+                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">${trAirline}</span>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed line-clamp-3">${trDesc}</p>
                         <span class="font-luxury text-2xl font-bold text-brand-gold">${flight.price}</span>
-                    </div>
-                `;
+                    </div>`;
             });
             container.innerHTML = html;
         };
@@ -913,29 +699,18 @@
             const currentLang = document.documentElement.lang || 'tr';
             const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
             const readMoreText = dict.read_more || "Devamını Oku";
-
             const articlesList = Object.values(window.ARTICLES_MAP);
             if (articlesList.length === 0) return;
 
             let html = '';
             articlesList.forEach(art => {
-                let title = '';
-                let bodySnippet = '';
-
-                if (art.titles) {
-                    title = art.titles[currentLang] || art.titles['tr'];
-                    const bodyText = art.bodies[currentLang] || art.bodies['tr'];
-                    bodySnippet = bodyText.replace(/<[^>]*>?/gm, '');
-                } else {
-                    title = art.title;
-                    bodySnippet = (art.body || '').replace(/<[^>]*>?/gm, '');
-                }
+                let title = art.titles ? (art.titles[currentLang] || art.titles['tr']) : art.title;
+                let bodyText = art.titles ? (art.bodies[currentLang] || art.bodies['tr']) : (art.body || '');
+                let bodySnippet = bodyText.replace(/<[^>]*>?/gm, '');
 
                 html += `
                     <article class="ultra-luxury-card group cursor-pointer" onclick="window.openArticleModal('${art.id}')">
-                        <div class="img-frame">
-                            <img src="${art.image}" alt="${title}" class="w-full h-full object-cover">
-                        </div>
+                        <div class="img-frame"><img src="${art.image}" alt="${title}" class="w-full h-full object-cover"></div>
                         <div class="p-6">
                             <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">${art.category || 'TÜRKİYE'}</span>
                             <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2">${title}</h3>
@@ -944,104 +719,45 @@
                                 <span>${readMoreText}</span> <i class="fas fa-arrow-right text-[10px]"></i>
                             </span>
                         </div>
-                    </article>
-                `;
+                    </article>`;
             });
             container.innerHTML = html;
         };
 
         function detectTrafficSource() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const utm = urlParams.get('utm_source');
-            if (utm) return utm.toUpperCase();
-            return 'DIRECT';
+            const utm = new URLSearchParams(window.location.search).get('utm_source');
+            return utm ? utm.toUpperCase() : 'DIRECT';
         }
 
         window.submitReview = async function() {
             const nameInput = document.getElementById('user-review-name');
             const textInput = document.getElementById('user-review-text');
-            const name = nameInput ? nameInput.value.trim() : '';
-            const text = textInput ? textInput.value.trim() : '';
-
-            if (!name || !text || selectedRating === 0) {
-                alert("Lütfen yıldız seçimi yapıp isim ve yorum alanlarını doldurunuz.");
-                return;
-            }
-
+            if (!nameInput.value.trim() || !textInput.value.trim() || selectedRating === 0) return;
             try {
                 await addDoc(collection(db, "reviews"), {
-                    userName: name,
-                    reviewText: text,
-                    rating: Number(selectedRating),
-                    source: detectTrafficSource(),
-                    createdAt: serverTimestamp()
+                    userName: nameInput.value.trim(), reviewText: textInput.value.trim(),
+                    rating: Number(selectedRating), source: detectTrafficSource(), createdAt: serverTimestamp()
                 });
                 document.getElementById('review-success-msg').classList.remove('hidden');
-                nameInput.value = '';
-                textInput.value = '';
-                rateStar(0);
+                nameInput.value = ''; textInput.value = ''; rateStar(0);
             } catch(e) {}
         };
 
         async function fetchAllFirestoreData() {
             try {
-                window.HOTELS_DATA = [];
-                window.FLIGHTS_DATA = [];
-
-                const defaultHotelImages = [
-                    "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90",
-                    "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90"
-                ];
-
-                const hotelsSnap = await getDocs(query(collection(db, "hotels"), where("status", "==", "Approved")));
-                let imgIndex = 0;
-                hotelsSnap.forEach(doc => {
-                    const deal = doc.data();
-                    window.HOTELS_DATA.push({
-                        name: deal.name || (deal.city + " Fırsatı"),
-                        city: deal.city || "TÜRKİYE",
-                        price: deal.discount,
-                        image: defaultHotelImages[imgIndex % defaultHotelImages.length],
-                        affiliateUrl: deal.affiliateLink || '#',
-                        description: deal.marketingContent || ''
-                    });
-                    imgIndex++;
+                window.HOTELS_DATA = []; window.FLIGHTS_DATA = [];
+                const defaultImgs = ["https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90", "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90"];
+                const hSnap = await getDocs(query(collection(db, "hotels"), where("status", "==", "Approved")));
+                let i = 0;
+                hSnap.forEach(d => {
+                    window.HOTELS_DATA.push({ name: d.data().name || (d.data().city + " Fırsatı"), city: d.data().city || "TÜRKİYE", price: d.data().discount, image: defaultImgs[i % 2], affiliateUrl: d.data().affiliateLink || '#', description: d.data().marketingContent || '' }); i++;
                 });
-
-                const flightsSnap = await getDocs(query(collection(db, "flights"), where("status", "==", "Approved")));
-                flightsSnap.forEach(doc => {
-                    const deal = doc.data();
-                    window.FLIGHTS_DATA.push({
-                        route: deal.route || "Özel Rota",
-                        airline: deal.airline || "Ayrıcalıklı Uçuş",
-                        region: "UcuzaKal",
-                        price: deal.discount,
-                        affiliateUrl: deal.affiliateLink || '#',
-                        description: deal.marketingContent || ''
-                    });
+                const fSnap = await getDocs(query(collection(db, "flights"), where("status", "==", "Approved")));
+                fSnap.forEach(d => {
+                    window.FLIGHTS_DATA.push({ route: d.data().route || "Özel Rota", airline: d.data().airline || "Ayrıcalıklı Uçuş", region: "UcuzaKal", price: d.data().discount, affiliateUrl: d.data().affiliateLink || '#', description: d.data().marketingContent || '' });
                 });
             } catch(e) { }
-            
-            window.renderHotels();
-            window.renderFlights();
-
-            try {
-                const articlesSnap = await getDocs(query(collection(db, "articles"), orderBy("createdAt", "desc")));
-                if (!articlesSnap.empty) {
-                    window.ARTICLES_MAP = {};
-                    articlesSnap.forEach(docSnap => {
-                        const data = docSnap.data();
-                        window.ARTICLES_MAP[docSnap.id] = {
-                            id: docSnap.id,
-                            category: data.category || 'TÜRKİYE',
-                            image: data.image || 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=90',
-                            title: data.title,
-                            body: data.body
-                        };
-                    });
-                }
-            } catch(e) {}
-            window.renderBlogCards();
+            window.renderHotels(); window.renderFlights();
         }
 
         fetchAllFirestoreData();
