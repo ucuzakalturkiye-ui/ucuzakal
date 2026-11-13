@@ -57,7 +57,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            text-decoration: none; /* لمنع خطوط الروابط */
+            text-decoration: none; 
             -webkit-tap-highlight-color: transparent;
         }
         .dark .ultra-luxury-card {
@@ -393,7 +393,8 @@
                 "شقة فندقية واسعة مطلة على الجبال": {ar:"شقة فندقية واسعة مطلة على الجبال", tr:"Dağ Manzaralı Geniş Apart Daire", en:"Spacious Mountain View Suite", ru:"Просторные апартаменты с видом на горы", es:"Amplia Suite con Vista a la Montaña", zh:"宽敞山景套房公寓", ku:"Apartmana Fireh a Bi Dîmena Çiyayan"},
                 "فندق راقي بالقرب من المعالم السياحية": {ar:"فندق راقي بالقرب من المعالم السياحية", tr:"Tarihi Merkeze Yakın Seçkin Otel", en:"Luxury Hotel Near Historic Landmarks", ru:"Роскошный отель рядом с достопримечательностями", es:"Hotel de Lujo Cerca de Monumentos", zh:"靠近历史地标的豪华酒店", ku:"Otela Luks Nêzîkî Cihên Dîrokî"},
                 "فندق وسط الطبيعة الخلابة": {ar:"فندق وسط الطبيعة الخلابة", tr:"Doğanın Kalbinde Butik Otel", en:"Boutique Hotel Surrounded by Nature", ru:"Бутик-отель на лоне природы", es:"Hotel Boutique Rodeado de Naturaleza", zh:"自然环绕的精品酒店", ku:"Otela Bûtîk Di Nav Xwezayê De"},
-                "تذاكر طيران مخفضة": {ar:"تذاكر طيران مخفضة", tr:"İndirimli Uçak Bileti", en:"Discounted Flight Ticket", ru:"Авиабилет со скидкой", es:"Boleto de Avión con Descuento", zh:"特价机票", ku:"Bilêta Firînê ya Bi Erzanî"}
+                "تذاكر طيران مخفضة": {ar:"تذاكر طيران مخفضة", tr:"İndirimli Uçak Bileti", en:"Discounted Flight Ticket", ru:"Авиабилет со скидкой", es:"Boleto de Avión con Descuento", zh:"特价机票", ku:"Bilêta Firînê ya Bi Erzanî"},
+                "رحلة مجدولة مباشرة": {ar:"رحلة مجدولة مباشرة", tr:"Doğrudan Tarifeli Uçuş", en:"Direct Scheduled Flight", ru:"Прямой регулярный рейс", es:"Vuelo Programado Directo", zh:"直达定期航班", ku:"Firîna Pîlankirî ya Rasterast"}
             };
 
             let res = text;
@@ -469,23 +470,6 @@
             const icon = document.getElementById('theme-icon');
             if(icon) icon.className = "fas fa-moon text-xs sm:text-sm text-slate-700";
         }
-
-        // دالة التوجيه تم تحسينها لتعمل بسلاسة 100%
-        window.triggerCinematicRedirect = function(url) {
-            if (!url || url === '#') return;
-            const overlay = document.getElementById('cinematic-overlay');
-            const bar = document.getElementById('cinematic-bar');
-            if (overlay && bar) {
-                bar.style.width = '0%';
-                overlay.classList.add('active');
-                requestAnimationFrame(() => {
-                    setTimeout(() => { bar.style.width = '100%'; }, 50);
-                });
-            }
-            setTimeout(() => {
-                window.location.href = url;
-            }, 1500);
-        };
 
         let selectedRating = 0;
         function rateStar(stars) {
@@ -621,13 +605,19 @@
                 const trName = translateDynamicText(hotel.name, currentLang);
                 const trDesc = translateDynamicText(hotel.description, currentLang);
 
-                // هنا تم تحويل البطاقة إلى <a> لتجنب أي حظر في المتصفح ولضمان التحويل
+                // تحويل البطاقة إلى عنصر <a> لضمان التحويل التلقائي بقوة المتصفح
                 const card = document.createElement('a');
                 card.href = hotel.affiliateUrl;
-                card.className = 'ultra-luxury-card group block';
-                card.onclick = function(e) {
-                    e.preventDefault();
-                    window.triggerCinematicRedirect(this.href);
+                card.target = "_blank"; // فتح في نافذة جديدة
+                card.className = 'ultra-luxury-card group';
+                
+                // تشغيل الشاشة السينمائية للمسة فخامة قبل فتح النافذة
+                card.onclick = function() {
+                    const overlay = document.getElementById('cinematic-overlay');
+                    if (overlay) {
+                        overlay.classList.add('active');
+                        setTimeout(() => overlay.classList.remove('active'), 2000);
+                    }
                 };
 
                 card.innerHTML = `
@@ -678,13 +668,18 @@
                 const trAirline = translateDynamicText(flight.airline, currentLang);
                 const trDesc = translateDynamicText(flight.description, currentLang);
 
-                // تحويل البطاقة إلى <a> 
+                // تحويل البطاقة إلى عنصر <a> لضمان التحويل التلقائي بقوة المتصفح
                 const card = document.createElement('a');
                 card.href = flight.affiliateUrl;
-                card.className = 'ultra-luxury-card p-6 sm:p-8 text-center group block';
-                card.onclick = function(e) {
-                    e.preventDefault();
-                    window.triggerCinematicRedirect(this.href);
+                card.target = "_blank"; // فتح في نافذة جديدة
+                card.className = 'ultra-luxury-card p-6 sm:p-8 text-center group';
+                
+                card.onclick = function() {
+                    const overlay = document.getElementById('cinematic-overlay');
+                    if (overlay) {
+                        overlay.classList.add('active');
+                        setTimeout(() => overlay.classList.remove('active'), 2000);
+                    }
                 };
 
                 card.innerHTML = `
