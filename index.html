@@ -791,6 +791,7 @@
             try {
                 window.HOTELS_DATA = [];
                 window.FLIGHTS_DATA = [];
+                let hasLiveArticles = false;
 
                 const dealsSnap = await getDocs(collection(aiDb, "live_deals"));
 
@@ -817,12 +818,20 @@
                             description: data.description || ''
                         });
                     }
+                    else if (id.startsWith("article_")) {
+                        if (!hasLiveArticles) {
+                            window.ARTICLES_MAP = {}; // مسح المقالات الافتراضية
+                            hasLiveArticles = true;
+                        }
+                        window.ARTICLES_MAP[id] = data; // إضافة المقال الحي
+                    }
                 });
             } catch(e) {
                 console.error("Error fetching live deals:", e);
             }
             window.renderHotels();
             window.renderFlights();
+            window.renderBlogCards(); // تحديث المدونة
         }
 
         fetchAllFirestoreData();
