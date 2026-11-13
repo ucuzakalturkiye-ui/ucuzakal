@@ -2,7 +2,7 @@
 <html lang="tr" dir="ltr" class="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <title>UcuzaKal Türkiye | Seçkin Seyahat ve Rezervasyon Platformu</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -35,6 +35,10 @@
     </script>
 
     <style>
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
         .premium-bg {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
@@ -53,6 +57,10 @@
             border-radius: 24px;
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            -webkit-tap-highlight-color: transparent;
         }
         .dark .ultra-luxury-card {
             background: rgba(10, 15, 26, 0.85);
@@ -60,35 +68,48 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
             box-shadow: 0 15px 40px rgba(0,0,0,0.4);
         }
-        .ultra-luxury-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(212, 175, 55, 0.8);
-            box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15);
+        @media (hover: hover) {
+            .ultra-luxury-card:hover {
+                transform: translateY(-8px);
+                border-color: rgba(212, 175, 55, 0.8);
+                box-shadow: 0 25px 50px rgba(212, 175, 55, 0.15);
+            }
+            .ultra-luxury-card:hover .img-frame img {
+                transform: scale(1.08);
+            }
+            .ultra-luxury-card:hover .gold-divider { width: 85px; }
+        }
+        .ultra-luxury-card:active {
+            transform: scale(0.98);
+            border-color: #D4AF37;
         }
 
         .img-frame {
             position: relative;
             overflow: hidden;
-            height: 260px;
+            height: 220px;
+            width: 100%;
+        }
+        @media (min-width: 640px) {
+            .img-frame {
+                height: 260px;
+            }
         }
         .img-frame img {
             transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .ultra-luxury-card:hover .img-frame img {
-            transform: scale(1.08);
-        }
 
         .gold-divider {
             width: 35px; height: 1px; background-color: #D4AF37;
-            margin: 1rem auto; transition: width 0.6s ease;
+            margin: 0.85rem auto; transition: width 0.6s ease;
         }
-        .ultra-luxury-card:hover .gold-divider { width: 85px; }
 
         #article-modal {
             position: fixed; inset: 0; background: rgba(3, 5, 8, 0.85); 
             backdrop-filter: blur(12px); z-index: 99999;
             display: flex; align-items: center; justify-content: center;
             opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+            padding: 1rem;
         }
         #article-modal.active { opacity: 1; pointer-events: auto; }
 
@@ -96,7 +117,7 @@
             position: fixed; inset: 0; background: rgba(3, 5, 8, 0.99); 
             backdrop-filter: blur(15px); z-index: 999999;
             display: flex; flex-direction: column; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.6s ease;
+            opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
         }
         #cinematic-overlay.active { opacity: 1; pointer-events: auto; }
         @keyframes smoothSpin {
@@ -110,7 +131,7 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 6px 14px;
+            padding: 6px 12px;
             border-radius: 9999px;
             background: rgba(212, 175, 55, 0.05);
             border: 1px solid rgba(212, 175, 55, 0.2);
@@ -145,52 +166,52 @@
 
     <!-- نافذة قراءة المقال -->
     <div id="article-modal" onclick="closeArticleModal(event)">
-        <div class="relative bg-white dark:bg-[#070b14] border border-brand-gold/30 rounded-3xl w-11/12 max-w-3xl max-h-[85vh] overflow-y-auto shadow-2xl p-6 sm:p-10" onclick="event.stopPropagation()">
-            <button onclick="hideArticleModal()" class="absolute top-5 right-5 w-10 h-10 rounded-full border border-brand-gold/40 flex items-center justify-center text-slate-600 dark:text-gray-300 hover:text-brand-gold transition">
+        <div class="relative bg-white dark:bg-[#070b14] border border-brand-gold/30 rounded-3xl w-full max-w-3xl max-h-[88vh] overflow-y-auto shadow-2xl p-5 sm:p-10" onclick="event.stopPropagation()">
+            <button onclick="hideArticleModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-brand-gold/40 bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:text-brand-gold transition z-10">
                 <i class="fas fa-times"></i>
             </button>
-            <div class="h-60 sm:h-80 w-full overflow-hidden rounded-2xl mb-6">
+            <div class="h-48 sm:h-80 w-full overflow-hidden rounded-2xl mb-5 sm:mb-6">
                 <img id="modal-img" src="" alt="Article Banner" class="w-full h-full object-cover">
             </div>
             <span id="modal-category" class="text-brand-gold text-xs tracking-widest font-bold uppercase block mb-2"></span>
-            <h2 id="modal-title" class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6 leading-tight"></h2>
-            <div class="w-16 h-[2px] bg-brand-gold mb-6"></div>
+            <h2 id="modal-title" class="font-luxury text-xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 leading-tight"></h2>
+            <div class="w-16 h-[2px] bg-brand-gold mb-4 sm:mb-6"></div>
             <div id="modal-body" class="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4"></div>
         </div>
     </div>
 
     <!-- نافذة التوجيه السينمائية -->
     <div id="cinematic-overlay">
-        <div class="text-center p-6">
-            <div class="relative w-24 h-24 mx-auto mb-8 flex items-center justify-center">
+        <div class="text-center p-6 max-w-md mx-auto">
+            <div class="relative w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 sm:mb-8 flex items-center justify-center">
                 <div class="absolute inset-0 rounded-full border border-brand-gold/30 animate-ping"></div>
-                <div class="w-20 h-20 rounded-full border-t-2 border-b-2 border-brand-gold lens-spin"></div>
-                <i class="fas fa-compass text-brand-gold text-2xl absolute"></i>
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border-t-2 border-b-2 border-brand-gold lens-spin"></div>
+                <i class="fas fa-compass text-brand-gold text-xl sm:text-2xl absolute"></i>
             </div>
-            <h3 class="font-luxury text-2xl sm:text-3xl text-brand-gold font-bold mb-3 tracking-wider" data-i18n="cinematic_title">Rezervasyon Platformuna Yönlendiriliyorsunuz...</h3>
-            <div class="w-48 sm:w-64 h-[1px] bg-slate-800 mx-auto overflow-hidden mt-6">
-                <div id="cinematic-bar" class="h-full bg-brand-gold w-0 transition-all duration-[2000ms] ease-out"></div>
+            <h3 class="font-luxury text-xl sm:text-3xl text-brand-gold font-bold mb-3 tracking-wider px-2" data-i18n="cinematic_title">Rezervasyon Platformuna Yönlendiriliyorsunuz...</h3>
+            <div class="w-48 sm:w-64 h-[2px] bg-slate-800 mx-auto overflow-hidden mt-6 rounded-full">
+                <div id="cinematic-bar" class="h-full bg-brand-gold w-0 transition-all duration-[1500ms] ease-out"></div>
             </div>
         </div>
     </div>
 
-    <!-- شريط التنقل العلوي -->
+    <!-- شريط التنقل العلوي المتجاوب -->
     <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#030508]/95 backdrop-blur-xl border-b border-brand-gold/20 shadow-sm transition-colors">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-10 h-10 rounded-full border-2 border-brand-gold flex items-center justify-center bg-transparent text-brand-gold font-luxury font-bold text-lg group-hover:bg-brand-gold group-hover:text-black transition duration-500 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
+            <a href="#" class="flex items-center gap-2 sm:gap-3 group shrink-0">
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-brand-gold flex items-center justify-center bg-transparent text-brand-gold font-luxury font-bold text-base sm:text-lg group-hover:bg-brand-gold group-hover:text-black transition duration-500 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
                     U
                 </div>
                 <div>
-                    <span class="text-xl sm:text-2xl font-luxury font-bold tracking-wide text-slate-900 dark:text-white title-glow block">
-                        UcuzaKal Türkiye
+                    <span class="text-base sm:text-2xl font-luxury font-bold tracking-wide text-slate-900 dark:text-white title-glow block leading-none">
+                        UcuzaKal <span class="hidden xs:inline sm:inline">Türkiye</span>
                     </span>
                 </div>
             </a>
 
-            <div class="flex items-center gap-2 sm:gap-4">
+            <div class="flex items-center gap-1.5 sm:gap-4">
                 <div class="relative">
-                    <select id="lang-switcher" onchange="changeLanguage(this.value)" class="bg-slate-100 dark:bg-[#0a0f1a] text-slate-900 dark:text-white border border-brand-gold/40 rounded-full px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold focus:outline-none focus:border-brand-gold cursor-pointer transition shadow-sm appearance-none pr-8">
+                    <select id="lang-switcher" onchange="changeLanguage(this.value)" class="bg-slate-100 dark:bg-[#0a0f1a] text-slate-900 dark:text-white border border-brand-gold/40 rounded-full pl-2.5 pr-6 py-1.5 sm:px-4 sm:py-2 sm:pr-8 text-[11px] sm:text-sm font-bold focus:outline-none focus:border-brand-gold cursor-pointer transition shadow-sm appearance-none">
                         <option value="tr" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Türkçe</option>
                         <option value="ar" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">العربية</option>
                         <option value="en" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">English</option>
@@ -199,83 +220,83 @@
                         <option value="zh" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">中文</option>
                         <option value="ku" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Kurdî</option>
                     </select>
-                    <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-[10px] pointer-events-none"></i>
+                    <i class="fas fa-chevron-down absolute right-2.5 sm:right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-[9px] sm:text-[10px] pointer-events-none"></i>
                 </div>
 
-                <button onclick="toggleTheme()" class="w-9 h-9 flex items-center justify-center text-slate-700 dark:text-brand-gold border border-brand-gold/30 rounded-full hover:bg-brand-gold hover:text-black transition duration-300">
-                    <i id="theme-icon" class="fas fa-sun text-sm"></i>
+                <button onclick="toggleTheme()" aria-label="Toggle Theme" class="w-8 h-8 sm:w-9 sm:h-9 shrink-0 flex items-center justify-center text-slate-700 dark:text-brand-gold border border-brand-gold/30 rounded-full hover:bg-brand-gold hover:text-black transition duration-300">
+                    <i id="theme-icon" class="fas fa-sun text-xs sm:text-sm"></i>
                 </button>
 
-                <button id="auth-btn" onclick="window.loginWithGoogle()" class="flex items-center justify-center gap-2 bg-slate-900 dark:bg-brand-gold text-white dark:text-black px-4 py-2 rounded-full text-xs sm:text-sm font-bold hover:opacity-90 transition shadow-lg">
+                <button id="auth-btn" onclick="window.loginWithGoogle()" class="flex items-center justify-center gap-1.5 sm:gap-2 bg-slate-900 dark:bg-brand-gold text-white dark:text-black px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-[11px] sm:text-sm font-bold hover:opacity-90 transition shadow-lg shrink-0">
                     <i class="fab fa-google"></i>
-                    <span data-i18n="google_login" id="auth-text">Gmail Girişi</span>
+                    <span data-i18n="google_login" id="auth-text" class="hidden sm:inline">Gmail Girişi</span>
                 </button>
             </div>
         </div>
     </header>
 
     <!-- الهيرو -->
-    <section class="relative py-28 sm:py-44 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center">
-        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-110" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2500&q=100');"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-brand-dark"></div>
+    <section class="relative py-20 sm:py-40 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center min-h-[60vh] sm:min-h-[75vh]">
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-105" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2000&q=90');"></div>
+        <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-brand-dark"></div>
         
-        <div class="max-w-4xl mx-auto relative z-10 text-white">
-            <h1 class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6 title-glow tracking-wide" data-i18n="hero_title">
+        <div class="max-w-4xl mx-auto relative z-10 text-white px-2">
+            <h1 class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 title-glow tracking-wide" data-i18n="hero_title">
                 Seçkin Rotaları Lüksle Keşfedin
             </h1>
-            <p class="text-white/80 text-sm sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-8" data-i18n="hero_subtitle">
+            <p class="text-white/85 text-sm sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-6 sm:mb-8" data-i18n="hero_subtitle">
                 Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.
             </p>
         </div>
     </section>
 
     <!-- عروض الفنادق والشقق -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="hotels_sub">ÖZEL SEÇKİ</span>
-            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="hotels_heading">Özel Seçki Koleksiyonu</h2>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-24">
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+            <span class="text-brand-gold font-bold text-[10px] sm:text-xs uppercase tracking-[0.35em] sm:tracking-[0.4em] block mb-2 sm:mb-3" data-i18n="hotels_sub">ÖZEL SEÇKİ</span>
+            <h2 class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6" data-i18n="hotels_heading">Özel Seçki Koleksiyonu</h2>
             <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
         </div>
 
-        <div id="hotels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div id="hotels-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
             <!-- العروض -->
         </div>
     </main>
 
     <!-- عروض الطيران -->
-    <section class="border-y border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#020306]/50 py-16 sm:py-24 backdrop-blur-sm">
+    <section class="border-y border-slate-200 dark:border-white/5 bg-white/50 dark:bg-[#020306]/50 py-12 sm:py-24 backdrop-blur-sm">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="flights_sub">GÖKLERDEKİ ZARAFET</span>
-                <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="flights_heading">Ayrıcalıklı Uçuşlar</h2>
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+                <span class="text-brand-gold font-bold text-[10px] sm:text-xs uppercase tracking-[0.35em] sm:tracking-[0.4em] block mb-2 sm:mb-3" data-i18n="flights_sub">GÖKLERDEKİ ZARAFET</span>
+                <h2 class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6" data-i18n="flights_heading">Ayrıcalıklı Uçuşlar</h2>
                 <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
             </div>
 
-            <div id="flights-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="flights-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
                 <!-- العروض -->
             </div>
         </div>
     </section>
 
     <!-- قسم المدونة -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="text-brand-gold font-bold text-xs uppercase tracking-[0.4em] block mb-3" data-i18n="blog_sub">SEYAHAT REHBERİ</span>
-            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6" data-i18n="blog_heading">UcuzaKal Seyahat Günlüğü</h2>
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-28">
+        <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16">
+            <span class="text-brand-gold font-bold text-[10px] sm:text-xs uppercase tracking-[0.35em] sm:tracking-[0.4em] block mb-2 sm:mb-3" data-i18n="blog_sub">SEYAHAT REHBERİ</span>
+            <h2 class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6" data-i18n="blog_heading">UcuzaKal Seyahat Günlüğü</h2>
             <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
         </div>
 
-        <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             <!-- المقالات -->
         </div>
     </section>
 
     <!-- قسم من نحن -->
-    <section class="py-20 sm:py-28 px-4 border-t border-slate-200 dark:border-white/10">
+    <section class="py-14 sm:py-28 px-4 border-t border-slate-200 dark:border-white/10">
         <div class="max-w-4xl mx-auto text-center">
-            <h2 class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-8" data-i18n="about_heading">Biz Kimiz?</h2>
-            <div class="w-12 h-[1px] bg-brand-gold mx-auto mb-8"></div>
-            <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-lg leading-relaxed font-light mb-6" data-i18n="about_text_1">
+            <h2 class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-6 sm:mb-8" data-i18n="about_heading">Biz Kimiz?</h2>
+            <div class="w-12 h-[1px] bg-brand-gold mx-auto mb-6 sm:mb-8"></div>
+            <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-lg leading-relaxed font-light mb-5 sm:mb-6" data-i18n="about_text_1">
                 UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.
             </p>
             <p class="text-slate-700 dark:text-slate-300 text-sm sm:text-lg leading-relaxed font-light" data-i18n="about_text_2">
@@ -285,13 +306,13 @@
     </section>
 
     <!-- قسم التقييمات -->
-    <section class="max-w-3xl mx-auto px-4 py-16 sm:py-20 border-t border-slate-200 dark:border-white/10">
-        <div class="text-center mb-10">
-            <h2 class="font-luxury text-3xl sm:text-4xl text-slate-900 dark:text-white font-bold mb-3" data-i18n="ratings_heading">İzlenimlerinizi Paylaşın</h2>
+    <section class="max-w-3xl mx-auto px-4 py-12 sm:py-20 border-t border-slate-200 dark:border-white/10">
+        <div class="text-center mb-8 sm:mb-10">
+            <h2 class="font-luxury text-2xl sm:text-4xl text-slate-900 dark:text-white font-bold mb-3" data-i18n="ratings_heading">İzlenimlerinizi Paylaşın</h2>
         </div>
         
         <div class="bg-white dark:bg-[#04070C] p-6 sm:p-12 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl text-center">
-            <div id="star-container" class="flex justify-center gap-3 sm:gap-4 text-2xl text-slate-300 dark:text-slate-700 mb-8 cursor-pointer">
+            <div id="star-container" class="flex justify-center gap-3 sm:gap-4 text-xl sm:text-2xl text-slate-300 dark:text-slate-700 mb-6 sm:mb-8 cursor-pointer">
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(1)"></i>
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(2)"></i>
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(3)"></i>
@@ -299,10 +320,10 @@
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(5)"></i>
             </div>
             
-            <div class="flex flex-col gap-6 max-w-md mx-auto">
+            <div class="flex flex-col gap-5 sm:gap-6 max-w-md mx-auto">
                 <input type="text" id="user-review-name" data-i18n-placeholder="review_name_placeholder" placeholder="Adınız Soyadınız" class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition">
-                <textarea id="user-review-text" rows="1" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..." class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition resize-none"></textarea>
-                <button onclick="submitReview()" class="mt-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3.5 rounded-full text-xs tracking-widest uppercase hover:opacity-80 transition" data-i18n="submit_review_btn">
+                <textarea id="user-review-text" rows="2" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..." class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition resize-none"></textarea>
+                <button onclick="submitReview()" class="mt-3 sm:mt-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3.5 rounded-full text-xs tracking-widest uppercase hover:opacity-80 transition" data-i18n="submit_review_btn">
                     Gönder
                 </button>
             </div>
@@ -313,16 +334,16 @@
     </section>
 
     <!-- الفوتر -->
-    <footer class="bg-white dark:bg-[#020306] border-t border-slate-200 dark:border-white/5 pt-16 pb-12 transition-colors duration-500">
+    <footer class="bg-white dark:bg-[#020306] border-t border-slate-200 dark:border-white/5 pt-14 pb-10 transition-colors duration-500">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <span class="font-luxury text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white block title-glow">UcuzaKal Türkiye</span>
-                <span class="text-brand-gold text-xs tracking-[0.3em] uppercase font-bold mt-2 inline-block">Global Resmi Kanallarımız</span>
+            <div class="text-center mb-10 sm:mb-12">
+                <span class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white block title-glow">UcuzaKal Türkiye</span>
+                <span class="text-brand-gold text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] uppercase font-bold mt-2 inline-block">Global Resmi Kanallarımız</span>
             </div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-16">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-12 sm:mb-16">
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-xl shadow-md mb-1"><i class="fab fa-facebook-f"></i></div>
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-lg sm:text-xl shadow-md mb-1"><i class="fab fa-facebook-f"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Facebook</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
                         <a href="https://www.facebook.com/profile.php?id=61596063752611" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
@@ -331,7 +352,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full flex items-center justify-center text-white text-xl shadow-md mb-1" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><i class="fab fa-instagram"></i></div>
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-white text-lg sm:text-xl shadow-md mb-1" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><i class="fab fa-instagram"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Instagram</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
                         <a href="https://www.instagram.com/ucuzakalturkiye/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
@@ -340,7 +361,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full bg-[#E60023] flex items-center justify-center text-white text-xl shadow-md mb-1"><i class="fab fa-pinterest-p"></i></div>
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#E60023] flex items-center justify-center text-white text-lg sm:text-xl shadow-md mb-1"><i class="fab fa-pinterest-p"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Pinterest</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
                         <a href="https://tr.pinterest.com/ucuzakal/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
@@ -349,7 +370,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white text-xl shadow-md border border-slate-700 mb-1"><i class="fab fa-x-twitter"></i></div>
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black flex items-center justify-center text-white text-lg sm:text-xl shadow-md border border-slate-700 mb-1"><i class="fab fa-x-twitter"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">X (Twitter)</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
                         <a href="https://x.com/UcuzaKalTr" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
@@ -358,7 +379,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full bg-black flex items-center justify-center text-white text-xl shadow-md border border-slate-700 mb-1"><i class="fab fa-tiktok"></i></div>
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black flex items-center justify-center text-white text-lg sm:text-xl shadow-md border border-slate-700 mb-1"><i class="fab fa-tiktok"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">TikTok</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
                         <a href="https://www.tiktok.com/@ucuzakal.tr" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
@@ -367,7 +388,7 @@
                     </div>
                 </div>
                 <div class="flex flex-col items-center text-center space-y-3">
-                    <div class="w-11 h-11 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-xl shadow-md mb-1"><i class="fab fa-youtube"></i></div>
+                    <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-lg sm:text-xl shadow-md mb-1"><i class="fab fa-youtube"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">YouTube</span>
                     <div class="flex flex-col gap-2 w-full max-w-[130px]">
                         <a href="https://www.youtube.com/@UcuzaKalT%C3%Bcrkiye" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">Türkçe</span><span class="lang-pill">TR</span></a>
@@ -388,7 +409,6 @@
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
-        // دالة لتنظيف النص وإزالة أي ذكر لأسماء المواقع الخارجية
         function sanitizeDealText(text) {
             if (!text) return '';
             return text
@@ -495,11 +515,11 @@
             const icon = document.getElementById('theme-icon');
             if (html.classList.contains('dark')) {
                 html.classList.remove('dark'); html.classList.add('light');
-                icon.className = "fas fa-moon text-sm text-slate-700";
+                icon.className = "fas fa-moon text-xs sm:text-sm text-slate-700";
                 localStorage.setItem('ucuzakal_theme', 'light');
             } else {
                 html.classList.remove('light'); html.classList.add('dark');
-                icon.className = "fas fa-sun text-sm text-brand-gold";
+                icon.className = "fas fa-sun text-xs sm:text-sm text-brand-gold";
                 localStorage.setItem('ucuzakal_theme', 'dark');
             }
         }
@@ -508,19 +528,25 @@
             document.documentElement.classList.remove('dark');
             document.documentElement.classList.add('light');
             const icon = document.getElementById('theme-icon');
-            if(icon) icon.className = "fas fa-moon text-sm text-slate-700";
+            if(icon) icon.className = "fas fa-moon text-xs sm:text-sm text-slate-700";
         }
 
-        function triggerCinematicRedirect(url) {
-            if(!url || url === '#') return;
+        // دالة التحويل السينمائي المباشر والمؤكد على جميع المتصفحات والهواتف
+        window.triggerCinematicRedirect = function(url) {
+            if (!url || url === '#') return;
             const overlay = document.getElementById('cinematic-overlay');
             const bar = document.getElementById('cinematic-bar');
-            overlay.classList.add('active');
-            setTimeout(() => { bar.style.width = '100%'; }, 50);
+            if (overlay && bar) {
+                bar.style.width = '0%';
+                overlay.classList.add('active');
+                requestAnimationFrame(() => {
+                    setTimeout(() => { bar.style.width = '100%'; }, 40);
+                });
+            }
             setTimeout(() => {
-                window.location.href = url;
-            }, 2000); 
-        }
+                window.location.assign(url);
+            }, 1500);
+        };
 
         let selectedRating = 0;
         function rateStar(stars) {
@@ -625,7 +651,7 @@
                 authBtn.onclick = window.logoutGoogle;
                 authBtn.title = "Çıkış Yap / تسجيل الخروج";
             } else {
-                authBtn.innerHTML = `<i class="fab fa-google"></i><span data-i18n="google_login" id="auth-text">Gmail Girişi</span>`;
+                authBtn.innerHTML = `<i class="fab fa-google"></i><span data-i18n="google_login" id="auth-text" class="hidden sm:inline">Gmail Girişi</span>`;
                 authBtn.onclick = window.loginWithGoogle;
                 authBtn.title = "Giriş Yap / تسجيل الدخول";
                 const lang = document.documentElement.lang || 'tr';
@@ -645,42 +671,51 @@
 
             if (window.HOTELS_DATA.length === 0) {
                 container.innerHTML = `
-                    <div class="col-span-full py-24 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-[2rem] border border-brand-gold/10 bg-gradient-to-b from-transparent to-brand-gold/5 shadow-[inset_0_0_50px_rgba(212,175,55,0.02)]">
-                        <div class="w-32 h-32 mb-8 rounded-full flex items-center justify-center relative z-10">
+                    <div class="col-span-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-[2rem] border border-brand-gold/10 bg-gradient-to-b from-transparent to-brand-gold/5 shadow-[inset_0_0_50px_rgba(212,175,55,0.02)]">
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 mb-6 sm:mb-8 rounded-full flex items-center justify-center relative z-10">
                             <div class="absolute inset-0 rounded-full border-t-2 border-r-2 border-brand-gold/40 animate-[spin_8s_linear_infinite]"></div>
                             <div class="absolute inset-3 rounded-full border-b-2 border-l-2 border-brand-gold/30 animate-[spin_12s_linear_infinite_reverse]"></div>
-                            <i class="fas fa-gem text-brand-gold text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
+                            <i class="fas fa-gem text-brand-gold text-3xl sm:text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
                         </div>
-                        <h3 class="font-luxury text-xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${noDealsText}</h3>
+                        <h3 class="font-luxury text-lg sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${noDealsText}</h3>
                     </div>`;
                 return;
             }
 
-            let html = '';
+            container.innerHTML = '';
             window.HOTELS_DATA.forEach(hotel => {
                 const trCity = translateDynamicText(hotel.city, currentLang);
                 const trName = translateDynamicText(hotel.name, currentLang);
                 const trDesc = translateDynamicText(hotel.description, currentLang);
-                
-                html += `
-                    <div class="ultra-luxury-card cursor-pointer group" onclick="triggerCinematicRedirect('${hotel.affiliateUrl}')">
+
+                const card = document.createElement('div');
+                card.className = 'ultra-luxury-card cursor-pointer group';
+                card.innerHTML = `
+                    <div>
                         <div class="img-frame">
-                            <img src="${hotel.image}" alt="${trName}" class="w-full h-full object-cover">
+                            <img src="${hotel.image}" alt="${trName}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=90';" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
                         </div>
-                        <div class="p-6 text-center">
+                        <div class="p-5 sm:p-6 text-center">
                             <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2">${trCity}</span>
-                            <h3 class="font-luxury text-2xl font-bold text-slate-900 dark:text-white">${trName}</h3>
+                            <h3 class="font-luxury text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug">${trName}</h3>
                             <div class="gold-divider"></div>
-                            <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-6 line-clamp-3">${trDesc}</p>
-                            <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
-                                <span class="text-slate-400 text-[10px] uppercase tracking-widest">${startingText}</span>
-                                <span class="font-luxury text-xl font-bold text-brand-gold">${hotel.price}</span>
-                            </div>
+                            <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-2 line-clamp-3">${trDesc}</p>
+                        </div>
+                    </div>
+                    <div class="px-5 sm:px-6 pb-5 sm:pb-6">
+                        <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
+                            <span class="text-slate-400 text-[10px] uppercase tracking-widest">${startingText}</span>
+                            <span class="font-luxury text-lg sm:text-xl font-bold text-brand-gold">${hotel.price}</span>
                         </div>
                     </div>`;
+
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.triggerCinematicRedirect(hotel.affiliateUrl);
+                });
+                container.appendChild(card);
             });
-            container.innerHTML = html;
         };
 
         window.renderFlights = function() {
@@ -692,33 +727,42 @@
 
             if (window.FLIGHTS_DATA.length === 0) {
                 container.innerHTML = `
-                    <div class="col-span-full py-24 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-[2rem] border border-brand-gold/10 bg-gradient-to-b from-transparent to-brand-gold/5 shadow-[inset_0_0_50px_rgba(212,175,55,0.02)]">
-                        <div class="w-32 h-32 mb-8 rounded-full flex items-center justify-center relative z-10">
+                    <div class="col-span-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-[2rem] border border-brand-gold/10 bg-gradient-to-b from-transparent to-brand-gold/5 shadow-[inset_0_0_50px_rgba(212,175,55,0.02)]">
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 mb-6 sm:mb-8 rounded-full flex items-center justify-center relative z-10">
                             <div class="absolute inset-0 rounded-full border-t-2 border-r-2 border-brand-gold/40 animate-[spin_8s_linear_infinite]"></div>
                             <div class="absolute inset-3 rounded-full border-b-2 border-l-2 border-brand-gold/30 animate-[spin_12s_linear_infinite_reverse]"></div>
-                            <i class="fas fa-plane-departure text-brand-gold text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
+                            <i class="fas fa-plane-departure text-brand-gold text-3xl sm:text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
                         </div>
-                        <h3 class="font-luxury text-xl sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${noDealsText}</h3>
+                        <h3 class="font-luxury text-lg sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${noDealsText}</h3>
                     </div>`;
                 return;
             }
 
-            let html = '';
+            container.innerHTML = '';
             window.FLIGHTS_DATA.forEach(flight => {
                 const trRoute = translateDynamicText(flight.route, currentLang);
                 const trAirline = translateDynamicText(flight.airline, currentLang);
                 const trDesc = translateDynamicText(flight.description, currentLang);
-                
-                html += `
-                    <div class="ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group" onclick="triggerCinematicRedirect('${flight.affiliateUrl}')">
-                        <i class="fas fa-plane text-brand-gold text-3xl mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                        <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-1">${trRoute}</h3>
-                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-4 font-bold">${trAirline}</span>
-                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-6 leading-relaxed line-clamp-3">${trDesc}</p>
-                        <span class="font-luxury text-2xl font-bold text-brand-gold">${flight.price}</span>
+
+                const card = document.createElement('div');
+                card.className = 'ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group';
+                card.innerHTML = `
+                    <div>
+                        <i class="fas fa-plane text-brand-gold text-2xl sm:text-3xl mb-3 sm:mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
+                        <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1">${trRoute}</h3>
+                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-3 sm:mb-4 font-bold">${trAirline}</span>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-5 sm:mb-6 leading-relaxed line-clamp-3">${trDesc}</p>
+                    </div>
+                    <div class="pt-2 border-t border-slate-100 dark:border-white/5">
+                        <span class="font-luxury text-xl sm:text-2xl font-bold text-brand-gold">${flight.price}</span>
                     </div>`;
+
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.triggerCinematicRedirect(flight.affiliateUrl);
+                });
+                container.appendChild(card);
             });
-            container.innerHTML = html;
         };
 
         window.renderBlogCards = function() {
@@ -738,11 +782,15 @@
 
                 html += `
                     <article class="ultra-luxury-card group cursor-pointer" onclick="window.openArticleModal('${art.id}')">
-                        <div class="img-frame"><img src="${art.image}" alt="${title}" class="w-full h-full object-cover"></div>
-                        <div class="p-6">
-                            <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">${art.category || 'TÜRKİYE'}</span>
-                            <h3 class="font-luxury text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2">${title}</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">${bodySnippet}</p>
+                        <div>
+                            <div class="img-frame"><img src="${art.image}" alt="${title}" class="w-full h-full object-cover"></div>
+                            <div class="p-5 sm:p-6">
+                                <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">${art.category || 'TÜRKİYE'}</span>
+                                <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2">${title}</h3>
+                                <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">${bodySnippet}</p>
+                            </div>
+                        </div>
+                        <div class="px-5 sm:px-6 pb-5 sm:pb-6">
                             <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition">
                                 <span>${readMoreText}</span> <i class="fas fa-arrow-right text-[10px]"></i>
                             </span>
@@ -777,15 +825,15 @@
                 window.FLIGHTS_DATA = [];
                 
                 const cityImages = {
-                    'أنطاليا': 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90',
-                    'إزمير': 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90',
-                    'طرابزون': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=90',
-                    'إسطنبول': 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=90',
-                    'بورصة': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=90'
+                    'أنطاليا': 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=90',
+                    'إزمير': 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=90',
+                    'طرابزون': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=90',
+                    'إسطنبول': 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=900&q=90',
+                    'بورصة': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=90'
                 };
                 const fallbackImgs = [
-                    "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90",
-                    "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90"
+                    "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=90",
+                    "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=90"
                 ];
 
                 const dealsSnap = await getDocs(collection(aiDb, "live_deals"));
