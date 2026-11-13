@@ -388,8 +388,22 @@
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
+        // دالة لتنظيف النص وإزالة أي ذكر لأسماء المواقع الخارجية
+        function sanitizeDealText(text) {
+            if (!text) return '';
+            return text
+                .replace(/\(أفضل سعر من[^)]+\)/gi, '')
+                .replace(/-\s*أفضل سعر من\s*[A-Za-z0-9._-]+/gi, '')
+                .replace(/أفضل سعر من\s*[A-Za-z0-9._-]+/gi, '')
+                .replace(/\b(Klook|Travelata|Level\.travel|Yandex\.Travel|Yandex|Ostrovok|Aviasales)\b/gi, '')
+                .replace(/\s+-\s*$/g, '')
+                .replace(/\s{2,}/g, ' ')
+                .trim();
+        }
+
         function translateDynamicText(text, lang) {
             if (!text) return '';
+            let clean = sanitizeDealText(text);
             const t = {
                 "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
                 "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
@@ -418,11 +432,10 @@
                 "شقة فندقية واسعة مطلة على الجبال": {ar:"شقة فندقية واسعة مطلة على الجبال", tr:"Dağ Manzaralı Geniş Apart Daire", en:"Spacious Mountain View Suite", ru:"Просторные апартаменты с видом на горы", es:"Amplia Suite con Vista a la Montaña", zh:"宽敞山景套房公寓", ku:"Apartmana Fireh a Bi Dîmena Çiyayan"},
                 "فندق راقي بالقرب من المعالم السياحية": {ar:"فندق راقي بالقرب من المعالم السياحية", tr:"Tarihi Merkeze Yakın Seçkin Otel", en:"Luxury Hotel Near Historic Landmarks", ru:"Роскошный отель рядом с достопримечательностями", es:"Hotel de Lujo Cerca de Monumentos", zh:"靠近历史地标的豪华酒店", ku:"Otela Luks Nêzîkî Cihên Dîrokî"},
                 "فندق وسط الطبيعة الخلابة": {ar:"فندق وسط الطبيعة الخلابة", tr:"Doğanın Kalbinde Butik Otel", en:"Boutique Hotel Surrounded by Nature", ru:"Бутик-отель на лоне природы", es:"Hotel Boutique Rodeado de Naturaleza", zh:"自然环绕的精品酒店", ku:"Otela Bûtîk Di Nav Xwezayê De"},
-                "تذاكر طيران مخفضة": {ar:"تذاكر طيران مخفضة", tr:"İndirimli Uçak Bileti", en:"Discounted Flight Ticket", ru:"Авиабилет со скидкой", es:"Boleto de Avión con Descuento", zh:"特价机票", ku:"Bilêta Firînê ya Bi Erzanî"},
-                "أفضل سعر من": {ar:"أفضل سعر من", tr:"En İyi Fiyat:", en:"Best Rate via", ru:"Лучшая цена от", es:"Mejor tarifa en", zh:"最优价格来自", ku:"Bihayê Herî Baş ji"}
+                "تذاكر طيران مخفضة": {ar:"تذاكر طيران مخفضة", tr:"İndirimli Uçak Bileti", en:"Discounted Flight Ticket", ru:"Авиабилет со скидкой", es:"Boleto de Avión con Descuento", zh:"特价机票", ku:"Bilêta Firînê ya Bi Erzanî"}
             };
 
-            let res = text;
+            let res = clean;
             for (let k in t) {
                 const regex = new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "gi");
                 if (regex.test(res)) {
@@ -590,7 +603,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // 2. الاتصال المباشر بقاعدة بيانات العقل المركزي (ucuzakal-ai-db) لجلب العروض الـ 12
+        // 2. الاتصال المباشر بقاعدة بيانات العقل المركزي (ucuzakal-ai-db) لجلب العروض
         const aiDbConfig = {
             projectId: "ucuzakal-ai-db-6ccfd"
         };
@@ -775,7 +788,6 @@
                     "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90"
                 ];
 
-                // جلب العروض الـ 12 الحية من قاعدة بيانات الذكاء الاصطناعي
                 const dealsSnap = await getDocs(collection(aiDb, "live_deals"));
                 let hotelIdx = 0;
 
@@ -783,31 +795,29 @@
                     const id = docSnap.id;
                     const data = docSnap.data();
 
-                    // تصفية وعرض العروض الـ 6 للفنادق
                     if (id.startsWith("hotel_deal_")) {
                         const city = data.city || "TÜRKİYE";
                         window.HOTELS_DATA.push({
-                            name: data.title || city,
+                            name: sanitizeDealText(data.title || city),
                             city: city,
-                            price: data.price || "VIP Fırsat",
+                            price: data.price || "$99",
                             image: data.image || cityImages[city] || fallbackImgs[hotelIdx % 2],
                             affiliateUrl: data.affiliateUrl || data.affiliateLink || '#',
-                            description: `${data.title || ''} - ${data.sourcePlatform ? 'أفضل سعر من ' + data.sourcePlatform : ''}`
+                            description: sanitizeDealText(data.description || data.title || '')
                         });
                         hotelIdx++;
                     } 
-                    // تصفية وعرض العروض الـ 6 للطيران
                     else if (id.startsWith("flight_deal_")) {
                         const routeLabel = (data.departure && data.destination) 
                             ? `${data.departure} ✈️ ${data.destination}` 
-                            : (data.title || "Özel Rota");
+                            : sanitizeDealText(data.title || "Özel Rota");
                         window.FLIGHTS_DATA.push({
                             route: routeLabel,
-                            airline: data.sourcePlatform || "Aviasales",
+                            airline: "UcuzaKal Seçkin Uçuş",
                             region: data.routeType || "UcuzaKal",
-                            price: data.price || "Özel Fiyat",
+                            price: data.price || "$49",
                             affiliateUrl: data.affiliateUrl || data.affiliateLink || '#',
-                            description: data.travelDate ? `${data.title} (${data.travelDate})` : (data.title || '')
+                            description: sanitizeDealText(data.description || (data.travelDate ? `${data.title} (${data.travelDate})` : (data.title || '')))
                         });
                     }
                 });
