@@ -366,7 +366,7 @@
         function translateDynamicText(text, lang) {
             if (!text) return text;
             
-            // القاموس الشامل: قمت بضم جميع الاحتمالات (المدن، عناوين وأوصاف الفنادق والطيران)
+            // القاموس الشامل: يضم جميع الاحتمالات (المدن، عناوين وأوصاف الفنادق والطيران القديمة والحديثة)
             const t = {
                 // المدن والمواقع
                 "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
@@ -391,7 +391,7 @@
                 "عمّان": {ar:"عمّان", tr:"Amman", en:"Amman", ru:"Амман", es:"Amán", zh:"安曼", ku:"Emman"},
                 "سانت بطرسبرغ": {ar:"سانت بطرسبرغ", tr:"St. Petersburg", en:"St. Petersburg", ru:"Санкт-Петербург", es:"San Petersburgo", zh:"圣彼得堡", ku:"St. Petersburg"},
                 
-                // أوصاف الفنادق (النسخ القديمة والحديثة)
+                // أوصاف الفنادق 
                 "إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.": {ar:"إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.", tr:"Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.", en:"Luxury accommodation including meals and recreational activities on the Mediterranean coast.", ru:"Роскошное проживание, включая питание и развлекательные мероприятия на побережье Средиземного моря.", es:"Alojamiento de lujo que incluye comidas y actividades recreativas en la costa mediterránea.", zh:"地中海沿岸提供餐饮和娱乐活动的豪华住宿。", ku:"Rûniştina luks bi xwarin û çalakiyên şahiyê li perava Deryaya Spî."},
                 "أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.", tr:"Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services near the beach.", ru:"Просторные семейные люксы с видом на море и полным спектром гостиничных услуг рядом с пляжем.", es:"Amplias suites familiares con vistas al mar y servicios completos de hotel cerca de la playa.", zh:"靠近海滩的宽敞海景家庭套房，提供全套酒店服务。", ku:"Suiteyên malbatî yên fireh bi dîmena deryayê û karûbarên otelê yên tevahî li nêzî peravê."},
                 "تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.": {ar:"تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.", tr:"Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.", en:"A luxurious stay experience in the heart of Izmir with a charming panoramic view of the bay.", ru:"Роскошный опыт проживания в самом сердце Измира с очаровательным панорамным видом на залив.", es:"Una experiencia de estancia de lujo en el corazón de Izmir con una encantadora vista panorámica de la bahía.", zh:"在伊兹密尔市中心享受豪华住宿体验，欣赏迷人的海湾全景。", ku:"Ezmûneke rûniştinê ya luks li dilê Îzmîrê bi dîmenek panoramîk a balkêş a kendavê."},
@@ -405,7 +405,7 @@
                 "أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة.", tr:"Deniz manzaralı ve tam otel hizmetli geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services.", ru:"Просторные семейные люксы с видом на море и гостиничным обслуживанием.", es:"Amplias suites familiares con vistas al mar y servicios completos de hotel.", zh:"宽敞的家庭套房，享有海景和全套酒店服务。", ku:"Suiteyên malbatî yên fireh bi dîmena deryayê û karûbarên otelê yên tevahî."},
                 "استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية.": {ar:"استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية.", tr:"Uludağ ve termal kaplıcaların yakınında mükemmel bir tatil.", en:"Perfect relaxation near Uludag mountain and thermal springs.", ru:"Идеальный отдых рядом с горой Улудаг и термальными источниками.", es:"Relajación perfecta cerca de la montaña Uludag y fuentes termales.", zh:"乌鲁达山和温泉附近的完美放松。", ku:"Bêhnvedana bêkêmasî li nêzî çiyayê Uludag û kaniyên termal."},
                 
-                // عناوين الفنادق (النسخ القديمة والحديثة)
+                // عناوين الفنادق 
                 "منتجع 5 نجوم شامل كلياً - أنطاليا": {ar:"منتجع 5 نجوم شامل كلياً - أنطاليا", tr:"5 Yıldızlı Her Şey Dahil Resort - Antalya", en:"5-Star All-Inclusive Resort - Antalya", ru:"5-звездочный курорт «все включено» - Анталья", es:"Resort Todo Incluido de 5 Estrellas - Antalya", zh:"五星级全包度假村 - 安塔利亚", ku:"Resorta 5-Stêrk Hemû Tişt Tê De - Antalya"},
                 "منتجع 5 نجوم شامل كلياً": {ar:"منتجع 5 نجوم شامل كلياً", tr:"5 Yıldızlı Her Şey Dahil Resort", en:"5-Star All-Inclusive Resort", ru:"5-звездочный курорт «все включено»", es:"Resort Todo Incluido de 5 Estrellas", zh:"五星级全包度假村", ku:"Resorta 5-Stêrk Hemû Tişt Tê De"},
                 "شقة فندقية عائلية فاخرة - أنطاليا": {ar:"شقة فندقية عائلية فاخرة - أنطاليا", tr:"Lüks Aile Apart Dairesi - Antalya", en:"Luxury Family Serviced Apartment - Antalya", ru:"Роскошные семейные апартаменты - Анталья", es:"Apartamento Familiar de Lujo - Antalya", zh:"豪华家庭服务式公寓 - 安塔利亚", ku:"Apartmana Malbatî ya Luks - Antalya"},
@@ -430,14 +430,15 @@
             };
 
             let res = text;
-            // الخطوة الحاسمة: ترتيب مفاتيح القاموس من الأطول إلى الأقصر لمنع تداخل الترجمات
+            
+            // ترتيب مفاتيح القاموس من الأطول إلى الأقصر لمنع تداخل الترجمات
             const keys = Object.keys(t).sort((a, b) => b.length - a.length);
             
             for (let i = 0; i < keys.length; i++) {
                 const k = keys[i];
-                const regex = new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "gi");
-                if (regex.test(res)) { 
-                    res = res.replace(regex, t[k][lang] || k); 
+                // استخدام split و join يضمن استبدال النص بدقة متناهية دون مشاكل الـ regex 
+                if (res.indexOf(k) !== -1) {
+                    res = res.split(k).join(t[k][lang] || k);
                 }
             }
             return res;
@@ -639,7 +640,6 @@
 
             container.innerHTML = '';
             window.HOTELS_DATA.forEach(hotel => {
-                // تفعيل الترجمة الفورية الكاملة للفنادق
                 const trCity = translateDynamicText(hotel.city, currentLang);
                 const trName = translateDynamicText(hotel.name, currentLang);
                 const trDesc = translateDynamicText(hotel.description, currentLang);
