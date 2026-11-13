@@ -321,7 +321,6 @@
             </div>
 
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-16">
-                <!-- روابط السوشيال ميديا كما هي بالضبط في كودك الأصلي -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-11 h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-xl shadow-md mb-1"><i class="fab fa-facebook-f"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Facebook</span>
@@ -389,33 +388,43 @@
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
-        // المترجم الديناميكي الجديد لترجمة العروض فوراً
         function translateDynamicText(text, lang) {
             if (!text) return '';
             const t = {
                 "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
                 "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
+                "إسطنبول": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
                 "Antalya": {ar:"أنطاليا", tr:"Antalya", en:"Antalya", ru:"Анталья", es:"Antalya", zh:"安塔利亚", ku:"Antalya"},
+                "أنطاليا": {ar:"أنطاليا", tr:"Antalya", en:"Antalya", ru:"Анталья", es:"Antalya", zh:"安塔利亚", ku:"Antalya"},
                 "Bursa": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса", es:"Bursa", zh:"布尔萨", ku:"Bursa"},
+                "بورصة": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса", es:"Bursa", zh:"布尔萨", ku:"Bursa"},
                 "Izmir": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир", es:"Esmirna", zh:"伊兹密尔", ku:"Îzmîr"},
+                "إزمير": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир", es:"Esmirna", zh:"伊兹密尔", ku:"Îzmîr"},
                 "Trabzon": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон", es:"Trebisonda", zh:"特拉布宗", ku:"Trabzon"},
+                "طرابزون": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон", es:"Trebisonda", zh:"特拉布宗", ku:"Trabzon"},
+                "أنقرة": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
                 "دبي": {ar:"دبي", tr:"Dubai", en:"Dubai", ru:"Дубай", es:"Dubái", zh:"迪拜", ku:"Dubai"},
                 "موسكو": {ar:"موسكو", tr:"Moskova", en:"Moscow", ru:"Москва", es:"Moscú", zh:"莫斯科", ku:"Moskow"},
                 "الرياض": {ar:"الرياض", tr:"Riyad", en:"Riyadh", ru:"Эр-Рияд", es:"Riad", zh:"利雅得", ku:"Riyad"},
                 "جدة": {ar:"جدة", tr:"Cidde", en:"Jeddah", ru:"Джидда", es:"Yeda", zh:"吉达", ku:"Cidde"},
                 "القاهرة": {ar:"القاهرة", tr:"Kahire", en:"Cairo", ru:"Каир", es:"El Cairo", zh:"开罗", ku:"Qahîre"},
                 "الدوحة": {ar:"الدوحة", tr:"Doha", en:"Doha", ru:"Доха", es:"Doha", zh:"多哈", ku:"Doha"},
+                "الكويت": {ar:"الكويت", tr:"Kuveyt", en:"Kuwait", ru:"Кувейт", es:"Kuwait", zh:"科威特", ku:"Kuweyt"},
+                "عمّان": {ar:"عمّان", tr:"Amman", en:"Amman", ru:"Амман", es:"Amán", zh:"安曼", ku:"Emman"},
                 "سانت بطرسبرغ": {ar:"سانت بطرسبرغ", tr:"St. Petersburg", en:"St. Petersburg", ru:"Санкт-Петербург", es:"San Petersburgo", zh:"圣彼得堡", ku:"St. Petersburg"},
-                "فندق مميز في": {ar:"فندق مميز في", tr:"Premium Otel:", en:"Premium Hotel in", ru:"Премиум отель в", es:"Hotel Premium en", zh:"高级酒店在", ku:"Otela Premium li"},
-                "شقة فندقية فاخرة في": {ar:"شقة فندقية فاخرة في", tr:"Lüks Apartman:", en:"Luxury Apartment in", ru:"Роскошные апартаменты в", es:"Apartamento de Lujo en", zh:"豪华公寓在", ku:"Apartmana Luks li"},
-                "عرض فندقي حقيقي بسعر": {ar:"عرض فندقي", tr:"Otel Fırsatı", en:"Hotel Deal", ru:"Предложение отеля", es:"Oferta de Hotel", zh:"酒店优惠", ku:"Fersenda Otelê"},
-                "تذكرة طيران حقيقية لمسار": {ar:"تذكرة طيران", tr:"Uçak Bileti", en:"Flight Ticket", ru:"Авиабилет", es:"Boleto de Vuelo", zh:"机票", ku:"Bilêta Firînê"},
-                "خطوط طيران مجدولة": {ar:"خطوط طيران مجدولة", tr:"Tarifeli Havayolları", en:"Scheduled Airlines", ru:"Регулярные авиалинии", es:"Aerolíneas Regulares", zh:"定期航班", ku:"Rêyên Hewayî yên Bernamekirî"}
+                "منتجع 5 نجوم شامل كلياً": {ar:"منتجع 5 نجوم شامل كلياً", tr:"5 Yıldızlı Her Şey Dahil Resort", en:"5-Star All-Inclusive Resort", ru:"5-звездочный курорт «все включено»", es:"Resort Todo Incluido de 5 Estrellas", zh:"五星级全包度假村", ku:"Resorta 5-Stêrk Hemû Tişt Tê De"},
+                "شقة فندقية عائلية فاخرة": {ar:"شقة فندقية عائلية فاخرة", tr:"Lüks Aile Apart Dairesi", en:"Luxury Family Serviced Apartment", ru:"Роскошные семейные апартаменты", es:"Apartamento Familiar de Lujo", zh:"豪华家庭服务式公寓", ku:"Apartmana Malbatî ya Luks"},
+                "فندق مميز بإطلالة على بحر إيجة": {ar:"فندق مميز بإطلالة على بحر إيجة", tr:"Ege Denizi Manzaralı Seçkin Otel", en:"Exclusive Aegean Sea View Hotel", ru:"Эксклюзивный отель с видом на Эгейское море", es:"Hotel Exclusivo con Vista al Mar Egeo", zh:"爱琴海海景精选酒店", ku:"Otela Bijarte ya Bi Dîmena Deryaya Egeyê"},
+                "شقة فندقية واسعة مطلة على الجبال": {ar:"شقة فندقية واسعة مطلة على الجبال", tr:"Dağ Manzaralı Geniş Apart Daire", en:"Spacious Mountain View Suite", ru:"Просторные апартаменты с видом на горы", es:"Amplia Suite con Vista a la Montaña", zh:"宽敞山景套房公寓", ku:"Apartmana Fireh a Bi Dîmena Çiyayan"},
+                "فندق راقي بالقرب من المعالم السياحية": {ar:"فندق راقي بالقرب من المعالم السياحية", tr:"Tarihi Merkeze Yakın Seçkin Otel", en:"Luxury Hotel Near Historic Landmarks", ru:"Роскошный отель рядом с достопримечательностями", es:"Hotel de Lujo Cerca de Monumentos", zh:"靠近历史地标的豪华酒店", ku:"Otela Luks Nêzîkî Cihên Dîrokî"},
+                "فندق وسط الطبيعة الخلابة": {ar:"فندق وسط الطبيعة الخلابة", tr:"Doğanın Kalbinde Butik Otel", en:"Boutique Hotel Surrounded by Nature", ru:"Бутик-отель на лоне природы", es:"Hotel Boutique Rodeado de Naturaleza", zh:"自然环绕的精品酒店", ku:"Otela Bûtîk Di Nav Xwezayê De"},
+                "تذاكر طيران مخفضة": {ar:"تذاكر طيران مخفضة", tr:"İndirimli Uçak Bileti", en:"Discounted Flight Ticket", ru:"Авиабилет со скидкой", es:"Boleto de Avión con Descuento", zh:"特价机票", ku:"Bilêta Firînê ya Bi Erzanî"},
+                "أفضل سعر من": {ar:"أفضل سعر من", tr:"En İyi Fiyat:", en:"Best Rate via", ru:"Лучшая цена от", es:"Mejor tarifa en", zh:"最优价格来自", ku:"Bihayê Herî Baş ji"}
             };
 
             let res = text;
             for (let k in t) {
-                const regex = new RegExp(k, "gi");
+                const regex = new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "gi");
                 if (regex.test(res)) {
                     res = res.replace(regex, t[k][lang] || k);
                 }
@@ -489,7 +498,6 @@
             if(icon) icon.className = "fas fa-moon text-sm text-slate-700";
         }
 
-        // التعديل الأول: الانتقال الصاروخي في نفس الصفحة وتخطي الحظر
         function triggerCinematicRedirect(url) {
             if(!url || url === '#') return;
             const overlay = document.getElementById('cinematic-overlay');
@@ -497,7 +505,7 @@
             overlay.classList.add('active');
             setTimeout(() => { bar.style.width = '100%'; }, 50);
             setTimeout(() => {
-                window.location.href = url; // الفتح المباشر في نفس التبويب
+                window.location.href = url;
             }, 2000); 
         }
 
@@ -551,7 +559,6 @@
             
             localStorage.setItem('ucuzakal_lang', lang);
 
-            // تحديث العروض الديناميكية لتترجم بالكامل
             if (window.renderHotels) window.renderHotels();
             if (window.renderFlights) window.renderFlights();
             if (window.renderBlogCards) window.renderBlogCards();
@@ -567,8 +574,9 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, query, orderBy, serverTimestamp, where } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+        import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
+        // 1. التطبيق الأساسي للموقع (المستخدمون والتقييمات)
         const firebaseConfig = {
             apiKey: "AIzaSyDcMOlstkYaLBOjnJOYk24U6_724pqEw1U",
             authDomain: "ucuzakal-5e2a8.firebaseapp.com",
@@ -581,6 +589,14 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
         const db = getFirestore(app);
+
+        // 2. الاتصال المباشر بقاعدة بيانات العقل المركزي (ucuzakal-ai-db) لجلب العروض الـ 12
+        const aiDbConfig = {
+            projectId: "ucuzakal-ai-db-6ccfd"
+        };
+        const aiApp = initializeApp(aiDbConfig, "aiBrainApp");
+        const aiDb = getFirestore(aiApp);
+
         const provider = new GoogleAuthProvider();
         const authBtn = document.getElementById('auth-btn');
 
@@ -606,7 +622,6 @@
             }
         });
 
-        // التعديل الثاني: تطبيق المترجم الديناميكي داخل العروض
         window.renderHotels = function() {
             const container = document.getElementById('hotels-container');
             if (!container) return;
@@ -745,19 +760,62 @@
 
         async function fetchAllFirestoreData() {
             try {
-                window.HOTELS_DATA = []; window.FLIGHTS_DATA = [];
-                const defaultImgs = ["https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90", "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90"];
-                const hSnap = await getDocs(query(collection(db, "hotels"), where("status", "==", "Approved")));
-                let i = 0;
-                hSnap.forEach(d => {
-                    window.HOTELS_DATA.push({ name: d.data().name || (d.data().city + " Fırsatı"), city: d.data().city || "TÜRKİYE", price: d.data().discount, image: defaultImgs[i % 2], affiliateUrl: d.data().affiliateLink || '#', description: d.data().marketingContent || '' }); i++;
+                window.HOTELS_DATA = [];
+                window.FLIGHTS_DATA = [];
+                
+                const cityImages = {
+                    'أنطاليا': 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90',
+                    'إزمير': 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90',
+                    'طرابزون': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=90',
+                    'إسطنبول': 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=800&q=90',
+                    'بورصة': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=90'
+                };
+                const fallbackImgs = [
+                    "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=800&q=90",
+                    "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=800&q=90"
+                ];
+
+                // جلب العروض الـ 12 الحية من قاعدة بيانات الذكاء الاصطناعي
+                const dealsSnap = await getDocs(collection(aiDb, "live_deals"));
+                let hotelIdx = 0;
+
+                dealsSnap.forEach(docSnap => {
+                    const id = docSnap.id;
+                    const data = docSnap.data();
+
+                    // تصفية وعرض العروض الـ 6 للفنادق
+                    if (id.startsWith("hotel_deal_")) {
+                        const city = data.city || "TÜRKİYE";
+                        window.HOTELS_DATA.push({
+                            name: data.title || city,
+                            city: city,
+                            price: data.price || "VIP Fırsat",
+                            image: data.image || cityImages[city] || fallbackImgs[hotelIdx % 2],
+                            affiliateUrl: data.affiliateUrl || data.affiliateLink || '#',
+                            description: `${data.title || ''} - ${data.sourcePlatform ? 'أفضل سعر من ' + data.sourcePlatform : ''}`
+                        });
+                        hotelIdx++;
+                    } 
+                    // تصفية وعرض العروض الـ 6 للطيران
+                    else if (id.startsWith("flight_deal_")) {
+                        const routeLabel = (data.departure && data.destination) 
+                            ? `${data.departure} ✈️ ${data.destination}` 
+                            : (data.title || "Özel Rota");
+                        window.FLIGHTS_DATA.push({
+                            route: routeLabel,
+                            airline: data.sourcePlatform || "Aviasales",
+                            region: data.routeType || "UcuzaKal",
+                            price: data.price || "Özel Fiyat",
+                            affiliateUrl: data.affiliateUrl || data.affiliateLink || '#',
+                            description: data.travelDate ? `${data.title} (${data.travelDate})` : (data.title || '')
+                        });
+                    }
                 });
-                const fSnap = await getDocs(query(collection(db, "flights"), where("status", "==", "Approved")));
-                fSnap.forEach(d => {
-                    window.FLIGHTS_DATA.push({ route: d.data().route || "Özel Rota", airline: d.data().airline || "Ayrıcalıklı Uçuş", region: "UcuzaKal", price: d.data().discount, affiliateUrl: d.data().affiliateLink || '#', description: d.data().marketingContent || '' });
-                });
-            } catch(e) { }
-            window.renderHotels(); window.renderFlights();
+            } catch(e) {
+                console.error("Error fetching live deals:", e);
+            }
+            window.renderHotels();
+            window.renderFlights();
         }
 
         fetchAllFirestoreData();
