@@ -35,10 +35,7 @@
     </script>
 
     <style>
-        html, body {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
+        html, body { max-width: 100%; overflow-x: hidden; }
         .premium-bg {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
@@ -60,6 +57,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            text-decoration: none; /* لمنع خطوط الروابط */
             -webkit-tap-highlight-color: transparent;
         }
         .dark .ultra-luxury-card {
@@ -79,10 +77,7 @@
             }
             .ultra-luxury-card:hover .gold-divider { width: 85px; }
         }
-        .ultra-luxury-card:active {
-            transform: scale(0.98);
-            border-color: #D4AF37;
-        }
+        .ultra-luxury-card:active { transform: scale(0.98); border-color: #D4AF37; }
 
         .img-frame {
             position: relative;
@@ -90,14 +85,8 @@
             height: 220px;
             width: 100%;
         }
-        @media (min-width: 640px) {
-            .img-frame {
-                height: 260px;
-            }
-        }
-        .img-frame img {
-            transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+        @media (min-width: 640px) { .img-frame { height: 260px; } }
+        .img-frame img { transition: transform 1.8s cubic-bezier(0.16, 1, 0.3, 1); }
 
         .gold-divider {
             width: 35px; height: 1px; background-color: #D4AF37;
@@ -108,8 +97,7 @@
             position: fixed; inset: 0; background: rgba(3, 5, 8, 0.85); 
             backdrop-filter: blur(12px); z-index: 99999;
             display: flex; align-items: center; justify-content: center;
-            opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-            padding: 1rem;
+            opacity: 0; pointer-events: none; transition: opacity 0.4s ease; padding: 1rem;
         }
         #article-modal.active { opacity: 1; pointer-events: auto; }
 
@@ -120,46 +108,28 @@
             opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
         }
         #cinematic-overlay.active { opacity: 1; pointer-events: auto; }
-        @keyframes smoothSpin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
+        @keyframes smoothSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         .lens-spin { animation: smoothSpin 10s linear infinite; }
         body { transition: background-color 0.5s ease, color 0.5s ease; }
 
         .social-channel-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 6px 12px;
-            border-radius: 9999px;
-            background: rgba(212, 175, 55, 0.05);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
-            text-decoration: none;
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 12px; border-radius: 9999px;
+            background: rgba(212, 175, 55, 0.05); border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1); text-decoration: none;
         }
         .social-channel-item:hover {
-            transform: translateX(4px);
-            background: rgba(212, 175, 55, 0.18);
-            border-color: #D4AF37;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
+            transform: translateX(4px); background: rgba(212, 175, 55, 0.18);
+            border-color: #D4AF37; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.25);
         }
-        html[dir="rtl"] .social-channel-item:hover {
-            transform: translateX(-4px);
-        }
+        html[dir="rtl"] .social-channel-item:hover { transform: translateX(-4px); }
+        
         .lang-pill {
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            padding: 2px 6px;
-            border-radius: 4px;
-            background: #D4AF37;
-            color: #030508;
-            transition: transform 0.3s ease;
+            font-size: 10px; font-weight: 800; letter-spacing: 0.1em;
+            padding: 2px 6px; border-radius: 4px; background: #D4AF37;
+            color: #030508; transition: transform 0.3s ease;
         }
-        .social-channel-item:hover .lang-pill {
-            transform: scale(1.1);
-        }
+        .social-channel-item:hover .lang-pill { transform: scale(1.1); }
     </style>
 </head>
 <body class="bg-[#FCFBF9] dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg antialiased">
@@ -199,14 +169,8 @@
     <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#030508]/95 backdrop-blur-xl border-b border-brand-gold/20 shadow-sm transition-colors">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
             <a href="#" class="flex items-center gap-2 sm:gap-3 group shrink-0">
-                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-brand-gold flex items-center justify-center bg-transparent text-brand-gold font-luxury font-bold text-base sm:text-lg group-hover:bg-brand-gold group-hover:text-black transition duration-500 shadow-[0_0_15px_rgba(212,175,55,0.2)]">
-                    U
-                </div>
-                <div>
-                    <span class="text-base sm:text-2xl font-luxury font-bold tracking-wide text-slate-900 dark:text-white title-glow block leading-none">
-                        UcuzaKal <span class="hidden xs:inline sm:inline">Türkiye</span>
-                    </span>
-                </div>
+                <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 border-brand-gold flex items-center justify-center bg-transparent text-brand-gold font-luxury font-bold text-base sm:text-lg group-hover:bg-brand-gold group-hover:text-black transition duration-500 shadow-[0_0_15px_rgba(212,175,55,0.2)]">U</div>
+                <div><span class="text-base sm:text-2xl font-luxury font-bold tracking-wide text-slate-900 dark:text-white title-glow block leading-none">UcuzaKal <span class="hidden xs:inline sm:inline">Türkiye</span></span></div>
             </a>
 
             <div class="flex items-center gap-1.5 sm:gap-4">
@@ -239,14 +203,9 @@
     <section class="relative py-20 sm:py-40 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center min-h-[60vh] sm:min-h-[75vh]">
         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-105" style="background-image: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=2000&q=90');"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-brand-dark"></div>
-        
         <div class="max-w-4xl mx-auto relative z-10 text-white px-2">
-            <h1 class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 title-glow tracking-wide" data-i18n="hero_title">
-                Seçkin Rotaları Lüksle Keşfedin
-            </h1>
-            <p class="text-white/85 text-sm sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-6 sm:mb-8" data-i18n="hero_subtitle">
-                Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.
-            </p>
+            <h1 class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 title-glow tracking-wide" data-i18n="hero_title">Seçkin Rotaları Lüksle Keşfedin</h1>
+            <p class="text-white/85 text-sm sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-6 sm:mb-8" data-i18n="hero_subtitle">Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.</p>
         </div>
     </section>
 
@@ -257,9 +216,8 @@
             <h2 class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6" data-i18n="hotels_heading">Özel Seçki Koleksiyonu</h2>
             <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
         </div>
-
         <div id="hotels-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <!-- العروض -->
+            <!-- العروض تضاف برمجياً كروابط فعلية -->
         </div>
     </main>
 
@@ -271,9 +229,8 @@
                 <h2 class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6" data-i18n="flights_heading">Ayrıcalıklı Uçuşlar</h2>
                 <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
             </div>
-
             <div id="flights-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <!-- العروض -->
+                <!-- العروض تضاف برمجياً كروابط فعلية -->
             </div>
         </div>
     </section>
@@ -285,7 +242,6 @@
             <h2 class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6" data-i18n="blog_heading">UcuzaKal Seyahat Günlüğü</h2>
             <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
         </div>
-
         <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             <!-- المقالات -->
         </div>
@@ -310,7 +266,6 @@
         <div class="text-center mb-8 sm:mb-10">
             <h2 class="font-luxury text-2xl sm:text-4xl text-slate-900 dark:text-white font-bold mb-3" data-i18n="ratings_heading">İzlenimlerinizi Paylaşın</h2>
         </div>
-        
         <div class="bg-white dark:bg-[#04070C] p-6 sm:p-12 rounded-3xl border border-slate-200 dark:border-white/5 shadow-xl text-center">
             <div id="star-container" class="flex justify-center gap-3 sm:gap-4 text-xl sm:text-2xl text-slate-300 dark:text-slate-700 mb-6 sm:mb-8 cursor-pointer">
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(1)"></i>
@@ -319,17 +274,12 @@
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(4)"></i>
                 <i class="far fa-star hover:text-brand-gold transition duration-300" onclick="rateStar(5)"></i>
             </div>
-            
             <div class="flex flex-col gap-5 sm:gap-6 max-w-md mx-auto">
                 <input type="text" id="user-review-name" data-i18n-placeholder="review_name_placeholder" placeholder="Adınız Soyadınız" class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition">
                 <textarea id="user-review-text" rows="2" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..." class="bg-transparent border-b border-slate-300 dark:border-slate-700 py-2 text-center text-sm sm:text-base text-slate-900 dark:text-white font-medium focus:outline-none focus:border-brand-gold transition resize-none"></textarea>
-                <button onclick="submitReview()" class="mt-3 sm:mt-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3.5 rounded-full text-xs tracking-widest uppercase hover:opacity-80 transition" data-i18n="submit_review_btn">
-                    Gönder
-                </button>
+                <button onclick="submitReview()" class="mt-3 sm:mt-4 bg-slate-900 dark:bg-white text-white dark:text-slate-900 font-bold py-3.5 rounded-full text-xs tracking-widest uppercase hover:opacity-80 transition" data-i18n="submit_review_btn">Gönder</button>
             </div>
-            <p id="review-success-msg" class="text-brand-gold text-xs sm:text-sm text-center font-bold mt-6 hidden" data-i18n="review_success">
-                Zarif geri bildiriminiz için teşekkür ederiz.
-            </p>
+            <p id="review-success-msg" class="text-brand-gold text-xs sm:text-sm text-center font-bold mt-6 hidden" data-i18n="review_success">Zarif geri bildiriminiz için teşekkür ederiz.</p>
         </div>
     </section>
 
@@ -338,10 +288,10 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-10 sm:mb-12">
                 <span class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white block title-glow">UcuzaKal Türkiye</span>
-                <span class="text-brand-gold text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] uppercase font-bold mt-2 inline-block">Global Resmi Kanallarımız</span>
+                <span class="text-brand-gold text-[10px] sm:text-xs tracking-[0.25em] sm:tracking-[0.3em] uppercase font-bold mt-2 inline-block" data-i18n="global_channels">Global Resmi Kanallarımız</span>
             </div>
-
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-6 sm:gap-8 mb-12 sm:mb-16">
+                <!-- Facebook -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#1877F2] flex items-center justify-center text-white text-lg sm:text-xl shadow-md mb-1"><i class="fab fa-facebook-f"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Facebook</span>
@@ -351,6 +301,7 @@
                         <a href="https://www.facebook.com/profile.php?id=61596182676675" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
+                <!-- Instagram -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center text-white text-lg sm:text-xl shadow-md mb-1" style="background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);"><i class="fab fa-instagram"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Instagram</span>
@@ -360,6 +311,7 @@
                         <a href="https://www.instagram.com/ucuzakal.a/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
+                <!-- Pinterest -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#E60023] flex items-center justify-center text-white text-lg sm:text-xl shadow-md mb-1"><i class="fab fa-pinterest-p"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">Pinterest</span>
@@ -369,6 +321,7 @@
                         <a href="https://www.pinterest.com/ARucuzakal/" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
+                <!-- Twitter -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black flex items-center justify-center text-white text-lg sm:text-xl shadow-md border border-slate-700 mb-1"><i class="fab fa-x-twitter"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">X (Twitter)</span>
@@ -378,6 +331,7 @@
                         <a href="https://x.com/ucuzaKalAR" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
+                <!-- TikTok -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-black flex items-center justify-center text-white text-lg sm:text-xl shadow-md border border-slate-700 mb-1"><i class="fab fa-tiktok"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">TikTok</span>
@@ -387,6 +341,7 @@
                         <a href="https://www.tiktok.com/@ucuzakal.ar?lang=ar" target="_blank" class="social-channel-item justify-between"><span class="text-xs font-semibold text-slate-700 dark:text-slate-300">العربية</span><span class="lang-pill">AR</span></a>
                     </div>
                 </div>
+                <!-- YouTube -->
                 <div class="flex flex-col items-center text-center space-y-3">
                     <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#FF0000] flex items-center justify-center text-white text-lg sm:text-xl shadow-md mb-1"><i class="fab fa-youtube"></i></div>
                     <span class="text-xs font-bold text-slate-800 dark:text-slate-200 uppercase tracking-wider">YouTube</span>
@@ -397,7 +352,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="text-center text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-bold border-t border-slate-200 dark:border-white/5 pt-8" data-i18n="rights">
                 Tüm hakları saklıdır UcuzaKal Türkiye
             </div>
@@ -409,21 +363,8 @@
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
-        function sanitizeDealText(text) {
-            if (!text) return '';
-            return text
-                .replace(/\(أفضل سعر من[^)]+\)/gi, '')
-                .replace(/-\s*أفضل سعر من\s*[A-Za-z0-9._-]+/gi, '')
-                .replace(/أفضل سعر من\s*[A-Za-z0-9._-]+/gi, '')
-                .replace(/\b(Klook|Travelata|Level\.travel|Yandex\.Travel|Yandex|Ostrovok|Aviasales)\b/gi, '')
-                .replace(/\s+-\s*$/g, '')
-                .replace(/\s{2,}/g, ' ')
-                .trim();
-        }
-
         function translateDynamicText(text, lang) {
             if (!text) return '';
-            let clean = sanitizeDealText(text);
             const t = {
                 "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
                 "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
@@ -455,12 +396,10 @@
                 "تذاكر طيران مخفضة": {ar:"تذاكر طيران مخفضة", tr:"İndirimli Uçak Bileti", en:"Discounted Flight Ticket", ru:"Авиабилет со скидкой", es:"Boleto de Avión con Descuento", zh:"特价机票", ku:"Bilêta Firînê ya Bi Erzanî"}
             };
 
-            let res = clean;
+            let res = text;
             for (let k in t) {
                 const regex = new RegExp(k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), "gi");
-                if (regex.test(res)) {
-                    res = res.replace(regex, t[k][lang] || k);
-                }
+                if (regex.test(res)) { res = res.replace(regex, t[k][lang] || k); }
             }
             return res;
         }
@@ -531,7 +470,7 @@
             if(icon) icon.className = "fas fa-moon text-xs sm:text-sm text-slate-700";
         }
 
-        // دالة التحويل السينمائي المباشر والمؤكد على جميع المتصفحات والهواتف
+        // دالة التوجيه تم تحسينها لتعمل بسلاسة 100%
         window.triggerCinematicRedirect = function(url) {
             if (!url || url === '#') return;
             const overlay = document.getElementById('cinematic-overlay');
@@ -540,11 +479,11 @@
                 bar.style.width = '0%';
                 overlay.classList.add('active');
                 requestAnimationFrame(() => {
-                    setTimeout(() => { bar.style.width = '100%'; }, 40);
+                    setTimeout(() => { bar.style.width = '100%'; }, 50);
                 });
             }
             setTimeout(() => {
-                window.location.assign(url);
+                window.location.href = url;
             }, 1500);
         };
 
@@ -559,25 +498,25 @@
 
         const TRANSLATIONS = {
             tr: {
-                dir: "ltr", hero_title: "Seçkin Rotaları Lüksle Keşfedin", hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.", hotels_sub: "ÖZEL SEÇKİ", hotels_heading: "Özel Seçki Koleksiyonu", starting_from: "Başlayan Fiyatlar", flights_sub: "GÖKLERDEKİ ZARAFET", flights_heading: "Ayrıcalıklı Uçuşlar", blog_sub: "SEYAHAT REHBERİ", blog_heading: "UcuzaKal Seyahat Günlüğü", read_more: "Devamını Oku", about_heading: "Biz Kimiz?", about_text_1: "UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.", about_text_2: "Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.", ratings_heading: "İzlenimlerinizi Paylaşın", review_name_placeholder: "Adınız Soyadınız", review_text_placeholder: "Düşünceleriniz...", submit_review_btn: "Gönder", review_success: "Zarif geri bildiriminiz için teşekkür ederiz.", rights: "Tüm hakları saklıdır UcuzaKal Türkiye", google_login: "Gmail Girişi", cinematic_title: "Rezervasyon Platformuna Yönlendiriliyorsunuz...", no_deals_text: "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın."
+                dir: "ltr", hero_title: "Seçkin Rotaları Lüksle Keşfedin", hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.", hotels_sub: "ÖZEL SEÇKİ", hotels_heading: "Özel Seçki Koleksiyonu", starting_from: "Başlayan Fiyatlar", flights_sub: "GÖKLERDEKİ ZARAFET", flights_heading: "Ayrıcalıklı Uçuşlar", blog_sub: "SEYAHAT REHBERİ", blog_heading: "UcuzaKal Seyahat Günlüğü", read_more: "Devamını Oku", about_heading: "Biz Kimiz?", about_text_1: "UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.", about_text_2: "Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.", ratings_heading: "İzlenimlerinizi Paylaşın", review_name_placeholder: "Adınız Soyadınız", review_text_placeholder: "Düşünceleriniz...", submit_review_btn: "Gönder", review_success: "Zarif geri bildiriminiz için teşekkür ederiz.", rights: "Tüm hakları saklıdır UcuzaKal Türkiye", google_login: "Gmail Girişi", cinematic_title: "Rezervasyon Platformuna Yönlendiriliyorsunuz...", no_deals_text: "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın.", global_channels: "Global Resmi Kanallarımız"
             },
             ar: {
-                dir: "rtl", hero_title: "اكتشف روعة الوجهات الفاخرة", hero_subtitle: "مختارات إقامة وطيران حصرية مصممة لتلبية ذوقك الرفيع في أبرز وجهات تركيا.", hotels_sub: "مختارات خاصة", hotels_heading: "مجموعة المختارات الخاصة", starting_from: "الأسعار تبدأ من", flights_sub: "أناقة الأجواء", flights_heading: "مسارات الرحلات الحصرية", blog_sub: "دليل السفر", blog_heading: "يوميات UcuzaKal السياحية", read_more: "اقرأ المزيد", about_heading: "من نحن؟", about_text_1: "UcuzaKal Türkiye هي منصة سفر مستقلة تجمع لك أفضل عروض الإقامة ورحلات الطيران في أرقى الوجهات التركية. هدفنا هو تقديم أدق الأسعار بشفافية تامة، وتحويل تخطيط سفرك إلى تجربة استثنائية تلبي ذوقك الرفيع.", about_text_2: "تم تصميم وتنسيق كل مسار بعناية فائقة لضمان ألا يكون سفرك مجرد وجهة وصول؛ بل ليبقى كذكرى نبيلة لا تُنسى تلبي كافة توقعاتك.", ratings_heading: "شاركنا انطباعاتك", review_name_placeholder: "الاسم الكريم...", review_text_placeholder: "اكتب انطباعاتك هنا...", submit_review_btn: "إرسال", review_success: "نقدر لك هذا التقييم الراقي، شكراً لثقتك.", rights: "جميع الحقوق محفوظة UcuzaKal Türkiye", google_login: "دخول Gmail", cinematic_title: "جاري تحويلك لمنصة الحجز...", no_deals_text: "نأسف بشده لا توجد عروض فى الوقت الحالى شرفنا بالزياره بعد قليل"
+                dir: "rtl", hero_title: "اكتشف روعة الوجهات الفاخرة", hero_subtitle: "مختارات إقامة وطيران حصرية مصممة لتلبية ذوقك الرفيع في أبرز وجهات تركيا.", hotels_sub: "مختارات خاصة", hotels_heading: "مجموعة المختارات الخاصة", starting_from: "الأسعار تبدأ من", flights_sub: "أناقة الأجواء", flights_heading: "مسارات الرحلات الحصرية", blog_sub: "دليل السفر", blog_heading: "يوميات UcuzaKal السياحية", read_more: "اقرأ المزيد", about_heading: "من نحن؟", about_text_1: "UcuzaKal Türkiye هي منصة سفر مستقلة تجمع لك أفضل عروض الإقامة ورحلات الطيران في أرقى الوجهات التركية. هدفنا هو تقديم أدق الأسعار بشفافية تامة، وتحويل تخطيط سفرك إلى تجربة استثنائية تلبي ذوقك الرفيع.", about_text_2: "تم تصميم وتنسيق كل مسار بعناية فائقة لضمان ألا يكون سفرك مجرد وجهة وصول؛ بل ليبقى كذكرى نبيلة لا تُنسى تلبي كافة توقعاتك.", ratings_heading: "شاركنا انطباعاتك", review_name_placeholder: "الاسم الكريم...", review_text_placeholder: "اكتب انطباعاتك هنا...", submit_review_btn: "إرسال", review_success: "نقدر لك هذا التقييم الراقي، شكراً لثقتك.", rights: "جميع الحقوق محفوظة UcuzaKal Türkiye", google_login: "دخول Gmail", cinematic_title: "جاري تحويلك لمنصة الحجز...", no_deals_text: "نأسف بشدة، لا توجد عروض في الوقت الحالي، شرفنا بالزيارة بعد قليل.", global_channels: "قنواتنا الرسمية العالمية"
             },
             en: {
-                dir: "ltr", hero_title: "Discover Elite Routes in Luxury", hero_subtitle: "Exclusive accommodation and flight opportunities carefully compiled for you in Turkey's most popular destinations.", hotels_sub: "EXCLUSIVE SELECTION", hotels_heading: "Special Selection Collection", starting_from: "Rates Starting From", flights_sub: "ELEGANCE IN THE SKIES", flights_heading: "Privileged Flights", blog_sub: "TRAVEL JOURNAL", blog_heading: "UcuzaKal Travel Journal", read_more: "Read More", about_heading: "Who Are We?", about_text_1: "UcuzaKal Türkiye is an independent travel platform that carefully curates the finest accommodation and flight deals across Turkey's elite destinations.", about_text_2: "Each meticulously compiled route is designed so that your journey becomes an unforgettable standard of elegance.", ratings_heading: "Share Your Impressions", review_name_placeholder: "Full Name", review_text_placeholder: "Your thoughts...", submit_review_btn: "Submit", review_success: "Thank you for your elegant feedback.", rights: "All rights reserved UcuzaKal Türkiye", google_login: "Login with Gmail", cinematic_title: "Redirecting to Booking Platform...", no_deals_text: "There are currently no deals, please honor us with a visit shortly."
+                dir: "ltr", hero_title: "Discover Elite Routes in Luxury", hero_subtitle: "Exclusive accommodation and flight opportunities carefully compiled for you in Turkey's most popular destinations.", hotels_sub: "EXCLUSIVE SELECTION", hotels_heading: "Special Selection Collection", starting_from: "Rates Starting From", flights_sub: "ELEGANCE IN THE SKIES", flights_heading: "Privileged Flights", blog_sub: "TRAVEL JOURNAL", blog_heading: "UcuzaKal Travel Journal", read_more: "Read More", about_heading: "Who Are We?", about_text_1: "UcuzaKal Türkiye is an independent travel platform that carefully curates the finest accommodation and flight deals across Turkey's elite destinations.", about_text_2: "Each meticulously compiled route is designed so that your journey becomes an unforgettable standard of elegance.", ratings_heading: "Share Your Impressions", review_name_placeholder: "Full Name", review_text_placeholder: "Your thoughts...", submit_review_btn: "Submit", review_success: "Thank you for your elegant feedback.", rights: "All rights reserved UcuzaKal Türkiye", google_login: "Login with Gmail", cinematic_title: "Redirecting to Booking Platform...", no_deals_text: "There are currently no deals, please honor us with a visit shortly.", global_channels: "Our Global Official Channels"
             },
             ru: {
-                dir: "ltr", hero_title: "Откройте для себя элитные маршруты в роскоши", hero_subtitle: "Эксклюзивные предложения по размещению и перелетам в лучших уголках Турции.", hotels_sub: "СПЕЦИАЛЬНЫЙ ВЫБОР", hotels_heading: "Специальная коллекция", starting_from: "Цены от", flights_sub: "ЭЛЕГАНТНОСТЬ В НЕБЕ", flights_heading: "Привилегированные рейсы", blog_sub: "ПУТЕВОДИТЕЛЬ", blog_heading: "Дневник путешествий UcuzaKal", read_more: "Читать далее", about_heading: "О нас", about_text_1: "UcuzaKal Türkiye — независимая туристическая платформа, тщательно собирающая лучшие предложения.", about_text_2: "Каждый маршрут составлен для того, чтобы ваше путешествие стало безупречным опытом.", ratings_heading: "Поделитесь впечатлениями", review_name_placeholder: "Имя Фамилия", review_text_placeholder: "Ваш отзыв...", submit_review_btn: "Отправить", review_success: "Благодарим за ваш отзыв.", rights: "Все права защищены UcuzaKal Türkiye", google_login: "Войти через Gmail", cinematic_title: "Перенаправление на платформу бронирования...", no_deals_text: "В настоящее время предложений нет, пожалуйста, окажите нам честь своим визитом чуть позже."
+                dir: "ltr", hero_title: "Откройте для себя элитные маршруты в роскоши", hero_subtitle: "Эксклюзивные предложения по размещению и перелетам в лучших уголках Турции.", hotels_sub: "СПЕЦИАЛЬНЫЙ ВЫБОР", hotels_heading: "Специальная коллекция", starting_from: "Цены от", flights_sub: "ЭЛЕГАНТНОСТЬ В НЕБЕ", flights_heading: "Привилегированные рейсы", blog_sub: "ПУТЕВОДИТЕЛЬ", blog_heading: "Дневник путешествий UcuzaKal", read_more: "Читать далее", about_heading: "О нас", about_text_1: "UcuzaKal Türkiye — независимая туристическая платформа, тщательно собирающая лучшие предложения.", about_text_2: "Каждый маршрут составлен для того, чтобы ваше путешествие стало безупречным опытом.", ratings_heading: "Поделитесь впечатлениями", review_name_placeholder: "Имя Фамилия", review_text_placeholder: "Ваш отзыв...", submit_review_btn: "Отправить", review_success: "Благодарим за ваш отзыв.", rights: "Все права защищены UcuzaKal Türkiye", google_login: "Войти через Gmail", cinematic_title: "Перенаправление на платформу бронирования...", no_deals_text: "В настоящее время предложений нет, пожалуйста, окажите нам честь своим визитом чуть позже.", global_channels: "Наши глобальные официальные каналы"
             },
             es: {
-                dir: "ltr", hero_title: "Descubra Rutas de Élite con Lujo", hero_subtitle: "Oportunidades exclusivas de alojamiento y vuelos cuidadosamente compiladas para usted en los destinos más populares de Turquía.", hotels_sub: "SELECCIÓN EXCLUSIVA", hotels_heading: "Colección de Selección Especial", starting_from: "Precios desde", flights_sub: "ELEGANCIA EN LOS CIELOS", flights_heading: "Vuelos Privilegiados", blog_sub: "GUÍA DE VIAJE", blog_heading: "Diario de Viaje UcuzaKal", read_more: "Leer más", about_heading: "¿Quiénes somos?", about_text_1: "UcuzaKal Türkiye es una plataforma de viajes independiente que selecciona cuidadosamente las mejores ofertas de alojamiento y vuelos en los destinos de élite de Turquía.", about_text_2: "Cada ruta está meticulosamente diseñada para que su viaje se convierta en una experiencia de elegancia inolvidable.", ratings_heading: "Comparta sus impresiones", review_name_placeholder: "Nombre completo", review_text_placeholder: "Sus pensamientos...", submit_review_btn: "Enviar", review_success: "Gracias por sus elegantes comentarios.", rights: "Todos los derechos reservados UcuzaKal Türkiye", google_login: "Iniciar sesión con Gmail", cinematic_title: "Redirigiendo a la plataforma de reservas...", no_deals_text: "Actualmente no hay ofertas, por favor hónrenos con una visita en breve."
+                dir: "ltr", hero_title: "Descubra Rutas de Élite con Lujo", hero_subtitle: "Oportunidades exclusivas de alojamiento y vuelos cuidadosamente compiladas para usted en los destinos más populares de Turquía.", hotels_sub: "SELECCIÓN EXCLUSIVA", hotels_heading: "Colección de Selección Especial", starting_from: "Precios desde", flights_sub: "ELEGANCIA EN LOS CIELOS", flights_heading: "Vuelos Privilegiados", blog_sub: "GUÍA DE VIAJE", blog_heading: "Diario de Viaje UcuzaKal", read_more: "Leer más", about_heading: "¿Quiénes somos?", about_text_1: "UcuzaKal Türkiye es una plataforma de viajes independiente que selecciona cuidadosamente las mejores ofertas de alojamiento y vuelos en los destinos de élite de Turquía.", about_text_2: "Cada ruta está meticulosamente diseñada para que su viaje se convierta en una experiencia de elegancia inolvidable.", ratings_heading: "Comparta sus impresiones", review_name_placeholder: "Nombre completo", review_text_placeholder: "Sus pensamientos...", submit_review_btn: "Enviar", review_success: "Gracias por sus elegantes comentarios.", rights: "Todos los derechos reservados UcuzaKal Türkiye", google_login: "Iniciar sesión con Gmail", cinematic_title: "Redirigiendo a la plataforma de reservas...", no_deals_text: "Actualmente no hay ofertas, por favor hónrenos con una visita en breve.", global_channels: "Nuestros Canales Oficiales Globales"
             },
             zh: {
-                dir: "ltr", hero_title: "在奢华中发现精英路线", hero_subtitle: "为您在土耳其最受欢迎的目的地精心汇编的独家住宿和航班优惠。", hotels_sub: "独家精选", hotels_heading: "特别精选系列", starting_from: "起价", flights_sub: "云端优雅", flights_heading: "尊享航班", blog_sub: "旅行指南", blog_heading: "UcuzaKal 旅行日记", read_more: "阅读更多", about_heading: "关于我们", about_text_1: "UcuzaKal Türkiye 是一个独立的旅行平台，为您精心挑选土耳其精英目的地的最佳住宿和航班优惠。", about_text_2: "每条路线都经过精心设计，让您的旅程成为难忘的优雅体验。", ratings_heading: "分享您的印象", review_name_placeholder: "姓名", review_text_placeholder: "您的想法...", submit_review_btn: "提交", review_success: "感谢您的优雅反馈。", rights: "保留所有权利 UcuzaKal Türkiye", google_login: "使用 Gmail 登录", cinematic_title: "正在重定向至预订平台...", no_deals_text: "目前没有任何优惠，请稍后再来访问我们。"
+                dir: "ltr", hero_title: "在奢华中发现精英路线", hero_subtitle: "为您在土耳其最受欢迎的目的地精心汇编的独家住宿和航班优惠。", hotels_sub: "独家精选", hotels_heading: "特别精选系列", starting_from: "起价", flights_sub: "云端优雅", flights_heading: "尊享航班", blog_sub: "旅行指南", blog_heading: "UcuzaKal 旅行日记", read_more: "阅读更多", about_heading: "关于我们", about_text_1: "UcuzaKal Türkiye 是一个独立的旅行平台，为您精心挑选土耳其精英目的地的最佳住宿和航班优惠。", about_text_2: "每条路线都经过精心设计，让您的旅程成为难忘的优雅体验。", ratings_heading: "分享您的印象", review_name_placeholder: "姓名", review_text_placeholder: "您的想法...", submit_review_btn: "提交", review_success: "感谢您的优雅反馈。", rights: "保留所有权利 UcuzaKal Türkiye", google_login: "使用 Gmail 登录", cinematic_title: "正在重定向至预订平台...", no_deals_text: "目前没有任何优惠，请稍后再来访问我们。", global_channels: "我们的全球官方频道"
             },
             ku: {
-                dir: "ltr", hero_title: "Rêçên Bijarte Bi Luksê Kêf Bikin", hero_subtitle: "Derfetên cîh û firînê yên taybetî li cihên herî populer ên Tirkiyeyê.", hotels_sub: "HILBIJARTINA TAYBET", hotels_heading: "Koleksiyona Hilbijartina Taybet", starting_from: "Bihayên Destpêkê", flights_sub: "ZARAFETA LI EZMANAN", flights_heading: "Firînên Taybet", blog_sub: "REHBERA RÊWÎTIYÊ", blog_heading: "Rojnameya Rêwîtiyê ya UcuzaKal", read_more: "Zêdetir Bixwîne", about_heading: "Em Kî Ne?", about_text_1: "UcuzaKal Türkiye platformeke rêwîtiyê ya serbixwe ye ku derfetên herî baş ên cîh û firînê li cihên elît ên Tirkiyeyê berhev dike.", about_text_2: "Her rêç bi baldarî hatiye sêwirandin da ku rêwîtiya we bibe ezmûneke nayê jibîrkirin.", ratings_heading: "Nêrînên Xwe Parve Bikin", review_name_placeholder: "Nav û Paşnav", review_text_placeholder: "Ramanên we...", submit_review_btn: "Bişîne", review_success: "Ji bo nerînên we yên hêja spas.", rights: "Hemû maf parastî ne UcuzaKal Türkiye", google_login: "Têketina Gmail", cinematic_title: "Ber bi platforma veqetandinê ve tê rêvekirin...", no_deals_text: "Niha tu pêşniyar nînin, ji kerema xwe piştî demek kurt serdana me bikin."
+                dir: "ltr", hero_title: "Rêçên Bijarte Bi Luksê Kêf Bikin", hero_subtitle: "Derfetên cîh û firînê yên taybetî li cihên herî populer ên Tirkiyeyê.", hotels_sub: "HILBIJARTINA TAYBET", hotels_heading: "Koleksiyona Hilbijartina Taybet", starting_from: "Bihayên Destpêkê", flights_sub: "ZARAFETA LI EZMANAN", flights_heading: "Firînên Taybet", blog_sub: "REHBERA RÊWÎTIYÊ", blog_heading: "Rojnameya Rêwîtiyê ya UcuzaKal", read_more: "Zêdetir Bixwîne", about_heading: "Em Kî Ne?", about_text_1: "UcuzaKal Türkiye platformeke rêwîtiyê ya serbixwe ye ku derfetên herî baş ên cîh û firînê li cihên elît ên Tirkiyeyê berhev dike.", about_text_2: "Her rêç bi baldarî hatiye sêwirandin da ku rêwîtiya we bibe ezmûneke nayê jibîrkirin.", ratings_heading: "Nêrînên Xwe Parve Bikin", review_name_placeholder: "Nav û Paşnav", review_text_placeholder: "Ramanên we...", submit_review_btn: "Bişîne", review_success: "Ji bo nerînên we yên hêja spas.", rights: "Hemû maf parastî ne UcuzaKal Türkiye", google_login: "Têketina Gmail", cinematic_title: "Ber bi platforma veqetandinê ve tê rêvekirin...", no_deals_text: "Niha tu pêşniyar nînin, ji kerema xwe piştî demek kurt serdana me bikin.", global_channels: "Kanalên Me Yên Fermî Yên Gerdûnî"
             }
         };
 
@@ -615,7 +554,6 @@
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
         import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // 1. التطبيق الأساسي للموقع (المستخدمون والتقييمات)
         const firebaseConfig = {
             apiKey: "AIzaSyDcMOlstkYaLBOjnJOYk24U6_724pqEw1U",
             authDomain: "ucuzakal-5e2a8.firebaseapp.com",
@@ -629,10 +567,7 @@
         const auth = getAuth(app);
         const db = getFirestore(app);
 
-        // 2. الاتصال المباشر بقاعدة بيانات العقل المركزي (ucuzakal-ai-db) لجلب العروض
-        const aiDbConfig = {
-            projectId: "ucuzakal-ai-db-6ccfd"
-        };
+        const aiDbConfig = { projectId: "ucuzakal-ai-db-6ccfd" };
         const aiApp = initializeApp(aiDbConfig, "aiBrainApp");
         const aiDb = getFirestore(aiApp);
 
@@ -647,7 +582,7 @@
 
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                authBtn.innerHTML = `<img src="${user.photoURL}" alt="User" class="w-5 h-5 rounded-full border border-brand-gold"> <span class="font-bold text-xs">${user.displayName.split(' ')[0]}</span>`;
+                authBtn.innerHTML = `<img src="${user.photoURL}" alt="User" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full border border-brand-gold"> <span class="font-bold text-[10px] sm:text-xs hidden sm:inline">${user.displayName.split(' ')[0]}</span>`;
                 authBtn.onclick = window.logoutGoogle;
                 authBtn.title = "Çıkış Yap / تسجيل الخروج";
             } else {
@@ -666,9 +601,7 @@
             if (!container) return;
             const currentLang = document.documentElement.lang || 'tr';
             const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
-            const startingText = dict.starting_from || "Başlayan Fiyatlar";
-            const noDealsText = dict.no_deals_text || "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın.";
-
+            
             if (window.HOTELS_DATA.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-[2rem] border border-brand-gold/10 bg-gradient-to-b from-transparent to-brand-gold/5 shadow-[inset_0_0_50px_rgba(212,175,55,0.02)]">
@@ -677,7 +610,7 @@
                             <div class="absolute inset-3 rounded-full border-b-2 border-l-2 border-brand-gold/30 animate-[spin_12s_linear_infinite_reverse]"></div>
                             <i class="fas fa-gem text-brand-gold text-3xl sm:text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
                         </div>
-                        <h3 class="font-luxury text-lg sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${noDealsText}</h3>
+                        <h3 class="font-luxury text-lg sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${dict.no_deals_text}</h3>
                     </div>`;
                 return;
             }
@@ -688,8 +621,15 @@
                 const trName = translateDynamicText(hotel.name, currentLang);
                 const trDesc = translateDynamicText(hotel.description, currentLang);
 
-                const card = document.createElement('div');
-                card.className = 'ultra-luxury-card cursor-pointer group';
+                // هنا تم تحويل البطاقة إلى <a> لتجنب أي حظر في المتصفح ولضمان التحويل
+                const card = document.createElement('a');
+                card.href = hotel.affiliateUrl;
+                card.className = 'ultra-luxury-card group block';
+                card.onclick = function(e) {
+                    e.preventDefault();
+                    window.triggerCinematicRedirect(this.href);
+                };
+
                 card.innerHTML = `
                     <div>
                         <div class="img-frame">
@@ -705,15 +645,10 @@
                     </div>
                     <div class="px-5 sm:px-6 pb-5 sm:pb-6">
                         <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
-                            <span class="text-slate-400 text-[10px] uppercase tracking-widest">${startingText}</span>
+                            <span class="text-slate-400 text-[10px] uppercase tracking-widest">${dict.starting_from || "Başlayan Fiyatlar"}</span>
                             <span class="font-luxury text-lg sm:text-xl font-bold text-brand-gold">${hotel.price}</span>
                         </div>
                     </div>`;
-
-                card.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.triggerCinematicRedirect(hotel.affiliateUrl);
-                });
                 container.appendChild(card);
             });
         };
@@ -723,8 +658,7 @@
             if (!container) return;
             const currentLang = document.documentElement.lang || 'tr';
             const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
-            const noDealsText = dict.no_deals_text || "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın.";
-
+            
             if (window.FLIGHTS_DATA.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-[2rem] border border-brand-gold/10 bg-gradient-to-b from-transparent to-brand-gold/5 shadow-[inset_0_0_50px_rgba(212,175,55,0.02)]">
@@ -733,7 +667,7 @@
                             <div class="absolute inset-3 rounded-full border-b-2 border-l-2 border-brand-gold/30 animate-[spin_12s_linear_infinite_reverse]"></div>
                             <i class="fas fa-plane-departure text-brand-gold text-3xl sm:text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
                         </div>
-                        <h3 class="font-luxury text-lg sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${noDealsText}</h3>
+                        <h3 class="font-luxury text-lg sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${dict.no_deals_text}</h3>
                     </div>`;
                 return;
             }
@@ -744,8 +678,15 @@
                 const trAirline = translateDynamicText(flight.airline, currentLang);
                 const trDesc = translateDynamicText(flight.description, currentLang);
 
-                const card = document.createElement('div');
-                card.className = 'ultra-luxury-card p-6 sm:p-8 cursor-pointer text-center group';
+                // تحويل البطاقة إلى <a> 
+                const card = document.createElement('a');
+                card.href = flight.affiliateUrl;
+                card.className = 'ultra-luxury-card p-6 sm:p-8 text-center group block';
+                card.onclick = function(e) {
+                    e.preventDefault();
+                    window.triggerCinematicRedirect(this.href);
+                };
+
                 card.innerHTML = `
                     <div>
                         <i class="fas fa-plane text-brand-gold text-2xl sm:text-3xl mb-3 sm:mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
@@ -756,11 +697,6 @@
                     <div class="pt-2 border-t border-slate-100 dark:border-white/5">
                         <span class="font-luxury text-xl sm:text-2xl font-bold text-brand-gold">${flight.price}</span>
                     </div>`;
-
-                card.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    window.triggerCinematicRedirect(flight.affiliateUrl);
-                });
                 container.appendChild(card);
             });
         };
@@ -770,34 +706,35 @@
             if (!container) return;
             const currentLang = document.documentElement.lang || 'tr';
             const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
-            const readMoreText = dict.read_more || "Devamını Oku";
             const articlesList = Object.values(window.ARTICLES_MAP);
             if (articlesList.length === 0) return;
 
-            let html = '';
+            container.innerHTML = '';
             articlesList.forEach(art => {
                 let title = art.titles ? (art.titles[currentLang] || art.titles['tr']) : art.title;
                 let bodyText = art.titles ? (art.bodies[currentLang] || art.bodies['tr']) : (art.body || '');
                 let bodySnippet = bodyText.replace(/<[^>]*>?/gm, '');
 
-                html += `
-                    <article class="ultra-luxury-card group cursor-pointer" onclick="window.openArticleModal('${art.id}')">
-                        <div>
-                            <div class="img-frame"><img src="${art.image}" alt="${title}" class="w-full h-full object-cover"></div>
-                            <div class="p-5 sm:p-6">
-                                <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">${art.category || 'TÜRKİYE'}</span>
-                                <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2">${title}</h3>
-                                <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">${bodySnippet}</p>
-                            </div>
+                const card = document.createElement('article');
+                card.className = 'ultra-luxury-card group cursor-pointer';
+                card.onclick = () => window.openArticleModal(art.id);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="img-frame"><img src="${art.image}" alt="${title}" class="w-full h-full object-cover"></div>
+                        <div class="p-5 sm:p-6">
+                            <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">${art.category || 'TÜRKİYE'}</span>
+                            <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2">${title}</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">${bodySnippet}</p>
                         </div>
-                        <div class="px-5 sm:px-6 pb-5 sm:pb-6">
-                            <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition">
-                                <span>${readMoreText}</span> <i class="fas fa-arrow-right text-[10px]"></i>
-                            </span>
-                        </div>
-                    </article>`;
+                    </div>
+                    <div class="px-5 sm:px-6 pb-5 sm:pb-6">
+                        <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition">
+                            <span>${dict.read_more || "Devamını Oku"}</span> <i class="fas fa-arrow-right text-[10px]"></i>
+                        </span>
+                    </div>`;
+                container.appendChild(card);
             });
-            container.innerHTML = html;
         };
 
         function detectTrafficSource() {
@@ -823,49 +760,30 @@
             try {
                 window.HOTELS_DATA = [];
                 window.FLIGHTS_DATA = [];
-                
-                const cityImages = {
-                    'أنطاليا': 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=90',
-                    'إزمير': 'https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=90',
-                    'طرابزون': 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=90',
-                    'إسطنبول': 'https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=900&q=90',
-                    'بورصة': 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=90'
-                };
-                const fallbackImgs = [
-                    "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=90",
-                    "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=90"
-                ];
 
                 const dealsSnap = await getDocs(collection(aiDb, "live_deals"));
-                let hotelIdx = 0;
 
                 dealsSnap.forEach(docSnap => {
                     const id = docSnap.id;
                     const data = docSnap.data();
 
                     if (id.startsWith("hotel_deal_")) {
-                        const city = data.city || "TÜRKİYE";
                         window.HOTELS_DATA.push({
-                            name: sanitizeDealText(data.title || city),
-                            city: city,
+                            name: data.title || data.city,
+                            city: data.city || "TÜRKİYE",
                             price: data.price || "$99",
-                            image: data.image || cityImages[city] || fallbackImgs[hotelIdx % 2],
-                            affiliateUrl: data.affiliateUrl || data.affiliateLink || '#',
-                            description: sanitizeDealText(data.description || data.title || '')
+                            image: data.image || "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=90",
+                            affiliateUrl: data.affiliateUrl || '#',
+                            description: data.description || ''
                         });
-                        hotelIdx++;
                     } 
                     else if (id.startsWith("flight_deal_")) {
-                        const routeLabel = (data.departure && data.destination) 
-                            ? `${data.departure} ✈️ ${data.destination}` 
-                            : sanitizeDealText(data.title || "Özel Rota");
                         window.FLIGHTS_DATA.push({
-                            route: routeLabel,
-                            airline: "UcuzaKal Seçkin Uçuş",
-                            region: data.routeType || "UcuzaKal",
+                            route: (data.departure && data.destination) ? `${data.departure} ✈️ ${data.destination}` : (data.title || "Özel Rota"),
+                            airline: data.airline || "UcuzaKal Seçkin Uçuş",
                             price: data.price || "$49",
-                            affiliateUrl: data.affiliateUrl || data.affiliateLink || '#',
-                            description: sanitizeDealText(data.description || (data.travelDate ? `${data.title} (${data.travelDate})` : (data.title || '')))
+                            affiliateUrl: data.affiliateUrl || '#',
+                            description: data.description || ''
                         });
                     }
                 });
