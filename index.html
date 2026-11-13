@@ -217,7 +217,7 @@
             <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
         </div>
         <div id="hotels-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <!-- العروض تضاف برمجياً كروابط فعلية -->
+            <!-- العروض تضاف برمجياً -->
         </div>
     </main>
 
@@ -230,7 +230,7 @@
                 <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
             </div>
             <div id="flights-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <!-- العروض تضاف برمجياً كروابط فعلية -->
+                <!-- العروض تضاف برمجياً -->
             </div>
         </div>
     </section>
@@ -365,6 +365,7 @@
 
         function translateDynamicText(text, lang) {
             if (!text) return '';
+            // القاموس الشامل للمدن والعناوين (يترجم كل شيء في البطاقات)
             const t = {
                 "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
                 "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
@@ -387,14 +388,24 @@
                 "الكويت": {ar:"الكويت", tr:"Kuveyt", en:"Kuwait", ru:"Кувейт", es:"Kuwait", zh:"科威特", ku:"Kuweyt"},
                 "عمّان": {ar:"عمّان", tr:"Amman", en:"Amman", ru:"Амман", es:"Amán", zh:"安曼", ku:"Emman"},
                 "سانت بطرسبرغ": {ar:"سانت بطرسبرغ", tr:"St. Petersburg", en:"St. Petersburg", ru:"Санкт-Петербург", es:"San Petersburgo", zh:"圣彼得堡", ku:"St. Petersburg"},
-                "منتجع 5 نجوم شامل كلياً": {ar:"منتجع 5 نجوم شامل كلياً", tr:"5 Yıldızlı Her Şey Dahil Resort", en:"5-Star All-Inclusive Resort", ru:"5-звездочный курорт «все включено»", es:"Resort Todo Incluido de 5 Estrellas", zh:"五星级全包度假村", ku:"Resorta 5-Stêrk Hemû Tişt Tê De"},
-                "شقة فندقية عائلية فاخرة": {ar:"شقة فندقية عائلية فاخرة", tr:"Lüks Aile Apart Dairesi", en:"Luxury Family Serviced Apartment", ru:"Роскошные семейные апартаменты", es:"Apartamento Familiar de Lujo", zh:"豪华家庭服务式公寓", ku:"Apartmana Malbatî ya Luks"},
-                "فندق مميز بإطلالة على بحر إيجة": {ar:"فندق مميز بإطلالة على بحر إيجة", tr:"Ege Denizi Manzaralı Seçkin Otel", en:"Exclusive Aegean Sea View Hotel", ru:"Эксклюзивный отель с видом на Эгейское море", es:"Hotel Exclusivo con Vista al Mar Egeo", zh:"爱琴海海景精选酒店", ku:"Otela Bijarte ya Bi Dîmena Deryaya Egeyê"},
-                "شقة فندقية واسعة مطلة على الجبال": {ar:"شقة فندقية واسعة مطلة على الجبال", tr:"Dağ Manzaralı Geniş Apart Daire", en:"Spacious Mountain View Suite", ru:"Просторные апартаменты с видом на горы", es:"Amplia Suite con Vista a la Montaña", zh:"宽敞山景套房公寓", ku:"Apartmana Fireh a Bi Dîmena Çiyayan"},
-                "فندق راقي بالقرب من المعالم السياحية": {ar:"فندق راقي بالقرب من المعالم السياحية", tr:"Tarihi Merkeze Yakın Seçkin Otel", en:"Luxury Hotel Near Historic Landmarks", ru:"Роскошный отель рядом с достопримечательностями", es:"Hotel de Lujo Cerca de Monumentos", zh:"靠近历史地标的豪华酒店", ku:"Otela Luks Nêzîkî Cihên Dîrokî"},
-                "فندق وسط الطبيعة الخلابة": {ar:"فندق وسط الطبيعة الخلابة", tr:"Doğanın Kalbinde Butik Otel", en:"Boutique Hotel Surrounded by Nature", ru:"Бутик-отель на лоне природы", es:"Hotel Boutique Rodeado de Naturaleza", zh:"自然环绕的精品酒店", ku:"Otela Bûtîk Di Nav Xwezayê De"},
+                "منتجع 5 نجوم شامل كلياً - أنطاليا": {ar:"منتجع 5 نجوم شامل كلياً - أنطاليا", tr:"5 Yıldızlı Her Şey Dahil Resort - Antalya", en:"5-Star All-Inclusive Resort - Antalya", ru:"5-звездочный курорт «все включено» - Анталья", es:"Resort Todo Incluido de 5 Estrellas - Antalya", zh:"五星级全包度假村 - 安塔利亚", ku:"Resorta 5-Stêrk Hemû Tişt Tê De - Antalya"},
+                "استعرض أفضل منتجعات أنطاليا الشاملة للوجبات والأنشطة.": {ar:"استعرض أفضل منتجعات أنطاليا الشاملة للوجبات والأنشطة.", tr:"Antalya'nın en iyi her şey dahil resortlarını keşfedin.", en:"Explore the best all-inclusive resorts in Antalya.", ru:"Откройте для себя лучшие курорты «все включено» в Анталье.", es:"Explora los mejores resorts todo incluido en Antalya.", zh:"探索安塔利亚最好的全包度假村。", ku:"Li Antalyayê resortên herî baş ên hemû tişt tê de bigerin."},
+                "شقة فندقية عائلية فاخرة - أنطاليا": {ar:"شقة فندقية عائلية فاخرة - أنطاليا", tr:"Lüks Aile Apart Dairesi - Antalya", en:"Luxury Family Serviced Apartment - Antalya", ru:"Роскошные семейные апартаменты - Анталья", es:"Apartamento Familiar de Lujo - Antalya", zh:"豪华家庭服务式公寓 - 安塔利亚", ku:"Apartmana Malbatî ya Luks - Antalya"},
+                "أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة.", tr:"Deniz manzaralı ve tam otel hizmetli geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services.", ru:"Просторные семейные люксы с видом на море и гостиничным обслуживанием.", es:"Amplias suites familiares con vistas al mar y servicios completos de hotel.", zh:"宽敞的家庭套房，享有海景和全套酒店服务。", ku:"Suiteyên malbatî yên fireh bi dîmena deryayê û karûbarên otelê yên tevahî."},
+                "فندق مميز بإطلالة على بحر إيجة - إزمير": {ar:"فندق مميز بإطلالة على بحر إيجة - إزمير", tr:"Ege Denizi Manzaralı Seçkin Otel - İzmir", en:"Exclusive Aegean Sea View Hotel - Izmir", ru:"Эксклюзивный отель с видом на Эгейское море - Измир", es:"Hotel Exclusivo con Vista al Mar Egeo - Izmir", zh:"爱琴海海景精选酒店 - 伊兹密尔", ku:"Otela Bijarte ya Bi Dîmena Deryaya Egeyê - Îzmîr"},
+                "استمتع بإقامة راقية في قلب إزمير مع إطلالات بانورامية ساحرة.": {ar:"استمتع بإقامة راقية في قلب إزمير مع إطلالات بانورامية ساحرة.", tr:"İzmir'in kalbinde panoramik manzaralarla lüks bir konaklamanın keyfini çıkarın.", en:"Enjoy a luxurious stay in the heart of Izmir with enchanting panoramic views.", ru:"Насладитесь роскошным отдыхом в самом сердце Измира с панорамными видами.", es:"Disfruta de una estancia lujosa en el corazón de Izmir con vistas panorámicas.", zh:"在伊兹密尔市中心享受奢华住宿和迷人的全景。", ku:"Li dilê Îzmîrê bi dîmenên panoramîk rûniştineke luks kêf bikin."},
+                "شقة فندقية واسعة مطلة على الجبال - طرابزون": {ar:"شقة فندقية واسعة مطلة على الجبال - طرابزون", tr:"Dağ Manzaralı Geniş Apart Daire - Trabzon", en:"Spacious Mountain View Suite - Trabzon", ru:"Просторные апартаменты с видом на горы - Трабзон", es:"Amplia Suite con Vista a la Montaña - Trabzon", zh:"宽敞山景套房公寓 - 特拉布宗", ku:"Apartmana Fireh a Bi Dîmena Çiyayan - Trabzon"},
+                "أفضل الشقق العائلية وسط الطبيعة الخضراء في البحر الأسود.": {ar:"أفضل الشقق العائلية وسط الطبيعة الخضراء في البحر الأسود.", tr:"Karadeniz'in yeşil doğasında en iyi aile apartları.", en:"The best family apartments amidst the green nature of the Black Sea.", ru:"Лучшие семейные апартаменты среди зеленой природы Черного моря.", es:"Los mejores apartamentos familiares en la naturaleza verde del Mar Negro.", zh:"黑海绿色自然中最好的家庭公寓。", ku:"Apartmanên malbatî yên herî baş di nav xwezaya kesk a Deryaya Reş de."},
+                "فندق راقي بالقرب من المعالم - إسطنبول": {ar:"فندق راقي بالقرب من المعالم - إسطنبول", tr:"Tarihi Merkeze Yakın Seçkin Otel - İstanbul", en:"Luxury Hotel Near Landmarks - Istanbul", ru:"Роскошный отель рядом с достопримечательностями - Стамбул", es:"Hotel de Lujo Cerca de Monumentos - Estambul", zh:"靠近地标的豪华酒店 - 伊斯坦布尔", ku:"Otela Luks Nêzîkî Cihên Dîrokî - Stenbol"},
+                "اكتشف فنادق إسطنبول المميزة بالقرب من البوسفور والأسواق.": {ar:"اكتشف فنادق إسطنبول المميزة بالقرب من البوسفور والأسواق.", tr:"Boğaz'a ve çarşılara yakın seçkin İstanbul otellerini keşfedin.", en:"Discover premium Istanbul hotels near the Bosphorus and markets.", ru:"Откройте для себя премиальные отели Стамбула рядом с Босфором.", es:"Descubra hoteles premium en Estambul cerca del Bósforo y los mercados.", zh:"探索靠近博斯普鲁斯海峡和市场的高级伊斯坦布尔酒店。", ku:"Otelên premium ên Stenbolê li nêzî Bosfor û bazaran kifş bikin."},
+                "فندق وسط الطبيعة الخلابة - بورصة": {ar:"فندق وسط الطبيعة الخلابة - بورصة", tr:"Doğanın Kalbinde Butik Otel - Bursa", en:"Boutique Hotel Surrounded by Nature - Bursa", ru:"Бутик-отель на лоне природы - Бурса", es:"Hotel Boutique Rodeado de Naturaleza - Bursa", zh:"自然环绕的精品酒店 - 布尔萨", ku:"Otela Bûtîk Di Nav Xwezayê De - Bursa"},
+                "استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية.": {ar:"استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية.", tr:"Uludağ ve termal kaplıcaların yakınında mükemmel bir tatil.", en:"Perfect relaxation near Uludag mountain and thermal springs.", ru:"Идеальный отдых рядом с горой Улудаг и термальными источниками.", es:"Relajación perfecta cerca de la montaña Uludag y fuentes termales.", zh:"乌鲁达山和温泉附近的完美放松。", ku:"Bêhnvedana bêkêmasî li nêzî çiyayê Uludag û kaniyên termal."},
                 "تذاكر طيران مخفضة": {ar:"تذاكر طيران مخفضة", tr:"İndirimli Uçak Bileti", en:"Discounted Flight Ticket", ru:"Авиабилет со скидкой", es:"Boleto de Avión con Descuento", zh:"特价机票", ku:"Bilêta Firînê ya Bi Erzanî"},
-                "رحلة مجدولة مباشرة": {ar:"رحلة مجدولة مباشرة", tr:"Doğrudan Tarifeli Uçuş", en:"Direct Scheduled Flight", ru:"Прямой регулярный рейс", es:"Vuelo Programado Directo", zh:"直达定期航班", ku:"Firîna Pîlankirî ya Rasterast"}
+                "تذاكر طيران": {ar:"تذاكر طيران", tr:"Uçak Biletleri", en:"Flight Tickets", ru:"Авиабилеты", es:"Boletos de Avión", zh:"机票", ku:"Bilêtên Firînê"},
+                "رحلة مريحة بتاريخ": {ar:"رحلة مريحة بتاريخ", tr:"Rahat Uçuş Tarihi", en:"Comfortable Flight on", ru:"Комфортный рейс", es:"Vuelo cómodo el", zh:"舒适的航班，日期", ku:"Firîna rehet di"},
+                "بأفضل سعر متاح للحجز الفوري.": {ar:"بأفضل سعر متاح للحجز الفوري.", tr:"Anında rezervasyon için en iyi fiyata.", en:"at the best available price for instant booking.", ru:"по лучшей цене для мгновенного бронирования.", es:"al mejor precio disponible para reserva instantánea.", zh:"以最优惠的价格即时预订。", ku:"bi bihayê herî baş ji bo veqetandina bilez."},
+                "رحلة مجدولة مباشرة": {ar:"رحلة مجدولة مباشرة", tr:"Doğrudan Tarifeli Uçuş", en:"Direct Scheduled Flight", ru:"Прямой регулярный рейс", es:"Vuelo Programado Directo", zh:"直达定期航班", ku:"Firîna Pîlankirî ya Rasterast"},
+                "رقم الرحلة": {ar:"رقم الرحلة", tr:"Uçuş Numarası", en:"Flight Number", ru:"Номер рейса", es:"Número de Vuelo", zh:"航班号", ku:"Hejmara Firînê"}
             };
 
             let res = text;
@@ -605,13 +616,11 @@
                 const trName = translateDynamicText(hotel.name, currentLang);
                 const trDesc = translateDynamicText(hotel.description, currentLang);
 
-                // تحويل البطاقة إلى عنصر <a> لضمان التحويل التلقائي بقوة المتصفح
                 const card = document.createElement('a');
                 card.href = hotel.affiliateUrl;
                 card.target = "_blank"; // فتح في نافذة جديدة
-                card.className = 'ultra-luxury-card group';
+                card.className = 'ultra-luxury-card group block';
                 
-                // تشغيل الشاشة السينمائية للمسة فخامة قبل فتح النافذة
                 card.onclick = function() {
                     const overlay = document.getElementById('cinematic-overlay');
                     if (overlay) {
@@ -668,11 +677,10 @@
                 const trAirline = translateDynamicText(flight.airline, currentLang);
                 const trDesc = translateDynamicText(flight.description, currentLang);
 
-                // تحويل البطاقة إلى عنصر <a> لضمان التحويل التلقائي بقوة المتصفح
                 const card = document.createElement('a');
                 card.href = flight.affiliateUrl;
                 card.target = "_blank"; // فتح في نافذة جديدة
-                card.className = 'ultra-luxury-card p-6 sm:p-8 text-center group';
+                card.className = 'ultra-luxury-card p-6 sm:p-8 text-center group block';
                 
                 card.onclick = function() {
                     const overlay = document.getElementById('cinematic-overlay');
