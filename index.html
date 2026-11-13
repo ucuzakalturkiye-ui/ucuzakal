@@ -130,23 +130,31 @@
             color: #030508; transition: transform 0.3s ease;
         }
         .social-channel-item:hover .lang-pill { transform: scale(1.1); }
+        
+        /* تحسينات إضافية لعرض المقالات الطويلة */
+        .article-content h2 { color: #D4AF37; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; font-family: 'Amiri', serif; font-size: 1.75rem; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 0.5rem; }
+        .article-content h3 { color: #D4AF37; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 600; font-size: 1.25rem; }
+        .article-content p { margin-bottom: 1.25rem; line-height: 1.8; }
+        .article-content ul { list-style-type: disc; padding-inline-start: 1.5rem; margin-bottom: 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; }
     </style>
 </head>
 <body class="bg-[#FCFBF9] dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg antialiased">
 
     <!-- نافذة قراءة المقال -->
     <div id="article-modal" onclick="closeArticleModal(event)">
-        <div class="relative bg-white dark:bg-[#070b14] border border-brand-gold/30 rounded-3xl w-full max-w-3xl max-h-[88vh] overflow-y-auto shadow-2xl p-5 sm:p-10" onclick="event.stopPropagation()">
+        <div class="relative bg-white dark:bg-[#070b14] border border-brand-gold/30 rounded-3xl w-full max-w-4xl max-h-[90vh] overflow-y-auto shadow-2xl p-5 sm:p-10" onclick="event.stopPropagation()">
             <button onclick="hideArticleModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-brand-gold/40 bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:text-brand-gold transition z-10">
                 <i class="fas fa-times"></i>
             </button>
-            <div class="h-48 sm:h-80 w-full overflow-hidden rounded-2xl mb-5 sm:mb-6">
+            <div class="h-56 sm:h-96 w-full overflow-hidden rounded-2xl mb-5 sm:mb-8 shadow-inner">
                 <img id="modal-img" src="" alt="Article Banner" class="w-full h-full object-cover">
             </div>
-            <span id="modal-category" class="text-brand-gold text-xs tracking-widest font-bold uppercase block mb-2"></span>
-            <h2 id="modal-title" class="font-luxury text-xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6 leading-tight"></h2>
-            <div class="w-16 h-[2px] bg-brand-gold mb-4 sm:mb-6"></div>
-            <div id="modal-body" class="text-slate-700 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-4"></div>
+            <span id="modal-category" class="text-brand-gold text-sm tracking-widest font-bold uppercase block mb-3"></span>
+            <h2 id="modal-title" class="font-luxury text-2xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight notranslate" translate="no"></h2>
+            <div class="w-24 h-[3px] bg-brand-gold mb-8"></div>
+            <!-- منع الترجمة التلقائية للمتصفح لتفادي الأخطاء -->
+            <div id="modal-body" class="article-content text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed notranslate" translate="no"></div>
         </div>
     </div>
 
@@ -366,9 +374,7 @@
         function translateDynamicText(text, lang) {
             if (!text) return text;
             
-            // القاموس الشامل: يضم جميع الاحتمالات (المدن، عناوين وأوصاف الفنادق والطيران القديمة والحديثة)
             const t = {
-                // المدن والمواقع
                 "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
                 "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
                 "إسطنبول": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
@@ -391,7 +397,6 @@
                 "عمّان": {ar:"عمّان", tr:"Amman", en:"Amman", ru:"Амман", es:"Amán", zh:"安曼", ku:"Emman"},
                 "سانت بطرسبرغ": {ar:"سانت بطرسبرغ", tr:"St. Petersburg", en:"St. Petersburg", ru:"Санкт-Петербург", es:"San Petersburgo", zh:"圣彼得堡", ku:"St. Petersburg"},
                 
-                // أوصاف الفنادق 
                 "إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.": {ar:"إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.", tr:"Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.", en:"Luxury accommodation including meals and recreational activities on the Mediterranean coast.", ru:"Роскошное проживание, включая питание и развлекательные мероприятия на побережье Средиземного моря.", es:"Alojamiento de lujo que incluye comidas y actividades recreativas en la costa mediterránea.", zh:"地中海沿岸提供餐饮和娱乐活动的豪华住宿。", ku:"Rûniştina luks bi xwarin û çalakiyên şahiyê li perava Deryaya Spî."},
                 "أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.", tr:"Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services near the beach.", ru:"Просторные семейные люксы с видом на море и полным спектром гостиничных услуг рядом с пляжем.", es:"Amplias suites familiares con vistas al mar y servicios completos de hotel cerca de la playa.", zh:"靠近海滩的宽敞海景家庭套房，提供全套酒店服务。", ku:"Suiteyên malbatî yên fireh bi dîmena deryayê û karûbarên otelê yên tevahî li nêzî peravê."},
                 "تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.": {ar:"تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.", tr:"Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.", en:"A luxurious stay experience in the heart of Izmir with a charming panoramic view of the bay.", ru:"Роскошный опыт проживания в самом сердце Измира с очаровательным панорамным видом на залив.", es:"Una experiencia de estancia de lujo en el corazón de Izmir con una encantadora vista panorámica de la bahía.", zh:"在伊兹密尔市中心享受豪华住宿体验，欣赏迷人的海湾全景。", ku:"Ezmûneke rûniştinê ya luks li dilê Îzmîrê bi dîmenek panoramîk a balkêş a kendavê."},
@@ -405,7 +410,6 @@
                 "أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة.", tr:"Deniz manzaralı ve tam otel hizmetli geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services.", ru:"Просторные семейные люксы с видом на море и гостиничным обслуживанием.", es:"Amplias suites familiares con vistas al mar y servicios completos de hotel.", zh:"宽敞的家庭套房，享有海景和全套酒店服务。", ku:"Suiteyên malbatî yên fireh bi dîmena deryayê û karûbarên otelê yên tevahî."},
                 "استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية.": {ar:"استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية.", tr:"Uludağ ve termal kaplıcaların yakınında mükemmel bir tatil.", en:"Perfect relaxation near Uludag mountain and thermal springs.", ru:"Идеальный отдых рядом с горой Улудаг и термальными источниками.", es:"Relajación perfecta cerca de la montaña Uludag y fuentes termales.", zh:"乌鲁达山和温泉附近的完美放松。", ku:"Bêhnvedana bêkêmasî li nêzî çiyayê Uludag û kaniyên termal."},
                 
-                // عناوين الفنادق 
                 "منتجع 5 نجوم شامل كلياً - أنطاليا": {ar:"منتجع 5 نجوم شامل كلياً - أنطاليا", tr:"5 Yıldızlı Her Şey Dahil Resort - Antalya", en:"5-Star All-Inclusive Resort - Antalya", ru:"5-звездочный курорт «все включено» - Анталья", es:"Resort Todo Incluido de 5 Estrellas - Antalya", zh:"五星级全包度假村 - 安塔利亚", ku:"Resorta 5-Stêrk Hemû Tişt Tê De - Antalya"},
                 "منتجع 5 نجوم شامل كلياً": {ar:"منتجع 5 نجوم شامل كلياً", tr:"5 Yıldızlı Her Şey Dahil Resort", en:"5-Star All-Inclusive Resort", ru:"5-звездочный курорт «все включено»", es:"Resort Todo Incluido de 5 Estrellas", zh:"五星级全包度假村", ku:"Resorta 5-Stêrk Hemû Tişt Tê De"},
                 "شقة فندقية عائلية فاخرة - أنطاليا": {ar:"شقة فندقية عائلية فاخرة - أنطاليا", tr:"Lüks Aile Apart Dairesi - Antalya", en:"Luxury Family Serviced Apartment - Antalya", ru:"Роскошные семейные апартаменты - Анталья", es:"Apartamento Familiar de Lujo - Antalya", zh:"豪华家庭服务式公寓 - 安塔利亚", ku:"Apartmana Malbatî ya Luks - Antalya"},
@@ -420,7 +424,6 @@
                 "فندق وسط الطبيعة الخلابة - بورصة": {ar:"فندق وسط الطبيعة الخلابة - بورصة", tr:"Doğanın Kalbinde Butik Otel - Bursa", en:"Boutique Hotel Surrounded by Nature - Bursa", ru:"Бутик-отель на лоне природы - Бурса", es:"Hotel Boutique Rodeado de Naturaleza - Bursa", zh:"自然环绕的精品酒店 - 布尔萨", ku:"Otela Bûtîk Di Nav Xwezayê De - Bursa"},
                 "فندق وسط الطبيعة الخلابة": {ar:"فندق وسط الطبيعة الخلابة", tr:"Doğanın Kalbinde Butik Otel", en:"Boutique Hotel Surrounded by Nature", ru:"Бутик-отель на лоне природы", es:"Hotel Boutique Rodeado de Naturaleza", zh:"自然环绕的精品酒店", ku:"Otela Bûtîk Di Nav Xwezayê De"},
 
-                // نصوص الطيران
                 "تذاكر طيران مخفضة": {ar:"تذاكر طيران مخفضة", tr:"İndirimli Uçak Bileti", en:"Discounted Flight Ticket", ru:"Авиабилет со скидкой", es:"Boleto de Avión con Descuento", zh:"特价机票", ku:"Bilêta Firînê ya Bi Erzanî"},
                 "تذاكر طيران": {ar:"تذاكر طيران", tr:"Uçak Biletleri", en:"Flight Tickets", ru:"Авиабилеты", es:"Boletos de Avión", zh:"机票", ku:"Bilêtên Firînê"},
                 "رحلة مريحة بتاريخ": {ar:"رحلة مريحة بتاريخ", tr:"Rahat Uçuş Tarihi", en:"Comfortable Flight on", ru:"Комфортный рейс", es:"Vuelo cómodo el", zh:"舒适的航班，日期", ku:"Firîna rehet di"},
@@ -431,38 +434,16 @@
 
             let res = text;
             
-            // ترتيب مفاتيح القاموس من الأطول إلى الأقصر لمنع تداخل الترجمات
             const keys = Object.keys(t).sort((a, b) => b.length - a.length);
             
             for (let i = 0; i < keys.length; i++) {
                 const k = keys[i];
-                // استخدام split و join يضمن استبدال النص بدقة متناهية دون مشاكل الـ regex 
                 if (res.indexOf(k) !== -1) {
                     res = res.split(k).join(t[k][lang] || k);
                 }
             }
             return res;
         }
-
-        const DEFAULT_ARTICLES = [
-            {
-                id: 'def-1', category: "ANTALYA", image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=90",
-                titles: { tr: "Antalya'nın Gizli Cennetleri ve Lüks Koyları", ar: "جنات أنطاليا المخفية وخلجانها الفاخرة", en: "Antalya's Hidden Havens & Exclusive Bays", ru: "Тайные бухты и эксклюзивный отдых в Анталье", es: "Los paraísos escondidos y bahías exclusivas de Antalya", zh: "安塔利亚的隐藏天堂和独特海湾", ku: "Bihuştên Veşartî û Kendavên Luks ên Antalyayê" },
-                bodies: { tr: "<p>Antalya, yalnızca kitle turizmi ile değil; sakin koyları, turkuaz suları ve dünya standartlarındaki seçkin tatil köyleriyle Akdeniz'in en değerli rotalarından biridir.</p>", ar: "<p>لا تقتصر أنطاليا على المنتجعات الشهيرة فحسب؛ بل تحتضن خلجاناً فيروزية معزولة ومحميات طبيعية تجعلها من أكثر وجهات البحر الأبيض المتوسط تميزاً وفخامة.</p>", en: "<p>Antalya is not just a destination for mass tourism; it is home to secluded turquoise coves and world-class luxury resorts along the Turkish Riviera.</p>", ru: "<p>Анталья — это не только знаменитые курорты, но и уединенные бирюзовые бухты Средиземного моря высочайшего класса.</p>", es: "<p>Antalya no es solo un destino para el turismo masivo; alberga calas turquesas solitarias y resorts de lujo de clase mundial a lo largo de la Riviera turca.</p>", zh: "<p>安塔利亚不仅仅是大众旅游的目的地；它拥有隐蔽的绿松石海湾和土耳其里维埃拉沿岸的世界级豪华度假胜地。</p>", ku: "<p>Antalya, ne tenê bi tûrîzma girseyî; bi kendavên xwe yên aram û avên tîrêj, yek ji rotayên herî hêja yên Deryaya Spî ye.</p>" }
-            },
-            {
-                id: 'def-2', category: "İSTANBUL", image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1200&q=90",
-                titles: { tr: "Boğaziçi'nde Tarihi Saraylar ve Gurme Deneyimler", ar: "قصور البوسفور التاريخية وتجارب التذوق الراقية", en: "Bosphorus Palaces & Fine Dining Experiences", ru: "Дворцы Босфора и гастрономические открытия", es: "Palacios del Bósforo y experiencias gastronómicas", zh: "博斯普鲁斯海峡宫殿与精致餐饮体验", ku: "Qesrên Dîrokî û Ezmûnên Gurme yên li Bosforê" },
-                bodies: { tr: "<p>Doğu ile Batı'nın kesiştiği İstanbul, Boğaz kıyısındaki saray otelleriyle konuklarına asırlık bir zarafet yaşatır.</p>", ar: "<p>في المدينة التي تلتقي فيها قارتان، تمنحك فنادق القصور العثمانية الواقعة على ضفاف البوسفور تجربة أصيلة تحاكي عبق التاريخ وأناقة الحاضر.</p>", en: "<p>Where two continents meet, Istanbul offers centuries of heritage reflected through majestic palace hotels situated on the Bosphorus.</p>", ru: "<p>Стамбул — город, где встречаются две цивилизации. Дворцовые отели на берегах Босфора дарят гостям непревзойденную атмосферу османского великолепия.</p>", es: "<p>Donde se encuentran dos continentes, Estambul ofrece siglos de herencia reflejados a través de majestuosos hoteles palacio situados en el Bósforo.</p>", zh: "<p>作为两大洲的交汇点，伊斯坦布尔通过坐落在博斯普鲁斯海峡上宏伟的宫殿酒店，展现了数百年的文化遗产。</p>", ku: "<p>Stenbol, cihê ku Rojhilat û Rojava digihîjin hev, bi otêlên qesrê yên li qeraxa Bosforê mêvanên xwe re zerafeteke sedsalî dide jiyîn.</p>" }
-            },
-            {
-                id: 'def-3', category: "TRABZON", image: "https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=1200&q=90",
-                titles: { tr: "Karadeniz Yaylalarında Sislerin Arasında Huzur", ar: "السكينة بين غيوم مرتفعات البحر الأسود", en: "Tranquility Amidst Black Sea Plateaus", ru: "Умиротворение среди туманных плато Черного моря", es: "Tranquilidad entre las mesetas del Mar Negro", zh: "黑海高原上的宁静", ku: "Aramiya Di Nav Mijê De Li Zozanên Deryaya Reş" },
-                bodies: { tr: "<p>Karadeniz'in serin yaylaları, yeşilin binbir tonu ve dağların arasına gizlenmiş berrak gölleriyle doğa aşıklarına huzurlu bir sığınak sunar.</p>", ar: "<p>تتميز مرتفعات البحر الأسود بطبيعتها الخضراء البكر، وهوائها العليل، وغيومها التي تعانق قمم الجبال في مشهد ساحر يبعث على الراحة والهدوء.</p>", en: "<p>The mist-covered highlands of the Black Sea provide an idyllic mountain retreat characterized by emerald pine forests.</p>", ru: "<p>Прохладные плато Черноморского региона Турции — это царство нетронутой изумрудной природы и горных озер.</p>", es: "<p>Las tierras altas cubiertas de niebla del Mar Negro proporcionan un idílico refugio montañoso caracterizado por bosques de pinos esmeralda.</p>", zh: "<p>黑海雾气缭绕的高地提供了一个田园诗般的山区隐居地，以翠绿的松林为特色。</p>", ku: "<p>Zozanên hênik ên Deryaya Reş bi hezar û yek tonên kesk û golên zelal ên di nav çiyayan de veşartî ne, stargehek aram pêşkêş dikin.</p>" }
-            }
-        ];
-
-        DEFAULT_ARTICLES.forEach(art => { window.ARTICLES_MAP[art.id] = art; });
 
         window.openArticleModal = function(id) {
             const article = window.ARTICLES_MAP[id];
@@ -646,7 +627,7 @@
 
                 const card = document.createElement('a');
                 card.href = hotel.affiliateUrl;
-                card.target = "_blank"; // فتح في نافذة جديدة
+                card.target = "_blank"; 
                 card.className = 'ultra-luxury-card group block';
                 
                 card.onclick = function() {
@@ -707,7 +688,7 @@
 
                 const card = document.createElement('a');
                 card.href = flight.affiliateUrl;
-                card.target = "_blank"; // فتح في نافذة جديدة
+                card.target = "_blank"; 
                 card.className = 'ultra-luxury-card p-6 sm:p-8 text-center group block';
                 
                 card.onclick = function() {
@@ -737,6 +718,8 @@
             if (!container) return;
             const currentLang = document.documentElement.lang || 'tr';
             const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
+            
+            window.ARTICLES_MAP = window.ARTICLES_MAP || {};
             const articlesList = Object.values(window.ARTICLES_MAP);
             if (articlesList.length === 0) return;
 
@@ -755,8 +738,8 @@
                         <div class="img-frame"><img src="${art.image}" alt="${title}" class="w-full h-full object-cover"></div>
                         <div class="p-5 sm:p-6">
                             <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">${art.category || 'TÜRKİYE'}</span>
-                            <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2">${title}</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3">${bodySnippet}</p>
+                            <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2 notranslate" translate="no">${title}</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3 notranslate" translate="no">${bodySnippet}</p>
                         </div>
                     </div>
                     <div class="px-5 sm:px-6 pb-5 sm:pb-6">
@@ -820,11 +803,11 @@
                     }
                     else if (id.startsWith("article_")) {
                         if (!hasLiveArticles) {
-                            window.ARTICLES_MAP = {}; // مسح المقالات الافتراضية
+                            window.ARTICLES_MAP = {};
                             hasLiveArticles = true;
                         }
-                        data.id = id; // إضافة الـ id لفتح المقال
-                        window.ARTICLES_MAP[id] = data; // إضافة المقال الحي
+                        data.id = id; 
+                        window.ARTICLES_MAP[id] = data; 
                     }
                 });
             } catch(e) {
@@ -832,7 +815,7 @@
             }
             window.renderHotels();
             window.renderFlights();
-            window.renderBlogCards(); // تحديث المدونة
+            window.renderBlogCards(); 
         }
 
         fetchAllFirestoreData();
