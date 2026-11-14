@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+   <!-- الصفحة الرئيسية -->
+   <url>
+      <loc>https://ucuzakal.com/</loc>
+      <changefreq>daily</changefreq>
+      <priority>1.0</priority>
+   </url>
+   <!-- رابط مقال الفنادق الأول -->
+   <url>
+      <loc>https://ucuzakal.com/?article=article_travel_1</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <!-- رابط مقال الفنادق الثاني -->
+   <url>
+      <loc>https://ucuzakal.com/?article=article_travel_2</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <!-- رابط مقال الطيران -->
+   <url>
+      <loc>https://ucuzakal.com/?article=article_flight_1</loc>
+      <changefreq>daily</changefreq>
+      <priority>0.9</priority>
+   </url>
+</urlset>
