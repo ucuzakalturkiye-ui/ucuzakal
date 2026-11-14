@@ -131,7 +131,6 @@
         }
         .social-channel-item:hover .lang-pill { transform: scale(1.1); }
         
-        /* تحسينات إضافية لعرض المقالات الطويلة */
         .article-content h2 { color: #D4AF37; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; font-family: 'Amiri', serif; font-size: 1.75rem; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 0.5rem; }
         .article-content h3 { color: #D4AF37; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 600; font-size: 1.25rem; }
         .article-content p { margin-bottom: 1.25rem; line-height: 1.8; }
@@ -148,12 +147,11 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="h-56 sm:h-96 w-full overflow-hidden rounded-2xl mb-5 sm:mb-8 shadow-inner">
-                <img id="modal-img" src="" alt="Article Banner" class="w-full h-full object-cover">
+                <img id="modal-img" src="" alt="Article Banner" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';" class="w-full h-full object-cover">
             </div>
             <span id="modal-category" class="text-brand-gold text-sm tracking-widest font-bold uppercase block mb-3"></span>
             <h2 id="modal-title" class="font-luxury text-2xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight notranslate" translate="no"></h2>
             <div class="w-24 h-[3px] bg-brand-gold mb-8"></div>
-            <!-- منع الترجمة التلقائية للمتصفح لتفادي الأخطاء -->
             <div id="modal-body" class="article-content text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed notranslate" translate="no"></div>
         </div>
     </div>
@@ -224,9 +222,7 @@
             <h2 class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6" data-i18n="hotels_heading">Özel Seçki Koleksiyonu</h2>
             <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
         </div>
-        <div id="hotels-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            <!-- العروض تضاف برمجياً -->
-        </div>
+        <div id="hotels-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
     </main>
 
     <!-- عروض الطيران -->
@@ -237,9 +233,7 @@
                 <h2 class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6" data-i18n="flights_heading">Ayrıcalıklı Uçuşlar</h2>
                 <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
             </div>
-            <div id="flights-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-                <!-- العروض تضاف برمجياً -->
-            </div>
+            <div id="flights-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
         </div>
     </section>
 
@@ -250,9 +244,7 @@
             <h2 class="font-luxury text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4 sm:mb-6" data-i18n="blog_heading">UcuzaKal Seyahat Günlüğü</h2>
             <div class="w-12 h-[1px] bg-brand-gold mx-auto"></div>
         </div>
-        <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-            <!-- المقالات -->
-        </div>
+        <div id="blog-container" class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"></div>
     </section>
 
     <!-- قسم من نحن -->
@@ -373,7 +365,6 @@
 
         function translateDynamicText(text, lang) {
             if (!text) return text;
-            
             const t = {
                 "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
                 "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
@@ -433,9 +424,7 @@
             };
 
             let res = text;
-            
             const keys = Object.keys(t).sort((a, b) => b.length - a.length);
-            
             for (let i = 0; i < keys.length; i++) {
                 const k = keys[i];
                 if (res.indexOf(k) !== -1) {
@@ -454,7 +443,18 @@
             document.getElementById('modal-img').src = article.image;
             document.getElementById('modal-category').textContent = article.category;
             document.getElementById('modal-title').textContent = title;
-            document.getElementById('modal-body').innerHTML = body;
+            
+            const modalBody = document.getElementById('modal-body');
+            modalBody.innerHTML = body;
+            
+            // حماية إضافية: إصلاح أي صورة داخلية تفشل في التحميل تلقائياً
+            modalBody.querySelectorAll('img').forEach(img => {
+                img.onerror = function() {
+                    this.onerror = null;
+                    this.src = 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';
+                };
+            });
+
             const modal = document.getElementById('article-modal');
             modal.classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -728,7 +728,6 @@
                 let title = art.titles ? (art.titles[currentLang] || art.titles['tr']) : art.title;
                 let bodyText = art.titles ? (art.bodies[currentLang] || art.bodies['tr']) : (art.body || '');
                 
-                // تنظيف النبذة من أكواد السيو (script) ومن ثم علامات الـ HTML لضمان عدم ظهور نصوص غريبة
                 let cleanText = bodyText.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
                 let bodySnippet = cleanText.replace(/<[^>]*>?/gm, '').trim().substring(0, 140) + '...';
 
@@ -739,7 +738,6 @@
                 card.innerHTML = `
                     <div>
                         <div class="img-frame">
-                            <!-- تمت إضافة onerror كإجراء احترازي لعرض صورة بديلة في حال تعطل الرابط الأصلي -->
                             <img src="${art.image}" alt="${title}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';" class="w-full h-full object-cover">
                         </div>
                         <div class="p-5 sm:p-6">
