@@ -35,7 +35,7 @@
     </script>
 
     <style>
-        html, body { max-width: 100%; overflow-x: hidden; }
+        html, body { max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
         .premium-bg {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
@@ -131,60 +131,99 @@
         }
         .social-channel-item:hover .lang-pill { transform: scale(1.1); }
         
-        /* تنسيق متجاوب لصور المقال */
-        .article-content img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 16px;
-            margin-top: 2rem;
-            margin-bottom: 2rem;
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
-            max-height: 450px;
-            object-fit: cover;
+        /* ----------------------------------------------------
+           التنسيقات الاحترافية الجذرية لمحتوى المقالات
+        ----------------------------------------------------- */
+        .article-content {
+            font-size: 1.15rem; /* خط كبير ومريح للقراءة */
+            line-height: 2;
+            color: #334155; /* رمادي داكن مريح للعين في الفاتح */
+        }
+        .dark .article-content {
+            color: #E2E8F0; /* رمادي فاتح مريح في الداكن */
         }
         
-        /* تعطيل نهائي لأي حرف غريب (Drop Cap) قديم معلق في المتصفح */
-        .article-content p:first-of-type::first-letter {
-            float: none !important;
-            font-size: inherit !important;
-            line-height: inherit !important;
-            margin: 0 !important;
-            color: inherit !important;
-            font-family: inherit !important;
+        .article-content p {
+            margin-bottom: 1.8rem;
+            text-align: justify;
         }
 
-        /* تنسيق محسن للنصوص داخل المقال لتكون احترافية */
-        .article-content {
-            font-size: 1.125rem;
-            line-height: 1.9;
+        /* تنسيق العناوين داخل المقال لتبدو فخمة */
+        .article-content h2 { 
+            color: #D4AF37; 
+            margin-top: 3rem; 
+            margin-bottom: 1.5rem; 
+            font-weight: 800; 
+            font-family: 'Amiri', serif; 
+            font-size: 2rem; 
+            border-bottom: 2px solid rgba(212,175,55,0.15); 
+            padding-bottom: 0.75rem; 
+        }
+        .article-content h3 { 
+            color: #D4AF37; 
+            margin-top: 2.5rem; 
+            margin-bottom: 1rem; 
+            font-weight: 700; 
+            font-size: 1.5rem; 
         }
         
+        /* تنسيق الاقتباسات (صناديق النصائح) */
         .article-content blockquote {
-            border-left: 4px solid #D4AF37;
-            padding-left: 1.5rem;
-            margin-left: 0;
-            margin-right: 0;
-            font-style: italic;
+            border-left: 5px solid #D4AF37;
             background: rgba(212, 175, 55, 0.05);
-            padding: 1.5rem;
-            border-radius: 0 12px 12px 0;
+            padding: 1.75rem;
+            margin: 2.5rem 0;
+            border-radius: 0 16px 16px 0;
+            font-style: italic;
+            font-size: 1.25rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         }
         html[dir="rtl"] .article-content blockquote {
             border-left: none;
-            border-right: 4px solid #D4AF37;
-            padding-left: 0;
-            padding-right: 1.5rem;
-            border-radius: 12px 0 0 12px;
+            border-right: 5px solid #D4AF37;
+            border-radius: 16px 0 0 16px;
         }
 
-        .article-content h2 { color: #D4AF37; margin-top: 2.5rem; margin-bottom: 1.25rem; font-weight: 700; font-family: 'Amiri', serif; font-size: 1.85rem; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 0.5rem; }
-        .article-content h3 { color: #D4AF37; margin-top: 2rem; margin-bottom: 1rem; font-weight: 600; font-size: 1.35rem; }
-        .article-content p { margin-bottom: 1.25rem; }
-        .article-content ul { list-style-type: disc; padding-inline-start: 1.5rem; margin-bottom: 1.5rem; }
-        .article-content li { margin-bottom: 0.5rem; }
+        .article-content ul { list-style-type: none; padding: 0; margin-bottom: 2rem; }
+        .article-content li { 
+            position: relative; 
+            padding-left: 1.75rem; 
+            margin-bottom: 0.75rem; 
+        }
+        html[dir="rtl"] .article-content li { 
+            padding-left: 0; 
+            padding-right: 1.75rem; 
+        }
+        .article-content li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: #D4AF37;
+        }
+        html[dir="rtl"] .article-content li::before {
+            left: auto;
+            right: 0;
+        }
+
+        /* حاوية الصور الاحترافية داخل المقال */
+        .article-image-wrapper {
+            margin: 3rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            border: 1px solid rgba(212,175,55,0.1);
+        }
+        .article-content img {
+            width: 100%;
+            height: auto;
+            max-height: 500px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .article-content img:hover {
+            transform: scale(1.03);
+        }
     </style>
 </head>
 <body class="bg-[#FCFBF9] dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg antialiased">
@@ -195,13 +234,14 @@
             <button onclick="hideArticleModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-brand-gold/40 bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:text-brand-gold transition z-10">
                 <i class="fas fa-times"></i>
             </button>
-            <div class="h-56 sm:h-96 w-full overflow-hidden rounded-2xl mb-5 sm:mb-8 shadow-inner bg-slate-900 flex items-center justify-center">
-                <img id="modal-img" src="" alt="Article Banner" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';" class="w-full h-full object-cover">
+            <div class="h-56 sm:h-[400px] w-full overflow-hidden rounded-2xl mb-8 sm:mb-10 shadow-inner bg-slate-900 flex items-center justify-center relative group">
+                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition z-10 pointer-events-none"></div>
+                <img id="modal-img" src="" alt="Article Banner" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';" class="w-full h-full object-cover transform transition duration-1000 group-hover:scale-105">
             </div>
-            <span id="modal-category" class="text-brand-gold text-sm tracking-widest font-bold uppercase block mb-3"></span>
-            <h2 id="modal-title" class="font-luxury text-2xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight notranslate" translate="no"></h2>
-            <div class="w-24 h-[3px] bg-brand-gold mb-8"></div>
-            <div id="modal-body" class="article-content text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed notranslate" translate="no"></div>
+            <span id="modal-category" class="text-brand-gold text-sm tracking-widest font-bold uppercase block mb-4 text-center"></span>
+            <h2 id="modal-title" class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-8 leading-tight notranslate text-center" translate="no"></h2>
+            <div class="w-32 h-[3px] bg-brand-gold mb-10 mx-auto"></div>
+            <div id="modal-body" class="article-content notranslate px-2 sm:px-6" translate="no"></div>
         </div>
     </div>
 
@@ -254,9 +294,9 @@
         </div>
     </header>
 
-    <!-- الهيرو (الصورة ثابتة وتعمل 100%) -->
+    <!-- الهيرو -->
     <section class="relative py-20 sm:py-40 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center min-h-[60vh] sm:min-h-[75vh]">
-        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-105" style="background-image: url('https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-105" style="background-image: url('./hero-bg.png.png');"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-brand-dark"></div>
         <div class="max-w-4xl mx-auto relative z-10 text-white px-2">
             <h1 class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 title-glow tracking-wide" data-i18n="hero_title">Seçkin Rotaları Lüksle Keşfedin</h1>
@@ -423,7 +463,7 @@
                 "Bursa": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса", es:"Bursa", zh:"布尔萨", ku:"Bursa"},
                 "بورصة": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса", es:"Bursa", zh:"布尔萨", ku:"Bursa"},
                 "Izmir": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир", es:"Esmirna", zh:"伊兹密尔", ku:"Îzmîr"},
-                "إزمير": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир", es:"Esmirna", zh:"伊兹密尔", ku:"Îzmîr"},
+                "إزمير": {ar:"إزمير", tr:"إزمير", en:"Izmir", ru:"Измир", es:"Esmirna", zh:"伊兹密尔", ku:"Îzmîr"},
                 "Trabzon": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон", es:"Trebisonda", zh:"特拉布宗", ku:"Trabzon"},
                 "طرابزون": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон", es:"Trebisonda", zh:"特拉布宗", ku:"Trabzon"},
                 "أنقرة": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
@@ -490,47 +530,68 @@
             const currentLang = document.documentElement.lang || 'tr';
             let title = article.titles ? (article.titles[currentLang] || article.titles['tr']) : article.title;
             
-            // --- الحل الجذري لمشكلة المقالات ---
-            // 1. تحديد النسخة الأساسية الغنية بالصور (غالباً العربية أو الأصلية)
+            // --- الحل الجذري الشامل لمشكلة المقالات ---
+            // 1. تحديد النسخة الأساسية الغنية بالصور (النسخة العربية عادةً لأنها مكتملة برمجياً)
             const richBody = article.body || (article.bodies && article.bodies['ar']) || '';
             
-            // 2. جلب النص المترجم للغة الحالية
+            // 2. جلب النص المترجم للغة الحالية (التركية/الروسية/الإنجليزية)
             let body = '';
-            if (article.bodies && article.bodies[currentLang] && article.bodies[currentLang].length > 100) {
+            if (article.bodies && article.bodies[currentLang] && article.bodies[currentLang].length > 200) {
                 body = article.bodies[currentLang];
             } else {
-                body = richBody;
+                body = richBody; // بديل احتياطي إذا كان النص فارغاً تماماً
             }
 
-            // 3. إذا كان المقال المترجم لا يحتوي على صور، نقوم بنسخ الصور من المقال الأصلي ووضعها في المقال المترجم تلقائياً
+            // 3. إصلاح خلل الذكاء الاصطناعي: إذا كان النص المترجم عبارة عن نص خام (بدون فقرات HTML)، نقوم بتنسيقه
+            if (body.indexOf('<p') === -1 && body.indexOf('<div') === -1) {
+                body = body.split('\n')
+                           .filter(line => line.trim().length > 0)
+                           .map(line => `<p>${line.trim()}</p>`)
+                           .join('');
+            }
+
+            // 4. زرع الصور بذكاء: إذا كان النص المترجم لا يحتوي على صور، نأخذها من النسخة الأصلية ونوزعها داخله
             if (body.indexOf('<img') === -1 && richBody.indexOf('<img') !== -1) {
-                const imgTags = richBody.match(/<img[^>]+>/g);
-                if (imgTags && imgTags.length > 0) {
-                    // إضافة الصورة الأولى بعد أول فقرة
-                    if (body.indexOf('</p>') !== -1) {
-                        body = body.replace('</p>', '</p><div class="my-8">' + imgTags[0] + '</div>');
-                    } else {
-                        body = '<div class="my-8">' + imgTags[0] + '</div>' + body;
+                const imgTags = richBody.match(/<img[^>]+>/g) || [];
+                if (imgTags.length > 0) {
+                    const paragraphs = body.split('</p>');
+                    let newBody = '';
+                    let imgIndex = 0;
+                    
+                    for (let i = 0; i < paragraphs.length; i++) {
+                        newBody += paragraphs[i] + (paragraphs[i].trim() ? '</p>' : '');
+                        
+                        // نزرع صورة بعد الفقرة الأولى والثالثة والخامسة ليكون المقال جذاباً بصرياً
+                        if (i === 0 || i === 3 || i === 6) {
+                            if (imgIndex < imgTags.length) {
+                                newBody += `<div class="article-image-wrapper">${imgTags[imgIndex]}</div>`;
+                                imgIndex++;
+                            }
+                        }
                     }
-                    // إذا كان هناك صور أخرى نضيفها في نهاية المقال
-                    if (imgTags.length > 1) {
-                        body += '<div class="my-8">' + imgTags[1] + '</div>';
+                    
+                    // إذا تبقت صور نضعها في نهاية المقال
+                    while(imgIndex < imgTags.length) {
+                         newBody += `<div class="article-image-wrapper">${imgTags[imgIndex]}</div>`;
+                         imgIndex++;
                     }
+                    body = newBody;
                 }
             }
 
-            // 4. إزالة الحرف الكبير المشوه (Drop Cap) أو أي تنسيقات غريبة أضافها الذكاء الاصطناعي بالخطأ في بداية النص
-            body = body.replace(/^<p>\s*[A-Za-z]\s*(?=[A-Za-z])/i, '<p>'); 
-            body = body.replace(/<span[^>]*font-size:\s*4em[^>]*>.*?<\/span>/gi, '');
-
-            document.getElementById('modal-img').src = article.image;
+            // 5. إزالة أي تشوهات برمجية (Drop Cap) وضعها الذكاء الاصطناعي بالخطأ في بداية النصوص
+            body = body.replace(/<span[^>]*font-size:\s*[3-5]em[^>]*>(.*?)<\/span>/gi, '<strong>$1</strong>');
+            body = body.replace(/<span[^>]*float:\s*left[^>]*>(.*?)<\/span>/gi, '$1');
+            
+            // تحديث محتوى النافذة المنبثقة
+            document.getElementById('modal-img').src = article.image || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';
             document.getElementById('modal-category').textContent = article.category || 'TÜRKİYE';
             document.getElementById('modal-title').textContent = title;
             
             const modalBody = document.getElementById('modal-body');
             modalBody.innerHTML = body;
             
-            // حماية وتنسيق الصور داخل المقال
+            // حماية الصور ضد التعطل
             modalBody.querySelectorAll('img').forEach(img => {
                 img.onerror = function() {
                     this.onerror = null;
