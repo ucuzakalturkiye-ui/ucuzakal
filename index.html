@@ -35,7 +35,7 @@
     </script>
 
     <style>
-        html, body { max-width: 100%; overflow-x: hidden; scroll-behavior: smooth; }
+        html, body { max-width: 100%; overflow-x: hidden; }
         .premium-bg {
             background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d4af37' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
         }
@@ -131,96 +131,11 @@
         }
         .social-channel-item:hover .lang-pill { transform: scale(1.1); }
         
-        /* ----------------------------------------------------
-           التنسيقات الاحترافية الجذرية لمحتوى المقالات
-        ----------------------------------------------------- */
-        .article-content {
-            font-size: 1.15rem; 
-            line-height: 2;
-            color: #334155; 
-        }
-        .dark .article-content {
-            color: #E2E8F0; 
-        }
-        
-        .article-content p {
-            margin-bottom: 1.8rem;
-            text-align: justify;
-        }
-
-        .article-content h2 { 
-            color: #D4AF37; 
-            margin-top: 3rem; 
-            margin-bottom: 1.5rem; 
-            font-weight: 800; 
-            font-family: 'Amiri', serif; 
-            font-size: 2rem; 
-            border-bottom: 2px solid rgba(212,175,55,0.15); 
-            padding-bottom: 0.75rem; 
-        }
-        .article-content h3 { 
-            color: #D4AF37; 
-            margin-top: 2.5rem; 
-            margin-bottom: 1rem; 
-            font-weight: 700; 
-            font-size: 1.5rem; 
-        }
-        
-        .article-content blockquote {
-            border-left: 5px solid #D4AF37;
-            background: rgba(212, 175, 55, 0.05);
-            padding: 1.75rem;
-            margin: 2.5rem 0;
-            border-radius: 0 16px 16px 0;
-            font-style: italic;
-            font-size: 1.25rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-        html[dir="rtl"] .article-content blockquote {
-            border-left: none;
-            border-right: 5px solid #D4AF37;
-            border-radius: 16px 0 0 16px;
-        }
-
-        .article-content ul { list-style-type: none; padding: 0; margin-bottom: 2rem; }
-        .article-content li { 
-            position: relative; 
-            padding-left: 1.75rem; 
-            margin-bottom: 0.75rem; 
-        }
-        html[dir="rtl"] .article-content li { 
-            padding-left: 0; 
-            padding-right: 1.75rem; 
-        }
-        .article-content li::before {
-            content: "✦";
-            position: absolute;
-            left: 0;
-            color: #D4AF37;
-        }
-        html[dir="rtl"] .article-content li::before {
-            left: auto;
-            right: 0;
-        }
-
-        .article-image-wrapper {
-            margin: 3rem 0;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            border: 1px solid rgba(212,175,55,0.1);
-        }
-        .article-content img {
-            width: 100%;
-            height: auto;
-            max-height: 500px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .article-content img:hover {
-            transform: scale(1.03);
-        }
+        .article-content h2 { color: #D4AF37; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; font-family: 'Amiri', serif; font-size: 1.75rem; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 0.5rem; }
+        .article-content h3 { color: #D4AF37; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 600; font-size: 1.25rem; }
+        .article-content p { margin-bottom: 1.25rem; line-height: 1.8; }
+        .article-content ul { list-style-type: disc; padding-inline-start: 1.5rem; margin-bottom: 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; }
     </style>
 </head>
 <body class="bg-[#FCFBF9] dark:bg-brand-dark text-slate-900 dark:text-slate-50 font-sans premium-bg antialiased">
@@ -231,14 +146,13 @@
             <button onclick="hideArticleModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-brand-gold/40 bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:text-brand-gold transition z-10">
                 <i class="fas fa-times"></i>
             </button>
-            <div class="h-56 sm:h-[400px] w-full overflow-hidden rounded-2xl mb-8 sm:mb-10 shadow-inner bg-slate-900 flex items-center justify-center relative group">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition z-10 pointer-events-none"></div>
-                <img id="modal-img" src="" alt="Article Banner" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';" class="w-full h-full object-cover transform transition duration-1000 group-hover:scale-105">
+            <div class="h-56 sm:h-96 w-full overflow-hidden rounded-2xl mb-5 sm:mb-8 shadow-inner">
+                <img id="modal-img" src="" alt="Article Banner" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';" class="w-full h-full object-cover">
             </div>
-            <span id="modal-category" class="text-brand-gold text-sm tracking-widest font-bold uppercase block mb-4 text-center"></span>
-            <h2 id="modal-title" class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-8 leading-tight notranslate text-center" translate="no"></h2>
-            <div class="w-32 h-[3px] bg-brand-gold mb-10 mx-auto"></div>
-            <div id="modal-body" class="article-content notranslate px-2 sm:px-6" translate="no"></div>
+            <span id="modal-category" class="text-brand-gold text-sm tracking-widest font-bold uppercase block mb-3"></span>
+            <h2 id="modal-title" class="font-luxury text-2xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight notranslate" translate="no"></h2>
+            <div class="w-24 h-[3px] bg-brand-gold mb-8"></div>
+            <div id="modal-body" class="article-content text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed notranslate" translate="no"></div>
         </div>
     </div>
 
@@ -272,6 +186,9 @@
                         <option value="ar" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">العربية</option>
                         <option value="en" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">English</option>
                         <option value="ru" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Русский</option>
+                        <option value="es" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Español</option>
+                        <option value="zh" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">中文</option>
+                        <option value="ku" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Kurdî</option>
                     </select>
                     <i class="fas fa-chevron-down absolute right-2.5 sm:right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-[9px] sm:text-[10px] pointer-events-none"></i>
                 </div>
@@ -288,9 +205,10 @@
         </div>
     </header>
 
-    <!-- الهيرو مع رابط الصورة المباشر ليعمل فوراً بدون مسار محلي -->
+    <!-- الهيرو -->
+    <!-- التعديل هنا ليتطابق مع اسم الصورة المرفوعة -->
     <section class="relative py-20 sm:py-40 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center min-h-[60vh] sm:min-h-[75vh]">
-        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-105" style="background-image: url('https://i.ibb.co/Ld11XN4/339c9a4e-d67b-4022-8321-2e6522c00ed6.png');"></div>
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-105" style="background-image: url('./hero-bg.png.png');"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-brand-dark"></div>
         <div class="max-w-4xl mx-auto relative z-10 text-white px-2">
             <h1 class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 title-glow tracking-wide" data-i18n="hero_title">Seçkin Rotaları Lüksle Keşfedin</h1>
@@ -449,7 +367,6 @@
         function translateDynamicText(text, lang) {
             if (!text) return text;
             const t = {
-                // مدن ووجهات
                 "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
                 "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
                 "إسطنبول": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
@@ -471,37 +388,40 @@
                 "الكويت": {ar:"الكويت", tr:"Kuveyt", en:"Kuwait", ru:"Кувейт", es:"Kuwait", zh:"科威特", ku:"Kuweyt"},
                 "عمّان": {ar:"عمّان", tr:"Amman", en:"Amman", ru:"Амман", es:"Amán", zh:"安曼", ku:"Emman"},
                 "سانت بطرسبرغ": {ar:"سانت بطرسبرغ", tr:"St. Petersburg", en:"St. Petersburg", ru:"Санкт-Петербург", es:"San Petersburgo", zh:"圣彼得堡", ku:"St. Petersburg"},
-                "Moskova": {ar:"موسكو", tr:"Moskova", en:"Moscow", ru:"Москва", es:"Moscú", zh:"莫斯科", ku:"Moskow"},
-                "Riyad": {ar:"الرياض", tr:"Riyad", en:"Riyadh", ru:"Эр-Рияд", es:"Riad", zh:"利雅得", ku:"Riyad"},
-                "Kahire": {ar:"القاهرة", tr:"Kahire", en:"Cairo", ru:"Каир", es:"El Cairo", zh:"开罗", ku:"Qahîre"},
-                "Dubai": {ar:"دبي", tr:"Dubai", en:"Dubai", ru:"Дубай", es:"Dubái", zh:"迪拜", ku:"Dubai"},
-
-                // مصطلحات الطيران
-                "UÇUŞ NUMARASI": {ar:"رقم الرحلة", tr:"UÇUŞ NUMARASI", en:"FLIGHT NUMBER", ru:"НОМЕР РЕЙСА"},
-                "UÇUŞ NUMARASI (PC)": {ar:"رقم الرحلة (PC)", tr:"UÇUŞ NUMARASI (PC)", en:"FLIGHT NUMBER (PC)", ru:"НОМЕР РЕЙСА (PC)"},
-                "UÇUŞ NUMARASI (2S)": {ar:"رقم الرحلة (2S)", tr:"UÇUŞ NUMARASI (2S)", en:"FLIGHT NUMBER (2S)", ru:"НОМЕР РЕЙСА (2S)"},
-                "DOĞRUDAN TARİFELİ UÇUŞ": {ar:"رحلة مجدولة مباشرة", tr:"DOĞRUDAN TARİFELİ UÇUŞ", en:"DIRECT SCHEDULED FLIGHT", ru:"ПРЯМОЙ РЕГУЛЯРНЫЙ РЕЙС"},
-                "Rahat Uçuş Tarihi 2026-11-24 Anında rezervasyon için en iyi fiyata.": {
-                    ar:"رحلة مريحة بتاريخ 24-11-2026 بأفضل سعر متاح للحجز الفوري.", 
-                    tr:"Rahat Uçuş Tarihi 2026-11-24 Anında rezervasyon için en iyi fiyata.", 
-                    en:"Comfortable Flight on 2026-11-24 at the best available price for instant booking.", 
-                    ru:"Комфортный рейс 24.11.2026 по лучшей цене для мгновенного бронирования."
-                },
-
-                // مصطلحات الفنادق
+                
                 "إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.": {ar:"إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.", tr:"Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.", en:"Luxury accommodation including meals and recreational activities on the Mediterranean coast.", ru:"Роскошное проживание, включая питание и развлекательные мероприятия на побережье Средиземного моря.", es:"Alojamiento de lujo que incluye comidas y actividades recreativas en la costa mediterránea.", zh:"地中海沿岸提供餐饮和娱乐活动的豪华住宿。", ku:"Rûniştina luks bi xwarin û çalakiyên şahiyê li perava Deryaya Spî."},
                 "أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.", tr:"Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services near the beach.", ru:"Просторные семейные люксы с видом на море и полным спектром гостиничных услуг рядом с пляжем.", es:"Amplias suites familiares con vistas al mar y servicios completos de hotel cerca de la playa.", zh:"靠近海滩的宽敞海景家庭套房，提供全套酒店服务。", ku:"Suiteyên malbatî yên fireh bi dîmena deryayê ve karûbarên otelê yên tevahî li nêzî peravê."},
                 "تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.": {ar:"تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.", tr:"Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.", en:"A luxurious stay experience in the heart of Izmir with a charming panoramic view of the bay.", ru:"Роскошный опыт проживания в самом сердце Измира с очаровательным панорамным видом на залив.", es:"Una experiencia de estancia de lujo en el corazón de Izmir con una encantadora vista panorámica de la bahía.", zh:"在伊兹密尔市中心享受豪华住宿体验，欣赏迷人的海湾全景。", ku:"Ezmûneke rûniştinê ya luks li dilê Îzmîrê bi dîmenek panoramîk a balkêş a kendavê."},
                 "إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.": {ar:"إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.", tr:"Karadeniz'in yeşil doğası ve yaylalarında aileler için huzurlu bir konaklama.", en:"A quiet stay amidst the green nature and highlands of the Black Sea for families.", ru:"Спокойный отдых среди зеленой природы и высокогорий Черного моря для семей.", es:"Una estancia tranquila en medio de la naturaleza verde y las tierras altas del Mar Negro para familias.", zh:"在黑海的绿色自然和高地中为家庭提供宁静的住宿。", ku:"Rûniştinek aram di nav xwezaya kesk ve zozanên Deryaya Reş de ji bo malbatan."},
                 "موقع استثنائي يجمع بين عبق التاريخ وسهولة الوصول إلى البوسفور.": {ar:"موقع استثنائي يجمع بين عبق التاريخ وسهولة الوصول إلى البوسفور.", tr:"Tarihin dokusunu Boğaz'a kolay erişimle birleştiren olağanüstü bir konum.", en:"An exceptional location combining the fragrance of history with easy access to the Bosphorus.", ru:"Исключительное расположение, сочетающее аромат истории с легким доступом к Босфору.", es:"Una ubicación excepcional que combina la fragancia de la historia con fácil acceso al Bósforo.", zh:"将历史气息与轻松前往博斯普鲁斯海峡完美结合的绝佳位置。", ku:"Cihêyek îstîsnaî ku bîhna dîrokê bi gihîştina hêsan a Bosforê re dihewîne."},
                 "استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية الشهيرة.": {ar:"استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية الشهيرة.", tr:"Uludağ ve ünlü termal kaplıcaların yakınında mükemmel bir dinlenme.", en:"Perfect relaxation near Mount Uludag and the famous mineral springs.", ru:"Идеальный отдых рядом с горой Улудаг и знаменитыми минеральными источниками.", es:"Relajación perfecta cerca del Monte Uludag y las famosas fuentes termales.", zh:"在乌鲁达山和著名的矿泉附近享受完美的放松。", ku:"Bêhnvedana bêkêmasî li nêzî Çiyayê Uludag ve kaniyên navdar ên mîneral."},
+                "استعرض أفضل منتجعات أنطاليا الشاملة للوجبات والأنشطة.": {ar:"استعرض أفضل منتجعات أنطاليا الشاملة للوجبات والأنشطة.", tr:"Antalya'nın en iyi her şey dahil resortlarını keşfedin.", en:"Explore the best all-inclusive resorts in Antalya.", ru:"Откройте для себя лучшие курорты «все включено» в Анталье.", es:"Explora los mejores resorts todo incluido en Antalya.", zh:"探索安塔利亚最好的全包度假村。", ku:"Li Antalyayê resortên herî baş ên hemû tişt tê de bigerin."},
+                "اكتشف فنادق إسطنبول المميزة بالقرب من البوسفور والأسواق.": {ar:"اكتشف فنادق إسطنبول المميزة بالقرب من البوسفور والأسواق.", tr:"Boğaz'a ve çarşılara yakın seçkin İstanbul otellerini keşfedin.", en:"Discover premium Istanbul hotels near the Bosphorus and markets.", ru:"Откройте для себя премиальные отели Стамбула рядом с Босфором.", es:"Descubra hoteles premium en Estambul cerca del Bósforo y los mercados.", zh:"探索靠近博斯普鲁斯海峡和市场的高级伊斯坦布尔酒店。", ku:"Otelên premium ên Stenbolê li nêzî Bosfor ve çarşılara yakın."},
+                "استمتع بإقامة راقية في قلب إزمير مع إطلالات بانورامية ساحرة.": {ar:"استمتع بإقامة راقية في قلب إزمير مع إطلالات بانورامية ساحرة.", tr:"İzmir'in kalbinde panoramik manzaralarla lüks bir konaklamanın keyfini çıkarın.", en:"Enjoy a luxurious stay in the heart of Izmir with enchanting panoramic views.", ru:"Насладитесь роскошным отдыхом в самом сердце Измира с панорамными видами.", es:"Disfruta de una estancia lujosa en el corazón de Izmir con vistas panorámicas.", zh:"在伊兹密尔市中心享受奢华住宿和迷人的全景。", ku:"Li dilê Îzmîrê bi dîmenên panoramîk rûniştineke luks kêf bikin."},
+                "أفضل الشقق العائلية وسط الطبيعة الخضراء في البحر الأسود.": {ar:"أفضل الشقق العائلية وسط الطبيعة الخضراء في البحر الأسود.", tr:"Karadeniz'in yeşil doğasında en iyi aile apartları.", en:"The best family apartments amidst the green nature of the Black Sea.", ru:"Лучшие семейные апартаменты среди зеленой природы Черного моря.", es:"Los mejores apartamentos familiares en la naturaleza verde del Mar Negro.", zh:"黑海绿色自然中最好的家庭公寓。", ku:"Apartmanên malbatî yên herî baş di nav xwezaya kesk a Deryaya Reş de."},
+                "أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة.", tr:"Deniz manzaralı ve tam otel hizmetli geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services.", ru:"Просторные семейные люксы с видом на море и гостиничным обслуживанием.", es:"Amplias suites familiares con vistas al mar y servicios completos de hotel.", zh:"宽敞的家庭套房，享有海景和全套酒店服务。", ku:"Suiteyên malbatî yên fireh bi dîmena deryayê ve karûbarên otelê yên tevahî."},
+                "استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية.": {ar:"استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية.", tr:"Uludağ ve termal kaplıcaların yakınında mükemmel bir tatil.", en:"Perfect relaxation near Uludag mountain and thermal springs.", ru:"Идеальный отдых рядом с горой Улудаг и термальными источниками.", es:"Relajación perfecta cerca de la montaña Uludag y fuentes termales.", zh:"乌鲁达山和温泉附近的完美放松。", ku:"Bêhnvedana bêkêmasî li nêzî çiyayê Uludag ve kaniyên termal."},
                 
                 "منتجع 5 نجوم شامل كلياً - أنطاليا": {ar:"منتجع 5 نجوم شامل كلياً - أنطاليا", tr:"5 Yıldızlı Her Şey Dahil Resort - Antalya", en:"5-Star All-Inclusive Resort - Antalya", ru:"5-звездочный курорт «все включено» - Анталья", es:"Resort Todo Incluido de 5 Estrellas - Antalya", zh:"五星级全包度假村 - 安塔利亚", ku:"Resorta 5-Stêrk Hemû Tişt Tê De - Antalya"},
+                "منتجع 5 نجوم شامل كلياً": {ar:"منتجع 5 نجوم شامل كلياً", tr:"5 Yıldızlı Her Şey Dahil Resort", en:"5-Star All-Inclusive Resort", ru:"5-звездочный курорт «все включено»", es:"Resort Todo Incluido de 5 Estrellas", zh:"五星级全包度假村", ku:"Resorta 5-Stêrk Hemû Tişt Tê De"},
                 "شقة فندقية عائلية فاخرة - أنطاليا": {ar:"شقة فندقية عائلية فاخرة - أنطاليا", tr:"Lüks Aile Apart Dairesi - Antalya", en:"Luxury Family Serviced Apartment - Antalya", ru:"Роскошные семейные апартаменты - Анталья", es:"Apartamento Familiar de Lujo - Antalya", zh:"豪华家庭服务式公寓 - 安塔利亚", ku:"Apartmana Malbatî ya Luks - Antalya"},
+                "شقة فندقية عائلية فاخرة": {ar:"شقة فندقية عائلية فاخرة", tr:"Lüks Aile Apart Dairesi", en:"Luxury Family Serviced Apartment", ru:"Роскошные семейные апартаменты", es:"Apartamento Familiar de Lujo", zh:"豪华家庭服务式公寓", ku:"Apartmana Malbatî ya Luks"},
                 "فندق مميز بإطلالة على بحر إيجة - إزمير": {ar:"فندق مميز بإطلالة على بحر إيجة - إزمير", tr:"Ege Denizi Manzaralı Seçkin Otel - İzmir", en:"Exclusive Aegean Sea View Hotel - Izmir", ru:"Эксклюзивный отель с видом на Эгейское море - Измир", es:"Hotel Exclusivo con Vista al Mar Egeo - Izmir", zh:"爱琴海海景精选酒店 - 伊兹密尔", ku:"Otela Bijarte ya Bi Dîmena Deryaya Egeyê - Îzmîr"},
+                "فندق مميز بإطلالة على بحر إيجة": {ar:"فندق مميز بإطلالة على بحر إيجة", tr:"Ege Denizi Manzaralı Seçkin Otel", en:"Exclusive Aegean Sea View Hotel", ru:"Эксклюзивный отель с видом на Эгейское море", es:"Hotel Exclusivo con Vista al Mar Egeo", zh:"爱琴海海景精选酒店", ku:"Otela Bijarte ya Bi Dîmena Deryaya Egeyê"},
                 "شقة فندقية واسعة مطلة على الجبال - طرابزون": {ar:"شقة فندقية واسعة مطلة على الجبال - طرابزون", tr:"Dağ Manzaralı Geniş Apart Daire - Trabzon", en:"Spacious Mountain View Suite - Trabzon", ru:"Просторные апартаменты с видом на горы - Трабзон", es:"Amplia Suite con Vista a la Montaña - Trabzon", zh:"宽敞山景套房公寓 - 特拉布宗", ku:"Apartmana Fireh a Bi Dîmena Çiyayan - Trabzon"},
+                "شقة فندقية واسعة مطلة على الجبال": {ar:"شقة فندقية واسعة مطلة على الجبال", tr:"Dağ Manzaralı Geniş Apart Daire", en:"Spacious Mountain View Suite", ru:"Просторные апартаменты с видом на горы", es:"Amplia Suite con Vista a la Montaña", zh:"宽敞山景套房公寓", ku:"Apartmana Fireh a Bi Dîmena Çiyayan"},
                 "فندق راقي بالقرب من المعالم - إسطنبول": {ar:"فندق راقي بالقرب من المعالم - إسطنبول", tr:"Tarihi Merkeze Yakın Seçkin Otel - İstanbul", en:"Luxury Hotel Near Landmarks - Istanbul", ru:"Роскошный отель рядом с достопримечательностями - Стамбул", es:"Hotel de Lujo Cerca de Monumentos - Estambul", zh:"靠近地标的豪华酒店 - 伊斯坦布尔", ku:"Otela Luks Nêzîkî Cihên Dîrokî - Stenbol"},
-                "فندق وسط الطبيعة الخلابة - بورصة": {ar:"فندق وسط الطبيعة الخلابة - بورصة", tr:"Doğanın Kalbinde Butik Otel - Bursa", en:"Boutique Hotel Surrounded by Nature - Bursa", ru:"Бутик-отель на лоне природы - Бурса", es:"Hotel Boutique Rodeado de Naturaleza - Bursa", zh:"自然环绕的精品酒店 - 布尔萨", ku:"Otela Bûtîk Di Nav Xwezayê De - Bursa"}
+                "فندق راقي بالقرب من المعالم السياحية - إسطنبول": {ar:"فندق راقي بالقرب من المعالم السياحية - إسطنبول", tr:"Tarihi Merkeze Yakın Seçkin Otel - İstanbul", en:"Luxury Hotel Near Historic Landmarks - Istanbul", ru:"Роскошный отель рядом с достопримечательностями - Стамбул", es:"Hotel de Lujo Cerca de Monumentos Históricos - Estambul", zh:"靠近历史地标的豪华酒店 - 伊斯坦布尔", ku:"Otela Luks Nêzîkî Cihên Dîrokî - Stenbol"},
+                "فندق راقي بالقرب من المعالم السياحية": {ar:"فندق راقي بالقرب من المعالم السياحية", tr:"Tarihi Merkeze Yakın Seçkin Otel", en:"Luxury Hotel Near Historic Landmarks", ru:"Роскошный отель рядом с достопримечательностями", es:"Hotel de Lujo Cerca de Monumentos Históricos", zh:"靠近历史地标的豪华酒店", ku:"Otela Luks Nêzîkî Cihên Dîrokî"},
+                "فندق وسط الطبيعة الخلابة - بورصة": {ar:"فندق وسط الطبيعة الخلابة - بورصة", tr:"Doğanın Kalbinde Butik Otel - Bursa", en:"Boutique Hotel Surrounded by Nature - Bursa", ru:"Бутик-отель на лоне природы - Бурса", es:"Hotel Boutique Rodeado de Naturaleza - Bursa", zh:"自然环绕的精品酒店 - 布尔萨", ku:"Otela Bûtîk Di Nav Xwezayê De - Bursa"},
+                "فندق وسط الطبيعة الخلابة": {ar:"فندق وسط الطبيعة الخلابة", tr:"Doğanın Kalbinde Butik Otel", en:"Boutique Hotel Surrounded by Nature", ru:"Бутик-отель на лоне природы", es:"Hotel Boutique Rodeado de Naturaleza", zh:"自然环绕的精品酒店", ku:"Otela Bûtîk Di Nav Xwezayê De"},
+
+                "تذاكر طيران مخفضة": {ar:"تذاكر طيران مخفضة", tr:"İndirimli Uçak Bileti", en:"Discounted Flight Ticket", ru:"Авиабилет со скидкой", es:"Boleto de Avión con Descuento", zh:"特价机票", ku:"Bilêta Firînê ya Bi Erzanî"},
+                "تذاكر طيران": {ar:"تذاكر طيران", tr:"Uçak Biletleri", en:"Flight Tickets", ru:"Авиабилеты", es:"Boletos de Avión", zh:"机票", ku:"Bilêtên Firînê"},
+                "رحلة مريحة بتاريخ": {ar:"رحلة مريحة بتاريخ", tr:"Rahat Uçuş Tarihi", en:"Comfortable Flight on", ru:"Комфортный рейс", es:"Vuelo cómodo el", zh:"舒适的航班，日期", ku:"Firîna rehet di"},
+                "بأفضل سعر متاح للحجز الفوري.": {ar:"بأفضل سعر متاح للحجز الفوري.", tr:"Anında rezervasyon için en iyi fiyata.", en:"at the best available price for instant booking.", ru:"по лучшей цене для мгновенного бронирования.", es:"al mejor precio disponible para reserva instantánea.", zh:"以最优惠的价格即时预订。", ku:"bi bihayê herî baş ji bo veqetandina bilez."},
+                "رحلة مجدولة مباشرة": {ar:"رحلة مجدولة مباشرة", tr:"Doğrudan Tarifeli Uçuş", en:"Direct Scheduled Flight", ru:"Прямой регулярный рейс", es:"Vuelo Programado Directo", zh:"直达定期航班", ku:"Firîna Pîlankirî ya Rasterast"},
+                "رقم الرحلة": {ar:"رقم الرحلة", tr:"Uçuş Numarası", en:"Flight Number", ru:"Номер рейса", es:"Número de Vuelo", zh:"航班号", ku:"Hejmara Firînê"}
             };
 
             let res = text;
@@ -521,69 +441,15 @@
             if (!article) return;
             const currentLang = document.documentElement.lang || 'tr';
             let title = article.titles ? (article.titles[currentLang] || article.titles['tr']) : article.title;
-            
-            // --- الحل الجذري الشامل لمشكلة المقالات ---
-            // 1. تحديد النسخة الأساسية الغنية بالصور (النسخة العربية عادةً لأنها مكتملة برمجياً)
-            const richBody = article.body || (article.bodies && article.bodies['ar']) || '';
-            
-            // 2. جلب النص المترجم للغة الحالية (التركية/الروسية/الإنجليزية)
-            let body = '';
-            if (article.bodies && article.bodies[currentLang] && article.bodies[currentLang].length > 200) {
-                body = article.bodies[currentLang];
-            } else {
-                body = richBody; // بديل احتياطي إذا كان النص فارغاً تماماً
-            }
-
-            // 3. إصلاح خلل الذكاء الاصطناعي: إذا كان النص المترجم عبارة عن نص خام (بدون فقرات HTML)، نقوم بتنسيقه
-            if (body.indexOf('<p') === -1 && body.indexOf('<div') === -1) {
-                body = body.split('\n')
-                           .filter(line => line.trim().length > 0)
-                           .map(line => `<p>${line.trim()}</p>`)
-                           .join('');
-            }
-
-            // 4. زرع الصور بذكاء: إذا كان النص المترجم لا يحتوي على صور، نأخذها من النسخة الأصلية ونوزعها داخله
-            if (body.indexOf('<img') === -1 && richBody.indexOf('<img') !== -1) {
-                const imgTags = richBody.match(/<img[^>]+>/g) || [];
-                if (imgTags.length > 0) {
-                    const paragraphs = body.split('</p>');
-                    let newBody = '';
-                    let imgIndex = 0;
-                    
-                    for (let i = 0; i < paragraphs.length; i++) {
-                        newBody += paragraphs[i] + (paragraphs[i].trim() ? '</p>' : '');
-                        
-                        // نزرع صورة بعد الفقرة الأولى والثالثة والخامسة ليكون المقال جذاباً بصرياً
-                        if (i === 0 || i === 3 || i === 6) {
-                            if (imgIndex < imgTags.length) {
-                                newBody += `<div class="article-image-wrapper">${imgTags[imgIndex]}</div>`;
-                                imgIndex++;
-                            }
-                        }
-                    }
-                    
-                    // إذا تبقت صور نضعها في نهاية المقال
-                    while(imgIndex < imgTags.length) {
-                         newBody += `<div class="article-image-wrapper">${imgTags[imgIndex]}</div>`;
-                         imgIndex++;
-                    }
-                    body = newBody;
-                }
-            }
-
-            // 5. إزالة أي تشوهات برمجية (Drop Cap) وضعها الذكاء الاصطناعي بالخطأ في بداية النصوص
-            body = body.replace(/<span[^>]*font-size:\s*[3-5]em[^>]*>(.*?)<\/span>/gi, '<strong>$1</strong>');
-            body = body.replace(/<span[^>]*float:\s*left[^>]*>(.*?)<\/span>/gi, '$1');
-            
-            // تحديث محتوى النافذة المنبثقة
-            document.getElementById('modal-img').src = article.image || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';
-            document.getElementById('modal-category').textContent = article.category || 'TÜRKİYE';
+            let body = article.titles ? (article.bodies[currentLang] || article.bodies['tr']) : article.body;
+            document.getElementById('modal-img').src = article.image;
+            document.getElementById('modal-category').textContent = article.category;
             document.getElementById('modal-title').textContent = title;
             
             const modalBody = document.getElementById('modal-body');
             modalBody.innerHTML = body;
             
-            // حماية الصور ضد التعطل
+            // حماية إضافية للصور مع إصلاح الخلل السابق
             modalBody.querySelectorAll('img').forEach(img => {
                 img.onerror = function() {
                     this.onerror = null;
@@ -823,14 +689,7 @@
 
             container.innerHTML = '';
             window.FLIGHTS_DATA.forEach(flight => {
-                let routeParts = flight.route.split('✈️').map(s => s.trim());
-                let trRoute = flight.route;
-                if(routeParts.length === 2) {
-                     trRoute = translateDynamicText(routeParts[0], currentLang) + " ✈️ " + translateDynamicText(routeParts[1], currentLang);
-                } else {
-                     trRoute = translateDynamicText(flight.route, currentLang);
-                }
-
+                const trRoute = translateDynamicText(flight.route, currentLang);
                 const trAirline = translateDynamicText(flight.airline, currentLang);
                 const trDesc = translateDynamicText(flight.description, currentLang);
 
@@ -850,8 +709,8 @@
                 card.innerHTML = `
                     <div>
                         <i class="fas fa-plane text-brand-gold text-2xl sm:text-3xl mb-3 sm:mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                        <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1 notranslate" translate="no">${trRoute}</h3>
-                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-3 sm:mb-4 font-bold notranslate" translate="no">${trAirline}</span>
+                        <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1">${trRoute}</h3>
+                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-3 sm:mb-4 font-bold">${trAirline}</span>
                         <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-5 sm:mb-6 leading-relaxed line-clamp-3">${trDesc}</p>
                     </div>
                     <div class="pt-2 border-t border-slate-100 dark:border-white/5">
