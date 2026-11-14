@@ -288,9 +288,9 @@
         </div>
     </header>
 
-    <!-- الهيرو -->
+    <!-- الهيرو مع رابط الصورة المباشر ليعمل فوراً بدون مسار محلي -->
     <section class="relative py-20 sm:py-40 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center min-h-[60vh] sm:min-h-[75vh]">
-        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-105" style="background-image: url('https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=2000&q=80');"></div>
+        <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-105" style="background-image: url('https://i.ibb.co/Ld11XN4/339c9a4e-d67b-4022-8321-2e6522c00ed6.png');"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-brand-dark"></div>
         <div class="max-w-4xl mx-auto relative z-10 text-white px-2">
             <h1 class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 title-glow tracking-wide" data-i18n="hero_title">Seçkin Rotaları Lüksle Keşfedin</h1>
@@ -446,35 +446,40 @@
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
-        // تحديث قاموس الطيران ليترجم جميع التفاصيل بطلاقة
         function translateDynamicText(text, lang) {
             if (!text) return text;
             const t = {
-                // مدن
-                "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара"},
-                "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул"},
-                "إسطنبول": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул"},
-                "Antalya": {ar:"أنطاليا", tr:"Antalya", en:"Antalya", ru:"Анталья"},
-                "أنطاليا": {ar:"أنطاليا", tr:"Antalya", en:"Antalya", ru:"Анталья"},
-                "Bursa": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса"},
-                "بورصة": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса"},
-                "Izmir": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир"},
-                "إزمير": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир"},
-                "Trabzon": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон"},
-                "طرابزون": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон"},
-                "أنقرة": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара"},
-                "دبي": {ar:"دبي", tr:"Dubai", en:"Dubai", ru:"Дубай"},
-                "موسكو": {ar:"موسكو", tr:"Moskova", en:"Moscow", ru:"Москва"},
-                "الرياض": {ar:"الرياض", tr:"Riyad", en:"Riyadh", ru:"Эр-Рияд"},
-                "جدة": {ar:"جدة", tr:"Cidde", en:"Jeddah", ru:"Джидда"},
-                "القاهرة": {ar:"القاهرة", tr:"Kahire", en:"Cairo", ru:"Каир"},
-                "الدوحة": {ar:"الدوحة", tr:"Doha", en:"Doha", ru:"Доха"},
-                "الكويت": {ar:"الكويت", tr:"Kuveyt", en:"Kuwait", ru:"Кувейт"},
-                "عمّان": {ar:"عمّان", tr:"Amman", en:"Amman", ru:"Амман"},
-                "سانت بطرسبرغ": {ar:"سانت بطرسبرغ", tr:"St. Petersburg", en:"St. Petersburg", ru:"Санкт-Петербург"},
-                
-                // طيران
+                // مدن ووجهات
+                "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
+                "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
+                "إسطنبول": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", es:"Estambul", zh:"伊斯坦布尔", ku:"Stenbol"},
+                "Antalya": {ar:"أنطاليا", tr:"Antalya", en:"Antalya", ru:"Анталья", es:"Antalya", zh:"安塔利亚", ku:"Antalya"},
+                "أنطاليا": {ar:"أنطاليا", tr:"Antalya", en:"Antalya", ru:"Анталья", es:"Antalya", zh:"安塔利亚", ku:"Antalya"},
+                "Bursa": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса", es:"Bursa", zh:"布尔萨", ku:"Bursa"},
+                "بورصة": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса", es:"Bursa", zh:"布尔萨", ku:"Bursa"},
+                "Izmir": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир", es:"Esmirna", zh:"伊兹密尔", ku:"Îzmîr"},
+                "إزمير": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир", es:"Esmirna", zh:"伊兹密尔", ku:"Îzmîr"},
+                "Trabzon": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон", es:"Trebisonda", zh:"特拉布宗", ku:"Trabzon"},
+                "طرابزون": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон", es:"Trebisonda", zh:"特拉布宗", ku:"Trabzon"},
+                "أنقرة": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", es:"Ankara", zh:"安卡拉", ku:"Enqere"},
+                "دبي": {ar:"دبي", tr:"Dubai", en:"Dubai", ru:"Дубай", es:"Dubái", zh:"迪拜", ku:"Dubai"},
+                "موسكو": {ar:"موسكو", tr:"Moskova", en:"Moscow", ru:"Москва", es:"Moscú", zh:"莫斯科", ku:"Moskow"},
+                "الرياض": {ar:"الرياض", tr:"Riyad", en:"Riyadh", ru:"Эр-Рияд", es:"Riad", zh:"利雅得", ku:"Riyad"},
+                "جدة": {ar:"جدة", tr:"Cidde", en:"Jeddah", ru:"Джидда", es:"Yeda", zh:"吉达", ku:"Cidde"},
+                "القاهرة": {ar:"القاهرة", tr:"Kahire", en:"Cairo", ru:"Каир", es:"El Cairo", zh:"开罗", ku:"Qahîre"},
+                "الدوحة": {ar:"الدوحة", tr:"Doha", en:"Doha", ru:"Доха", es:"Doha", zh:"多哈", ku:"Doha"},
+                "الكويت": {ar:"الكويت", tr:"Kuveyt", en:"Kuwait", ru:"Кувейт", es:"Kuwait", zh:"科威特", ku:"Kuweyt"},
+                "عمّان": {ar:"عمّان", tr:"Amman", en:"Amman", ru:"Амман", es:"Amán", zh:"安曼", ku:"Emman"},
+                "سانت بطرسبرغ": {ar:"سانت بطرسبرغ", tr:"St. Petersburg", en:"St. Petersburg", ru:"Санкт-Петербург", es:"San Petersburgo", zh:"圣彼得堡", ku:"St. Petersburg"},
+                "Moskova": {ar:"موسكو", tr:"Moskova", en:"Moscow", ru:"Москва", es:"Moscú", zh:"莫斯科", ku:"Moskow"},
+                "Riyad": {ar:"الرياض", tr:"Riyad", en:"Riyadh", ru:"Эр-Рияд", es:"Riad", zh:"利雅得", ku:"Riyad"},
+                "Kahire": {ar:"القاهرة", tr:"Kahire", en:"Cairo", ru:"Каир", es:"El Cairo", zh:"开罗", ku:"Qahîre"},
+                "Dubai": {ar:"دبي", tr:"Dubai", en:"Dubai", ru:"Дубай", es:"Dubái", zh:"迪拜", ku:"Dubai"},
+
+                // مصطلحات الطيران
                 "UÇUŞ NUMARASI": {ar:"رقم الرحلة", tr:"UÇUŞ NUMARASI", en:"FLIGHT NUMBER", ru:"НОМЕР РЕЙСА"},
+                "UÇUŞ NUMARASI (PC)": {ar:"رقم الرحلة (PC)", tr:"UÇUŞ NUMARASI (PC)", en:"FLIGHT NUMBER (PC)", ru:"НОМЕР РЕЙСА (PC)"},
+                "UÇUŞ NUMARASI (2S)": {ar:"رقم الرحلة (2S)", tr:"UÇUŞ NUMARASI (2S)", en:"FLIGHT NUMBER (2S)", ru:"НОМЕР РЕЙСА (2S)"},
                 "DOĞRUDAN TARİFELİ UÇUŞ": {ar:"رحلة مجدولة مباشرة", tr:"DOĞRUDAN TARİFELİ UÇUŞ", en:"DIRECT SCHEDULED FLIGHT", ru:"ПРЯМОЙ РЕГУЛЯРНЫЙ РЕЙС"},
                 "Rahat Uçuş Tarihi 2026-11-24 Anında rezervasyon için en iyi fiyata.": {
                     ar:"رحلة مريحة بتاريخ 24-11-2026 بأفضل سعر متاح للحجز الفوري.", 
@@ -482,12 +487,21 @@
                     en:"Comfortable Flight on 2026-11-24 at the best available price for instant booking.", 
                     ru:"Комфортный рейс 24.11.2026 по лучшей цене для мгновенного бронирования."
                 },
-                "Rahat Uçuş Tarihi": {ar:"رحلة مريحة بتاريخ", tr:"Rahat Uçuş Tarihi", en:"Comfortable Flight on", ru:"Комфортный рейс"},
-                "Anında rezervasyon için en iyi fiyata.": {ar:"بأفضل سعر متاح للحجز الفوري.", tr:"Anında rezervasyon için en iyi fiyata.", en:"at the best available price for instant booking.", ru:"по лучшей цене для мгновенного бронирования."},
 
-                // فنادق (تكرار لضمان التغطية)
-                "إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.": {ar:"إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.", tr:"Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.", en:"Luxury accommodation including meals and recreational activities on the Mediterranean coast.", ru:"Роскошное проживание, включая питание и развлекательные мероприятия на побережье Средиземного моря."},
-                "منتجع 5 نجوم شامل كلياً - أنطاليا": {ar:"منتجع 5 نجوم شامل كلياً - أنطاليا", tr:"5 Yıldızlı Her Şey Dahil Resort - Antalya", en:"5-Star All-Inclusive Resort - Antalya", ru:"5-звездочный курорт «все включено» - Анталья"}
+                // مصطلحات الفنادق
+                "إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.": {ar:"إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.", tr:"Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.", en:"Luxury accommodation including meals and recreational activities on the Mediterranean coast.", ru:"Роскошное проживание, включая питание и развлекательные мероприятия на побережье Средиземного моря.", es:"Alojamiento de lujo que incluye comidas y actividades recreativas en la costa mediterránea.", zh:"地中海沿岸提供餐饮和娱乐活动的豪华住宿。", ku:"Rûniştina luks bi xwarin û çalakiyên şahiyê li perava Deryaya Spî."},
+                "أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.", tr:"Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services near the beach.", ru:"Просторные семейные люксы с видом на море и полным спектром гостиничных услуг рядом с пляжем.", es:"Amplias suites familiares con vistas al mar y servicios completos de hotel cerca de la playa.", zh:"靠近海滩的宽敞海景家庭套房，提供全套酒店服务。", ku:"Suiteyên malbatî yên fireh bi dîmena deryayê ve karûbarên otelê yên tevahî li nêzî peravê."},
+                "تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.": {ar:"تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.", tr:"Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.", en:"A luxurious stay experience in the heart of Izmir with a charming panoramic view of the bay.", ru:"Роскошный опыт проживания в самом сердце Измира с очаровательным панорамным видом на залив.", es:"Una experiencia de estancia de lujo en el corazón de Izmir con una encantadora vista panorámica de la bahía.", zh:"在伊兹密尔市中心享受豪华住宿体验，欣赏迷人的海湾全景。", ku:"Ezmûneke rûniştinê ya luks li dilê Îzmîrê bi dîmenek panoramîk a balkêş a kendavê."},
+                "إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.": {ar:"إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.", tr:"Karadeniz'in yeşil doğası ve yaylalarında aileler için huzurlu bir konaklama.", en:"A quiet stay amidst the green nature and highlands of the Black Sea for families.", ru:"Спокойный отдых среди зеленой природы и высокогорий Черного моря для семей.", es:"Una estancia tranquila en medio de la naturaleza verde y las tierras altas del Mar Negro para familias.", zh:"在黑海的绿色自然和高地中为家庭提供宁静的住宿。", ku:"Rûniştinek aram di nav xwezaya kesk ve zozanên Deryaya Reş de ji bo malbatan."},
+                "موقع استثنائي يجمع بين عبق التاريخ وسهولة الوصول إلى البوسفور.": {ar:"موقع استثنائي يجمع بين عبق التاريخ وسهولة الوصول إلى البوسفور.", tr:"Tarihin dokusunu Boğaz'a kolay erişimle birleştiren olağanüstü bir konum.", en:"An exceptional location combining the fragrance of history with easy access to the Bosphorus.", ru:"Исключительное расположение, сочетающее аромат истории с легким доступом к Босфору.", es:"Una ubicación excepcional que combina la fragancia de la historia con fácil acceso al Bósforo.", zh:"将历史气息与轻松前往博斯普鲁斯海峡完美结合的绝佳位置。", ku:"Cihêyek îstîsnaî ku bîhna dîrokê bi gihîştina hêsan a Bosforê re dihewîne."},
+                "استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية الشهيرة.": {ar:"استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية الشهيرة.", tr:"Uludağ ve ünlü termal kaplıcaların yakınında mükemmel bir dinlenme.", en:"Perfect relaxation near Mount Uludag and the famous mineral springs.", ru:"Идеальный отдых рядом с горой Улудаг и знаменитыми минеральными источниками.", es:"Relajación perfecta cerca del Monte Uludag y las famosas fuentes termales.", zh:"在乌鲁达山和著名的矿泉附近享受完美的放松。", ku:"Bêhnvedana bêkêmasî li nêzî Çiyayê Uludag ve kaniyên navdar ên mîneral."},
+                
+                "منتجع 5 نجوم شامل كلياً - أنطاليا": {ar:"منتجع 5 نجوم شامل كلياً - أنطاليا", tr:"5 Yıldızlı Her Şey Dahil Resort - Antalya", en:"5-Star All-Inclusive Resort - Antalya", ru:"5-звездочный курорт «все включено» - Анталья", es:"Resort Todo Incluido de 5 Estrellas - Antalya", zh:"五星级全包度假村 - 安塔利亚", ku:"Resorta 5-Stêrk Hemû Tişt Tê De - Antalya"},
+                "شقة فندقية عائلية فاخرة - أنطاليا": {ar:"شقة فندقية عائلية فاخرة - أنطاليا", tr:"Lüks Aile Apart Dairesi - Antalya", en:"Luxury Family Serviced Apartment - Antalya", ru:"Роскошные семейные апартаменты - Анталья", es:"Apartamento Familiar de Lujo - Antalya", zh:"豪华家庭服务式公寓 - 安塔利亚", ku:"Apartmana Malbatî ya Luks - Antalya"},
+                "فندق مميز بإطلالة على بحر إيجة - إزمير": {ar:"فندق مميز بإطلالة على بحر إيجة - إزمير", tr:"Ege Denizi Manzaralı Seçkin Otel - İzmir", en:"Exclusive Aegean Sea View Hotel - Izmir", ru:"Эксклюзивный отель с видом на Эгейское море - Измир", es:"Hotel Exclusivo con Vista al Mar Egeo - Izmir", zh:"爱琴海海景精选酒店 - 伊兹密尔", ku:"Otela Bijarte ya Bi Dîmena Deryaya Egeyê - Îzmîr"},
+                "شقة فندقية واسعة مطلة على الجبال - طرابزون": {ar:"شقة فندقية واسعة مطلة على الجبال - طرابزون", tr:"Dağ Manzaralı Geniş Apart Daire - Trabzon", en:"Spacious Mountain View Suite - Trabzon", ru:"Просторные апартаменты с видом на горы - Трабзон", es:"Amplia Suite con Vista a la Montaña - Trabzon", zh:"宽敞山景套房公寓 - 特拉布宗", ku:"Apartmana Fireh a Bi Dîmena Çiyayan - Trabzon"},
+                "فندق راقي بالقرب من المعالم - إسطنبول": {ar:"فندق راقي بالقرب من المعالم - إسطنبول", tr:"Tarihi Merkeze Yakın Seçkin Otel - İstanbul", en:"Luxury Hotel Near Landmarks - Istanbul", ru:"Роскошный отель рядом с достопримечательностями - Стамбул", es:"Hotel de Lujo Cerca de Monumentos - Estambul", zh:"靠近地标的豪华酒店 - 伊斯坦布尔", ku:"Otela Luks Nêzîkî Cihên Dîrokî - Stenbol"},
+                "فندق وسط الطبيعة الخلابة - بورصة": {ar:"فندق وسط الطبيعة الخلابة - بورصة", tr:"Doğanın Kalbinde Butik Otel - Bursa", en:"Boutique Hotel Surrounded by Nature - Bursa", ru:"Бутик-отель на лоне природы - Бурса", es:"Hotel Boutique Rodeado de Naturaleza - Bursa", zh:"自然环绕的精品酒店 - 布尔萨", ku:"Otela Bûtîk Di Nav Xwezayê De - Bursa"}
             };
 
             let res = text;
@@ -809,7 +823,14 @@
 
             container.innerHTML = '';
             window.FLIGHTS_DATA.forEach(flight => {
-                const trRoute = translateDynamicText(flight.route, currentLang);
+                let routeParts = flight.route.split('✈️').map(s => s.trim());
+                let trRoute = flight.route;
+                if(routeParts.length === 2) {
+                     trRoute = translateDynamicText(routeParts[0], currentLang) + " ✈️ " + translateDynamicText(routeParts[1], currentLang);
+                } else {
+                     trRoute = translateDynamicText(flight.route, currentLang);
+                }
+
                 const trAirline = translateDynamicText(flight.airline, currentLang);
                 const trDesc = translateDynamicText(flight.description, currentLang);
 
@@ -829,8 +850,8 @@
                 card.innerHTML = `
                     <div>
                         <i class="fas fa-plane text-brand-gold text-2xl sm:text-3xl mb-3 sm:mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                        <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1">${trRoute}</h3>
-                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-3 sm:mb-4 font-bold">${trAirline}</span>
+                        <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1 notranslate" translate="no">${trRoute}</h3>
+                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-3 sm:mb-4 font-bold notranslate" translate="no">${trAirline}</span>
                         <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-5 sm:mb-6 leading-relaxed line-clamp-3">${trDesc}</p>
                     </div>
                     <div class="pt-2 border-t border-slate-100 dark:border-white/5">
