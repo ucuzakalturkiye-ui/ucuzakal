@@ -131,138 +131,29 @@
         }
         .social-channel-item:hover .lang-pill { transform: scale(1.1); }
         
-        /* تنسيقات المقالات الاحترافية */
-        .article-content {
-            font-size: 1.15rem; 
-            line-height: 2;
-            color: #334155; 
-        }
-        .dark .article-content {
-            color: #E2E8F0; 
-        }
-        
-        .article-content p {
-            margin-bottom: 1.8rem;
-            text-align: justify;
-        }
+        .article-content h2 { color: #D4AF37; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; font-family: 'Amiri', serif; font-size: 1.75rem; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 0.5rem; }
+        .article-content h3 { color: #D4AF37; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 600; font-size: 1.25rem; }
+        .article-content p { margin-bottom: 1.25rem; line-height: 1.8; }
+        .article-content ul { list-style-type: disc; padding-inline-start: 1.5rem; margin-bottom: 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; }
 
-        .article-content h2 { 
-            color: #D4AF37; 
-            margin-top: 3rem; 
-            margin-bottom: 1.5rem; 
-            font-weight: 800; 
-            font-family: 'Amiri', serif; 
-            font-size: 2rem; 
-            border-bottom: 2px solid rgba(212,175,55,0.15); 
-            padding-bottom: 0.75rem; 
-        }
-        .article-content h3 { 
-            color: #D4AF37; 
-            margin-top: 2.5rem; 
-            margin-bottom: 1rem; 
-            font-weight: 700; 
-            font-size: 1.5rem; 
-        }
-        
-        .article-content blockquote {
-            border-left: 5px solid #D4AF37;
-            background: rgba(212, 175, 55, 0.05);
-            padding: 1.75rem;
-            margin: 2.5rem 0;
-            border-radius: 0 16px 16px 0;
-            font-style: italic;
-            font-size: 1.25rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-        html[dir="rtl"] .article-content blockquote {
-            border-left: none;
-            border-right: 5px solid #D4AF37;
-            border-radius: 16px 0 0 16px;
-        }
-
-        .article-content ul { list-style-type: none; padding: 0; margin-bottom: 2rem; }
-        .article-content li { 
-            position: relative; 
-            padding-left: 1.75rem; 
-            margin-bottom: 0.75rem; 
-        }
-        html[dir="rtl"] .article-content li { 
-            padding-left: 0; 
-            padding-right: 1.75rem; 
-        }
-        .article-content li::before {
-            content: "✦";
-            position: absolute;
-            left: 0;
-            color: #D4AF37;
-        }
-        html[dir="rtl"] .article-content li::before {
-            left: auto;
-            right: 0;
-        }
-
-        .article-image-wrapper {
-            margin: 3rem 0;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-            border: 1px solid rgba(212,175,55,0.1);
-        }
-        .article-content img {
-            width: 100%;
-            height: auto;
-            max-height: 500px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .article-content img:hover {
-            transform: scale(1.03);
-        }
-
-        /* ----------------------------------------------------
-           التنسيقات الاحترافية للمساعد الذكي والتأثير الناري (Fiery Glow)
-        ----------------------------------------------------- */
+        /* --- تنسيقات المساعد الذكي الأنيقة والهادئة --- */
         .smart-concierge-container {
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            border-radius: 32px;
-            padding: 3rem;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(16px);
             margin-top: 4rem;
             margin-bottom: 4rem;
         }
         .dark .smart-concierge-container {
-            background: rgba(10, 15, 26, 0.95);
-            border-color: rgba(212, 175, 55, 0.2);
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        /* التأثير الناري الفاخر (Fiery Luxury Pulse) للحاوية */
-        .fire-glow::before {
-            content: '';
-            position: absolute;
-            inset: -2px;
-            background: linear-gradient(45deg, #ff3300, #ff9900, #D4AF37, #ff3300);
-            background-size: 300%;
-            border-radius: inherit;
-            z-index: -1;
-            animation: firePulse 4s infinite linear;
-            filter: blur(12px);
-            opacity: 0.5;
-        }
-        .dark .fire-glow::before {
-            opacity: 0.8;
-            filter: blur(15px);
-        }
-
-        @keyframes firePulse {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            background: rgba(15, 23, 42, 0.75);
+            border-color: rgba(212, 175, 55, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
 
         .concierge-header {
@@ -287,7 +178,7 @@
             color: #334155;
             padding: 0.75rem 2rem;
             border-radius: 9999px;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -334,9 +225,8 @@
         }
 
         .smart-label {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
             font-weight: 700;
             color: #64748B;
             margin-left: 0.5rem;
@@ -346,74 +236,76 @@
             margin-right: 0.5rem;
         }
 
-        /* توحيد تصميم الـ Select والـ Input */
         .smart-select-box, .smart-input-box {
             appearance: none;
-            background-color: #F8FAFC;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 16px;
-            padding: 1.25rem 1.5rem;
+            background-color: #ffffff;
+            border: 1px solid #E2E8F0;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
             font-size: 1rem;
-            font-weight: 600;
             color: #0F172A;
             transition: all 0.3s ease;
             width: 100%;
         }
         .smart-select-box {
             cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23D4AF37'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394A3B8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
-            background-position: right 1.5rem center;
-            background-size: 1.2em;
+            background-position: right 1rem center;
+            background-size: 1em;
         }
         html[dir="rtl"] .smart-select-box {
-             background-position: left 1.5rem center;
+             background-position: left 1rem center;
         }
 
         .dark .smart-select-box, .dark .smart-input-box {
-            background-color: rgba(15, 23, 42, 0.6);
+            background-color: #1E293B;
+            border-color: #334155;
             color: #F8FAFC;
-        }
-        .smart-input-box::placeholder {
-            color: #94A3B8;
-            font-weight: 500;
         }
 
         .smart-select-box:focus, .smart-input-box:focus {
             outline: none;
             border-color: #D4AF37;
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
         }
 
-        /* التأثير الناري لزر البحث */
-        .smart-btn-wrapper {
-            position: relative;
-            margin-top: 2rem;
-        }
         .smart-btn {
             background: #030508;
             color: #D4AF37;
             border: none;
-            padding: 1.25rem 3rem;
+            padding: 1rem 2.5rem;
             border-radius: 9999px;
-            font-weight: 800;
+            font-weight: 700;
             font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
-            width: 100%;
+            width: fit-content;
+            margin: 2rem auto 0;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
-            position: relative;
-            z-index: 2;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
+        
         .dark .smart-btn {
             background: #D4AF37;
             color: #030508;
         }
+
         .smart-btn:hover {
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+        
+        .calc-result {
+            text-align: center;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: #D4AF37;
+            font-size: 1.1rem;
+            min-height: 1.5rem;
         }
     </style>
 </head>
@@ -425,18 +317,17 @@
             <button onclick="hideArticleModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-9 h-9 sm:w-10 sm:h-10 rounded-full border border-brand-gold/40 bg-black/40 backdrop-blur-md flex items-center justify-center text-white hover:text-brand-gold transition z-10">
                 <i class="fas fa-times"></i>
             </button>
-            <div class="h-56 sm:h-[400px] w-full overflow-hidden rounded-2xl mb-8 sm:mb-10 shadow-inner bg-slate-900 flex items-center justify-center relative group">
-                <div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition z-10 pointer-events-none"></div>
-                <img id="modal-img" src="" alt="Article Banner" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';" class="w-full h-full object-cover transform transition duration-1000 group-hover:scale-105">
+            <div class="h-56 sm:h-96 w-full overflow-hidden rounded-2xl mb-5 sm:mb-8 shadow-inner">
+                <img id="modal-img" src="" alt="Article Banner" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';" class="w-full h-full object-cover">
             </div>
-            <span id="modal-category" class="text-brand-gold text-sm tracking-widest font-bold uppercase block mb-4 text-center"></span>
-            <h2 id="modal-title" class="font-luxury text-3xl sm:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white mb-8 leading-tight notranslate text-center" translate="no"></h2>
-            <div class="w-32 h-[3px] bg-brand-gold mb-10 mx-auto"></div>
-            <div id="modal-body" class="article-content notranslate px-2 sm:px-6" translate="no"></div>
+            <span id="modal-category" class="text-brand-gold text-sm tracking-widest font-bold uppercase block mb-3"></span>
+            <h2 id="modal-title" class="font-luxury text-2xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-6 leading-tight notranslate" translate="no"></h2>
+            <div class="w-24 h-[3px] bg-brand-gold mb-8"></div>
+            <div id="modal-body" class="article-content text-slate-700 dark:text-slate-300 text-base sm:text-lg leading-relaxed notranslate" translate="no"></div>
         </div>
     </div>
 
-    <!-- نافذة التوجيه السينمائية (سيتم تطويرها في الجزء 2) -->
+    <!-- نافذة التوجيه السينمائية -->
     <div id="cinematic-overlay">
         <div class="text-center p-6 max-w-md mx-auto">
             <div class="relative w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-6 sm:mb-8 flex items-center justify-center">
@@ -485,7 +376,7 @@
         </div>
     </header>
 
-    <!-- الهيرو -->
+    <!-- الهيرو (بالصورة المرفوعة على جيت هاب) -->
     <section class="relative py-20 sm:py-40 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center min-h-[60vh] sm:min-h-[75vh]">
         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-105" style="background-image: url('./hero-bg.png');"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-brand-dark"></div>
@@ -517,12 +408,12 @@
         </div>
     </section>
 
-    <!-- الجزء الأول: قسم المساعدين الذكيين (بتأثير ناري وإدخال حر) -->
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div class="smart-concierge-container fire-glow">
+    <!-- المساعد الذكي (تمت إضافته فوق قسم المقالات) -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="smart-concierge-container">
             <div class="concierge-header">
                 <h2 class="font-luxury text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4" data-i18n="smart_hub_title">Akıllı Seyahat Asistanınız</h2>
-                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-lg max-w-2xl mx-auto font-medium" data-i18n="smart_hub_sub">Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planınızı saniyeler içinde tasarlayın.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-lg max-w-3xl mx-auto font-medium" data-i18n="smart_hub_sub">Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil planını saniyeler içinde tasarlayın.</p>
             </div>
 
             <!-- أزرار التبديل -->
@@ -535,69 +426,64 @@
                 </button>
             </div>
 
-            <!-- 1. مساعد الفنادق -->
+            <!-- 1. مساعد السكن (Hotel Concierge) -->
             <div id="panel-hotel" class="concierge-panel active">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="smart-input-group">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div class="smart-input-group md:col-span-2">
                         <label class="smart-label" data-i18n="c_budget">Bütçeniz</label>
-                        <!-- حقل نصي حر للميزانية -->
-                        <input type="text" id="hc-budget" class="smart-input-box" data-i18n-placeholder="c_budget_ph" placeholder="Örn: 1000 USD, 5000 TL...">
+                        <input type="text" id="hc-budget" class="smart-input-box" oninput="calculateTotal()" placeholder="">
                     </div>
-                    <div class="smart-input-group">
-                        <label class="smart-label" data-i18n="c_vibe">Tatil Tarzı</label>
-                        <select id="hc-vibe" class="smart-select-box">
-                            <option value="luxury" data-i18n="vibe_luxury">Lüks Resort & Spa</option>
-                            <option value="beach" data-i18n="vibe_beach">Sahil ve Plaj</option>
-                            <option value="nature" data-i18n="vibe_nature">Doğa ve Dağ Evi</option>
-                            <option value="history" data-i18n="vibe_history">Tarih ve Kültür</option>
-                            <option value="city" data-i18n="vibe_city">Şehir Merkezi & Alışveriş</option>
-                            <option value="family" data-i18n="vibe_family">Aile Dostu Tatil</option>
-                            <option value="romantic" data-i18n="vibe_romantic">Balayı / Romantik</option>
-                            <option value="thermal" data-i18n="vibe_thermal">Termal & Sağlık</option>
+                    <div class="smart-input-group md:col-span-2">
+                        <label class="smart-label" data-i18n="c_days">Konaklama Süresi (Gün)</label>
+                        <input type="number" id="hc-days" class="smart-input-box" oninput="calculateTotal()" placeholder="">
+                    </div>
+                    
+                    <div class="smart-input-group md:col-span-2">
+                        <label class="smart-label" data-i18n="c_type">Konaklama Tipi</label>
+                        <select id="hc-type" class="smart-select-box" onchange="updateHotelBtnText()">
+                            <option value="hotel" data-i18n="t_hotel">Oteller</option>
+                            <option value="resort" data-i18n="t_resort">Tatil Köyleri (Resort)</option>
+                            <option value="apart" data-i18n="t_apart">Apart Oteller</option>
                         </select>
                     </div>
-                    <div class="smart-input-group">
+                    <div class="smart-input-group md:col-span-2">
                         <label class="smart-label" data-i18n="c_dest">Hedef Bölge</label>
-                        <!-- جميع 81 محافظة تركية -->
                         <select id="hc-dest" class="smart-select-box">
-                            <option value="all" data-i18n="c_all_tr">Tüm Türkiye (Şaşırt Beni)</option>
+                            <option value="Tüm Türkiye" data-i18n="c_all_tr">Tüm Türkiye</option>
                             <option value="Adana">Adana</option><option value="Adıyaman">Adıyaman</option><option value="Afyonkarahisar">Afyonkarahisar</option><option value="Ağrı">Ağrı</option><option value="Amasya">Amasya</option><option value="Ankara">Ankara</option><option value="Antalya">Antalya</option><option value="Artvin">Artvin</option><option value="Aydın">Aydın</option><option value="Balıkesir">Balıkesir</option><option value="Bilecik">Bilecik</option><option value="Bingöl">Bingöl</option><option value="Bitlis">Bitlis</option><option value="Bolu">Bolu</option><option value="Burdur">Burdur</option><option value="Bursa">Bursa</option><option value="Çanakkale">Çanakkale</option><option value="Çankırı">Çankırı</option><option value="Çorum">Çorum</option><option value="Denizli">Denizli</option><option value="Diyarbakır">Diyarbakır</option><option value="Edirne">Edirne</option><option value="Elazığ">Elazığ</option><option value="Erzincan">Erzincan</option><option value="Erzurum">Erzurum</option><option value="Eskişehir">Eskişehir</option><option value="Gaziantep">Gaziantep</option><option value="Giresun">Giresun</option><option value="Gümüşhane">Gümüşhane</option><option value="Hakkari">Hakkari</option><option value="Hatay">Hatay</option><option value="Isparta">Isparta</option><option value="Mersin">Mersin</option><option value="İstanbul">İstanbul</option><option value="İzmir">İzmir</option><option value="Kars">Kars</option><option value="Kastamonu">Kastamonu</option><option value="Kayseri">Kayseri</option><option value="Kırklareli">Kırklareli</option><option value="Kırşehir">Kırşehir</option><option value="Kocaeli">Kocaeli</option><option value="Konya">Konya</option><option value="Kütahya">Kütahya</option><option value="Malatya">Malatya</option><option value="Manisa">Manisa</option><option value="Kahramanmaraş">Kahramanmaraş</option><option value="Mardin">Mardin</option><option value="Muğla">Muğla</option><option value="Muş">Muş</option><option value="Nevşehir">Nevşehir</option><option value="Niğde">Niğde</option><option value="Ordu">Ordu</option><option value="Rize">Rize</option><option value="Sakarya">Sakarya</option><option value="Samsun">Samsun</option><option value="Siirt">Siirt</option><option value="Sinop">Sinop</option><option value="Sivas">Sivas</option><option value="Tekirdağ">Tekirdağ</option><option value="Tokat">Tokat</option><option value="Trabzon">Trabzon</option><option value="Tunceli">Tunceli</option><option value="Şanlıurfa">Şanlıurfa</option><option value="Uşak">Uşak</option><option value="Van">Van</option><option value="Yozgat">Yozgat</option><option value="Zonguldak">Zonguldak</option><option value="Aksaray">Aksaray</option><option value="Bayburt">Bayburt</option><option value="Karaman">Karaman</option><option value="Kırıkkale">Kırıkkale</option><option value="Batman">Batman</option><option value="Şırnak">Şırnak</option><option value="Bartın">Bartın</option><option value="Ardahan">Ardahan</option><option value="Iğdır">Iğdır</option><option value="Yalova">Yalova</option><option value="Karabük">Karabük</option><option value="Kilis">Kilis</option><option value="Osmaniye">Osmaniye</option><option value="Düzce">Düzce</option>
                         </select>
                     </div>
                 </div>
-                <div class="smart-btn-wrapper fire-glow">
-                    <button onclick="startHotelConcierge()" class="smart-btn">
-                        <i class="fas fa-search-location"></i> <span data-i18n="c_btn_hotel">Bana Özel Otel Bul</span>
-                    </button>
-                </div>
+                
+                <div id="total-calc-display" class="calc-result"></div>
+                
+                <button onclick="startHotelConcierge()" class="smart-btn" id="btn-hotel">
+                    <i class="fas fa-search-location"></i> <span id="btn-hotel-text" data-i18n="btn_hotel">Bana Otel Bul</span>
+                </button>
             </div>
 
-            <!-- 2. مساعد الطيران -->
+            <!-- 2. مساعد الطيران (Flight Concierge) -->
             <div id="panel-flight" class="concierge-panel">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div class="smart-input-group">
-                        <label class="smart-label" data-i18n="f_from">Nereden (Tüm Dünya)</label>
-                        <!-- إدخال حر لجميع دول/مدن العالم -->
-                        <input type="text" id="fc-from" class="smart-input-box" data-i18n-placeholder="f_from_ph" placeholder="Dünyanın her yerinden (Örn: Dubai, Paris...)">
+                        <label class="smart-label" data-i18n="f_from">Nereden</label>
+                        <!-- إدخال حر لجميع دول العالم -->
+                        <input type="text" id="fc-from" class="smart-input-box" placeholder="">
                     </div>
                     <div class="smart-input-group">
-                        <label class="smart-label" data-i18n="f_to">Nereye (Türkiye)</label>
-                        <!-- 81 محافظة تركية -->
+                        <label class="smart-label" data-i18n="f_to">Nereye</label>
                         <select id="fc-to" class="smart-select-box">
-                            <option value="İstanbul">İstanbul</option><option value="Antalya">Antalya</option><option value="Trabzon">Trabzon</option><option value="İzmir">İzmir</option><option value="Ankara">Ankara</option><option value="Bursa">Bursa</option>
-                            <option value="Adana">Adana</option><option value="Adıyaman">Adıyaman</option><option value="Afyonkarahisar">Afyonkarahisar</option><option value="Ağrı">Ağrı</option><option value="Amasya">Amasya</option><option value="Artvin">Artvin</option><option value="Aydın">Aydın</option><option value="Balıkesir">Balıkesir</option><option value="Bilecik">Bilecik</option><option value="Bingöl">Bingöl</option><option value="Bitlis">Bitlis</option><option value="Bolu">Bolu</option><option value="Burdur">Burdur</option><option value="Çanakkale">Çanakkale</option><option value="Çankırı">Çankırı</option><option value="Çorum">Çorum</option><option value="Denizli">Denizli</option><option value="Diyarbakır">Diyarbakır</option><option value="Edirne">Edirne</option><option value="Elazığ">Elazığ</option><option value="Erzincan">Erzincan</option><option value="Erzurum">Erzurum</option><option value="Eskişehir">Eskişehir</option><option value="Gaziantep">Gaziantep</option><option value="Giresun">Giresun</option><option value="Gümüşhane">Gümüşhane</option><option value="Hakkari">Hakkari</option><option value="Hatay">Hatay</option><option value="Isparta">Isparta</option><option value="Mersin">Mersin</option><option value="Kars">Kars</option><option value="Kastamonu">Kastamonu</option><option value="Kayseri">Kayseri</option><option value="Kırklareli">Kırklareli</option><option value="Kırşehir">Kırşehir</option><option value="Kocaeli">Kocaeli</option><option value="Konya">Konya</option><option value="Kütahya">Kütahya</option><option value="Malatya">Malatya</option><option value="Manisa">Manisa</option><option value="Kahramanmaraş">Kahramanmaraş</option><option value="Mardin">Mardin</option><option value="Muğla">Muğla</option><option value="Muş">Muş</option><option value="Nevşehir">Nevşehir</option><option value="Niğde">Niğde</option><option value="Ordu">Ordu</option><option value="Rize">Rize</option><option value="Sakarya">Sakarya</option><option value="Samsun">Samsun</option><option value="Siirt">Siirt</option><option value="Sinop">Sinop</option><option value="Sivas">Sivas</option><option value="Tekirdağ">Tekirdağ</option><option value="Tokat">Tokat</option><option value="Tunceli">Tunceli</option><option value="Şanlıurfa">Şanlıurfa</option><option value="Uşak">Uşak</option><option value="Van">Van</option><option value="Yozgat">Yozgat</option><option value="Zonguldak">Zonguldak</option><option value="Aksaray">Aksaray</option><option value="Bayburt">Bayburt</option><option value="Karaman">Karaman</option><option value="Kırıkkale">Kırıkkale</option><option value="Batman">Batman</option><option value="Şırnak">Şırnak</option><option value="Bartın">Bartın</option><option value="Ardahan">Ardahan</option><option value="Iğdır">Iğdır</option><option value="Yalova">Yalova</option><option value="Karabük">Karabük</option><option value="Kilis">Kilis</option><option value="Osmaniye">Osmaniye</option><option value="Düzce">Düzce</option>
+                            <option value="Adana">Adana</option><option value="Adıyaman">Adıyaman</option><option value="Afyonkarahisar">Afyonkarahisar</option><option value="Ağrı">Ağrı</option><option value="Amasya">Amasya</option><option value="Ankara">Ankara</option><option value="Antalya">Antalya</option><option value="Artvin">Artvin</option><option value="Aydın">Aydın</option><option value="Balıkesir">Balıkesir</option><option value="Bilecik">Bilecik</option><option value="Bingöl">Bingöl</option><option value="Bitlis">Bitlis</option><option value="Bolu">Bolu</option><option value="Burdur">Burdur</option><option value="Bursa">Bursa</option><option value="Çanakkale">Çanakkale</option><option value="Çankırı">Çankırı</option><option value="Çorum">Çorum</option><option value="Denizli">Denizli</option><option value="Diyarbakır">Diyarbakır</option><option value="Edirne">Edirne</option><option value="Elazığ">Elazığ</option><option value="Erzincan">Erzincan</option><option value="Erzurum">Erzurum</option><option value="Eskişehir">Eskişehir</option><option value="Gaziantep">Gaziantep</option><option value="Giresun">Giresun</option><option value="Gümüşhane">Gümüşhane</option><option value="Hakkari">Hakkari</option><option value="Hatay">Hatay</option><option value="Isparta">Isparta</option><option value="Mersin">Mersin</option><option value="İstanbul">İstanbul</option><option value="İzmir">İzmir</option><option value="Kars">Kars</option><option value="Kastamonu">Kastamonu</option><option value="Kayseri">Kayseri</option><option value="Kırklareli">Kırklareli</option><option value="Kırşehir">Kırşehir</option><option value="Kocaeli">Kocaeli</option><option value="Konya">Konya</option><option value="Kütahya">Kütahya</option><option value="Malatya">Malatya</option><option value="Manisa">Manisa</option><option value="Kahramanmaraş">Kahramanmaraş</option><option value="Mardin">Mardin</option><option value="Muğla">Muğla</option><option value="Muş">Muş</option><option value="Nevşehir">Nevşehir</option><option value="Niğde">Niğde</option><option value="Ordu">Ordu</option><option value="Rize">Rize</option><option value="Sakarya">Sakarya</option><option value="Samsun">Samsun</option><option value="Siirt">Siirt</option><option value="Sinop">Sinop</option><option value="Sivas">Sivas</option><option value="Tekirdağ">Tekirdağ</option><option value="Tokat">Tokat</option><option value="Trabzon">Trabzon</option><option value="Tunceli">Tunceli</option><option value="Şanlıurfa">Şanlıurfa</option><option value="Uşak">Uşak</option><option value="Van">Van</option><option value="Yozgat">Yozgat</option><option value="Zonguldak">Zonguldak</option><option value="Aksaray">Aksaray</option><option value="Bayburt">Bayburt</option><option value="Karaman">Karaman</option><option value="Kırıkkale">Kırıkkale</option><option value="Batman">Batman</option><option value="Şırnak">Şırnak</option><option value="Bartın">Bartın</option><option value="Ardahan">Ardahan</option><option value="Iğdır">Iğdır</option><option value="Yalova">Yalova</option><option value="Karabük">Karabük</option><option value="Kilis">Kilis</option><option value="Osmaniye">Osmaniye</option><option value="Düzce">Düzce</option>
                         </select>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div class="smart-input-group">
-                        <label class="smart-label" data-i18n="c_budget">Bütçeniz</label>
-                        <!-- حقل نصي حر لميزانية الطيران -->
-                        <input type="text" id="fc-budget" class="smart-input-box" data-i18n-placeholder="c_budget_ph" placeholder="Örn: 1000 USD, 5000 TL...">
+                        <label class="smart-label" data-i18n="f_budget">Bütçeniz</label>
+                        <input type="text" id="fc-budget" class="smart-input-box" placeholder="">
                     </div>
                     <div class="smart-input-group">
                         <label class="smart-label" data-i18n="f_class">Uçuş Sınıfı</label>
-                        <!-- درجة الطيران -->
                         <select id="fc-class" class="smart-select-box">
                             <option value="economy" data-i18n="class_eco">Ekonomi</option>
                             <option value="premium" data-i18n="class_prem">Premium Ekonomi</option>
@@ -606,16 +492,13 @@
                         </select>
                     </div>
                     <div class="smart-input-group">
-                        <label class="smart-label" data-i18n="f_airline">Havayolu</label>
-                        <!-- إدخال حر لجميع الخطوط الجوية -->
-                        <input type="text" id="fc-airline" class="smart-input-box" data-i18n-placeholder="f_airline_ph" placeholder="Tüm Havayolları">
+                        <label class="smart-label" data-i18n="f_airline">Havayolu (İsteğe bağlı)</label>
+                        <input type="text" id="fc-airline" class="smart-input-box" placeholder="">
                     </div>
                 </div>
-                <div class="smart-btn-wrapper fire-glow">
-                    <button onclick="startFlightConcierge()" class="smart-btn">
-                        <i class="fas fa-paper-plane"></i> <span data-i18n="f_btn">En Ucuz Uçuşu Bul</span>
-                    </button>
-                </div>
+                <button onclick="startFlightConcierge()" class="smart-btn">
+                    <i class="fas fa-paper-plane"></i> <span data-i18n="btn_flight">Uçuşumu Şimdi Bul</span>
+                </button>
             </div>
         </div>
     </section>
@@ -774,7 +657,7 @@
                 "إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.": {ar:"إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.", tr:"Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.", en:"Luxury accommodation including meals and recreational activities on the Mediterranean coast.", ru:"Роскошное проживание, включая питание и развлекательные мероприятия на побережье Средиземного моря.", es:"Alojamiento de lujo que incluye comidas y actividades recreativas en la costa mediterránea.", zh:"地中海沿岸提供餐饮和娱乐活动的豪华住宿。", ku:"Rûniştina luks bi xwarin û çalakiyên şahiyê li perava Deryaya Spî."},
                 "أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.", tr:"Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services near the beach.", ru:"Просторные семейные люксы с видом на море и полным спектром гостиничных услуг рядом с пляжем.", es:"Amplias suites familiares con vistas al mar y servicios completos de hotel cerca de la playa.", zh:"靠近海滩的宽敞海景家庭套房，提供全套酒店服务。", ku:"Suiteyên malbatî yên fireh bi dîmena deryayê ve karûbarên otelê yên tevahî li nêzî peravê."},
                 "تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.": {ar:"تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.", tr:"Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.", en:"A luxurious stay experience in the heart of Izmir with a charming panoramic view of the bay.", ru:"Роскошный опыт проживания в самом сердце Измира с очаровательным панорамным видом на залив.", es:"Una experiencia de estancia de lujo en el corazón de Izmir con una encantadora vista panorámica de la bahía.", zh:"在伊兹密尔市中心享受豪华住宿体验，欣赏迷人的海湾全景。", ku:"Ezmûneke rûniştinê ya luks li dilê Îzmîrê bi dîmenek panoramîk a balkêş a kendavê."},
-                "إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.": {ar:"إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.", tr:"Karadeniz'in yeşil doğası ve yaylalarında aileler için huzurlu bir konaklama.", en:"A quiet stay amidst the green nature and highlands of the Black Sea for families.", ru:"Спокойный отдых среди зеленой природы и высокогорий Черного моря для семей.", es:"Una estancia tranquila en medio de la naturaleza verde y las tierras altas del Mar Negro для familias.", zh:"在黑海的绿色自然和高地中为家庭提供宁静的住宿。", ku:"Rûniştinek aram di nav xwezaya kesk ve zozanên Deryaya Reş de ji bo malbatan."},
+                "إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.": {ar:"إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.", tr:"Karadeniz'in yeşil doğası ve yaylalarında aileler için huzurlu bir konaklama.", en:"A quiet stay amidst the green nature and highlands of the Black Sea for families.", ru:"Спокойный отдых среди зеленой природы и высокогорий Черного моря для семей.", es:"Una estancia tranquila en medio de la naturaleza verde y las tierras altas del Mar Negro para familias.", zh:"在黑海的绿色自然和高地中为家庭提供宁静的住宿。", ku:"Rûniştinek aram di nav xwezaya kesk ve zozanên Deryaya Reş de ji bo malbatan."},
                 "موقع استثنائي يجمع بين عبق التاريخ وسهولة الوصول إلى البوسفور.": {ar:"موقع استثنائي يجمع بين عبق التاريخ وسهولة الوصول إلى البوسفور.", tr:"Tarihin dokusunu Boğaz'a kolay erişimle birleştiren olağanüstü bir konum.", en:"An exceptional location combining the fragrance of history with easy access to the Bosphorus.", ru:"Исключительное расположение, сочетающее аромат истории с легким доступом к Босфору.", es:"Una ubicación excepcional que combina la fragancia de la historia con fácil acceso al Bósforo.", zh:"将历史气息与轻松前往博斯普鲁斯海峡完美结合的绝佳位置。", ku:"Cihêyek îstîsnaî ku bîhna dîrokê bi gihîştina hêsan a Bosforê re dihewîne."},
                 "استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية الشهيرة.": {ar:"استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية الشهيرة.", tr:"Uludağ ve ünlü termal kaplıcaların yakınında mükemmel bir dinlenme.", en:"Perfect relaxation near Mount Uludag and the famous mineral springs.", ru:"Идеальный отдых рядом с горой Улудаг и знаменитыми минеральными источниками.", es:"Relajación perfecta cerca del Monte Uludag y las famosas fuentes termales.", zh:"在乌鲁达山和著名的矿泉附近享受完美的放松。", ku:"Bêhnvedana bêkêmasî li nêzî Çiyayê Uludag ve kaniyên navdar ên mîneral."},
                 "استعرض أفضل منتجعات أنطاليا الشاملة للوجبات والأنشطة.": {ar:"استعرض أفضل منتجعات أنطاليا الشاملة للوجبات والأنشطة.", tr:"Antalya'nın en iyi her şey dahil resortlarını keşfedin.", en:"Explore the best all-inclusive resorts in Antalya.", ru:"Откройте для себя лучшие курорты «все включено» в Анталье.", es:"Explora los mejores resorts todo incluido en Antalya.", zh:"探索安塔利亚最好的全包度假村。", ku:"Li Antalyayê resortên herî baş ên hemû tişt tê de bigerin."},
@@ -823,15 +706,62 @@
             if (!article) return;
             const currentLang = document.documentElement.lang || 'tr';
             let title = article.titles ? (article.titles[currentLang] || article.titles['tr']) : article.title;
-            let body = article.titles ? (article.bodies[currentLang] || article.bodies['tr']) : article.body;
-            document.getElementById('modal-img').src = article.image;
-            document.getElementById('modal-category').textContent = article.category;
+            
+            // 1. تحديد النسخة الأساسية الغنية بالصور
+            const richBody = article.body || (article.bodies && article.bodies['ar']) || '';
+            
+            // 2. جلب النص المترجم للغة الحالية
+            let body = '';
+            if (article.bodies && article.bodies[currentLang] && article.bodies[currentLang].length > 200) {
+                body = article.bodies[currentLang];
+            } else {
+                body = richBody; // بديل احتياطي إذا كان النص فارغاً تماماً
+            }
+
+            // 3. إصلاح خلل الذكاء الاصطناعي: تنسيق النص الخام
+            if (body.indexOf('<p') === -1 && body.indexOf('<div') === -1) {
+                body = body.split('\n')
+                           .filter(line => line.trim().length > 0)
+                           .map(line => `<p>${line.trim()}</p>`)
+                           .join('');
+            }
+
+            // 4. زرع الصور بذكاء
+            if (body.indexOf('<img') === -1 && richBody.indexOf('<img') !== -1) {
+                const imgTags = richBody.match(/<img[^>]+>/g) || [];
+                if (imgTags.length > 0) {
+                    const paragraphs = body.split('</p>');
+                    let newBody = '';
+                    let imgIndex = 0;
+                    
+                    for (let i = 0; i < paragraphs.length; i++) {
+                        newBody += paragraphs[i] + (paragraphs[i].trim() ? '</p>' : '');
+                        if (i === 0 || i === 3 || i === 6) {
+                            if (imgIndex < imgTags.length) {
+                                newBody += `<div class="article-image-wrapper">${imgTags[imgIndex]}</div>`;
+                                imgIndex++;
+                            }
+                        }
+                    }
+                    while(imgIndex < imgTags.length) {
+                         newBody += `<div class="article-image-wrapper">${imgTags[imgIndex]}</div>`;
+                         imgIndex++;
+                    }
+                    body = newBody;
+                }
+            }
+
+            // 5. إزالة تشوهات الـ Drop Cap
+            body = body.replace(/<span[^>]*font-size:\s*[2-5]em[^>]*>(.*?)<\/span>/gi, '<strong>$1</strong>');
+            body = body.replace(/<span[^>]*float:\s*left[^>]*>(.*?)<\/span>/gi, '$1');
+            
+            document.getElementById('modal-img').src = article.image || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';
+            document.getElementById('modal-category').textContent = translateTextStrong(article.category || 'TÜRKİYE', currentLang);
             document.getElementById('modal-title').textContent = title;
             
             const modalBody = document.getElementById('modal-body');
             modalBody.innerHTML = body;
             
-            // حماية إضافية للصور
             modalBody.querySelectorAll('img').forEach(img => {
                 img.onerror = function() {
                     this.onerror = null;
@@ -854,53 +784,35 @@
             if (e.target.id === 'article-modal') window.hideArticleModal();
         };
 
-        // --- دوال المساعدين الذكيين ---
-        window.switchConcierge = function(tabName) {
-            document.querySelectorAll('.concierge-tab-btn').forEach(btn => btn.classList.remove('active'));
-            document.querySelectorAll('.concierge-panel').forEach(panel => panel.classList.remove('active'));
-            
-            document.getElementById(`tab-${tabName}`).classList.add('active');
-            document.getElementById(`panel-${tabName}`).classList.add('active');
-        };
-
-        window.startHotelConcierge = function() {
-            // سيتم تفعيل الروابط العميقة لاحقاً
-            alert('Yapay Zeka Destekli Otel Arama Başlatıldı...');
-        };
-
-        window.startFlightConcierge = function() {
-            // سيتم تفعيل الروابط العميقة لاحقاً
-            alert('Yapay Zeka Destekli Uçuş Arama Başlatıldı...');
-        };
-
+        // --- دوال الترجمة الشاملة للواجهة ---
         const TRANSLATIONS = {
             tr: {
                 dir: "ltr", hero_title: "Seçkin Rotaları Lüksle Keşfedin", hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.", hotels_sub: "ÖZEL SEÇKİ", hotels_heading: "Özel Seçki Koleksiyonu", starting_from: "Başlayan Fiyatlar", flights_sub: "GÖKLERDEKİ ZARAFET", flights_heading: "Ayrıcalıklı Uçuşlar", blog_sub: "SEYAHAT REHBERİ", blog_heading: "UcuzaKal Seyahat Günlüğü", read_more: "Devamını Oku", about_heading: "Biz Kimiz?", about_text_1: "UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.", about_text_2: "Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.", ratings_heading: "İzlenimlerinizi Paylaşın", review_name_placeholder: "Adınız Soyadınız", review_text_placeholder: "Düşünceleriniz...", submit_review_btn: "Gönder", review_success: "Zarif geri bildiriminiz için teşekkür ederiz.", rights: "Tüm hakları saklıdır UcuzaKal Türkiye", google_login: "Gmail Girişi", cinematic_title: "Rezervasyon Platformuna Yönlendiriliyorsunuz...", no_deals_text: "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın.", global_channels: "Global Resmi Kanallarımız",
-                smart_hub_title: "Akıllı Seyahat Asistanınız", smart_hub_sub: "Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planınızı saniyeler içinde tasarlayın.", tab_hotel: "Konaklama Asistanı", tab_flight: "Uçuş Asistanı", c_budget: "Bütçeniz", c_budget_ph: "Örn: 1000 USD, 5000 TL...", c_vibe: "Tatil Tarzı", vibe_luxury: "Lüks Resort & Spa", vibe_beach: "Sahil ve Plaj", vibe_nature: "Doğa ve Dağ Evi", vibe_history: "Tarih ve Kültür", vibe_city: "Şehir Merkezi & Alışveriş", vibe_family: "Aile Dostu Tatil", vibe_romantic: "Balayı / Romantik", vibe_thermal: "Termal & Sağlık", c_dest: "Hedef Bölge", c_all_tr: "Tüm Türkiye (Şaşırt Beni)", c_btn_hotel: "Bana Özel Otel Bul", f_from: "Nereden (Tüm Dünya)", f_from_ph: "Dünyanın her yerinden (Örn: Dubai, Paris...)", f_to: "Nereye (Türkiye)", f_class: "Uçuş Sınıfı", class_eco: "Ekonomi", class_prem: "Premium Ekonomi", class_bus: "Business Class", class_first: "First Class", f_airline: "Havayolu", f_airline_ph: "Örn: Turkish Airlines, Emirates (Boş bırakılabilir)", f_btn: "En Ucuz Uçuşu Bul"
+                smart_hub_title: "Akıllı Seyahat Asistanınız", smart_hub_sub: "Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planınızı saniyeler içinde tasarlayın.", tab_hotel: "Konaklama Asistanı", tab_flight: "Uçuş Asistanı", c_budget: "Bütçeniz", c_budget_ph: "Örn: 1000 USD, 5000 TL...", c_type: "Konaklama Tipi", t_hotel: "Oteller", t_resort: "Tatil Köyleri (Resort)", t_apart: "Apart Oteller", c_days: "Konaklama Süresi (Gün)", c_dest: "Hedef Bölge", c_all_tr: "Tüm Türkiye", btn_hotel: "Bana Otel Bul", btn_resort: "Bana Resort Bul", btn_apart: "Bana Apart Bul", f_from: "Nereden", f_from_ph: "Dünyanın her yerinden...", f_to: "Nereye", f_budget: "Bütçeniz", f_class: "Uçuş Sınıfı", class_eco: "Ekonomi", class_prem: "Premium Ekonomi", class_bus: "Business Class", class_first: "First Class", f_airline: "Havayolu (İsteğe bağlı)", f_airline_ph: "Tüm Havayolları", btn_flight: "Uçuşumu Şimdi Bul", total_est: "Tahmini Toplam:"
             },
             ar: {
                 dir: "rtl", hero_title: "اكتشف روعة الوجهات الفاخرة", hero_subtitle: "مختارات إقامة وطيران حصرية مصممة لتلبية ذوقك الرفيع في أبرز وجهات تركيا.", hotels_sub: "مختارات خاصة", hotels_heading: "مجموعة المختارات الخاصة", starting_from: "الأسعار تبدأ من", flights_sub: "أناقة الأجواء", flights_heading: "مسارات الرحلات الحصرية", blog_sub: "دليل السفر", blog_heading: "يوميات UcuzaKal السياحية", read_more: "اقرأ المزيد", about_heading: "من نحن؟", about_text_1: "UcuzaKal Türkiye هي منصة سفر مستقلة تجمع لك أفضل عروض الإقامة ورحلات الطيران في أرقى الوجهات التركية. هدفنا هو تقديم أدق الأسعار بشفافية تامة، وتحويل تخطيط سفرك إلى تجربة استثنائية تلبي ذوقك الرفيع.", about_text_2: "تم تصميم وتنسيق كل مسار بعناية فائقة لضمان ألا يكون سفرك مجرد وجهة وصول؛ بل ليبقى كذكرى نبيلة لا تُنسى تلبي كافة توقعاتك.", ratings_heading: "شاركنا انطباعاتك", review_name_placeholder: "الاسم الكريم...", review_text_placeholder: "اكتب انطباعاتك هنا...", submit_review_btn: "إرسال", review_success: "نقدر لك هذا التقييم الراقي، شكراً لثقتك.", rights: "جميع الحقوق محفوظة UcuzaKal Türkiye", google_login: "دخول Gmail", cinematic_title: "جاري تحويلك لمنصة الحجز...", no_deals_text: "نأسف بشدة، لا توجد عروض في الوقت الحالي، شرفنا بالزيارة بعد قليل.", global_channels: "قنواتنا الرسمية العالمية",
-                smart_hub_title: "المستشار السياحي الذكي", smart_hub_sub: "صمم خطة عطلتك ورحلاتك الجوية الشخصية في ثوانٍ باستخدام خوارزميات الذكاء الاصطناعي لدينا.", tab_hotel: "مساعد الفنادق", tab_flight: "مساعد الطيران", c_budget: "ميزانيتك", c_budget_ph: "مثال: 1000 دولار، 5000 ريال...", c_vibe: "جو الرحلة", vibe_luxury: "منتجع فاخر وسبا", vibe_beach: "شواطئ واسترخاء", vibe_nature: "طبيعة وأكواخ جبلية", vibe_history: "تاريخ وثقافة", vibe_city: "مدينة وتسوق", vibe_family: "عائلي ومريح", vibe_romantic: "رومانسي وشهر عسل", vibe_thermal: "ينابيع حارة واستشفاء", c_dest: "الوجهة المطلوبة", c_all_tr: "كل تركيا (فاجئني)", c_btn_hotel: "ابحث عن فندقي الخاص", f_from: "من أين (أي مكان بالعالم)", f_from_ph: "من أي مدينة أو مطار (مثال: دبي، لندن...)", f_to: "إلى أين (أي محافظة تركية)", f_class: "درجة الطيران", class_eco: "السياحية", class_prem: "السياحية الممتازة", class_bus: "رجال الأعمال", class_first: "الدرجة الأولى", f_airline: "الخطوط الجوية", f_airline_ph: "مثال: طيران الإمارات (أو اتركها للكل)", f_btn: "ابحث عن أرخص رحلة"
+                smart_hub_title: "المستشار السياحي الذكي", smart_hub_sub: "صمم خطة عطلتك ورحلاتك الجوية الشخصية في ثوانٍ باستخدام خوارزميات الذكاء الاصطناعي لدينا.", tab_hotel: "مساعد الفنادق", tab_flight: "مساعد الطيران", c_budget: "ميزانيتك", c_budget_ph: "مثال: 1000 دولار، 5000 ريال...", c_type: "نوع السكن", t_hotel: "فنادق", t_resort: "منتجعات", t_apart: "شقق فندقية", c_days: "مدة الإقامة (بالأيام)", c_dest: "المنطقة المستهدفة", c_all_tr: "كل تركيا", btn_hotel: "ابحث لي عن فندق", btn_resort: "ابحث لي عن منتجع", btn_apart: "ابحث لي عن شقة", f_from: "من أين", f_from_ph: "من أي مكان في العالم...", f_to: "إلى أين", f_budget: "ميزانيتك", f_class: "درجة الطيران", class_eco: "السياحية", class_prem: "السياحية الممتازة", class_bus: "رجال الأعمال", class_first: "الدرجة الأولى", f_airline: "شركة الطيران (اختياري)", f_airline_ph: "اتركها فارغة للبحث في كل الشركات", btn_flight: "ابحث لي عن الرحلة الآن", total_est: "الإجمالي المتوقع:"
             },
             en: {
                 dir: "ltr", hero_title: "Discover Elite Routes in Luxury", hero_subtitle: "Exclusive accommodation and flight opportunities carefully compiled for you in Turkey's most popular destinations.", hotels_sub: "EXCLUSIVE SELECTION", hotels_heading: "Special Selection Collection", starting_from: "Rates Starting From", flights_sub: "ELEGANCE IN THE SKIES", flights_heading: "Privileged Flights", blog_sub: "TRAVEL JOURNAL", blog_heading: "UcuzaKal Travel Journal", read_more: "Read More", about_heading: "Who Are We?", about_text_1: "UcuzaKal Türkiye is an independent travel platform that carefully curates the finest accommodation and flight deals across Turkey's elite destinations.", about_text_2: "Each meticulously compiled route is designed so that your journey becomes an unforgettable standard of elegance.", ratings_heading: "Share Your Impressions", review_name_placeholder: "Full Name", review_text_placeholder: "Your thoughts...", submit_review_btn: "Submit", review_success: "Thank you for your elegant feedback.", rights: "All rights reserved UcuzaKal Türkiye", google_login: "Login with Gmail", cinematic_title: "Redirecting to Booking Platform...", no_deals_text: "There are currently no deals, please honor us with a visit shortly.", global_channels: "Our Global Official Channels",
-                smart_hub_title: "Smart Travel Concierge", smart_hub_sub: "Design your personalized vacation and flight plan in seconds using our AI algorithms.", tab_hotel: "Hotel Concierge", tab_flight: "Flight Concierge", c_budget: "Your Budget", c_budget_ph: "E.g. 1000 USD, 5000 EUR...", c_vibe: "Vacation Vibe", vibe_luxury: "Luxury Resort & Spa", vibe_beach: "Beach & Seaside", vibe_nature: "Nature & Retreat", vibe_history: "History & Culture", vibe_city: "City Center & Shopping", vibe_family: "Family Friendly", vibe_romantic: "Honeymoon & Romantic", vibe_thermal: "Thermal & Wellness", c_dest: "Destination", c_all_tr: "All Turkey (Surprise Me)", c_btn_hotel: "Find My Perfect Hotel", f_from: "From (Anywhere)", f_from_ph: "Any city or airport (E.g. London, Dubai...)", f_to: "To (Turkey)", f_class: "Flight Class", class_eco: "Economy", class_prem: "Premium Economy", class_bus: "Business Class", class_first: "First Class", f_airline: "Airline", f_airline_ph: "E.g. Turkish Airlines (Leave empty for all)", f_btn: "Find Cheapest Flight"
+                smart_hub_title: "Smart Travel Concierge", smart_hub_sub: "Design your personalized vacation and flight plan in seconds using our AI algorithms.", tab_hotel: "Hotel Concierge", tab_flight: "Flight Concierge", c_budget: "Your Budget", c_budget_ph: "E.g. 1000 USD, 5000 EUR...", c_type: "Accommodation Type", t_hotel: "Hotels", t_resort: "Resorts", t_apart: "Serviced Apartments", c_days: "Length of Stay (Days)", c_dest: "Destination", c_all_tr: "All Turkey", btn_hotel: "Find Me a Hotel", btn_resort: "Find Me a Resort", btn_apart: "Find Me an Apartment", f_from: "From", f_from_ph: "From anywhere in the world...", f_to: "To", f_budget: "Your Budget", f_class: "Flight Class", class_eco: "Economy", class_prem: "Premium Economy", class_bus: "Business Class", class_first: "First Class", f_airline: "Airline (Optional)", f_airline_ph: "Leave empty for all airlines", btn_flight: "Find My Flight Now", total_est: "Estimated Total:"
             },
             ru: {
                 dir: "ltr", hero_title: "Откройте для себя элитные маршруты в роскоши", hero_subtitle: "Эксклюзивные предложения по размещению и перелетам в лучших уголках Турции.", hotels_sub: "СПЕЦИАЛЬНЫЙ ВЫБОР", hotels_heading: "Специальная коллекция", starting_from: "Цены от", flights_sub: "ЭЛЕГАНТНОСТЬ В НЕБЕ", flights_heading: "Привилегированные рейсы", blog_sub: "ПУТЕВОДИТЕЛЬ", blog_heading: "Дневник путешествий UcuzaKal", read_more: "Читать далее", about_heading: "О нас", about_text_1: "UcuzaKal Türkiye — независимая туристическая платформа, тщательно собирающая лучшие предложения.", about_text_2: "Каждый маршрут составлен для того, чтобы ваше путешествие стало безупречным опытом.", ratings_heading: "Поделитесь впечатлениями", review_name_placeholder: "Имя Фамилия", review_text_placeholder: "Ваш отзыв...", submit_review_btn: "Отправить", review_success: "Благодарим за ваш отзыв.", rights: "Все права защищены UcuzaKal Türkiye", google_login: "Войти через Gmail", cinematic_title: "Перенаправление на платформу бронирования...", no_deals_text: "В настоящее время предложений нет, пожалуйста, окажите нам честь своим визитом чуть позже.", global_channels: "Наши глобальные официальные каналы",
-                smart_hub_title: "Умный консьерж", smart_hub_sub: "Создайте свой идеальный план отпуска и перелетов за секунды с помощью наших алгоритмов ИИ.", tab_hotel: "Отели", tab_flight: "Авиабилеты", c_budget: "Ваш бюджет", c_budget_ph: "Напр.: 1000 USD, 5000 EUR...", c_vibe: "Стиль отдыха", vibe_luxury: "Люкс и Спа", vibe_beach: "Пляж и Море", vibe_nature: "Природа и Горы", vibe_history: "История и Культура", vibe_city: "Город и Шопинг", vibe_family: "Для семьи", vibe_romantic: "Романтика", vibe_thermal: "Термальные источники", c_dest: "Направление", c_all_tr: "Вся Турция (Сюрприз)", c_btn_hotel: "Найти мой отель", f_from: "Откуда (Весь мир)", f_from_ph: "Любой город (Напр.: Москва, Дубай...)", f_to: "Куда (Турция)", f_class: "Класс", class_eco: "Эконом", class_prem: "Премиум эконом", class_bus: "Бизнес", class_first: "Первый", f_airline: "Авиакомпания", f_airline_ph: "Любая (или введите название)", f_btn: "Найти дешевый рейс"
+                smart_hub_title: "Умный консьерж", smart_hub_sub: "Создайте свой идеальный план отпуска и перелетов за секунды с помощью наших алгоритмов ИИ.", tab_hotel: "Отели", tab_flight: "Авиабилеты", c_budget: "Ваш бюджет", c_budget_ph: "Напр.: 1000 USD, 5000 EUR...", c_type: "Тип размещения", t_hotel: "Отели", t_resort: "Курорты", t_apart: "Апартаменты", c_days: "Срок пребывания (дней)", c_dest: "Направление", c_all_tr: "Вся Турция", btn_hotel: "Найти отель", btn_resort: "Найти курорт", btn_apart: "Найти апартаменты", f_from: "Откуда", f_from_ph: "Из любой точки мира...", f_to: "Куда", f_budget: "Ваш бюджет", f_class: "Класс", class_eco: "Эконом", class_prem: "Премиум эконом", class_bus: "Бизнес", class_first: "Первый", f_airline: "Авиакомпания (необязательно)", f_airline_ph: "Оставьте пустым для всех", btn_flight: "Найти рейс сейчас", total_est: "Итого:"
             },
             es: {
                 dir: "ltr", hero_title: "Descubra Rutas de Élite con Lujo", hero_subtitle: "Oportunidades exclusivas de alojamiento y vuelos cuidadosamente compiladas para usted en los destinos más populares de Turquía.", hotels_sub: "SELECCIÓN EXCLUSIVA", hotels_heading: "Colección de Selección Especial", starting_from: "Precios desde", flights_sub: "ELEGANCIA EN LOS CIELOS", flights_heading: "Vuelos Privilegiados", blog_sub: "GUÍA DE VIAJE", blog_heading: "Diario de Viaje UcuzaKal", read_more: "Leer más", about_heading: "¿Quiénes somos?", about_text_1: "UcuzaKal Türkiye es una plataforma de viajes independiente que selecciona cuidadosamente las mejores ofertas de alojamiento y vuelos en los destinos de élite de Turquía.", about_text_2: "Cada ruta está meticulosamente diseñada para que su viaje se convierta en una experiencia de elegancia inolvidable.", ratings_heading: "Comparta sus impresiones", review_name_placeholder: "Nombre completo", review_text_placeholder: "Sus pensamientos...", submit_review_btn: "Enviar", review_success: "Gracias por sus elegantes comentarios.", rights: "Todos los derechos reservados UcuzaKal Türkiye", google_login: "Iniciar sesión con Gmail", cinematic_title: "Redirigiendo a la plataforma de reservas...", no_deals_text: "Actualmente no hay ofertas, por favor hónrenos con una visita en breve.", global_channels: "Nuestros Canales Oficiales Globales",
-                smart_hub_title: "Conserje Inteligente", smart_hub_sub: "Diseñe su plan de vacaciones y vuelos en segundos utilizando nuestros algoritmos de inteligencia artificial.", tab_hotel: "Hoteles", tab_flight: "Vuelos", c_budget: "Presupuesto", c_budget_ph: "Ej: 1000 USD, 5000 EUR...", c_vibe: "Estilo de Viaje", vibe_luxury: "Lujo y Spa", vibe_beach: "Playa y Mar", vibe_nature: "Naturaleza", vibe_history: "Historia", vibe_city: "Ciudad y Compras", vibe_family: "Familiar", vibe_romantic: "Romántico", vibe_thermal: "Termal", c_dest: "Destino", c_all_tr: "Toda Turquía", c_btn_hotel: "Encontrar mi hotel", f_from: "Origen", f_from_ph: "Cualquier ciudad...", f_to: "Destino (Turquía)", f_class: "Clase", class_eco: "Económica", class_prem: "Premium", class_bus: "Business", class_first: "Primera", f_airline: "Aerolínea", f_airline_ph: "Ej: Turkish Airlines", f_btn: "Buscar vuelo barato"
+                smart_hub_title: "Conserje Inteligente", smart_hub_sub: "Diseñe su plan de vacaciones y vuelos en segundos utilizando nuestros algoritmos de IA.", tab_hotel: "Hoteles", tab_flight: "Vuelos", c_budget: "Presupuesto", c_budget_ph: "Ej: 1000 USD", c_type: "Tipo de Alojamiento", t_hotel: "Hoteles", t_resort: "Resorts", t_apart: "Apartamentos", c_days: "Días de Estancia", c_dest: "Destino", c_all_tr: "Toda Turquía", btn_hotel: "Buscar Hotel", btn_resort: "Buscar Resort", btn_apart: "Buscar Apartamento", f_from: "Origen", f_from_ph: "De todo el mundo...", f_to: "Destino", f_budget: "Presupuesto", f_class: "Clase", class_eco: "Económica", class_prem: "Premium", class_bus: "Business", class_first: "Primera", f_airline: "Aerolínea (Opcional)", f_airline_ph: "Todas las aerolíneas", btn_flight: "Buscar Vuelo", total_est: "Total Estimado:"
             },
             zh: {
                 dir: "ltr", hero_title: "在奢华中发现精英路线", hero_subtitle: "为您在土耳其最受欢迎的目的地精心汇编的独家住宿和航班优惠。", hotels_sub: "独家精选", hotels_heading: "特别精选系列", starting_from: "起价", flights_sub: "云端优雅", flights_heading: "尊享航班", blog_sub: "旅行指南", blog_heading: "UcuzaKal 旅行日记", read_more: "阅读更多", about_heading: "关于我们", about_text_1: "UcuzaKal Türkiye 是一个独立的旅行平台，为您精心挑选土耳其精英目的地的最佳住宿和航班优惠。", about_text_2: "每条路线都经过精心设计，让您的旅程成为难忘的优雅体验。", ratings_heading: "分享您的印象", review_name_placeholder: "姓名", review_text_placeholder: "您的想法...", submit_review_btn: "提交", review_success: "感谢您的优雅反馈。", rights: "保留所有权利 UcuzaKal Türkiye", google_login: "使用 Gmail 登录", cinematic_title: "正在重定向至预订平台...", no_deals_text: "目前没有任何优惠，请稍后再来访问我们。", global_channels: "我们的全球官方频道",
-                smart_hub_title: "智能旅行礼宾", smart_hub_sub: "使用我们的AI算法在几秒钟内设计您的个性化度假和航班计划。", tab_hotel: "酒店", tab_flight: "航班", c_budget: "预算", c_budget_ph: "例如：1000 USD", c_vibe: "度假风格", vibe_luxury: "豪华水疗", vibe_beach: "海滩", vibe_nature: "自然", vibe_history: "历史文化", vibe_city: "城市购物", vibe_family: "家庭", vibe_romantic: "浪漫", vibe_thermal: "温泉", c_dest: "目的地", c_all_tr: "全土耳其 (给我惊喜)", c_btn_hotel: "寻找我的酒店", f_from: "出发地", f_from_ph: "全球任何城市...", f_to: "目的地 (土耳其)", f_class: "舱位", class_eco: "经济舱", class_prem: "高级经济舱", class_bus: "商务舱", class_first: "头等舱", f_airline: "航空公司", f_airline_ph: "所有航空公司", f_btn: "查找最便宜的航班"
+                smart_hub_title: "智能旅行礼宾", smart_hub_sub: "使用我们的AI算法在几秒钟内设计您的个性化度假和航班计划。", tab_hotel: "酒店", tab_flight: "航班", c_budget: "预算", c_budget_ph: "例如：1000 USD", c_type: "住宿类型", t_hotel: "酒店", t_resort: "度假村", t_apart: "服务式公寓", c_days: "停留天数", c_dest: "目的地", c_all_tr: "全土耳其", btn_hotel: "寻找酒店", btn_resort: "寻找度假村", btn_apart: "寻找公寓", f_from: "出发地", f_from_ph: "世界各地...", f_to: "目的地", f_budget: "预算", f_class: "舱位", class_eco: "经济舱", class_prem: "高级经济舱", class_bus: "商务舱", class_first: "头等舱", f_airline: "航空公司 (可选)", f_airline_ph: "留空表示所有", btn_flight: "立即查找航班", total_est: "估计总计："
             },
             ku: {
                 dir: "ltr", hero_title: "Rêçên Bijarte Bi Luksê Kêf Bikin", hero_subtitle: "Derfetên cîh û firînê yên taybetî li cihên herî populer ên Tirkiyeyê.", hotels_sub: "HILBIJARTINA TAYBET", hotels_heading: "Koleksiyona Hilbijartina Taybet", starting_from: "Bihayên Destpêkê", flights_sub: "ZARAFETA LI EZMANAN", flights_heading: "Firînên Taybet", blog_sub: "REHBERA RÊWÎTIYÊ", blog_heading: "Rojnameya Rêwîtiyê ya UcuzaKal", read_more: "Zêdetir Bixwîne", about_heading: "Em Kî Ne?", about_text_1: "UcuzaKal Türkiye platformeke rêwîtiyê ya serbixwe ye ku derfetên herî baş ên cîh û firînê li cihên elît ên Tirkiyeyê berhev dike.", about_text_2: "Her rêç bi baldarî hatiye sêwirandin da ku rêwîtiya we bibe ezmûneke nayê jibîrkirin.", ratings_heading: "Nêrînên Xwe Parve Bikin", review_name_placeholder: "Nav û Paşnav", review_text_placeholder: "Ramanên we...", submit_review_btn: "Bişîne", review_success: "Ji bo nerînên we yên hêja spas.", rights: "Hemû maf parastî ne UcuzaKal Türkiye", google_login: "Têketina Gmail", cinematic_title: "Ber bi platforma veqetandinê ve tê rêvekirin...", no_deals_text: "Niha tu pêşniyar nînin, ji kerema xwe piştî demek kurt serdana me bikin.", global_channels: "Kanalên Me Yên Fermî Yên Gerdûnî",
-                smart_hub_title: "Alîkarê Rêwîtiyê", smart_hub_sub: "Bi algorîtmayên me yên jîr plana xweya betlaneyê û firînê di çend saniyan de çêbikin.", tab_hotel: "Otel", tab_flight: "Firîn", c_budget: "Budçe", c_budget_ph: "Mînak: 1000 USD", c_vibe: "Tersê Betlaneyê", vibe_luxury: "Luks & Spa", vibe_beach: "Perav", vibe_nature: "Xweza", vibe_history: "Dîrok", vibe_city: "Bajar û Bazar", vibe_family: "Malbat", vibe_romantic: "Romantîk", vibe_thermal: "Termal", c_dest: "Cîh", c_all_tr: "Hemû Tirkiye", c_btn_hotel: "Otela Min Bibîne", f_from: "Ji", f_from_ph: "Ji her deverê...", f_to: "Ber (Tirkiye)", f_class: "Sinifa Firînê", class_eco: "Ekonomî", class_prem: "Premium", class_bus: "Business", class_first: "First Class", f_airline: "Hêla Asmanî", f_airline_ph: "Hemû Hêlên Asmanî", f_btn: "Firîna Herî Erzan Bibîne"
+                smart_hub_title: "Alîkarê Rêwîtiyê", smart_hub_sub: "Bi algorîtmayên me yên jîr plana xweya betlaneyê û firînê di çend saniyan de çêbikin.", tab_hotel: "Otel", tab_flight: "Firîn", c_budget: "Budçe", c_budget_ph: "Mînak: 1000 USD", c_type: "Cûreyê Cîh", t_hotel: "Otel", t_resort: "Resort", t_apart: "Apart Otel", c_days: "Rojên Mayînê", c_dest: "Cîh", c_all_tr: "Hemû Tirkiye", btn_hotel: "Otela Min Bibîne", btn_resort: "Resort Bibîne", btn_apart: "Apart Bibîne", f_from: "Ji", f_from_ph: "Ji her deverê...", f_to: "Ber", f_budget: "Budçe", f_class: "Sinifa Firînê", class_eco: "Ekonomî", class_prem: "Premium", class_bus: "Business", class_first: "First Class", f_airline: "Hêla Asmanî (Vebijarkî)", f_airline_ph: "Hemû Hêlên Asmanî", f_btn: "Firîna Min Bibîne", total_est: "Tevahî:"
             }
         };
 
@@ -920,10 +832,11 @@
             });
             
             localStorage.setItem('ucuzakal_lang', lang);
+            updateHotelBtnText();
 
-            if (window.renderHotels) window.renderHotels();
-            if (window.renderFlights) window.renderFlights();
-            if (window.renderBlogCards) window.renderBlogCards();
+            if (window.HOTELS_DATA && window.HOTELS_DATA.length > 0) window.renderHotels();
+            if (window.FLIGHTS_DATA && window.FLIGHTS_DATA.length > 0) window.renderFlights();
+            if (window.ARTICLES_MAP && Object.keys(window.ARTICLES_MAP).length > 0) window.renderBlogCards();
 
             const modal = document.getElementById('article-modal');
             if (modal && modal.classList.contains('active') && window.currentOpenArticleId) {
@@ -936,6 +849,27 @@
             const switcher = document.getElementById('lang-switcher');
             if (switcher) { switcher.value = savedLang; changeLanguage(savedLang); }
         });
+        
+        function toggleTheme() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark'); html.classList.add('light');
+                icon.className = "fas fa-moon text-xs sm:text-sm text-slate-700";
+                localStorage.setItem('ucuzakal_theme', 'light');
+            } else {
+                html.classList.remove('light'); html.classList.add('dark');
+                icon.className = "fas fa-sun text-xs sm:text-sm text-brand-gold";
+                localStorage.setItem('ucuzakal_theme', 'dark');
+            }
+        }
+        
+        if (localStorage.getItem('ucuzakal_theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            const icon = document.getElementById('theme-icon');
+            if(icon) icon.className = "fas fa-moon text-xs sm:text-sm text-slate-700";
+        }
     </script>
 
     <script type="module">
@@ -949,8 +883,7 @@
             projectId: "ucuzakal-5e2a8",
             storageBucket: "ucuzakal-5e2a8.firebasestorage.app",
             messagingSenderId: "111148178418",
-            appId: "1:111148178418:web:f885dc545e0627516ca96b",
-            measurementId: "G-ST7LSMMXEB"
+            appId: "1:111148178418:web:f885dc545e0627516ca96b"
         };
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
@@ -1006,30 +939,26 @@
 
             container.innerHTML = '';
             window.HOTELS_DATA.forEach(hotel => {
+                const trCity = translateTextStrong(hotel.city, currentLang);
+                const trName = translateTextStrong(hotel.name, currentLang);
+                const trDesc = translateTextStrong(hotel.description, currentLang);
+
                 const card = document.createElement('a');
                 card.href = hotel.affiliateUrl;
                 card.target = "_blank"; 
                 card.className = 'ultra-luxury-card group block';
-                
-                card.onclick = function() {
-                    const overlay = document.getElementById('cinematic-overlay');
-                    if (overlay) {
-                        overlay.classList.add('active');
-                        setTimeout(() => overlay.classList.remove('active'), 2000);
-                    }
-                };
 
                 card.innerHTML = `
                     <div>
                         <div class="img-frame">
-                            <img src="${hotel.image}" alt="Hotel" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=90';" class="w-full h-full object-cover">
+                            <img src="${hotel.image}" alt="${trName}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=90';" class="w-full h-full object-cover">
                             <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
                         </div>
                         <div class="p-5 sm:p-6 text-center">
-                            <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2 notranslate" translate="no">${hotel.city}</span>
-                            <h3 class="font-luxury text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug notranslate" translate="no">${hotel.name}</h3>
+                            <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2 notranslate" translate="no">${trCity}</span>
+                            <h3 class="font-luxury text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug notranslate" translate="no">${trName}</h3>
                             <div class="gold-divider"></div>
-                            <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-2 line-clamp-3 notranslate" translate="no">${hotel.description}</p>
+                            <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-2 line-clamp-3 notranslate" translate="no">${trDesc}</p>
                         </div>
                     </div>
                     <div class="px-5 sm:px-6 pb-5 sm:pb-6">
@@ -1063,25 +992,28 @@
 
             container.innerHTML = '';
             window.FLIGHTS_DATA.forEach(flight => {
+                let routeParts = flight.route.split('✈️').map(s => s.trim());
+                let trRoute = flight.route;
+                if(routeParts.length === 2) {
+                     trRoute = translateTextStrong(routeParts[0], currentLang) + " ✈️ " + translateTextStrong(routeParts[1], currentLang);
+                } else {
+                     trRoute = translateTextStrong(flight.route, currentLang);
+                }
+
+                const trAirline = translateTextStrong(flight.airline, currentLang);
+                const trDesc = translateTextStrong(flight.description, currentLang);
+
                 const card = document.createElement('a');
                 card.href = flight.affiliateUrl;
                 card.target = "_blank"; 
                 card.className = 'ultra-luxury-card p-6 sm:p-8 text-center group block';
-                
-                card.onclick = function() {
-                    const overlay = document.getElementById('cinematic-overlay');
-                    if (overlay) {
-                        overlay.classList.add('active');
-                        setTimeout(() => overlay.classList.remove('active'), 2000);
-                    }
-                };
 
                 card.innerHTML = `
                     <div>
                         <i class="fas fa-plane text-brand-gold text-2xl sm:text-3xl mb-3 sm:mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                        <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1 notranslate" translate="no">${flight.route}</h3>
-                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-3 sm:mb-4 font-bold notranslate" translate="no">${flight.airline}</span>
-                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-5 sm:mb-6 leading-relaxed line-clamp-3 notranslate" translate="no">${flight.description}</p>
+                        <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1 notranslate" translate="no">${trRoute}</h3>
+                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-3 sm:mb-4 font-bold notranslate" translate="no">${trAirline}</span>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-5 sm:mb-6 leading-relaxed line-clamp-3 notranslate" translate="no">${trDesc}</p>
                     </div>
                     <div class="pt-2 border-t border-slate-100 dark:border-white/5">
                         <span class="font-luxury text-xl sm:text-2xl font-bold text-brand-gold">${flight.price}</span>
@@ -1118,7 +1050,7 @@
                             <img src="${art.image}" alt="${title}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';" class="w-full h-full object-cover">
                         </div>
                         <div class="p-5 sm:p-6">
-                            <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2 notranslate" translate="no">${art.category || 'TÜRKİYE'}</span>
+                            <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">${translateTextStrong(art.category || 'TÜRKİYE', currentLang)}</span>
                             <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2 notranslate" translate="no">${title}</h3>
                             <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3 notranslate" translate="no">${bodySnippet}</p>
                         </div>
@@ -1130,6 +1062,42 @@
                     </div>`;
                 container.appendChild(card);
             });
+        };
+
+        // تحديث زر الفنادق وإظهار المجموع
+        window.updateHotelBtnText = function() {
+            const currentLang = document.documentElement.lang || 'tr';
+            const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
+            const type = document.getElementById('hc-type').value;
+            const btnText = document.getElementById('btn-hotel-text');
+            
+            if(type === 'hotel') btnText.textContent = dict['btn_hotel'];
+            else if(type === 'resort') btnText.textContent = dict['btn_resort'];
+            else if(type === 'apart') btnText.textContent = dict['btn_apart'];
+        };
+
+        window.calculateTotal = function() {
+            const budgetInput = document.getElementById('hc-budget').value;
+            const daysInput = document.getElementById('hc-days').value;
+            const display = document.getElementById('total-calc-display');
+            const currentLang = document.documentElement.lang || 'tr';
+            const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
+            
+            // استخراج الأرقام فقط من الميزانية (بغض النظر عن العملة المكتوبة)
+            const budgetMatch = budgetInput.match(/\d+/);
+            const days = parseInt(daysInput);
+
+            if(budgetMatch && days && days > 0) {
+                const budget = parseInt(budgetMatch[0]);
+                const total = budget * days;
+                // استخراج العملة إن وجدت
+                const currencyMatch = budgetInput.match(/[^\d\s]+/);
+                const currency = currencyMatch ? currencyMatch[0] : '';
+                
+                display.textContent = `${dict['total_est']} ${total.toLocaleString()} ${currency}`;
+            } else {
+                display.textContent = '';
+            }
         };
 
         function detectTrafficSource() {
