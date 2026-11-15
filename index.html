@@ -137,49 +137,29 @@
         .article-content ul { list-style-type: disc; padding-inline-start: 1.5rem; margin-bottom: 1.5rem; }
         .article-content li { margin-bottom: 0.5rem; }
 
-        /* ----------------------------------------------------
-           التنسيقات الاحترافية للمساعد الذكي والتأثير الناري (Fiery Glow)
-        ----------------------------------------------------- */
+        /* -----------------------------------------------------------
+           تنسيقات المساعد الذكي - راقية، مريحة للعين، ومتوافقة مع الموقع
+        ------------------------------------------------------------- */
         .smart-concierge-container {
             background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 24px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 32px;
             padding: 3rem 2rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
             position: relative;
             backdrop-filter: blur(16px);
+            margin-top: 2rem;
+            margin-bottom: 4rem;
         }
         .dark .smart-concierge-container {
-            background: rgba(15, 23, 42, 0.85);
+            background: rgba(10, 15, 26, 0.85);
             border-color: rgba(212, 175, 55, 0.15);
-        }
-
-        /* التأثير الناري الفاخر (Fiery Luxury Pulse) */
-        .fire-glow {
-            box-shadow: 0 0 35px rgba(212, 175, 55, 0.15);
-        }
-        .fire-glow::before {
-            content: '';
-            position: absolute;
-            inset: -3px;
-            background: linear-gradient(45deg, #ff3b00, #ff8c00, #D4AF37, #ff3b00, #ff8c00);
-            background-size: 300%;
-            border-radius: 27px;
-            z-index: -1;
-            animation: firePulse 4s infinite linear;
-            filter: blur(12px);
-            opacity: 0.75;
-        }
-        @keyframes firePulse {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
         }
 
         .concierge-header {
             text-align: center;
             margin-bottom: 2.5rem;
-            position: relative;
-            z-index: 10;
         }
 
         .concierge-tabs {
@@ -187,8 +167,6 @@
             justify-content: center;
             gap: 1rem;
             margin-bottom: 2.5rem;
-            position: relative;
-            z-index: 10;
         }
 
         .concierge-tab-btn {
@@ -197,7 +175,7 @@
             color: #334155;
             padding: 0.75rem 2rem;
             border-radius: 9999px;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 1rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -219,13 +197,10 @@
             background: #D4AF37;
             color: #030508;
             border-color: #D4AF37;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         .concierge-panel {
             display: none;
-            position: relative;
-            z-index: 10;
             animation: fadeIn 0.4s ease forwards;
         }
         .concierge-panel.active {
@@ -244,9 +219,8 @@
         }
 
         .smart-label {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
             font-weight: 700;
             color: #64748B;
             margin-left: 0.5rem;
@@ -258,19 +232,19 @@
 
         .smart-select-box, .smart-input-box {
             appearance: none;
-            background-color: #ffffff;
+            background-color: #F8FAFC;
             border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 12px;
             padding: 1rem 1.25rem;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 500;
             color: #0F172A;
             transition: all 0.3s ease;
             width: 100%;
         }
         .smart-select-box {
             cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23D4AF37'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2394A3B8'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
             background-repeat: no-repeat;
             background-position: right 1.25rem center;
             background-size: 1.2em;
@@ -280,20 +254,15 @@
         }
 
         .dark .smart-select-box, .dark .smart-input-box {
-            background-color: rgba(15, 23, 42, 0.6);
+            background-color: #1E293B;
             border-color: rgba(212, 175, 55, 0.2);
             color: #F8FAFC;
-        }
-
-        .smart-input-box::placeholder {
-            color: #94A3B8;
-            font-weight: 400;
         }
 
         .smart-select-box:focus, .smart-input-box:focus {
             outline: none;
             border-color: #D4AF37;
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
         }
 
         .smart-btn {
@@ -302,7 +271,7 @@
             border: none;
             padding: 1.25rem 3rem;
             border-radius: 9999px;
-            font-weight: 800;
+            font-weight: 700;
             font-size: 1.1rem;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -312,22 +281,19 @@
             align-items: center;
             justify-content: center;
             gap: 0.75rem;
-            position: relative;
-            z-index: 2;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         
         .dark .smart-btn {
             background: #D4AF37;
             color: #030508;
-            box-shadow: 0 10px 25px rgba(212,175,55,0.25);
         }
 
         .smart-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
-        
+
         .calc-result {
             text-align: center;
             margin-top: 1.5rem;
@@ -335,7 +301,6 @@
             color: #D4AF37;
             font-size: 1.15rem;
             min-height: 1.75rem;
-            letter-spacing: 0.5px;
         }
     </style>
 </head>
@@ -383,13 +348,18 @@
             <div class="flex items-center gap-1.5 sm:gap-4">
                 <div class="relative">
                     <select id="lang-switcher" onchange="changeLanguage(this.value)" class="bg-slate-100 dark:bg-[#0a0f1a] text-slate-900 dark:text-white border border-brand-gold/40 rounded-full pl-2.5 pr-6 py-1.5 sm:px-4 sm:py-2 sm:pr-8 text-[11px] sm:text-sm font-bold focus:outline-none focus:border-brand-gold cursor-pointer transition shadow-sm appearance-none">
-                        <option value="tr" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Türkçe</option>
-                        <option value="ar" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">العربية</option>
-                        <option value="en" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">English</option>
-                        <option value="ru" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Русский</option>
-                        <option value="es" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Español</option>
-                        <option value="zh" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">中文</option>
-                        <option value="ku" class="bg-white dark:bg-[#0a0f1a] text-slate-900 dark:text-white">Kurdî</option>
+                        <option value="tr">Türkçe</option>
+                        <option value="ar">العربية</option>
+                        <option value="en">English</option>
+                        <option value="ru">Русский</option>
+                        <option value="es">Español</option>
+                        <option value="zh">中文</option>
+                        <option value="ku">Kurdî</option>
+                        <!-- اللغات الجديدة المضافة بناء على طلبك -->
+                        <option value="fa">فارسی</option>
+                        <option value="kk">Қазақша</option>
+                        <option value="az">Azərbaycanca</option>
+                        <option value="ka">ქართული</option>
                     </select>
                     <i class="fas fa-chevron-down absolute right-2.5 sm:right-3 top-1/2 transform -translate-y-1/2 text-brand-gold text-[9px] sm:text-[10px] pointer-events-none"></i>
                 </div>
@@ -406,7 +376,7 @@
         </div>
     </header>
 
-    <!-- الهيرو الأصلي كما طلبته تماماً -->
+    <!-- الهيرو الأصلي كما تم تصميمه محلياً -->
     <section class="relative py-20 sm:py-40 lg:py-52 px-4 overflow-hidden text-center flex items-center justify-center min-h-[60vh] sm:min-h-[75vh]">
         <div class="absolute inset-0 bg-cover bg-center transition-transform duration-[20s] scale-105" style="background-image: url('./hero-bg.png');"></div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/65 via-black/45 to-brand-dark"></div>
@@ -438,18 +408,16 @@
         </div>
     </section>
 
-    <!-- ========================================== -->
-    <!-- قسم الكشاف والمساعد الذكي (تمت إضافته هنا) -->
-    <!-- ========================================== -->
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 relative z-20">
-        <div class="smart-concierge-container fire-glow">
-            <div class="concierge-header relative z-10">
+    <!-- الجزء الأول: المساعد الذكي المضاف حديثاً باحترافية وتصميم هادئ -->
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
+        <div class="smart-concierge-container">
+            <div class="concierge-header">
                 <h2 class="font-luxury text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4" data-i18n="smart_hub_title">Akıllı Seyahat Asistanınız</h2>
-                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-lg max-w-3xl mx-auto font-medium" data-i18n="smart_hub_sub">Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planını saniyeler içinde tasarlayın.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-lg max-w-3xl mx-auto font-medium" data-i18n="smart_hub_sub">Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil planını saniyeler içinde tasarlayın.</p>
             </div>
 
             <!-- أزرار التبديل -->
-            <div class="concierge-tabs relative z-10">
+            <div class="concierge-tabs">
                 <button class="concierge-tab-btn active" id="tab-hotel" onclick="switchConcierge('hotel')">
                     <i class="fas fa-hotel"></i> <span data-i18n="tab_hotel">Konaklama Asistanı</span>
                 </button>
@@ -459,15 +427,16 @@
             </div>
 
             <!-- 1. لوحة الفنادق -->
-            <div id="panel-hotel" class="concierge-panel active relative z-10">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-4">
-                    <div class="smart-input-group lg:col-span-2">
+            <div id="panel-hotel" class="concierge-panel active">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
+                    <div class="smart-input-group md:col-span-2">
                         <label class="smart-label" data-i18n="c_budget">Bütçeniz</label>
-                        <!-- خانة ميزانية حرة وبدون أرقام مقترحة -->
+                        <!-- خانة ميزانية فارغة بالكامل تقبل أي عملة -->
                         <input type="text" id="hc-budget" class="smart-input-box" oninput="calculateTotal()" placeholder="">
                     </div>
-                    <div class="smart-input-group lg:col-span-2">
+                    <div class="smart-input-group md:col-span-2">
                         <label class="smart-label" data-i18n="c_days">Konaklama Süresi (Gün)</label>
+                        <!-- عدد أيام الإقامة -->
                         <input type="number" id="hc-days" class="smart-input-box" oninput="calculateTotal()" placeholder="" min="1">
                     </div>
                 </div>
@@ -482,6 +451,7 @@
                     </div>
                     <div class="smart-input-group">
                         <label class="smart-label" data-i18n="c_dest">Hedef Bölge</label>
+                        <!-- جميع المحافظات التركية 81 محافظة بدون كلمة فاجئني -->
                         <select id="hc-dest" class="smart-select-box">
                             <option value="Tüm Türkiye" data-i18n="c_all_tr">Tüm Türkiye</option>
                             <option value="Adana">Adana</option><option value="Adıyaman">Adıyaman</option><option value="Afyonkarahisar">Afyonkarahisar</option><option value="Ağrı">Ağrı</option><option value="Amasya">Amasya</option><option value="Ankara">Ankara</option><option value="Antalya">Antalya</option><option value="Artvin">Artvin</option><option value="Aydın">Aydın</option><option value="Balıkesir">Balıkesir</option><option value="Bilecik">Bilecik</option><option value="Bingöl">Bingöl</option><option value="Bitlis">Bitlis</option><option value="Bolu">Bolu</option><option value="Burdur">Burdur</option><option value="Bursa">Bursa</option><option value="Çanakkale">Çanakkale</option><option value="Çankırı">Çankırı</option><option value="Çorum">Çorum</option><option value="Denizli">Denizli</option><option value="Diyarbakır">Diyarbakır</option><option value="Edirne">Edirne</option><option value="Elazığ">Elazığ</option><option value="Erzincan">Erzincan</option><option value="Erzurum">Erzurum</option><option value="Eskişehir">Eskişehir</option><option value="Gaziantep">Gaziantep</option><option value="Giresun">Giresun</option><option value="Gümüşhane">Gümüşhane</option><option value="Hakkari">Hakkari</option><option value="Hatay">Hatay</option><option value="Isparta">Isparta</option><option value="Mersin">Mersin</option><option value="İstanbul">İstanbul</option><option value="İzmir">İzmir</option><option value="Kars">Kars</option><option value="Kastamonu">Kastamonu</option><option value="Kayseri">Kayseri</option><option value="Kırklareli">Kırklareli</option><option value="Kırşehir">Kırşehir</option><option value="Kocaeli">Kocaeli</option><option value="Konya">Konya</option><option value="Kütahya">Kütahya</option><option value="Malatya">Malatya</option><option value="Manisa">Manisa</option><option value="Kahramanmaraş">Kahramanmaraş</option><option value="Mardin">Mardin</option><option value="Muğla">Muğla</option><option value="Muş">Muş</option><option value="Nevşehir">Nevşehir</option><option value="Niğde">Niğde</option><option value="Ordu">Ordu</option><option value="Rize">Rize</option><option value="Sakarya">Sakarya</option><option value="Samsun">Samsun</option><option value="Siirt">Siirt</option><option value="Sinop">Sinop</option><option value="Sivas">Sivas</option><option value="Tekirdağ">Tekirdağ</option><option value="Tokat">Tokat</option><option value="Trabzon">Trabzon</option><option value="Tunceli">Tunceli</option><option value="Şanlıurfa">Şanlıurfa</option><option value="Uşak">Uşak</option><option value="Van">Van</option><option value="Yozgat">Yozgat</option><option value="Zonguldak">Zonguldak</option><option value="Aksaray">Aksaray</option><option value="Bayburt">Bayburt</option><option value="Karaman">Karaman</option><option value="Kırıkkale">Kırıkkale</option><option value="Batman">Batman</option><option value="Şırnak">Şırnak</option><option value="Bartın">Bartın</option><option value="Ardahan">Ardahan</option><option value="Iğdır">Iğdır</option><option value="Yalova">Yalova</option><option value="Karabük">Karabük</option><option value="Kilis">Kilis</option><option value="Osmaniye">Osmaniye</option><option value="Düzce">Düzce</option>
@@ -492,18 +462,18 @@
                 <div id="total-calc-display" class="calc-result"></div>
                 
                 <div class="flex justify-center mt-4">
-                    <button class="smart-btn">
+                    <button onclick="startHotelConcierge()" class="smart-btn" id="btn-hotel">
                         <i class="fas fa-search-location"></i> <span id="btn-hotel-text" data-i18n="btn_hotel">Otel Bul</span>
                     </button>
                 </div>
             </div>
 
             <!-- 2. لوحة الطيران -->
-            <div id="panel-flight" class="concierge-panel relative z-10">
+            <div id="panel-flight" class="concierge-panel">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div class="smart-input-group">
                         <label class="smart-label" data-i18n="f_from">Nereden</label>
-                        <!-- إدخال حر لجميع دول العالم -->
+                        <!-- إدخال حر لجميع دول/مدن العالم -->
                         <input type="text" id="fc-from" class="smart-input-box" placeholder="">
                     </div>
                     <div class="smart-input-group">
@@ -530,12 +500,12 @@
                     </div>
                     <div class="smart-input-group">
                         <label class="smart-label" data-i18n="f_airline">Havayolu (İsteğe bağlı)</label>
-                        <!-- شركة الطيران اختياري وفارغ -->
+                        <!-- حقل فارغ لشركة الطيران اختياري -->
                         <input type="text" id="fc-airline" class="smart-input-box" placeholder="">
                     </div>
                 </div>
                 <div class="flex justify-center mt-4">
-                    <button class="smart-btn">
+                    <button onclick="startFlightConcierge()" class="smart-btn">
                         <i class="fas fa-paper-plane"></i> <span data-i18n="btn_flight">Uçuşumu Şimdi Bul</span>
                     </button>
                 </div>
@@ -672,44 +642,45 @@
         function translateTextStrong(text, lang) {
             if (!text) return text;
             const dictionary = {
-                // مدن
-                "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара"},
-                "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул"},
-                "İstanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул"},
-                "İzmir": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир"},
-                "Antalya": {ar:"أنطاليا", tr:"Antalya", en:"Antalya", ru:"Анталья"},
-                "Bursa": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса"},
-                "Izmir": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир"},
-                "Trabzon": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон"},
-                "Dubai": {ar:"دبي", tr:"Dubai", en:"Dubai", ru:"Дубай"},
-                "Moskova": {ar:"موسكو", tr:"Moskova", en:"Moscow", ru:"Москва"},
-                "Riyad": {ar:"الرياض", tr:"Riyad", en:"Riyadh", ru:"Эр-Рияд"},
-                "Kahire": {ar:"القاهرة", tr:"Kahire", en:"Cairo", ru:"Каир"},
-                "Cidde": {ar:"جدة", tr:"Cidde", en:"Jeddah", ru:"Джидда"},
-                "Doha": {ar:"الدوحة", tr:"Doha", en:"Doha", ru:"Доха"},
-                "Kuveyt": {ar:"الكويت", tr:"Kuveyt", en:"Kuwait", ru:"Кувейт"},
-                "Amman": {ar:"عمّان", tr:"Amman", en:"Amman", ru:"Амман"},
+                // مدن ووجهات
+                "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", fa:"آنکارا", kk:"Анкара", az:"Ankara", ka:"ანკარა"},
+                "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", fa:"استانبول", kk:"Ыстамбұл", az:"İstanbul", ka:"სტამბოლი"},
+                "İstanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", fa:"استانبول", kk:"Ыстамбұл", az:"İstanbul", ka:"სტამბოლი"},
+                "İzmir": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир", fa:"ازمیر", kk:"Измир", az:"İzmir", ka:"იზმირი"},
+                "Antalya": {ar:"أنطاليا", tr:"Antalya", en:"Antalya", ru:"Анталья", fa:"آنتالیا", kk:"Анталия", az:"Antalya", ka:"ანტალია"},
+                "Bursa": {ar:"بورصة", tr:"Bursa", en:"Bursa", ru:"Бурса", fa:"بورسا", kk:"Бурса", az:"Bursa", ka:"ბურსა"},
+                "Izmir": {ar:"إزمير", tr:"İzmir", en:"Izmir", ru:"Измир", fa:"ازمیر", kk:"Измир", az:"İzmir", ka:"იზმირი"},
+                "Trabzon": {ar:"طرابزون", tr:"Trabzon", en:"Trabzon", ru:"Трабзон", fa:"ترابزون", kk:"Трабзон", az:"Trabzon", ka:"ტრაბზონი"},
+                "Dubai": {ar:"دبي", tr:"Dubai", en:"Dubai", ru:"Дубай", fa:"دبی", kk:"Дубай", az:"Dubay", ka:"დუბაი"},
+                "Moskova": {ar:"موسكو", tr:"Moskova", en:"Moscow", ru:"Москва", fa:"مسکو", kk:"Мәскеу", az:"Moskva", ka:"მოსკოვი"},
+                "Riyad": {ar:"الرياض", tr:"Riyad", en:"Riyadh", ru:"Эр-Рияд", fa:"ریاض", kk:"Эр-Рияд", az:"Riyad", ka:"ერ-რიადი"},
+                "Kahire": {ar:"القاهرة", tr:"Kahire", en:"Cairo", ru:"Каир", fa:"قاهره", kk:"Каир", az:"Qahirə", ka:"კაირო"},
+                "Cidde": {ar:"جدة", tr:"Cidde", en:"Jeddah", ru:"Джидда", fa:"جده", kk:"Джидда", az:"Ciddə", ka:"ჯიდა"},
+                "Doha": {ar:"الدوحة", tr:"Doha", en:"Doha", ru:"Доха", fa:"دوحه", kk:"Доха", az:"Doha", ka:"დოჰა"},
+                "Kuveyt": {ar:"الكويت", tr:"Kuveyt", en:"Kuwait", ru:"Кувейт", fa:"کویت", kk:"Кувейт", az:"Küveyt", ka:"ქუვეითი"},
+                "Amman": {ar:"عمّان", tr:"Amman", en:"Amman", ru:"Амман", fa:"امان", kk:"Амман", az:"Əmman", ka:"ამანი"},
                 
                 // طيران
-                "UÇUŞ NUMARASI (PC)": {ar:"رقم الرحلة (PC)", tr:"UÇUŞ NUMARASI (PC)", en:"FLIGHT NUMBER (PC)", ru:"НОМЕР РЕЙСА (PC)"},
-                "UÇUŞ NUMARASI (2S)": {ar:"رقم الرحلة (2S)", tr:"UÇUŞ NUMARASI (2S)", en:"FLIGHT NUMBER (2S)", ru:"НОМЕР РЕЙСА (2S)"},
-                "UÇUŞ NUMARASI": {ar:"رقم الرحلة", tr:"UÇUŞ NUMARASI", en:"FLIGHT NUMBER", ru:"НОМЕР РЕЙСА"},
-                "DOĞRUDAN TARİFELİ UÇUŞ": {ar:"رحلة مجدولة مباشرة", tr:"DOĞRUDAN TARİFELİ UÇUŞ", en:"DIRECT SCHEDULED FLIGHT", ru:"ПРЯМОЙ РЕГУЛЯРНЫЙ РЕЙС"},
-                "Rahat Uçuş Tarihi 2026-11-24 Anında rezervasyon için en iyi fiyata.": {ar:"رحلة مريحة بتاريخ 24-11-2026 بأفضل سعر متاح للحجز الفوري.", tr:"Rahat Uçuş Tarihi 2026-11-24 Anında rezervasyon için en iyi fiyata.", en:"Comfortable Flight on 2026-11-24 at the best available price for instant booking.", ru:"Комфортный рейс 24.11.2026 по лучшей цене для мгновенного бронирования."},
+                "UÇUŞ NUMARASI (PC)": {ar:"رقم الرحلة (PC)", tr:"UÇUŞ NUMARASI (PC)", en:"FLIGHT NUMBER (PC)", ru:"НОМЕР РЕЙСА (PC)", fa:"شماره پرواز (PC)", kk:"РЕЙС НӨМІРІ (PC)", az:"UÇUŞ NÖMRƏSİ (PC)", ka:"ფრენის ნომერი (PC)"},
+                "UÇUŞ NUMARASI (2S)": {ar:"رقم الرحلة (2S)", tr:"UÇUŞ NUMARASI (2S)", en:"FLIGHT NUMBER (2S)", ru:"НОМЕР РЕЙСА (2S)", fa:"شماره پرواز (2S)", kk:"РЕЙС НӨМІРІ (2S)", az:"UÇUŞ NÖMRƏSİ (2S)", ka:"ფრენის ნომერი (2S)"},
+                "UÇUŞ NUMARASI": {ar:"رقم الرحلة", tr:"UÇUŞ NUMARASI", en:"FLIGHT NUMBER", ru:"НОМЕР РЕЙСА", fa:"شماره پرواز", kk:"РЕЙС НӨМІРІ", az:"UÇUŞ NÖMRƏSİ", ka:"ფრენის ნომერი"},
+                "DOĞRUDAN TARİFELİ UÇUŞ": {ar:"رحلة مجدولة مباشرة", tr:"DOĞRUDAN TARİFELİ UÇUŞ", en:"DIRECT SCHEDULED FLIGHT", ru:"ПРЯМОЙ РЕГУЛЯРНЫЙ РЕЙС", fa:"پرواز مستقیم", kk:"ТІКЕЛЕЙ РЕЙС", az:"BİRBAŞA UÇUŞ", ka:"პირდაპირი ფრენა"},
+                "Rahat Uçuş Tarihi 2026-11-24 Anında rezervasyon için en iyi fiyata.": {ar:"رحلة مريحة بتاريخ 24-11-2026 بأفضل سعر متاح للحجز الفوري.", tr:"Rahat Uçuş Tarihi 2026-11-24 Anında rezervasyon için en iyi fiyata.", en:"Comfortable Flight on 2026-11-24 at the best available price for instant booking.", ru:"Комфортный рейс 24.11.2026 по лучшей цене для мгновенного бронирования.", fa:"پرواز راحت در تاریخ 2026-11-24 با بهترین قیمت برای رزرو فوری.", kk:"Ыңғайлы рейс 2026-11-24, жедел брондау үшін ең жақсы бағамен.", az:"Dərhal rezervasyon üçün ən yaxşı qiymətə 2026-11-24 tarixində rahat uçuş.", ka:"კომფორტული ფრენა 2026-11-24-ში საუკეთესო ფასად."},
 
                 // فنادق
-                "Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.": {ar:"إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.", tr:"Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.", en:"Luxury accommodation including meals and recreational activities on the Mediterranean coast.", ru:"Роскошное проживание, включая питание и развлекательные мероприятия на побережье Средиземного моря."},
-                "Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.", tr:"Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services near the beach.", ru:"Просторные семейные люксы с видом на море и полным спектром гостиничных услуг рядом с пляжем."},
-                "Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.": {ar:"تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.", tr:"Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.", en:"A luxurious stay experience in the heart of Izmir with a charming panoramic view of the bay.", ru:"Роскошный опыт проживания в самом сердце Измира с очаровательным панорамным видом на залив."},
-                "Karadeniz'in yeşil doğası ve yaylalarında aileler için huzurlu bir konaklama.": {ar:"إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.", tr:"Karadeniz'in yeşil doğası ve yaylalarında aileler için huzurlu bir konaklama.", en:"A quiet stay amidst the green nature and highlands of the Black Sea for families.", ru:"Спокойный отдых среди зеленой природы и высокогорий Черного моря для семей."},
-                "Tarihin dokusunu Boğaz'a kolay erişimle birleştiren olağanüstü bir konum.": {ar:"موقع استثنائي يجمع بين عبق التاريخ وسهولة الوصول إلى البوسفور.", tr:"Tarihin dokusunu Boğaz'a kolay erişimle birleştiren olağanüstü bir konum.", en:"An exceptional location combining the fragrance of history with easy access to the Bosphorus.", ru:"Исключительное расположение, сочетающее аромат истории с легким доступом к Босфору."},
-                "Uludağ ve ünlü termal kaplıcaların yakınında mükemmel bir dinlenme.": {ar:"استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية الشهيرة.", tr:"Uludağ ve ünlü termal kaplıcaların yakınında mükemmel bir dinlenme.", en:"Perfect relaxation near Mount Uludag and the famous mineral springs.", ru:"Идеальный отдых рядом с горой Улудаг и знаменитыми минеральными источниками."},
-                "5 Yıldızlı Her Şey Dahil Resort - Antalya": {ar:"منتجع 5 نجوم شامل كلياً - أنطاليا", tr:"5 Yıldızlı Her Şey Dahil Resort - Antalya", en:"5-Star All-Inclusive Resort - Antalya", ru:"5-звездочный курорт «все включено» - Анталья"},
-                "Lüks Aile Apart Dairesi - Antalya": {ar:"شقة فندقية عائلية فاخرة - أنطاليا", tr:"Lüks Aile Apart Dairesi - Antalya", en:"Luxury Family Serviced Apartment - Antalya", ru:"Роскошные семейные апартаменты - Анталья"},
-                "Ege Denizi Manzaralı Seçkin Otel - İzmir": {ar:"فندق مميز بإطلالة على بحر إيجة - إزمير", tr:"Ege Denizi Manzaralı Seçkin Otel - İzmir", en:"Exclusive Aegean Sea View Hotel - Izmir", ru:"Эксклюзивный отель с видом на Эгейское море - Измир"},
-                "Dağ Manzaralı Geniş Apart Daire - Trabzon": {ar:"شقة فندقية واسعة مطلة على الجبال - طرابزون", tr:"Dağ Manzaralı Geniş Apart Daire - Trabzon", en:"Spacious Mountain View Suite - Trabzon", ru:"Просторные апартаменты с видом на горы - Трабзон"},
-                "Tarihi Merkeze Yakın Seçkin Otel - İstanbul": {ar:"فندق راقي بالقرب من المعالم - إسطنبول", tr:"Tarihi Merkeze Yakın Seçkin Otel - İstanbul", en:"Luxury Hotel Near Landmarks - Istanbul", ru:"Роскошный отель рядом с достопримечательностями - Стамбул"},
-                "Doğanın Kalbinde Butik Otel - Bursa": {ar:"فندق وسط الطبيعة الخلابة - بورصة", tr:"Doğanın Kalbinde Butik Otel - Bursa", en:"Boutique Hotel Surrounded by Nature - Bursa", ru:"Бутик-отель на лоне природы - Бурса"}
+                "Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.": {ar:"إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.", tr:"Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.", en:"Luxury accommodation including meals and recreational activities on the Mediterranean coast.", ru:"Роскошное проживание, включая питание и развлекательные мероприятия на побережье Средиземного моря.", fa:"اقامتگاه مجلل با غذای کامل و تفریحات در ساحل مدیترانه.", kk:"Жерорта теңізі жағалауындағы тамақтану мен ойын-сауықты қамтитын сәнді тұру.", az:"Aralıq dənizi sahilində yemək və əyləncə fəaliyyətləri daxil olmaqla lüks mənzil.", ka:"ძვირადღირებული განთავსება კვებითა და გართობით ხმელთაშუა ზღვის სანაპიროზე."},
+                "Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.", tr:"Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services near the beach.", ru:"Просторные семейные люксы с видом на море и полным спектром гостиничных услуг рядом с пляжем.", fa:"سوئیت های خانوادگی بزرگ با منظره دریا و خدمات کامل نزدیک ساحل.", kk:"Теңізге жақын, толық қызметі бар кең отбасылық люкстер.", az:"Dəniz mənzərəli və tam otel xidməti olan geniş ailə suitləri.", ka:"ფართო საოჯახო ლუქსები ზღვის ხედით და სასტუმროს სრული მომსახურებით სანაპიროსთან."},
+                "Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.": {ar:"تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.", tr:"Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.", en:"A luxurious stay experience in the heart of Izmir with a charming panoramic view of the bay.", ru:"Роскошный опыт проживания в самом сердце Измира с очаровательным панорамным видом на залив.", fa:"تجربه اقامت مجلل در قلب ازمیر با چشم انداز پانورامای خلیج.", kk:"Измирдің жүрегінде шығанақтың тамаша көрінісі бар сәнді демалыс.", az:"Körfəzin füsunkar mənzərəsi ilə İzmirin mərkəzində lüks bir konaklama.", ka:"ძვირადღირებული დასვენება იზმირის გულში, ყურის მომხიბლავი ხედით."},
+                "Karadeniz'in yeşil doğası ve yaylalarında aileler için huzurlu bir konaklama.": {ar:"إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.", tr:"Karadeniz'in yeşil doğası ve yaylalarında aileler için huzurlu bir konaklama.", en:"A quiet stay amidst the green nature and highlands of the Black Sea for families.", ru:"Спокойный отдых среди зеленой природы и высокогорий Черного моря для семей.", fa:"اقامتی آرام در میان طبیعت سبز و ارتفاعات دریای سیاه برای خانواده ها.", kk:"Қара теңіздің табиғаты мен тауларында отбасылар үшін тыныш демалыс.", az:"Qara dənizin yaşıl təbiətində və yaylalarında ailələr üçün dinc bir konaklama.", ka:"მშვიდი დასვენება მწვანე ბუნებასა და შავი ზღვის მაღალმთიანეთში ოჯახებისთვის."},
+                "Tarihin dokusunu Boğaz'a kolay erişimle birleştiren olağanüstü bir konum.": {ar:"موقع استثنائي يجمع بين عبق التاريخ وسهولة الوصول إلى البوسفور.", tr:"Tarihin dokusunu Boğaz'a kolay erişimle birleştiren olağanüstü bir konum.", en:"An exceptional location combining the fragrance of history with easy access to the Bosphorus.", ru:"Исключительное расположение, сочетающее аромат истории с легким доступом к Босфору.", fa:"مکانی استثنایی که عطر تاریخ را با دسترسی آسان به بسفر ترکیب می کند.", kk:"Тарих пен Босфорға оңай қолжетімділікті біріктіретін ерекше орын.", az:"Tarixi toxunuşu Bosfora asan çıxışla birləşdirən qeyri-adi bir yer.", ka:"გამორჩეული ადგილი, რომელიც აერთიანებს ისტორიას და ბოსფორზე მარტივ წვდომას."},
+                "Uludağ ve ünlü termal kaplıcaların yakınında mükemmel bir dinlenme.": {ar:"استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية الشهيرة.", tr:"Uludağ ve ünlü termal kaplıcaların yakınında mükemmel bir dinlenme.", en:"Perfect relaxation near Mount Uludag and the famous mineral springs.", ru:"Идеальный отдых рядом с горой Улудаг и знаменитыми минеральными источниками.", fa:"استراحتی عالی در نزدیکی کوه اولوداگ و چشمه های آب معدنی.", kk:"Ұлыдағ тауы мен әйгілі минералды бұлақтарға жақын жерде тамаша демалыс.", az:"Uludağ və məşhur termal bulaqların yaxınlığında mükəmməl bir istirahət.", ka:"შესანიშნავი დასვენება ულუდაგის მთასთან და მინერალურ წყაროებთან."},
+                
+                "5 Yıldızlı Her Şey Dahil Resort - Antalya": {ar:"منتجع 5 نجوم شامل كلياً - أنطاليا", tr:"5 Yıldızlı Her Şey Dahil Resort - Antalya", en:"5-Star All-Inclusive Resort - Antalya", ru:"5-звездочный курорт «все включено» - Анталья", fa:"ریزورت 5 ستاره UALL - آنتالیا", kk:"5 жұлдызды барлығы қосылған курорт - Анталия", az:"5 Ulduzlu Hər Şey Daxil Resort - Antalya", ka:"5-ვარსკვლავიანი Resort - ანტალია"},
+                "Lüks Aile Apart Dairesi - Antalya": {ar:"شقة فندقية عائلية فاخرة - أنطاليا", tr:"Lüks Aile Apart Dairesi - Antalya", en:"Luxury Family Serviced Apartment - Antalya", ru:"Роскошные семейные апартаменты - Анталья", fa:"آپارتمان خانوادگی مجلل - آنتالیا", kk:"Сәнді отбасылық пәтер - Анталия", az:"Lüks Ailə Mənzili - Antalya", ka:"ძვირადღირებული საოჯახო აპარტამენტი - ანტალია"},
+                "Ege Denizi Manzaralı Seçkin Otel - İzmir": {ar:"فندق مميز بإطلالة على بحر إيجة - إزمير", tr:"Ege Denizi Manzaralı Seçkin Otel - İzmir", en:"Exclusive Aegean Sea View Hotel - Izmir", ru:"Эксклюзивный отель с видом на Эгейское море - Измир", fa:"هتل انحصاری با منظره دریای اژه - ازمیر", kk:"Эгей теңізі көрінетін эксклюзивті қонақ үй - Измир", az:"Egey Dənizi Mənzərəli Seçilmiş Otel - İzmir", ka:"ექსკლუზიური სასტუმრო ეგეოსის ზღვის ხედით - იზმირი"},
+                "Dağ Manzaralı Geniş Apart Daire - Trabzon": {ar:"شقة فندقية واسعة مطلة على الجبال - طرابزون", tr:"Dağ Manzaralı Geniş Apart Daire - Trabzon", en:"Spacious Mountain View Suite - Trabzon", ru:"Просторные апартаменты с видом на горы - Трабзон", fa:"سوئیت بزرگ با منظره کوه - ترابزون", kk:"Тау көрінісі бар кең пәтер - Трабзон", az:"Dağ Mənzərəli Geniş Mənzil - Trabzon", ka:"ფართო აპარტამენტი მთის ხედით - ტრაბზონი"},
+                "Tarihi Merkeze Yakın Seçkin Otel - İstanbul": {ar:"فندق راقي بالقرب من المعالم - إسطنبول", tr:"Tarihi Merkeze Yakın Seçkin Otel - İstanbul", en:"Luxury Hotel Near Landmarks - Istanbul", ru:"Роскошный отель рядом с достопримечательностями - Стамбул", fa:"هتل مجلل نزدیک به آثار تاریخی - استانبول", kk:"Тарихи орталыққа жақын сәнді қонақ үй - Ыстамбұл", az:"Tarixi Mərkəzə Yaxın Lüks Otel - İstanbul", ka:"ძვირადღირებული სასტუმრო - სტამბოლი"},
+                "Doğanın Kalbinde Butik Otel - Bursa": {ar:"فندق وسط الطبيعة الخلابة - بورصة", tr:"Doğanın Kalbinde Butik Otel - Bursa", en:"Boutique Hotel Surrounded by Nature - Bursa", ru:"Бутик-отель на лоне природы - Бурса", fa:"هتل بوتیک در قلب طبیعت - بورسا", kk:"Табиғат аясындағы бутик қонақ үй - Бурса", az:"Təbiətin Qəlbində Butik Otel - Bursa", ka:"ბუტიკ სასტუმრო ბუნებაში - ბურსა"}
             };
 
             let res = text;
@@ -770,6 +741,16 @@
             }
         };
 
+        window.startHotelConcierge = function() {
+            // سيتم تفعيل الروابط العميقة في الجزء الثاني
+            console.log('Hotel Search Initiated');
+        };
+
+        window.startFlightConcierge = function() {
+            // سيتم تفعيل الروابط العميقة في الجزء الثاني
+            console.log('Flight Search Initiated');
+        };
+
         // --- دوال وتنسيقات عرض المقالات (مصلحة بالكامل) ---
         window.openArticleModal = function(id) {
             window.currentOpenArticleId = id; 
@@ -779,8 +760,8 @@
             let title = article.titles ? (article.titles[currentLang] || article.titles['tr']) : article.title;
             
             const richBody = article.body || (article.bodies && article.bodies['ar']) || '';
-            
             let body = '';
+            
             if (article.bodies && article.bodies[currentLang] && article.bodies[currentLang].length > 200) {
                 body = article.bodies[currentLang];
             } else {
@@ -863,6 +844,22 @@
             ru: {
                 dir: "ltr", hero_title: "Откройте для себя элитные маршруты в роскоши", hero_subtitle: "Эксклюзивные предложения по размещению и перелетам в лучших уголках Турции.", hotels_sub: "СПЕЦИАЛЬНЫЙ ВЫБОР", hotels_heading: "Специальная коллекция", starting_from: "Цены от", flights_sub: "ЭЛЕГАНТНОСТЬ В НЕБЕ", flights_heading: "Привилегированные рейсы", blog_sub: "ПУТЕВОДИТЕЛЬ", blog_heading: "Дневник путешествий UcuzaKal", read_more: "Читать далее", about_heading: "О нас", about_text_1: "UcuzaKal Türkiye — независимая туристическая платформа, тщательно собирающая лучшие предложения.", about_text_2: "Каждый маршрут составлен для того, чтобы ваше путешествие стало безупречным опытом.", ratings_heading: "Поделитесь впечатлениями", review_name_placeholder: "Имя Фамилия", review_text_placeholder: "Ваш отзыв...", submit_review_btn: "Отправить", review_success: "Благодарим за ваш отзыв.", rights: "Все права защищены UcuzaKal Türkiye", google_login: "Войти через Gmail", cinematic_title: "Перенаправление на платформу бронирования...", no_deals_text: "В настоящее время предложений нет, пожалуйста, окажите нам честь своим визитом чуть позже.", global_channels: "Наши глобальные официальные каналы",
                 smart_hub_title: "Умный консьерж", smart_hub_sub: "Создайте свой идеальный план отпуска и перелетов за секунды с помощью наших алгоритмов ИИ.", tab_hotel: "Отели", tab_flight: "Авиабилеты", c_budget: "Ваш бюджет", c_type: "Тип размещения", t_hotel: "Отели", t_resort: "Курорты", t_apart: "Апартаменты", c_days: "Срок пребывания (дней)", c_dest: "Направление", c_all_tr: "Вся Турция", btn_hotel: "Найти отель", btn_resort: "Найти курорт", btn_apart: "Найти апартаменты", f_from: "Откуда", f_to: "Куда", f_budget: "Ваш бюджет", f_class: "Класс", class_eco: "Эконом", class_prem: "Премиум эконом", class_bus: "Бизнес", class_first: "Первый", f_airline: "Авиакомпания (необязательно)", btn_flight: "Найти рейс сейчас", total_est: "Итого:"
+            },
+            fa: {
+                dir: "rtl", hero_title: "مسیرهای نخبگان را در تجمل کشف کنید", hero_subtitle: "فرصت های اقامت و پرواز منحصر به فرد در محبوب ترین مقاصد ترکیه.", hotels_sub: "انتخاب ویژه", hotels_heading: "مجموعه انتخاب ویژه", starting_from: "قیمت ها از", flights_sub: "ظرافت در آسمان", flights_heading: "پروازهای اختصاصی", blog_sub: "راهنمای سفر", blog_heading: "دفتر خاطرات سفر", read_more: "ادامه مطلب", about_heading: "ما کی هستیم؟", about_text_1: "پلتفرمی مستقل که بهترین پیشنهادات اقامتی و پروازی را گردآوری می کند.", about_text_2: "هر مسیر به دقت طراحی شده است تا سفری فراموش نشدنی داشته باشید.", ratings_heading: "نظرات خود را به اشتراک بگذارید", review_name_placeholder: "نام و نام خانوادگی...", review_text_placeholder: "نظرات شما...", submit_review_btn: "ارسال", review_success: "از بازخورد شما متشکریم.", rights: "تمامی حقوق محفوظ است", google_login: "ورود با Gmail", cinematic_title: "در حال انتقال به پلتفرم رزرو...", no_deals_text: "در حال حاضر هیچ پیشنهادی وجود ندارد.", global_channels: "کانال های رسمی جهانی ما",
+                smart_hub_title: "مشاور هوشمند سفر", smart_hub_sub: "با استفاده از الگوریتم های هوش مصنوعی، برنامه تعطیلات خود را در چند ثانیه طراحی کنید.", tab_hotel: "دستیار هتل", tab_flight: "دستیار پرواز", c_budget: "بودجه شما", c_type: "نوع اقامت", t_hotel: "هتل ها", t_resort: "استراحتگاه ها", t_apart: "آپارتمان ها", c_days: "مدت اقامت (روز)", c_dest: "مقصد", c_all_tr: "تمام ترکیه", btn_hotel: "هتل من را پیدا کن", btn_resort: "ریزورت من را پیدا کن", btn_apart: "آپارتمان پیدا کن", f_from: "از کجا", f_to: "به کجا", f_budget: "بودجه", f_class: "کلاس پرواز", class_eco: "اقتصادی", class_prem: "پریمیوم", class_bus: "بیزینس", class_first: "فرست کلاس", f_airline: "ایرلاین (اختیاری)", btn_flight: "پرواز من را پیدا کن", total_est: "مجموع تخمینی:"
+            },
+            kk: {
+                dir: "ltr", hero_title: "Элиталық бағыттарды сән-салтанатпен ашыңыз", hero_subtitle: "Түркияның ең танымал бағыттарындағы эксклюзивті ұсыныстар.", hotels_sub: "АРНАЙЫ ТАҢДАУ", hotels_heading: "Арнайы таңдау топтамасы", starting_from: "Бағалар", flights_sub: "АСПАНДАҒЫ КЕРЕМЕТ", flights_heading: "Арнайы рейстер", blog_sub: "ЖОЛСЕРІК", blog_heading: "Саяхат күнделігі", read_more: "Толығырақ оқу", about_heading: "Біз кімбіз?", about_text_1: "Түркиядағы ең жақсы тұру және ұшу ұсыныстарын біріктіретін тәуелсіз платформа.", about_text_2: "Әрбір бағыт сіздің саяхатыңыз ұмытылмас болуы үшін мұқият жасалған.", ratings_heading: "Пікіріңізбен бөлісіңіз", review_name_placeholder: "Аты-жөні", review_text_placeholder: "Сіздің пікіріңіз...", submit_review_btn: "Жіберу", review_success: "Пікіріңіз үшін рахмет.", rights: "Барлық құқықтар қорғалған", google_login: "Gmail арқылы кіру", cinematic_title: "Брондау платформасына өту...", no_deals_text: "Қазіргі уақытта ұсыныстар жоқ.", global_channels: "Біздің ғаламдық арналар",
+                smart_hub_title: "Ақылды саяхат көмекшісі", smart_hub_sub: "Жасанды интеллект арқылы демалыс жоспарыңызды бірнеше секундта жасаңыз.", tab_hotel: "Қонақ үй", tab_flight: "Рейс", c_budget: "Сіздің бюджетіңіз", c_type: "Орналасу түрі", t_hotel: "Қонақ үйлер", t_resort: "Курорттар", t_apart: "Пәтерлер", c_days: "Тұру ұзақтығы (күн)", c_dest: "Бағыт", c_all_tr: "Барлық Түркия", btn_hotel: "Қонақ үй табу", btn_resort: "Курорт табу", btn_apart: "Пәтер табу", f_from: "Қайдан", f_to: "Қайда", f_budget: "Бюджет", f_class: "Рейс класы", class_eco: "Эконом", class_prem: "Премиум эконом", class_bus: "Бизнес", class_first: "Бірінші класс", f_airline: "Әуе компаниясы (міндетті емес)", btn_flight: "Рейсті қазір табу", total_est: "Жалпы:"
+            },
+            az: {
+                dir: "ltr", hero_title: "Elit Marşrutları Lükslə Kəşf Edin", hero_subtitle: "Türkiyənin ən populyar istiqamətlərində xüsusi yerləşmə və uçuş imkanları.", hotels_sub: "XÜSUSİ SEÇİM", hotels_heading: "Xüsusi Seçim Kolleksiyası", starting_from: "Qiymətlər", flights_sub: "SƏMADA ZƏRAFƏT", flights_heading: "Xüsusi Uçuşlar", blog_sub: "SƏYAHƏT RƏHBƏRİ", blog_heading: "Səyahət Gündəliyi", read_more: "Daha çox oxu", about_heading: "Biz Kimik?", about_text_1: "Türkiyədəki ən yaxşı konaklama və uçuş fürsətlərini bir araya gətirən müstəqil platforma.", about_text_2: "Hər bir marşrut səyahətinizin unudulmaz olması üçün diqqətlə hazırlanmışdır.", ratings_heading: "Təəssüratlarınızı Bölüşün", review_name_placeholder: "Ad və Soyad", review_text_placeholder: "Fikirləriniz...", submit_review_btn: "Göndər", review_success: "Rəyiniz üçün təşəkkür edirik.", rights: "Bütün hüquqlar qorunur", google_login: "Gmail ilə giriş", cinematic_title: "Rezervasiya platformasına yönləndirilir...", no_deals_text: "Hazırda heç bir təklif yoxdur.", global_channels: "Qlobal Rəsmi Kanallarımız",
+                smart_hub_title: "Ağıllı Səyahət Asistanı", smart_hub_sub: "Süni intellekt alqoritmlərimizlə tətil və uçuş planınızı saniyələr içində hazırlayın.", tab_hotel: "Otel Asistanı", tab_flight: "Uçuş Asistanı", c_budget: "Büdcəniz", c_type: "Konaklama Tipi", t_hotel: "Otellər", t_resort: "Kurortlar", t_apart: "Apart Otellər", c_days: "Qalma müddəti (Gün)", c_dest: "Hədəf", c_all_tr: "Bütün Türkiyə", btn_hotel: "Otel Tap", btn_resort: "Kurort Tap", btn_apart: "Apart Tap", f_from: "Haradan", f_to: "Haraya", f_budget: "Büdcəniz", f_class: "Uçuş Sinfi", class_eco: "Ekonom", class_prem: "Premium", class_bus: "Biznes", class_first: "Birinci Sinif", f_airline: "Aviaşirkət (Könüllü)", btn_flight: "Uçuşumu İndi Tap", total_est: "Təxmini Yekun:"
+            },
+            ka: {
+                dir: "ltr", hero_title: "აღმოაჩინეთ ელიტური მარშრუტები", hero_subtitle: "ექსკლუზიური განთავსებისა და ფრენის შესაძლებლობები თურქეთში.", hotels_sub: "ექსკლუზიური არჩევანი", hotels_heading: "სპეციალური კოლექცია", starting_from: "ფასები", flights_sub: "ელეგანტურობა ცაში", flights_heading: "პრივილეგირებული ფრენები", blog_sub: "მოგზაურობის სახელმძღვანელო", blog_heading: "მოგზაურობის დღიური", read_more: "წაიკითხე მეტი", about_heading: "Ვინ ვართ ჩვენ?", about_text_1: "დამოუკიდებელი პლატფორმა, რომელიც აერთიანებს საუკეთესო შეთავაზებებს.", about_text_2: "თითოეული მარშრუტი შექმნილია თქვენთვის.", ratings_heading: "გააზიარეთ თქვენი შთაბეჭდილებები", review_name_placeholder: "სახელი", review_text_placeholder: "თქვენი აზრები...", submit_review_btn: "გაგზავნა", review_success: "მადლობა გამოხმაურებისთვის.", rights: "Ყველა უფლება დაცულია", google_login: "შესვლა Gmail-ით", cinematic_title: "გადამისამართება...", no_deals_text: "ამჟამად შეთავაზებები არ არის.", global_channels: "ჩვენი გლობალური არხები",
+                smart_hub_title: "ჭკვიანი ასისტენტი", smart_hub_sub: "შექმენით თქვენი დასვენების გეგმა წამებში AI-ს გამოყენებით.", tab_hotel: "სასტუმრო", tab_flight: "ფრენა", c_budget: "თქვენი ბიუჯეტი", c_type: "განთავსების ტიპი", t_hotel: "სასტუმროები", t_resort: "კურორტები", t_apart: "აპარტამენტები", c_days: "დღეების რაოდენობა", c_dest: "დანიშნულება", c_all_tr: "მთელი თურქეთი", btn_hotel: "იპოვე სასტუმრო", btn_resort: "იპოვე კურორტი", btn_apart: "იპოვე აპარტამენტი", f_from: "საიდან", f_to: "სად", f_budget: "ბიუჯეტი", f_class: "კლასი", class_eco: "ეკონომი", class_prem: "პრემიუმ ეკონომი", class_bus: "ბიზნესი", class_first: "პირველი კლასი", f_airline: "ავიაკომპანია (სურვილისამებრ)", btn_flight: "იპოვე ფრენა", total_est: "სულ:"
             }
         };
 
