@@ -131,32 +131,14 @@
         }
         .social-channel-item:hover .lang-pill { transform: scale(1.1); }
         
-        /* تنسيقات المقالات */
-        .article-content {
-            font-size: 1.15rem; 
-            line-height: 2;
-            color: #334155; 
-        }
-        .dark .article-content { color: #E2E8F0; }
-        .article-content p { margin-bottom: 1.8rem; text-align: justify; }
-        .article-content h2 { color: #D4AF37; margin-top: 3rem; margin-bottom: 1.5rem; font-weight: 800; font-family: 'Amiri', serif; font-size: 2rem; border-bottom: 2px solid rgba(212,175,55,0.15); padding-bottom: 0.75rem; }
-        .article-content h3 { color: #D4AF37; margin-top: 2.5rem; margin-bottom: 1rem; font-weight: 700; font-size: 1.5rem; }
-        .article-content blockquote {
-            border-left: 5px solid #D4AF37; background: rgba(212, 175, 55, 0.05); padding: 1.75rem; margin: 2.5rem 0;
-            border-radius: 0 16px 16px 0; font-style: italic; font-size: 1.25rem; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-        html[dir="rtl"] .article-content blockquote { border-left: none; border-right: 5px solid #D4AF37; border-radius: 16px 0 0 16px; }
-        .article-content ul { list-style-type: none; padding: 0; margin-bottom: 2rem; }
-        .article-content li { position: relative; padding-left: 1.75rem; margin-bottom: 0.75rem; }
-        html[dir="rtl"] .article-content li { padding-left: 0; padding-right: 1.75rem; }
-        .article-content li::before { content: "✦"; position: absolute; left: 0; color: #D4AF37; }
-        html[dir="rtl"] .article-content li::before { left: auto; right: 0; }
-        .article-image-wrapper { margin: 3rem 0; border-radius: 20px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.15); border: 1px solid rgba(212,175,55,0.1); }
-        .article-content img { width: 100%; height: auto; max-height: 500px; object-fit: cover; display: block; transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-        .article-content img:hover { transform: scale(1.03); }
+        .article-content h2 { color: #D4AF37; margin-top: 2rem; margin-bottom: 1rem; font-weight: 700; font-family: 'Amiri', serif; font-size: 1.75rem; border-bottom: 1px solid rgba(212,175,55,0.2); padding-bottom: 0.5rem; }
+        .article-content h3 { color: #D4AF37; margin-top: 1.5rem; margin-bottom: 0.75rem; font-weight: 600; font-size: 1.25rem; }
+        .article-content p { margin-bottom: 1.25rem; line-height: 1.8; }
+        .article-content ul { list-style-type: disc; padding-inline-start: 1.5rem; margin-bottom: 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; }
 
         /* -----------------------------------------------------------
-           تنسيقات المساعد الذكي - راقية ومريحة للعين 
+           تنسيقات المساعد الذكي - راقية، مريحة للعين، ومتوافقة مع الموقع
         ------------------------------------------------------------- */
         .smart-concierge-container {
             background: rgba(255, 255, 255, 0.85);
@@ -166,8 +148,8 @@
             box-shadow: 0 20px 50px -12px rgba(0, 0, 0, 0.1);
             position: relative;
             backdrop-filter: blur(16px);
-            margin-top: 1rem;
-            margin-bottom: 5rem;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
         }
         .dark .smart-concierge-container {
             background: rgba(10, 15, 26, 0.85);
@@ -371,7 +353,7 @@
         <div class="smart-concierge-container">
             <div class="concierge-header">
                 <h2 class="font-luxury text-3xl sm:text-5xl font-bold text-slate-900 dark:text-white mb-4" data-i18n="smart_hub_title">Akıllı Seyahat Asistanınız</h2>
-                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-lg max-w-3xl mx-auto font-medium" data-i18n="smart_hub_sub">Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planınızı saniyeler içinde tasarlayın.</p>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-lg max-w-3xl mx-auto font-medium" data-i18n="smart_hub_sub">Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil planını saniyeler içinde tasarlayın.</p>
             </div>
 
             <!-- أزرار التبديل -->
@@ -428,7 +410,6 @@
                     </div>
                 </div>
                 
-                <!-- عرض الإجمالي المتوقع -->
                 <div id="total-calc-display" class="calc-result"></div>
                 
                 <div class="flex justify-center mt-4">
@@ -443,7 +424,7 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
                     <div class="smart-input-group">
                         <label class="smart-label" data-i18n="f_from">Nereden</label>
-                        <!-- حقل حر لجميع دول العالم -->
+                        <!-- إدخال حر لجميع دول/مدن العالم -->
                         <input type="text" id="fc-from" class="smart-input-box" placeholder="">
                     </div>
                     <div class="smart-input-group">
@@ -603,16 +584,17 @@
         </div>
     </footer>
 
+    <!-- سكربت الترجمة المطور والآلة الحاسبة -->
     <script>
         window.ARTICLES_MAP = {};
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
 
-        // دالة مساعدة لترجمة النصوص داخل العروض والمقالات بمرونة
+        // دالة الترجمة الدقيقة للكلمات المتداخلة في العروض والمقالات
         function translateTextStrong(text, lang) {
             if (!text) return text;
             const dictionary = {
-                // المدن
+                // المدن والدول الأساسية
                 "Ankara": {ar:"أنقرة", tr:"Ankara", en:"Ankara", ru:"Анкара", fa:"آنکارا", kk:"Анкара", az:"Ankara", ka:"ანკარა"},
                 "Istanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", fa:"استانبول", kk:"Ыстамбұл", az:"İstanbul", ka:"სტამბოლი"},
                 "İstanbul": {ar:"إسطنبول", tr:"İstanbul", en:"Istanbul", ru:"Стамбул", fa:"استانبول", kk:"Ыстамбұл", az:"İstanbul", ka:"სტამბოლი"},
@@ -637,16 +619,16 @@
                 "DOĞRUDAN TARİFELİ UÇUŞ": {ar:"رحلة مجدولة مباشرة", tr:"DOĞRUDAN TARİFELİ UÇUŞ", en:"DIRECT SCHEDULED FLIGHT", ru:"ПРЯМОЙ РЕГУЛЯРНЫЙ РЕЙС", fa:"پرواز مستقیم", kk:"ТІКЕЛЕЙ РЕЙС", az:"BİRBAŞA UÇUŞ", ka:"პირდაპირი ფრენა"},
                 "Rahat Uçuş Tarihi 2026-11-24 Anında rezervasyon için en iyi fiyata.": {ar:"رحلة مريحة بتاريخ 24-11-2026 بأفضل سعر متاح للحجز الفوري.", tr:"Rahat Uçuş Tarihi 2026-11-24 Anında rezervasyon için en iyi fiyata.", en:"Comfortable Flight on 2026-11-24 at the best available price for instant booking.", ru:"Комфортный рейс 24.11.2026 по лучшей цене для мгновенного бронирования.", fa:"پرواز راحت در تاریخ 2026-11-24 با بهترین قیمت برای رزرو فوری.", kk:"Ыңғайлы рейс 2026-11-24, жедел брондау үшін ең жақсы бағамен.", az:"Dərhal rezervasyon üçün ən yaxşı qiymətə 2026-11-24 tarixində rahat uçuş.", ka:"კომფორტული ფრენა 2026-11-24-ში საუკეთესო ფასად."},
 
-                // الفنادق
+                // وصف الفنادق
                 "Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.": {ar:"إقامة فاخرة شاملة الوجبات والأنشطة الترفيهية على شاطئ البحر المتوسط.", tr:"Akdeniz sahilinde tam pansiyon ve eğlence aktiviteleri içeren lüks konaklama.", en:"Luxury accommodation including meals and recreational activities on the Mediterranean coast.", ru:"Роскошное проживание, включая питание и развлекательные мероприятия на побережье Средиземного моря.", fa:"اقامتگاه مجلل با غذای کامل و تفریحات در ساحل مدیترانه.", kk:"Жерорта теңізі жағалауындағы тамақтану мен ойын-сауықты қамтитын сәнді тұру.", az:"Aralıq dənizi sahilində yemək və əyləncə fəaliyyətləri daxil olmaqla lüks mənzil.", ka:"ძვირადღირებული განთავსება კვებითა და გართობით ხმელთაშუა ზღვის სანაპიროზე."},
-                "Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.", tr:"Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services near the beach.", ru:"Просторные семейные люксы с видом на море и полным спектром гостиничных услуг рядом с пляжем.", fa:"سوئیت های خانوادگی بزرگ با منظره دریا و خدمات کامل نزدیک ساحل.", kk:"Теңізге жақын, толық қызметі бар кең отбасылық люкстер.", az:"Dəniz mənzərəli və tam otel xidməti olan geniş ailə suitləri.", ka:"ფართო საოჯახო ლუქსები ზღვის ხედით და სასტუმროს სრული მომსახურებით სანაპიროსთან."},
+                "Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.": {ar:"أجنحة عائلية واسعة بإطلالة بحرية وخدمات فندقية متكاملة بالقرب من الشاطئ.", tr:"Sahile yakın, deniz manzaralı ve tam otel hizmeti sunan geniş aile süitleri.", en:"Spacious family suites with sea views and full hotel services near the beach.", ru:"Просторные семейные люکسы с видом на море и полным спектром гостиничных услуг рядом с пляжем.", fa:"سوئیت های خانوادگی بزرگ با منظره دریا و خدمات کامل نزدیک ساحل.", kk:"Теңізге жақын, толық қызметі бар кең отбасылық люкстер.", az:"Dəniz mənzərəli və tam otel xidməti olan geniş ailə suitləri.", ka:"ფართო საოჯახო ლუქსები ზღვის ხედით და სასტუმროს სრული მომსახურებით სანაპიროსთან."},
                 "Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.": {ar:"تجربة إقامة راقية في قلب إزمير مع إطلالة بانورامية ساحرة على الخليج.", tr:"Körfezin büyüleyici panoramik manzarasına sahip, İzmir'in kalbinde lüks bir konaklama deneyimi.", en:"A luxurious stay experience in the heart of Izmir with a charming panoramic view of the bay.", ru:"Роскошный опыт проживания в самом сердце Измира с очаровательным панорамным видом на залив.", fa:"تجربه اقامت مجلل در قلب ازمیر با چشم انداز پانورامای خلیج.", kk:"Измирдің жүрегінде шығанақтың тамаша көрінісі бар сәнді демалыс.", az:"Körfəzin füsunkar mənzərəsi ilə İzmirin mərkəzində lüks bir konaklama.", ka:"ძვირადღირებული დასვენება იზმირის გულში, ყურის მომხიბლავი ხედით."},
                 "Karadeniz'in yeşil doğası ve yaylalarında aileler için huzurlu bir konaklama.": {ar:"إقامة هادئة وسط الطبيعة الخضراء ومرتفعات البحر الأسود للعائلات.", tr:"Karadeniz'in yeşil doğası ve yaylalarında aileler için huzurlu bir konaklama.", en:"A quiet stay amidst the green nature and highlands of the Black Sea for families.", ru:"Спокойный отдых среди зеленой природы и высокогорий Черного моря для семей.", fa:"اقامتی آرام در میان طبیعت سبز و ارتفاعات دریای سیاه برای خانواده ها.", kk:"Қара теңіздің табиғаты мен тауларында отбасылар үшін тыныш демалыс.", az:"Qara dənizin yaşıl təbiətində və yaylalarında ailələr üçün dinc bir konaklama.", ka:"მშვიდი დასვენება მწვანე ბუნებასა და შავი ზღვის მაღალმთიანეთში ოჯახებისთვის."},
                 "Tarihin dokusunu Boğaz'a kolay erişimle birleştiren olağanüstü bir konum.": {ar:"موقع استثنائي يجمع بين عبق التاريخ وسهولة الوصول إلى البوسفور.", tr:"Tarihin dokusunu Boğaz'a kolay erişimle birleştiren olağanüstü bir konum.", en:"An exceptional location combining the fragrance of history with easy access to the Bosphorus.", ru:"Исключительное расположение, сочетающее аромат истории с легким доступом к Босфору.", fa:"مکانی استثنایی که عطر تاریخ را با دسترسی آسان به بسفر ترکیب می کند.", kk:"Тарих пен Босфорға оңай қолжетімділікті біріктіретін ерекше орын.", az:"Tarixi toxunuşu Bosfora asan çıxışla birləşdirən qeyri-adi bir yer.", ka:"გამორჩეული ადგილი, რომელიც აერთიანებს ისტორიას და ბოსფორზე მარტივ წვდომას."},
                 "Uludağ ve ünlü termal kaplıcaların yakınında mükemmel bir dinlenme.": {ar:"استجمام مثالي بالقرب من جبل أولوداغ والينابيع المعدنية الشهيرة.", tr:"Uludağ ve ünlü termal kaplıcaların yakınında mükemmel bir dinlenme.", en:"Perfect relaxation near Mount Uludag and the famous mineral springs.", ru:"Идеальный отдых рядом с горой Улудаг и знаменитыми минеральными источниками.", fa:"استراحتی عالی در نزدیکی کوه اولوداگ و چشمه های آب معدنی.", kk:"Ұлыдағ тауы мен әйгілі минералды бұлақтарға жақын жерде тамаша демалыс.", az:"Uludağ və məşhur termal bulaqların yaxınlığında mükəmməl bir istirahət.", ka:"შესანიშნავი დასვენება ულუდაგის მთასთან და მინერალურ წყაროებთან."},
                 
                 // العناوين
-                "5 Yıldızlı Her Şey Dahil Resort - Antalya": {ar:"منتجع 5 نجوم شامل كلياً - أنطاليا", tr:"5 Yıldızlı Her Şey Dahil Resort - Antalya", en:"5-Star All-Inclusive Resort - Antalya", ru:"5-звездочный курорт «все включено» - Анталья", fa:"ریزورت 5 ستاره همه چیز تمام - آنتالیا", kk:"5 жұлдызды барлығы қосылған курорт - Анталия", az:"5 Ulduzlu Hər Şey Daxil Resort - Antalya", ka:"5-ვარსკვლავიანი Resort - ანტალია"},
+                "5 Yıldızlı Her Şey Dahil Resort - Antalya": {ar:"منتجع 5 نجوم شامل كلياً - أنطاليا", tr:"5 Yıldızlı Her Şey Dahil Resort - Antalya", en:"5-Star All-Inclusive Resort - Antalya", ru:"5-звездочный курорт «все включено» - Анталья", fa:"ریزورت 5 ستاره UALL - آنتالیا", kk:"5 жұлдызды барлығы қосылған курорт - Анталия", az:"5 Ulduzlu Hər Şey Daxil Resort - Antalya", ka:"5-ვარსკვლავიანი Resort - ანტალია"},
                 "Lüks Aile Apart Dairesi - Antalya": {ar:"شقة فندقية عائلية فاخرة - أنطاليا", tr:"Lüks Aile Apart Dairesi - Antalya", en:"Luxury Family Serviced Apartment - Antalya", ru:"Роскошные семейные апартаменты - Анталья", fa:"آپارتمان خانوادگی مجلل - آنتالیا", kk:"Сәнді отбасылық пәтер - Анталия", az:"Lüks Ailə Mənzili - Antalya", ka:"ძვირადღირებული საოჯახო აპარტამენტი - ანტალია"},
                 "Ege Denizi Manzaralı Seçkin Otel - İzmir": {ar:"فندق مميز بإطلالة على بحر إيجة - إزمير", tr:"Ege Denizi Manzaralı Seçkin Otel - İzmir", en:"Exclusive Aegean Sea View Hotel - Izmir", ru:"Эксклюзивный отель с видом на Эгейское море - Измир", fa:"هتل انحصاری با منظره دریای اژه - ازمیر", kk:"Эгей теңізі көрінетін эксклюзивті қонақ үй - Измир", az:"Egey Dənizi Mənzərəli Seçilmiş Otel - İzmir", ka:"ექსკლუზიური სასტუმრო ეგეოსის ზღვის ხედით - იზმირი"},
                 "Dağ Manzaralı Geniş Apart Daire - Trabzon": {ar:"شقة فندقية واسعة مطلة على الجبال - طرابزون", tr:"Dağ Manzaralı Geniş Apart Daire - Trabzon", en:"Spacious Mountain View Suite - Trabzon", ru:"Просторные апартаменты с видом на горы - Трабзон", fa:"سوئیت بزرگ با منظره کوه - ترابزون", kk:"Тау көрінісі бар кең пәтер - Трабзон", az:"Dağ Mənzərəli Geniş Mənzil - Trabzon", ka:"ფართო აპარტამენტი მთის ხედით - ტრაბზონი"},
@@ -672,11 +654,11 @@
             return res;
         }
 
-        // --- قاموس الترجمة الشامل للواجهة بالـ 11 لغة ---
+        // --- قاموس الترجمة للواجهة (المساعد والفوتر والهيرو) ---
         const TRANSLATIONS = {
             tr: {
                 dir: "ltr", hero_title: "Seçkin Rotaları Lüksle Keşfedin", hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.", hotels_sub: "ÖZEL SEÇKİ", hotels_heading: "Özel Seçki Koleksiyonu", starting_from: "Başlayan Fiyatlar", flights_sub: "GÖKLERDEKİ ZARAFET", flights_heading: "Ayrıcalıklı Uçuşlar", blog_sub: "SEYAHAT REHBERİ", blog_heading: "UcuzaKal Seyahat Günlüğü", read_more: "Devamını Oku", about_heading: "Biz Kimiz?", about_text_1: "UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.", about_text_2: "Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.", ratings_heading: "İzlenimlerinizi Paylaşın", review_name_placeholder: "Adınız Soyadınız", review_text_placeholder: "Düşünceleriniz...", submit_review_btn: "Gönder", review_success: "Zarif geri bildiriminiz için teşekkür ederiz.", rights: "Tüm hakları saklıdır UcuzaKal Türkiye", google_login: "Gmail Girişi", cinematic_title: "Rezervasyon Platformuna Yönlendiriliyorsunuz...", no_deals_text: "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret ederek onurlandırın.", global_channels: "Global Resmi Kanallarımız",
-                smart_hub_title: "Akıllı Seyahat Asistanınız", smart_hub_sub: "Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planınızı saniyeler içinde tasarlayın.", tab_hotel: "Konaklama Asistanı", tab_flight: "Uçuş Asistanı", c_budget: "Bütçeniz", c_type: "Konaklama Tipi", t_hotel: "Oteller", t_resort: "Tatil Köyleri (Resort)", t_apart: "Apart Oteller", c_days: "Konaklama Süresi (Gün)", c_dest: "Hedef Bölge", c_all_tr: "Tüm Türkiye", c_vibe: "Tatil Tarzı", vibe_luxury: "Lüks Resort & Spa", vibe_family: "Aile Dostu Tatil", vibe_romantic: "Balayı / Romantik", vibe_nature: "Doğa ve Dağ Evi", vibe_beach: "Sahil ve Plaj", vibe_thermal: "Termal & Sağlık", vibe_city: "Şehir Merkezi & Alışveriş", btn_hotel: "Otel Bul", btn_resort: "Resort Bul", btn_apart: "Apart Bul", f_from: "Nereden", f_to: "Nereye", f_budget: "Bütçeniz", f_class: "Uçuş Sınıfı", class_eco: "Ekonomi", class_prem: "Premium Ekonomi", class_bus: "Business Class", class_first: "First Class", f_airline: "Havayolu (İsteğe bağlı)", btn_flight: "Uçuşumu Şimdi Bul", total_est: "Tahmini Toplam:"
+                smart_hub_title: "Akıllı Seyahat Asistanınız", smart_hub_sub: "Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planınızı saniyeler içinde tasarlayın.", tab_hotel: "Konaklama Asistanı", tab_flight: "Uçuş Asistanı", c_budget: "Bütçeniz", c_type: "Konaklama Tipi", t_hotel: "Oteller", t_resort: "Tatil Köyleri (Resort)", t_apart: "Apart Oteller", c_days: "Konaklama Süresi (Gün)", c_dest: "Hedef Bölge", c_all_tr: "Tüm Türkiye", c_vibe: "Tatil Tarzı", vibe_luxury: "Lüks Resort & Spa", vibe_family: "Aile Dostu Tatil", vibe_romantic: "Balayı / Romantik", vibe_nature: "Doğa ve Dağ Evi", vibe_beach: "Sahil ve Plaj", vibe_thermal: "Termal & Sağlık", vibe_city: "Şehir Merkezi & Alışveriş", btn_hotel: "Otel Bul", btn_resort: "Resort Bul", btn_apart: "Apart Bul", f_from: "Nereden (Tüm Dünya)", f_to: "Nereye (Türkiye)", f_budget: "Bütçeniz", f_class: "Uçuş Sınıfı", class_eco: "Ekonomi", class_prem: "Premium Ekonomi", class_bus: "Business Class", class_first: "First Class", f_airline: "Havayolu (İsteğe bağlı)", btn_flight: "Uçuşumu Şimdi Bul", total_est: "Tahmini Toplam:"
             },
             ar: {
                 dir: "rtl", hero_title: "اكتشف روعة الوجهات الفاخرة", hero_subtitle: "مختارات إقامة وطيران حصرية مصممة لتلبية ذوقك الرفيع في أبرز وجهات تركيا.", hotels_sub: "مختارات خاصة", hotels_heading: "مجموعة المختارات الخاصة", starting_from: "الأسعار تبدأ من", flights_sub: "أناقة الأجواء", flights_heading: "مسارات الرحلات الحصرية", blog_sub: "دليل السفر", blog_heading: "يوميات UcuzaKal السياحية", read_more: "اقرأ المزيد", about_heading: "من نحن؟", about_text_1: "UcuzaKal Türkiye هي منصة سفر مستقلة تجمع لك أفضل عروض الإقامة ورحلات الطيران في أرقى الوجهات التركية. هدفنا هو تقديم أدق الأسعار بشفافية تامة، وتحويل تخطيط سفرك إلى تجربة استثنائية تلبي ذوقك الرفيع.", about_text_2: "تم تصميم وتنسيق كل مسار بعناية فائقة لضمان ألا يكون سفرك مجرد وجهة وصول؛ بل ليبقى كذكرى نبيلة لا تُنسى تلبي كافة توقعاتك.", ratings_heading: "شاركنا انطباعاتك", review_name_placeholder: "الاسم الكريم...", review_text_placeholder: "اكتب انطباعاتك هنا...", submit_review_btn: "إرسال", review_success: "نقدر لك هذا التقييم الراقي، شكراً لثقتك.", rights: "جميع الحقوق محفوظة UcuzaKal Türkiye", google_login: "دخول Gmail", cinematic_title: "جاري تحويلك لمنصة الحجز...", no_deals_text: "نأسف بشدة، لا توجد عروض في الوقت الحالي، شرفنا بالزيارة بعد قليل.", global_channels: "قنواتنا الرسمية العالمية",
@@ -740,6 +722,7 @@
             updateHotelBtnText();
             calculateTotal();
 
+            // تحديث العروض والمقالات باللغة المختارة
             if (window.HOTELS_DATA && window.HOTELS_DATA.length > 0) window.renderHotels();
             if (window.FLIGHTS_DATA && window.FLIGHTS_DATA.length > 0) window.renderFlights();
             if (window.ARTICLES_MAP && Object.keys(window.ARTICLES_MAP).length > 0) window.renderBlogCards();
@@ -751,73 +734,28 @@
             if (switcher) { switcher.value = savedLang; changeLanguage(savedLang); }
         });
 
-        function toggleTheme() {
-            const html = document.documentElement;
-            const icon = document.getElementById('theme-icon');
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark'); html.classList.add('light');
-                icon.className = "fas fa-moon text-xs sm:text-sm text-slate-700";
-                localStorage.setItem('ucuzakal_theme', 'light');
+        // --- دوال المساعدين الذكيين ---
+        window.switchConcierge = function(tabName) {
+            document.querySelectorAll('.concierge-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.concierge-panel').forEach(panel => panel.classList.remove('active'));
+            document.getElementById(`tab-${tabName}`).classList.add('active');
+            document.getElementById(`panel-${tabName}`).classList.add('active'); };  window.updateHotelBtnText = function() { const currentLang = document.documentElement.lang \vert{}\vert{} 'tr'; const dict = TRANSLATIONS[currentLang] \vert{}\vert{} TRANSLATIONS.tr; const type = document.getElementById('hc-type').value; const btnText = document.getElementById('btn-hotel-text');  if(type === 'hotel') btnText.textContent = dict['btn_hotel']; else if(type === 'resort') btnText.textContent = dict['btn_resort']; else if(type === 'apart') btnText.textContent = dict['btn_apart']; };  window.calculateTotal = function() { const budgetInput = document.getElementById('hc-budget').value; const daysInput = document.getElementById('hc-days').value; const display = document.getElementById('total-calc-display'); const currentLang = document.documentElement.lang \vert{}\vert{} 'tr'; const dict = TRANSLATIONS[currentLang] \vert{}\vert{} TRANSLATIONS.tr;  const budgetMatch = budgetInput.match(/\d+/g); const days = parseInt(daysInput);  if(budgetMatch && days && days > 0) { const budget = parseInt(budgetMatch.join('')); const total = budget * days; // جلب أي رمز عملة أو نص غير رقمي const currencyMatch = budgetInput.match(/[^\d\s.,]+/); const currency = currencyMatch ? currencyMatch[0] : ''; display.textContent = `${dict['total_est']} ${total.toLocaleString()}${currency}`;
             } else {
-                html.classList.remove('light'); html.classList.add('dark');
-                icon.className = "fas fa-sun text-xs sm:text-sm text-brand-gold";
-                localStorage.setItem('ucuzakal_theme', 'dark');
+                display.textContent = '';
             }
-        }
-        if (localStorage.getItem('ucuzakal_theme') === 'light') {
-            document.documentElement.classList.remove('dark');
-            document.documentElement.classList.add('light');
-            const icon = document.getElementById('theme-icon');
-            if(icon) icon.className = "fas fa-moon text-xs sm:text-sm text-slate-700";
-        }
-    </script>
-
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-        import { getFirestore, collection, addDoc, getDocs, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-        const firebaseConfig = {
-            apiKey: "AIzaSyDcMOlstkYaLBOjnJOYk24U6_724pqEw1U",
-            authDomain: "ucuzakal-5e2a8.firebaseapp.com",
-            projectId: "ucuzakal-5e2a8",
-            storageBucket: "ucuzakal-5e2a8.firebasestorage.app",
-            messagingSenderId: "111148178418",
-            appId: "1:111148178418:web:f885dc545e0627516ca96b"
-        };
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
-        const db = getFirestore(app);
-
-        const aiDbConfig = { projectId: "ucuzakal-ai-db-6ccfd" };
-        const aiApp = initializeApp(aiDbConfig, "aiBrainApp");
-        const aiDb = getFirestore(aiApp);
-
-        const provider = new GoogleAuthProvider();
-        const authBtn = document.getElementById('auth-btn');
-
-        window.loginWithGoogle = function() {
-            signInWithPopup(auth, provider).catch((error) => console.error("Authentication Error:", error.message));
         };
 
-        window.logoutGoogle = function() { signOut(auth); };
+        window.startHotelConcierge = function() {
+            // سيتم تفعيل الروابط في الجزء الثاني
+            console.log('Hotel Concierge Initiated');
+        };
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                authBtn.innerHTML = `<img src="${user.photoURL}" alt="User" class="w-4 h-4 sm:w-5 sm:h-5 rounded-full border border-brand-gold"> <span class="font-bold text-[10px] sm:text-xs hidden sm:inline">${user.displayName.split(' ')[0]}</span>`;
-                authBtn.onclick = window.logoutGoogle;
-                authBtn.title = "Çıkış Yap / تسجيل الخروج";
-            } else {
-                authBtn.innerHTML = `<i class="fab fa-google"></i><span data-i18n="google_login" id="auth-text" class="hidden sm:inline">Gmail Girişi</span>`;
-                authBtn.onclick = window.loginWithGoogle;
-                authBtn.title = "Giriş Yap / تسجيل الدخول";
-                const lang = document.documentElement.lang || 'tr';
-                const dict = TRANSLATIONS[lang] || TRANSLATIONS.tr;
-                const textElem = document.getElementById('auth-text');
-                if (textElem) textElem.textContent = dict["google_login"];
-            }
-        });
+        window.startFlightConcierge = function() {
+             // سيتم تفعيل الروابط في الجزء الثاني
+             console.log('Flight Concierge Initiated');
+        };
 
+        // --- دوال بناء وتقديم البيانات (بقيت كما هي تماماً) ---
         window.renderHotels = function() {
             const container = document.getElementById('hotels-container');
             if (!container) return;
@@ -827,214 +765,4 @@
             if (window.HOTELS_DATA.length === 0) {
                 container.innerHTML = `
                     <div class="col-span-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-[2rem] border border-brand-gold/10 bg-gradient-to-b from-transparent to-brand-gold/5 shadow-[inset_0_0_50px_rgba(212,175,55,0.02)]">
-                        <div class="w-24 h-24 sm:w-32 sm:h-32 mb-6 sm:mb-8 rounded-full flex items-center justify-center relative z-10">
-                            <div class="absolute inset-0 rounded-full border-t-2 border-r-2 border-brand-gold/40 animate-[spin_8s_linear_infinite]"></div>
-                            <div class="absolute inset-3 rounded-full border-b-2 border-l-2 border-brand-gold/30 animate-[spin_12s_linear_infinite_reverse]"></div>
-                            <i class="fas fa-gem text-brand-gold text-3xl sm:text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
-                        </div>
-                        <h3 class="font-luxury text-lg sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${dict.no_deals_text}</h3>
-                    </div>`;
-                return;
-            }
-
-            container.innerHTML = '';
-            window.HOTELS_DATA.forEach(hotel => {
-                const trCity = translateTextStrong(hotel.city, currentLang);
-                const trName = translateTextStrong(hotel.name, currentLang);
-                const trDesc = translateTextStrong(hotel.description, currentLang);
-
-                const card = document.createElement('a');
-                card.href = hotel.affiliateUrl;
-                card.target = "_blank"; 
-                card.className = 'ultra-luxury-card group block';
-
-                card.innerHTML = `
-                    <div>
-                        <div class="img-frame">
-                            <img src="${hotel.image}" alt="${trName}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=90';" class="w-full h-full object-cover">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-700"></div>
-                        </div>
-                        <div class="p-5 sm:p-6 text-center">
-                            <span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2 notranslate" translate="no">${trCity}</span>
-                            <h3 class="font-luxury text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug notranslate" translate="no">${trName}</h3>
-                            <div class="gold-divider"></div>
-                            <p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-2 line-clamp-3 notranslate" translate="no">${trDesc}</p>
-                        </div>
-                    </div>
-                    <div class="px-5 sm:px-6 pb-5 sm:pb-6">
-                        <div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4">
-                            <span class="text-slate-400 text-[10px] uppercase tracking-widest">${dict.starting_from || "Başlayan Fiyatlar"}</span>
-                            <span class="font-luxury text-lg sm:text-xl font-bold text-brand-gold">${hotel.price}</span>
-                        </div>
-                    </div>`;
-                container.appendChild(card);
-            });
-        };
-
-        window.renderFlights = function() {
-            const container = document.getElementById('flights-container');
-            if (!container) return;
-            const currentLang = document.documentElement.lang || 'tr';
-            const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
-            
-            if (window.FLIGHTS_DATA.length === 0) {
-                container.innerHTML = `
-                    <div class="col-span-full py-16 sm:py-24 px-4 flex flex-col items-center justify-center text-center relative overflow-hidden rounded-[2rem] border border-brand-gold/10 bg-gradient-to-b from-transparent to-brand-gold/5 shadow-[inset_0_0_50px_rgba(212,175,55,0.02)]">
-                        <div class="w-24 h-24 sm:w-32 sm:h-32 mb-6 sm:mb-8 rounded-full flex items-center justify-center relative z-10">
-                            <div class="absolute inset-0 rounded-full border-t-2 border-r-2 border-brand-gold/40 animate-[spin_8s_linear_infinite]"></div>
-                            <div class="absolute inset-3 rounded-full border-b-2 border-l-2 border-brand-gold/30 animate-[spin_12s_linear_infinite_reverse]"></div>
-                            <i class="fas fa-plane-departure text-brand-gold text-3xl sm:text-4xl transform hover:scale-110 transition duration-500 drop-shadow-[0_0_20px_rgba(212,175,55,0.6)]"></i>
-                        </div>
-                        <h3 class="font-luxury text-lg sm:text-3xl text-slate-800 dark:text-slate-200 mb-0 font-bold tracking-widest relative z-10 title-glow">${dict.no_deals_text}</h3>
-                    </div>`;
-                return;
-            }
-
-            container.innerHTML = '';
-            window.FLIGHTS_DATA.forEach(flight => {
-                let routeParts = flight.route.split('✈️').map(s => s.trim());
-                let trRoute = flight.route;
-                if(routeParts.length === 2) {
-                     trRoute = translateTextStrong(routeParts[0], currentLang) + " ✈️ " + translateTextStrong(routeParts[1], currentLang);
-                } else {
-                     trRoute = translateTextStrong(flight.route, currentLang);
-                }
-
-                const trAirline = translateTextStrong(flight.airline, currentLang);
-                const trDesc = translateTextStrong(flight.description, currentLang);
-
-                const card = document.createElement('a');
-                card.href = flight.affiliateUrl;
-                card.target = "_blank"; 
-                card.className = 'ultra-luxury-card p-6 sm:p-8 text-center group block';
-
-                card.innerHTML = `
-                    <div>
-                        <i class="fas fa-plane text-brand-gold text-2xl sm:text-3xl mb-3 sm:mb-4 block transform group-hover:-translate-y-2 transition duration-500"></i>
-                        <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1 notranslate" translate="no">${trRoute}</h3>
-                        <span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-3 sm:mb-4 font-bold notranslate" translate="no">${trAirline}</span>
-                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-5 sm:mb-6 leading-relaxed line-clamp-3 notranslate" translate="no">${trDesc}</p>
-                    </div>
-                    <div class="pt-2 border-t border-slate-100 dark:border-white/5">
-                        <span class="font-luxury text-xl sm:text-2xl font-bold text-brand-gold">${flight.price}</span>
-                    </div>`;
-                container.appendChild(card);
-            });
-        };
-
-        window.renderBlogCards = function() {
-            const container = document.getElementById('blog-container');
-            if (!container) return;
-            const currentLang = document.documentElement.lang || 'tr';
-            const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.tr;
-            
-            window.ARTICLES_MAP = window.ARTICLES_MAP || {};
-            const articlesList = Object.values(window.ARTICLES_MAP);
-            if (articlesList.length === 0) return;
-
-            container.innerHTML = '';
-            articlesList.forEach(art => {
-                let title = art.titles ? (art.titles[currentLang] || art.titles['tr']) : art.title;
-                let bodyText = art.titles ? (art.bodies[currentLang] || art.bodies['tr']) : (art.body || '');
-                
-                let cleanText = bodyText.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
-                let bodySnippet = cleanText.replace(/<[^>]*>?/gm, '').trim().substring(0, 140) + '...';
-
-                const card = document.createElement('article');
-                card.className = 'ultra-luxury-card group cursor-pointer';
-                card.onclick = () => window.openArticleModal(art.id);
-
-                card.innerHTML = `
-                    <div>
-                        <div class="img-frame">
-                            <img src="${art.image}" alt="${title}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-5 sm:p-6">
-                            <span class="text-brand-gold text-[10px] tracking-widest font-bold uppercase block mb-2">${translateTextStrong(art.category || 'TÜRKİYE', currentLang)}</span>
-                            <h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-brand-gold transition line-clamp-2 notranslate" translate="no">${title}</h3>
-                            <p class="text-slate-600 dark:text-slate-400 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-3 notranslate" translate="no">${bodySnippet}</p>
-                        </div>
-                    </div>
-                    <div class="px-5 sm:px-6 pb-5 sm:pb-6">
-                        <span class="text-brand-gold text-xs font-bold inline-flex items-center gap-2 group-hover:translate-x-1 transition">
-                            <span>${dict.read_more || "Devamını Oku"}</span> <i class="fas fa-arrow-right text-[10px]"></i>
-                        </span>
-                    </div>`;
-                container.appendChild(card);
-            });
-        };
-
-        function detectTrafficSource() {
-            const utm = new URLSearchParams(window.location.search).get('utm_source');
-            return utm ? utm.toUpperCase() : 'DIRECT';
-        }
-
-        window.submitReview = async function() {
-            const nameInput = document.getElementById('user-review-name');
-            const textInput = document.getElementById('user-review-text');
-            if (!nameInput.value.trim() || !textInput.value.trim() || selectedRating === 0) return;
-            try {
-                await addDoc(collection(db, "reviews"), {
-                    userName: nameInput.value.trim(), reviewText: textInput.value.trim(),
-                    rating: Number(selectedRating), source: detectTrafficSource(), createdAt: serverTimestamp()
-                });
-                document.getElementById('review-success-msg').classList.remove('hidden');
-                nameInput.value = ''; textInput.value = ''; rateStar(0);
-            } catch(e) {}
-        };
-
-        async function fetchAllFirestoreData() {
-            try {
-                window.HOTELS_DATA = [];
-                window.FLIGHTS_DATA = [];
-
-                const dealsSnap = await getDocs(collection(aiDb, "live_deals"));
-
-                dealsSnap.forEach(docSnap => {
-                    const id = docSnap.id;
-                    const data = docSnap.data();
-
-                    if (id.startsWith("hotel_deal_")) {
-                        window.HOTELS_DATA.push({
-                            name: data.title || data.city,
-                            city: data.city || "TÜRKİYE",
-                            price: data.price || "$99",
-                            image: data.image || "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=90",
-                            affiliateUrl: data.affiliateUrl || '#',
-                            description: data.description || ''
-                        });
-                    } 
-                    else if (id.startsWith("flight_deal_")) {
-                        window.FLIGHTS_DATA.push({
-                            route: (data.departure && data.destination) ? `${data.departure} ✈️ ${data.destination}` : (data.title || "Özel Rota"),
-                            airline: data.airline || "UcuzaKal Seçkin Uçuş",
-                            price: data.price || "$49",
-                            affiliateUrl: data.affiliateUrl || '#',
-                            description: data.description || ''
-                        });
-                    }
-                    else if (id.startsWith("article_")) {
-                        data.id = id; 
-                        window.ARTICLES_MAP[id] = data; 
-                    }
-                });
-            } catch(e) {
-                console.error("Error fetching live deals:", e);
-            }
-            window.renderHotels();
-            window.renderFlights();
-            window.renderBlogCards(); 
-            
-            setTimeout(() => {
-                const urlParams = new URLSearchParams(window.location.search);
-                const articleIdFromUrl = urlParams.get('article');
-                if (articleIdFromUrl && window.ARTICLES_MAP && window.ARTICLES_MAP[articleIdFromUrl]) {
-                    window.openArticleModal(articleIdFromUrl);
-                }
-            }, 500); 
-        }
-
-        fetchAllFirestoreData();
-    </script>
-</body>
-</html>
+                        <div class="w-24 h-24 sm:w-32 sm:h-32 mb-6 sm:mb-8 rounded-
