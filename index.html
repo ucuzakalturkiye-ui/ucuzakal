@@ -58,21 +58,21 @@
         }
         #article-modal.active { display: flex; }
 
-        /* نافذة الخريطة 100% بملء الشاشة — العروض فوق الخريطة فقط دون أي شاشة سوداء */
+        /* شاشة الخريطة الكاملة 100% — العروض والبطاقة الإقناعية فوق الخريطة فقط */
         #cinematic-overlay {
             position: fixed; inset: 0; width: 100vw; height: 100vh; height: 100dvh;
-            background: #050912; z-index: 999999; display: none; overflow: hidden;
+            background: #030508; z-index: 999999; display: none; overflow: hidden;
         }
         #cinematic-overlay.active { display: block; }
-        #concierge-real-map { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; background: #050912; }
+        #concierge-real-map { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 1; background: #030508; }
 
         .map-top-floating-hud {
-            position: absolute; top: 8px; left: 8px; right: 8px; z-index: 1000; max-width: 1220px; margin: 0 auto;
-            background: rgba(6,10,18,0.94); border: 1px solid rgba(212,175,55,0.5); border-radius: 16px;
+            position: absolute; top: 8px; left: 8px; right: 8px; z-index: 1000; max-width: 1260px; margin: 0 auto;
+            background: rgba(6,10,18,0.95); border: 1px solid rgba(212,175,55,0.5); border-radius: 16px;
             padding: 0.5rem 0.8rem; box-shadow: 0 10px 30px rgba(0,0,0,0.85); pointer-events: auto;
         }
         @media (min-width: 768px) {
-            .map-top-floating-hud { top: 14px; left: 18px; right: 18px; padding: 0.7rem 1.2rem; }
+            .map-top-floating-hud { top: 12px; left: 16px; right: 16px; padding: 0.65rem 1.15rem; }
         }
         .map-mode-btn {
             background: rgba(212,175,55,0.14); border: 1px solid rgba(212,175,55,0.45); color: #D4AF37;
@@ -81,38 +81,74 @@
         }
         .map-mode-btn.active { background: #D4AF37; color: #030508; }
 
+        /* الرصيف السفلي العائم فوق الخريطة */
         .map-bottom-floating-dock {
-            position: absolute; bottom: 8px; left: 8px; right: 8px; z-index: 1000; max-width: 1260px; margin: 0 auto;
+            position: absolute; bottom: 8px; left: 8px; right: 8px; z-index: 1000; max-width: 1320px; margin: 0 auto;
             pointer-events: none; display: flex; flex-direction: column; gap: 0.45rem;
         }
         @media (min-width: 768px) {
-            .map-bottom-floating-dock { bottom: 16px; left: 18px; right: 18px; gap: 0.6rem; }
+            .map-bottom-floating-dock { bottom: 14px; left: 16px; right: 16px; gap: 0.55rem; }
+        }
+
+        /* البطاقة التسويقية الإقناعية العائمة + شريط جاهزية الرحلة (0% -> 100%) */
+        .persuasion-floating-box {
+            pointer-events: auto;
+            max-width: 1080px;
+            width: 100%;
+            margin: 0 auto;
+            background: linear-gradient(135deg, rgba(8,13,24,0.97) 0%, rgba(16,23,40,0.96) 100%);
+            border: 1.5px solid rgba(212,175,55,0.65);
+            border-radius: 16px;
+            padding: 0.6rem 0.9rem;
+            box-shadow: 0 10px 28px rgba(0,0,0,0.88);
+            color: #ffffff;
+            animation: cardPopUp 0.35s ease-out forwards;
+        }
+        .readiness-bar-track {
+            width: 100%; height: 6px; border-radius: 999px; background: rgba(255,255,255,0.12); overflow: hidden;
+        }
+        .readiness-bar-fill {
+            height: 100%; width: 15%; border-radius: 999px;
+            background: linear-gradient(90deg, #D4AF37, #10B981);
+            transition: width 0.4s ease;
+        }
+        .persuasion-points-grid {
+            display: grid; grid-template-columns: 1fr; gap: 0.4rem; margin-top: 0.55rem; padding-top: 0.55rem;
+            border-top: 1px solid rgba(212,175,55,0.2);
+        }
+        @media (min-width: 768px) {
+            .persuasion-points-grid { grid-template-columns: repeat(3, 1fr); gap: 0.75rem; }
         }
 
         #concierge-deals-grid {
-            pointer-events: auto; display: flex; gap: 0.6rem; overflow-x: auto;
-            padding: 0.2rem 0.1rem 0.35rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+            pointer-events: auto; display: flex; gap: 0.55rem; overflow-x: auto;
+            padding: 0.15rem 0.1rem 0.3rem; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
         }
         #concierge-deals-grid::-webkit-scrollbar { height: 5px; }
         #concierge-deals-grid::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 999px; }
         @media (min-width: 1024px) {
             #concierge-deals-grid {
-                display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-                overflow-x: visible; gap: 0.85rem;
+                display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr));
+                overflow-x: visible; gap: 0.7rem;
             }
         }
 
         .on-map-offer-card {
-            flex: 0 0 85%; max-width: 320px; scroll-snap-align: center;
-            background: rgba(6,10,18,0.96); border: 1.5px solid rgba(212,175,55,0.58);
-            border-radius: 16px; padding: 0.85rem 1rem; color: #ffffff;
-            box-shadow: 0 12px 32px rgba(0,0,0,0.9);
+            flex: 0 0 82%; max-width: 300px; scroll-snap-align: center;
+            background: rgba(6,10,18,0.96); border: 1.5px solid rgba(212,175,55,0.55);
+            border-radius: 15px; padding: 0.75rem 0.9rem; color: #ffffff;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.9);
             display: flex; flex-direction: column; justify-content: space-between;
             animation: cardPopUp 0.35s ease-out forwards;
+            transition: border-color 0.25s ease;
         }
-        @media (min-width: 640px) { .on-map-offer-card { flex: 0 0 46%; max-width: 350px; } }
+        .on-map-offer-card.offer-checked {
+            border-color: #10B981;
+            box-shadow: 0 0 0 1px rgba(16,185,129,0.55), 0 12px 30px rgba(0,0,0,0.9);
+        }
+        @media (min-width: 640px) { .on-map-offer-card { flex: 0 0 45%; max-width: 330px; } }
         @media (min-width: 1024px) { .on-map-offer-card { flex: 1 1 auto; max-width: none; } }
-        @keyframes cardPopUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes cardPopUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
 
         /* نقاط الرادار المضيئة (GPU transform فقط — خفيفة 100%) */
         @keyframes radarPulseWave {
@@ -157,7 +193,7 @@
         }
         .leaflet-popup-tip { background: #D4AF37 !important; }
 
-        /* المساعد الذكي + تأثير شعاع ذهبي خفيف يعمل بـ GPU فقط */
+        /* المساعد الذكي + شعاع ذهبي علوي خفيف GPU-only */
         .smart-concierge-container {
             background: #ffffff; border: 1.5px solid rgba(212,175,55,0.42); border-radius: 24px;
             padding: 1.4rem 1rem; box-shadow: 0 16px 40px rgba(0,0,0,0.06);
@@ -275,15 +311,15 @@
         </div>
     </div>
 
-    <!-- شاشة الخريطة الكاملة 100% — جميع العروض عائمة فوق الخريطة فقط -->
+    <!-- شاشة الخريطة الكاملة 100% — العروض + البطاقة التسويقية الإقناعية فوق الخريطة فقط -->
     <div id="cinematic-overlay">
         <div id="concierge-real-map"></div>
 
         <div class="map-top-floating-hud">
-            <div class="flex items-center justify-between gap-2 mb-1.5">
+            <div class="flex items-center justify-between gap-2 mb-1">
                 <div class="flex items-center gap-2 min-w-0">
                     <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shrink-0"></span>
-                    <span id="hud-live-telemetry" class="text-brand-gold font-extrabold text-[11px] sm:text-xs truncate">UCUZAKAL LIVE RADAR 24/7</span>
+                    <span id="hud-live-telemetry" class="text-brand-gold font-extrabold text-[11px] sm:text-xs truncate">UCUZAKAL AI CORE OS — LIVE RADAR</span>
                 </div>
                 <div class="flex items-center gap-1.5 shrink-0">
                     <button type="button" id="btn-sound-toggle" class="map-mode-btn active" onclick="toggleConciergeSound()">
@@ -303,7 +339,7 @@
             </div>
             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                 <h3 id="cinematic-status-title" class="font-luxury text-sm sm:text-lg text-white font-bold truncate" data-i18n="cinematic_title">
-                    Canlı Harita Üzerinde Gerçek Teklifler Taranıyor...
+                    Canlı Harita Üzerinde Doğrulanmış Teklifler Taranıyor...
                 </h3>
                 <p id="cinematic-summary-sub" class="text-[11px] sm:text-xs text-brand-gold font-bold truncate"></p>
             </div>
@@ -313,7 +349,34 @@
         </div>
 
         <div class="map-bottom-floating-dock">
-            <div id="budget-advisor-alert" class="hidden pointer-events-auto max-w-3xl mx-auto px-3.5 py-2 rounded-xl bg-black/95 border border-brand-gold text-amber-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl"></div>
+            <!-- البطاقة الإقناعية التسويقية العائمة + شريط جاهزية الرحلة -->
+            <div id="persuasion-card-box" class="persuasion-floating-box hidden">
+                <div class="flex items-center justify-between gap-2 flex-wrap">
+                    <div class="flex items-center gap-2 min-w-0 flex-1">
+                        <span class="w-7 h-7 rounded-full bg-brand-gold/20 border border-brand-gold flex items-center justify-center text-brand-gold text-xs shrink-0">
+                            <i class="fas fa-crown"></i>
+                        </span>
+                        <div class="min-w-0">
+                            <div id="persuasion-title" class="font-luxury text-xs sm:text-sm font-bold text-brand-gold truncate"></div>
+                            <div id="persuasion-headline" class="text-[11px] text-slate-200 leading-snug line-clamp-1 sm:line-clamp-none"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2 shrink-0">
+                        <div class="text-right">
+                            <span id="readiness-label" class="text-[10px] font-extrabold text-emerald-400 block">Trip Readiness: 0%</span>
+                            <div class="w-24 sm:w-32 readiness-bar-track mt-0.5">
+                                <div id="readiness-bar-fill" class="readiness-bar-fill" style="width: 0%;"></div>
+                            </div>
+                        </div>
+                        <button type="button" onclick="togglePersuasionDetails()" aria-label="Toggle Trip Benefits" class="px-2.5 py-1 rounded-full border border-brand-gold/50 bg-brand-gold/10 text-brand-gold text-[10px] font-extrabold hover:bg-brand-gold hover:text-black transition">
+                            <i id="persuasion-chevron" class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                </div>
+                <div id="persuasion-details" class="persuasion-points-grid hidden"></div>
+            </div>
+
+            <div id="budget-advisor-alert" class="hidden pointer-events-auto max-w-3xl mx-auto px-3.5 py-1.5 rounded-xl bg-black/95 border border-brand-gold text-amber-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl"></div>
             <div id="concierge-deals-grid"></div>
         </div>
     </div>
@@ -692,7 +755,7 @@
         </div>
     </footer>
     <!-- ========================================================================= -->
-    <!-- الجزء 2 من 4: بوابات الشركاء السبعة (Zero-404 + No Coverage = Hide) + الصوت + الجغرافيا -->
+    <!-- الجزء 2 من 4: الشركاء الـ 14 (Zero-404 + Failover) + مضلع عزل تركيا + الصوت والجغرافيا -->
     <!-- ========================================================================= -->
     <script>
         window.ARTICLES_MAP = {};
@@ -700,6 +763,8 @@
         window.FLIGHTS_DATA = [];
         window.CONCIERGE_HOTELS_DB = {};
         window.CONCIERGE_FLIGHTS_DB = {};
+        window.PARTNER_WEIGHTS = {};
+        window.PERSUASION_TAGLINES = {};
         window.LIVE_TRANSLATION_CACHE = {};
         window.selectedRating = 0;
         window.flightDirection = 'world_to_tr';
@@ -710,8 +775,10 @@
         window.flightAnimFrame = null;
         window.conciergeSoundEnabled = true;
         window.activeSearchSessionId = 0;
+        window.currentTripReadinessSet = new Set();
+        window.currentTripTotalCards = 0;
 
-        // 1. إعدادات التتبع الرسمية للشركاء السبعة (Marker: 798779 | TRS: 597953)
+        // 1. إعدادات التتبع الرسمية للشركاء الـ 14 (Marker: 798779 | TRS: 597953)
         window.UCUZAKAL_AGENT_CONFIG = {
             aviasalesApiToken: "99874d46ae7701f2a468d32d1af10cea",
             marker: "798779",
@@ -724,14 +791,38 @@
         };
 
         window.AFFILIATE_GATEWAYS = {
-            aviasales: "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=",
-            kiwitaxi:  "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=",
-            airalo:    "https://tp.media/r?campaign_id=541&marker=798779&p=8310&trs=597953&u=",
-            klook:     "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=",
-            kkday:     "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=",
-            gocity:    "https://tp.media/r?campaign_id=62&marker=798779&p=1942&trs=597953&u=",
-            intui:     "https://tp.media/r?campaign_id=22&marker=798779&p=657&trs=597953&u="
+            aviasales:      "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=",
+            kiwitaxi:       "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=",
+            airalo:         "https://tp.media/r?campaign_id=541&marker=798779&p=8310&trs=597953&u=",
+            klook:          "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=",
+            kkday:          "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=",
+            gocity:         "https://tp.media/r?campaign_id=62&marker=798779&p=1942&trs=597953&u=",
+            intui:          "https://tp.media/r?campaign_id=22&marker=798779&p=657&trs=597953&u=",
+            gettransfer:    "https://tp.media/r?campaign_id=147&marker=798779&p=4439&trs=597953&u=",
+            welcomepickups: "https://tp.media/r?campaign_id=627&marker=798779&p=8919&trs=597953&u=",
+            tiqets:         "https://tp.media/r?campaign_id=89&marker=798779&p=2074&trs=597953&u=",
+            localrent:      "https://tp.media/r?campaign_id=87&marker=798779&p=2043&trs=597953&u=",
+            getrentacar:    "https://tp.media/r?campaign_id=222&marker=798779&p=5996&trs=597953&u=",
+            bikesbooking:   "https://tp.media/r?campaign_id=57&marker=798779&p=1767&trs=597953&u=",
+            yesim:          "https://tp.media/r?campaign_id=224&marker=798779&p=5998&trs=597953&u="
         };
+
+        // مضلع حدود الجمهورية التركية لعزل خريطة تركيا وإخفاء جميع الدول المجاورة 100%
+        window.TURKEY_BORDER_POLYGON = [
+            [41.99, 26.36], [42.02, 28.04], [41.26, 29.10], [41.18, 29.65],
+            [41.16, 31.15], [41.79, 32.38], [42.09, 35.15], [41.35, 36.38],
+            [41.04, 37.90], [40.98, 38.45], [41.06, 39.75], [41.17, 40.90],
+            [41.52, 41.55], [41.55, 42.68], [41.14, 43.48], [40.12, 43.65],
+            [39.88, 44.79], [39.38, 44.38], [38.50, 44.40], [37.34, 44.78],
+            [37.12, 43.55], [37.18, 42.35], [37.06, 41.20], [36.70, 38.95],
+            [36.68, 37.10], [36.32, 36.65], [35.81, 36.15], [36.62, 35.85],
+            [36.56, 35.35], [36.78, 34.62], [36.02, 32.85], [36.54, 32.00],
+            [36.86, 30.70], [36.20, 30.40], [36.18, 29.62], [36.62, 29.05],
+            [36.72, 28.25], [36.68, 27.38], [37.02, 27.22], [37.85, 27.22],
+            [38.30, 26.24], [38.46, 27.10], [39.48, 26.58], [39.50, 26.04],
+            [40.15, 26.16], [40.62, 26.05], [40.96, 26.35], [41.68, 26.52],
+            [41.99, 26.36]
+        ];
 
         window.wrapPartnerDirectUrl = function(partnerKey, rawTargetUrl, preTrackedUrl) {
             if (preTrackedUrl && typeof preTrackedUrl === 'string' && preTrackedUrl.includes('tp.media/r') && preTrackedUrl.includes('marker=798779')) {
@@ -741,7 +832,7 @@
             return gateway + encodeURIComponent(String(rawTargetUrl || '').trim());
         };
 
-        // روابط الطيران المباشرة (Aviasales) — بدون تواريخ عشوائية تسبب No results found
+        // 1. الطيران المباشر (Aviasales)
         window.buildFlightDirectUrl = function(origIata, destIata, deepLinkPath, preTrackedUrl) {
             if (preTrackedUrl && preTrackedUrl.includes('tp.media/r') && preTrackedUrl.includes('campaign_id=100')) {
                 return preTrackedUrl;
@@ -752,77 +843,170 @@
             } else if (deepLinkPath && deepLinkPath.startsWith('/')) {
                 target = `https://www.aviasales.com${deepLinkPath}`;
             } else {
-                // رابط بحث مرن يعبئ مطار الانطلاق والوصول مباشرة دون تقييد بتاريخ قد يكون بلا رحلات
                 target = `https://www.aviasales.com/?origin_iata=${encodeURIComponent(origIata)}&destination_iata=${encodeURIComponent(destIata)}&one_way=true`;
             }
             return window.wrapPartnerDirectUrl('aviasales', target, null);
         };
 
-        // توصيل المطارات (KiwiTaxi) — قاعدة التغطية الصارمة: يُخفى تلقائياً للدول غير المغطاة
-        window.KIWITAXI_SUPPORTED_COUNTRIES = {
-            "TR": "turkey",
-            "AE": "united-arab-emirates",
-            "EG": "egypt",
-            "DE": "germany",
-            "GB": "united-kingdom",
-            "FR": "france",
-            "GE": "georgia",
-            "AZ": "azerbaijan"
+        // 2. السكن النظيف لتركيا (Klook & KKday) — يمنع نتائج الصين وكوريا نهائياً
+        window.buildHotelStayOffer = function(partnerKey, cityEn, accType, preTrackedUrl) {
+            if (preTrackedUrl && preTrackedUrl.includes('tp.media/r') && preTrackedUrl.includes('Turkey')) {
+                return preTrackedUrl;
+            }
+            const typeWord = accType === 'resort' ? 'Resort' : (accType === 'apart' ? 'Apartment' : 'Hotel');
+            const cleanQuery = `${(cityEn || 'Istanbul').trim()} Turkey ${typeWord}`;
+            const q = encodeURIComponent(cleanQuery);
+            const raw = partnerKey === 'kkday'
+                ? `https://www.kkday.com/en/product/productlist?keyword=${q}`
+                : `https://www.klook.com/en-US/search/result/?query=${q}`;
+            return window.wrapPartnerDirectUrl(partnerKey === 'kkday' ? 'kkday' : 'klook', raw, null);
         };
 
-        window.buildVerifiedKiwiTaxiOffer = function(cityEn, iata, countryCode, syncedOffer) {
+        // 3. نظام الشلال الذكي للتوصيل الخاص (Welcome Pickups -> KiwiTaxi -> GetTransfer -> Intui.travel)
+        window.WELCOME_PICKUPS_CITIES = {
+            "Istanbul": "istanbul", "Antalya": "antalya", "Izmir": "izmir", "Bodrum": "bodrum",
+            "Dubai": "dubai", "Cairo": "cairo", "London": "london", "Paris": "paris",
+            "Rome": "rome", "Madrid": "madrid", "Athens": "athens", "Frankfurt": "frankfurt",
+            "Vienna": "vienna", "Amsterdam": "amsterdam", "Tbilisi": "tbilisi", "Baku": "baku"
+        };
+
+        window.KIWITAXI_SUPPORTED_COUNTRIES = {
+            "TR": "turkey", "AE": "united-arab-emirates", "EG": "egypt",
+            "DE": "germany", "GB": "united-kingdom", "FR": "france",
+            "GE": "georgia", "AZ": "azerbaijan", "GR": "greece", "IT": "italy", "ES": "spain"
+        };
+
+        window.buildSmartTransferWaterfall = function(cityEn, iata, countryCode, syncedOffer, forTurkeyHotel) {
             if (syncedOffer && syncedOffer.bookingUrl) {
                 return {
+                    partner: syncedOffer.partner || 'welcomepickups',
                     title: syncedOffer.name || `VIP Airport Transfer (${iata} ➔ ${cityEn})`,
-                    url: window.wrapPartnerDirectUrl('kiwitaxi', 'https://kiwitaxi.com/en/turkey', syncedOffer.bookingUrl)
+                    url: syncedOffer.bookingUrl
                 };
             }
-            const cSlug = window.KIWITAXI_SUPPORTED_COUNTRIES[(countryCode || '').toUpperCase()];
-            if (!cSlug) return null; // لا توجد تغطية — إخفاء البطاقة نهائياً
-            const raw = `https://kiwitaxi.com/en/${cSlug}`;
+            const weights = window.PARTNER_WEIGHTS || {};
+            const candidates = [];
+
+            const wpSlug = window.WELCOME_PICKUPS_CITIES[cityEn];
+            if (wpSlug) {
+                candidates.push({
+                    partner: 'welcomepickups',
+                    title: `Welcome Pickups VIP (${iata} ➔ ${cityEn})`,
+                    url: window.wrapPartnerDirectUrl('welcomepickups', `https://www.welcomepickups.com/${wpSlug}/`, null),
+                    score: 0.96 + (weights.welcomepickups || 0) * 0.2
+                });
+            }
+
+            const ktSlug = window.KIWITAXI_SUPPORTED_COUNTRIES[(countryCode || '').toUpperCase()];
+            if (ktSlug) {
+                candidates.push({
+                    partner: 'kiwitaxi',
+                    title: `Private Airport Transfer (${iata} ➔ ${cityEn})`,
+                    url: window.wrapPartnerDirectUrl('kiwitaxi', `https://kiwitaxi.com/en/${ktSlug}`, null),
+                    score: 0.90 + (weights.kiwitaxi || 0) * 0.2
+                });
+            }
+
+            // GetTransfer يغطي جميع دول العالم بما فيها الكويت والسعودية وقطر — بدون أي شاشة فارغة
+            candidates.push({
+                partner: 'gettransfer',
+                title: `Private Driver & Intercity Transfer (${cityEn})`,
+                url: window.wrapPartnerDirectUrl('gettransfer', 'https://gettransfer.com/en', null),
+                score: 0.85 + (weights.gettransfer || 0) * 0.2
+            });
+
+            // Intui.travel الصفحة الرئيسية العاملة بلا 404
+            if (forTurkeyHotel) {
+                candidates.push({
+                    partner: 'intui',
+                    title: `Door-to-Door Resort Transfer (${cityEn} / ${iata})`,
+                    url: window.wrapPartnerDirectUrl('intui', 'https://en.intui.travel/', null),
+                    score: 0.82 + (weights.intui || 0) * 0.2
+                });
+            }
+
+            candidates.sort((a, b) => b.score - a.score);
+            return candidates[0] || null;
+        };
+
+        // 4. التنقل والحرية (Localrent / GetRentacar للسيارات + BikesBooking للدراجات والسكوترات)
+        window.LOCALRENT_TURKEY_URLS = {
+            "Antalya":  "https://localrent.com/en/turkey/antalya/",
+            "İstanbul": "https://localrent.com/en/turkey/istanbul/",
+            "İzmir":    "https://localrent.com/en/turkey/izmir/",
+            "Muğla":    "https://localrent.com/en/turkey/bodrum/",
+            "Trabzon":  "https://localrent.com/en/turkey/trabzon/",
+            "Ankara":   "https://localrent.com/en/turkey/ankara/"
+        };
+
+        window.LOCALRENT_WORLD_URLS = {
+            "TR": "https://localrent.com/en/turkey/",
+            "AE": "https://localrent.com/en/uae/",
+            "GE": "https://localrent.com/en/georgia/",
+            "GR": "https://localrent.com/en/greece/",
+            "ES": "https://localrent.com/en/spain/",
+            "IT": "https://localrent.com/en/italy/"
+        };
+
+        window.BIKESBOOKING_TURKEY_URLS = {
+            "Antalya":  "https://bikesbooking.com/en/turkey/antalya/",
+            "İstanbul": "https://bikesbooking.com/en/turkey/istanbul/",
+            "İzmir":    "https://bikesbooking.com/en/turkey/izmir/",
+            "Muğla":    "https://bikesbooking.com/en/turkey/bodrum/",
+            "Nevşehir": "https://bikesbooking.com/en/turkey/"
+        };
+
+        window.buildSmartMobilityOffer = function(city, cityEn, countryCode, vibeKey, syncedCar, syncedBike) {
+            const wantsBike = (countryCode === 'TR') && (vibeKey === 'beach' || vibeKey === 'nature' || vibeKey === 'romantic');
+            if (wantsBike) {
+                if (syncedBike && syncedBike.bookingUrl) {
+                    return { partner: 'bikesbooking', isBike: true, title: syncedBike.name, url: syncedBike.bookingUrl };
+                }
+                const bbUrl = window.BIKESBOOKING_TURKEY_URLS[city];
+                if (bbUrl) {
+                    return {
+                        partner: 'bikesbooking',
+                        isBike: true,
+                        title: `Scooter, Moto & ATV Rental (${cityEn})`,
+                        url: window.wrapPartnerDirectUrl('bikesbooking', bbUrl, null)
+                    };
+                }
+            }
+
+            if (syncedCar && syncedCar.bookingUrl) {
+                return { partner: syncedCar.partner || 'localrent', isBike: false, title: syncedCar.name, url: syncedCar.bookingUrl };
+            }
+
+            const lrUrl = countryCode === 'TR'
+                ? (window.LOCALRENT_TURKEY_URLS[city] || "https://localrent.com/en/turkey/")
+                : window.LOCALRENT_WORLD_URLS[(countryCode || '').toUpperCase()];
+
+            if (lrUrl) {
+                return {
+                    partner: 'localrent',
+                    isBike: false,
+                    title: `Local Car Rental — Low Deposit (${cityEn})`,
+                    url: window.wrapPartnerDirectUrl('localrent', lrUrl, null)
+                };
+            }
+
             return {
-                title: `VIP Airport Transfer (${iata} ➔ ${cityEn})`,
-                url: window.wrapPartnerDirectUrl('kiwitaxi', raw, null)
+                partner: 'getrentacar',
+                isBike: false,
+                title: `Global Car Rental Deals (${cityEn})`,
+                url: window.wrapPartnerDirectUrl('getrentacar', 'https://getrentacar.com/en', null)
             };
         };
 
-        // شرائح الهاتف eSIM لكل دولة (Airalo)
-        window.COUNTRY_TO_AIRALO_SLUG = {
-            "TR": { slug: "turkey-esim", name: "Türkiye 5G eSIM (Airalo)", price: 5 },
-            "SA": { slug: "saudi-arabia-esim", name: "Saudi Arabia 5G eSIM", price: 5 },
-            "AE": { slug: "united-arab-emirates-esim", name: "UAE Dubai 5G eSIM", price: 5 },
-            "QA": { slug: "qatar-esim", name: "Qatar 5G eSIM", price: 5 },
-            "KW": { slug: "kuwait-esim", name: "Kuwait 5G eSIM", price: 5 },
-            "BH": { slug: "bahrain-esim", name: "Bahrain 5G eSIM", price: 5 },
-            "OM": { slug: "oman-esim", name: "Oman 5G eSIM", price: 5 },
-            "EG": { slug: "egypt-esim", name: "Egypt 4G/5G eSIM", price: 6 },
-            "JO": { slug: "jordan-esim", name: "Jordan 5G eSIM", price: 5 },
-            "IQ": { slug: "iraq-esim", name: "Iraq Travel eSIM", price: 6 },
-            "LB": { slug: "lebanon-esim", name: "Lebanon Travel eSIM", price: 6 },
-            "MA": { slug: "morocco-esim", name: "Morocco 5G eSIM", price: 6 },
-            "RU": { slug: "russia-esim", name: "Russia Data eSIM", price: 6 },
-            "DE": { slug: "germany-esim", name: "Germany 5G eSIM", price: 5 },
-            "GB": { slug: "united-kingdom-esim", name: "UK 5G eSIM", price: 5 },
-            "FR": { slug: "france-esim", name: "France 5G eSIM", price: 5 },
-            "IT": { slug: "italy-esim", name: "Italy 5G eSIM", price: 5 },
-            "ES": { slug: "spain-esim", name: "Spain 5G eSIM", price: 5 },
-            "AZ": { slug: "azerbaijan-esim", name: "Azerbaijan eSIM", price: 5 },
-            "GE": { slug: "georgia-esim", name: "Georgia eSIM", price: 5 },
-            "KZ": { slug: "kazakhstan-esim", name: "Kazakhstan eSIM", price: 5 },
-            "US": { slug: "united-states-esim", name: "USA 5G eSIM", price: 5 }
+        // 5. الجولات والمعالم (GoCity لإسطنبول فقط + Tiqets لمدن تركيا السياحية + إخفاء غير المغطاة)
+        window.TIQETS_TURKEY_URLS = {
+            "İstanbul": "https://www.tiqets.com/en/istanbul-attractions-c79079/",
+            "Antalya":  "https://www.tiqets.com/en/antalya-attractions-c78947/",
+            "İzmir":    "https://www.tiqets.com/en/izmir-attractions-c79084/",
+            "Muğla":    "https://www.tiqets.com/en/bodrum-attractions-c79033/",
+            "Nevşehir": "https://www.tiqets.com/en/goreme-attractions-c79055/"
         };
 
-        window.buildAiraloOffer = function(countryCode, preTrackedUrl) {
-            const info = window.COUNTRY_TO_AIRALO_SLUG[(countryCode || 'TR').toUpperCase()] || { slug: "turkey-esim", name: "Instant 5G Travel eSIM", price: 5 };
-            const raw = `https://www.airalo.com/${info.slug}`;
-            return {
-                name: info.name,
-                priceUsd: info.price,
-                url: window.wrapPartnerDirectUrl('airalo', raw, preTrackedUrl)
-            };
-        };
-
-        // الجولات والأنشطة (GoCity) — قاعدة التغطية الصارمة: يظهر لإسطنبول فقط ويُخفى لأي محافظة أخرى
         window.GOCITY_ISTANBUL_VIBES = {
             "luxury":   { tr: "İstanbul Boğaz & Saraylar All-Inclusive Pass", ar: "باقة إسطنبول الشاملة: اليخت الملكي والقصور التاريخية", en: "Istanbul All-Inclusive Pass: Bosphorus & Palaces" },
             "family":   { tr: "İstanbul Aile & Akvaryum Explorer Pass", ar: "تذكرة عائلة إسطنبول للأكواريوم والمعالم السياحية", en: "Istanbul Family & Aquarium Explorer Pass" },
@@ -830,105 +1014,157 @@
             "nature":   { tr: "İstanbul Adalar & Doğa Turları Pass", ar: "باقة جزر الأميرات والطبيعة في إسطنبول", en: "Istanbul Princes' Islands & Nature Pass" },
             "beach":    { tr: "İstanbul Boğaz Tekne Turu Pass", ar: "جولة القارب البحري في البوسفور", en: "Istanbul Bosphorus Boat Cruise Pass" },
             "thermal":  { tr: "İstanbul Tarihi Türk Hamamı & Spa Pass", ar: "تجربة الحمام التركي التاريخي في إسطنبول", en: "Istanbul Historic Turkish Hammam & Spa Pass" },
-            "city":     { tr: "İstanbul Müzeler & Hop-On Hop-Off Otobüs Pass", ar: "بطاقة متاحف إسطنبول والباص السياحي البانورامي", en: "Istanbul Museums & Hop-On Hop-Off Bus Pass" }
+            "city":     { tr: "İstanbul Müzeler & Hop-On Hop-Off Pass", ar: "بطاقة متاحف إسطنبول والباص السياحي البانورامي", en: "Istanbul Museums & Hop-On Hop-Off Bus Pass" }
         };
 
-        window.buildStrictCityActivityOffer = function(targetProvince, vibeKey, lang, syncedVibeMap) {
-            if (targetProvince !== 'İstanbul') return null; // لا توجد تغطية لـ GoCity خارج إسطنبول — إخفاء البطاقة
-            const synced = syncedVibeMap && syncedVibeMap[vibeKey];
-            const item = window.GOCITY_ISTANBUL_VIBES[vibeKey] || window.GOCITY_ISTANBUL_VIBES.luxury;
-            const title = synced
-                ? (lang === 'ar' ? (synced.title_ar || item.ar) : (lang === 'tr' ? (synced.title_tr || item.tr) : (synced.title_en || item.en)))
-                : (lang === 'ar' ? item.ar : (lang === 'tr' ? item.tr : item.en));
-            return {
-                title: title,
-                url: window.wrapPartnerDirectUrl('gocity', 'https://gocity.com/en/istanbul', synced ? synced.bookingUrl : null)
-            };
-        };
-
-        // النقل السياحي داخل تركيا (Intui.travel) — رابط رسمي فعّال بدون Error 404
-        window.buildVerifiedIntuiOffer = function(cityEn, iata, syncedOffer) {
-            const raw = "https://en.intui.travel/turkey-transfers/";
-            return {
-                title: (syncedOffer && syncedOffer.name) || `Private Chauffeur & Resort Transfer (${cityEn} / ${iata})`,
-                url: window.wrapPartnerDirectUrl('intui', raw, syncedOffer ? syncedOffer.bookingUrl : null)
-            };
-        };
-
-        // روابط السكن المصححة (Klook & KKday)
-        window.buildHotelStayOffer = function(partnerKey, queryText, preTrackedUrl) {
-            if (preTrackedUrl && preTrackedUrl.includes('tp.media/r') && (preTrackedUrl.includes('keyword%3D') || preTrackedUrl.includes('en-US%2Fsearch'))) {
-                return preTrackedUrl;
+        window.buildStrictActivityOffer = function(targetProvince, cityEn, vibeKey, lang, syncedActivity) {
+            // إسطنبول: GoCity الشامل
+            if (targetProvince === 'İstanbul') {
+                const syncedVibe = syncedActivity && syncedActivity.vibes && syncedActivity.vibes[vibeKey];
+                const item = window.GOCITY_ISTANBUL_VIBES[vibeKey] || window.GOCITY_ISTANBUL_VIBES.luxury;
+                const title = syncedVibe
+                    ? (lang === 'ar' ? (syncedVibe.title_ar || item.ar) : (lang === 'tr' ? (syncedVibe.title_tr || item.tr) : (syncedVibe.title_en || item.en)))
+                    : (lang === 'ar' ? item.ar : (lang === 'tr' ? item.tr : item.en));
+                return {
+                    partner: 'gocity',
+                    title: title,
+                    sub: 'İstanbul • GoCity All-Inclusive',
+                    url: window.wrapPartnerDirectUrl('gocity', 'https://gocity.com/en/istanbul', syncedVibe ? syncedVibe.bookingUrl : null)
+                };
             }
-            const q = encodeURIComponent((queryText || 'Turkey Hotel').trim());
-            const raw = partnerKey === 'kkday'
-                ? `https://www.kkday.com/en/product/productlist?keyword=${q}`
-                : `https://www.klook.com/en-US/search/result/?query=${q}`;
-            return window.wrapPartnerDirectUrl(partnerKey === 'kkday' ? 'kkday' : 'klook', raw, null);
+
+            // أنطاليا، إزمير، بودروم (موغلا)، كابادوكيا (نوشهر): Tiqets تذاكر تخطي الطوابير
+            const tiqetsUrl = window.TIQETS_TURKEY_URLS[targetProvince];
+            if (tiqetsUrl || (syncedActivity && syncedActivity.partner === 'tiqets' && syncedActivity.bookingUrl)) {
+                const defTitle = (syncedActivity && syncedActivity.defaultTitle) || {
+                    tr: `${targetProvince} Müzeler & Hızlı Giriş Biletleri`,
+                    ar: `تذاكر معالم ومتاحف ${window.translateTextStrong ? window.translateTextStrong(targetProvince, 'ar') : targetProvince} بدون انتظار`,
+                    en: `${cityEn} Skip-the-Line Museums & Attractions`
+                };
+                const title = lang === 'ar' ? defTitle.ar : (lang === 'tr' ? defTitle.tr : defTitle.en);
+                return {
+                    partner: 'tiqets',
+                    title: title,
+                    sub: `${cityEn} • Tiqets Instant Mobile Tickets`,
+                    url: window.wrapPartnerDirectUrl('tiqets', tiqetsUrl || 'https://www.tiqets.com/en/', syncedActivity ? syncedActivity.bookingUrl : null)
+                };
+            }
+
+            // باقي المحافظات غير المغطاة: إخفاء البطاقة تلقائياً (No Coverage = Hide Card)
+            return null;
         };
 
-        // كتالوج السكن الاحتياطي الموسّع (4 فئات سعرية حتى $480/ليلة لمطابقة جميع الميزانيات)
+        // 6. شرائح الهاتف الذكية: Airalo (باقات اقتصادية) + Yesim (إنترنت غير محدود للعطلات ورجال الأعمال)
+        window.COUNTRY_ESIM_CATALOG = {
+            "TR": { airalo: "turkey-esim", yesim: "turkey", name: "Türkiye 5G eSIM", price: 5 },
+            "SA": { airalo: "saudi-arabia-esim", yesim: "saudi-arabia", name: "Saudi Arabia 5G eSIM", price: 5 },
+            "AE": { airalo: "united-arab-emirates-esim", yesim: "united-arab-emirates", name: "UAE Dubai 5G eSIM", price: 5 },
+            "QA": { airalo: "qatar-esim", yesim: "qatar", name: "Qatar 5G eSIM", price: 5 },
+            "KW": { airalo: "kuwait-esim", yesim: "kuwait", name: "Kuwait 5G eSIM", price: 5 },
+            "BH": { airalo: "bahrain-esim", yesim: "bahrain", name: "Bahrain 5G eSIM", price: 5 },
+            "OM": { airalo: "oman-esim", yesim: "oman", name: "Oman 5G eSIM", price: 5 },
+            "EG": { airalo: "egypt-esim", yesim: "egypt", name: "Egypt 4G/5G eSIM", price: 6 },
+            "JO": { airalo: "jordan-esim", yesim: "jordan", name: "Jordan 5G eSIM", price: 5 },
+            "IQ": { airalo: "iraq-esim", yesim: "iraq", name: "Iraq Travel eSIM", price: 6 },
+            "LB": { airalo: "lebanon-esim", yesim: "lebanon", name: "Lebanon Travel eSIM", price: 6 },
+            "MA": { airalo: "morocco-esim", yesim: "morocco", name: "Morocco 5G eSIM", price: 6 },
+            "RU": { airalo: "russia-esim", yesim: "russia", name: "Russia Data eSIM", price: 6 },
+            "DE": { airalo: "germany-esim", yesim: "germany", name: "Germany 5G eSIM", price: 5 },
+            "GB": { airalo: "united-kingdom-esim", yesim: "united-kingdom", name: "UK 5G eSIM", price: 5 },
+            "FR": { airalo: "france-esim", yesim: "france", name: "France 5G eSIM", price: 5 },
+            "IT": { airalo: "italy-esim", yesim: "italy", name: "Italy 5G eSIM", price: 5 },
+            "ES": { airalo: "spain-esim", yesim: "spain", name: "Spain 5G eSIM", price: 5 },
+            "AZ": { airalo: "azerbaijan-esim", yesim: "azerbaijan", name: "Azerbaijan eSIM", price: 5 },
+            "GE": { airalo: "georgia-esim", yesim: "georgia", name: "Georgia eSIM", price: 5 },
+            "KZ": { airalo: "kazakhstan-esim", yesim: "kazakhstan", name: "Kazakhstan eSIM", price: 5 },
+            "US": { airalo: "united-states-esim", yesim: "united-states", name: "USA 5G eSIM", price: 5 }
+        };
+
+        window.buildSmartEsimOffer = function(countryCode, preferUnlimited, syncedEsims) {
+            const code = (countryCode || 'TR').toUpperCase();
+            const info = window.COUNTRY_ESIM_CATALOG[code] || { airalo: "turkey-esim", yesim: "turkey", name: "Instant 5G Travel eSIM", price: 5 };
+            if (preferUnlimited) {
+                const ySynced = syncedEsims && syncedEsims.yesim;
+                return {
+                    partner: 'yesim',
+                    name: (ySynced && ySynced.name) || `Yesim Unlimited 5G eSIM`,
+                    priceLabel: null,
+                    sub: 'Unlimited 5G Data • Zero Roaming',
+                    url: window.wrapPartnerDirectUrl('yesim', `https://yesim.tech/country/${info.yesim}/`, ySynced ? ySynced.bookingUrl : null)
+                };
+            }
+            const aSynced = syncedEsims && syncedEsims.airalo;
+            return {
+                partner: 'airalo',
+                name: (aSynced && aSynced.name) || `Airalo ${info.name}`,
+                priceLabel: `$${(aSynced && aSynced.priceUsd) || info.price}`,
+                sub: 'Instant Activation • 5G Local Network',
+                url: window.wrapPartnerDirectUrl('airalo', `https://www.airalo.com/${info.airalo}`, aSynced ? aSynced.bookingUrl : null)
+            };
+        };
+
+        // كتالوج السكن الاحتياطي الموسّع (4 فئات سعرية حتى Ultra-Luxury $480)
         window.VERIFIED_STAY_TIERS_FALLBACK = {
             "Antalya": {
                 hotel: [
-                    { name: "Best Western Plus Khan Hotel Antalya (★ 4)", query: "Antalya Hotel", priceUsd: 55, lat: 36.8872, lng: 30.7031, partner: "klook" },
-                    { name: "Ramada Plaza by Wyndham Antalya Seafront (★ 5)", query: "Antalya Ramada Plaza", priceUsd: 95, lat: 36.8788, lng: 30.7095, partner: "kkday" },
-                    { name: "Akra Hotel Antalya Luxury Sea Suite (★ 5)", query: "Antalya Akra Hotel", priceUsd: 185, lat: 36.8665, lng: 30.7289, partner: "klook" },
-                    { name: "Regnum Carya Royal Golf & Spa Hotel (★ 5 Ultra)", query: "Antalya Luxury 5 Star Hotel", priceUsd: 395, lat: 36.8542, lng: 31.0285, partner: "klook" }
+                    { name: "Best Western Plus Khan Hotel Antalya (★ 4)", priceUsd: 55, lat: 36.8872, lng: 30.7031, partner: "klook" },
+                    { name: "Ramada Plaza by Wyndham Antalya Seafront (★ 5)", priceUsd: 95, lat: 36.8788, lng: 30.7095, partner: "kkday" },
+                    { name: "Akra Hotel Antalya Luxury Sea Suite (★ 5)", priceUsd: 185, lat: 36.8665, lng: 30.7289, partner: "klook" },
+                    { name: "Regnum Carya Royal Golf & Spa Hotel (★ 5 Ultra)", priceUsd: 395, lat: 36.8542, lng: 31.0285, partner: "kkday" }
                 ],
                 resort: [
-                    { name: "Porto Bello Hotel Resort & Spa Konyaaltı (★ 5)", query: "Antalya Resort", priceUsd: 95, lat: 36.8524, lng: 30.6215, partner: "klook" },
-                    { name: "Delphin Imperial All-Inclusive Lara Resort (★ 5)", query: "Antalya All Inclusive Resort", priceUsd: 175, lat: 36.8562, lng: 30.8584, partner: "kkday" },
-                    { name: "The Land of Legends Kingdom Resort (★ 5)", query: "Antalya Land of Legends", priceUsd: 290, lat: 36.8761, lng: 31.0069, partner: "klook" },
-                    { name: "Maxx Royal Belek Golf & Beach Resort (★ 5 Ultra)", query: "Antalya Belek Luxury Resort", priceUsd: 450, lat: 36.8548, lng: 31.0745, partner: "klook" }
+                    { name: "Porto Bello Hotel Resort & Spa Konyaaltı (★ 5)", priceUsd: 95, lat: 36.8524, lng: 30.6215, partner: "klook" },
+                    { name: "Delphin Imperial All-Inclusive Lara Resort (★ 5)", priceUsd: 175, lat: 36.8562, lng: 30.8584, partner: "kkday" },
+                    { name: "The Land of Legends Kingdom Resort (★ 5)", priceUsd: 290, lat: 36.8761, lng: 31.0069, partner: "klook" },
+                    { name: "Maxx Royal Belek Golf & Beach Resort (★ 5 Ultra)", priceUsd: 450, lat: 36.8548, lng: 31.0745, partner: "kkday" }
                 ],
                 apart: [
-                    { name: "Maren Beach Family Apart Suites Konyaaltı", query: "Antalya Apart Hotel", priceUsd: 48, lat: 36.8621, lng: 30.6384, partner: "klook" },
-                    { name: "Kaleiçi Old Town Boutique Residence Suites", query: "Antalya Kaleici Hotel", priceUsd: 78, lat: 36.8841, lng: 30.7048, partner: "kkday" },
-                    { name: "Lara Panorama Penthouse Serviced Apartment", query: "Antalya Lara Family Suite", priceUsd: 145, lat: 36.8595, lng: 30.7912, partner: "klook" },
-                    { name: "Belek Private Pool Luxury Residence Villa", query: "Antalya Private Villa", priceUsd: 340, lat: 36.8612, lng: 31.0512, partner: "klook" }
+                    { name: "Maren Beach Family Apart Suites Konyaaltı", priceUsd: 48, lat: 36.8621, lng: 30.6384, partner: "klook" },
+                    { name: "Kaleiçi Old Town Boutique Residence Suites", priceUsd: 78, lat: 36.8841, lng: 30.7048, partner: "kkday" },
+                    { name: "Lara Panorama Penthouse Serviced Apartment", priceUsd: 145, lat: 36.8595, lng: 30.7912, partner: "klook" },
+                    { name: "Belek Private Pool Luxury Residence Villa", priceUsd: 340, lat: 36.8612, lng: 31.0512, partner: "kkday" }
                 ]
             },
             "İstanbul": {
                 hotel: [
-                    { name: "Sura Design Hotel Sultanahmet Center (★ 4)", query: "Istanbul Sultanahmet Hotel", priceUsd: 65, lat: 41.0072, lng: 28.9765, partner: "klook" },
-                    { name: "CVK Park Bosphorus Hotel Taksim Square (★ 5)", query: "Istanbul Taksim Hotel", priceUsd: 125, lat: 41.0361, lng: 28.9879, partner: "kkday" },
-                    { name: "Swissôtel The Bosphorus Royal View (★ 5)", query: "Istanbul Bosphorus Hotel", priceUsd: 240, lat: 41.0411, lng: 28.9958, partner: "klook" },
-                    { name: "Four Seasons Hotel Istanbul at the Bosphorus (★ 5 Ultra)", query: "Istanbul Luxury Palace Hotel", priceUsd: 460, lat: 41.0422, lng: 29.0086, partner: "klook" }
+                    { name: "Sura Design Hotel Sultanahmet Center (★ 4)", priceUsd: 65, lat: 41.0072, lng: 28.9765, partner: "klook" },
+                    { name: "CVK Park Bosphorus Hotel Taksim Square (★ 5)", priceUsd: 125, lat: 41.0361, lng: 28.9879, partner: "kkday" },
+                    { name: "Swissôtel The Bosphorus Royal View (★ 5)", priceUsd: 240, lat: 41.0411, lng: 28.9958, partner: "klook" },
+                    { name: "Four Seasons Hotel Istanbul at the Bosphorus (★ 5 Ultra)", priceUsd: 460, lat: 41.0422, lng: 29.0086, partner: "kkday" }
                 ],
                 resort: [
-                    { name: "Crowne Plaza Istanbul Florya Marina Resort (★ 5)", query: "Istanbul Marina Hotel", priceUsd: 115, lat: 40.9639, lng: 28.7968, partner: "kkday" },
-                    { name: "Mandarin Oriental Bosphorus Spa Resort (★ 5)", query: "Istanbul Bosphorus Spa", priceUsd: 290, lat: 41.0552, lng: 29.0351, partner: "klook" },
-                    { name: "Çırağan Palace Kempinski Bosphorus Resort (★ 5 Ultra)", query: "Istanbul Ciragan Palace", priceUsd: 480, lat: 41.0436, lng: 29.0156, partner: "klook" }
+                    { name: "Crowne Plaza Istanbul Florya Marina Resort (★ 5)", priceUsd: 115, lat: 40.9639, lng: 28.7968, partner: "kkday" },
+                    { name: "Mandarin Oriental Bosphorus Spa Resort (★ 5)", priceUsd: 290, lat: 41.0552, lng: 29.0351, partner: "klook" },
+                    { name: "Çırağan Palace Kempinski Bosphorus Resort (★ 5 Ultra)", priceUsd: 480, lat: 41.0436, lng: 29.0156, partner: "kkday" }
                 ],
                 apart: [
-                    { name: "Taksim & Galata Family Serviced Apart Suites", query: "Istanbul Apartment Hotel", priceUsd: 55, lat: 41.0369, lng: 28.9850, partner: "klook" },
-                    { name: "Fraser Place Anthill Istanbul Family Residence", query: "Istanbul Suite Hotel", priceUsd: 110, lat: 41.0578, lng: 28.9792, partner: "kkday" },
-                    { name: "Karaköy Bosphorus Terrace Luxury Penthouse", query: "Istanbul Galata Hotel", priceUsd: 220, lat: 41.0256, lng: 28.9744, partner: "klook" },
-                    { name: "Nişantaşı VIP Private Executive Residence", query: "Istanbul Luxury Residence", priceUsd: 380, lat: 41.0512, lng: 28.9935, partner: "klook" }
+                    { name: "Taksim & Galata Family Serviced Apart Suites", priceUsd: 55, lat: 41.0369, lng: 28.9850, partner: "klook" },
+                    { name: "Fraser Place Anthill Istanbul Family Residence", priceUsd: 110, lat: 41.0578, lng: 28.9792, partner: "kkday" },
+                    { name: "Karaköy Bosphorus Terrace Luxury Penthouse", priceUsd: 220, lat: 41.0256, lng: 28.9744, partner: "klook" },
+                    { name: "Nişantaşı VIP Private Executive Residence", priceUsd: 380, lat: 41.0512, lng: 28.9935, partner: "kkday" }
                 ]
             },
             "Trabzon": {
                 hotel: [
-                    { name: "Park Dedeman Trabzon Yomra Sea View (★ 4)", query: "Trabzon Hotel", priceUsd: 52, lat: 40.9621, lng: 39.8412, partner: "klook" },
-                    { name: "Radisson Blu Hotel Trabzon Boztepe (★ 5)", query: "Trabzon Hotel Tour", priceUsd: 95, lat: 40.9992, lng: 39.7265, partner: "kkday" },
-                    { name: "Zorlu Grand Hotel Trabzon VIP Executive (★ 5)", query: "Trabzon Luxury Hotel", priceUsd: 175, lat: 41.0054, lng: 39.7298, partner: "klook" },
-                    { name: "Uzungöl Royal Panorama Private Chalet Hotel (★ 5)", query: "Trabzon Uzungol Luxury", priceUsd: 310, lat: 40.6190, lng: 40.2930, partner: "klook" }
+                    { name: "Park Dedeman Trabzon Yomra Sea View (★ 4)", priceUsd: 52, lat: 40.9621, lng: 39.8412, partner: "klook" },
+                    { name: "Radisson Blu Hotel Trabzon Boztepe (★ 5)", priceUsd: 95, lat: 40.9992, lng: 39.7265, partner: "kkday" },
+                    { name: "Zorlu Grand Hotel Trabzon VIP Executive (★ 5)", priceUsd: 175, lat: 41.0054, lng: 39.7298, partner: "klook" },
+                    { name: "Uzungöl Royal Panorama Private Chalet Hotel (★ 5)", priceUsd: 310, lat: 40.6190, lng: 40.2930, partner: "kkday" }
                 ],
                 resort: [
-                    { name: "Ramada Plaza Trabzon Beach Resort (★ 5)", query: "Trabzon Resort", priceUsd: 92, lat: 40.9612, lng: 39.8456, partner: "klook" },
-                    { name: "Novotel Trabzon Black Sea Resort (★ 5)", query: "Trabzon Beach Hotel", priceUsd: 145, lat: 40.9655, lng: 39.8391, partner: "kkday" },
-                    { name: "Uzungöl Highland Spa & Nature Resort (★ 5)", query: "Trabzon Uzungol", priceUsd: 240, lat: 40.6186, lng: 40.2925, partner: "klook" }
+                    { name: "Ramada Plaza Trabzon Beach Resort (★ 5)", priceUsd: 92, lat: 40.9612, lng: 39.8456, partner: "klook" },
+                    { name: "Novotel Trabzon Black Sea Resort (★ 5)", priceUsd: 145, lat: 40.9655, lng: 39.8391, partner: "kkday" },
+                    { name: "Uzungöl Highland Spa & Nature Resort (★ 5)", priceUsd: 240, lat: 40.6186, lng: 40.2925, partner: "klook" }
                 ],
                 apart: [
-                    { name: "Uzungöl Lake View Wooden Family Suites", query: "Trabzon Uzungol Tour", priceUsd: 45, lat: 40.6195, lng: 40.2951, partner: "klook" },
-                    { name: "Yomra Seafront Family Serviced Apartments", query: "Trabzon Family Stay", priceUsd: 85, lat: 40.9589, lng: 39.8562, partner: "kkday" },
-                    { name: "Boztepe Panoramic Villa & Family Penthouse", query: "Trabzon Suite", priceUsd: 165, lat: 40.9951, lng: 39.7612, partner: "klook" }
+                    { name: "Uzungöl Lake View Wooden Family Suites", priceUsd: 45, lat: 40.6195, lng: 40.2951, partner: "klook" },
+                    { name: "Yomra Seafront Family Serviced Apartments", priceUsd: 85, lat: 40.9589, lng: 39.8562, partner: "kkday" },
+                    { name: "Boztepe Panoramic Villa & Family Penthouse", priceUsd: 165, lat: 40.9951, lng: 39.7612, partner: "klook" }
                 ]
             }
         };
 
-        // 2. محرك الصوت الخفيف (Web Audio API)
+        // محرك الصوت الخفيف (Web Audio API)
         window.ConciergeAudio = {
             ctx: null,
             init() {
@@ -1016,7 +1252,7 @@
             });
         };
 
-        // 3. قاعدة البيانات الجغرافية الحقيقية للـ 81 محافظة تركية والـ 195 دولة عالمية
+        // قاعدة البيانات الجغرافية للـ 81 محافظة تركية والـ 195 دولة عالمية
         window.TURKEY_81_COORDS = {
             "Tüm Türkiye": { cityEn: "Istanbul", lat: 39.0, lng: 35.2, iata: "IST", airport: "Istanbul Airport (IST)", minHotel: 55, minResort: 95, minApart: 45 },
             "Adana": { cityEn: "Adana", lat: 37.0000, lng: 35.3213, iata: "COV", airport: "Çukurova Int'l Airport (COV)", minHotel: 42, minResort: 75, minApart: 38 },
@@ -1249,7 +1485,6 @@
             }
         };
 
-        // عكس اتجاه الرحلة الفعلي بين أي دولتين مختارتين
         window.toggleFlightDirection = function() {
             const fromSel = document.getElementById('fc-from-country');
             const toSel = document.getElementById('fc-to-country');
@@ -1323,9 +1558,8 @@
             window.onFlightCountryChange('to', forceReset);
             window.updateFlightDirectionBadge();
         };
-    </script>
-    <!-- ========================================================================= -->
-    <!-- الجزء 3 من 4: قاموس الـ 11 لغة الكامل + محرك الترجمة السريع + تبديل اللغة والثيم -->
+    </script><!-- ========================================================================= -->
+    <!-- الجزء 3 من 4: قاموس الـ 11 لغة الكامل + نصوص البطاقة الإقناعية + محرك الترجمة -->
     <!-- ========================================================================= -->
     <script>
         window.SENTENCE_DICTIONARY = [
@@ -1348,6 +1582,8 @@
             { ar: "إزمير", tr: "İzmir", en: "Izmir", ru: "Измир", es: "Esmirna", zh: "伊兹密尔", ku: "Îzmîr", fa: "ازمیر", kk: "Измир", az: "İzmir", ka: "იზმირი" },
             { ar: "طرابزون", tr: "Trabzon", en: "Trabzon", ru: "Трабзон", es: "Trebisonda", zh: "特拉布宗", ku: "Trabzon", fa: "ترابزون", kk: "Трабзон", az: "Trabzon", ka: "ტრაბზონი" },
             { ar: "بورصة", tr: "Bursa", en: "Bursa", ru: "Бурса", es: "Bursa", zh: "布尔萨", ku: "Bursa", fa: "بورسا", kk: "Бурса", az: "Bursa", ka: "ბურსა" },
+            { ar: "موغلا", tr: "Muğla", en: "Mugla", ru: "Мугла", es: "Muğla", zh: "穆拉", ku: "Muğla", fa: "موغلا", kk: "Мугла", az: "Muğla", ka: "მუღლა" },
+            { ar: "نوشهر", tr: "Nevşehir", en: "Cappadocia", ru: "Каппадокия", es: "Capadocia", zh: "卡帕多奇亚", ku: "Kapadokya", fa: "کاپادوکیا", kk: "Каппадокия", az: "Kapadokya", ka: "კაპადოკია" },
             { ar: "دبي", tr: "Dubai", en: "Dubai", ru: "Дубай", es: "Dubái", zh: "迪拜", ku: "Dubay", fa: "دبی", kk: "Дубай", az: "Dubay", ka: "დუბაი" },
             { ar: "موسكو", tr: "Moskova", en: "Moscow", ru: "Москва", es: "Moscú", zh: "莫斯科", ku: "Moskow", fa: "مسکو", kk: "Мәскеу", az: "Moskva", ka: "მოსკოვი" },
             { ar: "الرياض", tr: "Riyad", en: "Riyadh", ru: "Эр-Рияд", es: "Riad", zh: "利雅得", ku: "Riyad", fa: "ریاض", kk: "Эр-Рияд", az: "Riyad", ka: "ერ-რიადი" },
@@ -1504,178 +1740,255 @@
             tr: {
                 dir: "ltr", hero_title: "Seçkin Rotaları Lüksle Keşfedin", hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.", hotels_sub: "ÖZEL SEÇKİ", hotels_heading: "Özel Seçki Koleksiyonu", starting_from: "Başlayan Fiyatlar", flights_sub: "GÖKLERDEKİ ZARAFET", flights_heading: "Ayrıcalıklı Uçuşlar", blog_sub: "SEYAHAT REHBERİ", blog_heading: "UcuzaKal Seyahat Günlüğü", read_more: "Devamını Oku", about_heading: "Biz Kimiz?", about_text_1: "UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur. Amacımız, en doğru fiyatları şeffaf bir şekilde sunarak seyahat planlamanızı sanata dönüştürmektir.", about_text_2: "Titizlikle derlenen her bir rota, seyahatinizin yalnızca bir varış noktası değil; beklentilerinize cevap veren kusursuz ve unutulmaz bir deneyim olarak kalması için tasarlanmıştır.", ratings_heading: "İzlenimlerinizi Paylaşın", review_name_placeholder: "Adınız Soyadınız", review_text_placeholder: "Düşünceleriniz...", submit_review_btn: "Gönder", review_success: "Zarif geri bildiriminiz için teşekkür ederiz.", rights: "Tüm hakları saklıdır UcuzaKal Türkiye", google_login: "Gmail Girişi", cinematic_title: "Canlı Harita Üzerinde Doğrulanmış Teklifler Taranıyor...", no_deals_text: "Şu anda hiçbir teklif bulunmuyor, lütfen kısa bir süre sonra bizi ziyaret edin.", global_channels: "Global Resmi Kanallarımız",
                 smart_hub_title: "Akıllı Seyahat Asistanınız", smart_hub_sub: "Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planınızı saniyeler içinde tasarlayın.", tab_hotel: "Konaklama Asistanı", tab_flight: "Uçuş Asistanı", c_budget: "Bütçeniz (Gecelik)", c_type: "Konaklama Tipi", t_hotel: "Oteller", t_resort: "Tatil Köyleri (Resort)", t_apart: "Apart Oteller", c_days: "Konaklama Süresi (Gün)", c_dest: "Hedef Bölge", c_all_tr: "Tüm Türkiye", c_vibe: "Tatil Tarzı", vibe_luxury: "Lüks Resort & Spa", vibe_family: "Aile Dostu Tatil", vibe_romantic: "Balayı / Romantik", vibe_nature: "Doğa ve Dağ Evi", vibe_beach: "Sahil ve Plaj", vibe_thermal: "Termal & Sağlık", vibe_city: "Şehir Merkezi & Alışveriş", btn_hotel: "Bana Otel Bul", btn_resort: "Bana Resort Bul", btn_apart: "Bana Apart Bul",
-                f_from: "Nereden (Kalkış)", f_to: "Nereye (Varış)", f_country_label: "Ülke", f_city_label: "İl / Şehir", f_airport_label: "Havalimanı Adı", dir_swap_hint: "(Yönü Değiştir)",
+                f_from: "Nereden (Kalkış)", f_to: "Nereye (Varış)", f_country_label: "Ülke", f_city_label: "İl / Şehir", f_airport_label: "Havalimanı Adı", dir_world_to_tr: "Yön: Tüm Dünya ✈️ Türkiye", dir_swap_hint: "(Yönü Değiştir)",
                 f_budget: "Bütçeniz", f_class: "Uçuş Sınıfı", class_eco: "Ekonomi", class_prem: "Premium Ekonomi", class_bus: "Business Class", class_first: "First Class", f_airline: "Havayolu (İsteğe bağlı)", btn_flight: "Uçuşumu Şimdi Bul", total_est: "Ödenecek Toplam Tutar:",
-                radar_step_1: "Harita üzerinde konum ve bütçe analiz ediliyor...", radar_step_3: "Doğrulanmış teklifler haritada hazır!",
-                low_budget_warn: "Akıllı Danışman Notu: Girdiğiniz bütçe mevcut minimumun altındadır. En yakın seçenek listelendi:",
+                radar_step_1: "Harita üzerinde konum ve kapsam analiz ediliyor...", radar_step_3: "Tüm doğrulanmış seyahat hizmetleriniz haritada hazır!",
+                low_budget_warn: "Akıllı Danışman Notu: Girdiğiniz bütçe mevcut minimumun altındadır. En yakın seçenek:",
                 good_budget_msg: "Harika! Bütçeniz bu rota için doğrulanmış seçenekle uyumludur.",
-                flight_live_search_msg: "Bu rota için canlı havayolu fiyatları doğrudan rezervasyon ekranında hazırdır.",
-                flight_live_subtitle: "Tüm Gerçek Havayolları • Canlı Bilet Arama",
-                live_price_badge: "Canlı Fiyat",
-                badge_flight: "✈️ Doğrulanmış Uçuş", badge_airport_transfer: "🚖 Havalimanı VIP Transfer", badge_esim: "📶 Anında 5G eSIM İnternet",
-                badge_stay: "🏨 Bütçenize Uygun Konaklama", badge_activity: "🎟️ İstanbul Şehir Pass (GoCity)", badge_resort_transfer: "🚐 Özel Bölge & Otel Transferi",
-                book_deal_btn: "Canlı Fiyatı Gör", btn_book_transfer: "Transferi Gör", btn_get_esim: "eSIM Satın Al", btn_book_activity: "Pass'ı İncele",
-                per_night: "/ Gece", total_stay: "Tahmini Toplam:"
+                flight_live_search_msg: "Bu rota için tüm gerçek havayollarının canlı fiyatları rezervasyon ekranında hazırdır.",
+                flight_live_subtitle: "Gerçek Havayolları • Canlı Bilet Arama", live_price_badge: "Canlı Fiyat",
+                badge_flight: "✈️ Doğrulanmış Uçuş", badge_airport_transfer: "🚖 Özel Havalimanı Transferi", badge_esim: "📶 Anında 5G eSIM İnternet", badge_esim_yesim: "📶 Sınırsız 5G eSIM (Yesim)",
+                badge_stay: "🏨 Bütçenize Uygun Konaklama", badge_activity_gocity: "🎟️ İstanbul All-Inclusive Pass", badge_activity_tiqets: "🎟️ Sıra Beklemeden Müze & Tur", badge_resort_transfer: "🚐 VIP Bölge & Otel Transferi",
+                badge_car: "🚗 Düşük Depozitolu Araç Kiralama", badge_bike: "🛵 Scooter, Moto & ATV Kiralama",
+                book_deal_btn: "Canlı Fiyatı Gör", btn_book_transfer: "Transferi Ayırt", btn_get_esim: "eSIM Aktifleştir", btn_book_activity: "Biletleri Gör", btn_rent_car: "Aracı Seç", btn_rent_bike: "Motoru Seç",
+                per_night: "/ Gece", total_stay: "Tahmini Toplam:",
+                persuasion_title: "Akıllı VIP Seyahat Planınız Neden Eksiksiz Olmalı?",
+                persuasion_headline_hotel: "Tek tek aramak yerine: konaklama, sabit fiyatlı transfer, sınırsız 5G internet ve özgür ulaşımı bir arada güvenceye alın.",
+                persuasion_headline_flight: "Havalimanı stresini sıfırlayın: uçuşunuzla birlikte VIP karşılama, anında 5G eSIM ve kiralık aracınızı şimdiden bağlayın.",
+                p_pt1_t: "Havalimanı Şokundan Korunun", p_pt1_d: "Sürpriz taksi ücretleri yerine sabit fiyatlı VIP şoförünüz inişinizde sizi kapıda karşılar.",
+                p_pt2_t: "İndiğiniz Anda 5G İnternet", p_pt2_d: "Roaming faturalarında %85 tasarruf edin; harita, çeviri ve iletişim uçağınız iner inmez aktif.",
+                p_pt3_t: "Özgür Keşif & Sıra Beklememe", p_pt3_d: "Düşük depozitolu araç/scooter ve mobil hızlı giriş biletleriyle tatilinizin her dakikasını kazanın.",
+                readiness_prefix: "Seyahat Hazırlığı:", readiness_complete: "Kusursuz Hazırlık! %100"
             },
             ar: {
                 dir: "rtl", hero_title: "اكتشف روعة الوجهات الفاخرة", hero_subtitle: "مختارات إقامة وطيران حصرية مصممة لتلبية ذوقك الرفيع في أبرز وجهات تركيا.", hotels_sub: "مختارات خاصة", hotels_heading: "مجموعة المختارات الخاصة", starting_from: "الأسعار تبدأ من", flights_sub: "أناقة الأجواء", flights_heading: "مسارات الرحلات الحصرية", blog_sub: "دليل السفر", blog_heading: "يوميات UcuzaKal السياحية", read_more: "اقرأ المزيد", about_heading: "من نحن؟", about_text_1: "UcuzaKal Türkiye هي منصة سفر مستقلة تجمع لك أفضل عروض الإقامة ورحلات الطيران في أرقى الوجهات التركية. هدفنا هو تقديم أدق الأسعار بشفافية تامة، وتحويل تخطيط سفرك إلى تجربة استثنائية تلبي ذوقك الرفيع.", about_text_2: "تم تصميم وتنسيق كل مسار بعناية فائقة لضمان ألا يكون سفرك مجرد وجهة وصول؛ بل ليبقى كذكرى نبيلة لا تُنسى تلبي كافة توقعاتك.", ratings_heading: "شاركنا انطباعاتك", review_name_placeholder: "الاسم الكريم...", review_text_placeholder: "اكتب انطباعاتك هنا...", submit_review_btn: "إرسال", review_success: "نقدر لك هذا التقييم الراقي، شكراً لثقتك.", rights: "جميع الحقوق محفوظة UcuzaKal Türkiye", google_login: "دخول Gmail", cinematic_title: "جاري مسح الخريطة الحقيقية وجلب العروض الموثقة...", no_deals_text: "نأسف بشدة، لا توجد عروض في الوقت الحالي، شرفنا بالزيارة بعد قليل.", global_channels: "قنواتنا الرسمية العالمية",
                 smart_hub_title: "المستشار السياحي الذكي", smart_hub_sub: "صمم خطة عطلتك ورحلاتك الجوية الشخصية في ثوانٍ باستخدام خوارزميات الذكاء الاصطناعي لدينا.", tab_hotel: "مساعد الفنادق", tab_flight: "مساعد الطيران", c_budget: "ميزانيتك (لليلة)", c_type: "نوع السكن", t_hotel: "فنادق", t_resort: "منتجعات", t_apart: "شقق فندقية", c_days: "مدة الإقامة (بالأيام)", c_dest: "المنطقة المستهدفة", c_all_tr: "جميع أنحاء تركيا", c_vibe: "نوع العطلة", vibe_luxury: "إقامة فاخرة وسبا", vibe_family: "عطلة عائلية متكاملة", vibe_romantic: "شهر عسل ورومانسية", vibe_nature: "طبيعة وأكواخ جبلية", vibe_beach: "إطلالة بحرية وشواطئ", vibe_thermal: "سياحة علاجية وينابيع حارة", vibe_city: "قلب المدينة والتسوق", btn_hotel: "ابحث لي عن فندق", btn_resort: "ابحث لي عن منتجع", btn_apart: "ابحث لي عن شقة",
-                f_from: "من أين (الانطلاق)", f_to: "إلى أين (الوصول)", f_country_label: "اسم الدولة", f_city_label: "المحافظة أو المدينة", f_airport_label: "اسم المطار", dir_swap_hint: "(عكس الاتجاه)",
+                f_from: "من أين (الانطلاق)", f_to: "إلى أين (الوصول)", f_country_label: "اسم الدولة", f_city_label: "المحافظة أو المدينة", f_airport_label: "اسم المطار", dir_world_to_tr: "الاتجاه: العالم ✈️ تركيا", dir_swap_hint: "(عكس الاتجاه)",
                 f_budget: "ميزانيتك", f_class: "نوع الرحلة (درجة الطيران)", class_eco: "الدرجة السياحية الاقتصادية", class_prem: "السياحية المتميزة (Premium)", class_bus: "درجة رجال الأعمال (Business)", class_first: "الدرجة الأولى (First Class)", f_airline: "شركة الطيران (اختياري)", btn_flight: "ابحث لي عن الرحلة الآن", total_est: "إجمالي المبلغ الواجب دفعه:",
-                radar_step_1: "جاري تحديد موقعك على الرادار وفحص العروض المتوفرة...", radar_step_3: "تم تجهيز العروض الموثقة والمغطاة فوق الخريطة!",
+                radar_step_1: "جاري تحديد موقعك على الرادار وفحص العروض المغطاة...", radar_step_3: "خطتك الذكية مكتملة فوق الخريطة — جميع العروض مفحوصة!",
                 low_budget_warn: "ملاحظة المستشار الذكي: الميزانية المدخلة أقل من الحد الأدنى الحالي. إليك أقرب فئة متاحة:",
-                good_budget_msg: "ممتاز! ميزانيتك متوافقة مع هذا الاختيار الموثق:",
+                good_budget_msg: "ممتاز! ميزانيتك متوافقة تماماً مع هذه الباقة الموثقة:",
                 flight_live_search_msg: "تم ربط المسار مباشرة بمحرك التذاكر الحي لعرض جميع شركات الطيران الحقيقية بدون أسعار تخمينية.",
-                flight_live_subtitle: "جميع شركات الطيران الحقيقية • بحث حي مباشر",
-                live_price_badge: "السعر الحي",
-                badge_flight: "✈️ تذاكر الطيران الحقيقية", badge_airport_transfer: "🚖 توصيل خاص من المطار", badge_esim: "📶 شريحة إنترنت 5G فورية (eSIM)",
-                badge_stay: "🏨 إقامة مطابقة لميزانيتك", badge_activity: "🎟️ بطاقة جولات إسطنبول (GoCity)", badge_resort_transfer: "🚐 خدمة نقل سياحي لتركيا",
-                book_deal_btn: "اعرض السعر الحي", btn_book_transfer: "احجز التوصيل الآن", btn_get_esim: "احصل على الشريحة", btn_book_activity: "استعرض الباقة",
-                per_night: "/ لليلة", total_stay: "تقديري:"
+                flight_live_subtitle: "جميع شركات الطيران الحقيقية • بحث حي مباشر", live_price_badge: "السعر الحي",
+                badge_flight: "✈️ تذاكر الطيران الحقيقية", badge_airport_transfer: "🚖 استقبال وتوصيل خاص VIP", badge_esim: "📶 شريحة إنترنت 5G فورية", badge_esim_yesim: "📶 إنترنت 5G غير محدود (Yesim)",
+                badge_stay: "🏨 إقامة مطابقة لميزانيتك", badge_activity_gocity: "🎟️ باقة إسطنبول الشاملة (GoCity)", badge_activity_tiqets: "🎟️ تذاكر المعالم بدون انتظار (Tiqets)", badge_resort_transfer: "🚐 توصيل خاص من المطار للفندق",
+                badge_car: "🚗 تأجير سيارة بضمان منخفض", badge_bike: "🛵 تأجير سكوتر أو دراجة شاطئية",
+                book_deal_btn: "اعرض السعر الحي", btn_book_transfer: "احجز التوصيل", btn_get_esim: "فعّل الإنترنت", btn_book_activity: "احجز التذاكر", btn_rent_car: "اختر سيارتك", btn_rent_bike: "اختر دراجتك",
+                per_night: "/ لليلة", total_stay: "تقديري:",
+                persuasion_title: "خطة رحلتك الذكية جاهزة — لماذا تحتاج هذه الباقة المتكاملة؟",
+                persuasion_headline_hotel: "لا تضيع وقتك ومالك في اللحظة الأخيرة: وفّر حتى 40% واحمِ عطلتك بتوصيل مضمون، إنترنت 5G غير محدود، وحرية تنقل كاملة.",
+                persuasion_headline_flight: "سافر ككبار الشخصيات منذ لحظة الهبوط: سائقك الخاص ينتظرك بالخارج، إنترنت 5G يعمل فوراً، وسيارتك جاهزة بدون تعقيدات.",
+                p_pt1_t: "تجنّب صدمة المطار والتاكسي", p_pt1_d: "توصيل خاص بسعر ثابت ومسبق ينقلك للفندق خلال دقائق بدون استغلال أو مفاوضة.",
+                p_pt2_t: "إنترنت 5G من لحظة الهبوط", p_pt2_d: "وفّر حتى 85% من رسوم التجوال؛ خرائطك وتواصلك يعملان فور إغلاق وضع الطيران.",
+                p_pt3_t: "حرية كاملة وتخطي الطوابير", p_pt3_d: "استأجر سيارتك أو دراجتك بضمان منخفض وادخل المعالم بتذاكر موبايل فورية بدون انتظار.",
+                readiness_prefix: "جاهزية رحلتك:", readiness_complete: "رحلتك جاهزة 100%!"
             },
             fa: {
                 dir: "rtl", hero_title: "مسیرهای برگزیده را با شکوه کشف کنید", hero_subtitle: "فرصت‌های انحصاری اقامت و پرواز در محبوب‌ترین مقاصد ترکیه.", hotels_sub: "انتخاب ویژه", hotels_heading: "مجموعه منتخب اختصاصی", starting_from: "شروع قیمت از", flights_sub: "ظرافت در آسمان‌ها", flights_heading: "پروازهای ویژه", blog_sub: "راهنمای سفر", blog_heading: "مجله گردشگری UcuzaKal", read_more: "ادامه مطلب", about_heading: "ما که هستیم؟", about_text_1: "UcuzaKal Türkiye یک پلتفرم مستقل گردشگری است که بهترین پیشنهادهای اقامت و پرواز در ترکیه را گردآوری می‌کند.", about_text_2: "هر مسیر با دقت طراحی شده است تا سفر شما به تجربه‌ای فراموش‌نشدنی تبدیل شود.", ratings_heading: "دیدگاه خود را به اشتراک بگذارید", review_name_placeholder: "نام و نام خانوادگی...", review_text_placeholder: "دیدگاه شما...", submit_review_btn: "ارسال", review_success: "از بازخورد ارزشمند شما سپاسگزاریم.", rights: "تمامی حقوق محفوظ است UcuzaKal Türkiye", google_login: "ورود با Gmail", cinematic_title: "در حال اسکن نقشه واقعی...", no_deals_text: "در حال حاضر پیشنهادی موجود نیست.", global_channels: "کانال‌های رسمی جهانی ما",
                 smart_hub_title: "مشاور هوشمند سفر", smart_hub_sub: "برنامه تعطیلات و پروازهای شخصی خود را در چند ثانیه طراحی کنید.", tab_hotel: "دستیار هتل", tab_flight: "دستیار پرواز", c_budget: "بودجه شما (هر شب)", c_type: "نوع اقامتگاه", t_hotel: "هتل‌ها", t_resort: "ریزورت‌ها", t_apart: "هتل آپارتمان‌ها", c_days: "مدت اقامت (روز)", c_dest: "منطقه مورد نظر", c_all_tr: "سراسر ترکیه", c_vibe: "سبک تعطیلات", vibe_luxury: "ریزورت مجلل و اسپا", vibe_family: "تعطیلات خانوادگی", vibe_romantic: "ماه عسل و رمانتیک", vibe_nature: "طبیعت و کلبه کوهستانی", vibe_beach: "ساحل و دریا", vibe_thermal: "چشمه آبگرم و سلامت", vibe_city: "مرکز شهر و خرید", btn_hotel: "هتل مرا پیدا کن", btn_resort: "ریزورت مرا پیدا کن", btn_apart: "آپارتمان مرا پیدا کن",
-                f_from: "از کجا (مبدأ)", f_to: "به کجا (مقصد)", f_country_label: "نام کشور", f_city_label: "استان یا شهر", f_airport_label: "نام فرودگاه", dir_swap_hint: "(تغییر جهت)",
+                f_from: "از کجا (مبدأ)", f_to: "به کجا (مقصد)", f_country_label: "نام کشور", f_city_label: "استان یا شهر", f_airport_label: "نام فرودگاه", dir_world_to_tr: "جهان ✈️ ترکیه", dir_swap_hint: "(تغییر جهت)",
                 f_budget: "بودجه شما", f_class: "کلاس پروازی", class_eco: "اکونومی", class_prem: "پریمیوم اکونومی", class_bus: "بیزینس کلاس", class_first: "فرست کلاس", f_airline: "شرکت هواپیمایی (اختیاری)", btn_flight: "هم‌اکنون پرواز مرا پیدا کن", total_est: "مبلغ کل قابل پرداخت:",
                 radar_step_1: "در حال بررسی رادار نقشه و بودجه شما...", radar_step_3: "پیشنهادهای معتبر روی نقشه آماده است!",
                 low_budget_warn: "یادداشت مشاور: بودجه شما کمتر از حداقل بازار است. نزدیک‌ترین پیشنهاد:",
                 good_budget_msg: "عالی! بودجه شما کاملاً با این پیشنهاد مطابقت دارد:",
                 flight_live_search_msg: "این مسیر مستقیماً به موتور جستجوی زنده پرواز متصل شد.",
-                flight_live_subtitle: "تمامی ایرلاین‌های واقعی • قیمت زنده",
-                live_price_badge: "قیمت زنده",
-                badge_flight: "✈️ پرواز معتبر", badge_airport_transfer: "🚖 ترانسفر فرودگاهی VIP", badge_esim: "📶 سیم‌کارت اینترنت 5G (eSIM)",
-                badge_stay: "🏨 اقامتگاه منطبق با بودجه", badge_activity: "🎟️ تورهای استانبول (GoCity)", badge_resort_transfer: "🚐 ترانسفر اختصاصی ترکیه",
-                book_deal_btn: "مشاهده قیمت زنده", btn_book_transfer: "رزرو ترانسفر", btn_get_esim: "دریافت eSIM", btn_book_activity: "مشاهده پکیج",
-                per_night: "/ شب", total_stay: "تخمینی:"
+                flight_live_subtitle: "تمامی ایرلاین‌های واقعی • قیمت زنده", live_price_badge: "قیمت زنده",
+                badge_flight: "✈️ پرواز معتبر", badge_airport_transfer: "🚖 ترانسفر فرودگاهی VIP", badge_esim: "📶 سیم‌کارت 5G eSIM", badge_esim_yesim: "📶 اینترنت 5G نامحدود (Yesim)",
+                badge_stay: "🏨 اقامتگاه منطبق با بودجه", badge_activity_gocity: "🎟️ تورهای استانبول (GoCity)", badge_activity_tiqets: "🎟️ بلیت بدون صف جاذبه‌ها (Tiqets)", badge_resort_transfer: "🚐 ترانسفر اختصاصی ترکیه",
+                badge_car: "🚗 اجاره خودرو بدون دردسر", badge_bike: "🛵 اجاره اسکوتر و موتور",
+                book_deal_btn: "مشاهده قیمت زنده", btn_book_transfer: "رزرو ترانسفر", btn_get_esim: "فعال‌سازی eSIM", btn_book_activity: "رزرو بلیت", btn_rent_car: "انتخاب خودرو", btn_rent_bike: "انتخاب موتور",
+                per_night: "/ شب", total_stay: "تخمینی:",
+                persuasion_title: "چرا این بسته کامل سفر برای شما ضروری است؟",
+                persuasion_headline_hotel: "هتل، ترانسفر با قیمت ثابت، اینترنت نامحدود 5G و خودروی اجاره‌ای را یکجا و با بهترین قیمت رزرو کنید.",
+                persuasion_headline_flight: "از لحظه فرود بدون استرس سفر کنید: راننده اختصاصی، اینترنت 5G فوری و خودروی آماده در مقصد.",
+                p_pt1_t: "بدون دردسر تاکسی فرودگاه", p_pt1_d: "ترانسفر اختصاصی با قیمت ثابت شما را مستقیماً به هتل می‌رساند.",
+                p_pt2_t: "اینترنت 5G از لحظه فرود", p_pt2_d: "تا ۸۵٪ در هزینه رومینگ صرفه‌جویی کنید و بلافاصله آنلاین شوید.",
+                p_pt3_t: "آزادی کامل و بدون صف", p_pt3_d: "اجاره خودرو/اسکوتر محلی و بلیت‌های ورود سریع به جاذبه‌ها.",
+                readiness_prefix: "آمادگی سفر:", readiness_complete: "آمادگی ۱۰۰٪!"
             },
             en: {
                 dir: "ltr", hero_title: "Discover Elite Routes in Luxury", hero_subtitle: "Exclusive accommodation and flight opportunities carefully compiled for you in Turkey's most popular destinations.", hotels_sub: "EXCLUSIVE SELECTION", hotels_heading: "Special Selection Collection", starting_from: "Rates Starting From", flights_sub: "ELEGANCE IN THE SKIES", flights_heading: "Privileged Flights", blog_sub: "TRAVEL JOURNAL", blog_heading: "UcuzaKal Travel Journal", read_more: "Read More", about_heading: "Who Are We?", about_text_1: "UcuzaKal Türkiye is an independent travel platform that carefully curates the finest accommodation and flight deals across Turkey's elite destinations.", about_text_2: "Each meticulously compiled route is designed so that your journey becomes an unforgettable standard of elegance.", ratings_heading: "Share Your Impressions", review_name_placeholder: "Full Name", review_text_placeholder: "Your thoughts...", submit_review_btn: "Submit", review_success: "Thank you for your elegant feedback.", rights: "All rights reserved UcuzaKal Türkiye", google_login: "Login with Gmail", cinematic_title: "Scanning Live Map & Fetching Verified Deals...", no_deals_text: "There are currently no deals, please visit again shortly.", global_channels: "Our Global Official Channels",
                 smart_hub_title: "Smart Travel Concierge", smart_hub_sub: "Design your personalized vacation and flight plan in seconds using our AI algorithms.", tab_hotel: "Hotel Concierge", tab_flight: "Flight Concierge", c_budget: "Your Budget (Per Night)", c_type: "Accommodation Type", t_hotel: "Hotels", t_resort: "Resorts", t_apart: "Serviced Apartments", c_days: "Length of Stay (Days)", c_dest: "Target Region", c_all_tr: "All Turkey", c_vibe: "Vacation Vibe", vibe_luxury: "Luxury Resort & Spa", vibe_family: "Family Friendly", vibe_romantic: "Honeymoon & Romantic", vibe_nature: "Nature & Mountain Chalet", vibe_beach: "Beach & Seaside", vibe_thermal: "Thermal & Wellness", vibe_city: "City Center & Shopping", btn_hotel: "Find Me a Hotel", btn_resort: "Find Me a Resort", btn_apart: "Find Me an Apartment",
-                f_from: "From (Origin)", f_to: "To (Destination)", f_country_label: "Country", f_city_label: "Province / City", f_airport_label: "Airport Name", dir_swap_hint: "(Swap)",
+                f_from: "From (Origin)", f_to: "To (Destination)", f_country_label: "Country", f_city_label: "Province / City", f_airport_label: "Airport Name", dir_world_to_tr: "Worldwide ✈️ Turkey", dir_swap_hint: "(Swap)",
                 f_budget: "Your Budget", f_class: "Flight Class", class_eco: "Economy Class", class_prem: "Premium Economy", class_bus: "Business Class", class_first: "First Class", f_airline: "Airline (Optional)", btn_flight: "Find My Flight Now", total_est: "Total Amount Payable:",
-                radar_step_1: "Locking radar coordinates & verifying live coverage...", radar_step_3: "Verified offers locked on map!",
+                radar_step_1: "Locking radar coordinates & verifying live coverage...", radar_step_3: "Your verified full-trip package is locked on the map!",
                 low_budget_warn: "Smart Advisor Note: Entered budget is below current minimum tier. Showing closest available option:",
                 good_budget_msg: "Excellent! Your budget matches this verified selection:",
                 flight_live_search_msg: "Connected directly to live flight search for real airlines & real-time fares.",
-                flight_live_subtitle: "All Real Airlines • Live Fare Search",
-                live_price_badge: "Live Price",
-                badge_flight: "✈️ Verified Flight Search", badge_airport_transfer: "🚖 VIP Airport Transfer", badge_esim: "📶 Instant 5G Travel eSIM",
-                badge_stay: "🏨 Budget-Matched Stay", badge_activity: "🎟️ Istanbul City Pass (GoCity)", badge_resort_transfer: "🚐 Private Turkey Transfer",
-                book_deal_btn: "Check Live Price", btn_book_transfer: "Book Transfer", btn_get_esim: "Get eSIM Now", btn_book_activity: "View Pass",
-                per_night: "/ Night", total_stay: "Est. Total:"
+                flight_live_subtitle: "All Real Airlines • Live Fare Search", live_price_badge: "Live Price",
+                badge_flight: "✈️ Verified Flight Search", badge_airport_transfer: "🚖 VIP Airport Transfer", badge_esim: "📶 Instant 5G Travel eSIM", badge_esim_yesim: "📶 Unlimited 5G eSIM (Yesim)",
+                badge_stay: "🏨 Budget-Matched Stay", badge_activity_gocity: "🎟️ Istanbul All-Inclusive Pass", badge_activity_tiqets: "🎟️ Skip-the-Line Tickets (Tiqets)", badge_resort_transfer: "🚐 Private Door-to-Door Transfer",
+                badge_car: "🚗 Local Car Rental (Low Deposit)", badge_bike: "🛵 Scooter, Moto & ATV Rental",
+                book_deal_btn: "Check Live Price", btn_book_transfer: "Book Transfer", btn_get_esim: "Activate eSIM", btn_book_activity: "Get Tickets", btn_rent_car: "Pick Your Car", btn_rent_bike: "Rent Scooter",
+                per_night: "/ Night", total_stay: "Est. Total:",
+                persuasion_title: "Your Smart VIP Trip Plan — Why Lock In All Essentials Now?",
+                persuasion_headline_hotel: "Save up to 40% & skip last-minute hassles: pair your stay with fixed-price airport pickup, unlimited 5G eSIM, and local mobility.",
+                persuasion_headline_flight: "Arrive like a VIP from minute one: your driver meets you at arrivals, 5G data activates on landing, and your rental car awaits.",
+                p_pt1_t: "Zero Airport Taxi Shock", p_pt1_d: "Pre-booked fixed-price private chauffeur waiting at the gate with zero haggling.",
+                p_pt2_t: "Instant 5G Before Landing", p_pt2_d: "Cut roaming bills by 85% — maps, rides, and messages work the moment you touch down.",
+                p_pt3_t: "Total Freedom & Skip Lines", p_pt3_d: "Low-deposit local cars/scooters plus mobile skip-the-line attraction passes.",
+                readiness_prefix: "Trip Readiness:", readiness_complete: "100% Trip Ready!"
             },
             ru: {
                 dir: "ltr", hero_title: "Откройте для себя элитные маршруты в роскоши", hero_subtitle: "Эксклюзивные предложения по размещению и перелетам в лучших уголках Турции.", hotels_sub: "СПЕЦИАЛЬНЫЙ ВЫБОР", hotels_heading: "Специальная коллекция", starting_from: "Цены от", flights_sub: "ЭЛЕГАНТНОСТЬ В НЕБЕ", flights_heading: "Привилегированные рейсы", blog_sub: "ПУТЕВОДИТЕЛЬ", blog_heading: "Дневник путешествий UcuzaKal", read_more: "Читать далее", about_heading: "О нас", about_text_1: "UcuzaKal Türkiye — независимая туристическая платформа, тщательно собирающая лучшие предложения по отелям и перелетам в Турции.", about_text_2: "Каждый маршрут составлен так, чтобы ваше путешествие стало безупречным и незабываемым опытом.", ratings_heading: "Поделитесь впечатлениями", review_name_placeholder: "Имя Фамилия", review_text_placeholder: "Ваш отзыв...", submit_review_btn: "Отправить", review_success: "Благодарим за ваш отзыв.", rights: "Все права защищены UcuzaKal Türkiye", google_login: "Войти через Gmail", cinematic_title: "Сканирование карты и поиск предложений...", no_deals_text: "В настоящее время предложений нет.", global_channels: "Наши глобальные официальные каналы",
                 smart_hub_title: "Умный консьерж путешествий", smart_hub_sub: "Создайте свой персональный план отпуска и перелетов за секунды.", tab_hotel: "Помощник по отелям", tab_flight: "Помощник по перелетам", c_budget: "Ваш бюджет (за ночь)", c_type: "Тип жилья", t_hotel: "Отели", t_resort: "Курорты (Resorts)", t_apart: "Апарт-отели", c_days: "Срок проживания (дней)", c_dest: "Целевой регион", c_all_tr: "Вся Турция", c_vibe: "Стиль отдыха", vibe_luxury: "Люкс Курорт и Спа", vibe_family: "Семейный отдых", vibe_romantic: "Медовый месяц / Романтика", vibe_nature: "Природа и Шале", vibe_beach: "Море и Пляж", vibe_thermal: "Термальные источники", vibe_city: "Центр города и Шопинг", btn_hotel: "Найти мне отель", btn_resort: "Найти мне курорт", btn_apart: "Найти мне апартаменты",
-                f_from: "Откуда (Вылет)", f_to: "Куда (Прилет)", f_country_label: "Страна", f_city_label: "Провинция / Город", f_airport_label: "Название аэропорта", dir_swap_hint: "(Сменить)",
+                f_from: "Откуда (Вылет)", f_to: "Куда (Прилет)", f_country_label: "Страна", f_city_label: "Провинция / Город", f_airport_label: "Название аэропорта", dir_world_to_tr: "Мир ✈️ Турция", dir_swap_hint: "(Сменить)",
                 f_budget: "Ваш бюджет", f_class: "Класс перелета", class_eco: "Эконом-класс", class_prem: "Премиум-эконом", class_bus: "Бизнес-класс", class_first: "Первый класс", f_airline: "Авиакомпания (необязательно)", btn_flight: "Найти мой рейс сейчас", total_est: "Общая сумма к оплате:",
-                radar_step_1: "Определение координат на радаре и анализ бюджета...", radar_step_3: "Проверенные предложения готовы на карте!",
+                radar_step_1: "Определение координат на радаре и анализ бюджета...", radar_step_3: "Полный пакет проверенных услуг готов на карте!",
                 low_budget_warn: "Примечание консультанта: Бюджет ниже минимума. Ближайшее предложение:",
                 good_budget_msg: "Отлично! Ваш бюджет идеально подходит к этому предложению:",
                 flight_live_search_msg: "Прямое подключение к живому поиску авиабилетов по этому маршруту.",
-                flight_live_subtitle: "Все реальные авиакомпании • Живой поиск",
-                live_price_badge: "Живая цена",
-                badge_flight: "✈️ Проверенный рейс", badge_airport_transfer: "🚖 Трансфер из аэропорта", badge_esim: "📶 Интернет 5G eSIM",
-                badge_stay: "🏨 Жилье по вашему бюджету", badge_activity: "🎟️ Стамбул Pass (GoCity)", badge_resort_transfer: "🚐 Частный трансфер",
-                book_deal_btn: "Смотреть цены", btn_book_transfer: "Заказать трансфер", btn_get_esim: "Купить eSIM", btn_book_activity: "Смотреть Pass",
-                per_night: "/ ночь", total_stay: "Ориент.:"
+                flight_live_subtitle: "Все реальные авиакомпании • Живой поиск", live_price_badge: "Живая цена",
+                badge_flight: "✈️ Проверенный рейс", badge_airport_transfer: "🚖 VIP трансфер из аэропорта", badge_esim: "📶 Интернет 5G eSIM", badge_esim_yesim: "📶 Безлимит 5G eSIM (Yesim)",
+                badge_stay: "🏨 Жилье по вашему бюджету", badge_activity_gocity: "🎟️ Стамбул All-Inclusive Pass", badge_activity_tiqets: "🎟️ Билеты без очереди (Tiqets)", badge_resort_transfer: "🚐 Частный трансфер до отеля",
+                badge_car: "🚗 Аренда авто с низким депозитом", badge_bike: "🛵 Аренда скутера и байка",
+                book_deal_btn: "Смотреть цены", btn_book_transfer: "Заказать трансфер", btn_get_esim: "Активировать eSIM", btn_book_activity: "Взять билеты", btn_rent_car: "Выбрать авто", btn_rent_bike: "Выбрать байк",
+                per_night: "/ ночь", total_stay: "Ориент.:",
+                persuasion_title: "Ваш умный план поездки готов — почему стоит забронировать всё сразу?",
+                persuasion_headline_hotel: "Сэкономьте до 40% и избежите хлопот: трансфер по фиксированной цене, безлимитный 5G интернет и свобода передвижения.",
+                persuasion_headline_flight: "Комфорт с первой минуты: водитель встретит с табличкой, интернет 5G заработает сразу после посадки.",
+                p_pt1_t: "Без переплат за такси", p_pt1_d: "Фиксированная цена трансфера и встреча в аэропорту без торга.",
+                p_pt2_t: "5G интернет сразу по прилету", p_pt2_d: "Экономия до 85% на роуминге — карты и мессенджеры работают мгновенно.",
+                p_pt3_t: "Свобода и вход без очередей", p_pt3_d: "Местная аренда авто/скутеров без огромного залога и мобильные билеты.",
+                readiness_prefix: "Готовность поездки:", readiness_complete: "Готово на 100%!"
             },
             es: {
                 dir: "ltr", hero_title: "Descubra Rutas de Élite con Lujo", hero_subtitle: "Oportunidades exclusivas de alojamiento y vuelos en los destinos más populares de Turquía.", hotels_sub: "SELECCIÓN EXCLUSIVA", hotels_heading: "Colección Especial", starting_from: "Precios desde", flights_sub: "ELEGANCIA EN LOS CIELOS", flights_heading: "Vuelos Privilegiados", blog_sub: "GUÍA DE VIAJE", blog_heading: "Diario de Viaje UcuzaKal", read_more: "Leer más", about_heading: "¿Quiénes somos?", about_text_1: "UcuzaKal Türkiye es una plataforma de viajes independiente que selecciona las mejores ofertas de alojamiento y vuelos en Turquía.", about_text_2: "Cada ruta está meticulosamente diseñada para que su viaje sea inolvidable.", ratings_heading: "Comparta sus impresiones", review_name_placeholder: "Nombre completo", review_text_placeholder: "Sus pensamientos...", submit_review_btn: "Enviar", review_success: "Gracias por sus comentarios.", rights: "Todos los derechos reservados UcuzaKal Türkiye", google_login: "Iniciar sesión con Gmail", cinematic_title: "Escaneando mapa real...", no_deals_text: "Actualmente no hay ofertas disponibles.", global_channels: "Nuestros Canales Oficiales Globales",
                 smart_hub_title: "Conserje Inteligente de Viajes", smart_hub_sub: "Diseñe su plan personalizado de vacaciones y vuelos en segundos.", tab_hotel: "Asistente de Hoteles", tab_flight: "Asistente de Vuelos", c_budget: "Su Presupuesto (Por Noche)", c_type: "Tipo de Alojamiento", t_hotel: "Hoteles", t_resort: "Resorts", t_apart: "Apartahoteles", c_days: "Duración (Días)", c_dest: "Región de Destino", c_all_tr: "Toda Turquía", c_vibe: "Estilo de Vacaciones", vibe_luxury: "Resort de Lujo y Spa", vibe_family: "Familiar", vibe_romantic: "Luna de Miel / Romántico", vibe_nature: "Naturaleza y Montaña", vibe_beach: "Playa y Costa", vibe_thermal: "Termal y Bienestar", vibe_city: "Centro y Compras", btn_hotel: "Búscame un Hotel", btn_resort: "Búscame un Resort", btn_apart: "Búscame un Apartamento",
-                f_from: "Desde (Origen)", f_to: "Hacia (Destino)", f_country_label: "País", f_city_label: "Provincia / Ciudad", f_airport_label: "Nombre del Aeropuerto", dir_swap_hint: "(Invertir)",
+                f_from: "Desde (Origen)", f_to: "Hacia (Destino)", f_country_label: "País", f_city_label: "Provincia / Ciudad", f_airport_label: "Nombre del Aeropuerto", dir_world_to_tr: "Mundo ✈️ Turquía", dir_swap_hint: "(Invertir)",
                 f_budget: "Su Presupuesto", f_class: "Clase de Vuelo", class_eco: "Económica", class_prem: "Económica Premium", class_bus: "Ejecutiva", class_first: "Primera Clase", f_airline: "Aerolínea (Opcional)", btn_flight: "Buscar Mi Vuelo Ahora", total_est: "Importe Total a Pagar:",
-                radar_step_1: "Localizando radar en el mapa y analizando presupuesto...", radar_step_3: "¡Ofertas verificadas listas en el mapa!",
+                radar_step_1: "Localizando radar en el mapa y analizando presupuesto...", radar_step_3: "¡Su paquete completo verificado está listo en el mapa!",
                 low_budget_warn: "Nota: Su presupuesto es menor al mínimo actual. Aquí tiene la oferta más cercana:",
                 good_budget_msg: "¡Excelente! Su presupuesto coincide con esta oferta verificada:",
                 flight_live_search_msg: "Conectado directamente a la búsqueda en vivo de aerolíneas reales.",
-                flight_live_subtitle: "Aerolíneas reales • Tarifas en vivo",
-                live_price_badge: "Precio en vivo",
-                badge_flight: "✈️ Vuelo Verificado", badge_airport_transfer: "🚖 Traslado VIP Aeropuerto", badge_esim: "📶 Tarjeta 5G eSIM",
-                badge_stay: "🏨 Estancia según presupuesto", badge_activity: "🎟️ Estambul Pass (GoCity)", badge_resort_transfer: "🚐 Transporte Privado",
-                book_deal_btn: "Ver Precio Real", btn_book_transfer: "Reservar Traslado", btn_get_esim: "Obtener eSIM", btn_book_activity: "Ver Pase",
-                per_night: "/ Noche", total_stay: "Est.:"
+                flight_live_subtitle: "Aerolíneas reales • Tarifas en vivo", live_price_badge: "Precio en vivo",
+                badge_flight: "✈️ Vuelo Verificado", badge_airport_transfer: "🚖 Traslado VIP Aeropuerto", badge_esim: "📶 Tarjeta 5G eSIM", badge_esim_yesim: "📶 5G Ilimitado (Yesim)",
+                badge_stay: "🏨 Estancia según presupuesto", badge_activity_gocity: "🎟️ Estambul Pass (GoCity)", badge_activity_tiqets: "🎟️ Entradas sin colas (Tiqets)", badge_resort_transfer: "🚐 Transporte Privado",
+                badge_car: "🚗 Alquiler de Auto Local", badge_bike: "🛵 Alquiler de Scooter y Moto",
+                book_deal_btn: "Ver Precio Real", btn_book_transfer: "Reservar Traslado", btn_get_esim: "Activar eSIM", btn_book_activity: "Ver Entradas", btn_rent_car: "Elegir Auto", btn_rent_bike: "Alquilar Moto",
+                per_night: "/ Noche", total_stay: "Est.:",
+                persuasion_title: "Su Plan VIP Inteligente — ¿Por qué asegurar todo ahora?",
+                persuasion_headline_hotel: "Ahorre hasta un 40%: combine su estancia con traslado a precio fijo, 5G ilimitado y movilidad local sin complicaciones.",
+                persuasion_headline_flight: "Viaje sin estrés desde el aterrizaje: chófer privado esperándole, datos 5G al instante y coche listo.",
+                p_pt1_t: "Sin sorpresas en el aeropuerto", p_pt1_d: "Traslado privado a precio fijo sin regateos ni filas de taxi.",
+                p_pt2_t: "Internet 5G al aterrizar", p_pt2_d: "Ahorre 85% en roaming con conexión instantánea al bajar del avión.",
+                p_pt3_t: "Libertad total sin colas", p_pt3_d: "Coches o scooters locales con depósito bajo y entradas móviles directas.",
+                readiness_prefix: "Viaje listo:", readiness_complete: "¡100% Listo!"
             },
             zh: {
                 dir: "ltr", hero_title: "在奢华中探索精选路线", hero_subtitle: "为您在土耳其最受欢迎的目的地精心挑选的独家住宿和航班优惠。", hotels_sub: "独家精选", hotels_heading: "特别精选系列", starting_from: "起价", flights_sub: "云端优雅", flights_heading: "尊享航班", blog_sub: "旅行指南", blog_heading: "UcuzaKal 旅行日志", read_more: "阅读全文", about_heading: "关于我们", about_text_1: "UcuzaKal Türkiye 是一个独立的旅行平台，为您精心挑选土耳其各大目的地的最佳住宿和航班优惠。", about_text_2: "每条路线都经过精心设计，让您的旅程成为难忘的尊贵体验。", ratings_heading: "分享您的感受", review_name_placeholder: "您的姓名", review_text_placeholder: "您的评价...", submit_review_btn: "提交", review_success: "感谢您的宝贵反馈。", rights: "保留所有权利 UcuzaKal Türkiye", google_login: "Gmail 登录", cinematic_title: "正在扫描真实地图...", no_deals_text: "目前暂无优惠。", global_channels: "我们的全球官方频道",
                 smart_hub_title: "智能旅行礼宾助手", smart_hub_sub: "使用我们的 AI 算法，在几秒钟内设计您的专属度假和航班计划。", tab_hotel: "住宿助手", tab_flight: "航班助手", c_budget: "您的预算（每晚）", c_type: "住宿类型", t_hotel: "酒店", t_resort: "度假村", t_apart: "服务式公寓", c_days: "入住天数", c_dest: "目标地区", c_all_tr: "全土耳其", c_vibe: "度假风格", vibe_luxury: "豪华度假村与水疗", vibe_family: "家庭亲子游", vibe_romantic: "蜜月与浪漫", vibe_nature: "自然与山间木屋", vibe_beach: "海滨与沙滩", vibe_thermal: "温泉与康养", vibe_city: "市中心与购物", btn_hotel: "为我查找酒店", btn_resort: "为我查找度假村", btn_apart: "为我查找公寓",
-                f_from: "出发地", f_to: "目的地", f_country_label: "国家", f_city_label: "省份 / 城市", f_airport_label: "机场名称", dir_swap_hint: "（切换方向）",
+                f_from: "出发地", f_to: "目的地", f_country_label: "国家", f_city_label: "省份 / 城市", f_airport_label: "机场名称", dir_world_to_tr: "全球 ✈️ 土耳其", dir_swap_hint: "（切换方向）",
                 f_budget: "您的预算", f_class: "舱位等级", class_eco: "经济舱", class_prem: "超级经济舱", class_bus: "商务舱", class_first: "头等舱", f_airline: "航空公司（可选）", btn_flight: "立即查找我的航班", total_est: "应付总金额：",
-                radar_step_1: "正在地图雷达定位并分析预算...", radar_step_3: "地图上的实时验证优惠已就绪！",
+                radar_step_1: "正在地图雷达定位并分析预算...", radar_step_3: "地图上的完整行程方案已就绪！",
                 low_budget_warn: "智能顾问提示：预算低于当前最低价。为您展示最接近的优惠：",
                 good_budget_msg: "太棒了！您的预算完全符合以下认证优惠：",
-                flight_live_search_msg: "已直连实时航班搜索引擎，查看该航线真实航空公司与实时票价。",
-                flight_live_subtitle: "真实航空公司 • 实时票价查询",
-                live_price_badge: "实时价格",
-                badge_flight: "✈️ 实时认证航班", badge_airport_transfer: "🚖 机场专车接送", badge_esim: "📶 即时 5G 流量 eSIM",
-                badge_stay: "🏨 符合预算的住宿", badge_activity: "🎟️ 伊斯坦布尔通票 (GoCity)", badge_resort_transfer: "🚐 私人区域接送服务",
-                book_deal_btn: "查看实时价格", btn_book_transfer: "预订接送", btn_get_esim: "获取 eSIM", btn_book_activity: "查看通票",
-                per_night: "/ 晚", total_stay: "预估："
+                flight_live_search_msg: "已直连实时航班搜索引擎，查看真实航空公司与实时票价。",
+                flight_live_subtitle: "真实航空公司 • 实时票价查询", live_price_badge: "实时价格",
+                badge_flight: "✈️ 实时认证航班", badge_airport_transfer: "🚖 机场专车接送", badge_esim: "📶 即时 5G 流量 eSIM", badge_esim_yesim: "📶 无限量 5G eSIM (Yesim)",
+                badge_stay: "🏨 符合预算的住宿", badge_activity_gocity: "🎟️ 伊斯坦布尔通票 (GoCity)", badge_activity_tiqets: "🎟️ 景点免排队门票 (Tiqets)", badge_resort_transfer: "🚐 私人门到门接送",
+                badge_car: "🚗 低押金本地租车", badge_bike: "🛵 踏板车与摩托租赁",
+                book_deal_btn: "查看实时价格", btn_book_transfer: "预订接送", btn_get_esim: "激活 eSIM", btn_book_activity: "预订门票", btn_rent_car: "选择车辆", btn_rent_bike: "选择摩托",
+                per_night: "/ 晚", total_stay: "预估：",
+                persuasion_title: "您的 VIP 智能行程已生成 — 为什么一站式预订更省心？",
+                persuasion_headline_hotel: "省时省钱高达40%：一站配齐固定价格接机、无限量5G网络与自由出行。",
+                persuasion_headline_flight: "落地即享 VIP 体验：专车举牌接机、落地秒连5G网络、租车无缝衔接。",
+                p_pt1_t: "告别机场打车烦恼", p_pt1_d: "提前锁定固定价格专车，拒绝宰客与漫长等待。",
+                p_pt2_t: "落地即刻畅享 5G", p_pt2_d: "节省85%国际漫游费，下飞机立刻使用导航与通讯。",
+                p_pt3_t: "自由探索免排队", p_pt3_d: "低押金本地租车/摩托，加上手机扫码免排队景点门票。",
+                readiness_prefix: "行程准备度：", readiness_complete: "100% 准备就绪！"
             },
             ku: {
                 dir: "ltr", hero_title: "Rêçên Bijarte bi Luksê Keşif Bikin", hero_subtitle: "Derfetên cîh û firînê yên taybetî li Tirkiyeyê.", hotels_sub: "HILBIJARTINA TAYBET", hotels_heading: "Koleksiyona Taybet", starting_from: "Bihayên Destpêkê", flights_sub: "ZERAFETA LI EZMANAN", flights_heading: "Firînên Taybet", blog_sub: "REHBERA RÊWÎTIYÊ", blog_heading: "Rojnameya UcuzaKal", read_more: "Zêdetir Bixwîne", about_heading: "Em Kî Ne?", about_text_1: "UcuzaKal Türkiye platformeke rêwîtiyê ya serbixwe ye ku derfetên herî baş ên cîh û firînê li Tirkiyeyê berhev dike.", about_text_2: "Her rêç bi baldarî hatiye sêwirandin.", ratings_heading: "Nêrînên Xwe Parve Bikin", review_name_placeholder: "Nav û Paşnav", review_text_placeholder: "Ramanên we...", submit_review_btn: "Bişîne", review_success: "Ji bo nerînên we spas.", rights: "Hemû maf parastî ne UcuzaKal Türkiye", google_login: "Têketina Gmail", cinematic_title: "Nexşe tê kontrolkirin...", no_deals_text: "Niha tu pêşniyar nînin.", global_channels: "Kanalên Me yên Fermî",
                 smart_hub_title: "Alîkarê Rêwîtiyê yê Jîr", smart_hub_sub: "Plana betlane û firîna xwe di çend saniyan de dîzayn bikin.", tab_hotel: "Alîkarê Otelan", tab_flight: "Alîkarê Firînê", c_budget: "Budçeya We", c_type: "Cûreyê Manê", t_hotel: "Otel", t_resort: "Resort", t_apart: "Apart Otel", c_days: "Demjimêra Manê (Roj)", c_dest: "Herêma Armanc", c_all_tr: "Hemû Tirkiye", c_vibe: "Şêwaza Betlaneyê", vibe_luxury: "Resorta Luks & Spa", vibe_family: "Betlaneya Malbatî", vibe_romantic: "Romantîk", vibe_nature: "Xweza", vibe_beach: "Perav û Derya", vibe_thermal: "Termal", vibe_city: "Navenda Bajar", btn_hotel: "Ji Min Re Otelê Bibîne", btn_resort: "Ji Min Re Resortê Bibîne", btn_apart: "Ji Min Re Apartê Bibîne",
-                f_from: "Ji Ku Derê", f_to: "Bo Ku Derê", f_country_label: "Welat", f_city_label: "Parêzgeh / Bajar", f_airport_label: "Navê Balafirgehê", dir_swap_hint: "(Biguhere)",
+                f_from: "Ji Ku Derê", f_to: "Bo Ku Derê", f_country_label: "Welat", f_city_label: "Parêzgeh / Bajar", f_airport_label: "Navê Balafirgehê", dir_world_to_tr: "Cîhan ✈️ Tirkiye", dir_swap_hint: "(Biguhere)",
                 f_budget: "Budçeya We", f_class: "Asta Firînê", class_eco: "Ekonomî", class_prem: "Premium", class_bus: "Business", class_first: "First Class", f_airline: "Şîrketa Balafirgehê", btn_flight: "Niha Firîna Min Bibîne", total_est: "Bihayê Giştî:",
                 radar_step_1: "Li ser nexşeyê cih û budçe tê analîzkirin...", radar_step_3: "Pêşniyarên rastîn li ser nexşeyê amade ne!",
                 low_budget_warn: "Têbînî: Budçeya we kêmtir e. Pêşniyara herî nêzîk:",
                 good_budget_msg: "Pir baş! Budçeya we bi vê pêşniyarê re li hev tê:",
                 flight_live_search_msg: "Ji bo vê rêçê bihayên zindî rasterast amade ne.",
-                flight_live_subtitle: "Hemû Şîrketên Rastîn • Bihayê Zindî",
-                live_price_badge: "Bihayê Zindî",
-                badge_flight: "✈️ Firîna Rastîn", badge_airport_transfer: "🚖 Veguhastina Balafirgehê", badge_esim: "📶 Înterneta 5G eSIM",
-                badge_stay: "🏨 Cihê Manê Li Gorî Budçeyê", badge_activity: "🎟️ Stenbol Pass (GoCity)", badge_resort_transfer: "🚐 Veguhastina Taybet",
-                book_deal_btn: "Bihayê Zindî Bibîne", btn_book_transfer: "Veguhastinê Veqetîne", btn_get_esim: "eSIM Bistîne", btn_book_activity: "Pass Bibîne",
-                per_night: "/ Şev", total_stay: "Texmînî:"
+                flight_live_subtitle: "Hemû Şîrketên Rastîn • Bihayê Zindî", live_price_badge: "Bihayê Zindî",
+                badge_flight: "✈️ Firîna Rastîn", badge_airport_transfer: "🚖 Veguhastina VIP", badge_esim: "📶 Înterneta 5G eSIM", badge_esim_yesim: "📶 5G Bêsînor (Yesim)",
+                badge_stay: "🏨 Cihê Manê Li Gorî Budçeyê", badge_activity_gocity: "🎟️ Stenbol Pass (GoCity)", badge_activity_tiqets: "🎟️ Bilêtên Bê Rêz (Tiqets)", badge_resort_transfer: "🚐 Veguhastina Taybet",
+                badge_car: "🚗 Kirêkirina Otomobîlê", badge_bike: "🛵 Kirêkirina Scooter & Moto",
+                book_deal_btn: "Bihayê Zindî Bibîne", btn_book_transfer: "Veguhastinê Veqetîne", btn_get_esim: "eSIM Bistîne", btn_book_activity: "Bilêtan Bibîne", btn_rent_car: "Otomobîlê Hilbijêre", btn_rent_bike: "Motorê Hilbijêre",
+                per_night: "/ Şev", total_stay: "Texmînî:",
+                persuasion_title: "Plana Rêwîtiya We Amade Ye — Çima Hemû Xizmetan Bi Hev Re Veqetînin?",
+                persuasion_headline_hotel: "Heta %40 teserûf bikin: veguhastina bihayê sabît, înterneta 5G û azadiya gerê bi yek carî.",
+                persuasion_headline_flight: "Bê stres rêwîtî bikin: ajokarê taybet, 5G yekser û otomobîla amade.",
+                p_pt1_t: "Bê Pirsgirêka Taksiyê", p_pt1_d: "Veguhastina taybet bi bihayê sabît li deriyê balafirgehê.",
+                p_pt2_t: "Înterneta 5G Yekser", p_pt2_d: "Heta %85 li ser mesrefên roamingê teserûf bikin.",
+                p_pt3_t: "Azadiya Gerê û Bê Rêz", p_pt3_d: "Kirêkirina otomobîl/scooter û bilêtên mobîl ên bilez.",
+                readiness_prefix: "Amadehiya Rêwîtiyê:", readiness_complete: "100% Amade Ye!"
             },
             kk: {
                 dir: "ltr", hero_title: "Таңдаулы бағыттарды сән-салтанатпен ашыңыз", hero_subtitle: "Түркияның ең танымал бағыттарындағы эксклюзивті қонақ үй және әуе билеттері.", hotels_sub: "АРНАЙЫ ТАҢДАУ", hotels_heading: "Арнайы таңдау топтамасы", starting_from: "Бастапқы бағалар", flights_sub: "АСПАНДАҒЫ СӘНДІЛІК", flights_heading: "Артықшылықты рейстер", blog_sub: "САЯХАТ НҰСҚАУЛЫҒЫ", blog_heading: "UcuzaKal күнделігі", read_more: "Толығырақ оқу", about_heading: "Біз кімбіз?", about_text_1: "UcuzaKal Türkiye — Түркияның ең үздік бағыттарында тұру және ұшу мүмкіндіктерін ұсынатын тәуелсіз платформа.", about_text_2: "Әрбір бағыт сіздің саяхатыңыз ұмытылмас тәжірибе болуы үшін жасалған.", ratings_heading: "Әсеріңізбен бөлісіңіз", review_name_placeholder: "Аты-жөніңіз", review_text_placeholder: "Пікіріңіз...", submit_review_btn: "Жіберу", review_success: "Пікіріңіз үшін алғыс айтамыз.", rights: "Барлық құқықтар қорғалған UcuzaKal Türkiye", google_login: "Gmail арқылы кіру", cinematic_title: "Карта сканерленуде...", no_deals_text: "Қазіргі уақытта ұсыныстар жоқ.", global_channels: "Біздің ресми арналарымыз",
                 smart_hub_title: "Ақылды саяхат көмекшісі", smart_hub_sub: "Демалыс және ұшу жоспарыңызды бірнеше секунд ішінде жасаңыз.", tab_hotel: "Қонақ үй көмекшісі", tab_flight: "Ұшу көмекшісі", c_budget: "Бюджетіңіз", c_type: "Тұру түрі", t_hotel: "Қонақ үйлер", t_resort: "Курорттар", t_apart: "Апарт-қонақ үйлер", c_days: "Тұру ұзақтығы (күн)", c_dest: "Мақсатты аймақ", c_all_tr: "Бүкіл Түркия", c_vibe: "Демалыс түрі", vibe_luxury: "Люкс Курорт", vibe_family: "Отбасылық", vibe_romantic: "Романтикалық", vibe_nature: "Табиғат", vibe_beach: "Жағажай", vibe_thermal: "Термалды", vibe_city: "Қала орталығы", btn_hotel: "Қонақ үй тап", btn_resort: "Курорт тап", btn_apart: "Пәтер тап",
-                f_from: "Қайдан", f_to: "Қайда", f_country_label: "Ел", f_city_label: "Облыс / Қала", f_airport_label: "Әуежай атауы", dir_swap_hint: "(Өзгерту)",
+                f_from: "Қайдан", f_to: "Қайда", f_country_label: "Ел", f_city_label: "Облыс / Қала", f_airport_label: "Әуежай атауы", dir_world_to_tr: "Әлем ✈️ Түркия", dir_swap_hint: "(Өзгерту)",
                 f_budget: "Бюджетіңіз", f_class: "Ұшу класы", class_eco: "Эконом", class_prem: "Премиум", class_bus: "Бизнес", class_first: "Бірінші", f_airline: "Әуе компаниясы", btn_flight: "Рейсімді қазір тап", total_est: "Жалпы сома:",
-                radar_step_1: "Картадан координаттар мен бюджет талдануда...", radar_step_3: "Расталған ұсыныстар картада дайын!",
-                low_budget_warn: "Ескертпе: Бюджет төмен. Ең жақын ұсыныс:",
+                radar_step_1: "Картадан координаттар мен бюджет талдануда...", radar_step_3: "Расталған саяхат пакеті картада дайын!",
+                low_budget_warn: "Ескертпе: Бюджет төмен. Ең жақын нақты ұсыныс:",
                 good_budget_msg: "Керемет! Бюджетіңіз осы ұсынысқа сәйкес келеді:",
                 flight_live_search_msg: "Бұл бағыт бойынша нақты билет бағалары тікелей іздеу жүйесінде дайын.",
-                flight_live_subtitle: "Барлық нақты әуе компаниялары • Тікелей баға",
-                live_price_badge: "Нақты баға",
-                badge_flight: "✈️ Расталған рейс", badge_airport_transfer: "🚖 Әуежай трансфері", badge_esim: "📶 Жылдам 5G eSIM",
-                badge_stay: "🏨 Бюджетке сай қонақ үй", badge_activity: "🎟️ Ыстамбұл Pass (GoCity)", badge_resort_transfer: "🚐 Жеке трансфер",
-                book_deal_btn: "Бағаны көру", btn_book_transfer: "Трансфер тапсырыс беру", btn_get_esim: "eSIM алу", btn_book_activity: "Pass көру",
-                per_night: "/ түн", total_stay: "Шамамен:"
+                flight_live_subtitle: "Барлық нақты әуе компаниялары • Тікелей баға", live_price_badge: "Нақты баға",
+                badge_flight: "✈️ Расталған рейс", badge_airport_transfer: "🚖 VIP әуежай трансфері", badge_esim: "📶 Жылдам 5G eSIM", badge_esim_yesim: "📶 Шексіз 5G eSIM (Yesim)",
+                badge_stay: "🏨 Бюджетке сай қонақ үй", badge_activity_gocity: "🎟️ Ыстамбұл Pass (GoCity)", badge_activity_tiqets: "🎟️ Кезексіз билеттер (Tiqets)", badge_resort_transfer: "🚐 Жеке трансфер",
+                badge_car: "🚗 Жергілікті көлік жалдау", badge_bike: "🛵 Скутер мен мото жалдау",
+                book_deal_btn: "Бағаны көру", btn_book_transfer: "Трансфер алу", btn_get_esim: "eSIM қосу", btn_book_activity: "Билет алу", btn_rent_car: "Көлік таңдау", btn_rent_bike: "Байк таңдау",
+                per_night: "/ түн", total_stay: "Шамамен:",
+                persuasion_title: "Ақылды саяхат жоспарыңыз дайын — неге бәрін бірге брондау тиімді?",
+                persuasion_headline_hotel: "40%-ға дейін үнемдеңіз: тұрақты бағалы трансфер, шексіз 5G интернет және еркін қозғалыс.",
+                persuasion_headline_flight: "Қонған сәттен бастап VIP жайлылық: жүргізуші күтіп алады, 5G бірден іске қосылады.",
+                p_pt1_t: "Әуежай таксиіне артық төлемеңіз", p_pt1_d: "Тұрақты бағалы жеке трансфер сізді қонақ үйге жеткізеді.",
+                p_pt2_t: "Қонған бойда 5G интернет", p_pt2_d: "Роуминг шығынын 85% азайтып, бірден желіде болыңыз.",
+                p_pt3_t: "Еркін саяхат және кезексіз кіру", p_pt3_d: "Төмен депозитті көлік және мобильді билеттер.",
+                readiness_prefix: "Саяхат дайындығы:", readiness_complete: "100% Дайын!"
             },
             az: {
                 dir: "ltr", hero_title: "Seçilmiş Marşrutları Lükslə Kəşf Edin", hero_subtitle: "Türkiyənin ən məşhur istiqamətlərində eksklüziv konaklama və uçuş fürsətləri.", hotels_sub: "XÜSUSİ SEÇİM", hotels_heading: "Xüsusi Seçim Kolleksiyası", starting_from: "Başlayan Qiymətlər", flights_sub: "SƏMADAKI ZƏRAFƏT", flights_heading: "İmtiyazlı Uçuşlar", blog_sub: "SƏYAHƏT BƏLƏDÇİSİ", blog_heading: "UcuzaKal Gündəliyi", read_more: "Daha Çox Oxu", about_heading: "Biz Kimik?", about_text_1: "UcuzaKal Türkiye; Türkiyənin ən seçkin marşrutlarında bənzərsiz otel və uçuş fürsətlərini bir araya gətirən müstəqil platformadır.", about_text_2: "Hər bir marşrut səyahətinizin unudulmaz olması üçün hazırlanmışdır.", ratings_heading: "Təəssüratlarınızı Bölüşün", review_name_placeholder: "Adınız Soyadınız", review_text_placeholder: "Fikirləriniz...", submit_review_btn: "Göndər", review_success: "Rəyiniz üçün təşəkkür edirik.", rights: "Bütün hüquqlar qorunur UcuzaKal Türkiye", google_login: "Gmail Girişi", cinematic_title: "Real Xəritə Üzərində Təkliflər Axtarılır...", no_deals_text: "Hazırda heç bir təklif yoxdur.", global_channels: "Qlobal Rəsmi Kanallarımız",
                 smart_hub_title: "Ağıllı Səyahət Asistanınız", smart_hub_sub: "Şəxsi tətil və uçuş planınızı saniyələr içində dizayn edin.", tab_hotel: "Otel Asistanı", tab_flight: "Uçuş Asistanı", c_budget: "Büdcəniz (Gecəlik)", c_type: "Yerləşmə Növü", t_hotel: "Otellər", t_resort: "Kurortlar", t_apart: "Apart Otellər", c_days: "Qalma Müddəti (Gün)", c_dest: "Hədəf Bölgə", c_all_tr: "Bütün Türkiyə", c_vibe: "Tətil Tərzi", vibe_luxury: "Lüks Resort & Spa", vibe_family: "Ailəvi Tətil", vibe_romantic: "Bal Ayı / Romantik", vibe_nature: "Təbiət", vibe_beach: "Sahil və Çimərlik", vibe_thermal: "Termal", vibe_city: "Şəhər Mərkəzi", btn_hotel: "Mənə Otel Tap", btn_resort: "Mənə Kurort Tap", btn_apart: "Mənə Apartament Tap",
-                f_from: "Haradan", f_to: "Haraya", f_country_label: "Ölkə", f_city_label: "Vilayət / Şəhər", f_airport_label: "Hava Limanı Adı", dir_swap_hint: "(Dəyişdir)",
+                f_from: "Haradan", f_to: "Haraya", f_country_label: "Ölkə", f_city_label: "Vilayət / Şəhər", f_airport_label: "Hava Limanı Adı", dir_world_to_tr: "Dünya ✈️ Türkiyə", dir_swap_hint: "(Dəyişdir)",
                 f_budget: "Büdcəniz", f_class: "Uçuş Sinfi", class_eco: "Ekonom", class_prem: "Premium", class_bus: "Biznes", class_first: "Birinci Sinif", f_airline: "Aviaşirkət", btn_flight: "Uçuşumu İndi Tap", total_est: "Ümumi Məbləğ:",
-                radar_step_1: "Xəritədə məkan və büdcəniz təhlil edilir...", radar_step_3: "Təsdiqlənmiş təkliflər xəritədə hazırdır!",
+                radar_step_1: "Xəritədə məkan və büdcəniz təhlil edilir...", radar_step_3: "Təsdiqlənmiş tam səyahət paketiniz hazırdır!",
                 low_budget_warn: "Qeyd: Büdcəniz minimum qiymətdən aşağıdır. Ən yaxın təklif:",
                 good_budget_msg: "Əla! Büdcəniz bu real təklifə tam uyğundur:",
                 flight_live_search_msg: "Bu marşrut üçün canlı bilet qiymətləri birbaşa rezervasiya ekranında hazırdır.",
-                flight_live_subtitle: "Bütün Real Aviaşirkətlər • Canlı Qiymət",
-                live_price_badge: "Canlı Qiymət",
-                badge_flight: "✈️ Təsdiqlənmiş Uçuş", badge_airport_transfer: "🚖 Hava Limanı Transferi", badge_esim: "📶 5G Səyahət eSIM",
-                badge_stay: "🏨 Büdcənizə Uyğun Otel", badge_activity: "🎟️ İstanbul Pass (GoCity)", badge_resort_transfer: "🚐 Şəxsi Bölgə Transferi",
-                book_deal_btn: "Canlı Qiymətə Bax", btn_book_transfer: "Transferi Rezerv Et", btn_get_esim: "eSIM Al", btn_book_activity: "Pass-a Bax",
-                per_night: "/ Gecə", total_stay: "Təxmini:"
+                flight_live_subtitle: "Bütün Real Aviaşirkətlər • Canlı Qiymət", live_price_badge: "Canlı Qiymət",
+                badge_flight: "✈️ Təsdiqlənmiş Uçuş", badge_airport_transfer: "🚖 VIP Hava Limanı Transferi", badge_esim: "📶 5G Səyahət eSIM", badge_esim_yesim: "📶 Limitsiz 5G eSIM (Yesim)",
+                badge_stay: "🏨 Büdcənizə Uyğun Otel", badge_activity_gocity: "🎟️ İstanbul Pass (GoCity)", badge_activity_tiqets: "🎟️ Növbəsiz Biletlər (Tiqets)", badge_resort_transfer: "🚐 Şəxsi Otel Transferi",
+                badge_car: "🚗 Aşağı Depozitli Avtomobil", badge_bike: "🛵 Skuter və Moto İcarəsi",
+                book_deal_btn: "Canlı Qiymətə Bax", btn_book_transfer: "Transferi Seç", btn_get_esim: "eSIM Aktiv Et", btn_book_activity: "Biletlərə Bax", btn_rent_car: "Maşın Seç", btn_rent_bike: "Moto Seç",
+                per_night: "/ Gecə", total_stay: "Təxmini:",
+                persuasion_title: "Ağıllı VIP Səyahət Planınız Hazırdır — Niyə Bütün Paketi Seçməlisiniz?",
+                persuasion_headline_hotel: "40%-dək qənaət edin: sabit qiymətli transfer, limitsiz 5G internet və azad hərəkət bir arada.",
+                persuasion_headline_flight: "Eniş anından VIP rahatlıq: şəxsi sürücü, anında 5G internet və hazır avtomobil.",
+                p_pt1_t: "Hava Limanı Stressinə Son", p_pt1_d: "Sabit qiymətli VIP sürücü sizi qapıda qarşılayır.",
+                p_pt2_t: "Enən Anda 5G İnternet", p_pt2_d: "Rouminq xərclərinə 85% qənaət edin.",
+                p_pt3_t: "Azad Kəşf və Növbəsiz Giriş", p_pt3_d: "Yerli avtomobil/skuter icarəsi və sürətli mobil biletlər.",
+                readiness_prefix: "Səyahət Hazırlığı:", readiness_complete: "100% Hazırdır!"
             },
             ka: {
                 dir: "ltr", hero_title: "აღმოაჩინეთ რჩეული მარშრუტები ფუფუნებით", hero_subtitle: "ექსკლუზიური სასტუმრო და ფრენის შეთავაზებები თურქეთში.", hotels_sub: "ექსკლუზიური არჩევანი", hotels_heading: "სპეციალური კოლექცია", starting_from: "საწყისი ფასები", flights_sub: "ელეგანტურობა ცაში", flights_heading: "პრივილეგირებული ფრენები", blog_sub: "მოგზაურობის გზამკვლევი", blog_heading: "UcuzaKal დღიური", read_more: "სრულად ნახვა", about_heading: "ვინ ვართ ჩვენ?", about_text_1: "UcuzaKal Türkiye არის დამოუკიდებელი პლატფორმა, რომელიც აერთიანებს საუკეთესო შეთავაზებებს თურქეთში.", about_text_2: "თითოეული მარშრუტი შექმნილია დაუვიწყარი გამოცდილებისთვის.", ratings_heading: "გაგვიზიარეთ შთაბეჭდილებები", review_name_placeholder: "სახელი და გვარი", review_text_placeholder: "თქვენი აზრი...", submit_review_btn: "გაგზავნა", review_success: "გმადლობთ გამოხმაურებისთვის.", rights: "ყველა უფლება დაცულია UcuzaKal Türkiye", google_login: "Gmail-ით შესვლა", cinematic_title: "მიმდინარეობს რუკის სკანირება...", no_deals_text: "ამჟამად შეთავაზებები არ არის.", global_channels: "ჩვენი ოფიციალური არხები",
                 smart_hub_title: "ჭკვიანი მოგზაურობის ასისტენტი", smart_hub_sub: "შექმენით თქვენი პერსონალური დასვენების გეგმა წამებში.", tab_hotel: "სასტუმროს ასისტენტი", tab_flight: "ფრენის ასისტენტი", c_budget: "თქვენი ბიუჯეტი", c_type: "განთავსების ტიპი", t_hotel: "სასტუმროები", t_resort: "კურორტები", t_apart: "აპარტ-სასტუმროები", c_days: "ხანგრძლივობა (დღე)", c_dest: "სამიზნე რეგიონი", c_all_tr: "მთელი თურქეთი", c_vibe: "დასვენების სტილი", vibe_luxury: "ლუქს კურორტი", vibe_family: "საოჯახო", vibe_romantic: "რომანტიკული", vibe_nature: "ბუნება", vibe_beach: "სანაპირო", vibe_thermal: "თერმული", vibe_city: "ქალაქის ცენტრი", btn_hotel: "მიპოვე სასტუმრო", btn_resort: "მიპოვე კურორტი", btn_apart: "მიპოვე აპარტამენტი",
-                f_from: "საიდან", f_to: "სად", f_country_label: "ქვეყანა", f_city_label: "ქალაქი", f_airport_label: "აეროპორტი", dir_swap_hint: "(შეცვლა)",
+                f_from: "საიდან", f_to: "სად", f_country_label: "ქვეყანა", f_city_label: "ქალაქი", f_airport_label: "აეროპორტი", dir_world_to_tr: "მსოფლიო ✈️ თურქეთი", dir_swap_hint: "(შეცვლა)",
                 f_budget: "ბიუჯეტი", f_class: "კლასი", class_eco: "ეკონომი", class_prem: "პრემიუმი", class_bus: "ბიზნესი", class_first: "პირველი", f_airline: "ავიაკომპანია", btn_flight: "იპოვე რეისი ახლავე", total_est: "ჯამური თანხა:",
-                radar_step_1: "მიმდინარეობს კოორდინატებისა და ბიუჯეტის ანალიზი...", radar_step_3: "დადასტურებული შეთავაზებები მზადაა რუკაზე!",
+                radar_step_1: "მიმდინარეობს კოორდინატებისა და ბიუჯეტის ანალიზი...", radar_step_3: "დადასტურებული სრული პაკეტი მზადაა რუკაზე!",
                 low_budget_warn: "შენიშვნა: ბიუჯეტი მინიმუმზე დაბალია. უახლოესი შეთავაზება:",
                 good_budget_msg: "შესანიშნავია! ბიუჯეტი შეესაბამება შეთავაზებას:",
                 flight_live_search_msg: "პირდაპირი წვდომა რეალურ ავიახაზებსა და ცოცხალ ფასებზე.",
-                flight_live_subtitle: "ყველა რეალური ავიახაზი • ცოცხალი ფასი",
-                live_price_badge: "ცოცხალი ფასი",
-                badge_flight: "✈️ დადასტურებული რეისი", badge_airport_transfer: "🚖 აეროპორტის ტრანსფერი", badge_esim: "📶 5G სამოგზაურო eSIM",
-                badge_stay: "🏨 ბიუჯეტის შესაბამისი სასტუმრო", badge_activity: "🎟️ სტამბოლი Pass (GoCity)", badge_resort_transfer: "🚐 კერძო ტრანსფერი",
-                book_deal_btn: "ფასის ნახვა", btn_book_transfer: "ტრანსფერის დაჯავშნა", btn_get_esim: "eSIM-ის შეძენა", btn_book_activity: "Pass-ის ნახვა",
-                per_night: "/ ღამე", total_stay: "სავარაუდო:"
+                flight_live_subtitle: "ყველა რეალური ავიახაზი • ცოცხალი ფასი", live_price_badge: "ცოცხალი ფასი",
+                badge_flight: "✈️ დადასტურებული რეისი", badge_airport_transfer: "🚖 VIP ტრანსფერი", badge_esim: "📶 5G სამოგზაურო eSIM", badge_esim_yesim: "📶 ულიმიტო 5G eSIM (Yesim)",
+                badge_stay: "🏨 ბიუჯეტის შესაბამისი სასტუმრო", badge_activity_gocity: "🎟️ სტამბოლი Pass (GoCity)", badge_activity_tiqets: "🎟️ რიგის გარეშე ბილეთები (Tiqets)", badge_resort_transfer: "🚐 კერძო ტრანსფერი",
+                badge_car: "🚗 მანქანის დაქირავება", badge_bike: "🛵 სკუტერის დაქირავება",
+                book_deal_btn: "ფასის ნახვა", btn_book_transfer: "ტრანსფერის არჩევა", btn_get_esim: "eSIM-ის ჩართვა", btn_book_activity: "ბილეთების ნახვა", btn_rent_car: "მანქანის არჩევა", btn_rent_bike: "სკუტერის არჩევა",
+                per_night: "/ ღამე", total_stay: "სავარაუდო:",
+                persuasion_title: "თქვენი ჭკვიანი VIP მოგზაურობის გეგმა მზადაა!",
+                persuasion_headline_hotel: "დაზოგეთ 40%-მდე: ფიქსირებული ტრანსფერი, ულიმიტო 5G ინტერნეტი და თავისუფალი გადაადგილება.",
+                persuasion_headline_flight: "VIP კომფორტი დაფრენისთანავე: პირადი მძღოლი, მყისიერი 5G ინტერნეტი და მზა ავტომობილი.",
+                p_pt1_t: "აეროპორტის სტრესის გარეშე", p_pt1_d: "ფიქსირებული ფასის კერძო მძღოლი დაგხვდებათ გასასვლელში.",
+                p_pt2_t: "5G ინტერნეტი დაფრენისთანავე", p_pt2_d: "დაზოგეთ 85% როუმინგის ხარჯებზე.",
+                p_pt3_t: "თავისუფლება და რიგების გარეშე", p_pt3_d: "მანქანის/სკუტერის დაქირავება და სწრაფი მობილური ბილეთები.",
+                readiness_prefix: "მზადყოფნა:", readiness_complete: "100% მზადაა!"
             }
         };
 
@@ -1738,7 +2051,7 @@
         });
     </script>
     <!-- ========================================================================= -->
-    <!-- الجزء 4 من 4: محرك الخرائط والعروض العائمة (Zero-404 + No Fake Data) + Firebase -->
+    <!-- الجزء 4 من 4: خريطة تركيا المعزولة + البطاقة الإقناعية + الشركاء الـ 14 + Telemetry -->
     <!-- ========================================================================= -->
     <script>
         // 1. تبديل التبويبات وحساب الميزانية
@@ -1834,7 +2147,80 @@
             }
         };
 
-        // 2. إدارة الخريطة التفاعلية بملء الشاشة (بلا شاشة سوداء وبلا تداخل للنافذة المنبثقة)
+        // 2. البطاقة الإقناعية العائمة + شريط جاهزية الرحلة (0% -> 100%) + قياس النقرات
+        window.togglePersuasionDetails = function() {
+            const details = document.getElementById('persuasion-details');
+            const chev = document.getElementById('persuasion-chevron');
+            if (!details) return;
+            const isHidden = details.classList.toggle('hidden');
+            if (chev) chev.className = isHidden ? 'fas fa-chevron-down' : 'fas fa-chevron-up';
+        };
+
+        window.renderPersuasionCard = function(mode, totalCards, dict, lang) {
+            const box = document.getElementById('persuasion-card-box');
+            const titleEl = document.getElementById('persuasion-title');
+            const headEl = document.getElementById('persuasion-headline');
+            const detailsEl = document.getElementById('persuasion-details');
+            const chev = document.getElementById('persuasion-chevron');
+            if (!box || !titleEl || !headEl || !detailsEl) return;
+
+            window.currentTripReadinessSet = new Set();
+            window.currentTripTotalCards = Math.max(1, totalCards);
+
+            const distilled = window.PERSUASION_TAGLINES && window.PERSUASION_TAGLINES[lang];
+            const defaultHeadline = mode === 'hotel' ? dict['persuasion_headline_hotel'] : dict['persuasion_headline_flight'];
+
+            titleEl.textContent = dict['persuasion_title'];
+            headEl.textContent = (mode === 'hotel' && distilled) ? distilled : defaultHeadline;
+
+            detailsEl.innerHTML = `
+                <div class="flex items-start gap-2 bg-white/5 rounded-xl p-2 border border-brand-gold/20">
+                    <i class="fas fa-shield-alt text-brand-gold mt-0.5 text-xs shrink-0"></i>
+                    <div><div class="text-[11px] font-extrabold text-brand-gold">${dict['p_pt1_t']}</div><div class="text-[10px] text-slate-300 leading-relaxed">${dict['p_pt1_d']}</div></div>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 rounded-xl p-2 border border-brand-gold/20">
+                    <i class="fas fa-wifi text-emerald-400 mt-0.5 text-xs shrink-0"></i>
+                    <div><div class="text-[11px] font-extrabold text-emerald-300">${dict['p_pt2_t']}</div><div class="text-[10px] text-slate-300 leading-relaxed">${dict['p_pt2_d']}</div></div>
+                </div>
+                <div class="flex items-start gap-2 bg-white/5 rounded-xl p-2 border border-brand-gold/20">
+                    <i class="fas fa-bolt text-amber-300 mt-0.5 text-xs shrink-0"></i>
+                    <div><div class="text-[11px] font-extrabold text-amber-200">${dict['p_pt3_t']}</div><div class="text-[10px] text-slate-300 leading-relaxed">${dict['p_pt3_d']}</div></div>
+                </div>`;
+            detailsEl.classList.add('hidden');
+            if (chev) chev.className = 'fas fa-chevron-down';
+
+            window.updateTripReadinessUI(dict);
+            box.classList.remove('hidden');
+        };
+
+        window.updateTripReadinessUI = function(dict) {
+            const label = document.getElementById('readiness-label');
+            const fill = document.getElementById('readiness-bar-fill');
+            const currentLang = document.documentElement.lang || 'tr';
+            const d = dict || (window.TRANSLATIONS && window.TRANSLATIONS[currentLang]) || window.TRANSLATIONS.tr;
+            const total = Math.max(1, window.currentTripTotalCards || 1);
+            const done = window.currentTripReadinessSet ? window.currentTripReadinessSet.size : 0;
+            const pct = Math.min(100, Math.round((done / total) * 100));
+            if (fill) fill.style.width = `${Math.max(pct, 8)}%`;
+            if (label) {
+                label.textContent = pct >= 100 ? d['readiness_complete'] : `${d['readiness_prefix']} ${pct}%`;
+            }
+        };
+
+        window.onOfferPartnerClick = function(cardIdx, partnerKey, cityLabel, mode, vibe) {
+            try {
+                window.currentTripReadinessSet.add(cardIdx);
+                const cardEl = document.getElementById(`map-offer-card-${cardIdx}`);
+                if (cardEl) cardEl.classList.add('offer-checked');
+                window.updateTripReadinessUI(null);
+                if (window.ConciergeAudio) window.ConciergeAudio.playRadarPing(1280);
+                if (typeof window.logClickTelemetry === 'function') {
+                    window.logClickTelemetry(partnerKey, cityLabel, mode, vibe);
+                }
+            } catch (e) {}
+        };
+
+        // 3. إدارة الخريطة التفاعلية (قناع عزل تركيا الكامل 100% + تمركز ذكي بدون تداخل)
         window.switchGoogleMapLayer = function(mode) {
             window.currentMapMode = mode;
             const bHyb = document.getElementById('btn-map-hybrid');
@@ -1883,8 +2269,8 @@
             };
 
             if (turkeyOnly) {
-                mapOptions.minZoom = 5;
-                mapOptions.maxBounds = [[35.4, 25.3], [42.6, 45.2]];
+                mapOptions.minZoom = 6;
+                mapOptions.maxBounds = [[34.2, 24.8], [43.2, 46.0]];
                 mapOptions.maxBoundsViscosity = 1.0;
             } else {
                 mapOptions.minZoom = 2;
@@ -1898,6 +2284,19 @@
                 attribution: '&copy; Google Maps'
             }).addTo(window.leafletMapInstance);
 
+            // قناع عزل خريطة تركيا 100%: إخفاء جميع الدول المجاورة وإبراز حدود تركيا بإطار ذهبي
+            if (turkeyOnly && Array.isArray(window.TURKEY_BORDER_POLYGON)) {
+                const worldOuterRing = [[85, -180], [85, 180], [-85, 180], [-85, -180]];
+                L.polygon([worldOuterRing, window.TURKEY_BORDER_POLYGON], {
+                    fillColor: '#030508',
+                    fillOpacity: 0.98,
+                    color: '#D4AF37',
+                    weight: 2.4,
+                    opacity: 0.95,
+                    interactive: false
+                }).addTo(window.leafletMapInstance);
+            }
+
             window.leafletMarkersLayer = L.layerGroup().addTo(window.leafletMapInstance);
 
             [50, 180, 420].forEach(ms => {
@@ -1907,6 +2306,15 @@
             });
 
             return window.leafletMapInstance;
+        }
+
+        function focusMapWithSafeOffset(map, targetLat, targetLng, zoomLevel) {
+            if (!map) return;
+            const projected = map.project([targetLat, targetLng], zoomLevel);
+            // إزاحة العدسة للأسفل قليلاً لتظهر النقطة والنافذة المنبثقة بوضوح فوق البطاقات السفلية
+            const offsetY = window.innerWidth < 768 ? 110 : 85;
+            const shifted = map.unproject([projected.x, projected.y + offsetY], zoomLevel);
+            map.flyTo(shifted, zoomLevel, { animate: true, duration: 1.05 });
         }
 
         function resetProgressBarInstant(bar, pct) {
@@ -1993,7 +2401,6 @@
             return points;
         }
 
-        // جلب أسعار الطيران الحقيقية فقط (من ملف الوكيل أو Aviasales API — صفر شركات وهمية)
         async function fetchRealAviasalesFlightBundle(origIata, destIata) {
             const routeKey = `${origIata.toUpperCase()}_${destIata.toUpperCase()}`;
             const cached = (window.CONCIERGE_FLIGHTS_DB && window.CONCIERGE_FLIGHTS_DB[routeKey]) || null;
@@ -2011,11 +2418,7 @@
                 LH: 'Lufthansa', BA: 'British Airways', AF: 'Air France', J2: 'Azerbaijan Airlines'
             };
 
-            const endpoints = [
-                apiUrl,
-                `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`
-            ];
-
+            const endpoints = [apiUrl, `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`];
             for (let i = 0; i < endpoints.length; i++) {
                 try {
                     const controller = new AbortController();
@@ -2042,8 +2445,9 @@
                             if (tiers.length > 0) {
                                 return {
                                     flightTiers: tiers,
-                                    kiwitaxiTransfer: cached ? cached.kiwitaxiTransfer : null,
-                                    airaloEsim: cached ? cached.airaloEsim : null
+                                    transferOffer: cached ? cached.transferOffer : null,
+                                    carRentalOffer: cached ? cached.carRentalOffer : null,
+                                    esimOffers: cached ? cached.esimOffers : null
                                 };
                             }
                         }
@@ -2053,12 +2457,13 @@
 
             return {
                 flightTiers: [],
-                kiwitaxiTransfer: cached ? cached.kiwitaxiTransfer : null,
-                airaloEsim: cached ? cached.airaloEsim : null
+                transferOffer: cached ? cached.transferOffer : null,
+                carRentalOffer: cached ? cached.carRentalOffer : null,
+                esimOffers: cached ? cached.esimOffers : null
             };
         }
 
-        // 3. مساعد الفنادق والمنتجعات والشقق (خريطة تركيا فقط 100% + No Coverage = Hide Card)
+        // 4. مساعد الفنادق والمنتجعات والشقق (خريطة تركيا المعزولة 100% + الشركاء الـ 14 + البطاقة الإقناعية)
         window.startHotelConcierge = function() {
             try {
                 const sessionId = ++window.activeSearchSessionId;
@@ -2097,10 +2502,10 @@
                 } else {
                     const baseMin = accType === 'resort' ? (pInfo.minResort || 90) : (accType === 'apart' ? (pInfo.minApart || 45) : (pInfo.minHotel || 50));
                     stayTiers = [
-                        { name: `${targetProvince} Grand ${typeText} (★ 4)`, query: `${pInfo.cityEn} ${accType}`, priceUsd: baseMin, lat: pInfo.lat + 0.008, lng: pInfo.lng - 0.01, partner: 'klook' },
-                        { name: `${targetProvince} Royal ${typeText} (★ 5)`, query: `${pInfo.cityEn} Luxury ${accType}`, priceUsd: Math.round(baseMin * 1.6), lat: pInfo.lat - 0.006, lng: pInfo.lng + 0.01, partner: 'kkday' },
-                        { name: `${targetProvince} Signature Deluxe ${typeText} (★ 5)`, query: `${pInfo.cityEn} 5 Star ${accType}`, priceUsd: Math.round(baseMin * 2.8), lat: pInfo.lat + 0.004, lng: pInfo.lng + 0.012, partner: 'klook' },
-                        { name: `${targetProvince} Ultra-Luxury Royal Suite (★ 5 VIP)`, query: `${pInfo.cityEn} Luxury 5 Star`, priceUsd: Math.round(baseMin * 4.5), lat: pInfo.lat - 0.004, lng: pInfo.lng - 0.008, partner: 'klook' }
+                        { name: `${targetProvince} Grand ${typeText} (★ 4)`, priceUsd: baseMin, lat: pInfo.lat + 0.008, lng: pInfo.lng - 0.01, partner: 'klook' },
+                        { name: `${targetProvince} Royal ${typeText} (★ 5)`, priceUsd: Math.round(baseMin * 1.6), lat: pInfo.lat - 0.006, lng: pInfo.lng + 0.01, partner: 'kkday' },
+                        { name: `${targetProvince} Signature Deluxe ${typeText} (★ 5)`, priceUsd: Math.round(baseMin * 2.8), lat: pInfo.lat + 0.004, lng: pInfo.lng + 0.012, partner: 'klook' },
+                        { name: `${targetProvince} Ultra-Luxury Royal Suite (★ 5 VIP)`, priceUsd: Math.round(baseMin * 4.5), lat: pInfo.lat - 0.004, lng: pInfo.lng - 0.008, partner: 'kkday' }
                     ];
                 }
 
@@ -2108,31 +2513,22 @@
                 const matchedStay = matchRes.selected;
                 const stayNightPrice = Number(matchedStay.priceUsd);
                 const stayTotalPrice = stayNightPrice * daysVal;
-                const stayQuery = matchedStay.query || `${pInfo.cityEn} ${accType}`;
-                const stayUrl = window.buildHotelStayOffer(matchedStay.partner || 'klook', stayQuery, matchedStay.bookingUrl || null);
+                const stayPartner = matchedStay.partner || 'klook';
+                const stayUrl = window.buildHotelStayOffer(stayPartner, pInfo.cityEn, accType, matchedStay.bookingUrl || null);
 
-                // قاعدة التغطية الصارمة: GoCity لإسطنبول فقط — يُخفى تلقائياً في أنطاليا وبقية المحافظات
-                const activityOffer = window.buildStrictCityActivityOffer(
-                    targetProvince,
-                    vibeKey,
-                    currentLang,
-                    syncedBundle ? syncedBundle.vibeActivities : null
-                );
-                const intuiOffer = window.buildVerifiedIntuiOffer(
-                    pInfo.cityEn,
-                    pInfo.iata,
-                    syncedBundle ? syncedBundle.intuiTransfer : null
-                );
-                const esimOffer = window.buildAiraloOffer(
-                    'TR',
-                    syncedBundle && syncedBundle.airaloEsim ? syncedBundle.airaloEsim.bookingUrl : null
-                );
+                // التوزيع الذكي للشركاء الـ 14 (فنادق تركيا)
+                const transferOffer = window.buildSmartTransferWaterfall(pInfo.cityEn, pInfo.iata, 'TR', syncedBundle ? syncedBundle.transferOffer : null, true);
+                const mobilityOffer = window.buildSmartMobilityOffer(targetProvince, pInfo.cityEn, 'TR', vibeKey, syncedBundle ? syncedBundle.carRentalOffer : null, syncedBundle ? syncedBundle.bikeRentalOffer : null);
+                const activityOffer = window.buildStrictActivityOffer(targetProvince, pInfo.cityEn, vibeKey, currentLang, syncedBundle ? syncedBundle.activityOffer : null);
+                const preferUnlimitedEsim = (daysVal >= 4 || vibeKey === 'luxury' || vibeKey === 'family');
+                const esimOffer = window.buildSmartEsimOffer('TR', preferUnlimitedEsim, syncedBundle ? syncedBundle.esimOffers : null);
 
                 const overlay = document.getElementById('cinematic-overlay');
                 const statusTitle = document.getElementById('cinematic-status-title');
                 const summarySub = document.getElementById('cinematic-summary-sub');
                 const bar = document.getElementById('cinematic-bar');
                 const alertBox = document.getElementById('budget-advisor-alert');
+                const persuasionBox = document.getElementById('persuasion-card-box');
                 const dealsGrid = document.getElementById('concierge-deals-grid');
                 const hudTelemetry = document.getElementById('hud-live-telemetry');
 
@@ -2142,17 +2538,20 @@
                 summarySub.textContent = `🇹🇷 ${displayDest} • ${typeText} • ${daysVal} Days`;
                 resetProgressBarInstant(bar, '35%');
                 alertBox.classList.add('hidden');
+                if (persuasionBox) persuasionBox.classList.add('hidden');
                 dealsGrid.innerHTML = '';
 
-                const map = destroyAndCreateFreshMap(39.05, 35.15, 6, true);
+                // إنشاء خريطة تركيا المعزولة 100% (قناع داكن يخفي جميع الدول الأخرى)
+                const map = destroyAndCreateFreshMap(38.6, 35.15, 6, true);
                 if (window.ConciergeAudio) window.ConciergeAudio.playRadarPing(1050);
-                if (hudTelemetry) hudTelemetry.textContent = `🇹🇷 TURKEY LIVE RADAR LOCK: ${targetProvince.toUpperCase()}`;
+                if (hudTelemetry) hudTelemetry.textContent = `🇹🇷 TURKEY ISOLATED RADAR: ${targetProvince.toUpperCase()}`;
 
                 if (map && window.leafletMarkersLayer) {
                     window._radarTimers.push(setTimeout(() => {
                         if (sessionId !== window.activeSearchSessionId || !window.leafletMapInstance) return;
                         bar.style.width = '75%';
-                        window.leafletMapInstance.flyTo([pInfo.lat, pInfo.lng], rawDest === 'Tüm Türkiye' ? 7 : 11, { animate: true, duration: 1.05 });
+                        const targetZoom = rawDest === 'Tüm Türkiye' ? 7 : 10;
+                        focusMapWithSafeOffset(window.leafletMapInstance, pInfo.lat, pInfo.lng, targetZoom);
                         const radarIcon = L.divIcon({
                             className: '',
                             html: createRadarNodeHtml(`📍 ${displayDest}`, false),
@@ -2170,6 +2569,7 @@
 
                     const floatingCards = [
                         {
+                            partner: stayPartner,
                             badge: dict['badge_stay'],
                             title: matchedStay.name,
                             sub: `${dict['total_stay']} ~$${stayTotalPrice} (${daysVal} Days)`,
@@ -2182,12 +2582,42 @@
                         }
                     ];
 
-                    // إضافة GoCity فقط إذا كانت المحافظة مغطاة (إسطنبول فقط)
+                    if (transferOffer) {
+                        floatingCards.push({
+                            partner: transferOffer.partner,
+                            badge: dict['badge_resort_transfer'],
+                            title: transferOffer.title,
+                            sub: `Fixed Price VIP • ${pInfo.iata}`,
+                            price: dict['live_price_badge'],
+                            unit: '',
+                            btn: dict['btn_book_transfer'],
+                            icon: 'fa-shuttle-van',
+                            url: transferOffer.url,
+                            highlight: false
+                        });
+                    }
+
+                    if (mobilityOffer) {
+                        floatingCards.push({
+                            partner: mobilityOffer.partner,
+                            badge: mobilityOffer.isBike ? dict['badge_bike'] : dict['badge_car'],
+                            title: mobilityOffer.title,
+                            sub: mobilityOffer.isBike ? `${pInfo.cityEn} • Instant Pickup` : `${pInfo.cityEn} • Best Local Rates`,
+                            price: dict['live_price_badge'],
+                            unit: '',
+                            btn: mobilityOffer.isBike ? dict['btn_rent_bike'] : dict['btn_rent_car'],
+                            icon: mobilityOffer.isBike ? 'fa-motorcycle' : 'fa-car',
+                            url: mobilityOffer.url,
+                            highlight: false
+                        });
+                    }
+
                     if (activityOffer) {
                         floatingCards.push({
-                            badge: dict['badge_activity'],
+                            partner: activityOffer.partner,
+                            badge: activityOffer.partner === 'gocity' ? dict['badge_activity_gocity'] : dict['badge_activity_tiqets'],
                             title: activityOffer.title,
-                            sub: `İstanbul • GoCity Official`,
+                            sub: activityOffer.sub,
                             price: dict['live_price_badge'],
                             unit: '',
                             btn: dict['btn_book_activity'],
@@ -2197,27 +2627,12 @@
                         });
                     }
 
-                    // إضافة النقل السياحي Intui.travel (الرابط المفحوص Zero-404)
-                    if (intuiOffer) {
-                        floatingCards.push({
-                            badge: dict['badge_resort_transfer'],
-                            title: intuiOffer.title,
-                            sub: `Door-to-Door VIP • ${pInfo.iata}`,
-                            price: dict['live_price_badge'],
-                            unit: '',
-                            btn: dict['btn_book_transfer'],
-                            icon: 'fa-shuttle-van',
-                            url: intuiOffer.url,
-                            highlight: false
-                        });
-                    }
-
-                    // إضافة شريحة إنترنت تركيا Airalo 5G eSIM
                     floatingCards.push({
-                        badge: dict['badge_esim'],
+                        partner: esimOffer.partner,
+                        badge: esimOffer.partner === 'yesim' ? dict['badge_esim_yesim'] : dict['badge_esim'],
                         title: esimOffer.name,
-                        sub: 'Instant Activation • 5G Türkiye',
-                        price: `$${esimOffer.priceUsd}`,
+                        sub: esimOffer.sub,
+                        price: esimOffer.priceLabel || dict['live_price_badge'],
                         unit: '',
                         btn: dict['btn_get_esim'],
                         icon: 'fa-sim-card',
@@ -2226,8 +2641,11 @@
                     });
 
                     if (hudTelemetry) {
-                        hudTelemetry.textContent = `✅ ${targetProvince.toUpperCase()} — ${floatingCards.length} VERIFIED OFFERS ON MAP`;
+                        hudTelemetry.textContent = `🇹🇷 ${targetProvince.toUpperCase()} — ${floatingCards.length} VERIFIED OFFERS ON MAP`;
                     }
+
+                    // عرض البطاقة الإقناعية العائمة + شريط جاهزية الرحلة
+                    window.renderPersuasionCard('hotel', floatingCards.length, dict, currentLang);
 
                     if (window.leafletMapInstance && window.leafletMarkersLayer) {
                         const pinLat = matchedStay.lat || pInfo.lat;
@@ -2239,49 +2657,50 @@
                         });
                         const pinMarker = L.marker([pinLat, pinLng], { icon: bubbleIcon }).addTo(window.leafletMarkersLayer);
                         pinMarker.bindPopup(
-                            `<div style="text-align:center;min-width:190px;padding:4px;"><div style="color:#D4AF37;font-size:10px;font-weight:800;margin-bottom:4px;">${dict['badge_stay']}</div><div style="font-weight:800;font-size:13px;margin-bottom:5px;">${matchedStay.name}</div><div style="color:#D4AF37;font-size:17px;font-weight:900;margin-bottom:8px;">~$${stayNightPrice} <span style="font-size:11px;color:#cbd5e1;">${dict['per_night']}</span></div><a href="${stayUrl}" target="_blank" rel="noopener" style="display:block;background:#D4AF37;color:#030508;font-weight:900;padding:6px 12px;border-radius:999px;text-decoration:none;font-size:11px;">${dict['book_deal_btn']}</a></div>`,
-                            { autoPanPaddingTopLeft: [18, 120], autoPanPaddingBottomRight: [18, 240], maxWidth: 250 }
+                            `<div style="text-align:center;min-width:190px;padding:4px;"><div style="color:#D4AF37;font-size:10px;font-weight:800;margin-bottom:4px;">${dict['badge_stay']}</div><div style="font-weight:800;font-size:13px;margin-bottom:5px;">${matchedStay.name}</div><div style="color:#D4AF37;font-size:17px;font-weight:900;margin-bottom:8px;">~$${stayNightPrice} <span style="font-size:11px;color:#cbd5e1;">${dict['per_night']}</span></div><a href="${stayUrl}" target="_blank" rel="noopener" onclick="window.onOfferPartnerClick(0, '${stayPartner}', '${targetProvince}', 'hotel', '${vibeKey}')" style="display:block;background:#D4AF37;color:#030508;font-weight:900;padding:6px 12px;border-radius:999px;text-decoration:none;font-size:11px;">${dict['book_deal_btn']}</a></div>`,
+                            { autoPan: false, maxWidth: 250 }
                         ).openPopup();
                     }
 
                     alertBox.classList.remove('hidden');
                     if (matchRes.isLowBudget) {
-                        alertBox.className = "pointer-events-auto max-w-3xl mx-auto px-3.5 py-2 rounded-xl bg-black/95 border border-brand-gold text-amber-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl";
+                        alertBox.className = "pointer-events-auto max-w-3xl mx-auto px-3.5 py-1.5 rounded-xl bg-black/95 border border-brand-gold text-amber-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl";
                         alertBox.innerHTML = `<i class="fas fa-info-circle text-brand-gold mx-1"></i> ${dict['low_budget_warn']} <span class="text-white underline mx-1">(~$${matchRes.minMarketUsd} ${dict['per_night']})</span>`;
                     } else {
-                        alertBox.className = "pointer-events-auto max-w-3xl mx-auto px-3.5 py-2 rounded-xl bg-black/95 border border-emerald-400/70 text-emerald-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl";
+                        alertBox.className = "pointer-events-auto max-w-3xl mx-auto px-3.5 py-1.5 rounded-xl bg-black/95 border border-emerald-400/70 text-emerald-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl";
                         alertBox.innerHTML = `<i class="fas fa-check-circle text-emerald-400 mx-1"></i> ${dict['good_budget_msg']}`;
                     }
 
                     dealsGrid.innerHTML = '';
-                    floatingCards.forEach(c => {
+                    floatingCards.forEach((c, idx) => {
                         const card = document.createElement('div');
+                        card.id = `map-offer-card-${idx}`;
                         card.className = `on-map-offer-card ${c.highlight ? 'ring-2 ring-brand-gold' : ''}`;
                         card.innerHTML = `
                             <div>
-                                <span class="inline-block bg-brand-gold/15 text-brand-gold border border-brand-gold/40 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full mb-2">${c.badge}</span>
-                                <h4 class="font-luxury text-sm sm:text-base font-bold text-white leading-snug mb-1">${c.title}</h4>
-                                <p class="text-[11px] text-slate-300 mb-2">${c.sub}</p>
+                                <span class="inline-block bg-brand-gold/15 text-brand-gold border border-brand-gold/40 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full mb-1.5">${c.badge}</span>
+                                <h4 class="font-luxury text-xs sm:text-sm font-bold text-white leading-snug mb-1">${c.title}</h4>
+                                <p class="text-[10px] sm:text-[11px] text-slate-300 mb-2">${c.sub}</p>
                             </div>
                             <div class="pt-2 border-t border-white/10 flex items-center justify-between gap-2">
                                 <div>
-                                    <span class="font-luxury text-base sm:text-xl font-extrabold text-brand-gold">${c.price}</span>
+                                    <span class="font-luxury text-sm sm:text-lg font-extrabold text-brand-gold">${c.price}</span>
                                     <span class="text-[10px] text-slate-400">${c.unit}</span>
                                 </div>
-                                <a href="${c.url}" target="_blank" rel="noopener" class="bg-brand-gold text-black font-extrabold py-1.5 px-3.5 rounded-full text-[11px] hover:opacity-90 transition inline-flex items-center gap-1.5 shrink-0">
+                                <a href="${c.url}" target="_blank" rel="noopener" onclick="window.onOfferPartnerClick(${idx}, '${c.partner}', '${targetProvince}', 'hotel', '${vibeKey}')" class="bg-brand-gold text-black font-extrabold py-1.5 px-3 rounded-full text-[11px] hover:opacity-90 transition inline-flex items-center gap-1.5 shrink-0">
                                     <i class="fas ${c.icon}"></i>
                                     <span>${c.btn}</span>
                                 </a>
                             </div>`;
                         dealsGrid.appendChild(card);
                     });
-                }, 1200));
+                }, 1150));
             } catch (err) {
                 console.error("startHotelConcierge error:", err);
             }
         };
 
-        // 4. مساعد الطيران العالمي (خريطة العالم + نقاط الرادار + رحلات حقيقية فقط + إخفاء التوصيل غير المغطى)
+        // 5. مساعد الطيران العالمي (خريطة العالم + الشركاء الـ 14 + البطاقة الإقناعية + صفر بيانات وهمية)
         function extractIataFromText(text, fallbackIata) {
             if (!text || !text.trim()) return fallbackIata;
             const parenMatch = text.toUpperCase().match(/\(([A-Z]{3})\)/);
@@ -2383,6 +2802,7 @@
                 const summarySub = document.getElementById('cinematic-summary-sub');
                 const bar = document.getElementById('cinematic-bar');
                 const alertBox = document.getElementById('budget-advisor-alert');
+                const persuasionBox = document.getElementById('persuasion-card-box');
                 const dealsGrid = document.getElementById('concierge-deals-grid');
                 const hudTelemetry = document.getElementById('hud-live-telemetry');
 
@@ -2392,6 +2812,7 @@
                 summarySub.textContent = `🛫 ${originData.city} (${originData.iata}) ➔ 🛬 ${destData.city} (${destData.iata}) • ${totalDistKm} KM`;
                 resetProgressBarInstant(bar, '15%');
                 alertBox.classList.add('hidden');
+                if (persuasionBox) persuasionBox.classList.add('hidden');
                 dealsGrid.innerHTML = '';
 
                 const midLat = (originData.lat + destData.lat) / 2;
@@ -2409,7 +2830,6 @@
 
                     const hasRealApiFlights = liveBundle && Array.isArray(liveBundle.flightTiers) && liveBundle.flightTiers.length > 0;
                     const flightCards = [];
-
                     let popupHtml = '';
                     alertBox.classList.remove('hidden');
 
@@ -2424,14 +2844,15 @@
                         const bestFlight = matchRes.selected;
 
                         if (matchRes.isLowBudget) {
-                            alertBox.className = "pointer-events-auto max-w-3xl mx-auto px-3.5 py-2 rounded-xl bg-black/95 border border-brand-gold text-amber-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl";
+                            alertBox.className = "pointer-events-auto max-w-3xl mx-auto px-3.5 py-1.5 rounded-xl bg-black/95 border border-brand-gold text-amber-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl";
                             alertBox.innerHTML = `<i class="fas fa-info-circle text-brand-gold mx-1"></i> ${dict['low_budget_warn']} <span class="text-white underline mx-1">($${matchRes.minMarketUsd})</span>`;
                         } else {
-                            alertBox.className = "pointer-events-auto max-w-3xl mx-auto px-3.5 py-2 rounded-xl bg-black/95 border border-emerald-400/70 text-emerald-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl";
+                            alertBox.className = "pointer-events-auto max-w-3xl mx-auto px-3.5 py-1.5 rounded-xl bg-black/95 border border-emerald-400/70 text-emerald-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl";
                             alertBox.innerHTML = `<i class="fas fa-check-circle text-emerald-400 mx-1"></i> ${dict['good_budget_msg']}`;
                         }
 
                         flightCards.push({
+                            partner: 'aviasales',
                             badge: dict['badge_flight'],
                             title: `${originData.city} (${originData.iata}) ✈️ ${destData.city} (${destData.iata})`,
                             sub: `${bestFlight.airlineName}${bestFlight.departureDate ? ' • ' + bestFlight.departureDate : ''} • ${classText}`,
@@ -2442,14 +2863,14 @@
                             highlight: true
                         });
 
-                        popupHtml = `<div style="text-align:center;min-width:190px;padding:4px;"><div style="color:#D4AF37;font-size:11px;font-weight:900;">${originData.iata} ✈️ ${destData.iata}</div><div style="font-size:12px;margin:4px 0;">${bestFlight.airlineName}</div><div style="color:#D4AF37;font-size:19px;font-weight:900;margin-bottom:8px;">$${bestFlight.priceUsd}</div><a href="${bestFlight.bookingUrl}" target="_blank" rel="noopener" style="display:block;background:#D4AF37;color:#030508;font-weight:900;padding:6px 12px;border-radius:999px;text-decoration:none;font-size:11px;">${dict['book_deal_btn']}</a></div>`;
+                        popupHtml = `<div style="text-align:center;min-width:190px;padding:4px;"><div style="color:#D4AF37;font-size:11px;font-weight:900;">${originData.iata} ✈️ ${destData.iata}</div><div style="font-size:12px;margin:4px 0;">${bestFlight.airlineName}</div><div style="color:#D4AF37;font-size:19px;font-weight:900;margin-bottom:8px;">$${bestFlight.priceUsd}</div><a href="${bestFlight.bookingUrl}" target="_blank" rel="noopener" onclick="window.onOfferPartnerClick(0, 'aviasales', '${destData.cityEn}', 'flight', '${classVal}')" style="display:block;background:#D4AF37;color:#030508;font-weight:900;padding:6px 12px;border-radius:999px;text-decoration:none;font-size:11px;">${dict['book_deal_btn']}</a></div>`;
                     } else {
-                        // لا توجد بيانات API مخزّنة للمسار: نمنع اختراع شركة أو سعر وهمي ونوجه للبحث الحي المرن
                         const liveSearchUrl = window.buildFlightDirectUrl(originData.iata, destData.iata, null, null);
-                        alertBox.className = "pointer-events-auto max-w-3xl mx-auto px-3.5 py-2 rounded-xl bg-black/95 border border-emerald-400/70 text-emerald-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl";
-                        alertBox.innerHTML = `<i class="fas fa-radar text-brand-gold mx-1"></i> ${dict['flight_live_search_msg']}`;
+                        alertBox.className = "pointer-events-auto max-w-3xl mx-auto px-3.5 py-1.5 rounded-xl bg-black/95 border border-emerald-400/70 text-emerald-200 text-[11px] sm:text-xs font-bold text-center shadow-2xl";
+                        alertBox.innerHTML = `<i class="fas fa-satellite-dish text-brand-gold mx-1"></i> ${dict['flight_live_search_msg']}`;
 
                         flightCards.push({
+                            partner: 'aviasales',
                             badge: dict['badge_flight'],
                             title: `${originData.city} (${originData.iata}) ✈️ ${destData.city} (${destData.iata})`,
                             sub: `${airlineVal ? airlineVal + ' • ' : ''}${dict['flight_live_subtitle']} • ~${estHours}h`,
@@ -2460,39 +2881,50 @@
                             highlight: true
                         });
 
-                        popupHtml = `<div style="text-align:center;min-width:190px;padding:4px;"><div style="color:#D4AF37;font-size:11px;font-weight:900;">${originData.iata} ✈️ ${destData.iata}</div><div style="font-size:11px;color:#cbd5e1;margin:5px 0;">${dict['flight_live_subtitle']}</div><a href="${liveSearchUrl}" target="_blank" rel="noopener" style="display:block;background:#D4AF37;color:#030508;font-weight:900;padding:6px 12px;border-radius:999px;text-decoration:none;font-size:11px;">${dict['book_deal_btn']}</a></div>`;
+                        popupHtml = `<div style="text-align:center;min-width:190px;padding:4px;"><div style="color:#D4AF37;font-size:11px;font-weight:900;">${originData.iata} ✈️ ${destData.iata}</div><div style="font-size:11px;color:#cbd5e1;margin:5px 0;">${dict['flight_live_subtitle']}</div><a href="${liveSearchUrl}" target="_blank" rel="noopener" onclick="window.onOfferPartnerClick(0, 'aviasales', '${destData.cityEn}', 'flight', '${classVal}')" style="display:block;background:#D4AF37;color:#030508;font-weight:900;padding:6px 12px;border-radius:999px;text-decoration:none;font-size:11px;">${dict['book_deal_btn']}</a></div>`;
                     }
 
-                    // توصيل المطار (KiwiTaxi) — قاعدة التغطية الصارمة: يُخفى تلقائياً للدول غير المغطاة
-                    const kiwiOffer = window.buildVerifiedKiwiTaxiOffer(
-                        destData.cityEn,
-                        destData.iata,
-                        destData.countryCode,
-                        liveBundle ? liveBundle.kiwitaxiTransfer : null
-                    );
-                    if (kiwiOffer) {
+                    // 2. التوصيل الخاص عبر الشلال الذكي (Welcome Pickups -> KiwiTaxi -> GetTransfer)
+                    const transferOffer = window.buildSmartTransferWaterfall(destData.cityEn, destData.iata, destData.countryCode, liveBundle ? liveBundle.transferOffer : null, false);
+                    if (transferOffer) {
                         flightCards.push({
+                            partner: transferOffer.partner,
                             badge: dict['badge_airport_transfer'],
-                            title: kiwiOffer.title,
+                            title: transferOffer.title,
                             sub: `Meet & Greet • Verified Coverage`,
                             price: dict['live_price_badge'],
                             btn: dict['btn_book_transfer'],
                             icon: 'fa-taxi',
-                            url: kiwiOffer.url,
+                            url: transferOffer.url,
                             highlight: false
                         });
                     }
 
-                    // شريحة الهاتف (Airalo eSIM)
-                    const esimOffer = window.buildAiraloOffer(
-                        destData.countryCode,
-                        liveBundle && liveBundle.airaloEsim ? liveBundle.airaloEsim.bookingUrl : null
-                    );
+                    // 3. تأجير السيارات في وجهة الوصول (Localrent / GetRentacar)
+                    const carOffer = window.buildSmartMobilityOffer(destData.city, destData.cityEn, destData.countryCode, 'city', liveBundle ? liveBundle.carRentalOffer : null, null);
+                    if (carOffer) {
+                        flightCards.push({
+                            partner: carOffer.partner,
+                            badge: dict['badge_car'],
+                            title: carOffer.title,
+                            sub: `${destData.cityEn} Airport Pickup`,
+                            price: dict['live_price_badge'],
+                            btn: dict['btn_rent_car'],
+                            icon: 'fa-car',
+                            url: carOffer.url,
+                            highlight: false
+                        });
+                    }
+
+                    // 4. إنترنت 5G eSIM (Yesim لرجال الأعمال/الأولى أو Airalo للرحلات الاقتصادية)
+                    const preferUnlimited = (classVal === 'business' || classVal === 'first');
+                    const esimOffer = window.buildSmartEsimOffer(destData.countryCode, preferUnlimited, liveBundle ? liveBundle.esimOffers : null);
                     flightCards.push({
-                        badge: dict['badge_esim'],
+                        partner: esimOffer.partner,
+                        badge: esimOffer.partner === 'yesim' ? dict['badge_esim_yesim'] : dict['badge_esim'],
                         title: esimOffer.name,
-                        sub: `${destData.country} • Instant 5G Data`,
-                        price: `$${esimOffer.priceUsd}`,
+                        sub: `${destData.country} • ${esimOffer.sub}`,
+                        price: esimOffer.priceLabel || dict['live_price_badge'],
                         btn: dict['btn_get_esim'],
                         icon: 'fa-sim-card',
                         url: esimOffer.url,
@@ -2503,27 +2935,31 @@
                         hudTelemetry.textContent = `🛬 ARRIVED AT ${destData.city.toUpperCase()} (${destData.iata}) — ${flightCards.length} VERIFIED OFFERS ON MAP`;
                     }
 
+                    // عرض البطاقة الإقناعية العائمة + شريط جاهزية الرحلة
+                    window.renderPersuasionCard('flight', flightCards.length, dict, currentLang);
+
                     if (destRadarMarker && window.leafletMapInstance) {
                         destRadarMarker.bindPopup(popupHtml, {
                             autoPanPaddingTopLeft: [18, 120],
-                            autoPanPaddingBottomRight: [18, 240],
+                            autoPanPaddingBottomRight: [18, 280],
                             maxWidth: 250
                         }).openPopup();
                     }
 
                     dealsGrid.innerHTML = '';
-                    flightCards.forEach(c => {
+                    flightCards.forEach((c, idx) => {
                         const card = document.createElement('div');
+                        card.id = `map-offer-card-${idx}`;
                         card.className = `on-map-offer-card ${c.highlight ? 'ring-2 ring-brand-gold' : ''}`;
                         card.innerHTML = `
                             <div>
-                                <span class="inline-block bg-brand-gold/15 text-brand-gold border border-brand-gold/40 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full mb-2">${c.badge}</span>
-                                <h4 class="font-luxury text-sm sm:text-base font-bold text-white leading-snug mb-1">${c.title}</h4>
-                                <p class="text-[11px] text-slate-300 mb-2">${c.sub}</p>
+                                <span class="inline-block bg-brand-gold/15 text-brand-gold border border-brand-gold/40 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full mb-1.5">${c.badge}</span>
+                                <h4 class="font-luxury text-xs sm:text-sm font-bold text-white leading-snug mb-1">${c.title}</h4>
+                                <p class="text-[10px] sm:text-[11px] text-slate-300 mb-2">${c.sub}</p>
                             </div>
                             <div class="pt-2 border-t border-white/10 flex items-center justify-between gap-2">
-                                <span class="font-luxury text-base sm:text-xl font-extrabold text-brand-gold">${c.price}</span>
-                                <a href="${c.url}" target="_blank" rel="noopener" class="bg-brand-gold text-black font-extrabold py-1.5 px-3.5 rounded-full text-[11px] hover:opacity-90 transition inline-flex items-center gap-1.5 shrink-0">
+                                <span class="font-luxury text-sm sm:text-lg font-extrabold text-brand-gold">${c.price}</span>
+                                <a href="${c.url}" target="_blank" rel="noopener" onclick="window.onOfferPartnerClick(${idx}, '${c.partner}', '${destData.cityEn}', 'flight', '${classVal}')" class="bg-brand-gold text-black font-extrabold py-1.5 px-3 rounded-full text-[11px] hover:opacity-90 transition inline-flex items-center gap-1.5 shrink-0">
                                     <i class="fas ${c.icon}"></i>
                                     <span>${c.btn}</span>
                                 </a>
@@ -2541,7 +2977,7 @@
                 const bounds = L.latLngBounds([originData.lat, originData.lng], [destData.lat, destData.lng]);
                 map.fitBounds(bounds, {
                     paddingTopLeft: [45, 115],
-                    paddingBottomRight: [45, 225],
+                    paddingBottomRight: [45, 275],
                     maxZoom: isDomesticTurkey ? 7 : 5
                 });
 
@@ -2621,7 +3057,7 @@
             }
         };
 
-        // 5. عرض البطاقات الرئيسية والمقالات
+        // 6. عرض البطاقات الرئيسية والمقالات
         window.openArticleModal = function(id) {
             try {
                 window.currentOpenArticleId = id;
@@ -2661,11 +3097,15 @@
                     const trCity = window.translateTextStrong(hotel.city, currentLang);
                     const trName = window.translateTextStrong(hotel.name, currentLang);
                     const trDesc = window.translateTextStrong(hotel.description, currentLang);
-                    const safeUrl = window.buildHotelStayOffer(idx % 2 === 0 ? 'klook' : 'kkday', `${hotel.city || 'Turkey'} Hotel`, hotel.affiliateUrl || null);
+                    const pCoords = window.TURKEY_81_COORDS[hotel.city] || {};
+                    const cityEn = pCoords.cityEn || hotel.city || 'Istanbul';
+                    const pKey = idx % 2 === 0 ? 'klook' : 'kkday';
+                    const safeUrl = window.buildHotelStayOffer(pKey, cityEn, 'hotel', hotel.affiliateUrl || null);
                     const card = document.createElement('a');
                     card.href = safeUrl;
                     card.target = "_blank";
                     card.rel = "noopener";
+                    card.onclick = () => { if (typeof window.logClickTelemetry === 'function') window.logClickTelemetry(pKey, cityEn, 'main_hotel', 'featured'); };
                     card.className = 'ultra-luxury-card group block';
                     card.innerHTML = `<div><div class="img-frame"><img loading="lazy" src="${hotel.image}" alt="${trName}" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=900&q=80';" class="w-full h-full object-cover"></div><div class="p-5 sm:p-6 text-center"><span class="text-brand-gold text-[10px] tracking-[0.3em] font-bold uppercase block mb-2 notranslate" translate="no">${trCity}</span><h3 class="font-luxury text-xl sm:text-2xl font-bold text-slate-900 dark:text-white leading-snug notranslate" translate="no">${trName}</h3><div class="gold-divider"></div><p class="text-slate-600 dark:text-slate-300 text-xs sm:text-sm leading-relaxed font-light mb-2 line-clamp-3 notranslate" translate="no">${trDesc}</p></div></div><div class="px-5 sm:px-6 pb-5 sm:pb-6"><div class="flex justify-between items-center border-t border-slate-100 dark:border-white/5 pt-4"><span class="text-slate-400 text-[10px] uppercase tracking-widest">${dict.starting_from || "Başlayan Fiyatlar"}</span><span class="font-luxury text-lg sm:text-xl font-bold text-brand-gold">${hotel.price || ''}</span></div></div>`;
                     container.appendChild(card);
@@ -2685,7 +3125,7 @@
                 }
                 container.innerHTML = '';
                 window.FLIGHTS_DATA.forEach(flight => {
-                    const routeStr = flight.route || "";
+                    const routeStr = flight.route || flight.title || "";
                     const routeParts = routeStr.split('✈️').map(s => s.trim());
                     const trRoute = routeParts.length === 2 ? (window.translateTextStrong(routeParts[0], currentLang) + " ✈️ " + window.translateTextStrong(routeParts[1], currentLang)) : window.translateTextStrong(routeStr, currentLang);
                     const trAirline = window.translateTextStrong(flight.airline, currentLang);
@@ -2694,6 +3134,7 @@
                     card.href = flight.affiliateUrl || '#';
                     card.target = "_blank";
                     card.rel = "noopener";
+                    card.onclick = () => { if (typeof window.logClickTelemetry === 'function') window.logClickTelemetry('aviasales', routeStr, 'main_flight', 'featured'); };
                     card.className = 'ultra-luxury-card p-6 sm:p-8 text-center group block';
                     card.innerHTML = `<div><i class="fas fa-plane text-brand-gold text-2xl sm:text-3xl mb-3 block"></i><h3 class="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1 notranslate" translate="no">${trRoute}</h3><span class="block text-[10px] text-slate-500 tracking-[0.2em] uppercase mb-3 font-bold notranslate" translate="no">${trAirline}</span><p class="text-xs sm:text-sm text-slate-600 dark:text-slate-300 font-light mb-5 leading-relaxed line-clamp-3 notranslate" translate="no">${trDesc}</p></div><div class="pt-2 border-t border-slate-100 dark:border-white/5"><span class="font-luxury text-xl sm:text-2xl font-bold text-brand-gold">${flight.price || ''}</span></div>`;
                     container.appendChild(card);
@@ -2727,7 +3168,7 @@
         };
     </script>
 
-    <!-- Firebase + التخزين المحلي السريع (Client-Side Cache v6) لتحمّل آلاف الزوار دون ضغط -->
+    <!-- Firebase + التخزين المحلي السريع (Client-Side Cache v7 Omni-14) + نظام التعلّم الذاتي -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
@@ -2778,6 +3219,21 @@
             }
         });
 
+        // حلقة التعلّم الذاتي (Closed-Loop Telemetry): تغذي محرك UcuzaKal AI بأكثر الشركاء نقراً
+        window.logClickTelemetry = function(partnerKey, cityLabel, mode, vibe) {
+            try {
+                if (!partnerKey) return;
+                addDoc(collection(aiDb, "click_telemetry"), {
+                    partner: String(partnerKey).toLowerCase(),
+                    city: String(cityLabel || "unknown"),
+                    mode: String(mode || "concierge"),
+                    vibe: String(vibe || "default"),
+                    lang: document.documentElement.lang || "tr",
+                    ts: serverTimestamp()
+                }).catch(() => {});
+            } catch (e) {}
+        };
+
         window.submitReview = async function() {
             const nameInput = document.getElementById('user-review-name');
             const textInput = document.getElementById('user-review-text');
@@ -2799,7 +3255,7 @@
             } catch (e) { console.error("Review error:", e); }
         };
 
-        const CACHE_STORAGE_KEY = "ucuzakal_live_cache_v6_zero404";
+        const CACHE_STORAGE_KEY = "ucuzakal_live_cache_v7_omni14";
         const CACHE_TTL_MS = 30 * 60 * 1000;
 
         function applyParsedStoreData(store) {
@@ -2808,6 +3264,8 @@
             window.ARTICLES_MAP = store.articles || {};
             window.CONCIERGE_HOTELS_DB = store.conciergeHotels || {};
             window.CONCIERGE_FLIGHTS_DB = store.conciergeFlights || {};
+            window.PARTNER_WEIGHTS = store.partnerWeights || {};
+            window.PERSUASION_TAGLINES = store.persuasionTaglines || {};
 
             if (typeof window.renderHotels === 'function') window.renderHotels();
             if (typeof window.renderFlights === 'function') window.renderFlights();
@@ -2839,7 +3297,9 @@
                 flights: [],
                 articles: {},
                 conciergeHotels: {},
-                conciergeFlights: {}
+                conciergeFlights: {},
+                partnerWeights: {},
+                persuasionTaglines: {}
             };
 
             try {
@@ -2850,6 +3310,8 @@
                     if (Array.isArray(feedJson.mainFlights)) freshStore.flights = feedJson.mainFlights;
                     if (feedJson.conciergeHotels) freshStore.conciergeHotels = feedJson.conciergeHotels;
                     if (feedJson.conciergeFlights) freshStore.conciergeFlights = feedJson.conciergeFlights;
+                    if (feedJson.partnerWeights) freshStore.partnerWeights = feedJson.partnerWeights;
+                    if (feedJson.persuasionTaglines) freshStore.persuasionTaglines = feedJson.persuasionTaglines;
                 }
             } catch (e) {}
 
@@ -2908,3 +3370,4 @@
     </script>
 </body>
 </html>
+    
