@@ -1,0 +1,245 @@
+{
+  "updatedAt": "2026-11-19T08:09:42.002613+00:00",
+  "deals": {
+    "H-20261119-ANTALYA": {
+      "id": "hotel_deal_1",
+      "dealId": "H-20261119-ANTALYA",
+      "type": "hotel",
+      "partner": "klook",
+      "city": "Antalya",
+      "cityEn": "Antalya",
+      "season": "autumn",
+      "title": "Antalya SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "name": "Antalya SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "description": "Antalya kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $92 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$92",
+      "priceUsd": 92,
+      "savingsPct": 15,
+      "dealScore": 78,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261119-ANTALYA_card.webp",
+      "localImage": "assets/deals/H-20261119-ANTALYA_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DAntalya%2520Turkey%2520Hotel",
+      "isDirectProduct": false,
+      "i18n": {
+        "tr": {
+          "title": "Antalya SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+          "desc": "Antalya kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $92 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+        },
+        "ar": {
+          "title": "وفر 15% في أنطاليا — إقامة فاخرة ومختارة لـعرض الخريف",
+          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع استثنائي في أنطاليا تناسب هذا الموسم، بسعر يبدأ من $92 لليلة مع تحويل مباشر لصفحة الحجز الرسمية."
+        },
+        "en": {
+          "title": "Save 15% in Antalya — Curated Autumn Value Stay",
+          "desc": "Handpicked top-rated stay in Antalya tailored for the current season. Starting around $92/night with instant 1-click official booking."
+        },
+        "ru": {
+          "title": "Скидка 15% в Antalya — Лучший сезонный отель",
+          "desc": "Тщательно отобранный вариант проживания в Antalya с высоким рейтингом и прямым мгновенным бронированием от $92 за ночь."
+        }
+      },
+      "updatedAt": "2026-11-19T08:09:33.499683+00:00",
+      "createdTs": 1795075773
+    },
+    "H-20261119-ISTANBUL": {
+      "id": "hotel_deal_2",
+      "dealId": "H-20261119-ISTANBUL",
+      "type": "hotel",
+      "partner": "kkday",
+      "city": "İstanbul",
+      "cityEn": "Istanbul",
+      "season": "autumn",
+      "title": "İstanbul SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "name": "İstanbul SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "description": "İstanbul kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $78 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$78",
+      "priceUsd": 78,
+      "savingsPct": 15,
+      "dealScore": 78,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261119-ISTANBUL_card.webp",
+      "localImage": "assets/deals/H-20261119-ISTANBUL_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DIstanbul%2520Turkey%2520Hotel",
+      "isDirectProduct": false,
+      "i18n": {
+        "tr": {
+          "title": "İstanbul SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+          "desc": "İstanbul kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $78 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+        },
+        "ar": {
+          "title": "وفر 15% في إسطنبول — إقامة فاخرة ومختارة لـعرض الخريف",
+          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع استثنائي في إسطنبول تناسب هذا الموسم، بسعر يبدأ من $78 لليلة مع تحويل مباشر لصفحة الحجز الرسمية."
+        },
+        "en": {
+          "title": "Save 15% in Istanbul — Curated Autumn Value Stay",
+          "desc": "Handpicked top-rated stay in Istanbul tailored for the current season. Starting around $78/night with instant 1-click official booking."
+        },
+        "ru": {
+          "title": "Скидка 15% в Istanbul — Лучший сезонный отель",
+          "desc": "Тщательно отобранный вариант проживания в Istanbul с высоким рейтингом и прямым мгновенным бронированием от $78 за ночь."
+        }
+      },
+      "updatedAt": "2026-11-19T08:09:33.499683+00:00",
+      "createdTs": 1795075773
+    },
+    "H-20261119-IZMIR": {
+      "id": "hotel_deal_3",
+      "dealId": "H-20261119-IZMIR",
+      "type": "hotel",
+      "partner": "klook",
+      "city": "İzmir",
+      "cityEn": "Izmir",
+      "season": "autumn",
+      "title": "İzmir SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "name": "İzmir SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "description": "İzmir kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $64 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$64",
+      "priceUsd": 64,
+      "savingsPct": 15,
+      "dealScore": 78,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261119-IZMIR_card.webp",
+      "localImage": "assets/deals/H-20261119-IZMIR_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DIzmir%2520Turkey%2520Hotel",
+      "isDirectProduct": false,
+      "i18n": {
+        "tr": {
+          "title": "İzmir SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+          "desc": "İzmir kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $64 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+        },
+        "ar": {
+          "title": "وفر 15% في إزمير — إقامة فاخرة ومختارة لـعرض الخريف",
+          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع استثنائي في إزمير تناسب هذا الموسم، بسعر يبدأ من $64 لليلة مع تحويل مباشر لصفحة الحجز الرسمية."
+        },
+        "en": {
+          "title": "Save 15% in Izmir — Curated Autumn Value Stay",
+          "desc": "Handpicked top-rated stay in Izmir tailored for the current season. Starting around $64/night with instant 1-click official booking."
+        },
+        "ru": {
+          "title": "Скидка 15% в Izmir — Лучший сезонный отель",
+          "desc": "Тщательно отобранный вариант проживания в Izmir с высоким рейтингом и прямым мгновенным бронированием от $64 за ночь."
+        }
+      },
+      "updatedAt": "2026-11-19T08:09:33.499683+00:00",
+      "createdTs": 1795075773
+    },
+    "H-20261119-BURSA": {
+      "id": "hotel_deal_4",
+      "dealId": "H-20261119-BURSA",
+      "type": "hotel",
+      "partner": "kkday",
+      "city": "Bursa",
+      "cityEn": "Bursa",
+      "season": "autumn",
+      "title": "Bursa SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "name": "Bursa SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "description": "Bursa kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $58 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$58",
+      "priceUsd": 58,
+      "savingsPct": 15,
+      "dealScore": 78,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261119-BURSA_card.webp",
+      "localImage": "assets/deals/H-20261119-BURSA_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DBursa%2520Turkey%2520Hotel",
+      "isDirectProduct": false,
+      "i18n": {
+        "tr": {
+          "title": "Bursa SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+          "desc": "Bursa kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $58 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+        },
+        "ar": {
+          "title": "وفر 15% في بورصة — إقامة فاخرة ومختارة لـعرض الخريف",
+          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع استثنائي في بورصة تناسب هذا الموسم، بسعر يبدأ من $58 لليلة مع تحويل مباشر لصفحة الحجز الرسمية."
+        },
+        "en": {
+          "title": "Save 15% in Bursa — Curated Autumn Value Stay",
+          "desc": "Handpicked top-rated stay in Bursa tailored for the current season. Starting around $58/night with instant 1-click official booking."
+        },
+        "ru": {
+          "title": "Скидка 15% в Bursa — Лучший сезонный отель",
+          "desc": "Тщательно отобранный вариант проживания в Bursa с высоким рейтингом и прямым мгновенным бронированием от $58 за ночь."
+        }
+      },
+      "updatedAt": "2026-11-19T08:09:33.499683+00:00",
+      "createdTs": 1795075773
+    },
+    "H-20261119-TRABZON": {
+      "id": "hotel_deal_5",
+      "dealId": "H-20261119-TRABZON",
+      "type": "hotel",
+      "partner": "klook",
+      "city": "Trabzon",
+      "cityEn": "Trabzon",
+      "season": "autumn",
+      "title": "Trabzon SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "name": "Trabzon SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "description": "Trabzon kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $55 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$55",
+      "priceUsd": 55,
+      "savingsPct": 15,
+      "dealScore": 78,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261119-TRABZON_card.webp",
+      "localImage": "assets/deals/H-20261119-TRABZON_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DTrabzon%2520Turkey%2520Hotel",
+      "isDirectProduct": false,
+      "i18n": {
+        "tr": {
+          "title": "Trabzon SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+          "desc": "Trabzon kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $55 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+        },
+        "ar": {
+          "title": "وفر 15% في طرابزون — إقامة فاخرة ومختارة لـعرض الخريف",
+          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع استثنائي في طرابزون تناسب هذا الموسم، بسعر يبدأ من $55 لليلة مع تحويل مباشر لصفحة الحجز الرسمية."
+        },
+        "en": {
+          "title": "Save 15% in Trabzon — Curated Autumn Value Stay",
+          "desc": "Handpicked top-rated stay in Trabzon tailored for the current season. Starting around $55/night with instant 1-click official booking."
+        },
+        "ru": {
+          "title": "Скидка 15% в Trabzon — Лучший сезонный отель",
+          "desc": "Тщательно отобранный вариант проживания в Trabzon с высоким рейтингом и прямым мгновенным бронированием от $55 за ночь."
+        }
+      },
+      "updatedAt": "2026-11-19T08:09:33.499683+00:00",
+      "createdTs": 1795075773
+    },
+    "H-20261119-ANKARA": {
+      "id": "hotel_deal_6",
+      "dealId": "H-20261119-ANKARA",
+      "type": "hotel",
+      "partner": "kkday",
+      "city": "Ankara",
+      "cityEn": "Ankara",
+      "season": "autumn",
+      "title": "Ankara SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "name": "Ankara SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+      "description": "Ankara kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $52 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$52",
+      "priceUsd": 52,
+      "savingsPct": 15,
+      "dealScore": 78,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261119-ANKARA_card.webp",
+      "localImage": "assets/deals/H-20261119-ANKARA_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DAnkara%2520Turkey%2520Hotel",
+      "isDirectProduct": false,
+      "i18n": {
+        "tr": {
+          "title": "Ankara SONBAHAR FIRSATI: %15 Tasarruflu Seçkin Konaklama",
+          "desc": "Ankara kalbinde özenle seçilmiş, yüksek puanlı ve anında onaylı konaklama fırsatı. Sınırlı süreli $52 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+        },
+        "ar": {
+          "title": "وفر 15% في أنقرة — إقامة فاخرة ومختارة لـعرض الخريف",
+          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع استثنائي في أنقرة تناسب هذا الموسم، بسعر يبدأ من $52 لليلة مع تحويل مباشر لصفحة الحجز الرسمية."
+        },
+        "en": {
+          "title": "Save 15% in Ankara — Curated Autumn Value Stay",
+          "desc": "Handpicked top-rated stay in Ankara tailored for the current season. Starting around $52/night with instant 1-click official booking."
+        },
+        "ru": {
+          "title": "Скидка 15% в Ankara — Лучший сезонный отель",
+          "desc": "Тщательно отобранный вариант проживания в Ankara с высоким рейтингом и прямым мгновенным бронированием от $52 за ночь."
+        }
+      },
+      "updatedAt": "2026-11-19T08:09:33.499683+00:00",
+      "createdTs": 1795075773
+    }
+  }
+}
