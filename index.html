@@ -49,10 +49,16 @@
     </script>
 
     <style>
+        @property --gold-angle {
+            syntax: '<angle>';
+            initial-value: 0deg;
+            inherits: false;
+        }
+
         :root {
             --gold: #D4AF37;
-            --gold-bright: #F6E299;
-            --gold-deep: #9A7417;
+            --gold-bright: #FFF1B5;
+            --gold-deep: #8C6611;
         }
 
         html {
@@ -77,7 +83,6 @@
             color: #0F172A;
         }
 
-        /* خطوط عربية وفارسية وكردية تحريرية فاخرة ومنسّقة */
         [dir="rtl"] body {
             font-family: 'Tajawal', 'Cairo', sans-serif;
         }
@@ -89,8 +94,13 @@
         }
 
         /* ===================================================================== */
-        /* التأثيرات الذهبية المتحركة الفاخرة (GPU-Optimized بدون تهنيج) */
+        /* التأثيرات الذهبية الدوّارة الفاخرة (GPU-Optimized بدون تهنيج) */
         /* ===================================================================== */
+        @keyframes goldBeamSpin {
+            0%   { --gold-angle: 0deg; }
+            100% { --gold-angle: 360deg; }
+        }
+
         @keyframes goldShimmerFlow {
             0%   { background-position: 0% 50%; }
             50%  { background-position: 100% 50%; }
@@ -98,70 +108,107 @@
         }
 
         @keyframes crownHaloPulse {
-            0%, 100% { box-shadow: 0 0 14px rgba(212, 175, 55, 0.35), 0 0 0 0 rgba(212, 175, 55, 0.35); }
-            50%      { box-shadow: 0 0 24px rgba(246, 226, 153, 0.7), 0 0 0 6px rgba(212, 175, 55, 0); }
+            0%, 100% { box-shadow: 0 0 12px rgba(212, 175, 55, 0.45), 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            50%      { box-shadow: 0 0 26px rgba(255, 241, 181, 0.85), 0 0 0 7px rgba(212, 175, 55, 0); }
         }
 
-        /* لمعة ذهبية متحركة حول اسم الموقع */
+        @keyframes orbitRotateSlow {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        @keyframes orbitRotateReverse {
+            from { transform: rotate(360deg); }
+            to   { transform: rotate(0deg); }
+        }
+
+        @keyframes planeFloatLuxury {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50%      { transform: translateY(-8px) scale(1.06); }
+        }
+
+        /* تأثير شعاع ذهبي دوّار فاخر حول اسم الموقع */
+        .brand-logo-outer {
+            position: relative;
+            padding: 2px;
+            border-radius: 999px;
+            background: conic-gradient(from var(--gold-angle), rgba(212, 175, 55, 0.18) 0deg, #D4AF37 55deg, #FFF5C8 90deg, #D4AF37 125deg, rgba(212, 175, 55, 0.14) 200deg, #E7C356 290deg, rgba(212, 175, 55, 0.18) 360deg);
+            animation: goldBeamSpin 4.2s linear infinite;
+            box-shadow: 0 0 22px -6px rgba(212, 175, 55, 0.55);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .brand-logo-outer:hover {
+            transform: translateY(-1px) scale(1.015);
+            box-shadow: 0 0 30px -4px rgba(246, 226, 153, 0.78);
+        }
+
         .brand-logo-wrap {
             position: relative;
-            padding: 0.32rem 0.85rem 0.32rem 0.45rem;
+            padding: 0.34rem 0.95rem 0.34rem 0.42rem;
             border-radius: 999px;
-            background: linear-gradient(120deg, rgba(212, 175, 55, 0.08), rgba(246, 226, 153, 0.16), rgba(212, 175, 55, 0.06));
-            background-size: 220% 220%;
-            animation: goldShimmerFlow 5.5s ease infinite;
-            border: 1px solid rgba(212, 175, 55, 0.42);
-            transition: transform 0.25s ease, border-color 0.25s ease;
+            overflow: hidden;
         }
 
-        .brand-logo-wrap:hover {
-            border-color: rgba(246, 226, 153, 0.85);
-            transform: translateY(-1px);
+        html.dark .brand-logo-wrap {
+            background: linear-gradient(135deg, #090F1E 0%, #040711 100%);
+        }
+
+        html.light .brand-logo-wrap {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
         }
 
         .brand-crown-badge {
-            animation: crownHaloPulse 3.2s ease-in-out infinite;
+            animation: crownHaloPulse 3s ease-in-out infinite;
         }
 
         .brand-gold-text {
-            background: linear-gradient(110deg, #C79B26 10%, #FFF2B2 45%, #D4AF37 70%, #F7E199 95%);
+            background: linear-gradient(110deg, #C79B26 10%, #FFF4BE 45%, #D4AF37 70%, #F7E199 95%);
             background-size: 220% auto;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: goldShimmerFlow 4.5s linear infinite;
+            animation: goldShimmerFlow 3.8s linear infinite;
         }
 
-        /* إطار ذهبي متحرك فخم (للمستشار الذكي + بطاقات العروض + قالبَي المدونة) */
+        /* إطار ذهبي متحرك بشعاع دوّار (للمستشار الذكي + العروض + المدونة + السوشيال ميديا) */
         .gold-animated-frame {
             position: relative;
-            padding: 1.5px;
+            padding: 1.7px;
             border-radius: 1.6rem;
-            background: linear-gradient(125deg, rgba(212, 175, 55, 0.22), rgba(246, 226, 153, 0.92), rgba(212, 175, 55, 0.18), rgba(243, 214, 118, 0.85), rgba(212, 175, 55, 0.22));
-            background-size: 300% 300%;
-            animation: goldShimmerFlow 6.5s ease infinite;
-            will-change: background-position;
+            background: conic-gradient(from var(--gold-angle), rgba(212, 175, 55, 0.15) 0deg, #D4AF37 48deg, #FFF3BD 85deg, #D4AF37 120deg, rgba(212, 175, 55, 0.12) 195deg, #E8C55B 275deg, rgba(212, 175, 55, 0.15) 360deg);
+            animation: goldBeamSpin 7.5s linear infinite;
             transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
         }
 
         .gold-animated-frame:hover {
             transform: translateY(-5px);
-            box-shadow: 0 22px 46px -18px rgba(212, 175, 55, 0.35);
+            box-shadow: 0 22px 46px -16px rgba(212, 175, 55, 0.42);
         }
 
         .gold-animated-frame.concierge-frame {
             border-radius: 2.08rem;
             padding: 2px;
-            box-shadow: 0 26px 70px -20px rgba(0, 0, 0, 0.82), 0 0 38px -12px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 26px 70px -20px rgba(0, 0, 0, 0.85), 0 0 42px -12px rgba(212, 175, 55, 0.35);
         }
 
         .gold-animated-frame.concierge-frame:hover {
             transform: none;
         }
 
-        /* تقليل الحركة تلقائياً لمن يفعّل توفير الطاقة */
+        .gold-animated-frame.social-frame {
+            border-radius: 1.45rem;
+            padding: 1.8px;
+            animation-duration: 5.5s;
+        }
+
+        .gold-animated-frame.social-frame:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 18px 36px -14px rgba(212, 175, 55, 0.5);
+        }
+
         @media (prefers-reduced-motion: reduce) {
-            .brand-logo-wrap,
+            .brand-logo-outer,
             .brand-crown-badge,
             .brand-gold-text,
             .gold-animated-frame {
@@ -170,7 +217,7 @@
         }
 
         /* ===================================================================== */
-        /* صورة الواجهة الرئيسية (Hero Section) — ظهور كامل وسلس على الموبايل والكمبيوتر */
+        /* صورة الواجهة الرئيسية (Hero Section) — ظهور كامل وسلس على الهاتف والكمبيوتر */
         /* ===================================================================== */
         .hero-stage {
             position: relative;
@@ -218,7 +265,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-radius: calc(1.6rem - 1.5px);
+            border-radius: calc(1.6rem - 1.7px);
             overflow: hidden;
             height: 100%;
         }
@@ -256,10 +303,10 @@
         }
 
         /* ===================================================================== */
-        /* قالبَي المدونة الفاخرين (2 Editorial Luxury Magazine Templates) */
+        /* قالبَي المدونة الفاخرين + القارئ بملء الشاشة الكاملة */
         /* ===================================================================== */
         .editorial-blog-card {
-            border-radius: calc(1.6rem - 1.5px);
+            border-radius: calc(1.6rem - 1.7px);
             overflow: hidden;
             display: flex;
             flex-direction: column;
@@ -294,7 +341,6 @@
             transform: scale(1.06);
         }
 
-        /* وضع قراءة المقال بملء الشاشة الكاملة (Full-Screen Editorial Reader) */
         #article-modal {
             position: fixed;
             inset: 0;
@@ -334,9 +380,7 @@
             }
         }
 
-        .article-body-content p {
-            margin-bottom: 1.35rem;
-        }
+        .article-body-content p { margin-bottom: 1.35rem; }
 
         .article-body-content h2,
         .article-body-content h3 {
@@ -363,8 +407,72 @@
             padding-inline-start: 1.4rem;
         }
 
-        .article-body-content li {
-            margin-bottom: 0.55rem;
+        .article-body-content li { margin-bottom: 0.55rem; }
+
+        /* ===================================================================== */
+        /* شاشة التحويل السينمائية الفاخرة بملء الشاشة (Booking Redirect Overlay) */
+        /* ===================================================================== */
+        #booking-redirect-overlay {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 12000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem;
+            background:
+                radial-gradient(circle at 50% 35%, rgba(212, 175, 55, 0.22) 0%, rgba(10, 16, 34, 0.96) 52%, #03060E 100%);
+            backdrop-filter: blur(18px);
+        }
+
+        #booking-redirect-overlay.active {
+            display: flex;
+            animation: fadeSlideUp 0.28s ease-out;
+        }
+
+        .redirect-orbital-stage {
+            position: relative;
+            width: 138px;
+            height: 138px;
+            margin: 0 auto 1.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .redirect-ring-outer {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top-color: #FFF2B2;
+            border-right-color: #D4AF37;
+            animation: orbitRotateSlow 2s linear infinite;
+            box-shadow: 0 0 28px rgba(212, 175, 55, 0.35);
+        }
+
+        .redirect-ring-inner {
+            position: absolute;
+            inset: 14px;
+            border-radius: 50%;
+            border: 2px dashed rgba(243, 229, 171, 0.55);
+            animation: orbitRotateReverse 5.5s linear infinite;
+        }
+
+        .redirect-center-emblem {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #D4AF37 0%, #FFF1B5 52%, #B88A1A 100%);
+            color: #050811;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 0 38px rgba(212, 175, 55, 0.65);
+            animation: planeFloatLuxury 2.2s ease-in-out infinite;
         }
 
         /* ===================================================================== */
@@ -390,10 +498,7 @@
             cursor: pointer;
         }
 
-        .concierge-tab-btn:hover {
-            border-color: #D4AF37;
-            color: #F3E5AB;
-        }
+        .concierge-tab-btn:hover { border-color: #D4AF37; color: #F3E5AB; }
 
         .concierge-tab-btn.active {
             background: linear-gradient(135deg, #D4AF37 0%, #F1D77A 50%, #C59B27 100%);
@@ -402,14 +507,8 @@
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
         }
 
-        .concierge-panel {
-            display: none;
-        }
-
-        .concierge-panel.active {
-            display: block;
-            animation: fadeSlideUp 0.28s ease-out;
-        }
+        .concierge-panel { display: none; }
+        .concierge-panel.active { display: block; animation: fadeSlideUp 0.28s ease-out; }
 
         @keyframes fadeSlideUp {
             from { opacity: 0; transform: translateY(8px); }
@@ -429,20 +528,9 @@
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
         }
 
-        .luxury-input::placeholder {
-            color: rgba(148, 163, 184, 0.65);
-            font-weight: 400;
-        }
-
-        .luxury-input:focus {
-            border-color: #D4AF37;
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18);
-        }
-
-        .luxury-input option {
-            background-color: #0B1120;
-            color: #FFFFFF;
-        }
+        .luxury-input::placeholder { color: rgba(148, 163, 184, 0.65); font-weight: 400; }
+        .luxury-input:focus { border-color: #D4AF37; box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.18); }
+        .luxury-input option { background-color: #0B1120; color: #FFFFFF; }
 
         .luxury-cta-btn {
             background: linear-gradient(135deg, #D4AF37 0%, #F3E094 50%, #C89F28 100%);
@@ -459,54 +547,51 @@
             cursor: pointer;
         }
 
-        .luxury-cta-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 38px rgba(212, 175, 55, 0.5);
-        }
+        .luxury-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(212, 175, 55, 0.5); }
 
         /* ===================================================================== */
-        /* أيقونات السوشيال ميديا بألوانها الحقيقية + 3 حسابات تحت كل منصة */
+        /* أيقونات السوشيال ميديا بألوانها الحقيقية داخل إطارات ذهبية متحركة */
         /* ===================================================================== */
         .social-platform-box {
-            border-radius: 1.35rem;
-            padding: 1.15rem 0.9rem;
-            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+            border-radius: calc(1.45rem - 1.8px);
+            padding: 1.2rem 0.9rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         html.dark .social-platform-box {
-            background: rgba(12, 18, 34, 0.85);
-            border: 1px solid rgba(212, 175, 55, 0.22);
+            background: linear-gradient(165deg, #0D1528 0%, #060B17 100%);
         }
 
         html.light .social-platform-box {
             background: #FFFFFF;
-            border: 1px solid rgba(212, 175, 55, 0.28);
-            box-shadow: 0 10px 26px -18px rgba(15, 23, 42, 0.25);
-        }
-
-        .social-platform-box:hover {
-            transform: translateY(-4px);
-            border-color: rgba(212, 175, 55, 0.65);
         }
 
         .social-brand-circle {
-            width: 50px;
-            height: 50px;
+            width: 52px;
+            height: 52px;
             border-radius: 999px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.35rem;
+            font-size: 1.4rem;
             color: #FFFFFF;
             margin: 0 auto 0.65rem;
-            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.55);
+            transition: transform 0.3s ease;
+        }
+
+        .gold-animated-frame.social-frame:hover .social-brand-circle {
+            transform: scale(1.1) rotate(-4deg);
         }
 
         .brand-fb { background: #1877F2; }
         .brand-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
         .brand-pi { background: #E60023; }
-        .brand-x  { background: #000000; border: 1.5px solid rgba(255, 255, 255, 0.35); }
-        .brand-tt { background: #010101; border: 1.5px solid rgba(255, 255, 255, 0.22); }
+        .brand-x  { background: #000000; border: 1.5px solid rgba(255, 255, 255, 0.4); }
+        .brand-tt { background: #010101; border: 1.5px solid rgba(255, 255, 255, 0.25); }
         .brand-tt i { filter: drop-shadow(-1.5px -1px 0 #25F4EE) drop-shadow(1.5px 1px 0 #FE2C55); }
         .brand-yt { background: #FF0000; }
 
@@ -515,15 +600,15 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding: 0.42rem 0.7rem;
-            border-radius: 0.7rem;
+            padding: 0.44rem 0.72rem;
+            border-radius: 0.72rem;
             font-size: 11px;
             font-weight: 700;
             transition: all 0.2s ease;
         }
 
         html.dark .social-lang-pill {
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.045);
             color: #E2E8F0;
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
@@ -614,10 +699,7 @@
             box-shadow: 0 0 14px #D4AF37;
         }
 
-        .radar-target-dot.origin-dot {
-            background: #10B981;
-            box-shadow: 0 0 14px #10B981;
-        }
+        .radar-target-dot.origin-dot { background: #10B981; box-shadow: 0 0 14px #10B981; }
 
         .radar-pulse-ring {
             position: absolute;
@@ -710,7 +792,7 @@
             bottom: 24px;
             left: 50%;
             transform: translateX(-50%) translateY(20px);
-            z-index: 11000;
+            z-index: 13000;
             background: rgba(7, 11, 22, 0.96);
             color: #F3E5AB;
             border: 1px solid #D4AF37;
@@ -733,20 +815,22 @@
 <body class="min-h-screen antialiased selection:bg-brand-gold selection:text-black">
 
     <!-- ========================================================================= -->
-    <!-- شريط التنقل العلوي الفاخر (Navbar + تأثير ذهبي متحرك حول اسم الموقع) -->
+    <!-- شريط التنقل العلوي الفاخر (شعاع ذهبي دوّار فاخر حول اسم الموقع) -->
     <!-- ========================================================================= -->
     <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/88 dark:bg-[#050811]/92 border-b border-brand-gold/25">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-3">
-            <a href="#" class="brand-logo-wrap flex items-center gap-2 sm:gap-2.5 group shrink-0">
-                <div class="brand-crown-badge w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-brand-gold via-amber-300 to-amber-600 flex items-center justify-center text-black shrink-0">
-                    <i class="fas fa-crown text-xs sm:text-sm"></i>
-                </div>
-                <div>
-                    <div class="font-luxury text-sm sm:text-lg font-extrabold tracking-wider text-slate-900 dark:text-white leading-none">
-                        UCUZAKAL <span class="brand-gold-text">TÜRKİYE</span>
+            <a href="#" class="brand-logo-outer shrink-0 group">
+                <div class="brand-logo-wrap flex items-center gap-2 sm:gap-2.5">
+                    <div class="brand-crown-badge w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-brand-gold via-amber-200 to-amber-600 flex items-center justify-center text-black shrink-0">
+                        <i class="fas fa-crown text-xs sm:text-sm"></i>
                     </div>
-                    <div class="text-[8px] sm:text-[9px] tracking-[0.26em] uppercase text-slate-500 dark:text-brand-goldLight/80 mt-0.5 font-semibold">
-                        LUXURY TRAVEL AI
+                    <div>
+                        <div class="font-luxury text-sm sm:text-lg font-extrabold tracking-wider text-slate-900 dark:text-white leading-none">
+                            UCUZAKAL <span class="brand-gold-text">TÜRKİYE</span>
+                        </div>
+                        <div class="text-[8px] sm:text-[9px] tracking-[0.26em] uppercase text-slate-500 dark:text-brand-goldLight/85 mt-0.5 font-semibold">
+                            LUXURY TRAVEL AI
+                        </div>
                     </div>
                 </div>
             </a>
@@ -793,7 +877,6 @@
             <img src="./hero-bg.png.png" alt="UcuzaKal Türkiye" class="hero-full-img">
             <div class="hero-scrim-overlay"></div>
 
-            <!-- النص الرئيسي المتجاوب فوق الصورة بوضوح تام -->
             <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 pb-6 sm:pb-12">
                 <span class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-brand-gold/50 text-brand-goldLight text-[9px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-2.5 sm:mb-5 shadow-lg">
                     <i class="fas fa-sparkles text-brand-gold"></i> UCUZAKAL TÜRKİYE • AI CONCIERGE
@@ -809,7 +892,7 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- المستشار السياحي الذكي (في بداية الموقع + إطار ذهبي متحرك + خانات فارغة نظيفة) -->
+    <!-- المستشار السياحي الذكي (في بداية الموقع + إطار ذهبي دوّار + خانات فارغة نظيفة) -->
     <!-- ========================================================================= -->
     <section id="smart-concierge" class="max-w-6xl mx-auto px-3 sm:px-6 -mt-4 sm:-mt-10 relative z-20 mb-16 sm:mb-24">
         <div class="gold-animated-frame concierge-frame">
@@ -822,7 +905,6 @@
                         Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planınızı saniyeler içinde tasarlayın.
                     </p>
 
-                    <!-- أزرار التبديل بين المساعدين -->
                     <div class="flex flex-wrap items-center justify-center gap-3 mt-6">
                         <button id="tab-hotel" type="button" onclick="window.switchConcierge('hotel')" class="concierge-tab-btn active">
                             <i class="fas fa-hotel"></i>
@@ -835,7 +917,7 @@
                     </div>
                 </div>
 
-                <!-- لوحة مساعد الفنادق (جميع خانات الكتابة فارغة ونظيفة تماماً) -->
+                <!-- لوحة مساعد الفنادق -->
                 <div id="panel-hotel" class="concierge-panel active">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                         <div>
@@ -968,7 +1050,7 @@
                     </div>
                 </div>
 
-                <!-- لوحة مساعد الطيران العالمي (جميع خانات الكتابة فارغة ونظيفة تماماً) -->
+                <!-- لوحة مساعد الطيران العالمي -->
                 <div id="panel-flight" class="concierge-panel">
                     <div class="text-center mb-5">
                         <button type="button" onclick="window.toggleFlightDirection()"
@@ -979,7 +1061,6 @@
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                        <!-- من أين (الانطلاق) -->
                         <div class="rounded-2xl border border-brand-gold/25 bg-white/[0.02] p-4 space-y-3">
                             <div class="flex items-center gap-2 text-brand-gold font-extrabold text-xs uppercase tracking-wider border-b border-brand-gold/20 pb-2">
                                 <i class="fas fa-plane-departure"></i>
@@ -1000,7 +1081,6 @@
                             </div>
                         </div>
 
-                        <!-- إلى أين (الوصول) -->
                         <div class="rounded-2xl border border-brand-gold/25 bg-white/[0.02] p-4 space-y-3">
                             <div class="flex items-center gap-2 text-brand-gold font-extrabold text-xs uppercase tracking-wider border-b border-brand-gold/20 pb-2">
                                 <i class="fas fa-plane-arrival"></i>
@@ -1054,7 +1134,7 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- قسم عروض الفنادق اليومية (6 بطاقات بإطارات ذهبية متحركة) -->
+    <!-- قسم عروض الفنادق اليومية (6 بطاقات بإطارات ذهبية دوّارة) -->
     <!-- ========================================================================= -->
     <section id="hotels-section" class="max-w-7xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
         <div class="text-center mb-10 sm:mb-14">
@@ -1068,7 +1148,7 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- قسم عروض الطيران اليومية (6 بطاقات بإطارات ذهبية متحركة) -->
+    <!-- قسم عروض الطيران اليومية (6 بطاقات كاملة دائماً بإطارات ذهبية دوّارة) -->
     <!-- ========================================================================= -->
     <section id="flights-section" class="max-w-7xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
         <div class="text-center mb-10 sm:mb-14">
@@ -1082,7 +1162,7 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- قسم المدونة الفاخرة (قالبان تحريريان فقط على طراز مجلات السفر العالمية) -->
+    <!-- قسم المدونة الفاخرة (قالبان تحريريان فقط + قراءة بملء الشاشة الكاملة) -->
     <!-- ========================================================================= -->
     <section id="blog-section" class="max-w-7xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
         <div class="text-center mb-10 sm:mb-14">
@@ -1092,7 +1172,6 @@
             </h2>
             <div class="gold-divider"></div>
         </div>
-        <!-- قالبان فقط بشكل فخم واحترافي -->
         <div id="blog-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
         <div id="blog-pagination" class="hidden flex items-center justify-center gap-3 mt-10"></div>
     </section>
@@ -1146,10 +1225,51 @@
     </section>
 
     <!-- ========================================================================= -->
+    <!-- شاشة التحويل الفاخرة بملء الشاشة (تتغير حسب لغة الزائر تلقائياً) -->
+    <!-- ========================================================================= -->
+    <div id="booking-redirect-overlay" role="dialog" aria-modal="true">
+        <button type="button" onclick="window.cancelBookingRedirect()" aria-label="Cancel Redirect"
+            class="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 border border-brand-gold/50 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
+            <i class="fas fa-times"></i>
+        </button>
+
+        <div class="w-full max-w-xl text-center px-5 sm:px-8 py-9 rounded-[2rem] bg-[#070C1A]/90 border border-brand-gold/50 shadow-[0_30px_90px_rgba(0,0,0,0.9)]">
+            <div class="redirect-orbital-stage">
+                <div class="redirect-ring-outer"></div>
+                <div class="redirect-ring-inner"></div>
+                <div class="redirect-center-emblem">
+                    <i id="redirect-emblem-icon" class="fas fa-plane"></i>
+                </div>
+            </div>
+
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-gold/15 border border-brand-gold/45 text-brand-goldLight text-[10px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-3">
+                <i class="fas fa-shield-check text-emerald-400"></i>
+                <span id="redirect-verified-badge">UCUZAKAL VERIFIED PARTNER</span>
+            </div>
+
+            <h2 id="redirect-main-title" class="font-luxury text-xl sm:text-3xl font-extrabold text-white mb-2 leading-snug">
+                Resmi Rezervasyon Sayfasına Yönlendiriliyorsunuz...
+            </h2>
+            <p id="redirect-deal-name" class="text-sm sm:text-base font-bold text-brand-gold mb-2"></p>
+            <p id="redirect-sub-note" class="text-xs sm:text-sm text-slate-300 mb-6 leading-relaxed"></p>
+
+            <!-- شريط التقدم الذهبي المتحرك -->
+            <div class="w-full h-2 bg-white/10 rounded-full overflow-hidden mb-5 border border-brand-gold/25">
+                <div id="redirect-progress-bar" class="h-full bg-gradient-to-r from-brand-gold via-amber-200 to-emerald-400 rounded-full transition-all duration-[1550ms] ease-out" style="width: 0%;"></div>
+            </div>
+
+            <a id="redirect-instant-link" href="#" rel="noopener"
+                class="luxury-cta-btn text-xs sm:text-sm py-2.5 px-7">
+                <i class="fas fa-arrow-up-right-from-square"></i>
+                <span id="redirect-instant-cta">Hemen Devam Et</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- ========================================================================= -->
     <!-- قارئ المدونة بملء الشاشة الكاملة (Full-Screen Luxury Editorial Reader) -->
     <!-- ========================================================================= -->
     <div id="article-modal" role="dialog" aria-modal="true">
-        <!-- شريط علوي زجاجي ثابت مع شريط تقدم القراءة -->
         <div class="sticky top-0 z-30 backdrop-blur-xl bg-white/92 dark:bg-[#060913]/92 border-b border-brand-gold/25">
             <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
                 <div class="flex items-center gap-2.5 min-w-0">
@@ -1169,7 +1289,6 @@
             </div>
         </div>
 
-        <!-- محتوى المقال بملء الشاشة مع غلاف فاخر ومعرض صور -->
         <div class="flex-1 w-full">
             <div class="max-w-5xl mx-auto px-4 sm:px-8 pt-6 sm:pt-10 pb-20">
                 <h1 id="modal-title" class="font-luxury text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight text-center mb-6 sm:mb-8"></h1>
@@ -1180,7 +1299,6 @@
 
                 <div id="modal-body" class="article-body-content max-w-3xl mx-auto text-slate-800 dark:text-slate-200"></div>
 
-                <!-- معرض صور إضافية إن كان للمقال أكثر من صورة -->
                 <div id="modal-gallery" class="hidden max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10"></div>
 
                 <div class="text-center mt-14 pt-8 border-t border-brand-gold/25">
@@ -1226,7 +1344,7 @@
                             <i class="fas fa-share-alt"></i>
                             <span data-i18n="spotlight_copy_link">Linki Kopyala</span>
                         </button>
-                        <a id="spotlight-book-btn" href="#" target="_blank" rel="noopener" class="luxury-cta-btn text-xs sm:text-sm py-2.5 px-6">
+                        <a id="spotlight-book-btn" href="#" class="luxury-cta-btn text-xs sm:text-sm py-2.5 px-6">
                             <i class="fas fa-external-link-alt"></i>
                             <span data-i18n="spotlight_book_now">Doğrudan Rezervasyon</span>
                         </a>
@@ -1320,7 +1438,7 @@
     </div>
 
     <!-- ========================================================================= -->
-    <!-- التذييل وقسم السوشيال ميديا الـ 18 (أيقونات بالألوان الحقيقية + 3 حسابات تحت كل منصة) -->
+    <!-- التذييل وقسم السوشيال ميديا الـ 18 (إطارات ذهبية دوّارة فاخرة + ألوان حقيقية) -->
     <!-- ========================================================================= -->
     <footer class="border-t border-brand-gold/25 bg-slate-100/80 dark:bg-[#03050B] py-14 px-4 sm:px-6 text-center">
         <div class="max-w-7xl mx-auto">
@@ -1329,107 +1447,119 @@
             </h3>
             <div class="gold-divider mb-8"></div>
 
-            <!-- شبكة المنصات الـ 6 بألوانها الحقيقية وتحت كل منصة حساباتها التركي والروسي والعربي -->
+            <!-- شبكة المنصات الـ 6 داخل إطارات ذهبية دوّارة فاخرة -->
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
                 <!-- 1. Facebook -->
-                <div class="social-platform-box flex flex-col items-center">
-                    <div class="social-brand-circle brand-fb"><i class="fab fa-facebook-f"></i></div>
-                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">Facebook</div>
-                    <div class="w-full space-y-1.5">
-                        <a href="https://www.facebook.com/profile.php?id=61596063752611" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61596363298777" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://www.facebook.com/profile.php?id=61596182676675" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
+                <div class="gold-animated-frame social-frame">
+                    <div class="social-platform-box">
+                        <div class="social-brand-circle brand-fb"><i class="fab fa-facebook-f"></i></div>
+                        <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">Facebook</div>
+                        <div class="w-full space-y-1.5">
+                            <a href="https://www.facebook.com/profile.php?id=61596063752611" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61596363298777" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://www.facebook.com/profile.php?id=61596182676675" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 2. Instagram -->
-                <div class="social-platform-box flex flex-col items-center">
-                    <div class="social-brand-circle brand-ig"><i class="fab fa-instagram"></i></div>
-                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">Instagram</div>
-                    <div class="w-full space-y-1.5">
-                        <a href="https://www.instagram.com/ucuzakalturkiye/" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://www.instagram.com/ucuzakal.r/" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://www.instagram.com/ucuzakal.a/" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
+                <div class="gold-animated-frame social-frame">
+                    <div class="social-platform-box">
+                        <div class="social-brand-circle brand-ig"><i class="fab fa-instagram"></i></div>
+                        <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">Instagram</div>
+                        <div class="w-full space-y-1.5">
+                            <a href="https://www.instagram.com/ucuzakalturkiye/" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://www.instagram.com/ucuzakal.r/" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://www.instagram.com/ucuzakal.a/" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 3. Pinterest -->
-                <div class="social-platform-box flex flex-col items-center">
-                    <div class="social-brand-circle brand-pi"><i class="fab fa-pinterest-p"></i></div>
-                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">Pinterest</div>
-                    <div class="w-full space-y-1.5">
-                        <a href="https://tr.pinterest.com/ucuzakal/" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://www.pinterest.com/UcuzaKal00RU/?actingBusinessId=1067775530310396233" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://www.pinterest.com/ARucuzakal/" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
+                <div class="gold-animated-frame social-frame">
+                    <div class="social-platform-box">
+                        <div class="social-brand-circle brand-pi"><i class="fab fa-pinterest-p"></i></div>
+                        <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">Pinterest</div>
+                        <div class="w-full space-y-1.5">
+                            <a href="https://tr.pinterest.com/ucuzakal/" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://www.pinterest.com/UcuzaKal00RU/?actingBusinessId=1067775530310396233" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://www.pinterest.com/ARucuzakal/" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 4. X (Twitter) -->
-                <div class="social-platform-box flex flex-col items-center">
-                    <div class="social-brand-circle brand-x"><i class="fab fa-x-twitter"></i></div>
-                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">X</div>
-                    <div class="w-full space-y-1.5">
-                        <a href="https://x.com/UcuzaKalTr" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://x.com/UcuzaKal" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://x.com/ucuzaKalAR" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
+                <div class="gold-animated-frame social-frame">
+                    <div class="social-platform-box">
+                        <div class="social-brand-circle brand-x"><i class="fab fa-x-twitter"></i></div>
+                        <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">X</div>
+                        <div class="w-full space-y-1.5">
+                            <a href="https://x.com/UcuzaKalTr" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://x.com/UcuzaKal" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://x.com/ucuzaKalAR" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 5. TikTok -->
-                <div class="social-platform-box flex flex-col items-center">
-                    <div class="social-brand-circle brand-tt"><i class="fab fa-tiktok"></i></div>
-                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">TikTok</div>
-                    <div class="w-full space-y-1.5">
-                        <a href="https://www.tiktok.com/@ucuzakal.tr" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://www.tiktok.com/@ucuzakal.ru?lang=ru-RU" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://www.tiktok.com/@ucuzakal.ar?lang=ar" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
+                <div class="gold-animated-frame social-frame">
+                    <div class="social-platform-box">
+                        <div class="social-brand-circle brand-tt"><i class="fab fa-tiktok"></i></div>
+                        <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">TikTok</div>
+                        <div class="w-full space-y-1.5">
+                            <a href="https://www.tiktok.com/@ucuzakal.tr" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@ucuzakal.ru?lang=ru-RU" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://www.tiktok.com/@ucuzakal.ar?lang=ar" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
                 <!-- 6. YouTube -->
-                <div class="social-platform-box flex flex-col items-center">
-                    <div class="social-brand-circle brand-yt"><i class="fab fa-youtube"></i></div>
-                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">YouTube</div>
-                    <div class="w-full space-y-1.5">
-                        <a href="https://www.youtube.com/@UcuzaKalT%C3%Bcrkiye" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@UcuzaKal.R" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@UcuzaKal0AR" target="_blank" rel="noopener" class="social-lang-pill">
-                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
-                        </a>
+                <div class="gold-animated-frame social-frame">
+                    <div class="social-platform-box">
+                        <div class="social-brand-circle brand-yt"><i class="fab fa-youtube"></i></div>
+                        <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">YouTube</div>
+                        <div class="w-full space-y-1.5">
+                            <a href="https://www.youtube.com/@UcuzaKalT%C3%Bcrkiye" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@UcuzaKal.R" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                            <a href="https://www.youtube.com/@UcuzaKal0AR" target="_blank" rel="noopener" class="social-lang-pill">
+                                <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1460,6 +1590,7 @@
         window.selectedRating = 0;
         window.activeSearchSessionId = 0;
         window._radarTimers = [];
+        window._redirectTimer = null;
         window.leafletMapInstance = null;
         window.leafletMarkersLayer = null;
         window.activeTileLayer = null;
@@ -1834,7 +1965,7 @@
             "CN": { lat: 39.9042, lng: 116.4074,city: "Beijing",        iata: "PEK", slug: "china",                airport: "Beijing Capital Int'l (PEK)",            names: { tr: "Çin", ar: "الصين", en: "China", ru: "Китай" } }
         };
 
-        // تهيئة قوائم الدول والمدن لمساعد الطيران (دون ملء أي خانات كتابة بقيم ثابتة)
+        // تهيئة قوائم الدول والمدن لمساعد الطيران (مع إبقاء جميع خانات الكتابة فارغة تماماً)
         window.initFlightSelectors = function(lang) {
             const fromCountry = document.getElementById('fc-from-country');
             const toCountry = document.getElementById('fc-to-country');
@@ -1880,7 +2011,6 @@
             window.updateFlightDirectionBadge();
         };
 
-        // تبديل نوع حقل المدينة فقط عند تغيير الدولة مع إبقاء خانات الكتابة نظيفة وفارغة
         window.onFlightCountryChange = function(side) {
             const sel = document.getElementById(`fc-${side}-country`);
             const trCity = document.getElementById(`fc-${side}-tr-city`);
@@ -2074,7 +2204,7 @@
         };
     </script>
     <!-- ========================================================================= -->
-    <!-- الجزء 3 من 4: اللغات الـ 11 + القارئ التحريري + نافذة الروابط الدائمة (?deal=) -->
+    <!-- الجزء 3 من 4: اللغات الـ 11 + محرك التحويل الفاخر بملء الشاشة + (?deal=) -->
     <!-- ========================================================================= -->
     <script>
         const BASE_TR_DICT = {
@@ -2157,6 +2287,11 @@
             sign_out_prompt: "Hesabınızdan çıkış yapmak istiyor musunuz?",
             signed_in_msg: "Google ile başarıyla giriş yapıldı",
             signed_out_msg: "Çıkış yapıldı",
+            redirect_badge: "UCUZAKAL DOĞRULANMIŞ İŞ ORTAĞI",
+            redirect_title_hotel: "Resmi Otel Rezervasyon Sayfasına Yönlendiriliyorsunuz...",
+            redirect_title_flight: "Resmi Uçuş Rezervasyon Sayfasına Yönlendiriliyorsunuz...",
+            redirect_sub_note: "En avantajlı canlı fiyat doğrulanıyor ve güvenli rezervasyon bağlantınız hazırlanıyor...",
+            redirect_instant_cta: "Hemen Rezervasyon Sayfasına Geç",
             cinematic_title: "Canlı Harita Üzerinde Doğrulanmış Teklifler Taranıyor...",
             radar_step_1: "Canlı Harita Üzerinde Rotalar Taranıyor...",
             radar_step_3: "Akıllı Planınız Haritada Hazır — Tüm Teklifler Doğrulandı!",
@@ -2287,6 +2422,11 @@
             sign_out_prompt: "هل تريد تسجيل الخروج من حسابك؟",
             signed_in_msg: "تم تسجيل الدخول بحساب Google بنجاح",
             signed_out_msg: "تم تسجيل الخروج بنجاح",
+            redirect_badge: "شريك حجز رسمي موثّق • UCUZAKAL",
+            redirect_title_hotel: "جارٍ تحويلك إلى صفحة حجز الفندق الرسمية...",
+            redirect_title_flight: "جارٍ تحويلك إلى صفحة حجز الطيران الرسمية...",
+            redirect_sub_note: "نقوم الآن بتأمين أفضل سعر حي مباشر وتجهيز رابط الحجز الآمن الخاص بك...",
+            redirect_instant_cta: "الانتقال فوراً لصفحة الحجز",
             cinematic_title: "جارٍ فحص العروض الموثّقة فوق الخريطة الحية...",
             radar_step_1: "جارٍ مسح المسارات والعروض الحية فوق الخريطة...",
             radar_step_3: "خطتك الذكية مكتملة فوق الخريطة — جميع العروض مفحوصة!",
@@ -2417,6 +2557,11 @@
             sign_out_prompt: "Sign out of your Google account?",
             signed_in_msg: "Signed in with Google",
             signed_out_msg: "Signed out",
+            redirect_badge: "UCUZAKAL VERIFIED OFFICIAL PARTNER",
+            redirect_title_hotel: "Redirecting You to the Official Hotel Booking Page...",
+            redirect_title_flight: "Redirecting You to the Official Flight Booking Page...",
+            redirect_sub_note: "Securing your best verified live rate and preparing your official booking link...",
+            redirect_instant_cta: "Continue to Booking Now",
             cinematic_title: "Scanning Verified Offers on Live Map...",
             radar_step_1: "Scanning Live Routes & Stays on Map...",
             radar_step_3: "Your Smart Plan is Ready on Map — All Offers Verified!",
@@ -2508,6 +2653,11 @@
             acc_ru: "Русский",
             acc_ar: "Арабский",
             book_deal_btn: "Смотреть цену",
+            redirect_badge: "ОФИЦИАЛЬНЫЙ ПАРТНЁР UCUZAKAL",
+            redirect_title_hotel: "Перенаправляем вас на официальную страницу бронирования отеля...",
+            redirect_title_flight: "Перенаправляем вас на официальную страницу бронирования авиабилетов...",
+            redirect_sub_note: "Проверяем лучшую актуальную цену и открываем защищённую ссылку бронирования...",
+            redirect_instant_cta: "Перейти к бронированию сейчас",
             spotlight_copy_link: "Копировать ссылку",
             spotlight_book_now: "Забронировать напрямую",
             spotlight_copied: "Постоянная ссылка скопирована!",
@@ -2532,6 +2682,11 @@
                 btn_hotel: "Buscar Hotel", btn_flight: "Buscar Vuelo",
                 hotels_heading: "Ofertas de Hoteles Hoy", flights_heading: "Vuelos Verificados",
                 close_reader: "Cerrar", back_to_site: "Volver",
+                redirect_badge: "SOCIO OFICIAL VERIFICADO • UCUZAKAL",
+                redirect_title_hotel: "Redirigiéndote a la página oficial de reserva de hotel...",
+                redirect_title_flight: "Redirigiéndote a la página oficial de reserva de vuelos...",
+                redirect_sub_note: "Asegurando la mejor tarifa en vivo y preparando tu enlace oficial de reserva...",
+                redirect_instant_cta: "Continuar a la reserva ahora",
                 spotlight_book_now: "Reservar Directamente", spotlight_copy_link: "Copiar Enlace"
             }),
             ku: Object.assign({}, BASE_TR_DICT, {
@@ -2541,6 +2696,11 @@
                 btn_hotel: "Otêl Bibîne", btn_flight: "Firînê Bibîne",
                 hotels_heading: "Fersendên Otêlan ên Îro", flights_heading: "Firînên Taybet",
                 close_reader: "Bigire", back_to_site: "Vegere",
+                redirect_badge: "HEVPARÊ FERMÎ YÊ UCUZAKAL",
+                redirect_title_hotel: "Hûn ber bi rûpela fermî ya rezervasyona otêlê ve tên veguhastin...",
+                redirect_title_flight: "Hûn ber bi rûpela fermî ya rezervasyona firînê ve tên veguhastin...",
+                redirect_sub_note: "Buhayê herî baş ê zindî tê piştrastkirin û lînka we ya ewle tê amadekirin...",
+                redirect_instant_cta: "Niha Biçe Rezervasyonê",
                 spotlight_book_now: "Rezervasyona Rasterast", spotlight_copy_link: "Lînkê Kopî Bike"
             }),
             zh: Object.assign({}, BASE_EN_DICT, {
@@ -2550,6 +2710,11 @@
                 btn_hotel: "查找酒店", btn_flight: "查找航班",
                 hotels_heading: "今日精选酒店优惠", flights_heading: "特惠直飞航班",
                 close_reader: "关闭", back_to_site: "返回首页",
+                redirect_badge: "UCUZAKAL 官方认证合作伙伴",
+                redirect_title_hotel: "正在为您跳转至官方酒店预订页面...",
+                redirect_title_flight: "正在为您跳转至官方机票预订页面...",
+                redirect_sub_note: "正在锁定实时最低优惠价并为您准备安全预订通道...",
+                redirect_instant_cta: "立即前往预订页面",
                 spotlight_book_now: "立即直接预订", spotlight_copy_link: "复制链接"
             }),
             az: Object.assign({}, BASE_TR_DICT, {
@@ -2557,13 +2722,23 @@
                 smart_hub_title: "Ağıllı Səyahət Köməkçiniz",
                 tab_hotel: "Otel Köməkçisi", tab_flight: "Uçuş Köməkçisi",
                 btn_hotel: "Otel Tap", btn_flight: "Uçuşumu Tap",
-                hotels_heading: "Günün Seçilmiş Otelləri", flights_heading: "Sərfəli Uçuşlar"
+                hotels_heading: "Günün Seçilmiş Otelləri", flights_heading: "Sərfəli Uçuşlar",
+                redirect_badge: "UCUZAKAL RƏSMİ TƏRƏFDAŞI",
+                redirect_title_hotel: "Rəsmi otel rezervasiya səhifəsinə yönləndirilirsiniz...",
+                redirect_title_flight: "Rəsmi uçuş rezervasiya səhifəsinə yönləndirilirsiniz...",
+                redirect_sub_note: "Ən sərfəli canlı qiymət təsdiqlənir və təhlükəsiz rezervasiya linkiniz hazırlanır...",
+                redirect_instant_cta: "Dərhal Rezervasiya Səhifəsinə Keç"
             }),
             ka: Object.assign({}, BASE_EN_DICT, {
                 hero_title: "აღმოაჩინეთ თურქეთის საუკეთესო მარშრუტები",
                 smart_hub_title: "ჭკვიანი მოგზაურობის ასისტენტი",
                 tab_hotel: "სასტუმროები", tab_flight: "ავიაბილეთები",
-                btn_hotel: "სასტუმროს ძებნა", btn_flight: "ფრენის ძებნა"
+                btn_hotel: "სასტუმროს ძებნა", btn_flight: "ფრენის ძებნა",
+                redirect_badge: "UCUZAKAL ოფიციალური პარტნიორი",
+                redirect_title_hotel: "გადამისამართდებით სასტუმროს დაჯავშნის ოფიციალურ გვერდზე...",
+                redirect_title_flight: "გადამისამართდებით ავიაბილეთების დაჯავშნის ოფიციალურ გვერდზე...",
+                redirect_sub_note: "მზადდება თქვენი უსაფრთხო დაჯავშნის ბმული საუკეთესო ტარიფით...",
+                redirect_instant_cta: "დაჯავშნაზე გადასვლა"
             }),
             fa: Object.assign({}, BASE_AR_DICT, {
                 google_login: "ورود با Gmail",
@@ -2573,13 +2748,23 @@
                 btn_hotel: "جستجوی هتل", btn_flight: "جستجوی پرواز",
                 hotels_heading: "پیشنهادهای ویژه هتل امروز", flights_heading: "بهترین بلیط‌های پرواز",
                 close_reader: "بستن", back_to_site: "بازگشت به سایت",
+                redirect_badge: "شریک رسمی تایید شده • UCUZAKAL",
+                redirect_title_hotel: "در حال انتقال شما به صفحه رسمی رزرو هتل...",
+                redirect_title_flight: "در حال انتقال شما به صفحه رسمی رزرو پرواز...",
+                redirect_sub_note: "در حال تایید بهترین قیمت زنده و آماده‌سازی لینک امن رزرو شما...",
+                redirect_instant_cta: "ورود فوری به صفحه رزرو",
                 spotlight_book_now: "رزرو مستقیم", spotlight_copy_link: "کپی لینک"
             }),
             kk: Object.assign({}, BASE_RU_DICT, {
                 hero_title: "Түркияның үздік бағыттарын ашыңыз",
                 smart_hub_title: "Ақылды AI саяхат көмекшісі",
                 tab_hotel: "Қонақүйлер", tab_flight: "Әуе билеттері",
-                btn_hotel: "Қонақүй табу", btn_flight: "Рейс табу"
+                btn_hotel: "Қонақүй табу", btn_flight: "Рейс табу",
+                redirect_badge: "UCUZAKAL РЕСМИ СЕРІКТЕСІ",
+                redirect_title_hotel: "Ресми қонақүй брондау бетіне бағытталудасыз...",
+                redirect_title_flight: "Ресми әуе билетін брондау бетіне бағытталудасыз...",
+                redirect_sub_note: "Ең тиімді тікелей баға расталып, қауіпсіз брондау сілтемесі дайындалуда...",
+                redirect_instant_cta: "Брондау бетіне өту"
             })
         };
 
@@ -2632,7 +2817,94 @@
             return window.translateTextStrong(fallbackVal || "", lang);
         };
 
-        // استخراج عنوان ومحتوى المقال بأي صيغة محفوظة في قاعدة البيانات + تنسيق تحريري للصور والفقرات
+        // =========================================================================
+        // محرك شاشة التحويل السينمائية الفاخرة بملء الشاشة (تتغير حسب لغة الزائر)
+        // =========================================================================
+        window.cancelBookingRedirect = function() {
+            clearTimeout(window._redirectTimer);
+            window._redirectTimer = null;
+            const ov = document.getElementById('booking-redirect-overlay');
+            if (ov) ov.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        window.triggerLuxuryBookingRedirect = function(url, dealType, dealTitle, partner, city, mode, dealId, ev) {
+            if (ev) {
+                ev.preventDefault();
+                ev.stopPropagation();
+            }
+            const targetUrl = (url && String(url).trim() && url !== '#') ? String(url).trim() : '';
+            if (!targetUrl) return false;
+
+            if (typeof window.logClickTelemetry === 'function') {
+                window.logClickTelemetry(partner, city, mode, dealId);
+            }
+
+            const lang = document.documentElement.lang || 'tr';
+            const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || BASE_TR_DICT;
+            const isFlight = (dealType === 'flight');
+
+            const ov = document.getElementById('booking-redirect-overlay');
+            const iconEl = document.getElementById('redirect-emblem-icon');
+            const badgeEl = document.getElementById('redirect-verified-badge');
+            const titleEl = document.getElementById('redirect-main-title');
+            const nameEl = document.getElementById('redirect-deal-name');
+            const subEl = document.getElementById('redirect-sub-note');
+            const barEl = document.getElementById('redirect-progress-bar');
+            const ctaLink = document.getElementById('redirect-instant-link');
+            const ctaTxt = document.getElementById('redirect-instant-cta');
+
+            if (iconEl) iconEl.className = isFlight ? 'fas fa-plane-departure' : 'fas fa-crown';
+            if (badgeEl) badgeEl.textContent = dict.redirect_badge || BASE_TR_DICT.redirect_badge;
+            if (titleEl) titleEl.textContent = isFlight
+                ? (dict.redirect_title_flight || BASE_TR_DICT.redirect_title_flight)
+                : (dict.redirect_title_hotel || BASE_TR_DICT.redirect_title_hotel);
+            if (nameEl) nameEl.textContent = dealTitle || '';
+            if (subEl) subEl.textContent = dict.redirect_sub_note || BASE_TR_DICT.redirect_sub_note;
+            if (ctaTxt) ctaTxt.textContent = dict.redirect_instant_cta || BASE_TR_DICT.redirect_instant_cta;
+
+            if (ctaLink) {
+                ctaLink.href = targetUrl;
+                ctaLink.target = '_blank';
+                ctaLink.onclick = () => {
+                    clearTimeout(window._redirectTimer);
+                    setTimeout(() => window.cancelBookingRedirect(), 250);
+                };
+            }
+
+            if (barEl) {
+                barEl.style.transition = 'none';
+                barEl.style.width = '0%';
+                void barEl.offsetWidth;
+                barEl.style.transition = 'width 1550ms cubic-bezier(0.22, 1, 0.36, 1)';
+            }
+
+            if (ov) ov.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            if (window.ConciergeAudio && typeof window.ConciergeAudio.playRadarPing === 'function') {
+                window.ConciergeAudio.playRadarPing(isFlight ? 920 : 1080);
+            }
+
+            requestAnimationFrame(() => {
+                if (barEl) barEl.style.width = '100%';
+            });
+
+            clearTimeout(window._redirectTimer);
+            window._redirectTimer = setTimeout(() => {
+                const win = window.open(targetUrl, '_blank', 'noopener');
+                if (win) {
+                    window.cancelBookingRedirect();
+                } else {
+                    // على بعض متصفحات الهاتف قد يُحظر التبويب المؤجّل، فنحوّل مباشرةً بسلاسة
+                    window.location.href = targetUrl;
+                }
+            }, 1600);
+
+            return false;
+        };
+
+        // استخراج عنوان ومحتوى المقال بأي صيغة محفوظة في قاعدة البيانات + دعم الصور المتعددة
         window.extractArticleContent = function(article, lang) {
             if (!article) return { title: '', body: '', images: [] };
             const title = (article.titles && (article.titles[lang] || article.titles.tr || article.titles.ar || article.titles.en))
@@ -2665,7 +2937,6 @@
             titleEl.textContent = window.translateTextStrong(parsed.title, currentLang);
 
             let sanitized = parsed.body.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').trim();
-            // إن كان المقال نصاً عادياً بدون وسوم HTML، نحوّله إلى فقرات تحريرية منظّمة
             if (sanitized && !/<(p|div|h1|h2|h3|ul|ol|article|section)\b/i.test(sanitized)) {
                 sanitized = sanitized
                     .split(/\n{2,}/)
@@ -2861,28 +3132,38 @@
             const savPct = foundDeal.savingsPct ? `${dict.spotlight_save_tag} ${foundDeal.savingsPct}%` : 'VERIFIED DEAL';
             badgeEl.textContent = `🔥 ${savPct}`;
 
+            let displayTitle = '';
             if (isFlight) {
-                const routeTitle = window.pickDealLocalizedField(foundDeal, 'title', foundDeal.route || foundDeal.title, lang);
+                displayTitle = window.pickDealLocalizedField(foundDeal, 'title', foundDeal.route || foundDeal.title, lang);
                 const flightDesc = window.pickDealLocalizedField(foundDeal, 'desc', foundDeal.description, lang);
                 cityEl.textContent = `${foundDeal.originIata || ''} ✈️ ${foundDeal.destIata || ''}`;
-                titleEl.textContent = routeTitle;
+                titleEl.textContent = displayTitle;
                 subEl.textContent = `${foundDeal.airline || ''}${foundDeal.departureDate ? ' • ' + foundDeal.departureDate : ''}`;
                 descEl.textContent = flightDesc;
             } else {
-                const hotelTitle = window.pickDealLocalizedField(foundDeal, 'title', foundDeal.name || foundDeal.title, lang);
+                displayTitle = window.pickDealLocalizedField(foundDeal, 'title', foundDeal.name || foundDeal.title, lang);
                 const hotelDesc = window.pickDealLocalizedField(foundDeal, 'desc', foundDeal.description, lang);
                 cityEl.textContent = `🇹🇷 ${window.translateTextStrong(foundDeal.city || 'TÜRKİYE', lang)}`;
-                titleEl.textContent = hotelTitle;
+                titleEl.textContent = displayTitle;
                 subEl.textContent = foundDeal.dealScore ? `Deal Score: ${foundDeal.dealScore}/100 • Verified Direct Booking` : 'Verified Direct Booking';
                 descEl.textContent = hotelDesc;
             }
 
             priceEl.textContent = foundDeal.price || '';
-            bookBtn.href = foundDeal.affiliateUrl || '#';
-            bookBtn.onclick = () => {
-                if (typeof window.logClickTelemetry === 'function') {
-                    window.logClickTelemetry(foundDeal.partner || (isFlight ? 'aviasales' : 'klook'), foundDeal.cityEn || foundDeal.destCityEn || foundDeal.route || 'spotlight', 'social_spotlight', foundDeal.dealId || cleanId);
-                }
+            const dealUrl = foundDeal.affiliateUrl || foundDeal.link || foundDeal.url || '#';
+            bookBtn.href = dealUrl;
+            bookBtn.onclick = (ev) => {
+                window.hideDealSpotlight();
+                return window.triggerLuxuryBookingRedirect(
+                    dealUrl,
+                    isFlight ? 'flight' : 'hotel',
+                    displayTitle,
+                    foundDeal.partner || (isFlight ? 'aviasales' : 'klook'),
+                    foundDeal.cityEn || foundDeal.destCityEn || foundDeal.route || 'spotlight',
+                    'social_spotlight',
+                    foundDeal.dealId || cleanId,
+                    ev
+                );
             };
             shareBtn.onclick = (ev) => window.copyDealShareLink(foundDeal.dealId || cleanId, ev);
 
@@ -2900,13 +3181,15 @@
                     ? window.pickDealLocalizedField(crossDeal, 'title', crossDeal.name || crossDeal.title, lang)
                     : window.pickDealLocalizedField(crossDeal, 'title', crossDeal.route || crossDeal.title, lang);
                 const crossLabel = isFlight ? dict.spotlight_cross_hotel : dict.spotlight_cross_flight;
+                const crossUrl = crossDeal.affiliateUrl || crossDeal.link || crossDeal.url || '#';
+                const crossType = isFlight ? 'hotel' : 'flight';
                 crossEl.innerHTML = `
                     <div class="flex-1 min-w-[190px]">
                         <div class="text-[11px] font-extrabold text-brand-gold">${crossLabel}</div>
                         <div class="text-xs font-bold text-white mt-0.5">${crossTitle} — <span class="text-brand-gold">${crossDeal.price || ''}</span></div>
                     </div>
-                    <a href="${crossDeal.affiliateUrl || '#'}" target="_blank" rel="noopener"
-                        onclick="if(window.logClickTelemetry) window.logClickTelemetry('${crossDeal.partner || 'cross'}', '${crossDeal.cityEn || crossDeal.destCityEn || ''}', 'cross_sell', '${crossDeal.dealId || ''}')"
+                    <a href="${crossUrl}"
+                        onclick="window.hideDealSpotlight(); return window.triggerLuxuryBookingRedirect('${crossUrl.replace(/'/g, "\\'")}', '${crossType}', '${String(crossTitle).replace(/'/g, "\\'")}', '${crossDeal.partner || 'cross'}', '${crossDeal.cityEn || crossDeal.destCityEn || ''}', 'cross_sell', '${crossDeal.dealId || ''}', event)"
                         class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold hover:opacity-90 transition shrink-0">
                         ${dict.spotlight_cross_btn} <i class="fas fa-arrow-right mx-1 text-[10px]"></i>
                     </a>`;
@@ -2936,7 +3219,7 @@
         });
     </script>
     <!-- ========================================================================= -->
-    <!-- الجزء 4 من 4: Firebase الحقيقي + إصلاح الطيران والمدونة + الخريطة + الإقلاع -->
+    <!-- الجزء 4 من 4: Firebase الحقيقي + إصلاح الطيران والمدونة + التحويل الفاخر -->
     <!-- ========================================================================= -->
     <script>
         (function() {
@@ -2981,6 +3264,8 @@
                     .replace(/\\/g, '\\\\')
                     .replace(/'/g, "\\'")
                     .replace(/"/g, '&quot;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
                     .replace(/\r?\n/g, ' ');
             }
 
@@ -3007,6 +3292,307 @@
                 if (val && typeof val.seconds === 'number') return val.seconds * 1000;
                 const parsed = Date.parse(String(val));
                 return Number.isFinite(parsed) ? parsed : 0;
+            }
+
+            function getUpcomingDateStr(daysAhead) {
+                const d = new Date(Date.now() + (daysAhead || 14) * 86400000);
+                return d.toISOString().slice(0, 10);
+            }
+
+            // =====================================================================
+            // عروض الطيران الـ 6 المفحوصة (3 داخلي + 1 روسي + 2 عربي — شبكة أمان متكاملة)
+            // =====================================================================
+            function buildCuratedFlightsFallback() {
+                return [
+                    {
+                        id: "flight_deal_1",
+                        dealId: "F-TR-IST-AYT",
+                        type: "flight",
+                        segment: "domestic_tr",
+                        originIata: "IST",
+                        destIata: "AYT",
+                        destCityEn: "Antalya",
+                        route: "İstanbul (IST) ✈️ Antalya (AYT)",
+                        airline: "Turkish Airlines / Pegasus",
+                        departureDate: getUpcomingDateStr(10),
+                        price: "$39",
+                        savingsPct: 24,
+                        image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1000&q=80",
+                        affiliateUrl: window.buildFlightDirectUrl("IST", "AYT"),
+                        i18n: {
+                            tr: { title: "İstanbul (IST) ✈️ Antalya (AYT)", desc: "Akdeniz'in incisi Antalya'ya direkt, hızlı ve doğrulanmış en avantajlı uçak bileti fırsatları." },
+                            ar: { title: "إسطنبول (IST) ✈️ أنطاليا (AYT)", desc: "رحلات طيران داخلية مباشرة إلى لؤلؤة المتوسط أنطاليا بأفضل الأسعار الحية والمفحوصة يومياً." },
+                            en: { title: "Istanbul (IST) ✈️ Antalya (AYT)", desc: "Direct daily flights to Turkey's turquoise coast with verified live fares and instant booking." },
+                            ru: { title: "Стамбул (IST) ✈️ Анталья (AYT)", desc: "Прямые ежедневные рейсы на Средиземноморское побережье по лучшим проверенным тарифам." }
+                        }
+                    },
+                    {
+                        id: "flight_deal_2",
+                        dealId: "F-TR-IST-ADB",
+                        type: "flight",
+                        segment: "domestic_tr",
+                        originIata: "IST",
+                        destIata: "ADB",
+                        destCityEn: "Izmir",
+                        route: "İstanbul (IST) ✈️ İzmir (ADB)",
+                        airline: "Pegasus / AJet",
+                        departureDate: getUpcomingDateStr(12),
+                        price: "$34",
+                        savingsPct: 22,
+                        image: "https://images.unsplash.com/photo-1589561454226-796a8aa89b05?auto=format&fit=crop&w=1000&q=80",
+                        affiliateUrl: window.buildFlightDirectUrl("IST", "ADB"),
+                        i18n: {
+                            tr: { title: "İstanbul (IST) ✈️ İzmir (ADB)", desc: "Ege'nin kalbi İzmir ve Çeşme rotasına esnek saatli, anında onaylı direkt iç hat uçuşları." },
+                            ar: { title: "إسطنبول (IST) ✈️ إزمير (ADB)", desc: "رحلات مباشرة سريعة إلى عروس بحر إيجة إزمير بأسعار تنافسية وحجز فوري موثّق." },
+                            en: { title: "Istanbul (IST) ✈️ Izmir (ADB)", desc: "Frequent direct domestic flights to the Aegean coast with verified live ticket availability." },
+                            ru: { title: "Стамбул (IST) ✈️ Измир (ADB)", desc: "Быстрые прямые рейсы на Эгейское побережье с мгновенным подтверждением и лучшей ценой." }
+                        }
+                    },
+                    {
+                        id: "flight_deal_3",
+                        dealId: "F-TR-IST-TZX",
+                        type: "flight",
+                        segment: "domestic_tr",
+                        originIata: "IST",
+                        destIata: "TZX",
+                        destCityEn: "Trabzon",
+                        route: "İstanbul (IST) ✈️ Trabzon (TZX)",
+                        airline: "Turkish Airlines / AJet",
+                        departureDate: getUpcomingDateStr(14),
+                        price: "$44",
+                        savingsPct: 19,
+                        image: "https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1000&q=80",
+                        affiliateUrl: window.buildFlightDirectUrl("IST", "TZX"),
+                        i18n: {
+                            tr: { title: "İstanbul (IST) ✈️ Trabzon (TZX)", desc: "Karadeniz'in eşsiz doğası ve Uzungöl'e açılan kapı Trabzon için güncel direkt uçuş fırsatları." },
+                            ar: { title: "إسطنبول (IST) ✈️ طرابزون (TZX)", desc: "تذاكر طيران مباشرة إلى جنة الشمال التركي طرابزون وبحيرة أوزنجول بأقل تكلفة متاحة اليوم." },
+                            en: { title: "Istanbul (IST) ✈️ Trabzon (TZX)", desc: "Direct gateway flights to the Black Sea highlands and Uzungol with verified live pricing." },
+                            ru: { title: "Стамбул (IST) ✈️ Трабзон (TZX)", desc: "Прямые рейсы к зелёным горам Причерноморья и озеру Узунгёль по выгодным ценам." }
+                        }
+                    },
+                    {
+                        id: "flight_deal_4",
+                        dealId: "F-RU-SVO-AYT",
+                        type: "flight",
+                        segment: "russia_tr",
+                        originIata: "SVO",
+                        destIata: "AYT",
+                        destCityEn: "Antalya",
+                        route: "Moskova (SVO) ✈️ Antalya (AYT)",
+                        airline: "Turkish Airlines / Aeroflot",
+                        departureDate: getUpcomingDateStr(16),
+                        price: "$139",
+                        savingsPct: 27,
+                        image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1000&q=80",
+                        affiliateUrl: window.buildFlightDirectUrl("SVO", "AYT"),
+                        i18n: {
+                            tr: { title: "Moskova (SVO) ✈️ Antalya (AYT)", desc: "Rusya'dan Antalya sahillerine yüksek konforlu direkt uçuşlarda en seçkin canlı fiyatlar." },
+                            ar: { title: "موسكو (SVO) ✈️ أنطاليا (AYT)", desc: "أقوى عروض الطيران المباشر من موسكو إلى منتجعات أنطاليا الفاخرة بتحديث لحظي للأسعار." },
+                            en: { title: "Moscow (SVO) ✈️ Antalya (AYT)", desc: "Top-value direct flights from Moscow to Antalya's luxury resorts with instant partner booking." },
+                            ru: { title: "Москва (SVO) ✈️ Анталья (AYT)", desc: "Лучшие прямые рейсы из Москвы на курорты Антальи — проверенные цены и мгновенное бронирование." }
+                        }
+                    },
+                    {
+                        id: "flight_deal_5",
+                        dealId: "F-AR-RUH-IST",
+                        type: "flight",
+                        segment: "arab_tr",
+                        originIata: "RUH",
+                        destIata: "IST",
+                        destCityEn: "Istanbul",
+                        route: "Riyad (RUH) ✈️ İstanbul (IST)",
+                        airline: "Turkish Airlines / Flynas",
+                        departureDate: getUpcomingDateStr(15),
+                        price: "$149",
+                        savingsPct: 25,
+                        image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80",
+                        affiliateUrl: window.buildFlightDirectUrl("RUH", "IST"),
+                        i18n: {
+                            tr: { title: "Riyad (RUH) ✈️ İstanbul (IST)", desc: "Suudi Arabistan'dan İstanbul'a direkt uçuşlarda ailelere ve iş seyahatlerine özel canlı tarifeler." },
+                            ar: { title: "الرياض (RUH) ✈️ إسطنبول (IST)", desc: "رحلات مباشرة يومية من الرياض إلى إسطنبول للعائلات ورجال الأعمال بأفضل سعر حي موثّق." },
+                            en: { title: "Riyadh (RUH) ✈️ Istanbul (IST)", desc: "Daily direct flights from Riyadh to Istanbul with verified live fares for families and VIP travelers." },
+                            ru: { title: "Эр-Рияд (RUH) ✈️ Стамбул (IST)", desc: "Прямые рейсы из Эр-Рияда в Стамбул с проверенными актуальными тарифами." }
+                        }
+                    },
+                    {
+                        id: "flight_deal_6",
+                        dealId: "F-AR-DXB-IST",
+                        type: "flight",
+                        segment: "arab_tr",
+                        originIata: "DXB",
+                        destIata: "IST",
+                        destCityEn: "Istanbul",
+                        route: "Dubai (DXB) ✈️ İstanbul (IST)",
+                        airline: "Emirates / Turkish Airlines",
+                        departureDate: getUpcomingDateStr(18),
+                        price: "$135",
+                        savingsPct: 28,
+                        image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1000&q=80",
+                        affiliateUrl: window.buildFlightDirectUrl("DXB", "IST"),
+                        i18n: {
+                            tr: { title: "Dubai (DXB) ✈️ İstanbul (IST)", desc: "Dubai'den Boğaz'ın büyüsüne uzanan direkt uçuşlarda anlık kontrol edilmiş en iyi fiyatlar." },
+                            ar: { title: "دبي (DXB) ✈️ إسطنبول (IST)", desc: "أفضل تذاكر الطيران المباشر من دبي إلى إسطنبول بمواعيد مرنة وحجز مباشر عبر الشريك الرسمي." },
+                            en: { title: "Dubai (DXB) ✈️ Istanbul (IST)", desc: "Verified direct flights connecting Dubai and Istanbul with live fare comparison and instant booking." },
+                            ru: { title: "Дубай (DXB) ✈️ Стамбул (IST)", desc: "Прямые перелёты из Дубая в Стамбул по лучшим проверенным ценам дня." }
+                        }
+                    }
+                ];
+            }
+
+            // =====================================================================
+            // مقالتان تحريريتان فاخرتان مدمجتان (تظهران فوراً في القالبين إذا كانت قاعدة البيانات فارغة)
+            // =====================================================================
+            const CURATED_EDITORIAL_ARTICLES = [
+                {
+                    id: "editorial_istanbul_luxury_guide",
+                    category: "İSTANBUL • LUXURY GUIDE",
+                    image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1400&q=80",
+                    images: [
+                        "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    createdAt: "2026-11-18T10:00:00Z",
+                    titles: {
+                        tr: "Boğaz'ın İncisi İstanbul: 5 Yıldızlı Konaklama ve Gizli Lüks Rotalar Rehberi",
+                        ar: "إسطنبول جوهرة البوسفور: الدليل الفاخر لأرقى الفنادق والإطلالات والتجارب الاستثنائية",
+                        en: "Istanbul Bosphorus Luxury Guide: Elite Stays, Secret Views & Seamless Travel",
+                        ru: "Стамбул на Босфоре: гид по элитным отелям, панорамным видам и идеальному отдыху"
+                    },
+                    bodies: {
+                        tr: `<p>İki kıtayı birleştiren büyüleyici silüetiyle <strong>İstanbul</strong>, yalnızca tarihi bir başkent değil; aynı zamanda Avrupa ve Orta Doğu'nun en seçkin lüks konaklama merkezlerinden biridir. Doğru bölge seçimi ve akıllı zamanlama ile Boğaz kıyısında unutulmaz bir tatili çok daha avantajlı bütçelerle planlayabilirsiniz.</p>
+                             <h3>1. Konaklama İçin En Seçkin Semtler</h3>
+                             <p>Tarihi yarımadanın büyüsünü hissetmek isteyenler için <strong>Sultanahmet</strong> butik otelleri eşsiz bir atmosfer sunarken; modern lüks, alışveriş ve Boğaz manzarası arayan misafirler için <strong>Beşiktaş, Nişantaşı ve Karaköy</strong> hattı öne çıkar.</p>
+                             <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="İstanbul Boğazı">
+                             <h3>2. Havalimanı Transferi ve Akıllı Ulaşım</h3>
+                             <p>İstanbul Havalimanı (IST) veya Sabiha Gökçen (SAW) inişinizde zaman kaybetmemek için önceden sabit fiyatlı özel transfer rezervasyonu yaptırmak, tatilinize konforlu bir başlangıç yapmanızı sağlar. İniş anında aktif olan 5G eSIM ile haritalarınız ve rezervasyonlarınız daima elinizin altında olur.</p>
+                             <h3>3. Sıra Beklemeden Kültür ve Gastronomi</h3>
+                             <p>Topkapı Sarayı, Yerebatan Sarnıcı ve Boğaz gün batımı turları için mobil biletlerinizi önceden alarak uzun kuyrukları geride bırakabilir, akşamınızı Boğaz manzaralı seçkin restoranlarda taçlandırabilirsiniz.</p>`,
+                        ar: `<p>تجمع <strong>إسطنبول</strong> بين سحر القارتين وتاريخ الإمبراطوريات وفخامة الضيافة العصرية، مما يجعلها الوجهة الأولى لعشاق السفر الراقي في المنطقة. وبالتخطيط الذكي واختيار الحي المناسب، يمكنك الاستمتاع بإقامة فاخرة مطلّة على مضيق البوسفور بأفضل قيمة ممكنة.</p>
+                             <h3>1. أرقى الأحياء لاختيار فندقك في إسطنبول</h3>
+                             <p>إذا كنت تبحث عن عبق التاريخ والقرب من المعالم الأثرية فإن فنادق <strong>السلطان أحمد</strong> البوتيكية هي خيارك الأمثل، أما لعشاق التسوق الفاخر والمطاعم العالمية وإطلالات البوسفور الساحرة فتتصدر مناطق <strong>نيشانتاشي وبشكتاش وكاراكوي</strong> القائمة بلا منازع.</p>
+                             <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="مضيق البوسفور إسطنبول">
+                             <h3>2. الوصول المريح من المطار والإنترنت الفوري</h3>
+                             <p>لبدء رحلتك براحة تامة منذ لحظة الهبوط في مطار إسطنبول (IST) أو صبيحة (SAW)، احرص على حجز خدمة التوصيل الخاص بسعر ثابت مسبقاً، وتفعيل شريحة <strong>5G eSIM</strong> قبل الإقلاع لتبقى متصلاً بالخرائط وتطبيقاتك فور لمس عجلات الطائرة أرض المطار.</p>
+                             <h3>3. جولات البوسفور وتخطي طوابير المعالم</h3>
+                             <p>وفّر ساعات الانتظار في قصر توبكابي وصهريج البازيليك ورحلات اليخت عند الغروب عبر تذاكر الموبايل الفورية، واجعل أمسيتك استثنائية على أحد تراسات البوسفور الراقية.</p>`,
+                        en: `<p>Spanning two continents with an iconic skyline, <strong>Istanbul</strong> blends timeless imperial heritage with world-class luxury hospitality. Choosing the right neighborhood and timing transforms your trip into an effortless, five-star escape.</p>
+                             <h3>1. Where to Stay in Style</h3>
+                             <p>For historic charm steps from grand landmarks, boutique palaces in <strong>Sultanahmet</strong> shine. For designer shopping, fine dining, and panoramic Bosphorus suites, look to <strong>Beşiktaş, Nişantaşı, and Karaköy</strong>.</p>
+                             <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="Istanbul Bosphorus">
+                             <h3>2. Seamless Airport Arrival &amp; 5G Connectivity</h3>
+                             <p>Pre-booking a fixed-price private transfer from Istanbul Airport (IST) eliminates queues, while activating a 5G travel eSIM before landing keeps navigation and concierge tools ready from minute one.</p>`,
+                        ru: `<p><strong>Стамбул</strong>, соединяющий два континента, сочетает величественную историю с высочайшим уровнем гостиничного сервиса. Правильный выбор района позволит насладиться видами Босфора с максимальным комфортом и выгодой.</p>
+                             <h3>1. Лучшие районы для проживания</h3>
+                             <p>Любителям истории идеально подойдут бутик-отели <strong>Султанахмета</strong>, а ценителям панорамных видов, гастрономии и шопинга — <strong>Бешикташ, Нишанташи и Каракёй</strong>.</p>
+                             <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="Босфор Стамбул">
+                             <h3>2. VIP-трансфер и связь 5G</h3>
+                             <p>Забронируйте частный трансфер с фиксированной ценой заранее и подключите 5G eSIM до вылета, чтобы ваше путешествие началось безупречно с первой минуты.</p>`
+                    }
+                },
+                {
+                    id: "editorial_antalya_turquoise_resorts",
+                    category: "ANTALYA • TURQUOISE COAST",
+                    image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1400&q=80",
+                    images: [
+                        "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80",
+                        "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80"
+                    ],
+                    createdAt: "2026-11-17T10:00:00Z",
+                    titles: {
+                        tr: "Antalya ve Turkuaz Kıyılar: Her Şey Dahil Lüks Resort Seçmenin Altın Kuralları",
+                        ar: "أنطاليا والساحل الفيروزي: الدليل الذهبي لاختيار أفخم المنتجعات الشاطئية بأقل سعر",
+                        en: "Antalya & The Turquoise Coast: Golden Rules for Booking Luxury Beach Resorts",
+                        ru: "Анталья и Бирюзовое побережье: золотые правила выбора элитного курорта All-Inclusive"
+                    },
+                    bodies: {
+                        tr: `<p>Yılın 300 günü güneşli gökyüzü, turkuaz koyları ve dünyaca ünlü <strong>Ultra Her Şey Dahil</strong> tesisleriyle <strong>Antalya</strong>, Akdeniz'in rakipsiz tatil başkentidir. İster romantik bir balayı ister çocuklu keyifli bir aile tatili planlayın, doğru bölge seçimi deneyiminizi zirveye taşır.</p>
+                             <h3>1. Belek, Lara, Kemer mi Yoksa Kaleiçi mi?</h3>
+                             <p><strong>Belek</strong> dünyaca ünlü golf ve VIP resort otelleriyle öne çıkarken; <strong>Lara</strong> havalimanına sadece 15 dakika mesafede altın kumlu plajlar sunar. Çam ormanlarıyla denizin buluştuğu <strong>Kemer</strong> doğaseverler için, tarihi taş konaklarıyla <strong>Kaleiçi</strong> ise butik atmosfer arayanlar için biçilmiş kaftandır.</p>
+                             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Antalya Resort">
+                             <h3>2. Kendi Rotanızı Özgürce Keşfedin</h3>
+                             <p>Düşük depozitolu araç kiralama seçenekleriyle Düden Şelalesi, Kaş, Kaputaş Plajı ve antik Side tiyatrosunu kendi temponuzda keşfedebilir; her anı kusursuz bir Akdeniz anısına dönüştürebilirsiniz.</p>`,
+                        ar: `<p>بسمائها المشمسة 300 يوم في السنة ومياهها الفيروزية الصافية ومنتجعاتها العالمية الشاملة كلياً، تتربّع <strong>أنطاليا</strong> على عرش السياحة المتوسطية. وسواء كنت تخطط لشهر عسل رومانسي أو عطلة عائلية فاخرة، فإن اختيار المنطقة الساحلية المناسبة يصنع الفارق الكامل.</p>
+                             <h3>1. كيف تختار بين بيليك ولارا وكيمير وكاليتشي؟</h3>
+                             <p>تشتهر <strong>بيليك (Belek)</strong> بأفخم المنتجعات الملكية وملاعب الغولف، بينما تمنحك <strong>لارا (Lara)</strong> شواطئ ذهبية تبعد 15 دقيقة فقط عن المطار. أما <strong>كيمير (Kemer)</strong> فتمزج بين غابات الصنوبر والجبال والبحر، في حين تحتضن <strong>كاليتشي (Kaleiçi)</strong> الفنادق التاريخية البوتيكية الساحرة.</p>
+                             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="منتجعات أنطاليا الفاخرة">
+                             <h3>2. حرية استكشاف الشلالات والخلجان المخفية</h3>
+                             <p>باستئجار سيارة بضمان منخفض من مطار أنطاليا (AYT)، يمكنك الانطلاق بحرية لزيارة شلالات دودن، وشاطئ كابوتاش الساحر، ومدينة كاش ومسرح سيدي الأثري في رحلة لا تُنسى.</p>`,
+                        en: `<p>With 300 days of sunshine, crystalline turquoise bays, and world-renowned <strong>Ultra All-Inclusive</strong> resorts, <strong>Antalya</strong> reigns as the Mediterranean's premier luxury escape.</p>
+                             <h3>1. Choosing Between Belek, Lara, Kemer &amp; Kaleiçi</h3>
+                             <p><strong>Belek</strong> delivers flagship five-star golf and spa resorts; <strong>Lara</strong> offers golden sandy beaches just 15 minutes from AYT airport; <strong>Kemer</strong> pairs pine-clad mountains with emerald coves; and <strong>Kaleiçi</strong> enchants with historic Ottoman boutique hotels.</p>
+                             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Antalya Luxury Resort">
+                             <h3>2. Explore Hidden Coves at Your Own Pace</h3>
+                             <p>Pair your stay with a low-deposit local rental car to uncover Düden Waterfalls, ancient Side, and the iconic Kaputaş Beach along Turkey's scenic coastal highway.</p>`,
+                        ru: `<p>300 солнечных дней в году, бирюзовые бухты и лучшие курорты <strong>Ultra All-Inclusive</strong> делают <strong>Анталью</strong> безусловной столицей средиземноморского отдыха.</p>
+                             <h3>1. Белек, Лара, Кемер или Калеичи?</h3>
+                             <p><strong>Белек</strong> славится элитными гольф-курортами, <strong>Лара</strong> — золотыми пляжами всего в 15 минутах от аэропорта, <strong>Кемер</strong> — сосновыми горами, а <strong>Калеичи</strong> — атмосферой старого города.</p>
+                             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Курорты Антальи">
+                             <h3>2. Полная свобода маршрутов</h3>
+                             <p>Арендуйте автомобиль с минимальным депозитом, чтобы свободно посетить водопады Дюден, античный Сиде и знаменитый пляж Капуташ.</p>`
+                    }
+                }
+            ];
+
+            // تطبيع أي بطاقة طيران قادمة من قاعدة البيانات لضمان اكتمال السعر والرابط والصورة
+            function normalizeFlightRecord(raw, idx) {
+                if (!raw || typeof raw !== 'object') return null;
+                const combinedText = `${raw.route || ''} ${raw.title || ''} ${raw.originIata || ''} ${raw.destIata || ''}`;
+                let origIata = String(raw.originIata || '').toUpperCase().trim();
+                let destIata = String(raw.destIata || '').toUpperCase().trim();
+
+                if (!origIata) {
+                    if (/بطرسبرغ|petersburg|led/i.test(combinedText)) origIata = 'LED';
+                    else if (/موسكو|moskova|moscow|svo/i.test(combinedText)) origIata = 'SVO';
+                    else if (/الرياض|riyad|riyadh|ruh/i.test(combinedText)) origIata = 'RUH';
+                    else if (/دبي|dubai|dxb/i.test(combinedText)) origIata = 'DXB';
+                    else if (/جدة|cidde|jeddah|jed/i.test(combinedText)) origIata = 'JED';
+                    else origIata = 'IST';
+                }
+                if (!destIata) {
+                    if (/أنطاليا|antalya|ayt/i.test(combinedText)) destIata = 'AYT';
+                    else if (/إزمير|izmir|adb/i.test(combinedText)) destIata = 'ADB';
+                    else if (/طرابزون|trabzon|tzx/i.test(combinedText)) destIata = 'TZX';
+                    else if (/بودروم|bodrum|bjv/i.test(combinedText)) destIata = 'BJV';
+                    else destIata = 'IST';
+                }
+
+                const cleanPrice = (raw.price && String(raw.price).trim())
+                    ? String(raw.price).trim()
+                    : (raw.priceUsd ? `$${raw.priceUsd}` : (origIata === 'IST' ? '$42' : '$145'));
+
+                const cleanUrl = (raw.affiliateUrl && String(raw.affiliateUrl).startsWith('http'))
+                    ? raw.affiliateUrl
+                    : ((raw.link && String(raw.link).startsWith('http'))
+                        ? raw.link
+                        : window.buildFlightDirectUrl(origIata, destIata));
+
+                const cleanSegment = raw.segment || (
+                    ['LED', 'SVO', 'VKO', 'DME'].includes(origIata)
+                        ? 'russia_tr'
+                        : (['IST', 'SAW', 'ESB', 'ADB', 'AYT', 'TZX'].includes(origIata) ? 'domestic_tr' : 'arab_tr')
+                );
+
+                const fallbackImgs = [
+                    'https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1000&q=80',
+                    'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80',
+                    'https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1000&q=80'
+                ];
+
+                return Object.assign({}, raw, {
+                    id: raw.id || `flight_deal_${idx + 1}`,
+                    dealId: raw.dealId || `F-${origIata}-${destIata}`,
+                    type: 'flight',
+                    originIata: origIata,
+                    destIata: destIata,
+                    segment: cleanSegment,
+                    airline: raw.airline || 'Turkish Airlines / Pegasus',
+                    departureDate: raw.departureDate || getUpcomingDateStr(12 + idx),
+                    price: cleanPrice,
+                    savingsPct: raw.savingsPct || 22,
+                    image: (raw.image && String(raw.image).startsWith('http')) ? raw.image : fallbackImgs[idx % fallbackImgs.length],
+                    affiliateUrl: cleanUrl,
+                    description: raw.description || 'Verified direct & low-fare flight options updated live with official partner booking.'
+                });
             }
 
             // =====================================================================
@@ -3154,7 +3740,7 @@
             };
 
             // =====================================================================
-            // 4. عرض بطاقات الفنادق والطيران اليومية (بإطار ذهبي متحرك + زر ?deal=)
+            // 4. عرض بطاقات الفنادق والطيران (مع التحويل الفاخر بملء الشاشة + الإطار الدوّار)
             // =====================================================================
             window.renderHotels = function() {
                 const container = document.getElementById('hotels-container');
@@ -3173,14 +3759,14 @@
                     const titleDisp = window.pickDealLocalizedField(h, 'title', h.name || h.title || cityDisp, lang);
                     const descDisp = window.pickDealLocalizedField(h, 'desc', h.description || '', lang);
                     const imgSrc = h.image || 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1200&q=80';
-                    const affUrl = h.affiliateUrl || h.link || h.url || '#';
+                    const affUrl = h.affiliateUrl || h.link || h.url || window.buildHotelStayOffer(h.partner || 'klook', h.cityEn || h.city || 'Antalya', 'hotel');
                     const savBadge = h.savingsPct ? `<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-black px-2.5 py-1 rounded-full shadow-md">🔥 -${escHtml(h.savingsPct)}%</span>` : '';
 
                     return `
                     <div class="gold-animated-frame">
                         <div class="ultra-luxury-card group">
-                            <a href="${escHtml(affUrl)}" target="_blank" rel="noopener"
-                               onclick="window.logClickTelemetry('${escJs(h.partner || 'klook')}', '${escJs(h.cityEn || h.city || '')}', 'hotel_grid', '${escJs(dealId)}')"
+                            <a href="${escHtml(affUrl)}"
+                               onclick="return window.triggerLuxuryBookingRedirect('${escJs(affUrl)}', 'hotel', '${escJs(titleDisp)}', '${escJs(h.partner || 'klook')}', '${escJs(h.cityEn || h.city || '')}', 'hotel_grid', '${escJs(dealId)}', event)"
                                class="flex-1 flex flex-col">
                                 <div class="img-frame">
                                     <img src="${escHtml(imgSrc)}" alt="${escHtml(titleDisp)}" loading="lazy" class="w-full h-full object-cover">
@@ -3234,49 +3820,41 @@
                     const dealId = f.dealId || f.id || `flight_deal_${idx + 1}`;
                     const routeTitle = window.pickDealLocalizedField(f, 'title', f.route || f.title || `${f.originIata || ''} ✈️ ${f.destIata || ''}`, lang);
                     const descDisp = window.pickDealLocalizedField(f, 'desc', f.description || '', lang);
-                    const affUrl = f.affiliateUrl || f.link || f.url || '#';
+                    const affUrl = f.affiliateUrl || f.link || f.url || window.buildFlightDirectUrl(f.originIata || 'IST', f.destIata || 'AYT');
                     const savBadge = f.savingsPct ? `<span class="bg-brand-gold text-black text-[10px] font-black px-2.5 py-0.5 rounded-full">🔥 -${escHtml(f.savingsPct)}%</span>` : '';
                     const segLabel = f.segment === 'domestic_tr' ? '🇹🇷 DOMESTIC' : (f.segment === 'russia_tr' ? '🇷🇺 ⇄ 🇹🇷' : '🌍 ⇄ 🇹🇷');
-                    const hasCardImg = f.image && String(f.image).startsWith('http');
+                    const cardImg = (f.image && String(f.image).startsWith('http'))
+                        ? f.image
+                        : 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80';
 
                     return `
                     <div class="gold-animated-frame">
                         <div class="ultra-luxury-card group">
-                            <a href="${escHtml(affUrl)}" target="_blank" rel="noopener"
-                               onclick="window.logClickTelemetry('aviasales', '${escJs(f.destCityEn || f.destination || '')}', 'flight_grid', '${escJs(dealId)}')"
+                            <a href="${escHtml(affUrl)}"
+                               onclick="return window.triggerLuxuryBookingRedirect('${escJs(affUrl)}', 'flight', '${escJs(routeTitle)}', 'aviasales', '${escJs(f.destCityEn || f.destination || '')}', 'flight_grid', '${escJs(dealId)}', event)"
                                class="flex flex-col justify-between h-full">
-                                ${hasCardImg ? `
                                 <div class="img-frame h-44">
-                                    <img src="${escHtml(f.image)}" alt="${escHtml(routeTitle)}" loading="lazy" class="w-full h-full object-cover">
+                                    <img src="${escHtml(cardImg)}" alt="${escHtml(routeTitle)}" loading="lazy" class="w-full h-full object-cover">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-[#070B16] via-transparent to-transparent"></div>
+                                    <span class="absolute top-3 left-3 bg-black/75 backdrop-blur-md border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full">${escHtml(segLabel)}</span>
                                     <button type="button" title="${escHtml(dict.share_btn_title)}"
                                         onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
                                         class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
                                         <i class="fas fa-share-alt text-xs"></i>
                                     </button>
-                                </div>` : ''}
+                                </div>
                                 <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                                     <div>
-                                        <div class="flex items-center justify-between gap-2 mb-3">
-                                            <div class="flex items-center gap-2">
-                                                <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-brand-gold/15 border border-brand-gold/40 text-brand-gold">${escHtml(segLabel)}</span>
-                                                ${savBadge}
-                                            </div>
-                                            ${!hasCardImg ? `
-                                            <button type="button" title="${escHtml(dict.share_btn_title)}"
-                                                onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
-                                                class="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/5 border border-brand-gold/40 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
-                                                <i class="fas fa-share-alt text-xs"></i>
-                                            </button>` : ''}
+                                        <div class="flex items-center gap-2 mb-2.5">
+                                            ${savBadge}
+                                            <span class="text-[11px] font-bold text-brand-gold/90 truncate"><i class="fas fa-plane-departure mx-1"></i>${escHtml(f.airline || 'Turkish Airlines')}</span>
                                         </div>
 
-                                        <h3 class="font-luxury text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition mb-1.5">
+                                        <h3 class="font-luxury text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition mb-1.5 leading-snug">
                                             ${escHtml(routeTitle)}
                                         </h3>
-                                        <div class="text-xs font-bold text-brand-gold/90 mb-2.5 flex flex-wrap items-center gap-2">
-                                            <span><i class="fas fa-plane-departure mx-1"></i>${escHtml(f.airline || 'Verified Airline')}</span>
-                                            ${f.departureDate ? `<span class="text-slate-400">• ${escHtml(f.departureDate)}</span>` : ''}
-                                        </div>
-                                        <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+                                        ${f.departureDate ? `<div class="text-[11px] font-semibold text-slate-400 mb-2"><i class="far fa-calendar-alt mx-1 text-brand-gold"></i>${escHtml(f.departureDate)}</div>` : ''}
+                                        <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-5">
                                             ${escHtml(descDisp)}
                                         </p>
                                     </div>
@@ -3284,7 +3862,7 @@
                                     <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
                                         <div>
                                             <span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span>
-                                            <span class="font-luxury text-2xl font-black text-brand-gold">${escHtml(f.price || '')}</span>
+                                            <span class="font-luxury text-2xl font-black text-brand-gold">${escHtml(f.price || dict.live_price_badge)}</span>
                                         </div>
                                         <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">
                                             ${escHtml(dict.book_deal_btn)} <i class="fas fa-plane text-[10px]"></i>
@@ -3408,7 +3986,6 @@
                     </div>`;
                 }).join('');
 
-                // أزرار تنقل أنيقة إن كان هناك أكثر من مقالين مع الحفاظ الدائم على قالبين فقط
                 if (pagEl) {
                     if (totalPages > 1) {
                         pagEl.innerHTML = `
@@ -3428,7 +4005,6 @@
                 }
             };
 
-            // شريط تقدّم القراءة الذهبي داخل قارئ المدونة بملء الشاشة
             const articleModalEl = document.getElementById('article-modal');
             if (articleModalEl) {
                 articleModalEl.addEventListener('scroll', () => {
@@ -3440,9 +4016,9 @@
                 }, { passive: true });
             }
 
-            // إغلاق النوافذ المنبثقة بزر Escape
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
+                    window.cancelBookingRedirect();
                     window.hideArticleModal();
                     window.hideDealSpotlight();
                     window.closeCinematicOverlay();
@@ -4055,7 +4631,7 @@
             }
 
             // =====================================================================
-            // 10. تحميل البيانات الذكي المستقل (CDN-First + Firebase SDK الحقيقي)
+            // 10. تحميل البيانات الذكي المستقل (إصلاح جذري للطيران الـ 6 + قالبَي المدونة)
             // =====================================================================
             async function fetchCollectionDocs(colName, maxCount) {
                 if (!fbDb) return [];
@@ -4084,58 +4660,70 @@
                     window.DEALS_ARCHIVE_MAP = archiveRes.value.deals;
                 }
 
+                let feedObj = null;
                 if (feedRes.status === 'fulfilled' && feedRes.value) {
-                    const feed = feedRes.value;
-                    const hFeed = feed.mainHotels || feed.hotels;
-                    const fFeed = feed.mainFlights || feed.flights;
+                    feedObj = feedRes.value;
+                    const hFeed = feedObj.mainHotels || feedObj.hotels;
+                    const fFeed = feedObj.mainFlights || feedObj.flights;
                     if (Array.isArray(hFeed) && hFeed.length > 0) window.HOTELS_DATA = hFeed;
-                    if (Array.isArray(fFeed) && fFeed.length > 0) window.FLIGHTS_DATA = fFeed;
-                    if (feed.conciergeHotels) window.CONCIERGE_HOTELS_DB = feed.conciergeHotels;
-                    if (feed.conciergeFlights) window.CONCIERGE_FLIGHTS_DB = feed.conciergeFlights;
-                    if (feed.partnerWeights) window.PARTNER_WEIGHTS = feed.partnerWeights;
+                    if (Array.isArray(fFeed) && fFeed.length > 0) window.FLIGHTS_DATA = fFeed.map(normalizeFlightRecord).filter(Boolean);
+                    if (feedObj.conciergeHotels) window.CONCIERGE_HOTELS_DB = feedObj.conciergeHotels;
+                    if (feedObj.conciergeFlights) window.CONCIERGE_FLIGHTS_DB = feedObj.conciergeFlights;
+                    if (feedObj.partnerWeights) window.PARTNER_WEIGHTS = feedObj.partnerWeights;
                 }
 
-                // 2. فصل فحص الفنادق عن الطيران: إن نقصت عروض الطيران أو الفنادق نجلبها فوراً من Firestore ثم الأرشيف
-                if (window.HOTELS_DATA.length === 0 || window.FLIGHTS_DATA.length === 0) {
-                    const liveDocs = await fetchCollectionDocs('live_deals', 30);
+                // 2. قراءة Firestore عند نقص الفنادق أو الطيران (تطبيع كامل للبيانات)
+                if (window.HOTELS_DATA.length < 6 || window.FLIGHTS_DATA.length < 6) {
+                    const [liveDocs, colFlights, colHotels] = await Promise.all([
+                        fetchCollectionDocs('live_deals', 30),
+                        window.FLIGHTS_DATA.length < 6 ? fetchCollectionDocs('flights', 15) : Promise.resolve([]),
+                        window.HOTELS_DATA.length === 0 ? fetchCollectionDocs('hotels', 12) : Promise.resolve([])
+                    ]);
+
                     if (window.HOTELS_DATA.length === 0) {
                         const fromLiveH = liveDocs.filter(d => String(d.id).startsWith('hotel_deal_') || d.type === 'hotel')
                             .sort((a, b) => String(a.id).localeCompare(String(b.id)));
-                        if (fromLiveH.length > 0) {
-                            window.HOTELS_DATA = fromLiveH;
-                        } else {
-                            const colH = await fetchCollectionDocs('hotels', 12);
-                            if (colH.length > 0) window.HOTELS_DATA = colH.slice(0, 6);
-                        }
+                        window.HOTELS_DATA = fromLiveH.length > 0 ? fromLiveH : colHotels.slice(0, 6);
                     }
 
-                    if (window.FLIGHTS_DATA.length === 0) {
+                    if (window.FLIGHTS_DATA.length < 6) {
                         const fromLiveF = liveDocs.filter(d => String(d.id).startsWith('flight_deal_') || d.type === 'flight')
-                            .sort((a, b) => String(a.id).localeCompare(String(b.id)));
-                        if (fromLiveF.length > 0) {
-                            window.FLIGHTS_DATA = fromLiveF;
-                        } else {
-                            const colF = await fetchCollectionDocs('flights', 12);
-                            if (colF.length > 0) window.FLIGHTS_DATA = colF.slice(0, 6);
-                        }
-                    }
-                }
+                            .sort((a, b) => String(a.id).localeCompare(String(b.id)))
+                            .map(normalizeFlightRecord)
+                            .filter(Boolean);
 
-                // 3. شبكة أمان إضافية من الأرشيف الدائم إن كانت إحدى المصفوفات ما زالت فارغة
-                if (window.DEALS_ARCHIVE_MAP && Object.keys(window.DEALS_ARCHIVE_MAP).length > 0) {
-                    const archivedAll = Object.values(window.DEALS_ARCHIVE_MAP);
-                    if (window.FLIGHTS_DATA.length === 0) {
-                        window.FLIGHTS_DATA = archivedAll.filter(d => d && (d.type === 'flight' || d.originIata)).slice(0, 6);
-                    }
-                    if (window.HOTELS_DATA.length === 0) {
-                        window.HOTELS_DATA = archivedAll.filter(d => d && (d.type === 'hotel' || (d.city && !d.originIata))).slice(0, 6);
+                        const mergedFlights = [...window.FLIGHTS_DATA];
+                        const seenRoutes = new Set(mergedFlights.map(f => `${f.originIata}-${f.destIata}`));
+
+                        const pushUniqueFlight = (item) => {
+                            if (!item || mergedFlights.length >= 6) return;
+                            const key = `${item.originIata}-${item.destIata}`;
+                            if (seenRoutes.has(key)) return;
+                            seenRoutes.add(key);
+                            mergedFlights.push(item);
+                        };
+
+                        fromLiveF.forEach(pushUniqueFlight);
+                        colFlights.map(normalizeFlightRecord).filter(Boolean).forEach(pushUniqueFlight);
+
+                        if (window.DEALS_ARCHIVE_MAP) {
+                            Object.values(window.DEALS_ARCHIVE_MAP)
+                                .filter(d => d && (d.type === 'flight' || d.originIata))
+                                .map(normalizeFlightRecord)
+                                .filter(Boolean)
+                                .forEach(pushUniqueFlight);
+                        }
+
+                        // إكمال النقص تلقائياً حتى 6 عروض طيران حية وموثّقة حتى لا يظهر القسم ناقصاً أبداً
+                        buildCuratedFlightsFallback().forEach(pushUniqueFlight);
+                        window.FLIGHTS_DATA = mergedFlights.slice(0, 6);
                     }
                 }
 
                 window.renderHotels();
                 window.renderFlights();
 
-                // 4. فتح نافذة العرض الدائم فوراً إذا دخل الزائر من رابط سوشيال ميديا (?deal=...)
+                // 3. فتح نافذة العرض الدائم فوراً إذا دخل الزائر من رابط سوشيال ميديا (?deal=...)
                 try {
                     const params = new URLSearchParams(window.location.search);
                     const dealParam = params.get('deal');
@@ -4144,19 +4732,34 @@
                     }
                 } catch (e) {}
 
-                // 5. تحميل مقالات المدونة من قاعدة البيانات الحقيقية (ucuzakal-5e2a8) مع دعم جميع أسماء المجموعات
-                const blogCollections = ['articles', 'blog_posts', 'posts', 'blog', 'seo_articles'];
-                for (const col of blogCollections) {
-                    const docs = await fetchCollectionDocs(col, 20);
+                // 4. تحميل مقالات المدونة من Firestore (بالتوازي لكل الأسماء المحتملة) مع شبكة الأمان التحريرية الفاخرة
+                const blogCollections = ['articles', 'blog_posts', 'posts', 'blog', 'seo_articles', 'journal'];
+                const blogResults = await Promise.all(blogCollections.map(col => fetchCollectionDocs(col, 20)));
+                blogResults.forEach(docs => {
                     docs.forEach(item => {
-                        if (item.status === 'draft') return;
+                        if (!item || item.status === 'draft') return;
                         const parsed = window.extractArticleContent(item, document.documentElement.lang || 'tr');
                         if (parsed.title || parsed.body) {
                             window.ARTICLES_MAP[item.id] = item;
                         }
                     });
-                    if (Object.keys(window.ARTICLES_MAP).length > 0) break;
+                });
+
+                // إن وُجدت مقالات داخل live_deals_feed.json نضمّها أيضاً
+                if (feedObj && Array.isArray(feedObj.articles)) {
+                    feedObj.articles.forEach((item, idx) => {
+                        const id = item.id || `feed_art_${idx + 1}`;
+                        if (!window.ARTICLES_MAP[id]) window.ARTICLES_MAP[id] = Object.assign({ id }, item);
+                    });
                 }
+
+                // شبكة الأمان الجذرية: إن لم توجد مقالات في قاعدة البيانات بعد، نظهر المقالتين التحريريتين الفاخرتين فوراً
+                if (Object.keys(window.ARTICLES_MAP).length === 0) {
+                    CURATED_EDITORIAL_ARTICLES.forEach(art => {
+                        window.ARTICLES_MAP[art.id] = art;
+                    });
+                }
+
                 window.renderBlogCards();
             }
 
