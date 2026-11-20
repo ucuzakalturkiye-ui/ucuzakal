@@ -9,15 +9,20 @@
     <meta property="og:description" content="Türkiye'nin en gözde destinasyonlarında özenle seçilmiş konaklama ve uçuş fırsatları.">
     <meta property="og:type" content="website">
 
-    <!-- Fonts -->
+    <!-- خطوط احترافية فاخرة للعربية والتركية واللغات العالمية -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Cinzel:wght@600;700;800&family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
 
     <!-- Font Awesome & Leaflet Maps -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Firebase Official SDK (Auth + Firestore الحقيقي) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -35,8 +40,8 @@
                         }
                     },
                     fontFamily: {
-                        luxury: ['Cinzel', 'Cairo', 'serif'],
-                        sans: ['Plus Jakarta Sans', 'Cairo', 'sans-serif']
+                        luxury: ['Cinzel', 'Cormorant Garamond', 'Tajawal', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'Tajawal', 'Cairo', 'sans-serif']
                     }
                 }
             }
@@ -46,16 +51,20 @@
     <style>
         :root {
             --gold: #D4AF37;
-            --gold-soft: rgba(212, 175, 55, 0.25);
+            --gold-bright: #F6E299;
+            --gold-deep: #9A7417;
         }
 
         html {
             scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         body {
-            font-family: 'Plus Jakarta Sans', 'Cairo', sans-serif;
+            font-family: 'Plus Jakarta Sans', 'Tajawal', sans-serif;
             transition: background-color 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
         }
 
         html.dark body {
@@ -64,58 +73,162 @@
         }
 
         html.light body {
-            background-color: #F8FAFC;
+            background-color: #F6F7FB;
             color: #0F172A;
         }
 
+        /* خطوط عربية وفارسية وكردية تحريرية فاخرة ومنسّقة */
+        [dir="rtl"] body {
+            font-family: 'Tajawal', 'Cairo', sans-serif;
+        }
+
         [dir="rtl"] .font-luxury {
-            font-family: 'Cairo', serif;
+            font-family: 'Tajawal', 'Cairo', sans-serif;
             letter-spacing: 0 !important;
+            line-height: 1.32 !important;
         }
 
-        /* Hero Section */
-        .hero-section {
+        /* ===================================================================== */
+        /* التأثيرات الذهبية المتحركة الفاخرة (GPU-Optimized بدون تهنيج) */
+        /* ===================================================================== */
+        @keyframes goldShimmerFlow {
+            0%   { background-position: 0% 50%; }
+            50%  { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes crownHaloPulse {
+            0%, 100% { box-shadow: 0 0 14px rgba(212, 175, 55, 0.35), 0 0 0 0 rgba(212, 175, 55, 0.35); }
+            50%      { box-shadow: 0 0 24px rgba(246, 226, 153, 0.7), 0 0 0 6px rgba(212, 175, 55, 0); }
+        }
+
+        /* لمعة ذهبية متحركة حول اسم الموقع */
+        .brand-logo-wrap {
             position: relative;
-            background:
-                radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.16), transparent 60%),
-                linear-gradient(180deg, rgba(4, 7, 15, 0.65) 0%, rgba(4, 7, 15, 0.88) 78%, #04070F 100%),
-                url('./hero-bg.png.png') center/cover no-repeat;
+            padding: 0.32rem 0.85rem 0.32rem 0.45rem;
+            border-radius: 999px;
+            background: linear-gradient(120deg, rgba(212, 175, 55, 0.08), rgba(246, 226, 153, 0.16), rgba(212, 175, 55, 0.06));
+            background-size: 220% 220%;
+            animation: goldShimmerFlow 5.5s ease infinite;
+            border: 1px solid rgba(212, 175, 55, 0.42);
+            transition: transform 0.25s ease, border-color 0.25s ease;
         }
 
-        html.light .hero-section {
-            background:
-                radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.2), transparent 60%),
-                linear-gradient(180deg, rgba(10, 15, 28, 0.58) 0%, rgba(10, 15, 28, 0.78) 85%, #F8FAFC 100%),
-                url('./hero-bg.png.png') center/cover no-repeat;
+        .brand-logo-wrap:hover {
+            border-color: rgba(246, 226, 153, 0.85);
+            transform: translateY(-1px);
         }
 
-        /* Ultra Luxury Cards */
+        .brand-crown-badge {
+            animation: crownHaloPulse 3.2s ease-in-out infinite;
+        }
+
+        .brand-gold-text {
+            background: linear-gradient(110deg, #C79B26 10%, #FFF2B2 45%, #D4AF37 70%, #F7E199 95%);
+            background-size: 220% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: goldShimmerFlow 4.5s linear infinite;
+        }
+
+        /* إطار ذهبي متحرك فخم (للمستشار الذكي + بطاقات العروض + قالبَي المدونة) */
+        .gold-animated-frame {
+            position: relative;
+            padding: 1.5px;
+            border-radius: 1.6rem;
+            background: linear-gradient(125deg, rgba(212, 175, 55, 0.22), rgba(246, 226, 153, 0.92), rgba(212, 175, 55, 0.18), rgba(243, 214, 118, 0.85), rgba(212, 175, 55, 0.22));
+            background-size: 300% 300%;
+            animation: goldShimmerFlow 6.5s ease infinite;
+            will-change: background-position;
+            transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+        }
+
+        .gold-animated-frame:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 22px 46px -18px rgba(212, 175, 55, 0.35);
+        }
+
+        .gold-animated-frame.concierge-frame {
+            border-radius: 2.08rem;
+            padding: 2px;
+            box-shadow: 0 26px 70px -20px rgba(0, 0, 0, 0.82), 0 0 38px -12px rgba(212, 175, 55, 0.3);
+        }
+
+        .gold-animated-frame.concierge-frame:hover {
+            transform: none;
+        }
+
+        /* تقليل الحركة تلقائياً لمن يفعّل توفير الطاقة */
+        @media (prefers-reduced-motion: reduce) {
+            .brand-logo-wrap,
+            .brand-crown-badge,
+            .brand-gold-text,
+            .gold-animated-frame {
+                animation: none !important;
+            }
+        }
+
+        /* ===================================================================== */
+        /* صورة الواجهة الرئيسية (Hero Section) — ظهور كامل وسلس على الموبايل والكمبيوتر */
+        /* ===================================================================== */
+        .hero-stage {
+            position: relative;
+            width: 100%;
+            background-color: #04070F;
+            overflow: hidden;
+        }
+
+        html.light .hero-stage {
+            background-color: #091020;
+        }
+
+        .hero-image-canvas {
+            position: relative;
+            width: 100%;
+            max-width: 1680px;
+            margin: 0 auto;
+        }
+
+        .hero-full-img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+        }
+
+        .hero-scrim-overlay {
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 50% 42%, rgba(4, 7, 15, 0.42) 0%, rgba(4, 7, 15, 0.22) 55%, rgba(4, 7, 15, 0.65) 100%),
+                linear-gradient(180deg, rgba(4, 7, 15, 0.38) 0%, rgba(4, 7, 15, 0.25) 45%, rgba(4, 7, 15, 0.88) 92%, #04070F 100%);
+            pointer-events: none;
+        }
+
+        html.light .hero-scrim-overlay {
+            background:
+                radial-gradient(circle at 50% 42%, rgba(8, 13, 25, 0.46) 0%, rgba(8, 13, 25, 0.24) 55%, rgba(8, 13, 25, 0.6) 100%),
+                linear-gradient(180deg, rgba(8, 13, 25, 0.35) 0%, rgba(8, 13, 25, 0.22) 50%, rgba(8, 13, 25, 0.78) 90%, #F6F7FB 100%);
+        }
+
+        /* Ultra Luxury Inner Cards */
         .ultra-luxury-card {
             position: relative;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            border-radius: 1.5rem;
+            border-radius: calc(1.6rem - 1.5px);
             overflow: hidden;
-            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, box-shadow 0.35s ease;
+            height: 100%;
         }
 
         html.dark .ultra-luxury-card {
-            background: linear-gradient(165deg, rgba(14, 21, 38, 0.96) 0%, rgba(7, 11, 22, 0.98) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.22);
-            box-shadow: 0 18px 40px -22px rgba(0, 0, 0, 0.85);
+            background: linear-gradient(165deg, #0E1526 0%, #070B16 100%);
         }
 
         html.light .ultra-luxury-card {
             background: #FFFFFF;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            box-shadow: 0 14px 35px -20px rgba(15, 23, 42, 0.22);
-        }
-
-        .ultra-luxury-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(212, 175, 55, 0.8);
-            box-shadow: 0 24px 50px -18px rgba(212, 175, 55, 0.25);
         }
 
         .img-frame {
@@ -127,25 +240,139 @@
         }
 
         .img-frame img {
-            transition: transform 0.65s ease;
+            transition: transform 0.6s ease;
         }
 
-        .ultra-luxury-card:hover .img-frame img {
-            transform: scale(1.06);
+        .gold-animated-frame:hover .img-frame img {
+            transform: scale(1.05);
         }
 
         .gold-divider {
-            width: 48px;
-            height: 2px;
-            margin: 0.75rem auto;
-            background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+            width: 64px;
+            height: 2.5px;
+            margin: 0.85rem auto 0;
+            border-radius: 999px;
+            background: linear-gradient(90deg, transparent, #D4AF37, #FFF1B5, #D4AF37, transparent);
         }
 
-        /* Smart Travel Concierge Box */
+        /* ===================================================================== */
+        /* قالبَي المدونة الفاخرين (2 Editorial Luxury Magazine Templates) */
+        /* ===================================================================== */
+        .editorial-blog-card {
+            border-radius: calc(1.6rem - 1.5px);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        html.dark .editorial-blog-card {
+            background: linear-gradient(170deg, #0D1426 0%, #060A14 100%);
+        }
+
+        html.light .editorial-blog-card {
+            background: #FFFFFF;
+        }
+
+        .editorial-cover-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: #090F1E;
+        }
+
+        .editorial-cover-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .gold-animated-frame:hover .editorial-cover-wrap img {
+            transform: scale(1.06);
+        }
+
+        /* وضع قراءة المقال بملء الشاشة الكاملة (Full-Screen Editorial Reader) */
+        #article-modal {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 10000;
+            display: none;
+            flex-direction: column;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        #article-modal.active {
+            display: flex;
+            animation: fadeSlideUp 0.25s ease-out;
+        }
+
+        html.dark #article-modal {
+            background: #060913;
+            color: #E5E7EB;
+        }
+
+        html.light #article-modal {
+            background: #FAF8F4;
+            color: #1E293B;
+        }
+
+        .article-body-content {
+            font-size: 1.05rem;
+            line-height: 2;
+        }
+
+        @media (min-width: 768px) {
+            .article-body-content {
+                font-size: 1.14rem;
+                line-height: 2.08;
+            }
+        }
+
+        .article-body-content p {
+            margin-bottom: 1.35rem;
+        }
+
+        .article-body-content h2,
+        .article-body-content h3 {
+            color: #D4AF37;
+            font-weight: 800;
+            font-size: 1.38rem;
+            margin: 2rem 0 0.85rem;
+            line-height: 1.45;
+        }
+
+        .article-body-content img {
+            width: 100%;
+            max-height: 520px;
+            object-fit: cover;
+            border-radius: 1.25rem;
+            margin: 1.75rem 0;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            box-shadow: 0 18px 40px -15px rgba(0, 0, 0, 0.55);
+        }
+
+        .article-body-content ul,
+        .article-body-content ol {
+            margin: 1rem 0 1.4rem;
+            padding-inline-start: 1.4rem;
+        }
+
+        .article-body-content li {
+            margin-bottom: 0.55rem;
+        }
+
+        /* ===================================================================== */
+        /* المستشار السياحي الذكي (Smart Concierge Shell) */
+        /* ===================================================================== */
         .concierge-shell {
-            background: linear-gradient(165deg, rgba(10, 16, 30, 0.98) 0%, rgba(5, 8, 17, 0.99) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.38);
-            box-shadow: 0 26px 70px -20px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(212, 175, 55, 0.25);
+            background: linear-gradient(165deg, rgba(10, 16, 30, 0.99) 0%, rgba(5, 8, 17, 0.995) 100%);
+            border-radius: 2rem;
         }
 
         .concierge-tab-btn {
@@ -191,8 +418,8 @@
 
         .luxury-input {
             width: 100%;
-            background: rgba(15, 23, 42, 0.85);
-            border: 1px solid rgba(212, 175, 55, 0.32);
+            background: rgba(15, 23, 42, 0.88);
+            border: 1px solid rgba(212, 175, 55, 0.34);
             color: #FFFFFF;
             border-radius: 0.9rem;
             padding: 0.82rem 1rem;
@@ -200,6 +427,11 @@
             font-weight: 600;
             outline: none;
             transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .luxury-input::placeholder {
+            color: rgba(148, 163, 184, 0.65);
+            font-weight: 400;
         }
 
         .luxury-input:focus {
@@ -217,11 +449,11 @@
             color: #050811;
             font-weight: 900;
             border-radius: 999px;
-            padding: 0.92rem 2.4rem;
+            padding: 0.9rem 2.3rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.65rem;
+            gap: 0.6rem;
             box-shadow: 0 12px 30px rgba(212, 175, 55, 0.35);
             transition: transform 0.2s ease, box-shadow 0.2s ease;
             cursor: pointer;
@@ -232,7 +464,86 @@
             box-shadow: 0 16px 38px rgba(212, 175, 55, 0.5);
         }
 
-        /* Cinematic Real Map Overlay */
+        /* ===================================================================== */
+        /* أيقونات السوشيال ميديا بألوانها الحقيقية + 3 حسابات تحت كل منصة */
+        /* ===================================================================== */
+        .social-platform-box {
+            border-radius: 1.35rem;
+            padding: 1.15rem 0.9rem;
+            transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        html.dark .social-platform-box {
+            background: rgba(12, 18, 34, 0.85);
+            border: 1px solid rgba(212, 175, 55, 0.22);
+        }
+
+        html.light .social-platform-box {
+            background: #FFFFFF;
+            border: 1px solid rgba(212, 175, 55, 0.28);
+            box-shadow: 0 10px 26px -18px rgba(15, 23, 42, 0.25);
+        }
+
+        .social-platform-box:hover {
+            transform: translateY(-4px);
+            border-color: rgba(212, 175, 55, 0.65);
+        }
+
+        .social-brand-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            color: #FFFFFF;
+            margin: 0 auto 0.65rem;
+            box-shadow: 0 8px 20px -6px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-fb { background: #1877F2; }
+        .brand-ig { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .brand-pi { background: #E60023; }
+        .brand-x  { background: #000000; border: 1.5px solid rgba(255, 255, 255, 0.35); }
+        .brand-tt { background: #010101; border: 1.5px solid rgba(255, 255, 255, 0.22); }
+        .brand-tt i { filter: drop-shadow(-1.5px -1px 0 #25F4EE) drop-shadow(1.5px 1px 0 #FE2C55); }
+        .brand-yt { background: #FF0000; }
+
+        .social-lang-pill {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 0.42rem 0.7rem;
+            border-radius: 0.7rem;
+            font-size: 11px;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        html.dark .social-lang-pill {
+            background: rgba(255, 255, 255, 0.04);
+            color: #E2E8F0;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        html.light .social-lang-pill {
+            background: #F8FAFC;
+            color: #1E293B;
+            border: 1px solid rgba(15, 23, 42, 0.08);
+        }
+
+        .social-lang-pill:hover {
+            background: #D4AF37 !important;
+            color: #050811 !important;
+            border-color: #F3E5AB !important;
+            transform: translateY(-1px);
+        }
+
+        /* ===================================================================== */
+        /* Cinematic Real Map Overlay & Pins */
+        /* ===================================================================== */
         #cinematic-overlay {
             position: fixed;
             inset: 0;
@@ -242,9 +553,7 @@
             flex-direction: column;
         }
 
-        #cinematic-overlay.active {
-            display: flex;
-        }
+        #cinematic-overlay.active { display: flex; }
 
         #concierge-real-map {
             position: absolute;
@@ -277,7 +586,6 @@
             border-color: #F3E5AB;
         }
 
-        /* On-Map Radar & Price Pins */
         .radar-country-label {
             position: absolute;
             bottom: 18px;
@@ -322,13 +630,8 @@
             animation: radarPulse 1.8s infinite ease-out;
         }
 
-        .radar-pulse-ring.origin-ring {
-            border-color: rgba(16, 185, 129, 0.85);
-        }
-
-        .radar-pulse-ring.delay-1 {
-            animation-delay: 0.75s;
-        }
+        .radar-pulse-ring.origin-ring { border-color: rgba(16, 185, 129, 0.85); }
+        .radar-pulse-ring.delay-1 { animation-delay: 0.75s; }
 
         @keyframes radarPulse {
             0%   { transform: scale(0.35); opacity: 1; }
@@ -351,31 +654,9 @@
             white-space: nowrap;
         }
 
-        .real-jet-wrapper {
-            position: relative;
-            width: 44px;
-            height: 44px;
-        }
+        .real-jet-wrapper { position: relative; width: 44px; height: 44px; }
+        .real-jet-svg { position: absolute; inset: 0; width: 44px; height: 44px; filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.95)); }
 
-        .real-jet-svg {
-            position: absolute;
-            inset: 0;
-            width: 44px;
-            height: 44px;
-            filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.95));
-        }
-
-        .real-jet-shadow {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            width: 40px;
-            height: 40px;
-            opacity: 0.4;
-            filter: blur(2px);
-        }
-
-        /* Leaflet Dark Luxury Popup */
         .leaflet-popup-content-wrapper {
             background: rgba(7, 11, 22, 0.97) !important;
             color: #FFFFFF !important;
@@ -384,15 +665,12 @@
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85) !important;
         }
 
-        .leaflet-popup-tip {
-            background: rgba(7, 11, 22, 0.97) !important;
-        }
+        .leaflet-popup-tip { background: rgba(7, 11, 22, 0.97) !important; }
 
-        /* On-Map Offer Cards */
         .on-map-offer-card {
             background: rgba(7, 11, 22, 0.94);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(212, 175, 55, 0.35);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.38);
             border-radius: 1.15rem;
             padding: 0.85rem 0.95rem;
             display: flex;
@@ -402,17 +680,13 @@
             transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .on-map-offer-card:hover {
-            border-color: #D4AF37;
-            transform: translateY(-2px);
-        }
-
+        .on-map-offer-card:hover { border-color: #D4AF37; transform: translateY(-2px); }
         .on-map-offer-card.offer-checked {
             border-color: #10B981 !important;
             box-shadow: 0 0 22px rgba(16, 185, 129, 0.35) !important;
         }
 
-        /* Modals (Article & Permanent Social Deal Spotlight) */
+        /* Deal Spotlight Modal */
         .luxury-modal-backdrop {
             position: fixed;
             inset: 0;
@@ -431,26 +705,6 @@
             animation: fadeSlideUp 0.25s ease-out;
         }
 
-        .article-image-wrapper {
-            margin: 1.25rem 0;
-            border-radius: 1rem;
-            overflow: hidden;
-            border: 1px solid rgba(212, 175, 55, 0.25);
-        }
-
-        .article-body-content p {
-            margin-bottom: 1rem;
-            line-height: 1.85;
-        }
-
-        .article-body-content h2,
-        .article-body-content h3 {
-            color: #D4AF37;
-            font-weight: 800;
-            margin: 1.35rem 0 0.65rem;
-        }
-
-        /* Toast notification for copied link */
         #copy-toast {
             position: fixed;
             bottom: 24px;
@@ -479,28 +733,28 @@
 <body class="min-h-screen antialiased selection:bg-brand-gold selection:text-black">
 
     <!-- ========================================================================= -->
-    <!-- شريط التنقل العلوي الفاخر (Navbar) -->
+    <!-- شريط التنقل العلوي الفاخر (Navbar + تأثير ذهبي متحرك حول اسم الموقع) -->
     <!-- ========================================================================= -->
-    <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/85 dark:bg-[#050811]/90 border-b border-brand-gold/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-3">
-            <a href="#" class="flex items-center gap-2.5 group">
-                <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-gradient-to-br from-brand-gold to-amber-600 flex items-center justify-center text-black shadow-lg shadow-brand-gold/30">
-                    <i class="fas fa-crown text-sm sm:text-base"></i>
+    <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/88 dark:bg-[#050811]/92 border-b border-brand-gold/25">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-3">
+            <a href="#" class="brand-logo-wrap flex items-center gap-2 sm:gap-2.5 group shrink-0">
+                <div class="brand-crown-badge w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-brand-gold via-amber-300 to-amber-600 flex items-center justify-center text-black shrink-0">
+                    <i class="fas fa-crown text-xs sm:text-sm"></i>
                 </div>
                 <div>
-                    <div class="font-luxury text-base sm:text-xl font-extrabold tracking-wider text-slate-900 dark:text-white leading-none">
-                        UCUZAKAL <span class="text-brand-gold">TÜRKİYE</span>
+                    <div class="font-luxury text-sm sm:text-lg font-extrabold tracking-wider text-slate-900 dark:text-white leading-none">
+                        UCUZAKAL <span class="brand-gold-text">TÜRKİYE</span>
                     </div>
-                    <div class="text-[9px] sm:text-[10px] tracking-[0.25em] uppercase text-slate-500 dark:text-slate-400 mt-0.5">
+                    <div class="text-[8px] sm:text-[9px] tracking-[0.26em] uppercase text-slate-500 dark:text-brand-goldLight/80 mt-0.5 font-semibold">
                         LUXURY TRAVEL AI
                     </div>
                 </div>
             </a>
 
-            <div class="flex items-center gap-2 sm:gap-3">
+            <div class="flex items-center gap-1.5 sm:gap-2.5">
                 <!-- محول اللغات الـ 11 -->
                 <select id="lang-switcher" onchange="window.changeLanguage(this.value)" aria-label="Language Switcher"
-                    class="bg-slate-100 dark:bg-slate-900 border border-brand-gold/35 text-slate-900 dark:text-white text-[11px] sm:text-xs font-bold rounded-full px-2.5 sm:px-3.5 py-1.5 sm:py-2 outline-none focus:border-brand-gold cursor-pointer">
+                    class="bg-slate-100 dark:bg-slate-900/95 border border-brand-gold/40 text-slate-900 dark:text-white text-[11px] sm:text-xs font-bold rounded-full px-2 sm:px-3.5 py-1.5 sm:py-2 outline-none focus:border-brand-gold cursor-pointer">
                     <option value="tr">🇹🇷 Türkçe</option>
                     <option value="ar">🇸🇦 العربية</option>
                     <option value="en">🇬🇧 English</option>
@@ -516,14 +770,15 @@
 
                 <!-- تبديل الثيم الليلي / النهاري -->
                 <button onclick="window.toggleTheme()" aria-label="Toggle Theme"
-                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-100 dark:bg-slate-900 border border-brand-gold/30 flex items-center justify-center hover:border-brand-gold transition cursor-pointer">
+                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-100 dark:bg-slate-900/95 border border-brand-gold/35 flex items-center justify-center hover:border-brand-gold transition cursor-pointer shrink-0">
                     <i id="theme-icon" class="fas fa-sun text-xs sm:text-sm text-brand-gold"></i>
                 </button>
 
-                <!-- تسجيل الدخول عبر Gmail -->
+                <!-- تسجيل الدخول الحقيقي عبر Google (Firebase Auth) -->
                 <button id="auth-btn" onclick="window.loginWithGoogle()"
-                    class="bg-slate-900 dark:bg-brand-gold/15 text-white dark:text-brand-gold border border-brand-gold/40 hover:bg-brand-gold hover:text-black transition rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer">
-                    <i class="fab fa-google"></i>
+                    class="bg-slate-900 dark:bg-brand-gold/15 text-white dark:text-brand-gold border border-brand-gold/45 hover:bg-brand-gold hover:text-black transition rounded-full px-2.5 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer shrink-0">
+                    <img id="auth-avatar" src="" alt="" class="hidden w-5 h-5 rounded-full object-cover border border-brand-gold">
+                    <i id="auth-google-icon" class="fab fa-google"></i>
                     <span id="auth-text" data-i18n="google_login" class="hidden sm:inline">Gmail Girişi</span>
                 </button>
             </div>
@@ -531,272 +786,280 @@
     </header>
 
     <!-- ========================================================================= -->
-    <!-- الواجهة الرئيسية (Hero Section) -->
+    <!-- الواجهة الرئيسية (صورة كاملة الحجم بوضوح ودقة على الهاتف والكمبيوتر) -->
     <!-- ========================================================================= -->
-    <section class="hero-section pt-14 pb-16 sm:pt-20 sm:pb-24 px-4 sm:px-6 text-center">
-        <div class="max-w-4xl mx-auto">
-            <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/55 border border-brand-gold/40 text-brand-gold text-[10px] sm:text-xs font-extrabold tracking-[0.25em] uppercase mb-5">
-                <i class="fas fa-sparkles"></i> UCUZAKAL TÜRKİYE • AI CONCIERGE
-            </span>
-            <h1 data-i18n="hero_title" class="font-luxury text-3xl sm:text-5xl md:text-6xl font-extrabold text-white leading-tight mb-4 drop-shadow-xl">
-                Seçkin Rotaları Lüksle Keşfedin
-            </h1>
-            <p data-i18n="hero_subtitle" class="text-slate-200 text-sm sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
-                Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.
-            </p>
-        </div>
-    </section>
+    <section class="hero-stage">
+        <div class="hero-image-canvas">
+            <img src="./hero-bg.png.png" alt="UcuzaKal Türkiye" class="hero-full-img">
+            <div class="hero-scrim-overlay"></div>
 
-    <!-- ========================================================================= -->
-    <!-- المستشار السياحي الذكي (مساعد الفنادق + مساعد الطيران) -->
-    <!-- ========================================================================= -->
-    <section id="smart-concierge" class="max-w-6xl mx-auto px-4 sm:px-6 -mt-8 sm:-mt-12 relative z-20 mb-16 sm:mb-24">
-        <div class="concierge-shell rounded-[2rem] p-5 sm:p-8 md:p-10">
-            <div class="text-center mb-6 sm:mb-8">
-                <h2 data-i18n="smart_hub_title" class="font-luxury text-2xl sm:text-4xl font-extrabold text-white mb-2">
-                    Akıllı Seyahat Asistanınız
-                </h2>
-                <p data-i18n="smart_hub_sub" class="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto">
-                    Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planınızı saniyeler içinde tasarlayın.
+            <!-- النص الرئيسي المتجاوب فوق الصورة بوضوح تام -->
+            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 pb-6 sm:pb-12">
+                <span class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-black/65 backdrop-blur-md border border-brand-gold/50 text-brand-goldLight text-[9px] sm:text-xs font-extrabold tracking-[0.2em] uppercase mb-2.5 sm:mb-5 shadow-lg">
+                    <i class="fas fa-sparkles text-brand-gold"></i> UCUZAKAL TÜRKİYE • AI CONCIERGE
+                </span>
+                <h1 data-i18n="hero_title" class="font-luxury text-xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white max-w-4xl leading-snug mb-2 sm:mb-4 drop-shadow-[0_4px_18px_rgba(0,0,0,0.9)]">
+                    Seçkin Rotaları Lüksle Keşfedin
+                </h1>
+                <p data-i18n="hero_subtitle" class="text-slate-100 text-xs sm:text-base md:text-lg max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
+                    Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.
                 </p>
-
-                <!-- أزرار التبديل بين المساعدين -->
-                <div class="flex flex-wrap items-center justify-center gap-3 mt-6">
-                    <button id="tab-hotel" type="button" onclick="window.switchConcierge('hotel')" class="concierge-tab-btn active">
-                        <i class="fas fa-hotel"></i>
-                        <span data-i18n="tab_hotel">Konaklama Asistanı</span>
-                    </button>
-                    <button id="tab-flight" type="button" onclick="window.switchConcierge('flight')" class="concierge-tab-btn">
-                        <i class="fas fa-plane"></i>
-                        <span data-i18n="tab_flight">Uçuş Asistanı</span>
-                    </button>
-                </div>
             </div>
+        </div>
+    </section>
 
-            <!-- لوحة مساعد الفنادق (81 محافظة تركية) -->
-            <div id="panel-hotel" class="concierge-panel active">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div>
-                        <label for="hc-budget" data-i18n="c_budget" class="block text-xs font-bold text-slate-300 mb-1.5">Bütçeniz (Gecelik)</label>
-                        <input id="hc-budget" type="text" placeholder="120$" oninput="window.calculateTotal()" class="luxury-input">
-                    </div>
-                    <div>
-                        <label for="hc-days" data-i18n="c_days" class="block text-xs font-bold text-slate-300 mb-1.5">Konaklama Süresi (Gün)</label>
-                        <input id="hc-days" type="number" min="1" max="60" value="3" oninput="window.calculateTotal()" class="luxury-input">
-                    </div>
-                </div>
+    <!-- ========================================================================= -->
+    <!-- المستشار السياحي الذكي (في بداية الموقع + إطار ذهبي متحرك + خانات فارغة نظيفة) -->
+    <!-- ========================================================================= -->
+    <section id="smart-concierge" class="max-w-6xl mx-auto px-3 sm:px-6 -mt-4 sm:-mt-10 relative z-20 mb-16 sm:mb-24">
+        <div class="gold-animated-frame concierge-frame">
+            <div class="concierge-shell p-5 sm:p-8 md:p-10">
+                <div class="text-center mb-6 sm:mb-8">
+                    <h2 data-i18n="smart_hub_title" class="font-luxury text-2xl sm:text-4xl font-extrabold text-white mb-2">
+                        Akıllı Seyahat Asistanınız
+                    </h2>
+                    <p data-i18n="smart_hub_sub" class="text-slate-300 text-xs sm:text-sm max-w-2xl mx-auto leading-relaxed">
+                        Yapay zeka algoritmalarımızla tam size göre özelleştirilmiş tatil ve uçuş planınızı saniyeler içinde tasarlayın.
+                    </p>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
-                    <div>
-                        <label for="hc-type" data-i18n="c_type" class="block text-xs font-bold text-slate-300 mb-1.5">Konaklama Tipi</label>
-                        <select id="hc-type" onchange="window.updateHotelBtnText()" class="luxury-input">
-                            <option value="hotel" data-i18n="t_hotel">Oteller</option>
-                            <option value="resort" data-i18n="t_resort">Tatil Köyleri (Resort)</option>
-                            <option value="apart" data-i18n="t_apart">Apart Oteller</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="hc-vibe" data-i18n="c_vibe" class="block text-xs font-bold text-slate-300 mb-1.5">Tatil Tarzı</label>
-                        <select id="hc-vibe" class="luxury-input">
-                            <option value="luxury" data-i18n="vibe_luxury">Lüks Resort &amp; Spa</option>
-                            <option value="family" data-i18n="vibe_family">Aile Dostu Tatil</option>
-                            <option value="romantic" data-i18n="vibe_romantic">Balayı / Romantik</option>
-                            <option value="nature" data-i18n="vibe_nature">Doğa ve Dağ Evi</option>
-                            <option value="beach" data-i18n="vibe_beach">Sahil ve Plaj</option>
-                            <option value="thermal" data-i18n="vibe_thermal">Termal &amp; Sağlık</option>
-                            <option value="city" data-i18n="vibe_city">Şehir Merkezi &amp; Alışveriş</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="hc-dest" data-i18n="c_dest" class="block text-xs font-bold text-slate-300 mb-1.5">Hedef Bölge</label>
-                        <select id="hc-dest" class="luxury-input">
-                            <option value="Tüm Türkiye" data-i18n="c_all_tr">Tüm Türkiye</option>
-                            <option value="Antalya">Antalya</option>
-                            <option value="İstanbul">İstanbul</option>
-                            <option value="İzmir">İzmir</option>
-                            <option value="Trabzon">Trabzon</option>
-                            <option value="Bursa">Bursa</option>
-                            <option value="Ankara">Ankara</option>
-                            <option value="Muğla">Muğla</option>
-                            <option value="Nevşehir">Nevşehir</option>
-                            <option value="Adana">Adana</option>
-                            <option value="Adıyaman">Adıyaman</option>
-                            <option value="Afyonkarahisar">Afyonkarahisar</option>
-                            <option value="Ağrı">Ağrı</option>
-                            <option value="Aksaray">Aksaray</option>
-                            <option value="Amasya">Amasya</option>
-                            <option value="Ardahan">Ardahan</option>
-                            <option value="Artvin">Artvin</option>
-                            <option value="Aydın">Aydın</option>
-                            <option value="Balıkesir">Balıkesir</option>
-                            <option value="Bartın">Bartın</option>
-                            <option value="Batman">Batman</option>
-                            <option value="Bayburt">Bayburt</option>
-                            <option value="Bilecik">Bilecik</option>
-                            <option value="Bingöl">Bingöl</option>
-                            <option value="Bitlis">Bitlis</option>
-                            <option value="Bolu">Bolu</option>
-                            <option value="Burdur">Burdur</option>
-                            <option value="Çanakkale">Çanakkale</option>
-                            <option value="Çankırı">Çankırı</option>
-                            <option value="Çorum">Çorum</option>
-                            <option value="Denizli">Denizli</option>
-                            <option value="Diyarbakır">Diyarbakır</option>
-                            <option value="Düzce">Düzce</option>
-                            <option value="Edirne">Edirne</option>
-                            <option value="Elazığ">Elazığ</option>
-                            <option value="Erzincan">Erzincan</option>
-                            <option value="Erzurum">Erzurum</option>
-                            <option value="Eskişehir">Eskişehir</option>
-                            <option value="Gaziantep">Gaziantep</option>
-                            <option value="Giresun">Giresun</option>
-                            <option value="Gümüşhane">Gümüşhane</option>
-                            <option value="Hakkari">Hakkari</option>
-                            <option value="Hatay">Hatay</option>
-                            <option value="Iğdır">Iğdır</option>
-                            <option value="Isparta">Isparta</option>
-                            <option value="Kahramanmaraş">Kahramanmaraş</option>
-                            <option value="Karabük">Karabük</option>
-                            <option value="Karaman">Karaman</option>
-                            <option value="Kars">Kars</option>
-                            <option value="Kastamonu">Kastamonu</option>
-                            <option value="Kayseri">Kayseri</option>
-                            <option value="Kırıkkale">Kırıkkale</option>
-                            <option value="Kırklareli">Kırklareli</option>
-                            <option value="Kırşehir">Kırşehir</option>
-                            <option value="Kilis">Kilis</option>
-                            <option value="Kocaeli">Kocaeli</option>
-                            <option value="Konya">Konya</option>
-                            <option value="Kütahya">Kütahya</option>
-                            <option value="Malatya">Malatya</option>
-                            <option value="Manisa">Manisa</option>
-                            <option value="Mardin">Mardin</option>
-                            <option value="Mersin">Mersin</option>
-                            <option value="Muş">Muş</option>
-                            <option value="Niğde">Niğde</option>
-                            <option value="Ordu">Ordu</option>
-                            <option value="Osmaniye">Osmaniye</option>
-                            <option value="Rize">Rize</option>
-                            <option value="Sakarya">Sakarya</option>
-                            <option value="Samsun">Samsun</option>
-                            <option value="Siirt">Siirt</option>
-                            <option value="Sinop">Sinop</option>
-                            <option value="Sivas">Sivas</option>
-                            <option value="Şanlıurfa">Şanlıurfa</option>
-                            <option value="Şırnak">Şırnak</option>
-                            <option value="Tekirdağ">Tekirdağ</option>
-                            <option value="Tokat">Tokat</option>
-                            <option value="Tunceli">Tunceli</option>
-                            <option value="Uşak">Uşak</option>
-                            <option value="Van">Van</option>
-                            <option value="Yalova">Yalova</option>
-                            <option value="Yozgat">Yozgat</option>
-                            <option value="Zonguldak">Zonguldak</option>
-                        </select>
+                    <!-- أزرار التبديل بين المساعدين -->
+                    <div class="flex flex-wrap items-center justify-center gap-3 mt-6">
+                        <button id="tab-hotel" type="button" onclick="window.switchConcierge('hotel')" class="concierge-tab-btn active">
+                            <i class="fas fa-hotel"></i>
+                            <span data-i18n="tab_hotel">Konaklama Asistanı</span>
+                        </button>
+                        <button id="tab-flight" type="button" onclick="window.switchConcierge('flight')" class="concierge-tab-btn">
+                            <i class="fas fa-plane"></i>
+                            <span data-i18n="tab_flight">Uçuş Asistanı</span>
+                        </button>
                     </div>
                 </div>
 
-                <div id="total-calc-display" class="text-center text-brand-gold font-extrabold text-sm sm:text-base min-h-[24px] mb-4"></div>
+                <!-- لوحة مساعد الفنادق (جميع خانات الكتابة فارغة ونظيفة تماماً) -->
+                <div id="panel-hotel" class="concierge-panel active">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <div>
+                            <label for="hc-budget" data-i18n="c_budget" class="block text-xs font-bold text-slate-300 mb-1.5">Bütçeniz (Gecelik)</label>
+                            <input id="hc-budget" type="text" value="" data-i18n-placeholder="ph_hotel_budget" placeholder="" oninput="window.calculateTotal()" autocomplete="off" class="luxury-input">
+                        </div>
+                        <div>
+                            <label for="hc-days" data-i18n="c_days" class="block text-xs font-bold text-slate-300 mb-1.5">Konaklama Süresi (Gün)</label>
+                            <input id="hc-days" type="number" min="1" max="60" value="" data-i18n-placeholder="ph_hotel_days" placeholder="" oninput="window.calculateTotal()" autocomplete="off" class="luxury-input">
+                        </div>
+                    </div>
 
-                <div class="text-center">
-                    <button type="button" onclick="window.startHotelConcierge()" class="luxury-cta-btn text-sm sm:text-base">
-                        <i class="fas fa-search-location"></i>
-                        <span id="btn-hotel-text" data-i18n="btn_hotel">Bana Otel Bul</span>
-                    </button>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+                        <div>
+                            <label for="hc-type" data-i18n="c_type" class="block text-xs font-bold text-slate-300 mb-1.5">Konaklama Tipi</label>
+                            <select id="hc-type" onchange="window.updateHotelBtnText()" class="luxury-input">
+                                <option value="hotel" data-i18n="t_hotel">Oteller</option>
+                                <option value="resort" data-i18n="t_resort">Tatil Köyleri (Resort)</option>
+                                <option value="apart" data-i18n="t_apart">Apart Oteller</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="hc-vibe" data-i18n="c_vibe" class="block text-xs font-bold text-slate-300 mb-1.5">Tatil Tarzı</label>
+                            <select id="hc-vibe" class="luxury-input">
+                                <option value="luxury" data-i18n="vibe_luxury">Lüks Resort &amp; Spa</option>
+                                <option value="family" data-i18n="vibe_family">Aile Dostu Tatil</option>
+                                <option value="romantic" data-i18n="vibe_romantic">Balayı / Romantik</option>
+                                <option value="nature" data-i18n="vibe_nature">Doğa ve Dağ Evi</option>
+                                <option value="beach" data-i18n="vibe_beach">Sahil ve Plaj</option>
+                                <option value="thermal" data-i18n="vibe_thermal">Termal &amp; Sağlık</option>
+                                <option value="city" data-i18n="vibe_city">Şehir Merkezi &amp; Alışveriş</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="hc-dest" data-i18n="c_dest" class="block text-xs font-bold text-slate-300 mb-1.5">Hedef Bölge</label>
+                            <select id="hc-dest" class="luxury-input">
+                                <option value="Tüm Türkiye" data-i18n="c_all_tr">Tüm Türkiye</option>
+                                <option value="Antalya">Antalya</option>
+                                <option value="İstanbul">İstanbul</option>
+                                <option value="İzmir">İzmir</option>
+                                <option value="Trabzon">Trabzon</option>
+                                <option value="Bursa">Bursa</option>
+                                <option value="Ankara">Ankara</option>
+                                <option value="Muğla">Muğla</option>
+                                <option value="Nevşehir">Nevşehir</option>
+                                <option value="Adana">Adana</option>
+                                <option value="Adıyaman">Adıyaman</option>
+                                <option value="Afyonkarahisar">Afyonkarahisar</option>
+                                <option value="Ağrı">Ağrı</option>
+                                <option value="Aksaray">Aksaray</option>
+                                <option value="Amasya">Amasya</option>
+                                <option value="Ardahan">Ardahan</option>
+                                <option value="Artvin">Artvin</option>
+                                <option value="Aydın">Aydın</option>
+                                <option value="Balıkesir">Balıkesir</option>
+                                <option value="Bartın">Bartın</option>
+                                <option value="Batman">Batman</option>
+                                <option value="Bayburt">Bayburt</option>
+                                <option value="Bilecik">Bilecik</option>
+                                <option value="Bingöl">Bingöl</option>
+                                <option value="Bitlis">Bitlis</option>
+                                <option value="Bolu">Bolu</option>
+                                <option value="Burdur">Burdur</option>
+                                <option value="Çanakkale">Çanakkale</option>
+                                <option value="Çankırı">Çankırı</option>
+                                <option value="Çorum">Çorum</option>
+                                <option value="Denizli">Denizli</option>
+                                <option value="Diyarbakır">Diyarbakır</option>
+                                <option value="Düzce">Düzce</option>
+                                <option value="Edirne">Edirne</option>
+                                <option value="Elazığ">Elazığ</option>
+                                <option value="Erzincan">Erzincan</option>
+                                <option value="Erzurum">Erzurum</option>
+                                <option value="Eskişehir">Eskişehir</option>
+                                <option value="Gaziantep">Gaziantep</option>
+                                <option value="Giresun">Giresun</option>
+                                <option value="Gümüşhane">Gümüşhane</option>
+                                <option value="Hakkari">Hakkari</option>
+                                <option value="Hatay">Hatay</option>
+                                <option value="Iğdır">Iğdır</option>
+                                <option value="Isparta">Isparta</option>
+                                <option value="Kahramanmaraş">Kahramanmaraş</option>
+                                <option value="Karabük">Karabük</option>
+                                <option value="Karaman">Karaman</option>
+                                <option value="Kars">Kars</option>
+                                <option value="Kastamonu">Kastamonu</option>
+                                <option value="Kayseri">Kayseri</option>
+                                <option value="Kırıkkale">Kırıkkale</option>
+                                <option value="Kırklareli">Kırklareli</option>
+                                <option value="Kırşehir">Kırşehir</option>
+                                <option value="Kilis">Kilis</option>
+                                <option value="Kocaeli">Kocaeli</option>
+                                <option value="Konya">Konya</option>
+                                <option value="Kütahya">Kütahya</option>
+                                <option value="Malatya">Malatya</option>
+                                <option value="Manisa">Manisa</option>
+                                <option value="Mardin">Mardin</option>
+                                <option value="Mersin">Mersin</option>
+                                <option value="Muş">Muş</option>
+                                <option value="Niğde">Niğde</option>
+                                <option value="Ordu">Ordu</option>
+                                <option value="Osmaniye">Osmaniye</option>
+                                <option value="Rize">Rize</option>
+                                <option value="Sakarya">Sakarya</option>
+                                <option value="Samsun">Samsun</option>
+                                <option value="Siirt">Siirt</option>
+                                <option value="Sinop">Sinop</option>
+                                <option value="Sivas">Sivas</option>
+                                <option value="Şanlıurfa">Şanlıurfa</option>
+                                <option value="Şırnak">Şırnak</option>
+                                <option value="Tekirdağ">Tekirdağ</option>
+                                <option value="Tokat">Tokat</option>
+                                <option value="Tunceli">Tunceli</option>
+                                <option value="Uşak">Uşak</option>
+                                <option value="Van">Van</option>
+                                <option value="Yalova">Yalova</option>
+                                <option value="Yozgat">Yozgat</option>
+                                <option value="Zonguldak">Zonguldak</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div id="total-calc-display" class="text-center text-brand-gold font-extrabold text-sm sm:text-base min-h-[24px] mb-4"></div>
+
+                    <div class="text-center">
+                        <button type="button" onclick="window.startHotelConcierge()" class="luxury-cta-btn text-sm sm:text-base">
+                            <i class="fas fa-search-location"></i>
+                            <span id="btn-hotel-text" data-i18n="btn_hotel">Bana Otel Bul</span>
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            <!-- لوحة مساعد الطيران العالمي -->
-            <div id="panel-flight" class="concierge-panel">
-                <div class="text-center mb-5">
-                    <button type="button" onclick="window.toggleFlightDirection()"
-                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 border border-brand-gold/45 text-brand-gold text-xs sm:text-sm font-extrabold hover:bg-brand-gold hover:text-black transition cursor-pointer">
-                        <i class="fas fa-exchange-alt"></i>
-                        <span id="flight-dir-label" data-i18n="dir_world_to_tr">Yön: Tüm Dünya ✈️ Türkiye</span>
-                    </button>
-                </div>
+                <!-- لوحة مساعد الطيران العالمي (جميع خانات الكتابة فارغة ونظيفة تماماً) -->
+                <div id="panel-flight" class="concierge-panel">
+                    <div class="text-center mb-5">
+                        <button type="button" onclick="window.toggleFlightDirection()"
+                            class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold/10 border border-brand-gold/45 text-brand-gold text-xs sm:text-sm font-extrabold hover:bg-brand-gold hover:text-black transition cursor-pointer">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span id="flight-dir-label" data-i18n="dir_world_to_tr">Yön: Tüm Dünya ✈️ Türkiye</span>
+                        </button>
+                    </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <!-- من أين (الانطلاق) -->
-                    <div class="rounded-2xl border border-brand-gold/25 bg-white/[0.02] p-4 space-y-3">
-                        <div class="flex items-center gap-2 text-brand-gold font-extrabold text-xs uppercase tracking-wider border-b border-brand-gold/20 pb-2">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                        <!-- من أين (الانطلاق) -->
+                        <div class="rounded-2xl border border-brand-gold/25 bg-white/[0.02] p-4 space-y-3">
+                            <div class="flex items-center gap-2 text-brand-gold font-extrabold text-xs uppercase tracking-wider border-b border-brand-gold/20 pb-2">
+                                <i class="fas fa-plane-departure"></i>
+                                <span data-i18n="f_from">Nereden (Kalkış)</span>
+                            </div>
+                            <div>
+                                <label for="fc-from-country" data-i18n="f_country_label" class="block text-[11px] font-bold text-slate-300 mb-1">Ülke</label>
+                                <select id="fc-from-country" onchange="window.onFlightCountryChange('from')" class="luxury-input"></select>
+                            </div>
+                            <div>
+                                <label data-i18n="f_city_label" class="block text-[11px] font-bold text-slate-300 mb-1">İl / Şehir</label>
+                                <select id="fc-from-tr-city" class="luxury-input hidden"></select>
+                                <input id="fc-from-world-city" type="text" value="" data-i18n-placeholder="ph_city" placeholder="" autocomplete="off" class="luxury-input">
+                            </div>
+                            <div>
+                                <label for="fc-from-airport" data-i18n="f_airport_label" class="block text-[11px] font-bold text-slate-300 mb-1">Havalimanı Adı</label>
+                                <input id="fc-from-airport" type="text" value="" data-i18n-placeholder="ph_airport" placeholder="" autocomplete="off" class="luxury-input">
+                            </div>
+                        </div>
+
+                        <!-- إلى أين (الوصول) -->
+                        <div class="rounded-2xl border border-brand-gold/25 bg-white/[0.02] p-4 space-y-3">
+                            <div class="flex items-center gap-2 text-brand-gold font-extrabold text-xs uppercase tracking-wider border-b border-brand-gold/20 pb-2">
+                                <i class="fas fa-plane-arrival"></i>
+                                <span data-i18n="f_to">Nereye (Varış)</span>
+                            </div>
+                            <div>
+                                <label for="fc-to-country" data-i18n="f_country_label" class="block text-[11px] font-bold text-slate-300 mb-1">Ülke</label>
+                                <select id="fc-to-country" onchange="window.onFlightCountryChange('to')" class="luxury-input"></select>
+                            </div>
+                            <div>
+                                <label data-i18n="f_city_label" class="block text-[11px] font-bold text-slate-300 mb-1">İl / Şehir</label>
+                                <select id="fc-to-tr-city" class="luxury-input"></select>
+                                <input id="fc-to-world-city" type="text" value="" data-i18n-placeholder="ph_city" placeholder="" autocomplete="off" class="luxury-input hidden">
+                            </div>
+                            <div>
+                                <label for="fc-to-airport" data-i18n="f_airport_label" class="block text-[11px] font-bold text-slate-300 mb-1">Havalimanı Adı</label>
+                                <input id="fc-to-airport" type="text" value="" data-i18n-placeholder="ph_airport" placeholder="" autocomplete="off" class="luxury-input">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div>
+                            <label for="fc-budget" data-i18n="f_budget" class="block text-xs font-bold text-slate-300 mb-1.5">Bütçeniz</label>
+                            <input id="fc-budget" type="text" value="" data-i18n-placeholder="ph_flight_budget" placeholder="" autocomplete="off" class="luxury-input">
+                        </div>
+                        <div>
+                            <label for="fc-class" data-i18n="f_class" class="block text-xs font-bold text-slate-300 mb-1.5">Uçuş Sınıfı</label>
+                            <select id="fc-class" class="luxury-input">
+                                <option value="economy" data-i18n="class_eco">Ekonomi</option>
+                                <option value="premium" data-i18n="class_prem">Premium Ekonomi</option>
+                                <option value="business" data-i18n="class_bus">Business Class</option>
+                                <option value="first" data-i18n="class_first">First Class</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="fc-airline" data-i18n="f_airline" class="block text-xs font-bold text-slate-300 mb-1.5">Havayolu (İsteğe bağlı)</label>
+                            <input id="fc-airline" type="text" value="" data-i18n-placeholder="ph_airline" placeholder="" autocomplete="off" class="luxury-input">
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="button" onclick="window.startFlightConcierge()" class="luxury-cta-btn text-sm sm:text-base">
                             <i class="fas fa-plane-departure"></i>
-                            <span data-i18n="f_from">Nereden (Kalkış)</span>
-                        </div>
-                        <div>
-                            <label for="fc-from-country" data-i18n="f_country_label" class="block text-[11px] font-bold text-slate-300 mb-1">Ülke</label>
-                            <select id="fc-from-country" onchange="window.onFlightCountryChange('from', true)" class="luxury-input"></select>
-                        </div>
-                        <div>
-                            <label data-i18n="f_city_label" class="block text-[11px] font-bold text-slate-300 mb-1">İl / Şehir</label>
-                            <select id="fc-from-tr-city" onchange="window.autoSuggestAirport('from')" class="luxury-input hidden"></select>
-                            <input id="fc-from-world-city" type="text" oninput="window.autoSuggestAirport('from')" placeholder="Riyadh / Dubai / Cairo..." class="luxury-input">
-                        </div>
-                        <div>
-                            <label for="fc-from-airport" data-i18n="f_airport_label" class="block text-[11px] font-bold text-slate-300 mb-1">Havalimanı Adı</label>
-                            <input id="fc-from-airport" type="text" placeholder="RUH / DXB / IST..." class="luxury-input">
-                        </div>
+                            <span data-i18n="btn_flight">Uçuşumu Şimdi Bul</span>
+                        </button>
                     </div>
-
-                    <!-- إلى أين (الوصول) -->
-                    <div class="rounded-2xl border border-brand-gold/25 bg-white/[0.02] p-4 space-y-3">
-                        <div class="flex items-center gap-2 text-brand-gold font-extrabold text-xs uppercase tracking-wider border-b border-brand-gold/20 pb-2">
-                            <i class="fas fa-plane-arrival"></i>
-                            <span data-i18n="f_to">Nereye (Varış)</span>
-                        </div>
-                        <div>
-                            <label for="fc-to-country" data-i18n="f_country_label" class="block text-[11px] font-bold text-slate-300 mb-1">Ülke</label>
-                            <select id="fc-to-country" onchange="window.onFlightCountryChange('to', true)" class="luxury-input"></select>
-                        </div>
-                        <div>
-                            <label data-i18n="f_city_label" class="block text-[11px] font-bold text-slate-300 mb-1">İl / Şehir</label>
-                            <select id="fc-to-tr-city" onchange="window.autoSuggestAirport('to')" class="luxury-input"></select>
-                            <input id="fc-to-world-city" type="text" oninput="window.autoSuggestAirport('to')" placeholder="City..." class="luxury-input hidden">
-                        </div>
-                        <div>
-                            <label for="fc-to-airport" data-i18n="f_airport_label" class="block text-[11px] font-bold text-slate-300 mb-1">Havalimanı Adı</label>
-                            <input id="fc-to-airport" type="text" placeholder="Istanbul Airport (IST)" class="luxury-input">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <div>
-                        <label for="fc-budget" data-i18n="f_budget" class="block text-xs font-bold text-slate-300 mb-1.5">Bütçeniz</label>
-                        <input id="fc-budget" type="text" placeholder="250$" class="luxury-input">
-                    </div>
-                    <div>
-                        <label for="fc-class" data-i18n="f_class" class="block text-xs font-bold text-slate-300 mb-1.5">Uçuş Sınıfı</label>
-                        <select id="fc-class" class="luxury-input">
-                            <option value="economy" data-i18n="class_eco">Ekonomi</option>
-                            <option value="premium" data-i18n="class_prem">Premium Ekonomi</option>
-                            <option value="business" data-i18n="class_bus">Business Class</option>
-                            <option value="first" data-i18n="class_first">First Class</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="fc-airline" data-i18n="f_airline" class="block text-xs font-bold text-slate-300 mb-1.5">Havayolu (İsteğe bağlı)</label>
-                        <input id="fc-airline" type="text" placeholder="Turkish Airlines / Pegasus..." class="luxury-input">
-                    </div>
-                </div>
-
-                <div class="text-center">
-                    <button type="button" onclick="window.startFlightConcierge()" class="luxury-cta-btn text-sm sm:text-base">
-                        <i class="fas fa-plane-departure"></i>
-                        <span data-i18n="btn_flight">Uçuşumu Şimdi Bul</span>
-                    </button>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ========================================================================= -->
-    <!-- قسم عروض الفنادق اليومية (6 مدن تركية متجددة كل 24 ساعة) -->
+    <!-- قسم عروض الفنادق اليومية (6 بطاقات بإطارات ذهبية متحركة) -->
     <!-- ========================================================================= -->
     <section id="hotels-section" class="max-w-7xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
         <div class="text-center mb-10 sm:mb-14">
-            <span data-i18n="hotels_sub" class="text-brand-gold text-[11px] font-extrabold tracking-[0.35em] uppercase block mb-2">ÖZEL SEÇKİ</span>
-            <h2 data-i18n="hotels_heading" class="font-luxury text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+            <span data-i18n="hotels_sub" class="text-brand-gold text-[11px] font-extrabold tracking-[0.32em] uppercase block mb-2">ÖZEL SEÇKİ</span>
+            <h2 data-i18n="hotels_heading" class="font-luxury text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
                 Özel Seçki Koleksiyonu
             </h2>
             <div class="gold-divider"></div>
@@ -805,12 +1068,12 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- قسم عروض الطيران اليومية (3 داخلي + 1 روسي + 2 عربي متجددة كل 24 ساعة) -->
+    <!-- قسم عروض الطيران اليومية (6 بطاقات بإطارات ذهبية متحركة) -->
     <!-- ========================================================================= -->
     <section id="flights-section" class="max-w-7xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
         <div class="text-center mb-10 sm:mb-14">
-            <span data-i18n="flights_sub" class="text-brand-gold text-[11px] font-extrabold tracking-[0.35em] uppercase block mb-2">GÖKLERDEKİ ZARAFET</span>
-            <h2 data-i18n="flights_heading" class="font-luxury text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+            <span data-i18n="flights_sub" class="text-brand-gold text-[11px] font-extrabold tracking-[0.32em] uppercase block mb-2">GÖKLERDEKİ ZARAFET</span>
+            <h2 data-i18n="flights_heading" class="font-luxury text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
                 Ayrıcalıklı Uçuşlar
             </h2>
             <div class="gold-divider"></div>
@@ -819,17 +1082,19 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- قسم يوميات ومقالات السفر (Blog) -->
+    <!-- قسم المدونة الفاخرة (قالبان تحريريان فقط على طراز مجلات السفر العالمية) -->
     <!-- ========================================================================= -->
     <section id="blog-section" class="max-w-7xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
         <div class="text-center mb-10 sm:mb-14">
-            <span data-i18n="blog_sub" class="text-brand-gold text-[11px] font-extrabold tracking-[0.35em] uppercase block mb-2">SEYAHAT REHBERİ</span>
-            <h2 data-i18n="blog_heading" class="font-luxury text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
+            <span data-i18n="blog_sub" class="text-brand-gold text-[11px] font-extrabold tracking-[0.32em] uppercase block mb-2">SEYAHAT REHBERİ</span>
+            <h2 data-i18n="blog_heading" class="font-luxury text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
                 UcuzaKal Seyahat Günlüğü
             </h2>
             <div class="gold-divider"></div>
         </div>
-        <div id="blog-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+        <!-- قالبان فقط بشكل فخم واحترافي -->
+        <div id="blog-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
+        <div id="blog-pagination" class="hidden flex items-center justify-center gap-3 mt-10"></div>
     </section>
 
     <!-- ========================================================================= -->
@@ -837,39 +1102,43 @@
     <!-- ========================================================================= -->
     <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-20">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div class="ultra-luxury-card p-7 sm:p-9">
-                <div>
-                    <h2 data-i18n="about_heading" class="font-luxury text-2xl sm:text-3xl font-extrabold text-brand-gold mb-4">Biz Kimiz?</h2>
-                    <p data-i18n="about_text_1" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
-                        UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur.
-                    </p>
-                    <p data-i18n="about_text_2" class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
-                        Titizlikle derlenen her bir rota, seyahatinizin unutulmaz bir deneyim olarak kalması için tasarlanmıştır.
-                    </p>
+            <div class="gold-animated-frame">
+                <div class="ultra-luxury-card p-7 sm:p-9">
+                    <div>
+                        <h2 data-i18n="about_heading" class="font-luxury text-2xl sm:text-3xl font-extrabold text-brand-gold mb-4">Biz Kimiz?</h2>
+                        <p data-i18n="about_text_1" class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed mb-4">
+                            UcuzaKal Türkiye; Türkiye'nin en seçkin rotalarında, eşsiz konaklama ve uçuş fırsatlarını sizin için özenle bir araya getiren bağımsız bir seyahat platformudur.
+                        </p>
+                        <p data-i18n="about_text_2" class="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-relaxed">
+                            Titizlikle derlenen her bir rota, seyahatinizin unutulmaz bir deneyim olarak kalması için tasarlanmıştır.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="ultra-luxury-card p-7 sm:p-9">
-                <div>
-                    <h2 data-i18n="ratings_heading" class="font-luxury text-2xl sm:text-3xl font-extrabold text-brand-gold mb-4">İzlenimlerinizi Paylaşın</h2>
-                    <div id="star-container" class="flex items-center gap-2 text-2xl text-slate-400 mb-4">
-                        <i class="far fa-star cursor-pointer hover:text-brand-gold transition" onclick="window.rateStar(1)"></i>
-                        <i class="far fa-star cursor-pointer hover:text-brand-gold transition" onclick="window.rateStar(2)"></i>
-                        <i class="far fa-star cursor-pointer hover:text-brand-gold transition" onclick="window.rateStar(3)"></i>
-                        <i class="far fa-star cursor-pointer hover:text-brand-gold transition" onclick="window.rateStar(4)"></i>
-                        <i class="far fa-star cursor-pointer hover:text-brand-gold transition" onclick="window.rateStar(5)"></i>
-                    </div>
-                    <div class="space-y-3">
-                        <input id="user-review-name" type="text" data-i18n-placeholder="review_name_placeholder" placeholder="Adınız Soyadınız"
-                            class="w-full rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-brand-gold/30 px-4 py-2.5 text-sm outline-none focus:border-brand-gold">
-                        <textarea id="user-review-text" rows="3" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..."
-                            class="w-full rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-brand-gold/30 px-4 py-2.5 text-sm outline-none focus:border-brand-gold"></textarea>
-                        <button type="button" onclick="window.submitReview()" class="luxury-cta-btn text-xs sm:text-sm py-2.5 px-6">
-                            <span data-i18n="submit_review_btn">Gönder</span>
-                        </button>
-                        <p id="review-success-msg" data-i18n="review_success" class="hidden text-emerald-400 text-xs font-bold mt-2">
-                            Zarif geri bildiriminiz için teşekkür ederiz.
-                        </p>
+            <div class="gold-animated-frame">
+                <div class="ultra-luxury-card p-7 sm:p-9">
+                    <div>
+                        <h2 data-i18n="ratings_heading" class="font-luxury text-2xl sm:text-3xl font-extrabold text-brand-gold mb-4">İzlenimlerinizi Paylaşın</h2>
+                        <div id="star-container" class="flex items-center gap-2 text-2xl text-slate-400 mb-4">
+                            <i class="far fa-star cursor-pointer hover:text-brand-gold transition" onclick="window.rateStar(1)"></i>
+                            <i class="far fa-star cursor-pointer hover:text-brand-gold transition" onclick="window.rateStar(2)"></i>
+                            <i class="far fa-star cursor-pointer hover:text-brand-gold transition" onclick="window.rateStar(3)"></i>
+                            <i class="far fa-star cursor-pointer hover:text-brand-gold transition" onclick="window.rateStar(4)"></i>
+                            <i class="far fa-star cursor-pointer hover:text-brand-gold transition" onclick="window.rateStar(5)"></i>
+                        </div>
+                        <div class="space-y-3">
+                            <input id="user-review-name" type="text" data-i18n-placeholder="review_name_placeholder" placeholder="Adınız Soyadınız"
+                                class="w-full rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-brand-gold/30 px-4 py-2.5 text-sm outline-none focus:border-brand-gold">
+                            <textarea id="user-review-text" rows="3" data-i18n-placeholder="review_text_placeholder" placeholder="Düşünceleriniz..."
+                                class="w-full rounded-xl bg-slate-100 dark:bg-slate-900/90 border border-brand-gold/30 px-4 py-2.5 text-sm outline-none focus:border-brand-gold"></textarea>
+                            <button type="button" onclick="window.submitReview()" class="luxury-cta-btn text-xs sm:text-sm py-2.5 px-6">
+                                <span data-i18n="submit_review_btn">Gönder</span>
+                            </button>
+                            <p id="review-success-msg" data-i18n="review_success" class="hidden text-emerald-400 text-xs font-bold mt-2">
+                                Zarif geri bildiriminiz için teşekkür ederiz.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -877,19 +1146,49 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- نافذة قراءة المقالات (Article Modal) -->
+    <!-- قارئ المدونة بملء الشاشة الكاملة (Full-Screen Luxury Editorial Reader) -->
     <!-- ========================================================================= -->
-    <div id="article-modal" class="luxury-modal-backdrop" onclick="window.closeArticleModal(event)">
-        <div class="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-[1.75rem] bg-[#080D1B] border border-brand-gold/40 shadow-2xl my-auto">
-            <button type="button" onclick="window.hideArticleModal()" aria-label="Close Article"
-                class="sticky top-4 float-right mx-4 mt-4 z-20 w-9 h-9 rounded-full bg-black/80 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
-                <i class="fas fa-times"></i>
-            </button>
-            <img id="modal-img" src="" alt="" class="w-full h-56 sm:h-72 object-cover">
-            <div class="p-6 sm:p-8">
-                <span id="modal-category" class="inline-block text-brand-gold text-[10px] font-extrabold tracking-[0.3em] uppercase mb-2">TÜRKİYE</span>
-                <h3 id="modal-title" class="font-luxury text-2xl sm:text-3xl font-extrabold text-white mb-5 leading-snug"></h3>
-                <div id="modal-body" class="article-body-content text-slate-300 text-sm sm:text-base"></div>
+    <div id="article-modal" role="dialog" aria-modal="true">
+        <!-- شريط علوي زجاجي ثابت مع شريط تقدم القراءة -->
+        <div class="sticky top-0 z-30 backdrop-blur-xl bg-white/92 dark:bg-[#060913]/92 border-b border-brand-gold/25">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-3">
+                <div class="flex items-center gap-2.5 min-w-0">
+                    <span class="w-8 h-8 rounded-full bg-brand-gold/15 border border-brand-gold/50 text-brand-gold flex items-center justify-center shrink-0">
+                        <i class="fas fa-book-open text-xs"></i>
+                    </span>
+                    <span id="modal-category" class="text-brand-gold text-[11px] font-extrabold tracking-[0.25em] uppercase truncate">TÜRKİYE</span>
+                </div>
+                <button type="button" onclick="window.hideArticleModal()"
+                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold hover:opacity-90 transition cursor-pointer shrink-0 shadow-md">
+                    <i class="fas fa-times"></i>
+                    <span data-i18n="close_reader">Kapat</span>
+                </button>
+            </div>
+            <div class="w-full h-[3px] bg-brand-gold/15">
+                <div id="article-read-progress" class="h-full bg-gradient-to-r from-brand-gold via-amber-300 to-brand-gold w-0 transition-all duration-150"></div>
+            </div>
+        </div>
+
+        <!-- محتوى المقال بملء الشاشة مع غلاف فاخر ومعرض صور -->
+        <div class="flex-1 w-full">
+            <div class="max-w-5xl mx-auto px-4 sm:px-8 pt-6 sm:pt-10 pb-20">
+                <h1 id="modal-title" class="font-luxury text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight text-center mb-6 sm:mb-8"></h1>
+
+                <div class="w-full rounded-[1.5rem] overflow-hidden border border-brand-gold/35 shadow-2xl mb-8 sm:mb-10 bg-black/40">
+                    <img id="modal-img" src="" alt="" class="w-full max-h-[65vh] object-cover block">
+                </div>
+
+                <div id="modal-body" class="article-body-content max-w-3xl mx-auto text-slate-800 dark:text-slate-200"></div>
+
+                <!-- معرض صور إضافية إن كان للمقال أكثر من صورة -->
+                <div id="modal-gallery" class="hidden max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-5 mt-10"></div>
+
+                <div class="text-center mt-14 pt-8 border-t border-brand-gold/25">
+                    <button type="button" onclick="window.hideArticleModal()" class="luxury-cta-btn text-sm">
+                        <i class="fas fa-arrow-left"></i>
+                        <span data-i18n="back_to_site">Siteye Dön</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -904,16 +1203,13 @@
                 <i class="fas fa-times"></i>
             </button>
 
-            <!-- شريط الحالة (عرض نشط أو إشعار البديل الذكي عند انتهاء العرض القديم) -->
             <div id="spotlight-status-banner" class="hidden px-5 py-3 text-xs font-bold text-center border-b border-brand-gold/25"></div>
 
-            <!-- الصورة التسويقية WebP للعرض -->
             <div class="relative w-full h-56 sm:h-72 bg-[#04070F] overflow-hidden">
                 <img id="spotlight-img" src="" alt="UcuzaKal Deal" class="w-full h-full object-cover">
                 <span id="spotlight-badge" class="absolute top-4 left-4 bg-brand-gold text-black text-[11px] font-extrabold px-3 py-1 rounded-full shadow-lg"></span>
             </div>
 
-            <!-- تفاصيل العرض وزر الحجز المباشر -->
             <div class="p-6 sm:p-7">
                 <div id="spotlight-city" class="text-brand-gold text-[11px] font-extrabold tracking-[0.28em] uppercase mb-1.5"></div>
                 <h3 id="spotlight-title" class="font-luxury text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug"></h3>
@@ -937,13 +1233,12 @@
                     </div>
                 </div>
 
-                <!-- بطاقة الاقتراح الذكي المزدوج (Cross-Sell: طيران <-> فندق لنفس المدينة) -->
                 <div id="spotlight-cross-sell" class="hidden mt-5 p-4 rounded-2xl bg-brand-gold/10 border border-brand-gold/35 flex flex-wrap items-center justify-between gap-3"></div>
             </div>
         </div>
     </div>
 
-    <!-- إشعار نسخ الرابط السريع -->
+    <!-- إشعار سريع -->
     <div id="copy-toast"><i class="fas fa-check-circle text-emerald-400 mx-1"></i> <span id="copy-toast-text">Link kopyalandı!</span></div>
 
     <!-- ========================================================================= -->
@@ -952,7 +1247,6 @@
     <div id="cinematic-overlay">
         <div id="concierge-real-map"></div>
 
-        <!-- الشريط العلوي فوق الخريطة -->
         <div class="relative z-20 pointer-events-none p-3 sm:p-4">
             <div class="max-w-7xl mx-auto pointer-events-auto rounded-2xl bg-[#050811]/92 backdrop-blur-xl border border-brand-gold/40 px-3.5 sm:px-5 py-3 shadow-2xl">
                 <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
@@ -991,9 +1285,7 @@
             </div>
         </div>
 
-        <!-- الجزء السفلي: البطاقة الإقناعية + تنبيه الميزانية + بطاقات العروض -->
         <div class="mt-auto relative z-20 pointer-events-none p-2.5 sm:p-4 space-y-2 max-h-[62vh] overflow-y-auto">
-            <!-- البطاقة التسويقية الإقناعية العائمة + شريط جاهزية الرحلة -->
             <div id="persuasion-card-box" class="hidden pointer-events-auto max-w-5xl mx-auto rounded-2xl bg-[#060A15]/94 backdrop-blur-xl border border-brand-gold/45 px-3.5 sm:px-4 py-2.5 shadow-2xl">
                 <div class="flex flex-wrap items-center justify-between gap-3">
                     <div class="flex items-center gap-2.5 flex-1 min-w-[220px]">
@@ -1022,32 +1314,129 @@
                 <div id="persuasion-details" class="hidden grid grid-cols-1 md:grid-cols-3 gap-2 mt-2.5 pt-2.5 border-t border-white/10"></div>
             </div>
 
-            <!-- شريط نصيحة الميزانية -->
             <div id="budget-advisor-alert" class="hidden"></div>
-
-            <!-- شبكة بطاقات العروض الـ 4 أو 5 فوق الخريطة -->
             <div id="concierge-deals-grid" class="pointer-events-auto max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5"></div>
         </div>
     </div>
 
     <!-- ========================================================================= -->
-    <!-- التذييل والقنوات الرسمية (Footer) -->
+    <!-- التذييل وقسم السوشيال ميديا الـ 18 (أيقونات بالألوان الحقيقية + 3 حسابات تحت كل منصة) -->
     <!-- ========================================================================= -->
-    <footer class="border-t border-brand-gold/20 bg-slate-100/70 dark:bg-[#03050B] py-12 px-4 sm:px-6 text-center">
-        <div class="max-w-6xl mx-auto">
-            <h3 data-i18n="global_channels" class="font-luxury text-sm sm:text-base font-bold text-brand-gold tracking-[0.2em] uppercase mb-5">
+    <footer class="border-t border-brand-gold/25 bg-slate-100/80 dark:bg-[#03050B] py-14 px-4 sm:px-6 text-center">
+        <div class="max-w-7xl mx-auto">
+            <h3 data-i18n="global_channels" class="font-luxury text-base sm:text-xl font-extrabold text-brand-gold tracking-[0.18em] uppercase mb-2">
                 Global Resmi Kanallarımız
             </h3>
-            <div class="flex flex-wrap items-center justify-center gap-3 mb-7">
-                <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook" class="w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-brand-gold/30 text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram" class="w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-brand-gold/30 text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok" class="w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-brand-gold/30 text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center"><i class="fab fa-tiktok"></i></a>
-                <a href="https://www.youtube.com/" target="_blank" rel="noopener" aria-label="YouTube" class="w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-brand-gold/30 text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center"><i class="fab fa-youtube"></i></a>
-                <a href="https://x.com/UcuzaKalTr" target="_blank" rel="noopener" aria-label="X" class="w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-brand-gold/30 text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center"><i class="fab fa-x-twitter"></i></a>
-                <a href="https://www.pinterest.com/" target="_blank" rel="noopener" aria-label="Pinterest" class="w-10 h-10 rounded-full bg-white dark:bg-white/5 border border-brand-gold/30 text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center"><i class="fab fa-pinterest-p"></i></a>
+            <div class="gold-divider mb-8"></div>
+
+            <!-- شبكة المنصات الـ 6 بألوانها الحقيقية وتحت كل منصة حساباتها التركي والروسي والعربي -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
+                <!-- 1. Facebook -->
+                <div class="social-platform-box flex flex-col items-center">
+                    <div class="social-brand-circle brand-fb"><i class="fab fa-facebook-f"></i></div>
+                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">Facebook</div>
+                    <div class="w-full space-y-1.5">
+                        <a href="https://www.facebook.com/profile.php?id=61596063752611" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61596363298777" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://www.facebook.com/profile.php?id=61596182676675" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 2. Instagram -->
+                <div class="social-platform-box flex flex-col items-center">
+                    <div class="social-brand-circle brand-ig"><i class="fab fa-instagram"></i></div>
+                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">Instagram</div>
+                    <div class="w-full space-y-1.5">
+                        <a href="https://www.instagram.com/ucuzakalturkiye/" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://www.instagram.com/ucuzakal.r/" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://www.instagram.com/ucuzakal.a/" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 3. Pinterest -->
+                <div class="social-platform-box flex flex-col items-center">
+                    <div class="social-brand-circle brand-pi"><i class="fab fa-pinterest-p"></i></div>
+                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">Pinterest</div>
+                    <div class="w-full space-y-1.5">
+                        <a href="https://tr.pinterest.com/ucuzakal/" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://www.pinterest.com/UcuzaKal00RU/?actingBusinessId=1067775530310396233" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://www.pinterest.com/ARucuzakal/" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 4. X (Twitter) -->
+                <div class="social-platform-box flex flex-col items-center">
+                    <div class="social-brand-circle brand-x"><i class="fab fa-x-twitter"></i></div>
+                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">X</div>
+                    <div class="w-full space-y-1.5">
+                        <a href="https://x.com/UcuzaKalTr" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://x.com/UcuzaKal" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://x.com/ucuzaKalAR" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 5. TikTok -->
+                <div class="social-platform-box flex flex-col items-center">
+                    <div class="social-brand-circle brand-tt"><i class="fab fa-tiktok"></i></div>
+                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">TikTok</div>
+                    <div class="w-full space-y-1.5">
+                        <a href="https://www.tiktok.com/@ucuzakal.tr" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@ucuzakal.ru?lang=ru-RU" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://www.tiktok.com/@ucuzakal.ar?lang=ar" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- 6. YouTube -->
+                <div class="social-platform-box flex flex-col items-center">
+                    <div class="social-brand-circle brand-yt"><i class="fab fa-youtube"></i></div>
+                    <div class="text-xs font-extrabold text-slate-900 dark:text-white mb-3">YouTube</div>
+                    <div class="w-full space-y-1.5">
+                        <a href="https://www.youtube.com/@UcuzaKalT%C3%Bcrkiye" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇹🇷 <span data-i18n="acc_tr">Türkçe</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@UcuzaKal.R" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇷🇺 <span data-i18n="acc_ru">Rusça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                        <a href="https://www.youtube.com/@UcuzaKal0AR" target="_blank" rel="noopener" class="social-lang-pill">
+                            <span>🇸🇦 <span data-i18n="acc_ar">Arapça</span></span><i class="fas fa-arrow-up-right-from-square text-[9px] opacity-70"></i>
+                        </a>
+                    </div>
+                </div>
             </div>
-            <p class="text-xs text-slate-500 dark:text-slate-400">
-                &copy; 2026 <span data-i18n="rights">Tüm hakları saklıdır UcuzaKal Türkiye</span>
+
+            <!-- عبارة الحقوق بدون سنة 2026 -->
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium pt-6 border-t border-brand-gold/15">
+                &copy; <span data-i18n="rights">Tüm hakları saklıdır UcuzaKal Türkiye</span>
             </p>
         </div>
     </footer>
@@ -1067,6 +1456,7 @@
         window.LIVE_TRANSLATION_CACHE = {};
 
         window.currentOpenArticleId = null;
+        window.blogPageIndex = 0;
         window.selectedRating = 0;
         window.activeSearchSessionId = 0;
         window._radarTimers = [];
@@ -1415,36 +1805,36 @@
 
         // دول ومطارات العالم لمساعد الطيران
         window.WORLD_AIRPORTS_INFO = {
-            "TR": { lat: 41.0082, lng: 28.9784, city: "Istanbul",       iata: "IST", slug: "turkey",        airport: "Istanbul Airport (IST)",                 names: { tr: "Türkiye", ar: "تركيا", en: "Turkey", ru: "Турция" } },
-            "SA": { lat: 24.7136, lng: 46.6753, city: "Riyadh",         iata: "RUH", slug: "saudi-arabia",  airport: "King Khalid Int'l Airport (RUH)",        names: { tr: "Suudi Arabistan", ar: "السعودية", en: "Saudi Arabia", ru: "Саудовская Аравия" } },
-            "AE": { lat: 25.2048, lng: 55.2708, city: "Dubai",          iata: "DXB", slug: "united-arab-emirates", airport: "Dubai Int'l Airport (DXB)",       names: { tr: "Birleşik Arap Emirlikleri", ar: "الإمارات", en: "United Arab Emirates", ru: "ОАЭ" } },
-            "QA": { lat: 25.2854, lng: 51.5310, city: "Doha",           iata: "DOH", slug: "qatar",         airport: "Hamad Int'l Airport (DOH)",              names: { tr: "Katar", ar: "قطر", en: "Qatar", ru: "Катар" } },
-            "KW": { lat: 29.3759, lng: 47.9774, city: "Kuwait City",    iata: "KWI", slug: "kuwait",        airport: "Kuwait Int'l Airport (KWI)",             names: { tr: "Kuveyt", ar: "الكويت", en: "Kuwait", ru: "Кувейт" } },
-            "BH": { lat: 26.2285, lng: 50.5860, city: "Manama",         iata: "BAH", slug: "bahrain",       airport: "Bahrain Int'l Airport (BAH)",            names: { tr: "Bahreyn", ar: "البحرين", en: "Bahrain", ru: "Бахрейн" } },
-            "OM": { lat: 23.5880, lng: 58.3829, city: "Muscat",         iata: "MCT", slug: "oman",          airport: "Muscat Int'l Airport (MCT)",             names: { tr: "Umman", ar: "عُمان", en: "Oman", ru: "Оман" } },
-            "EG": { lat: 30.0444, lng: 31.2357, city: "Cairo",          iata: "CAI", slug: "egypt",         airport: "Cairo Int'l Airport (CAI)",              names: { tr: "Mısır", ar: "مصر", en: "Egypt", ru: "Египет" } },
-            "JO": { lat: 31.9454, lng: 35.9284, city: "Amman",          iata: "AMM", slug: "jordan",        airport: "Queen Alia Int'l Airport (AMM)",         names: { tr: "Ürdün", ar: "الأردن", en: "Jordan", ru: "Иордания" } },
-            "IQ": { lat: 33.3152, lng: 44.3661, city: "Baghdad",        iata: "BGW", slug: "iraq",          airport: "Baghdad Int'l Airport (BGW)",            names: { tr: "Irak", ar: "العراق", en: "Iraq", ru: "Ирак" } },
-            "LB": { lat: 33.8938, lng: 35.5018, city: "Beirut",         iata: "BEY", slug: "lebanon",       airport: "Beirut-Rafic Hariri Airport (BEY)",      names: { tr: "Lübnan", ar: "لبنان", en: "Lebanon", ru: "Ливан" } },
-            "MA": { lat: 33.5731, lng: -7.5898, city: "Casablanca",     iata: "CMN", slug: "morocco",       airport: "Mohammed V Int'l Airport (CMN)",         names: { tr: "Fas", ar: "المغرب", en: "Morocco", ru: "Марокко" } },
-            "DZ": { lat: 36.7538, lng: 3.0588,  city: "Algiers",        iata: "ALG", slug: "algeria",       airport: "Houari Boumediene Airport (ALG)",        names: { tr: "Cezayir", ar: "الجزائر", en: "Algeria", ru: "Алжир" } },
-            "TN": { lat: 36.8065, lng: 10.1815, city: "Tunis",          iata: "TUN", slug: "tunisia",       airport: "Tunis-Carthage Airport (TUN)",           names: { tr: "Tunus", ar: "تونس", en: "Tunisia", ru: "Тунис" } },
-            "RU": { lat: 55.7558, lng: 37.6173, city: "Moscow",         iata: "SVO", slug: "russia",        airport: "Sheremetyevo Int'l Airport (SVO)",       names: { tr: "Rusya", ar: "روسيا", en: "Russia", ru: "Россия" } },
-            "AZ": { lat: 40.4093, lng: 49.8671, city: "Baku",           iata: "GYD", slug: "azerbaijan",    airport: "Heydar Aliyev Int'l Airport (GYD)",      names: { tr: "Azerbaycan", ar: "أذربيجان", en: "Azerbaijan", ru: "Азербайджан" } },
-            "GE": { lat: 41.7151, lng: 44.8271, city: "Tbilisi",        iata: "TBS", slug: "georgia",       airport: "Tbilisi Int'l Airport (TBS)",            names: { tr: "Gürcistan", ar: "جورجيا", en: "Georgia", ru: "Грузия" } },
-            "KZ": { lat: 43.2220, lng: 76.8512, city: "Almaty",         iata: "ALA", slug: "kazakhstan",    airport: "Almaty Int'l Airport (ALA)",             names: { tr: "Kazakistan", ar: "كازاخستان", en: "Kazakhstan", ru: "Казахстан" } },
-            "IR": { lat: 35.6892, lng: 51.3890, city: "Tehran",         iata: "IKA", slug: "iran",          airport: "Imam Khomeini Int'l Airport (IKA)",      names: { tr: "İran", ar: "إيران", en: "Iran", ru: "Иран" } },
-            "DE": { lat: 50.1109, lng: 8.6821,  city: "Frankfurt",      iata: "FRA", slug: "germany",       airport: "Frankfurt Airport (FRA)",                names: { tr: "Almanya", ar: "ألمانيا", en: "Germany", ru: "Германия" } },
-            "GB": { lat: 51.5074, lng: -0.1278, city: "London",         iata: "LHR", slug: "united-kingdom",airport: "London Heathrow Airport (LHR)",          names: { tr: "Birleşik Krallık", ar: "بريطانيا", en: "United Kingdom", ru: "Великобритания" } },
-            "FR": { lat: 48.8566, lng: 2.3522,  city: "Paris",          iata: "CDG", slug: "france",        airport: "Paris Charles de Gaulle (CDG)",          names: { tr: "Fransa", ar: "فرنسا", en: "France", ru: "Франция" } },
-            "IT": { lat: 41.9028, lng: 12.4964, city: "Rome",           iata: "FCO", slug: "italy",         airport: "Rome Fiumicino Airport (FCO)",           names: { tr: "İtalya", ar: "إيطاليا", en: "Italy", ru: "Италия" } },
-            "ES": { lat: 40.4168, lng: -3.7038, city: "Madrid",         iata: "MAD", slug: "spain",         airport: "Madrid-Barajas Airport (MAD)",           names: { tr: "İspanya", ar: "إسبانيا", en: "Spain", ru: "Испания" } },
-            "NL": { lat: 52.3676, lng: 4.9041,  city: "Amsterdam",      iata: "AMS", slug: "netherlands",   airport: "Amsterdam Schiphol Airport (AMS)",       names: { tr: "Hollanda", ar: "هولندا", en: "Netherlands", ru: "Нидерланды" } },
-            "US": { lat: 40.7128, lng: -74.0060,city: "New York",       iata: "JFK", slug: "united-states", airport: "John F. Kennedy Int'l (JFK)",            names: { tr: "ABD", ar: "الولايات المتحدة", en: "United States", ru: "США" } },
-            "CN": { lat: 39.9042, lng: 116.4074,city: "Beijing",        iata: "PEK", slug: "china",         airport: "Beijing Capital Int'l (PEK)",            names: { tr: "Çin", ar: "الصين", en: "China", ru: "Китай" } }
+            "TR": { lat: 41.0082, lng: 28.9784, city: "Istanbul",       iata: "IST", slug: "turkey",               airport: "Istanbul Airport (IST)",                 names: { tr: "Türkiye", ar: "تركيا", en: "Turkey", ru: "Турция" } },
+            "SA": { lat: 24.7136, lng: 46.6753, city: "Riyadh",         iata: "RUH", slug: "saudi-arabia",         airport: "King Khalid Int'l Airport (RUH)",        names: { tr: "Suudi Arabistan", ar: "السعودية", en: "Saudi Arabia", ru: "Саудовская Аравия" } },
+            "AE": { lat: 25.2048, lng: 55.2708, city: "Dubai",          iata: "DXB", slug: "united-arab-emirates", airport: "Dubai Int'l Airport (DXB)",              names: { tr: "Birleşik Arap Emirlikleri", ar: "الإمارات", en: "United Arab Emirates", ru: "ОАЭ" } },
+            "QA": { lat: 25.2854, lng: 51.5310, city: "Doha",           iata: "DOH", slug: "qatar",                airport: "Hamad Int'l Airport (DOH)",              names: { tr: "Katar", ar: "قطر", en: "Qatar", ru: "Катар" } },
+            "KW": { lat: 29.3759, lng: 47.9774, city: "Kuwait City",    iata: "KWI", slug: "kuwait",               airport: "Kuwait Int'l Airport (KWI)",             names: { tr: "Kuveyt", ar: "الكويت", en: "Kuwait", ru: "Кувейт" } },
+            "BH": { lat: 26.2285, lng: 50.5860, city: "Manama",         iata: "BAH", slug: "bahrain",              airport: "Bahrain Int'l Airport (BAH)",            names: { tr: "Bahreyn", ar: "البحرين", en: "Bahrain", ru: "Бахрейн" } },
+            "OM": { lat: 23.5880, lng: 58.3829, city: "Muscat",         iata: "MCT", slug: "oman",                 airport: "Muscat Int'l Airport (MCT)",             names: { tr: "Umman", ar: "عُمان", en: "Oman", ru: "Оман" } },
+            "EG": { lat: 30.0444, lng: 31.2357, city: "Cairo",          iata: "CAI", slug: "egypt",                airport: "Cairo Int'l Airport (CAI)",              names: { tr: "Mısır", ar: "مصر", en: "Egypt", ru: "Египет" } },
+            "JO": { lat: 31.9454, lng: 35.9284, city: "Amman",          iata: "AMM", slug: "jordan",               airport: "Queen Alia Int'l Airport (AMM)",         names: { tr: "Ürdün", ar: "الأردن", en: "Jordan", ru: "Иордания" } },
+            "IQ": { lat: 33.3152, lng: 44.3661, city: "Baghdad",        iata: "BGW", slug: "iraq",                 airport: "Baghdad Int'l Airport (BGW)",            names: { tr: "Irak", ar: "العراق", en: "Iraq", ru: "Ирак" } },
+            "LB": { lat: 33.8938, lng: 35.5018, city: "Beirut",         iata: "BEY", slug: "lebanon",              airport: "Beirut-Rafic Hariri Airport (BEY)",      names: { tr: "Lübnan", ar: "لبنان", en: "Lebanon", ru: "Ливан" } },
+            "MA": { lat: 33.5731, lng: -7.5898, city: "Casablanca",     iata: "CMN", slug: "morocco",              airport: "Mohammed V Int'l Airport (CMN)",         names: { tr: "Fas", ar: "المغرب", en: "Morocco", ru: "Марокко" } },
+            "DZ": { lat: 36.7538, lng: 3.0588,  city: "Algiers",        iata: "ALG", slug: "algeria",              airport: "Houari Boumediene Airport (ALG)",        names: { tr: "Cezayir", ar: "الجزائر", en: "Algeria", ru: "Алжир" } },
+            "TN": { lat: 36.8065, lng: 10.1815, city: "Tunis",          iata: "TUN", slug: "tunisia",              airport: "Tunis-Carthage Airport (TUN)",           names: { tr: "Tunus", ar: "تونس", en: "Tunisia", ru: "Тунис" } },
+            "RU": { lat: 55.7558, lng: 37.6173, city: "Moscow",         iata: "SVO", slug: "russia",               airport: "Sheremetyevo Int'l Airport (SVO)",       names: { tr: "Rusya", ar: "روسيا", en: "Russia", ru: "Россия" } },
+            "AZ": { lat: 40.4093, lng: 49.8671, city: "Baku",           iata: "GYD", slug: "azerbaijan",           airport: "Heydar Aliyev Int'l Airport (GYD)",      names: { tr: "Azerbaycan", ar: "أذربيجان", en: "Azerbaijan", ru: "Азербайджан" } },
+            "GE": { lat: 41.7151, lng: 44.8271, city: "Tbilisi",        iata: "TBS", slug: "georgia",              airport: "Tbilisi Int'l Airport (TBS)",            names: { tr: "Gürcistan", ar: "جورجيا", en: "Georgia", ru: "Грузия" } },
+            "KZ": { lat: 43.2220, lng: 76.8512, city: "Almaty",         iata: "ALA", slug: "kazakhstan",           airport: "Almaty Int'l Airport (ALA)",             names: { tr: "Kazakistan", ar: "كازاخستان", en: "Kazakhstan", ru: "Казахстан" } },
+            "IR": { lat: 35.6892, lng: 51.3890, city: "Tehran",         iata: "IKA", slug: "iran",                 airport: "Imam Khomeini Int'l Airport (IKA)",      names: { tr: "İran", ar: "إيران", en: "Iran", ru: "Иран" } },
+            "DE": { lat: 50.1109, lng: 8.6821,  city: "Frankfurt",      iata: "FRA", slug: "germany",              airport: "Frankfurt Airport (FRA)",                names: { tr: "Almanya", ar: "ألمانيا", en: "Germany", ru: "Германия" } },
+            "GB": { lat: 51.5074, lng: -0.1278, city: "London",         iata: "LHR", slug: "united-kingdom",       airport: "London Heathrow Airport (LHR)",          names: { tr: "Birleşik Krallık", ar: "بريطانيا", en: "United Kingdom", ru: "Великобритания" } },
+            "FR": { lat: 48.8566, lng: 2.3522,  city: "Paris",          iata: "CDG", slug: "france",               airport: "Paris Charles de Gaulle (CDG)",          names: { tr: "Fransa", ar: "فرنسا", en: "France", ru: "Франция" } },
+            "IT": { lat: 41.9028, lng: 12.4964, city: "Rome",           iata: "FCO", slug: "italy",                airport: "Rome Fiumicino Airport (FCO)",           names: { tr: "İtalya", ar: "إيطاليا", en: "Italy", ru: "Италия" } },
+            "ES": { lat: 40.4168, lng: -3.7038, city: "Madrid",         iata: "MAD", slug: "spain",                airport: "Madrid-Barajas Airport (MAD)",           names: { tr: "İspanya", ar: "إسبانيا", en: "Spain", ru: "Испания" } },
+            "NL": { lat: 52.3676, lng: 4.9041,  city: "Amsterdam",      iata: "AMS", slug: "netherlands",          airport: "Amsterdam Schiphol Airport (AMS)",       names: { tr: "Hollanda", ar: "هولندا", en: "Netherlands", ru: "Нидерланды" } },
+            "US": { lat: 40.7128, lng: -74.0060,city: "New York",       iata: "JFK", slug: "united-states",        airport: "John F. Kennedy Int'l (JFK)",            names: { tr: "ABD", ar: "الولايات المتحدة", en: "United States", ru: "США" } },
+            "CN": { lat: 39.9042, lng: 116.4074,city: "Beijing",        iata: "PEK", slug: "china",                airport: "Beijing Capital Int'l (PEK)",            names: { tr: "Çin", ar: "الصين", en: "China", ru: "Китай" } }
         };
 
-        // تهيئة قوائم الدول والمدن والمطارات لمساعد الطيران
+        // تهيئة قوائم الدول والمدن لمساعد الطيران (دون ملء أي خانات كتابة بقيم ثابتة)
         window.initFlightSelectors = function(lang) {
             const fromCountry = document.getElementById('fc-from-country');
             const toCountry = document.getElementById('fc-to-country');
@@ -1485,47 +1875,27 @@
                 });
             });
 
-            window.onFlightCountryChange('from', false);
-            window.onFlightCountryChange('to', false);
+            window.onFlightCountryChange('from');
+            window.onFlightCountryChange('to');
             window.updateFlightDirectionBadge();
         };
 
-        window.onFlightCountryChange = function(side, autoFill) {
+        // تبديل نوع حقل المدينة فقط عند تغيير الدولة مع إبقاء خانات الكتابة نظيفة وفارغة
+        window.onFlightCountryChange = function(side) {
             const sel = document.getElementById(`fc-${side}-country`);
             const trCity = document.getElementById(`fc-${side}-tr-city`);
             const wCity = document.getElementById(`fc-${side}-world-city`);
-            const airport = document.getElementById(`fc-${side}-airport`);
             if (!sel || sel.selectedIndex < 0) return;
 
             const code = sel.options[sel.selectedIndex].getAttribute('data-code');
             if (code === 'TR') {
                 if (trCity) trCity.classList.remove('hidden');
                 if (wCity) wCity.classList.add('hidden');
-                const pName = (trCity && trCity.value) || 'İstanbul';
-                const pInfo = window.TURKEY_81_COORDS[pName] || window.TURKEY_81_COORDS['İstanbul'];
-                if (airport && (autoFill || !airport.value.trim())) airport.value = pInfo.airport;
             } else {
                 if (trCity) trCity.classList.add('hidden');
                 if (wCity) wCity.classList.remove('hidden');
-                const wInfo = window.WORLD_AIRPORTS_INFO[code];
-                if (wInfo) {
-                    if (wCity && (autoFill || !wCity.value.trim())) wCity.value = wInfo.city;
-                    if (airport && (autoFill || !airport.value.trim())) airport.value = wInfo.airport;
-                }
             }
             window.updateFlightDirectionBadge();
-        };
-
-        window.autoSuggestAirport = function(side) {
-            const sel = document.getElementById(`fc-${side}-country`);
-            const trCity = document.getElementById(`fc-${side}-tr-city`);
-            const airport = document.getElementById(`fc-${side}-airport`);
-            if (!sel || sel.selectedIndex < 0 || !airport) return;
-            const code = sel.options[sel.selectedIndex].getAttribute('data-code');
-            if (code === 'TR' && trCity) {
-                const pInfo = window.TURKEY_81_COORDS[trCity.value];
-                if (pInfo) airport.value = pInfo.airport;
-            }
         };
 
         window.updateFlightDirectionBadge = function() {
@@ -1557,8 +1927,8 @@
             };
             selectCode(fromSel, tCode);
             selectCode(toSel, fCode);
-            window.onFlightCountryChange('from', true);
-            window.onFlightCountryChange('to', true);
+            window.onFlightCountryChange('from');
+            window.onFlightCountryChange('to');
         };
 
         // =========================================================================
@@ -1704,7 +2074,7 @@
         };
     </script>
     <!-- ========================================================================= -->
-    <!-- الجزء 3 من 4: اللغات الـ 11 + محرك الترجمة + نافذة الروابط الدائمة (?deal=) -->
+    <!-- الجزء 3 من 4: اللغات الـ 11 + القارئ التحريري + نافذة الروابط الدائمة (?deal=) -->
     <!-- ========================================================================= -->
     <script>
         const BASE_TR_DICT = {
@@ -1731,6 +2101,12 @@
             vibe_city: "Şehir Merkezi & Alışveriş",
             c_dest: "Hedef Bölge",
             c_all_tr: "Tüm Türkiye",
+            ph_hotel_budget: "Bütçenizi yazın...",
+            ph_hotel_days: "Gün sayısını yazın...",
+            ph_city: "Şehir adını yazın...",
+            ph_airport: "Havalimanı adını yazın...",
+            ph_flight_budget: "Bütçenizi yazın...",
+            ph_airline: "İsteğe bağlı...",
             btn_hotel: "Bana Otel Bul",
             btn_resort: "Bana Tatil Köyü Bul",
             btn_apart: "Bana Apart Bul",
@@ -1766,9 +2142,21 @@
             review_success: "Zarif geri bildiriminiz için teşekkür ederiz.",
             starting_from: "Başlayan Fiyatlar",
             no_deals_text: "Güncel seçkin fırsatlar yükleniyor...",
-            read_more: "Devamını Oku",
+            no_articles_text: "Seyahat rehberi makaleleri yükleniyor...",
+            read_more: "Makaleyi Oku",
+            close_reader: "Kapat",
+            back_to_site: "Siteye Dön",
+            editorial_tag: "EDİTÖRÜN SEÇİMİ",
+            prev_articles: "Önceki",
+            next_articles: "Sonraki",
             global_channels: "Global Resmi Kanallarımız",
+            acc_tr: "Türkçe",
+            acc_ru: "Rusça",
+            acc_ar: "Arapça",
             rights: "Tüm hakları saklıdır UcuzaKal Türkiye",
+            sign_out_prompt: "Hesabınızdan çıkış yapmak istiyor musunuz?",
+            signed_in_msg: "Google ile başarıyla giriş yapıldı",
+            signed_out_msg: "Çıkış yapıldı",
             cinematic_title: "Canlı Harita Üzerinde Doğrulanmış Teklifler Taranıyor...",
             radar_step_1: "Canlı Harita Üzerinde Rotalar Taranıyor...",
             radar_step_3: "Akıllı Planınız Haritada Hazır — Tüm Teklifler Doğrulandı!",
@@ -1843,6 +2231,12 @@
             vibe_city: "وسط المدينة والتسوق",
             c_dest: "المنطقة المستهدفة",
             c_all_tr: "جميع أنحاء تركيا",
+            ph_hotel_budget: "اكتب ميزانيتك...",
+            ph_hotel_days: "اكتب عدد الأيام...",
+            ph_city: "اكتب اسم المدينة...",
+            ph_airport: "اكتب اسم المطار...",
+            ph_flight_budget: "اكتب ميزانيتك...",
+            ph_airline: "اختياري...",
             btn_hotel: "ابحث لي عن فندق",
             btn_resort: "ابحث لي عن منتجع",
             btn_apart: "ابحث لي عن شقة فندقية",
@@ -1878,9 +2272,21 @@
             review_success: "شكراً لك! تم استلام تقييمك بنجاح.",
             starting_from: "الأسعار تبدأ من",
             no_deals_text: "جارٍ تحديث أحدث العروض المفحوصة...",
+            no_articles_text: "جارٍ تحميل مقالات دليل السفر...",
             read_more: "اقرأ المقال كاملاً",
+            close_reader: "إغلاق",
+            back_to_site: "العودة للموقع",
+            editorial_tag: "اختيار التحرير",
+            prev_articles: "السابق",
+            next_articles: "التالي",
             global_channels: "قنواتنا الرسمية حول العالم",
+            acc_tr: "التركي",
+            acc_ru: "الروسي",
+            acc_ar: "العربي",
             rights: "جميع الحقوق محفوظة لمنصة UcuzaKal Türkiye",
+            sign_out_prompt: "هل تريد تسجيل الخروج من حسابك؟",
+            signed_in_msg: "تم تسجيل الدخول بحساب Google بنجاح",
+            signed_out_msg: "تم تسجيل الخروج بنجاح",
             cinematic_title: "جارٍ فحص العروض الموثّقة فوق الخريطة الحية...",
             radar_step_1: "جارٍ مسح المسارات والعروض الحية فوق الخريطة...",
             radar_step_3: "خطتك الذكية مكتملة فوق الخريطة — جميع العروض مفحوصة!",
@@ -1955,6 +2361,12 @@
             vibe_city: "City Center & Shopping",
             c_dest: "Target Destination",
             c_all_tr: "All Turkey",
+            ph_hotel_budget: "Enter budget...",
+            ph_hotel_days: "Enter days...",
+            ph_city: "Enter city name...",
+            ph_airport: "Enter airport name...",
+            ph_flight_budget: "Enter budget...",
+            ph_airline: "Optional...",
             btn_hotel: "Find My Hotel",
             btn_resort: "Find My Resort",
             btn_apart: "Find My Apart",
@@ -1990,9 +2402,21 @@
             review_success: "Thank you for your valuable feedback!",
             starting_from: "Starting From",
             no_deals_text: "Refreshing today's verified deals...",
+            no_articles_text: "Loading curated travel guides...",
             read_more: "Read Full Guide",
+            close_reader: "Close",
+            back_to_site: "Back to Site",
+            editorial_tag: "EDITOR'S PICK",
+            prev_articles: "Previous",
+            next_articles: "Next",
             global_channels: "Our Official Global Channels",
+            acc_tr: "Turkish",
+            acc_ru: "Russian",
+            acc_ar: "Arabic",
             rights: "All rights reserved UcuzaKal Türkiye",
+            sign_out_prompt: "Sign out of your Google account?",
+            signed_in_msg: "Signed in with Google",
+            signed_out_msg: "Signed out",
             cinematic_title: "Scanning Verified Offers on Live Map...",
             radar_step_1: "Scanning Live Routes & Stays on Map...",
             radar_step_3: "Your Smart Plan is Ready on Map — All Offers Verified!",
@@ -2060,6 +2484,12 @@
             c_vibe: "Стиль отдыха",
             c_dest: "Город / Регион",
             c_all_tr: "Вся Турция",
+            ph_hotel_budget: "Введите бюджет...",
+            ph_hotel_days: "Количество дней...",
+            ph_city: "Введите город...",
+            ph_airport: "Название аэропорта...",
+            ph_flight_budget: "Введите бюджет...",
+            ph_airline: "Необязательно...",
             btn_hotel: "Найти отель",
             btn_resort: "Найти курорт",
             btn_apart: "Найти апартаменты",
@@ -2068,7 +2498,15 @@
             flights_heading: "Выгодные авиабилеты",
             blog_heading: "Журнал путешествий по Турции",
             starting_from: "Цены от",
-            read_more: "Читать далее",
+            read_more: "Читать статью",
+            close_reader: "Закрыть",
+            back_to_site: "На главную",
+            editorial_tag: "ВЫБОР РЕДАКЦИИ",
+            prev_articles: "Назад",
+            next_articles: "Далее",
+            acc_tr: "Турецкий",
+            acc_ru: "Русский",
+            acc_ar: "Арабский",
             book_deal_btn: "Смотреть цену",
             spotlight_copy_link: "Копировать ссылку",
             spotlight_book_now: "Забронировать напрямую",
@@ -2093,6 +2531,7 @@
                 tab_hotel: "Hoteles", tab_flight: "Vuelos",
                 btn_hotel: "Buscar Hotel", btn_flight: "Buscar Vuelo",
                 hotels_heading: "Ofertas de Hoteles Hoy", flights_heading: "Vuelos Verificados",
+                close_reader: "Cerrar", back_to_site: "Volver",
                 spotlight_book_now: "Reservar Directamente", spotlight_copy_link: "Copiar Enlace"
             }),
             ku: Object.assign({}, BASE_TR_DICT, {
@@ -2101,6 +2540,7 @@
                 tab_hotel: "Alîkarê Otêlan", tab_flight: "Alîkarê Firînê",
                 btn_hotel: "Otêl Bibîne", btn_flight: "Firînê Bibîne",
                 hotels_heading: "Fersendên Otêlan ên Îro", flights_heading: "Firînên Taybet",
+                close_reader: "Bigire", back_to_site: "Vegere",
                 spotlight_book_now: "Rezervasyona Rasterast", spotlight_copy_link: "Lînkê Kopî Bike"
             }),
             zh: Object.assign({}, BASE_EN_DICT, {
@@ -2109,6 +2549,7 @@
                 tab_hotel: "酒店助手", tab_flight: "机票助手",
                 btn_hotel: "查找酒店", btn_flight: "查找航班",
                 hotels_heading: "今日精选酒店优惠", flights_heading: "特惠直飞航班",
+                close_reader: "关闭", back_to_site: "返回首页",
                 spotlight_book_now: "立即直接预订", spotlight_copy_link: "复制链接"
             }),
             az: Object.assign({}, BASE_TR_DICT, {
@@ -2131,6 +2572,7 @@
                 tab_hotel: "دستیار هتل", tab_flight: "دستیار پرواز",
                 btn_hotel: "جستجوی هتل", btn_flight: "جستجوی پرواز",
                 hotels_heading: "پیشنهادهای ویژه هتل امروز", flights_heading: "بهترین بلیط‌های پرواز",
+                close_reader: "بستن", back_to_site: "بازگشت به سایت",
                 spotlight_book_now: "رزرو مستقیم", spotlight_copy_link: "کپی لینک"
             }),
             kk: Object.assign({}, BASE_RU_DICT, {
@@ -2141,7 +2583,7 @@
             })
         };
 
-        // قاموس سريع لترجمة أسماء المدن الشائعة فورياً بدون طلبات شبكة
+        // قاموس سريع لترجمة أسماء المدن الشائعة فورياً
         const CITY_QUICK_TRANSLATIONS = {
             "Antalya":  { ar: "أنطاليا", ru: "Анталья", en: "Antalya", fa: "آنتالیا" },
             "İstanbul": { ar: "إسطنبول", ru: "Стамбул", en: "Istanbul", fa: "استانبول" },
@@ -2175,7 +2617,6 @@
             return str;
         };
 
-        // استخراج النص المترجم الجاهز من حقل i18n الذي ولّده الوكيل الذكي
         window.pickDealLocalizedField = function(dealObj, fieldName, fallbackVal, lang) {
             if (!dealObj) return fallbackVal || "";
             let i18n = dealObj.i18n;
@@ -2191,14 +2632,61 @@
             return window.translateTextStrong(fallbackVal || "", lang);
         };
 
-        // عرض وترجمة المقالات داخل النافذة المنبثقة
-        window.renderAndTranslateFullArticle = function(article, currentLang, bodyEl, titleEl) {
+        // استخراج عنوان ومحتوى المقال بأي صيغة محفوظة في قاعدة البيانات + تنسيق تحريري للصور والفقرات
+        window.extractArticleContent = function(article, lang) {
+            if (!article) return { title: '', body: '', images: [] };
+            const title = (article.titles && (article.titles[lang] || article.titles.tr || article.titles.ar || article.titles.en))
+                       || article[`title_${lang}`]
+                       || article.title
+                       || article.headline
+                       || '';
+            const body = (article.bodies && (article.bodies[lang] || article.bodies.tr || article.bodies.ar || article.bodies.en))
+                      || (article.contents && (article.contents[lang] || article.contents.tr || article.contents.ar || article.contents.en))
+                      || article[`body_${lang}`]
+                      || article[`content_${lang}`]
+                      || article.body
+                      || article.content
+                      || article.html
+                      || article.description
+                      || '';
+            const images = [];
+            if (Array.isArray(article.images)) {
+                article.images.forEach(u => { if (typeof u === 'string' && u.trim()) images.push(u.trim()); });
+            }
+            if (Array.isArray(article.gallery)) {
+                article.gallery.forEach(u => { if (typeof u === 'string' && u.trim()) images.push(u.trim()); });
+            }
+            return { title: String(title), body: String(body), images };
+        };
+
+        window.renderAndTranslateFullArticle = function(article, currentLang, bodyEl, titleEl, galleryEl) {
             if (!article || !bodyEl || !titleEl) return;
-            const rawTitle = (article.titles && (article.titles[currentLang] || article.titles['tr'] || article.titles['ar'] || article.titles['en'])) || article.title || "";
-            const rawBody = (article.bodies && (article.bodies[currentLang] || article.bodies['tr'] || article.bodies['ar'] || article.bodies['en'])) || article.body || "";
-            titleEl.textContent = window.translateTextStrong(rawTitle, currentLang);
-            const sanitized = rawBody.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '');
+            const parsed = window.extractArticleContent(article, currentLang);
+            titleEl.textContent = window.translateTextStrong(parsed.title, currentLang);
+
+            let sanitized = parsed.body.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').trim();
+            // إن كان المقال نصاً عادياً بدون وسوم HTML، نحوّله إلى فقرات تحريرية منظّمة
+            if (sanitized && !/<(p|div|h1|h2|h3|ul|ol|article|section)\b/i.test(sanitized)) {
+                sanitized = sanitized
+                    .split(/\n{2,}/)
+                    .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+                    .join('');
+            }
             bodyEl.innerHTML = sanitized;
+
+            if (galleryEl) {
+                const extraImgs = parsed.images.filter(u => u && u !== article.image);
+                if (extraImgs.length > 0) {
+                    galleryEl.innerHTML = extraImgs.map(src => `
+                        <div class="rounded-2xl overflow-hidden border border-brand-gold/30 shadow-xl bg-black/30">
+                            <img src="${src.replace(/"/g, '&quot;')}" alt="" loading="lazy" class="w-full h-64 object-cover block">
+                        </div>`).join('');
+                    galleryEl.classList.remove('hidden');
+                } else {
+                    galleryEl.innerHTML = '';
+                    galleryEl.classList.add('hidden');
+                }
+            }
         };
 
         // تبديل اللغة وتحديث الاتجاه والواجهة بالكامل
@@ -2220,7 +2708,7 @@
             });
             document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
                 const key = el.getAttribute('data-i18n-placeholder');
-                if (dict[key]) el.setAttribute('placeholder', dict[key]);
+                if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
             });
 
             if (typeof window.updateHotelBtnText === 'function') window.updateHotelBtnText();
@@ -2234,7 +2722,8 @@
                     window.ARTICLES_MAP[window.currentOpenArticleId],
                     safeLang,
                     document.getElementById('modal-body'),
-                    document.getElementById('modal-title')
+                    document.getElementById('modal-title'),
+                    document.getElementById('modal-gallery')
                 );
             }
         };
@@ -2308,21 +2797,19 @@
             const cleanId = String(requestedDealId).trim();
             const todayStr = new Date().toISOString().slice(0, 10);
 
-            // 1. البحث أولاً في عروض اليوم الحية ثم في الأرشيف الدائم (30 يوماً — 0 قراءة Firestore)
             const liveHotels = Array.isArray(window.HOTELS_DATA) ? window.HOTELS_DATA : [];
             const liveFlights = Array.isArray(window.FLIGHTS_DATA) ? window.FLIGHTS_DATA : [];
 
             let foundDeal = liveHotels.find(h => h.dealId === cleanId || h.id === cleanId)
                          || liveFlights.find(f => f.dealId === cleanId || f.id === cleanId)
                          || null;
-            let statusMode = 'active'; // active | archived | replaced
+            let statusMode = 'active';
 
             if (!foundDeal && window.DEALS_ARCHIVE_MAP && window.DEALS_ARCHIVE_MAP[cleanId]) {
                 foundDeal = window.DEALS_ARCHIVE_MAP[cleanId];
                 statusMode = 'archived';
             }
 
-            // 2. التحقق من انتهاء تاريخ رحلة طيران قديمة أو اختفاء العرض وتقديم البديل الذكي فوراً
             const isExpiredFlight = foundDeal && foundDeal.type === 'flight' && foundDeal.departureDate && foundDeal.departureDate < todayStr;
             if (!foundDeal || isExpiredFlight) {
                 const upperId = cleanId.toUpperCase();
@@ -2358,7 +2845,6 @@
             const shareBtn = document.getElementById('spotlight-share-btn');
             const crossEl = document.getElementById('spotlight-cross-sell');
 
-            // شريط حالة العرض
             bannerEl.classList.remove('hidden');
             if (statusMode === 'replaced') {
                 bannerEl.className = 'px-5 py-3 text-xs font-bold text-center border-b border-amber-400/40 bg-amber-500/15 text-amber-200';
@@ -2400,7 +2886,6 @@
             };
             shareBtn.onclick = (ev) => window.copyDealShareLink(foundDeal.dealId || cleanId, ev);
 
-            // بطاقة الاقتراح الذكي المزدوج (Cross-Sell Bridge: طيران <-> فندق لنفس المدينة)
             let crossDeal = null;
             if (isFlight && liveHotels.length > 0) {
                 const destKey = String(foundDeal.destCityEn || foundDeal.destination || '').toLowerCase();
@@ -2434,7 +2919,6 @@
             document.body.style.overflow = 'hidden';
         };
 
-        // تهيئة اللغة والثيم المحفوظين فور تحميل الصفحة
         document.addEventListener('DOMContentLoaded', () => {
             try {
                 const savedTheme = localStorage.getItem('ucuzakal_theme');
@@ -2452,14 +2936,37 @@
         });
     </script>
     <!-- ========================================================================= -->
-    <!-- الجزء 4 من 4: محرك العرض (CDN-First) + الخريطة المعزولة + المساعدان + الإقلاع -->
+    <!-- الجزء 4 من 4: Firebase الحقيقي + إصلاح الطيران والمدونة + الخريطة + الإقلاع -->
     <!-- ========================================================================= -->
     <script>
         (function() {
-            const FIREBASE_PROJECT = 'ucuzakal-ai-db-6ccfd';
-            const FIRESTORE_BASE = `https://firestore.googleapis.com/v1/projects/${FIREBASE_PROJECT}/databases/(default)/documents`;
+            // إعدادات Firebase الرسمية لمشروعك (ucuzakal-5e2a8)
+            const FIREBASE_CONFIG = {
+                apiKey: "AIzaSyDcMOlstkYaLBOjnJOYk24U6_724pqEw1U",
+                authDomain: "ucuzakal-5e2a8.firebaseapp.com",
+                projectId: "ucuzakal-5e2a8",
+                storageBucket: "ucuzakal-5e2a8.firebasestorage.app",
+                messagingSenderId: "111148178418",
+                appId: "1:111148178418:web:f885dc545e0627516ca96b",
+                measurementId: "G-ST7LSMMXEB"
+            };
 
-            // دالة مساعدة لتنظيف النصوص قبل العرض في HTML
+            let fbAuth = null;
+            let fbDb = null;
+
+            try {
+                if (typeof firebase !== 'undefined') {
+                    if (!firebase.apps.length) {
+                        firebase.initializeApp(FIREBASE_CONFIG);
+                    }
+                    fbAuth = firebase.auth();
+                    fbDb = firebase.firestore();
+                }
+            } catch (e) {
+                console.warn('Firebase init notice:', e);
+            }
+
+            // دوال مساعدة آمنة للنصوص والأرقام
             function escHtml(str) {
                 return String(str || '')
                     .replace(/&/g, '&amp;')
@@ -2469,14 +2976,20 @@
                     .replace(/'/g, '&#39;');
             }
 
-            // استخراج رقم من نص الميزانية
+            function escJs(str) {
+                return String(str || '')
+                    .replace(/\\/g, '\\\\')
+                    .replace(/'/g, "\\'")
+                    .replace(/"/g, '&quot;')
+                    .replace(/\r?\n/g, ' ');
+            }
+
             function parseBudgetNum(val) {
                 const cleaned = String(val || '').replace(/[^0-9.]/g, '');
                 const num = parseFloat(cleaned);
                 return Number.isFinite(num) && num > 0 ? num : 0;
             }
 
-            // حساب المسافة الجغرافية بالكيلومتر (Haversine)
             function haversineKm(lat1, lng1, lat2, lng2) {
                 const R = 6371;
                 const dLat = (lat2 - lat1) * Math.PI / 180;
@@ -2487,32 +3000,113 @@
                 return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
             }
 
+            function toSortableTime(val) {
+                if (!val) return 0;
+                if (typeof val === 'number') return val;
+                if (val && typeof val.toMillis === 'function') return val.toMillis();
+                if (val && typeof val.seconds === 'number') return val.seconds * 1000;
+                const parsed = Date.parse(String(val));
+                return Number.isFinite(parsed) ? parsed : 0;
+            }
+
             // =====================================================================
-            // 1. تسجيل النقرات الخفيف (Click Telemetry للتعلم الذاتي للوكلاء)
+            // 1. تسجيل الدخول الحقيقي بحساب Google (Firebase Auth)
+            // =====================================================================
+            function updateAuthButtonUI(user) {
+                const avatarEl = document.getElementById('auth-avatar');
+                const iconEl = document.getElementById('auth-google-icon');
+                const txtEl = document.getElementById('auth-text');
+                const lang = document.documentElement.lang || 'tr';
+                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+
+                if (user) {
+                    const displayName = (user.displayName || (user.email ? user.email.split('@')[0] : 'Member')).split(' ')[0];
+                    if (txtEl) {
+                        txtEl.removeAttribute('data-i18n');
+                        txtEl.textContent = displayName;
+                    }
+                    if (avatarEl && user.photoURL) {
+                        avatarEl.src = user.photoURL;
+                        avatarEl.classList.remove('hidden');
+                        if (iconEl) iconEl.classList.add('hidden');
+                    } else if (iconEl) {
+                        iconEl.classList.remove('hidden');
+                    }
+                } else {
+                    if (avatarEl) {
+                        avatarEl.src = '';
+                        avatarEl.classList.add('hidden');
+                    }
+                    if (iconEl) iconEl.classList.remove('hidden');
+                    if (txtEl) {
+                        txtEl.setAttribute('data-i18n', 'google_login');
+                        txtEl.textContent = dict.google_login || 'Gmail Girişi';
+                    }
+                }
+            }
+
+            if (fbAuth) {
+                fbAuth.onAuthStateChanged(user => {
+                    updateAuthButtonUI(user);
+                });
+            }
+
+            window.loginWithGoogle = async function() {
+                const lang = document.documentElement.lang || 'tr';
+                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+
+                if (!fbAuth) {
+                    window.showCopyToast('Google Auth is initializing, please refresh.');
+                    return;
+                }
+
+                if (fbAuth.currentUser) {
+                    if (window.confirm(`${fbAuth.currentUser.email || ''}\n${dict.sign_out_prompt || 'Sign out?'}`)) {
+                        try {
+                            await fbAuth.signOut();
+                            window.showCopyToast(dict.signed_out_msg || 'Signed out');
+                        } catch (e) {}
+                    }
+                    return;
+                }
+
+                const provider = new firebase.auth.GoogleAuthProvider();
+                provider.setCustomParameters({ prompt: 'select_account' });
+                try {
+                    const res = await fbAuth.signInWithPopup(provider);
+                    if (res && res.user) {
+                        window.showCopyToast(`${dict.signed_in_msg || 'Signed in'}: ${res.user.displayName || res.user.email}`);
+                    }
+                } catch (err) {
+                    if (err && (err.code === 'auth/popup-blocked' || err.code === 'auth/cancelled-popup-request')) {
+                        try { await fbAuth.signInWithRedirect(provider); } catch (e2) {}
+                    } else if (err && err.code === 'auth/unauthorized-domain') {
+                        window.showCopyToast(`Add domain "${window.location.hostname}" to Firebase Auth Authorized Domains.`);
+                    } else if (err && err.code !== 'auth/popup-closed-by-user') {
+                        window.showCopyToast(err.message || 'Google Sign-In error');
+                    }
+                }
+            };
+
+            // =====================================================================
+            // 2. تسجيل النقرات الخفيف (Click Telemetry)
             // =====================================================================
             window.logClickTelemetry = function(partner, city, mode, dealId) {
                 try {
-                    const payload = {
-                        fields: {
-                            partner: { stringValue: String(partner || 'unknown') },
-                            city:    { stringValue: String(city || 'turkey') },
-                            mode:    { stringValue: String(mode || 'web') },
-                            dealId:  { stringValue: String(dealId || '') },
-                            lang:    { stringValue: document.documentElement.lang || 'tr' },
-                            ts:      { stringValue: new Date().toISOString() }
-                        }
-                    };
-                    fetch(`${FIRESTORE_BASE}/click_telemetry`, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload),
-                        keepalive: true
+                    if (!fbDb) return;
+                    fbDb.collection('click_telemetry').add({
+                        partner: String(partner || 'unknown'),
+                        city: String(city || 'turkey'),
+                        mode: String(mode || 'web'),
+                        dealId: String(dealId || ''),
+                        lang: document.documentElement.lang || 'tr',
+                        ts: new Date().toISOString()
                     }).catch(() => {});
                 } catch (e) {}
             };
 
             // =====================================================================
-            // 2. التبديل بين المساعدين وحساب الميزانية
+            // 3. التبديل بين المساعدين وحساب الميزانية
             // =====================================================================
             window.switchConcierge = function(tab) {
                 const isHotel = tab === 'hotel';
@@ -2548,11 +3142,11 @@
                 if (!budgetEl || !daysEl || !outEl) return;
 
                 const perNight = parseBudgetNum(budgetEl.value);
-                const days = Math.max(1, parseInt(daysEl.value, 10) || 1);
-                if (perNight > 0) {
+                const rawDays = parseInt(daysEl.value, 10);
+                if (perNight > 0 && Number.isFinite(rawDays) && rawDays > 0) {
                     const lang = document.documentElement.lang || 'tr';
                     const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                    const total = Math.round(perNight * days).toLocaleString('en-US');
+                    const total = Math.round(perNight * rawDays).toLocaleString('en-US');
                     outEl.textContent = `${dict.total_est || 'Total:'} $${total}`;
                 } else {
                     outEl.textContent = '';
@@ -2560,7 +3154,7 @@
             };
 
             // =====================================================================
-            // 3. عرض بطاقات الفنادق والطيران اليومية (مع زر نسخ الرابط الدائم ?deal=)
+            // 4. عرض بطاقات الفنادق والطيران اليومية (بإطار ذهبي متحرك + زر ?deal=)
             // =====================================================================
             window.renderHotels = function() {
                 const container = document.getElementById('hotels-container');
@@ -2579,46 +3173,48 @@
                     const titleDisp = window.pickDealLocalizedField(h, 'title', h.name || h.title || cityDisp, lang);
                     const descDisp = window.pickDealLocalizedField(h, 'desc', h.description || '', lang);
                     const imgSrc = h.image || 'https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1200&q=80';
-                    const affUrl = h.affiliateUrl || '#';
+                    const affUrl = h.affiliateUrl || h.link || h.url || '#';
                     const savBadge = h.savingsPct ? `<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-black px-2.5 py-1 rounded-full shadow-md">🔥 -${escHtml(h.savingsPct)}%</span>` : '';
 
                     return `
-                    <div class="ultra-luxury-card group">
-                        <a href="${escHtml(affUrl)}" target="_blank" rel="noopener"
-                           onclick="window.logClickTelemetry('${escHtml(h.partner || 'klook')}', '${escHtml(h.cityEn || h.city || '')}', 'hotel_grid', '${escHtml(dealId)}')"
-                           class="block flex-1 flex flex-col">
-                            <div class="img-frame">
-                                <img src="${escHtml(imgSrc)}" alt="${escHtml(titleDisp)}" loading="lazy" class="w-full h-full object-cover">
-                                ${savBadge}
-                                <button type="button" title="${escHtml(dict.share_btn_title)}"
-                                    onclick="window.copyDealShareLink('${escHtml(dealId)}', event)"
-                                    class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
-                                    <i class="fas fa-share-alt text-xs"></i>
-                                </button>
-                            </div>
-                            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                                <div>
-                                    <div class="text-[11px] font-extrabold text-brand-gold uppercase tracking-[0.22em] mb-1.5">
-                                        🇹🇷 ${escHtml(cityDisp)}
-                                    </div>
-                                    <h3 class="font-luxury text-lg font-extrabold text-slate-900 dark:text-white leading-snug mb-2 group-hover:text-brand-gold transition">
-                                        ${escHtml(titleDisp)}
-                                    </h3>
-                                    <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-4">
-                                        ${escHtml(descDisp)}
-                                    </p>
+                    <div class="gold-animated-frame">
+                        <div class="ultra-luxury-card group">
+                            <a href="${escHtml(affUrl)}" target="_blank" rel="noopener"
+                               onclick="window.logClickTelemetry('${escJs(h.partner || 'klook')}', '${escJs(h.cityEn || h.city || '')}', 'hotel_grid', '${escJs(dealId)}')"
+                               class="flex-1 flex flex-col">
+                                <div class="img-frame">
+                                    <img src="${escHtml(imgSrc)}" alt="${escHtml(titleDisp)}" loading="lazy" class="w-full h-full object-cover">
+                                    ${savBadge}
+                                    <button type="button" title="${escHtml(dict.share_btn_title)}"
+                                        onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
+                                        class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
+                                        <i class="fas fa-share-alt text-xs"></i>
+                                    </button>
                                 </div>
-                                <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
+                                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                                     <div>
-                                        <span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span>
-                                        <span class="font-luxury text-xl font-black text-brand-gold">${escHtml(h.price || '$59')}</span>
+                                        <div class="text-[11px] font-extrabold text-brand-gold uppercase tracking-[0.22em] mb-1.5">
+                                            🇹🇷 ${escHtml(cityDisp)}
+                                        </div>
+                                        <h3 class="font-luxury text-lg font-extrabold text-slate-900 dark:text-white leading-snug mb-2 group-hover:text-brand-gold transition">
+                                            ${escHtml(titleDisp)}
+                                        </h3>
+                                        <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-4">
+                                            ${escHtml(descDisp)}
+                                        </p>
                                     </div>
-                                    <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">
-                                        ${escHtml(dict.book_deal_btn)} <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-                                    </span>
+                                    <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
+                                        <div>
+                                            <span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span>
+                                            <span class="font-luxury text-xl font-black text-brand-gold">${escHtml(h.price || '$59')}</span>
+                                        </div>
+                                        <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">
+                                            ${escHtml(dict.book_deal_btn)} <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
+                                        </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>`;
                 }).join('');
             };
@@ -2638,56 +3234,71 @@
                     const dealId = f.dealId || f.id || `flight_deal_${idx + 1}`;
                     const routeTitle = window.pickDealLocalizedField(f, 'title', f.route || f.title || `${f.originIata || ''} ✈️ ${f.destIata || ''}`, lang);
                     const descDisp = window.pickDealLocalizedField(f, 'desc', f.description || '', lang);
-                    const affUrl = f.affiliateUrl || '#';
+                    const affUrl = f.affiliateUrl || f.link || f.url || '#';
                     const savBadge = f.savingsPct ? `<span class="bg-brand-gold text-black text-[10px] font-black px-2.5 py-0.5 rounded-full">🔥 -${escHtml(f.savingsPct)}%</span>` : '';
                     const segLabel = f.segment === 'domestic_tr' ? '🇹🇷 DOMESTIC' : (f.segment === 'russia_tr' ? '🇷🇺 ⇄ 🇹🇷' : '🌍 ⇄ 🇹🇷');
+                    const hasCardImg = f.image && String(f.image).startsWith('http');
 
                     return `
-                    <div class="ultra-luxury-card group p-5 sm:p-6">
-                        <a href="${escHtml(affUrl)}" target="_blank" rel="noopener"
-                           onclick="window.logClickTelemetry('aviasales', '${escHtml(f.destCityEn || f.destination || '')}', 'flight_grid', '${escHtml(dealId)}')"
-                           class="flex flex-col justify-between h-full">
-                            <div>
-                                <div class="flex items-center justify-between gap-2 mb-3">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-brand-gold/15 border border-brand-gold/40 text-brand-gold">${escHtml(segLabel)}</span>
-                                        ${savBadge}
-                                    </div>
+                    <div class="gold-animated-frame">
+                        <div class="ultra-luxury-card group">
+                            <a href="${escHtml(affUrl)}" target="_blank" rel="noopener"
+                               onclick="window.logClickTelemetry('aviasales', '${escJs(f.destCityEn || f.destination || '')}', 'flight_grid', '${escJs(dealId)}')"
+                               class="flex flex-col justify-between h-full">
+                                ${hasCardImg ? `
+                                <div class="img-frame h-44">
+                                    <img src="${escHtml(f.image)}" alt="${escHtml(routeTitle)}" loading="lazy" class="w-full h-full object-cover">
                                     <button type="button" title="${escHtml(dict.share_btn_title)}"
-                                        onclick="window.copyDealShareLink('${escHtml(dealId)}', event)"
-                                        class="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/5 border border-brand-gold/40 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
+                                        onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
+                                        class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
                                         <i class="fas fa-share-alt text-xs"></i>
                                     </button>
-                                </div>
+                                </div>` : ''}
+                                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                                    <div>
+                                        <div class="flex items-center justify-between gap-2 mb-3">
+                                            <div class="flex items-center gap-2">
+                                                <span class="text-[10px] font-extrabold px-2.5 py-1 rounded-full bg-brand-gold/15 border border-brand-gold/40 text-brand-gold">${escHtml(segLabel)}</span>
+                                                ${savBadge}
+                                            </div>
+                                            ${!hasCardImg ? `
+                                            <button type="button" title="${escHtml(dict.share_btn_title)}"
+                                                onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
+                                                class="w-8 h-8 rounded-full bg-slate-100 dark:bg-white/5 border border-brand-gold/40 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
+                                                <i class="fas fa-share-alt text-xs"></i>
+                                            </button>` : ''}
+                                        </div>
 
-                                <h3 class="font-luxury text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition mb-1.5">
-                                    ${escHtml(routeTitle)}
-                                </h3>
-                                <div class="text-xs font-bold text-brand-gold/90 mb-2.5 flex flex-wrap items-center gap-2">
-                                    <span><i class="fas fa-plane-departure mx-1"></i>${escHtml(f.airline || 'Verified Airline')}</span>
-                                    ${f.departureDate ? `<span class="text-slate-400">• ${escHtml(f.departureDate)}</span>` : ''}
-                                </div>
-                                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
-                                    ${escHtml(descDisp)}
-                                </p>
-                            </div>
+                                        <h3 class="font-luxury text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition mb-1.5">
+                                            ${escHtml(routeTitle)}
+                                        </h3>
+                                        <div class="text-xs font-bold text-brand-gold/90 mb-2.5 flex flex-wrap items-center gap-2">
+                                            <span><i class="fas fa-plane-departure mx-1"></i>${escHtml(f.airline || 'Verified Airline')}</span>
+                                            ${f.departureDate ? `<span class="text-slate-400">• ${escHtml(f.departureDate)}</span>` : ''}
+                                        </div>
+                                        <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed mb-5">
+                                            ${escHtml(descDisp)}
+                                        </p>
+                                    </div>
 
-                            <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
-                                <div>
-                                    <span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span>
-                                    <span class="font-luxury text-2xl font-black text-brand-gold">${escHtml(f.price || '')}</span>
+                                    <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
+                                        <div>
+                                            <span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span>
+                                            <span class="font-luxury text-2xl font-black text-brand-gold">${escHtml(f.price || '')}</span>
+                                        </div>
+                                        <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">
+                                            ${escHtml(dict.book_deal_btn)} <i class="fas fa-plane text-[10px]"></i>
+                                        </span>
+                                    </div>
                                 </div>
-                                <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">
-                                    ${escHtml(dict.book_deal_btn)} <i class="fas fa-plane text-[10px]"></i>
-                                </span>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>`;
                 }).join('');
             };
 
             // =====================================================================
-            // 4. عرض المقالات ونافذة القراءة (Blog)
+            // 5. المدونة العالمية الفاخرة (قالبان فقط + قراءة بملء الشاشة الكاملة)
             // =====================================================================
             window.openArticleModal = function(articleId) {
                 const art = window.ARTICLES_MAP && window.ARTICLES_MAP[articleId];
@@ -2698,11 +3309,21 @@
                 const catEl = document.getElementById('modal-category');
                 const titleEl = document.getElementById('modal-title');
                 const bodyEl = document.getElementById('modal-body');
-                if (imgEl) imgEl.src = art.image || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1200&q=80';
-                if (catEl) catEl.textContent = art.category || 'TÜRKİYE';
-                window.renderAndTranslateFullArticle(art, lang, bodyEl, titleEl);
+                const galleryEl = document.getElementById('modal-gallery');
+                const progEl = document.getElementById('article-read-progress');
+
+                const coverImg = art.image || art.imageUrl || art.coverImage || art.thumbnail || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1400&q=80';
+                if (imgEl) imgEl.src = coverImg;
+                if (catEl) catEl.textContent = art.category || 'UCUZAKAL JOURNAL';
+                if (progEl) progEl.style.width = '0%';
+
+                window.renderAndTranslateFullArticle(art, lang, bodyEl, titleEl, galleryEl);
+
                 const modal = document.getElementById('article-modal');
-                if (modal) modal.classList.add('active');
+                if (modal) {
+                    modal.classList.add('active');
+                    modal.scrollTop = 0;
+                }
                 document.body.style.overflow = 'hidden';
             };
 
@@ -2713,47 +3334,123 @@
                 document.body.style.overflow = '';
             };
 
-            window.closeArticleModal = function(e) {
-                if (e && e.target && e.target.id === 'article-modal') window.hideArticleModal();
+            window.setBlogPage = function(pageIdx) {
+                window.blogPageIndex = Math.max(0, pageIdx);
+                window.renderBlogCards();
+                const sec = document.getElementById('blog-section');
+                if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
             };
 
             window.renderBlogCards = function() {
                 const container = document.getElementById('blog-container');
+                const pagEl = document.getElementById('blog-pagination');
                 if (!container) return;
+
                 const lang = document.documentElement.lang || 'tr';
                 const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                const list = Object.values(window.ARTICLES_MAP || {});
+                const list = Object.values(window.ARTICLES_MAP || {})
+                    .sort((a, b) => toSortableTime(b.createdAt || b.updatedAt || b.date) - toSortableTime(a.createdAt || a.updatedAt || a.date));
 
                 if (list.length === 0) {
-                    container.innerHTML = `<div class="col-span-full text-center py-8 text-slate-400 text-sm">${escHtml(dict.no_deals_text)}</div>`;
+                    container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_articles_text || dict.no_deals_text)}</div>`;
+                    if (pagEl) pagEl.classList.add('hidden');
                     return;
                 }
 
-                container.innerHTML = list.slice(0, 6).map(art => {
-                    const title = (art.titles && (art.titles[lang] || art.titles.tr || art.titles.ar || art.titles.en)) || art.title || '';
-                    const plainSnippet = String((art.bodies && (art.bodies[lang] || art.bodies.tr || art.bodies.ar)) || art.body || '').replace(/<[^>]+>/g, ' ').slice(0, 125);
+                // عرض قالبين تحريريين فاخرين فقط في كل صفحة
+                const pageSize = 2;
+                const totalPages = Math.ceil(list.length / pageSize);
+                if (window.blogPageIndex >= totalPages) window.blogPageIndex = 0;
+                const start = window.blogPageIndex * pageSize;
+                const visibleTwo = list.slice(start, start + pageSize);
+
+                container.innerHTML = visibleTwo.map(art => {
+                    const parsed = window.extractArticleContent(art, lang);
+                    const title = window.translateTextStrong(parsed.title || art.id, lang);
+                    const plainSnippet = parsed.body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 185);
+                    const coverImg = art.image || art.imageUrl || art.coverImage || art.thumbnail || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1400&q=80';
+
                     return `
-                    <article onclick="window.openArticleModal('${escHtml(art.id)}')" class="ultra-luxury-card cursor-pointer group">
-                        <div class="img-frame">
-                            <img src="${escHtml(art.image || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80')}" alt="${escHtml(title)}" loading="lazy" class="w-full h-full object-cover">
-                        </div>
-                        <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                            <div>
-                                <span class="text-[10px] font-extrabold text-brand-gold tracking-[0.25em] uppercase block mb-1.5">${escHtml(art.category || 'TÜRKİYE')}</span>
-                                <h3 class="font-luxury text-lg font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition mb-2 line-clamp-2">${escHtml(title)}</h3>
-                                <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-4">${escHtml(plainSnippet)}...</p>
+                    <div class="gold-animated-frame">
+                        <article onclick="window.openArticleModal('${escJs(art.id)}')" class="editorial-blog-card group">
+                            <div class="editorial-cover-wrap">
+                                <img src="${escHtml(coverImg)}" alt="${escHtml(title)}" loading="lazy">
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#060A14] via-[#060A14]/30 to-transparent"></div>
+                                <div class="absolute top-4 left-4 right-4 flex items-center justify-between gap-2">
+                                    <span class="px-3.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold tracking-[0.22em] uppercase">
+                                        ${escHtml(art.category || 'TÜRKİYE')}
+                                    </span>
+                                    <span class="px-3 py-1 rounded-full bg-brand-gold text-black text-[10px] font-black tracking-wider uppercase shadow-lg">
+                                        <i class="fas fa-crown mx-1"></i>${escHtml(dict.editorial_tag || 'EDITORIAL')}
+                                    </span>
+                                </div>
                             </div>
-                            <div class="text-xs font-extrabold text-brand-gold inline-flex items-center gap-1.5">
-                                <span>${escHtml(dict.read_more)}</span>
-                                <i class="fas fa-arrow-right text-[10px]"></i>
+                            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="font-luxury text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition leading-snug mb-3">
+                                        ${escHtml(title)}
+                                    </h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-6">
+                                        ${escHtml(plainSnippet)}${plainSnippet.length >= 180 ? '...' : ''}
+                                    </p>
+                                </div>
+                                <div class="pt-5 border-t border-slate-200 dark:border-brand-gold/20 flex items-center justify-between gap-3">
+                                    <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-brand-gold group-hover:gap-3 transition-all">
+                                        <span>${escHtml(dict.read_more)}</span>
+                                        <i class="fas fa-arrow-right text-xs"></i>
+                                    </span>
+                                    <span class="w-9 h-9 rounded-full bg-brand-gold/12 border border-brand-gold/40 text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition flex items-center justify-center">
+                                        <i class="fas fa-expand-alt text-xs"></i>
+                                    </span>
+                                </div>
                             </div>
-                        </div>
-                    </article>`;
+                        </article>
+                    </div>`;
                 }).join('');
+
+                // أزرار تنقل أنيقة إن كان هناك أكثر من مقالين مع الحفاظ الدائم على قالبين فقط
+                if (pagEl) {
+                    if (totalPages > 1) {
+                        pagEl.innerHTML = `
+                            <button type="button" ${window.blogPageIndex === 0 ? 'disabled' : ''} onclick="window.setBlogPage(${window.blogPageIndex - 1})"
+                                class="px-4 py-2 rounded-full border border-brand-gold/40 text-xs font-bold text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition disabled:opacity-35 cursor-pointer">
+                                ${escHtml(dict.prev_articles || 'Prev')}
+                            </button>
+                            <span class="text-xs font-extrabold text-brand-gold px-2">${window.blogPageIndex + 1} / ${totalPages}</span>
+                            <button type="button" ${window.blogPageIndex >= totalPages - 1 ? 'disabled' : ''} onclick="window.setBlogPage(${window.blogPageIndex + 1})"
+                                class="px-4 py-2 rounded-full border border-brand-gold/40 text-xs font-bold text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition disabled:opacity-35 cursor-pointer">
+                                ${escHtml(dict.next_articles || 'Next')}
+                            </button>`;
+                        pagEl.classList.remove('hidden');
+                    } else {
+                        pagEl.classList.add('hidden');
+                    }
+                }
             };
 
+            // شريط تقدّم القراءة الذهبي داخل قارئ المدونة بملء الشاشة
+            const articleModalEl = document.getElementById('article-modal');
+            if (articleModalEl) {
+                articleModalEl.addEventListener('scroll', () => {
+                    const progEl = document.getElementById('article-read-progress');
+                    if (!progEl) return;
+                    const maxScroll = articleModalEl.scrollHeight - articleModalEl.clientHeight;
+                    const pct = maxScroll > 0 ? Math.min(100, Math.round((articleModalEl.scrollTop / maxScroll) * 100)) : 0;
+                    progEl.style.width = `${pct}%`;
+                }, { passive: true });
+            }
+
+            // إغلاق النوافذ المنبثقة بزر Escape
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    window.hideArticleModal();
+                    window.hideDealSpotlight();
+                    window.closeCinematicOverlay();
+                }
+            });
+
             // =====================================================================
-            // 5. التقييمات وتسجيل الدخول الخفيف
+            // 6. إرسال التقييمات إلى Firebase Firestore الحقيقي
             // =====================================================================
             window.submitReview = function() {
                 const nameEl = document.getElementById('user-review-name');
@@ -2764,41 +3461,23 @@
                 const text = textEl.value.trim();
                 if (!name || !text) return;
 
-                fetch(`${FIRESTORE_BASE}/reviews`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        fields: {
-                            name: { stringValue: name },
-                            text: { stringValue: text },
-                            rating: { integerValue: String(window.selectedRating || 5) },
-                            createdAt: { stringValue: new Date().toISOString() }
-                        }
-                    })
-                }).catch(() => {});
+                if (fbDb) {
+                    fbDb.collection('reviews').add({
+                        name: name,
+                        text: text,
+                        rating: window.selectedRating || 5,
+                        userEmail: (fbAuth && fbAuth.currentUser && fbAuth.currentUser.email) || '',
+                        createdAt: new Date().toISOString()
+                    }).catch(() => {});
+                }
 
                 nameEl.value = '';
                 textEl.value = '';
                 if (okEl) okEl.classList.remove('hidden');
             };
 
-            window.loginWithGoogle = function() {
-                const authTxt = document.getElementById('auth-text');
-                const saved = localStorage.getItem('ucuzakal_member_email');
-                if (saved) {
-                    window.showCopyToast(`✓ ${saved}`);
-                    return;
-                }
-                const email = window.prompt('Gmail / Email:');
-                if (email && email.includes('@')) {
-                    localStorage.setItem('ucuzakal_member_email', email.trim());
-                    if (authTxt) authTxt.textContent = email.split('@')[0];
-                    window.showCopyToast(`✓ ${email.trim()}`);
-                }
-            };
-
             // =====================================================================
-            // 6. محرك الخريطة الحية + البطاقة الإقناعية + عدّاد جاهزية الرحلة
+            // 7. محرك الخريطة التفاعلية الحية + البطاقة الإقناعية + عدّاد الجاهزية
             // =====================================================================
             function clearRadarTimers() {
                 (window._radarTimers || []).forEach(t => clearTimeout(t));
@@ -2859,7 +3538,6 @@
                 return window.leafletMapInstance;
             }
 
-            // رسم قناع عزل تركيا 100% (تغطية جميع الدول المجاورة بالأسود الداكن + حدود تركيا الذهبية)
             function applyIsolatedTurkeyMask(map) {
                 if (!map || !window.leafletMarkersLayer) return;
                 const worldOuter = [[-85, -180], [-85, 180], [85, 180], [85, -180]];
@@ -2964,7 +3642,7 @@
                         <div class="flex items-center justify-between gap-2 pt-2 border-t border-white/10">
                             <span class="font-luxury text-xs sm:text-sm font-black text-brand-gold">${escHtml(c.price)}</span>
                             <a href="${escHtml(c.url)}" target="_blank" rel="noopener"
-                               onclick="window.markOfferChecked(${idx}, '${escHtml(c.partner)}', '${escHtml(cityLog)}', '${escHtml(modeLog)}')"
+                               onclick="window.markOfferChecked(${idx}, '${escJs(c.partner)}', '${escJs(cityLog)}', '${escJs(modeLog)}')"
                                class="px-3 py-1.5 rounded-full bg-brand-gold text-black text-[11px] font-black hover:opacity-90 transition inline-flex items-center gap-1 shrink-0">
                                 <i class="${escHtml(c.icon || 'fas fa-external-link-alt')} text-[10px]"></i>
                                 <span>${escHtml(c.cta)}</span>
@@ -2974,7 +3652,7 @@
             }
 
             // =====================================================================
-            // 7. تشغيل مساعد الفنادق (خريطة تركيا المعزولة + 5 عروض مفحوصة)
+            // 8. تشغيل مساعد الفنادق (خريطة تركيا المعزولة + 5 عروض مفحوصة)
             // =====================================================================
             window.startHotelConcierge = function() {
                 clearRadarTimers();
@@ -2987,10 +3665,10 @@
                 const pInfo = window.TURKEY_81_COORDS[province];
                 const accType = (document.getElementById('hc-type') && document.getElementById('hc-type').value) || 'hotel';
                 const vibeKey = (document.getElementById('hc-vibe') && document.getElementById('hc-vibe').value) || 'luxury';
-                const days = Math.max(1, parseInt((document.getElementById('hc-days') && document.getElementById('hc-days').value) || '3', 10));
+                const rawDays = parseInt((document.getElementById('hc-days') && document.getElementById('hc-days').value) || '', 10);
+                const days = Number.isFinite(rawDays) && rawDays > 0 ? rawDays : 3;
                 const userBudget = parseBudgetNum(document.getElementById('hc-budget') && document.getElementById('hc-budget').value);
 
-                // فتح الشاشة العائمة
                 const overlay = document.getElementById('cinematic-overlay');
                 const bar = document.getElementById('cinematic-bar');
                 const statusEl = document.getElementById('cinematic-status-title');
@@ -3013,11 +3691,9 @@
 
                 window.ConciergeAudio.playRadarPing(980);
 
-                // تهيئة خريطة تركيا المعزولة 100%
                 const map = ensureLeafletMap([39.0, 35.2], 6);
                 if (map) applyIsolatedTurkeyMask(map);
 
-                // اختيار أفضل عرض إقامة مطابق للميزانية
                 const minMarket = accType === 'resort' ? pInfo.minResort : (accType === 'apart' ? pInfo.minApart : pInfo.minHotel);
                 const cityTiers = (window.VERIFIED_STAY_TIERS_FALLBACK[province] && window.VERIFIED_STAY_TIERS_FALLBACK[province][accType]) || [];
                 let chosenStay = null;
@@ -3045,7 +3721,6 @@
                 const estTotal = estNight * days;
                 const isLowBudget = userBudget > 0 && userBudget < minMarket;
 
-                // التحريك الذكي للمدينة مع إزاحة علوية لرفع المدن الجنوبية (مثل أنطاليا) فوق البطاقات السفلية
                 const t1 = setTimeout(() => {
                     if (sessionId !== window.activeSearchSessionId) return;
                     if (bar) bar.style.width = '70%';
@@ -3053,7 +3728,6 @@
                         map.flyTo([chosenStay.lat || pInfo.lat, chosenStay.lng || pInfo.lng], 7, { duration: 1.05 });
                         setTimeout(() => {
                             if (sessionId !== window.activeSearchSessionId || !map) return;
-                            // رفع النقطة 120 بكسل للأعلى لتستقر بوضوح وسط الشاشة فوق البطاقات السفلية
                             map.panBy([0, 120], { animate: true, duration: 0.45 });
                         }, 1100);
 
@@ -3075,14 +3749,12 @@
                     window.ConciergeAudio.playLanding();
                 }, 420);
 
-                // إظهار الحزمة الـ 5 المفحوصة
                 const t2 = setTimeout(() => {
                     if (sessionId !== window.activeSearchSessionId) return;
                     if (bar) bar.style.width = '100%';
                     if (statusEl) statusEl.textContent = dict.radar_step_3;
                     if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> TR ${escHtml(pInfo.cityEn.toUpperCase())} — 5 VERIFIED OFFERS ON MAP`;
 
-                    // شريط الميزانية
                     if (alertEl) {
                         alertEl.classList.remove('hidden');
                         alertEl.className = `pointer-events-auto max-w-3xl mx-auto rounded-full px-4 py-1.5 text-[11px] font-bold text-center border ${isLowBudget ? 'bg-amber-500/20 border-amber-400/50 text-amber-200' : 'bg-emerald-500/20 border-emerald-400/50 text-emerald-200'}`;
@@ -3157,7 +3829,7 @@
             };
 
             // =====================================================================
-            // 8. تشغيل مساعد الطيران العالمي (خريطة حية + حركة الطائرة + 4 عروض مفحوصة)
+            // 9. تشغيل مساعد الطيران العالمي (مع دعم الحقول الفارغة بسلاسة)
             // =====================================================================
             function readFlightEndpoint(side) {
                 const sel = document.getElementById(`fc-${side}-country`);
@@ -3220,7 +3892,6 @@
                 if (subEl) subEl.textContent = `${orig.city} (${orig.iata}) ➔ ✈️ ${dest.city} (${dest.iata}) • ${km} KM ✈️`;
                 if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block"></span> TRACKING ${escHtml(orig.iata)} ➔ ${escHtml(dest.iata)}`;
 
-                // تهيئة خريطة العالم (بدون قناع تركيا)
                 const midLat = (orig.lat + dest.lat) / 2;
                 const midLng = (orig.lng + dest.lng) / 2;
                 const map = ensureLeafletMap([midLat, midLng], 4);
@@ -3230,7 +3901,6 @@
                     const bounds = L.latLngBounds([[orig.lat, orig.lng], [dest.lat, dest.lng]]);
                     map.fitBounds(bounds, { padding: [90, 140], maxZoom: 6 });
 
-                    // نقطتا الانطلاق والوصول
                     const origIcon = L.divIcon({
                         className: '',
                         html: `<div class="relative"><div class="radar-pulse-ring origin-ring"></div><div class="radar-target-dot origin-dot"></div><div class="radar-country-label">${escHtml(orig.iata)}</div></div>`,
@@ -3244,7 +3914,6 @@
                     L.marker([orig.lat, orig.lng], { icon: origIcon }).addTo(window.leafletMarkersLayer);
                     L.marker([dest.lat, dest.lng], { icon: destIcon }).addTo(window.leafletMarkersLayer);
 
-                    // مسار الطيران المنحني (Quadratic Bezier)
                     const ctrlLat = midLat + Math.min(12, km / 420);
                     const ctrlLng = midLng;
                     const curvePts = [];
@@ -3258,7 +3927,6 @@
 
                     L.polyline(curvePts, { color: '#D4AF37', weight: 3, dashArray: '8, 7', opacity: 0.9 }).addTo(window.leafletMarkersLayer);
 
-                    // أيقونة الطائرة الذهبية المتحركة
                     const jetSvg = `<div class="real-jet-wrapper"><svg class="real-jet-svg" viewBox="0 0 24 24" fill="#D4AF37"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>`;
                     const jetMarker = L.marker(curvePts[0], {
                         icon: L.divIcon({ className: '', html: jetSvg, iconSize: [44, 44], iconAnchor: [22, 22] })
@@ -3307,7 +3975,6 @@
                 if (statusEl) statusEl.textContent = dict.radar_step_3;
                 if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> ARRIVED AT ${escHtml(dest.city.toUpperCase())} (${escHtml(dest.iata)}) — 4 VERIFIED OFFERS ON MAP`;
 
-                // فحص ما إذا كان المسار موجوداً اليوم في عروض Aviasales الموثّقة
                 const liveMatch = (window.FLIGHTS_DATA || []).find(f => f.originIata === orig.iata && f.destIata === dest.iata);
                 const flightUrl = window.buildFlightDirectUrl(orig.iata, dest.iata, null, liveMatch && liveMatch.affiliateUrl);
 
@@ -3324,7 +3991,7 @@
                                 <div class="text-xs font-black text-brand-gold mb-1">${escHtml(orig.iata)} ✈️ ${escHtml(dest.iata)}</div>
                                 <div class="text-[10px] text-slate-300 mb-2">${escHtml(dict.flight_live_subtitle)}</div>
                                 <a href="${escHtml(flightUrl)}" target="_blank" rel="noopener"
-                                   onclick="window.logClickTelemetry('aviasales', '${escHtml(dest.city)}', 'flight_popup', '${escHtml(orig.iata)}_${escHtml(dest.iata)}')"
+                                   onclick="window.logClickTelemetry('aviasales', '${escJs(dest.city)}', 'flight_popup', '${escJs(orig.iata)}_${escJs(dest.iata)}')"
                                    class="inline-block px-4 py-1.5 rounded-full bg-brand-gold text-black text-[11px] font-black">${escHtml(dict.book_deal_btn)}</a>
                             </div>`)
                         .openOn(map);
@@ -3388,28 +4055,26 @@
             }
 
             // =====================================================================
-            // 9. تحميل البيانات السريع (CDN-First JSON = 0 قراءة Firestore)
+            // 10. تحميل البيانات الذكي المستقل (CDN-First + Firebase SDK الحقيقي)
             // =====================================================================
-            function parseFirestoreField(fieldObj) {
-                if (!fieldObj || typeof fieldObj !== 'object') return '';
-                if ('stringValue' in fieldObj) return fieldObj.stringValue;
-                if ('integerValue' in fieldObj) return parseInt(fieldObj.integerValue, 10);
-                if ('doubleValue' in fieldObj) return parseFloat(fieldObj.doubleValue);
-                if ('booleanValue' in fieldObj) return fieldObj.booleanValue;
-                return '';
-            }
-
-            function flattenFirestoreDoc(doc) {
-                const out = { id: (doc.name || '').split('/').pop() };
-                const f = doc.fields || {};
-                Object.keys(f).forEach(k => { out[k] = parseFirestoreField(f[k]); });
-                return out;
+            async function fetchCollectionDocs(colName, maxCount) {
+                if (!fbDb) return [];
+                try {
+                    const snap = await fbDb.collection(colName).limit(maxCount || 20).get();
+                    const items = [];
+                    snap.forEach(doc => {
+                        items.push(Object.assign({ id: doc.id }, doc.data()));
+                    });
+                    return items;
+                } catch (e) {
+                    return [];
+                }
             }
 
             async function bootstrapPlatformData() {
-                const bust = Math.floor(Date.now() / 300000); // تحديث الكاش كل 5 دقائق
+                const bust = Math.floor(Date.now() / 300000);
 
-                // 1. تحميل البث الحي والأرشيف الدائم (30 يوماً) من ملفات GitHub Pages السريعة مجاناً
+                // 1. تحميل البث الحي والأرشيف الدائم (30 يوماً) من ملفات GitHub Pages مجاناً
                 const [feedRes, archiveRes] = await Promise.allSettled([
                     fetch(`./live_deals_feed.json?v=${bust}`).then(r => r.ok ? r.json() : null),
                     fetch(`./deals_archive.json?v=${bust}`).then(r => r.ok ? r.json() : null)
@@ -3419,39 +4084,58 @@
                     window.DEALS_ARCHIVE_MAP = archiveRes.value.deals;
                 }
 
-                let loadedFromStaticFeed = false;
                 if (feedRes.status === 'fulfilled' && feedRes.value) {
                     const feed = feedRes.value;
-                    if (Array.isArray(feed.mainHotels) && feed.mainHotels.length > 0) {
-                        window.HOTELS_DATA = feed.mainHotels;
-                        loadedFromStaticFeed = true;
-                    }
-                    if (Array.isArray(feed.mainFlights) && feed.mainFlights.length > 0) {
-                        window.FLIGHTS_DATA = feed.mainFlights;
-                        loadedFromStaticFeed = true;
-                    }
+                    const hFeed = feed.mainHotels || feed.hotels;
+                    const fFeed = feed.mainFlights || feed.flights;
+                    if (Array.isArray(hFeed) && hFeed.length > 0) window.HOTELS_DATA = hFeed;
+                    if (Array.isArray(fFeed) && fFeed.length > 0) window.FLIGHTS_DATA = fFeed;
                     if (feed.conciergeHotels) window.CONCIERGE_HOTELS_DB = feed.conciergeHotels;
                     if (feed.conciergeFlights) window.CONCIERGE_FLIGHTS_DB = feed.conciergeFlights;
                     if (feed.partnerWeights) window.PARTNER_WEIGHTS = feed.partnerWeights;
                 }
 
-                // 2. شبكة أمان احتياطية: إن لم يُنشأ ملف JSON بعد، اقرأ فقط 12 مستنداً من Firestore
-                if (!loadedFromStaticFeed) {
-                    try {
-                        const r = await fetch(`${FIRESTORE_BASE}/live_deals?pageSize=20`);
-                        if (r.ok) {
-                            const j = await r.json();
-                            const docs = (j.documents || []).map(flattenFirestoreDoc);
-                            window.HOTELS_DATA = docs.filter(d => String(d.id).startsWith('hotel_deal_')).sort((a, b) => a.id.localeCompare(b.id));
-                            window.FLIGHTS_DATA = docs.filter(d => String(d.id).startsWith('flight_deal_')).sort((a, b) => a.id.localeCompare(b.id));
+                // 2. فصل فحص الفنادق عن الطيران: إن نقصت عروض الطيران أو الفنادق نجلبها فوراً من Firestore ثم الأرشيف
+                if (window.HOTELS_DATA.length === 0 || window.FLIGHTS_DATA.length === 0) {
+                    const liveDocs = await fetchCollectionDocs('live_deals', 30);
+                    if (window.HOTELS_DATA.length === 0) {
+                        const fromLiveH = liveDocs.filter(d => String(d.id).startsWith('hotel_deal_') || d.type === 'hotel')
+                            .sort((a, b) => String(a.id).localeCompare(String(b.id)));
+                        if (fromLiveH.length > 0) {
+                            window.HOTELS_DATA = fromLiveH;
+                        } else {
+                            const colH = await fetchCollectionDocs('hotels', 12);
+                            if (colH.length > 0) window.HOTELS_DATA = colH.slice(0, 6);
                         }
-                    } catch (e) {}
+                    }
+
+                    if (window.FLIGHTS_DATA.length === 0) {
+                        const fromLiveF = liveDocs.filter(d => String(d.id).startsWith('flight_deal_') || d.type === 'flight')
+                            .sort((a, b) => String(a.id).localeCompare(String(b.id)));
+                        if (fromLiveF.length > 0) {
+                            window.FLIGHTS_DATA = fromLiveF;
+                        } else {
+                            const colF = await fetchCollectionDocs('flights', 12);
+                            if (colF.length > 0) window.FLIGHTS_DATA = colF.slice(0, 6);
+                        }
+                    }
+                }
+
+                // 3. شبكة أمان إضافية من الأرشيف الدائم إن كانت إحدى المصفوفات ما زالت فارغة
+                if (window.DEALS_ARCHIVE_MAP && Object.keys(window.DEALS_ARCHIVE_MAP).length > 0) {
+                    const archivedAll = Object.values(window.DEALS_ARCHIVE_MAP);
+                    if (window.FLIGHTS_DATA.length === 0) {
+                        window.FLIGHTS_DATA = archivedAll.filter(d => d && (d.type === 'flight' || d.originIata)).slice(0, 6);
+                    }
+                    if (window.HOTELS_DATA.length === 0) {
+                        window.HOTELS_DATA = archivedAll.filter(d => d && (d.type === 'hotel' || (d.city && !d.originIata))).slice(0, 6);
+                    }
                 }
 
                 window.renderHotels();
                 window.renderFlights();
 
-                // 3. فتح نافذة العرض الدائم فوراً إذا دخل الزائر من رابط سوشيال ميديا (?deal=...)
+                // 4. فتح نافذة العرض الدائم فوراً إذا دخل الزائر من رابط سوشيال ميديا (?deal=...)
                 try {
                     const params = new URLSearchParams(window.location.search);
                     const dealParam = params.get('deal');
@@ -3460,29 +4144,23 @@
                     }
                 } catch (e) {}
 
-                // 4. تحميل مقالات المدونة المنشورة من Firestore (المدونة)
-                try {
-                    const rArt = await fetch(`${FIRESTORE_BASE}/articles?pageSize=9`);
-                    if (rArt.ok) {
-                        const jArt = await rArt.json();
-                        (jArt.documents || []).forEach(doc => {
-                            const item = flattenFirestoreDoc(doc);
-                            if (item.title || item.body) {
-                                window.ARTICLES_MAP[item.id] = item;
-                            }
-                        });
-                    }
-                } catch (e) {}
+                // 5. تحميل مقالات المدونة من قاعدة البيانات الحقيقية (ucuzakal-5e2a8) مع دعم جميع أسماء المجموعات
+                const blogCollections = ['articles', 'blog_posts', 'posts', 'blog', 'seo_articles'];
+                for (const col of blogCollections) {
+                    const docs = await fetchCollectionDocs(col, 20);
+                    docs.forEach(item => {
+                        if (item.status === 'draft') return;
+                        const parsed = window.extractArticleContent(item, document.documentElement.lang || 'tr');
+                        if (parsed.title || parsed.body) {
+                            window.ARTICLES_MAP[item.id] = item;
+                        }
+                    });
+                    if (Object.keys(window.ARTICLES_MAP).length > 0) break;
+                }
                 window.renderBlogCards();
             }
 
-            // استعادة اسم العضو إن وجد + إقلاع البيانات
             document.addEventListener('DOMContentLoaded', () => {
-                try {
-                    const savedEmail = localStorage.getItem('ucuzakal_member_email');
-                    const authTxt = document.getElementById('auth-text');
-                    if (savedEmail && authTxt) authTxt.textContent = savedEmail.split('@')[0];
-                } catch (e) {}
                 bootstrapPlatformData();
             });
         })();
