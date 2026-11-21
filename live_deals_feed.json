@@ -1,6 +1,6 @@
 {
   "version": "7.0-omni14-hardened",
-  "updatedAt": "2026-11-20T23:23:32.323241+00:00",
+  "updatedAt": "2026-11-21T00:39:00.010982+00:00",
   "activeSeason": "autumn",
   "partnerWeights": {},
   "persuasionTaglines": {
@@ -28,539 +28,539 @@
   "mainHotels": [
     {
       "id": "hotel_deal_1",
-      "dealId": "H-20261120-ANTALYA",
+      "dealId": "H-20261121-ANTALYA",
       "type": "hotel",
       "partner": "klook",
       "discoverySource": "rotating_district_curated",
       "city": "Antalya",
       "cityEn": "Antalya",
       "season": "autumn",
-      "title": "Antalya (Konyaaltı Plajı) %21 Tasarruflu Seçkin Konaklama",
-      "name": "Antalya (Konyaaltı Plajı) %21 Tasarruflu Seçkin Konaklama",
-      "description": "Antalya (Konyaaltı Plajı) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $76 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "title": "Antalya (Konyaaltı Rezidans) %21 Tasarruflu Seçkin Konaklama",
+      "name": "Antalya (Konyaaltı Rezidans) %21 Tasarruflu Seçkin Konaklama",
+      "description": "Antalya (Konyaaltı Rezidans) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $76 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
       "price": "$76",
       "priceUsd": 76,
       "savingsPct": 21,
       "dealScore": 90,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261120-ANTALYA_card.webp",
-      "localImage": "assets/deals/H-20261120-ANTALYA_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DKonyaalti%2520Antalya%2520Sea%2520View%2520Hotel",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261121-ANTALYA_card.webp",
+      "localImage": "assets/deals/H-20261121-ANTALYA_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DKonyaalti%2520Antalya%2520Sea%2520View%2520Serviced%2520Apartment%2520Suite",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "Antalya (Konyaaltı Plajı) %21 Tasarruflu Seçkin Konaklama",
-          "desc": "Antalya (Konyaaltı Plajı) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $76 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "Antalya (Konyaaltı Rezidans) %21 Tasarruflu Seçkin Konaklama",
+          "desc": "Antalya (Konyaaltı Rezidans) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $76 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 21% في أنطاليا — شاطئ كونيالتي — إقامة مختارة لـعرض الخريف",
-          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع مميز في أنطاليا — شاطئ كونيالتي، بسعر يبدأ من $76 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 21% في أنطاليا — شقق كونيالتي الفندقية — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في أنطاليا — شقق كونيالتي الفندقية، بسعر يبدأ من $76 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 21% in Antalya — Konyaalti Beach — Autumn Value",
-          "desc": "Handpicked top-rated stay in Antalya — Konyaalti Beach. Starting around $76/night with instant 1-click official partner booking."
+          "title": "Save 21% in Antalya — Konyaalti Serviced Suites — Autumn Value",
+          "desc": "Handpicked top-rated stay in Antalya — Konyaalti Serviced Suites. Starting around $76/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 21%: Анталья (Коньяалты) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранный отель с высоким рейтингом в районе Анталья (Коньяалты) — от $76 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 21%: Анталья (Апарт-отель Коньяалты) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Анталья (Апарт-отель Коньяалты) — от $76 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-20T23:23:16.161240+00:00",
-      "createdTs": 1795216996
+      "updatedAt": "2026-11-21T00:38:43.975237+00:00",
+      "createdTs": 1795221523
     },
     {
       "id": "hotel_deal_2",
-      "dealId": "H-20261120-ISTANBUL",
+      "dealId": "H-20261121-ISTANBUL",
       "type": "hotel",
-      "partner": "kkday",
+      "partner": "klook",
       "discoverySource": "rotating_district_curated",
       "city": "İstanbul",
       "cityEn": "Istanbul",
       "season": "autumn",
-      "title": "İstanbul (Sultanahmet) %20 Tasarruflu Seçkin Konaklama",
-      "name": "İstanbul (Sultanahmet) %20 Tasarruflu Seçkin Konaklama",
-      "description": "İstanbul (Sultanahmet) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $73 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$73",
-      "priceUsd": 73,
-      "savingsPct": 20,
-      "dealScore": 90,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261120-ISTANBUL_card.webp",
-      "localImage": "assets/deals/H-20261120-ISTANBUL_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DSultanahmet%2520Istanbul%2520Boutique%2520Hotel",
+      "title": "İstanbul (Boğaz & Beşiktaş) %25 Tasarruflu Seçkin Konaklama",
+      "name": "İstanbul (Boğaz & Beşiktaş) %25 Tasarruflu Seçkin Konaklama",
+      "description": "İstanbul (Boğaz & Beşiktaş) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $127 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$127",
+      "priceUsd": 127,
+      "savingsPct": 25,
+      "dealScore": 92,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261121-ISTANBUL_card.webp",
+      "localImage": "assets/deals/H-20261121-ISTANBUL_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DBosphorus%2520Istanbul%2520Luxury%25205%2520Star%2520Spa%2520Resort%2520Hotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "İstanbul (Sultanahmet) %20 Tasarruflu Seçkin Konaklama",
-          "desc": "İstanbul (Sultanahmet) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $73 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "İstanbul (Boğaz & Beşiktaş) %25 Tasarruflu Seçkin Konaklama",
+          "desc": "İstanbul (Boğaz & Beşiktaş) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $127 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 20% في إسطنبول — السلطان أحمد — إقامة مختارة لـعرض الخريف",
-          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع مميز في إسطنبول — السلطان أحمد، بسعر يبدأ من $73 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 25% في إسطنبول — منتجعات البوسفور وبشكتاش — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في إسطنبول — منتجعات البوسفور وبشكتاش، بسعر يبدأ من $127 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 20% in Istanbul — Sultanahmet — Autumn Value",
-          "desc": "Handpicked top-rated stay in Istanbul — Sultanahmet. Starting around $73/night with instant 1-click official partner booking."
+          "title": "Save 25% in Istanbul — Bosphorus Luxury Resort — Autumn Value",
+          "desc": "Handpicked top-rated stay in Istanbul — Bosphorus Luxury Resort. Starting around $127/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 20%: Стамбул (Султанахмет) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранный отель с высоким рейтингом в районе Стамбул (Султанахмет) — от $73 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 25%: Стамбул (Босфор Бешикташ Спа) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Стамбул (Босфор Бешикташ Спа) — от $127 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-20T23:23:16.161240+00:00",
-      "createdTs": 1795216996
+      "updatedAt": "2026-11-21T00:38:43.975237+00:00",
+      "createdTs": 1795221523
     },
     {
       "id": "hotel_deal_3",
-      "dealId": "H-20261120-IZMIR",
+      "dealId": "H-20261121-IZMIR",
       "type": "hotel",
-      "partner": "kkday",
+      "partner": "klook",
       "discoverySource": "rotating_district_curated",
       "city": "İzmir",
       "cityEn": "Izmir",
       "season": "autumn",
-      "title": "İzmir (Kuşadası Ege) %24 Tasarruflu Seçkin Konaklama",
-      "name": "İzmir (Kuşadası Ege) %24 Tasarruflu Seçkin Konaklama",
-      "description": "İzmir (Kuşadası Ege) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $75 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$75",
-      "priceUsd": 75,
-      "savingsPct": 24,
-      "dealScore": 92,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261120-IZMIR_card.webp",
-      "localImage": "assets/deals/H-20261120-IZMIR_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DKusadasi%2520Izmir%2520Sea%2520Resort%2520Hotel",
+      "title": "İzmir (Alsancak Kordon Süit) %18 Tasarruflu Seçkin Konaklama",
+      "name": "İzmir (Alsancak Kordon Süit) %18 Tasarruflu Seçkin Konaklama",
+      "description": "İzmir (Alsancak Kordon Süit) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $63 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$63",
+      "priceUsd": 63,
+      "savingsPct": 18,
+      "dealScore": 89,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261121-IZMIR_card.webp",
+      "localImage": "assets/deals/H-20261121-IZMIR_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DAlsancak%2520Izmir%2520Seafront%2520Serviced%2520Apartment%2520Suite",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "İzmir (Kuşadası Ege) %24 Tasarruflu Seçkin Konaklama",
-          "desc": "İzmir (Kuşadası Ege) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $75 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "İzmir (Alsancak Kordon Süit) %18 Tasarruflu Seçkin Konaklama",
+          "desc": "İzmir (Alsancak Kordon Süit) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $63 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 24% في إزمير — كوشاداسي إيجة — إقامة مختارة لـعرض الخريف",
-          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع مميز في إزمير — كوشاداسي إيجة، بسعر يبدأ من $75 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 18% في إزمير — شقق ألسنجاك الفندقية — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في إزمير — شقق ألسنجاك الفندقية، بسعر يبدأ من $63 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 24% in Izmir — Kusadasi Aegean — Autumn Value",
-          "desc": "Handpicked top-rated stay in Izmir — Kusadasi Aegean. Starting around $75/night with instant 1-click official partner booking."
+          "title": "Save 18% in Izmir — Alsancak Seafront Apartments — Autumn Value",
+          "desc": "Handpicked top-rated stay in Izmir — Alsancak Seafront Apartments. Starting around $63/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 24%: Измир (Кушадасы) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранный отель с высоким рейтингом в районе Измир (Кушадасы) — от $75 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 18%: Измир (Апартаменты Алсанджак) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Измир (Апартаменты Алсанджак) — от $63 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-20T23:23:16.161240+00:00",
-      "createdTs": 1795216996
+      "updatedAt": "2026-11-21T00:38:43.975237+00:00",
+      "createdTs": 1795221523
     },
     {
       "id": "hotel_deal_4",
-      "dealId": "H-20261120-BURSA",
+      "dealId": "H-20261121-BURSA",
       "type": "hotel",
-      "partner": "kkday",
+      "partner": "klook",
       "discoverySource": "rotating_district_curated",
       "city": "Bursa",
       "cityEn": "Bursa",
       "season": "autumn",
-      "title": "Bursa (Çekirge Termal) %21 Tasarruflu Seçkin Konaklama",
-      "name": "Bursa (Çekirge Termal) %21 Tasarruflu Seçkin Konaklama",
-      "description": "Bursa (Çekirge Termal) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $61 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$61",
-      "priceUsd": 61,
-      "savingsPct": 21,
-      "dealScore": 90,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261120-BURSA_card.webp",
-      "localImage": "assets/deals/H-20261120-BURSA_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DBursa%2520Cekirge%2520Thermal%2520Spa%2520Hotel",
+      "title": "Bursa (Uludağ Dağ Evi) %25 Tasarruflu Seçkin Konaklama",
+      "name": "Bursa (Uludağ Dağ Evi) %25 Tasarruflu Seçkin Konaklama",
+      "description": "Bursa (Uludağ Dağ Evi) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $104 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$104",
+      "priceUsd": 104,
+      "savingsPct": 25,
+      "dealScore": 92,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261121-BURSA_card.webp",
+      "localImage": "assets/deals/H-20261121-BURSA_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DUludag%2520Bursa%2520Mountain%2520Resort%2520Hotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "Bursa (Çekirge Termal) %21 Tasarruflu Seçkin Konaklama",
-          "desc": "Bursa (Çekirge Termal) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $61 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "Bursa (Uludağ Dağ Evi) %25 Tasarruflu Seçkin Konaklama",
+          "desc": "Bursa (Uludağ Dağ Evi) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $104 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 21% في بورصة — المياه الحرارية تشيكيرجي — إقامة مختارة لـعرض الخريف",
-          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع مميز في بورصة — المياه الحرارية تشيكيرجي، بسعر يبدأ من $61 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 25% في بورصة — منتجع جبل أولوداغ — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في بورصة — منتجع جبل أولوداغ، بسعر يبدأ من $104 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 21% in Bursa — Cekirge Thermal Spa — Autumn Value",
-          "desc": "Handpicked top-rated stay in Bursa — Cekirge Thermal Spa. Starting around $61/night with instant 1-click official partner booking."
+          "title": "Save 25% in Bursa — Uludag Mountain Resort — Autumn Value",
+          "desc": "Handpicked top-rated stay in Bursa — Uludag Mountain Resort. Starting around $104/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 21%: Бурса (Термальный спа Чекирге) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранный отель с высоким рейтингом в районе Бурса (Термальный спа Чекирге) — от $61 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 25%: Бурса (Горный курорт Улудаг) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Бурса (Горный курорт Улудаг) — от $104 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-20T23:23:16.161240+00:00",
-      "createdTs": 1795216996
+      "updatedAt": "2026-11-21T00:38:43.975237+00:00",
+      "createdTs": 1795221523
     },
     {
       "id": "hotel_deal_5",
-      "dealId": "H-20261120-TRABZON",
+      "dealId": "H-20261121-TRABZON",
       "type": "hotel",
-      "partner": "kkday",
+      "partner": "klook",
       "discoverySource": "rotating_district_curated",
       "city": "Trabzon",
       "cityEn": "Trabzon",
       "season": "autumn",
-      "title": "Trabzon (Yomra Karadeniz) %20 Tasarruflu Seçkin Konaklama",
-      "name": "Trabzon (Yomra Karadeniz) %20 Tasarruflu Seçkin Konaklama",
-      "description": "Trabzon (Yomra Karadeniz) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $65 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$65",
-      "priceUsd": 65,
-      "savingsPct": 20,
-      "dealScore": 90,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261120-TRABZON_card.webp",
-      "localImage": "assets/deals/H-20261120-TRABZON_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DYomra%2520Trabzon%25205%2520Star%2520Sea%2520View%2520Hotel",
+      "title": "Trabzon (Ayder Yaylası) %24 Tasarruflu Seçkin Konaklama",
+      "name": "Trabzon (Ayder Yaylası) %24 Tasarruflu Seçkin Konaklama",
+      "description": "Trabzon (Ayder Yaylası) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $81 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$81",
+      "priceUsd": 81,
+      "savingsPct": 24,
+      "dealScore": 92,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261121-TRABZON_card.webp",
+      "localImage": "assets/deals/H-20261121-TRABZON_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DTrabzon%2520Ayder%2520Nature%2520Resort%2520Bungalow",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "Trabzon (Yomra Karadeniz) %20 Tasarruflu Seçkin Konaklama",
-          "desc": "Trabzon (Yomra Karadeniz) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $65 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "Trabzon (Ayder Yaylası) %24 Tasarruflu Seçkin Konaklama",
+          "desc": "Trabzon (Ayder Yaylası) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $81 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 20% في طرابزون — يومرا الساحلية — إقامة مختارة لـعرض الخريف",
-          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع مميز في طرابزون — يومرا الساحلية، بسعر يبدأ من $65 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 24% في طرابزون — منتجع مرتفعات آيدر — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في طرابزون — منتجع مرتفعات آيدر، بسعر يبدأ من $81 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 20% in Trabzon — Yomra Seafront — Autumn Value",
-          "desc": "Handpicked top-rated stay in Trabzon — Yomra Seafront. Starting around $65/night with instant 1-click official partner booking."
+          "title": "Save 24% in Trabzon — Ayder Highlands Resort — Autumn Value",
+          "desc": "Handpicked top-rated stay in Trabzon — Ayder Highlands Resort. Starting around $81/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 20%: Трабзон (Йомра) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранный отель с высоким рейтингом в районе Трабзон (Йомра) — от $65 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 24%: Трабзон (Плато Айдер) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Трабзон (Плато Айдер) — от $81 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-20T23:23:16.161240+00:00",
-      "createdTs": 1795216996
+      "updatedAt": "2026-11-21T00:38:43.975237+00:00",
+      "createdTs": 1795221523
     },
     {
       "id": "hotel_deal_6",
-      "dealId": "H-20261120-ANKARA",
+      "dealId": "H-20261121-ANKARA",
       "type": "hotel",
       "partner": "kkday",
       "discoverySource": "rotating_district_curated",
       "city": "Ankara",
       "cityEn": "Ankara",
       "season": "autumn",
-      "title": "Ankara (Kavaklıdere Spa) %22 Tasarruflu Seçkin Konaklama",
-      "name": "Ankara (Kavaklıdere Spa) %22 Tasarruflu Seçkin Konaklama",
-      "description": "Ankara (Kavaklıdere Spa) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $65 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$65",
-      "priceUsd": 65,
-      "savingsPct": 22,
-      "dealScore": 91,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261120-ANKARA_card.webp",
-      "localImage": "assets/deals/H-20261120-ANKARA_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DAnkara%2520Executive%2520Wellness%2520Spa%2520Hotel",
+      "title": "Ankara (Çankaya Prestij) %21 Tasarruflu Seçkin Konaklama",
+      "name": "Ankara (Çankaya Prestij) %21 Tasarruflu Seçkin Konaklama",
+      "description": "Ankara (Çankaya Prestij) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $71 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$71",
+      "priceUsd": 71,
+      "savingsPct": 21,
+      "dealScore": 90,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261121-ANKARA_card.webp",
+      "localImage": "assets/deals/H-20261121-ANKARA_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DCankaya%2520Ankara%25205%2520Star%2520Luxury%2520Hotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "Ankara (Kavaklıdere Spa) %22 Tasarruflu Seçkin Konaklama",
-          "desc": "Ankara (Kavaklıdere Spa) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $65 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "Ankara (Çankaya Prestij) %21 Tasarruflu Seçkin Konaklama",
+          "desc": "Ankara (Çankaya Prestij) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $71 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 22% في أنقرة — كافاكليديري سبا — إقامة مختارة لـعرض الخريف",
-          "desc": "فرصة إقامة حصرية بتقييم مرتفع وموقع مميز في أنقرة — كافاكليديري سبا، بسعر يبدأ من $65 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 21% في أنقرة — فنادق تشانكايا الراقية — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في أنقرة — فنادق تشانكايا الراقية، بسعر يبدأ من $71 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 22% in Ankara — Kavaklidere Spa — Autumn Value",
-          "desc": "Handpicked top-rated stay in Ankara — Kavaklidere Spa. Starting around $65/night with instant 1-click official partner booking."
+          "title": "Save 21% in Ankara — Cankaya Luxury Hotel — Autumn Value",
+          "desc": "Handpicked top-rated stay in Ankara — Cankaya Luxury Hotel. Starting around $71/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 22%: Анкара (Каваклыдере) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранный отель с высоким рейтингом в районе Анкара (Каваклыдере) — от $65 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 21%: Анкара (Отель Чанкая) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Анкара (Отель Чанкая) — от $71 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-20T23:23:16.161240+00:00",
-      "createdTs": 1795216996
+      "updatedAt": "2026-11-21T00:38:43.975237+00:00",
+      "createdTs": 1795221523
     }
   ],
   "mainFlights": [
     {
       "id": "flight_deal_1",
-      "dealId": "F-20261120-ADB-IST",
+      "dealId": "F-20261121-AYT-IST",
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "domestic_tr",
-      "routeKey": "ADB_IST",
-      "originIata": "ADB",
+      "routeKey": "AYT_IST",
+      "originIata": "AYT",
       "destIata": "IST",
-      "departure": "İzmir",
+      "departure": "Antalya",
       "destination": "İstanbul",
       "destCityEn": "Istanbul",
-      "route": "İzmir ✈️ İstanbul",
-      "title": "İzmir ✈️ İstanbul",
-      "airline": "AJet • VF3079",
+      "route": "Antalya ✈️ İstanbul",
+      "title": "Antalya ✈️ İstanbul",
+      "airline": "AJet • VF3033",
       "transfers": 0,
-      "departureDate": "2027-01-21",
-      "price": "$26",
-      "priceUsd": 26,
-      "avgMarketUsd": 26,
+      "departureDate": "2027-02-22",
+      "price": "$27",
+      "priceUsd": 27,
+      "avgMarketUsd": 27,
       "savingsPct": 48,
       "dealScore": 68,
-      "description": "2027-01-21 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261120-ADB-IST_card.webp",
-      "localImage": "assets/deals/F-20261120-ADB-IST_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FADB2101IST1%3Ft%3DVF18005172001800522000000080ADBSAW_a908b9f1f1f4e57eaa71e4bb7e2868e8_2153%26search_date%3D18112026%26expected_price_uuid%3D01a1eec2-aa12-8031-2ee9-6d8e30842a63%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3Dk4OYw0dStAXV0hmpLpFv2g%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D26",
+      "description": "2027-02-22 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261121-AYT-IST_card.webp",
+      "localImage": "assets/deals/F-20261121-AYT-IST_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT2202IST1%3Ft%3DVF18033057001803311100000090AYTSAW_1387d8f1df1cf18c9adc84329352a80a_2210%26search_date%3D19112026%26expected_price_uuid%3D01a1f298-03a6-8031-61d4-4813d90eb4e9%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DG-6dHPTVj4hrz6unr1r5CQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
       "i18n": {
         "tr": {
-          "title": "İzmir ✈️ İstanbul",
-          "desc": "2027-01-21 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+          "title": "Antalya ✈️ İstanbul",
+          "desc": "2027-02-22 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
         },
         "ar": {
-          "title": "إزمير ✈️ إسطنبول",
-          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2027-01-21 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+          "title": "أنطاليا ✈️ إسطنبول",
+          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2027-02-22 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
         },
         "en": {
-          "title": "Izmir ✈️ Istanbul",
-          "desc": "AJet (Direct Flight) on 2027-01-21 — save 48% below average route fare with 1-click booking."
+          "title": "Antalya ✈️ Istanbul",
+          "desc": "AJet (Direct Flight) on 2027-02-22 — save 48% below average route fare with 1-click booking."
         },
         "ru": {
-          "title": "Измир ✈️ Стамбул",
-          "desc": "Рейс AJet (Прямой рейс) 2027-01-21 — на 48% дешевле средней цены, мгновенное бронирование."
+          "title": "Анталья ✈️ Стамбул",
+          "desc": "Рейс AJet (Прямой рейс) 2027-02-22 — на 48% дешевле средней цены, мгновенное бронирование."
         }
       },
-      "updatedAt": "2026-11-20T23:23:25.325370+00:00",
-      "createdTs": 1795217005
+      "updatedAt": "2026-11-21T00:38:53.447798+00:00",
+      "createdTs": 1795221533
     },
     {
       "id": "flight_deal_2",
-      "dealId": "F-20261120-IST-AYT",
+      "dealId": "F-20261121-ESB-IST",
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "domestic_tr",
-      "routeKey": "IST_AYT",
-      "originIata": "IST",
-      "destIata": "AYT",
-      "departure": "İstanbul",
-      "destination": "Antalya",
-      "destCityEn": "Antalya",
-      "route": "İstanbul ✈️ Antalya",
-      "title": "İstanbul ✈️ Antalya",
-      "airline": "AJet • VF3032",
+      "routeKey": "ESB_IST",
+      "originIata": "ESB",
+      "destIata": "IST",
+      "departure": "Ankara",
+      "destination": "İstanbul",
+      "destCityEn": "Istanbul",
+      "route": "Ankara ✈️ İstanbul",
+      "title": "Ankara ✈️ İstanbul",
+      "airline": "AJet • VF3009",
       "transfers": 0,
-      "departureDate": "2027-03-01",
+      "departureDate": "2027-01-06",
       "price": "$27",
       "priceUsd": 27,
       "avgMarketUsd": 27,
       "savingsPct": 48,
       "dealScore": 68,
-      "description": "2027-03-01 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261120-IST-AYT_card.webp",
-      "localImage": "assets/deals/F-20261120-IST-AYT_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST0103AYT1%3Ft%3DVF18039030001803907800000080SAWAYT_ad7e2d4b173ad725d29688bdcbaa082c_2224%26search_date%3D18112026%26expected_price_uuid%3D01a1ed44-61e7-8031-6cce-4cb0cf886613%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DnV7_3cANeReNhOmT9XDwww%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+      "description": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261121-ESB-IST_card.webp",
+      "localImage": "assets/deals/F-20261121-ESB-IST_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FESB0601IST1%3Ft%3DVF17991942001799198700000075ESBSAW_46af5bb299ede96808cd2d39d5de2e91_2198%26search_date%3D18112026%26expected_price_uuid%3D01a1f017-90bd-8030-aacf-d92e4554e846%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DQJyFOBwNaWNImSel6Q5vsA%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
       "i18n": {
         "tr": {
-          "title": "İstanbul ✈️ Antalya",
-          "desc": "2027-03-01 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+          "title": "Ankara ✈️ İstanbul",
+          "desc": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
         },
         "ar": {
-          "title": "إسطنبول ✈️ أنطاليا",
-          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2027-03-01 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+          "title": "أنقرة ✈️ إسطنبول",
+          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2027-01-06 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
         },
         "en": {
-          "title": "Istanbul ✈️ Antalya",
-          "desc": "AJet (Direct Flight) on 2027-03-01 — save 48% below average route fare with 1-click booking."
+          "title": "Ankara ✈️ Istanbul",
+          "desc": "AJet (Direct Flight) on 2027-01-06 — save 48% below average route fare with 1-click booking."
         },
         "ru": {
-          "title": "Стамбул ✈️ Анталья",
-          "desc": "Рейс AJet (Прямой рейс) 2027-03-01 — на 48% дешевле средней цены, мгновенное бронирование."
+          "title": "Анкара ✈️ Стамбул",
+          "desc": "Рейс AJet (Прямой рейс) 2027-01-06 — на 48% дешевле средней цены, мгновенное бронирование."
         }
       },
-      "updatedAt": "2026-11-20T23:23:25.325370+00:00",
-      "createdTs": 1795217005
+      "updatedAt": "2026-11-21T00:38:53.447798+00:00",
+      "createdTs": 1795221533
     },
     {
       "id": "flight_deal_3",
-      "dealId": "F-20261120-BJV-IST",
+      "dealId": "F-20261121-IST-ADB",
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "domestic_tr",
-      "routeKey": "BJV_IST",
-      "originIata": "BJV",
-      "destIata": "IST",
-      "departure": "Bodrum",
-      "destination": "İstanbul",
-      "destCityEn": "Istanbul",
-      "route": "Bodrum ✈️ İstanbul",
-      "title": "Bodrum ✈️ İstanbul",
-      "airline": "AJet • VF3095",
+      "routeKey": "IST_ADB",
+      "originIata": "IST",
+      "destIata": "ADB",
+      "departure": "İstanbul",
+      "destination": "İzmir",
+      "destCityEn": "Izmir",
+      "route": "İstanbul ✈️ İzmir",
+      "title": "İstanbul ✈️ İzmir",
+      "airline": "Pegasus Airlines • PC2182",
       "transfers": 0,
-      "departureDate": "2027-01-07",
+      "departureDate": "2026-12-12",
       "price": "$27",
       "priceUsd": 27,
       "avgMarketUsd": 27,
       "savingsPct": 48,
       "dealScore": 68,
-      "description": "2027-01-07 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261120-BJV-IST_card.webp",
-      "localImage": "assets/deals/F-20261120-BJV-IST_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FBJV0701IST1%3Ft%3DVF17993610001799366100000085BJVSAW_29dac97486b6f3704ae92990b678c188_2206%26search_date%3D18112026%26expected_price_uuid%3D01a1eda0-e246-8030-adb1-53343a876805%26static_fare_key%3DTY%257CP1%257CH1%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DXAbHMCOvkTjDsJ1qXgG3Jg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+      "description": "2026-12-12 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261121-IST-ADB_card.webp",
+      "localImage": "assets/deals/F-20261121-IST-ADB_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST1212ADB1%3Ft%3DPC17970543001797058200000065SAWADB_454bd2c5b84e36d59e88ba0321f4924b_2203%26search_date%3D19112026%26expected_price_uuid%3D01a1f37f-2fe9-8030-a9c7-d847f693c05a%26static_fare_key%3DTY%257CP1%257CH1%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DUXBaKW5BvOWWn1jLPUi19Q%26destination_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
       "i18n": {
         "tr": {
-          "title": "Bodrum ✈️ İstanbul",
-          "desc": "2027-01-07 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+          "title": "İstanbul ✈️ İzmir",
+          "desc": "2026-12-12 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
         },
         "ar": {
-          "title": "بودروم ✈️ إسطنبول",
-          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2027-01-07 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+          "title": "إسطنبول ✈️ إزمير",
+          "desc": "تذكرة Pegasus Airlines (رحلة مباشرة) بتاريخ 2026-12-12 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
         },
         "en": {
-          "title": "Bodrum ✈️ Istanbul",
-          "desc": "AJet (Direct Flight) on 2027-01-07 — save 48% below average route fare with 1-click booking."
+          "title": "Istanbul ✈️ Izmir",
+          "desc": "Pegasus Airlines (Direct Flight) on 2026-12-12 — save 48% below average route fare with 1-click booking."
         },
         "ru": {
-          "title": "Бодрум ✈️ Стамбул",
-          "desc": "Рейс AJet (Прямой рейс) 2027-01-07 — на 48% дешевле средней цены, мгновенное бронирование."
+          "title": "Стамбул ✈️ Измир",
+          "desc": "Рейс Pegasus Airlines (Прямой рейс) 2026-12-12 — на 48% дешевле средней цены, мгновенное бронирование."
         }
       },
-      "updatedAt": "2026-11-20T23:23:25.325370+00:00",
-      "createdTs": 1795217005
+      "updatedAt": "2026-11-21T00:38:53.447798+00:00",
+      "createdTs": 1795221533
     },
     {
       "id": "flight_deal_4",
-      "dealId": "F-20261120-IST-MOW",
+      "dealId": "F-20261121-AYT-MOW",
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "russia_tr",
-      "routeKey": "IST_MOW",
-      "originIata": "IST",
+      "routeKey": "AYT_MOW",
+      "originIata": "AYT",
       "destIata": "MOW",
-      "departure": "İstanbul",
+      "departure": "Antalya",
       "destination": "Moskova",
       "destCityEn": "Moscow",
-      "route": "İstanbul ✈️ Moskova",
-      "title": "İstanbul ✈️ Moskova",
-      "airline": "2S • 2S085",
+      "route": "Antalya ✈️ Moskova",
+      "title": "Antalya ✈️ Moskova",
+      "airline": "Pobeda • DP860",
       "transfers": 0,
-      "departureDate": "2026-12-31",
-      "price": "$68",
-      "priceUsd": 68,
-      "avgMarketUsd": 68,
-      "savingsPct": 48,
-      "dealScore": 69,
-      "description": "2026-12-31 tarihli 2S (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261120-IST-MOW_card.webp",
-      "localImage": "assets/deals/F-20261120-IST-MOW_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST3112MOW1%3Ft%3D2S17987457001798759500000230ISTSVO_4aacbd3e3057781850fb73667f0840ed_5576%26search_date%3D20112026%26expected_price_uuid%3D01a1fb29-912b-8031-2e64-d330209b3395%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3D9NuQU1ERk3prptizHWNGZQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D68",
-      "i18n": {
-        "tr": {
-          "title": "İstanbul ✈️ Moskova",
-          "desc": "2026-12-31 tarihli 2S (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
-        },
-        "ar": {
-          "title": "إسطنبول ✈️ موسكو",
-          "desc": "تذكرة 2S (رحلة مباشرة) بتاريخ 2026-12-31 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
-        },
-        "en": {
-          "title": "Istanbul ✈️ Moscow",
-          "desc": "2S (Direct Flight) on 2026-12-31 — save 48% below average route fare with 1-click booking."
-        },
-        "ru": {
-          "title": "Стамбул ✈️ Москва",
-          "desc": "Рейс 2S (Прямой рейс) 2026-12-31 — на 48% дешевле средней цены, мгновенное бронирование."
-        }
-      },
-      "updatedAt": "2026-11-20T23:23:25.325370+00:00",
-      "createdTs": 1795217005
-    },
-    {
-      "id": "flight_deal_5",
-      "dealId": "F-20261120-IST-KWI",
-      "type": "flight",
-      "partner": "aviasales",
-      "apiSource": "aviasales_v3",
-      "segment": "arab_tr",
-      "routeKey": "IST_KWI",
-      "originIata": "IST",
-      "destIata": "KWI",
-      "departure": "İstanbul",
-      "destination": "Kuveyt",
-      "destCityEn": "Kuwait",
-      "route": "İstanbul ✈️ Kuveyt",
-      "title": "İstanbul ✈️ Kuveyt",
-      "airline": "Pegasus Airlines • PC860",
-      "transfers": 0,
-      "departureDate": "2027-06-10",
-      "price": "$65",
-      "priceUsd": 65,
-      "avgMarketUsd": 65,
-      "savingsPct": 48,
-      "dealScore": 69,
-      "description": "2027-06-10 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261120-IST-KWI_card.webp",
-      "localImage": "assets/deals/F-20261120-IST-KWI_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST1006KWI1%3Ft%3DPC18125859001812598200000205SAWKWI_eb320b9c1bf0954d93fe966bfe1a4272_5384%26search_date%3D15112026%26expected_price_uuid%3D01a1de0c-4166-8031-684d-fc8dae806748%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DR6OrOjfIF076l3KhjJ05mw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D65",
-      "i18n": {
-        "tr": {
-          "title": "İstanbul ✈️ Kuveyt",
-          "desc": "2027-06-10 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
-        },
-        "ar": {
-          "title": "إسطنبول ✈️ الكويت",
-          "desc": "تذكرة Pegasus Airlines (رحلة مباشرة) بتاريخ 2027-06-10 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
-        },
-        "en": {
-          "title": "Istanbul ✈️ Kuwait",
-          "desc": "Pegasus Airlines (Direct Flight) on 2027-06-10 — save 48% below average route fare with 1-click booking."
-        },
-        "ru": {
-          "title": "Стамбул ✈️ Кувейт",
-          "desc": "Рейс Pegasus Airlines (Прямой рейс) 2027-06-10 — на 48% дешевле средней цены, мгновенное бронирование."
-        }
-      },
-      "updatedAt": "2026-11-20T23:23:25.325370+00:00",
-      "createdTs": 1795217005
-    },
-    {
-      "id": "flight_deal_6",
-      "dealId": "F-20261120-BGW-IST",
-      "type": "flight",
-      "partner": "aviasales",
-      "apiSource": "aviasales_v3",
-      "segment": "arab_tr",
-      "routeKey": "BGW_IST",
-      "originIata": "BGW",
-      "destIata": "IST",
-      "departure": "Bağdat",
-      "destination": "İstanbul",
-      "destCityEn": "Istanbul",
-      "route": "Bağdat ✈️ İstanbul",
-      "title": "Bağdat ✈️ İstanbul",
-      "airline": "AJet • VF132",
-      "transfers": 0,
-      "departureDate": "2026-12-17",
+      "departureDate": "2026-12-29",
       "price": "$81",
       "priceUsd": 81,
       "avgMarketUsd": 81,
       "savingsPct": 48,
-      "dealScore": 68,
-      "description": "2026-12-17 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261120-BGW-IST_card.webp",
-      "localImage": "assets/deals/F-20261120-BGW-IST_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FBGW1712IST1%3Ft%3DVF17974851001797496500000190BGWSAW_846352b2d9fea1384faeab1dfdb63d6f_6682%26search_date%3D19112026%26expected_price_uuid%3D01a1f5d5-6fd0-8030-67e2-73213bc105d1%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DmR6pKsAN-jZPMKL7unug5g%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D81",
+      "dealScore": 69,
+      "description": "2026-12-29 tarihli Pobeda (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261121-AYT-MOW_card.webp",
+      "localImage": "assets/deals/F-20261121-AYT-MOW_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT2912MOW1%3Ft%3DDP17985522001798569600000290AYTVKO_e6b1280124f01e0bfe2132eb328042b8_6632%26search_date%3D20112026%26expected_price_uuid%3D01a1fb55-fd64-8030-2173-b4a312c25c46%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3D2dW41kgjKAtyLG-X2bDjGA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D81",
       "i18n": {
         "tr": {
-          "title": "Bağdat ✈️ İstanbul",
-          "desc": "2026-12-17 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+          "title": "Antalya ✈️ Moskova",
+          "desc": "2026-12-29 tarihli Pobeda (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
         },
         "ar": {
-          "title": "بغداد ✈️ إسطنبول",
-          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2026-12-17 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+          "title": "أنطاليا ✈️ موسكو",
+          "desc": "تذكرة Pobeda (رحلة مباشرة) بتاريخ 2026-12-29 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
         },
         "en": {
-          "title": "Baghdad ✈️ Istanbul",
-          "desc": "AJet (Direct Flight) on 2026-12-17 — save 48% below average route fare with 1-click booking."
+          "title": "Antalya ✈️ Moscow",
+          "desc": "Pobeda (Direct Flight) on 2026-12-29 — save 48% below average route fare with 1-click booking."
         },
         "ru": {
-          "title": "Багдад ✈️ Стамбул",
-          "desc": "Рейс AJet (Прямой рейс) 2026-12-17 — на 48% дешевле средней цены, мгновенное бронирование."
+          "title": "Анталья ✈️ Москва",
+          "desc": "Рейс Pobeda (Прямой рейс) 2026-12-29 — на 48% дешевле средней цены, мгновенное бронирование."
         }
       },
-      "updatedAt": "2026-11-20T23:23:25.325370+00:00",
-      "createdTs": 1795217005
+      "updatedAt": "2026-11-21T00:38:53.447798+00:00",
+      "createdTs": 1795221533
+    },
+    {
+      "id": "flight_deal_5",
+      "dealId": "F-20261121-IST-DXB",
+      "type": "flight",
+      "partner": "aviasales",
+      "apiSource": "aviasales_v3",
+      "segment": "arab_tr",
+      "routeKey": "IST_DXB",
+      "originIata": "IST",
+      "destIata": "DXB",
+      "departure": "İstanbul",
+      "destination": "Dubai",
+      "destCityEn": "Dubai",
+      "route": "İstanbul ✈️ Dubai",
+      "title": "İstanbul ✈️ Dubai",
+      "airline": "Pegasus Airlines • PC746",
+      "transfers": 0,
+      "departureDate": "2027-06-17",
+      "price": "$110",
+      "priceUsd": 110,
+      "avgMarketUsd": 110,
+      "savingsPct": 48,
+      "dealScore": 69,
+      "description": "2027-06-17 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261121-IST-DXB_card.webp",
+      "localImage": "assets/deals/F-20261121-IST-DXB_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST1706SHJ1%3Ft%3DPC18132690001813290300000295SAWSHJ_a72fcbca6185d141c299556b8df0dca5_9033%26search_date%3D17112026%26expected_price_uuid%3D01a1ea04-55ca-8030-e043-1844efc238c4%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DXFroNAIoabvnDaM73dVvwQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D110",
+      "i18n": {
+        "tr": {
+          "title": "İstanbul ✈️ Dubai",
+          "desc": "2027-06-17 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+        },
+        "ar": {
+          "title": "إسطنبول ✈️ دبي",
+          "desc": "تذكرة Pegasus Airlines (رحلة مباشرة) بتاريخ 2027-06-17 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+        },
+        "en": {
+          "title": "Istanbul ✈️ Dubai",
+          "desc": "Pegasus Airlines (Direct Flight) on 2027-06-17 — save 48% below average route fare with 1-click booking."
+        },
+        "ru": {
+          "title": "Стамбул ✈️ Дубай",
+          "desc": "Рейс Pegasus Airlines (Прямой рейс) 2027-06-17 — на 48% дешевле средней цены, мгновенное бронирование."
+        }
+      },
+      "updatedAt": "2026-11-21T00:38:53.447798+00:00",
+      "createdTs": 1795221533
+    },
+    {
+      "id": "flight_deal_6",
+      "dealId": "F-20261121-IST-DOH",
+      "type": "flight",
+      "partner": "aviasales",
+      "apiSource": "aviasales_v3",
+      "segment": "arab_tr",
+      "routeKey": "IST_DOH",
+      "originIata": "IST",
+      "destIata": "DOH",
+      "departure": "İstanbul",
+      "destination": "Doha",
+      "destCityEn": "Doha",
+      "route": "İstanbul ✈️ Doha",
+      "title": "İstanbul ✈️ Doha",
+      "airline": "Pegasus Airlines • PC614",
+      "transfers": 0,
+      "departureDate": "2027-02-06",
+      "price": "$121",
+      "priceUsd": 121,
+      "avgMarketUsd": 121,
+      "savingsPct": 48,
+      "dealScore": 69,
+      "description": "2027-02-06 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261121-IST-DOH_card.webp",
+      "localImage": "assets/deals/F-20261121-IST-DOH_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST0602DOH1%3Ft%3DPC18019476001801962000000240SAWDOH_ee348bfe4618fff92c2fdf1d3119a2ba_10000%26search_date%3D16112026%26expected_price_uuid%3D01a1e6b3-269d-8031-6ec6-4233d843dc8a%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3D4G9c-DvLBKTFsos9wLLrkg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D121",
+      "i18n": {
+        "tr": {
+          "title": "İstanbul ✈️ Doha",
+          "desc": "2027-02-06 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+        },
+        "ar": {
+          "title": "إسطنبول ✈️ الدوحة",
+          "desc": "تذكرة Pegasus Airlines (رحلة مباشرة) بتاريخ 2027-02-06 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+        },
+        "en": {
+          "title": "Istanbul ✈️ Doha",
+          "desc": "Pegasus Airlines (Direct Flight) on 2027-02-06 — save 48% below average route fare with 1-click booking."
+        },
+        "ru": {
+          "title": "Стамбул ✈️ Доха",
+          "desc": "Рейс Pegasus Airlines (Прямой рейс) 2027-02-06 — на 48% дешевле средней цены, мгновенное бронирование."
+        }
+      },
+      "updatedAt": "2026-11-21T00:38:53.447798+00:00",
+      "createdTs": 1795221533
     }
   ],
   "conciergeHotels": {
@@ -5004,7 +5004,7 @@
           "airlineName": "Pobeda",
           "flightNumber": "DP995",
           "departureDate": "2026-11-23",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2311IST1%3Ft%3DDP17954172001795436100000315VKOIST_f631b4c5c1b88bf8e98a00b9e5bea977_5803%26search_date%3D20112026%26expected_price_uuid%3D01a1fb41-e4c9-8031-2f5d-56099fdb91e0%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DkoeZvs5OW2AIKijvqz1lqQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D71",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2311IST1%3Ft%3DDP17954172001795436100000315VKOIST_f631b4c5c1b88bf8e98a00b9e5bea977_5803%26search_date%3D21112026%26expected_price_uuid%3D01a1fb87-43f3-8031-2eaf-e50d55a685f3%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DkoeZvs5OW2AIKijvqz1lqQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D71",
           "isRealApi": true
         },
         {
@@ -5013,7 +5013,7 @@
           "airlineName": "Pobeda",
           "flightNumber": "DP995",
           "departureDate": "2026-11-24",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2411IST1%3Ft%3DDP17955036001795522500000315VKOIST_0ba94e03f9e5896f2d42ff32a67b78bd_5863%26search_date%3D20112026%26expected_price_uuid%3D01a1fb3c-9c8a-8030-a3dd-159545d8d3ea%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DkoeZvs5OW2AIKijvqz1lqQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D71",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2411IST1%3Ft%3DDP17955036001795522500000315VKOIST_0ba94e03f9e5896f2d42ff32a67b78bd_5863%26search_date%3D21112026%26expected_price_uuid%3D01a1fb80-70e8-8030-2782-7f68733a0264%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DkoeZvs5OW2AIKijvqz1lqQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D71",
           "isRealApi": true
         },
         {
@@ -5022,7 +5022,7 @@
           "airlineName": "Pobeda",
           "flightNumber": "DP839",
           "departureDate": "2026-11-27",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2711IST1%3Ft%3DDP17957790001795845600001110VKOAYTSAW_311f3ce484d2b5ab00beca310fcb29a0_7483%26search_date%3D20112026%26expected_price_uuid%3D01a1fb3f-5a57-8030-a74e-e9249594e8ad%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DLm43Yx_2rjIRgl9eTF1zjg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D91",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2711IST1%3Ft%3DDP17957790001795845600001110VKOAYTSAW_311f3ce484d2b5ab00beca310fcb29a0_7483%26search_date%3D21112026%26expected_price_uuid%3D01a1fb7d-967a-8030-ef6c-90387f2c2851%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DLm43Yx_2rjIRgl9eTF1zjg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D91",
           "isRealApi": true
         }
       ],
@@ -5102,8 +5102,8 @@
           "airlineCode": "DP",
           "airlineName": "Pobeda",
           "flightNumber": "DP839",
-          "departureDate": "2026-11-21",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2111AYT1%3Ft%3DDP17952618001795280400000310VKOAYT_44bd7903eaa2aa3c2b22b209308b515a_3600%26search_date%3D20112026%26expected_price_uuid%3D01a1fb41-fbcf-8030-e70f-7bc4113409cf%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3D2YlpBiFW34Avi98GGQifLg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
+          "departureDate": "2026-11-27",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2711AYT1%3Ft%3DDP17957790001795797600000310VKOAYT_8379ef49240aa09909518ec68f4792d6_3600%26search_date%3D21112026%26expected_price_uuid%3D01a1fb88-3566-8030-2aa0-e4b2a4b53629%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DDnMd-Xw9nCIWEB1s4bKs1g%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
           "isRealApi": true
         },
         {
@@ -5111,8 +5111,8 @@
           "airlineCode": "DP",
           "airlineName": "Pobeda",
           "flightNumber": "DP839",
-          "departureDate": "2026-11-22",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2211AYT1%3Ft%3DDP17953308001795349400000310VKOAYT_94eeac0ea67dbe249e1f248e8f994b90_3600%26search_date%3D20112026%26expected_price_uuid%3D01a1fb44-930e-8030-63e9-670e614495aa%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DHB8jsrug2Ap1fjvdGFaxkQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
+          "departureDate": "2026-11-21",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2111AYT1%3Ft%3DDP17952618001795280400000310VKOAYT_44bd7903eaa2aa3c2b22b209308b515a_3606%26search_date%3D21112026%26expected_price_uuid%3D01a1fb82-2c80-8030-2eb0-4407283eb047%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3D2YlpBiFW34Avi98GGQifLg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
           "isRealApi": true
         },
         {
@@ -5121,7 +5121,7 @@
           "airlineName": "Pobeda",
           "flightNumber": "DP839",
           "departureDate": "2026-11-23",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2311AYT1%3Ft%3DDP17954172001795435800000310VKOAYT_a50e3740897da8b9e651b42522a39821_3606%26search_date%3D20112026%26expected_price_uuid%3D01a1fb2f-5178-8030-e0e6-6fff78a3a1bc%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DHB8jsrug2Ap1fjvdGFaxkQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2311AYT1%3Ft%3DDP17954172001795435800000310VKOAYT_a50e3740897da8b9e651b42522a39821_3606%26search_date%3D21112026%26expected_price_uuid%3D01a1fb6e-d5fc-8030-6499-ecb57f155071%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DHB8jsrug2Ap1fjvdGFaxkQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
           "isRealApi": true
         }
       ],
@@ -5590,7 +5590,7 @@
     }
   },
   "aiRouterHealth": {
-    "date": "2026-11-20",
+    "date": "2026-11-21",
     "local_core_hits": 0,
     "providers": {
       "gemini": {
