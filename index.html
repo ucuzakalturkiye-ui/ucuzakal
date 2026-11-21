@@ -303,7 +303,7 @@
         }
 
         /* ===================================================================== */
-        /* قالبَي المدونة الفاخرين + القارئ بملء الشاشة الكاملة */
+        /* قالبَي المدونة الفاخرين + القارئ بملء الشاشة الكاملة (متوافق مع 16:9 و 3000+ كلمة) */
         /* ===================================================================== */
         .editorial-blog-card {
             border-radius: calc(1.6rem - 1.7px);
@@ -325,7 +325,7 @@
         .editorial-cover-wrap {
             position: relative;
             width: 100%;
-            aspect-ratio: 16 / 10;
+            aspect-ratio: 16 / 9;
             overflow: hidden;
             background: #090F1E;
         }
@@ -338,7 +338,7 @@
         }
 
         .gold-animated-frame:hover .editorial-cover-wrap img {
-            transform: scale(1.06);
+            transform: scale(1.04);
         }
 
         #article-modal {
@@ -382,12 +382,21 @@
 
         .article-body-content p { margin-bottom: 1.35rem; }
 
-        .article-body-content h2,
-        .article-body-content h3 {
+        .article-body-content h2 {
             color: #D4AF37;
             font-weight: 800;
-            font-size: 1.38rem;
-            margin: 2rem 0 0.85rem;
+            font-size: 1.48rem;
+            margin: 2.4rem 0 1rem;
+            line-height: 1.42;
+            padding-bottom: 0.45rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.22);
+        }
+
+        .article-body-content h3 {
+            color: #E8C55A;
+            font-weight: 800;
+            font-size: 1.22rem;
+            margin: 1.8rem 0 0.75rem;
             line-height: 1.45;
         }
 
@@ -404,10 +413,118 @@
         .article-body-content ul,
         .article-body-content ol {
             margin: 1rem 0 1.4rem;
-            padding-inline-start: 1.4rem;
+            padding-inline-start: 1.45rem;
         }
 
-        .article-body-content li { margin-bottom: 0.55rem; }
+        .article-body-content ul { list-style-type: disc; }
+        .article-body-content ol { list-style-type: decimal; }
+        .article-body-content li { margin-bottom: 0.6rem; }
+
+        /* تنسيق عناصر المقالات المرجعية الجديدة (TOC + الجداول + الصور الـ 4 + FAQ + صناديق العروض) */
+        .article-body-content .uk-toc {
+            border-radius: 1rem;
+            padding: 1.15rem 1.35rem;
+            margin: 1.5rem 0 2rem;
+            border-inline-start: 4px solid #D4AF37;
+        }
+        html.dark .article-body-content .uk-toc {
+            background: rgba(212, 175, 55, 0.08) !important;
+            border-color: #D4AF37;
+        }
+        html.light .article-body-content .uk-toc {
+            background: rgba(212, 175, 55, 0.1) !important;
+        }
+        .article-body-content .uk-toc a {
+            color: #D4AF37;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .article-body-content .uk-toc a:hover { text-decoration: underline; }
+
+        .article-body-content .table-wrap {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            margin: 1.5rem 0;
+            border-radius: 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .article-body-content .uk-compare-table {
+            width: 100%;
+            min-width: 540px;
+            border-collapse: collapse;
+            margin: 0 !important;
+            font-size: 0.92rem;
+        }
+
+        .article-body-content .uk-compare-table th {
+            background: rgba(212, 175, 55, 0.18);
+            color: #D4AF37;
+            font-weight: 800;
+            text-align: start;
+            padding: 0.85rem 1rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+        }
+
+        .article-body-content .uk-compare-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+            vertical-align: top;
+        }
+
+        html.dark .article-body-content .uk-compare-table tr:nth-child(even) td {
+            background: rgba(255, 255, 255, 0.025);
+        }
+
+        html.light .article-body-content .uk-compare-table tr:nth-child(even) td {
+            background: rgba(15, 23, 42, 0.03);
+        }
+
+        .article-body-content .uk-article-figure {
+            margin: 2rem 0;
+        }
+        .article-body-content .uk-article-figure img {
+            margin: 0 0 0.65rem !important;
+            aspect-ratio: 16 / 9;
+        }
+        .article-body-content .uk-article-figure figcaption {
+            font-size: 0.82rem;
+            text-align: center;
+            opacity: 0.78;
+            font-weight: 600;
+        }
+
+        .article-body-content .uk-faq-item {
+            padding: 1.1rem 1.25rem;
+            border-radius: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(212, 175, 55, 0.24);
+        }
+        html.dark .article-body-content .uk-faq-item { background: rgba(255, 255, 255, 0.025); }
+        html.light .article-body-content .uk-faq-item { background: #FFFFFF; }
+        .article-body-content .uk-faq-item h3 { margin: 0 0 0.5rem; font-size: 1.08rem; }
+        .article-body-content .uk-faq-item p { margin: 0; font-size: 0.96rem; }
+
+        .article-body-content .uk-deal-box {
+            box-shadow: 0 18px 42px -14px rgba(0, 0, 0, 0.65);
+        }
+        .article-body-content .uk-deal-cta {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .article-body-content .uk-deal-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 26px rgba(212, 175, 55, 0.45);
+        }
+
+        .article-body-content .uk-internal-links {
+            margin-top: 2.2rem;
+            padding: 1.35rem 1.5rem;
+            border-radius: 1.1rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+        html.dark .article-body-content .uk-internal-links { background: rgba(212, 175, 55, 0.06); }
+        html.light .article-body-content .uk-internal-links { background: rgba(212, 175, 55, 0.08); }
 
         /* ===================================================================== */
         /* شاشة التحويل السينمائية الفاخرة بملء الشاشة (Booking Redirect Overlay) */
@@ -1162,7 +1279,7 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- قسم المدونة الفاخرة (قالبان تحريريان فقط + قراءة بملء الشاشة الكاملة) -->
+    <!-- قسم المدونة الفاخرة (قالبان تحريريان: فنادق + طيران / قراءة بملء الشاشة) -->
     <!-- ========================================================================= -->
     <section id="blog-section" class="max-w-7xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
         <div class="text-center mb-10 sm:mb-14">
@@ -1278,11 +1395,18 @@
                     </span>
                     <span id="modal-category" class="text-brand-gold text-[11px] font-extrabold tracking-[0.25em] uppercase truncate">TÜRKİYE</span>
                 </div>
-                <button type="button" onclick="window.hideArticleModal()"
-                    class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold hover:opacity-90 transition cursor-pointer shrink-0 shadow-md">
-                    <i class="fas fa-times"></i>
-                    <span data-i18n="close_reader">Kapat</span>
-                </button>
+                <div class="flex items-center gap-2 shrink-0">
+                    <button type="button" onclick="window.copyCurrentArticleLink()"
+                        class="inline-flex items-center gap-1.5 px-3 py-2 rounded-full bg-brand-gold/12 border border-brand-gold/45 text-brand-gold text-xs font-bold hover:bg-brand-gold hover:text-black transition cursor-pointer">
+                        <i class="fas fa-share-alt text-[11px]"></i>
+                        <span data-i18n="share_article" class="hidden sm:inline">Paylaş</span>
+                    </button>
+                    <button type="button" onclick="window.hideArticleModal()"
+                        class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold hover:opacity-90 transition cursor-pointer shadow-md">
+                        <i class="fas fa-times"></i>
+                        <span data-i18n="close_reader">Kapat</span>
+                    </button>
+                </div>
             </div>
             <div class="w-full h-[3px] bg-brand-gold/15">
                 <div id="article-read-progress" class="h-full bg-gradient-to-r from-brand-gold via-amber-300 to-brand-gold w-0 transition-all duration-150"></div>
@@ -1291,10 +1415,11 @@
 
         <div class="flex-1 w-full">
             <div class="max-w-5xl mx-auto px-4 sm:px-8 pt-6 sm:pt-10 pb-20">
-                <h1 id="modal-title" class="font-luxury text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight text-center mb-6 sm:mb-8"></h1>
+                <h1 id="modal-title" class="font-luxury text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight text-center mb-4"></h1>
+                <div id="modal-meta-bar" class="flex flex-wrap items-center justify-center gap-3 text-xs font-bold text-slate-500 dark:text-brand-goldLight/85 mb-6 sm:mb-8"></div>
 
-                <div class="w-full rounded-[1.5rem] overflow-hidden border border-brand-gold/35 shadow-2xl mb-8 sm:mb-10 bg-black/40">
-                    <img id="modal-img" src="" alt="" class="w-full max-h-[65vh] object-cover block">
+                <div class="w-full rounded-[1.5rem] overflow-hidden border border-brand-gold/35 shadow-2xl mb-8 sm:mb-10 bg-black/40 aspect-video">
+                    <img id="modal-img" src="" alt="" class="w-full h-full object-cover block">
                 </div>
 
                 <div id="modal-body" class="article-body-content max-w-3xl mx-auto text-slate-800 dark:text-slate-200"></div>
@@ -1578,6 +1703,8 @@
         window.HOTELS_DATA = [];
         window.FLIGHTS_DATA = [];
         window.ARTICLES_MAP = {};
+        window.ARTICLE_FULL_CACHE = {};
+        window.BLOG_CDN_BASE = "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal-ai-core/main";
         window.DEALS_ARCHIVE_MAP = {};
         window.CONCIERGE_HOTELS_DB = {};
         window.CONCIERGE_FLIGHTS_DB = {};
@@ -2204,7 +2331,7 @@
         };
     </script>
     <!-- ========================================================================= -->
-    <!-- الجزء 3 من 4: اللغات الـ 11 + محرك التحويل الفاخر بملء الشاشة + (?deal=) -->
+    <!-- الجزء 3 من 4: اللغات الـ 11 + محرك التحويل الفاخر + قارئ المدونة الذكي + (?deal=) -->
     <!-- ========================================================================= -->
     <script>
         const BASE_TR_DICT = {
@@ -2276,6 +2403,11 @@
             read_more: "Makaleyi Oku",
             close_reader: "Kapat",
             back_to_site: "Siteye Dön",
+            share_article: "Paylaş",
+            article_link_copied: "Makale bağlantısı kopyalandı!",
+            loading_article: "Kapsamlı rehber yükleniyor...",
+            min_read: "dk okuma",
+            words_count: "kelime",
             editorial_tag: "EDİTÖRÜN SEÇİMİ",
             prev_articles: "Önceki",
             next_articles: "Sonraki",
@@ -2411,6 +2543,11 @@
             read_more: "اقرأ المقال كاملاً",
             close_reader: "إغلاق",
             back_to_site: "العودة للموقع",
+            share_article: "مشاركة",
+            article_link_copied: "تم نسخ رابط المقال الدائم!",
+            loading_article: "جارٍ تحميل الدليل الكامل...",
+            min_read: "دقيقة قراءة",
+            words_count: "كلمة",
             editorial_tag: "اختيار التحرير",
             prev_articles: "السابق",
             next_articles: "التالي",
@@ -2546,6 +2683,11 @@
             read_more: "Read Full Guide",
             close_reader: "Close",
             back_to_site: "Back to Site",
+            share_article: "Share",
+            article_link_copied: "Article link copied!",
+            loading_article: "Loading complete travel guide...",
+            min_read: "min read",
+            words_count: "words",
             editorial_tag: "EDITOR'S PICK",
             prev_articles: "Previous",
             next_articles: "Next",
@@ -2646,6 +2788,11 @@
             read_more: "Читать статью",
             close_reader: "Закрыть",
             back_to_site: "На главную",
+            share_article: "Поделиться",
+            article_link_copied: "Ссылка на статью скопирована!",
+            loading_article: "Загрузка подробного гида...",
+            min_read: "мин чтения",
+            words_count: "слов",
             editorial_tag: "ВЫБОР РЕДАКЦИИ",
             prev_articles: "Назад",
             next_articles: "Далее",
@@ -2896,7 +3043,6 @@
                 if (win) {
                     window.cancelBookingRedirect();
                 } else {
-                    // على بعض متصفحات الهاتف قد يُحظر التبويب المؤجّل، فنحوّل مباشرةً بسلاسة
                     window.location.href = targetUrl;
                 }
             }, 1600);
@@ -2904,16 +3050,51 @@
             return false;
         };
 
-        // استخراج عنوان ومحتوى المقال بأي صيغة محفوظة في قاعدة البيانات + دعم الصور المتعددة
+        // =========================================================================
+        // محرك قراءة المقالات المرجعية (يدعم live_blog_index.json + JSON الكامل + Firestore)
+        // =========================================================================
+        window.injectArticleSchemas = function(schemas) {
+            document.querySelectorAll('script[data-uk-schema="article"]').forEach(s => s.remove());
+            if (!schemas || typeof schemas !== 'object') return;
+            Object.values(schemas).forEach(obj => {
+                if (!obj || typeof obj !== 'object') return;
+                const sc = document.createElement('script');
+                sc.type = 'application/ld+json';
+                sc.setAttribute('data-uk-schema', 'article');
+                sc.textContent = JSON.stringify(obj);
+                document.head.appendChild(sc);
+            });
+        };
+
         window.extractArticleContent = function(article, lang) {
-            if (!article) return { title: '', body: '', images: [] };
-            const title = (article.titles && (article.titles[lang] || article.titles.tr || article.titles.ar || article.titles.en))
+            if (!article) return { title: '', excerpt: '', body: '', images: [] };
+            const safeL = ['tr', 'ar', 'ru', 'en'].includes(lang) ? lang : (lang === 'fa' ? 'ar' : 'en');
+
+            let i18nMeta = null;
+            if (article.i18nMetaJson && typeof article.i18nMetaJson === 'string') {
+                try { i18nMeta = JSON.parse(article.i18nMetaJson); } catch (e) {}
+            }
+
+            const i18nPack = (article.i18n && (article.i18n[safeL] || article.i18n.tr || article.i18n.en)) || null;
+            const metaPack = (i18nMeta && (i18nMeta[safeL] || i18nMeta.tr || i18nMeta.en)) || null;
+
+            const title = (i18nPack && i18nPack.title)
+                       || (article.titles && (article.titles[safeL] || article.titles.tr || article.titles.ar || article.titles.en))
+                       || (metaPack && metaPack.title)
                        || article[`title_${lang}`]
                        || article.title
                        || article.headline
                        || '';
-            const body = (article.bodies && (article.bodies[lang] || article.bodies.tr || article.bodies.ar || article.bodies.en))
-                      || (article.contents && (article.contents[lang] || article.contents.tr || article.contents.ar || article.contents.en))
+
+            const excerpt = (i18nPack && (i18nPack.excerpt || i18nPack.metaDesc))
+                         || (article.excerpts && (article.excerpts[safeL] || article.excerpts.tr || article.excerpts.en))
+                         || (metaPack && (metaPack.excerpt || metaPack.metaDesc))
+                         || article.excerpt
+                         || '';
+
+            const body = (i18nPack && i18nPack.html)
+                      || (article.bodies && (article.bodies[safeL] || article.bodies.tr || article.bodies.ar || article.bodies.en))
+                      || (article.contents && (article.contents[safeL] || article.contents.tr || article.contents.ar || article.contents.en))
                       || article[`body_${lang}`]
                       || article[`content_${lang}`]
                       || article.body
@@ -2921,6 +3102,7 @@
                       || article.html
                       || article.description
                       || '';
+
             const images = [];
             if (Array.isArray(article.images)) {
                 article.images.forEach(u => { if (typeof u === 'string' && u.trim()) images.push(u.trim()); });
@@ -2928,16 +3110,71 @@
             if (Array.isArray(article.gallery)) {
                 article.gallery.forEach(u => { if (typeof u === 'string' && u.trim()) images.push(u.trim()); });
             }
-            return { title: String(title), body: String(body), images };
+            return { title: String(title), excerpt: String(excerpt), body: String(body), images };
         };
 
-        window.renderAndTranslateFullArticle = function(article, currentLang, bodyEl, titleEl, galleryEl) {
+        window.copyCurrentArticleLink = function() {
+            const slug = window.currentOpenArticleId;
+            if (!slug) return;
+            const lang = document.documentElement.lang || 'tr';
+            const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || BASE_TR_DICT;
+            const shareUrl = `${window.location.origin}${window.location.pathname}?article=${encodeURIComponent(slug)}`;
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    window.showCopyToast(dict.article_link_copied || 'Article link copied!');
+                }).catch(() => window.prompt('Copy Article Link:', shareUrl));
+            } else {
+                window.prompt('Copy Article Link:', shareUrl);
+            }
+        };
+
+        window.renderAndTranslateFullArticle = async function(article, currentLang, bodyEl, titleEl, galleryEl) {
             if (!article || !bodyEl || !titleEl) return;
-            const parsed = window.extractArticleContent(article, currentLang);
+            const dict = (window.TRANSLATIONS && window.TRANSLATIONS[currentLang]) || BASE_TR_DICT;
+            const metaBarEl = document.getElementById('modal-meta-bar');
+            const slugKey = article.slug || article.id;
+
+            let fullObj = (slugKey && window.ARTICLE_FULL_CACHE[slugKey]) || article;
+            let parsed = window.extractArticleContent(fullObj, currentLang);
+
+            // إذا كان المقال من النظام الجديد (ملف JSON ثابت على CDN) ولم يُحمّل نصه الكامل بعد -> نجلب الملف بـ 0 قراءة على Firestore
+            if (!parsed.body && fullObj.jsonUrl) {
+                titleEl.textContent = window.translateTextStrong(parsed.title, currentLang);
+                bodyEl.innerHTML = `<div class="text-center py-12 text-brand-gold font-bold"><i class="fas fa-circle-notch fa-spin mx-2"></i>${dict.loading_article || 'Loading...'}</div>`;
+                try {
+                    const resp = await fetch(`${fullObj.jsonUrl}?v=${Math.floor(Date.now() / 600000)}`);
+                    if (resp.ok) {
+                        const loadedJson = await resp.json();
+                        fullObj = Object.assign({}, fullObj, loadedJson);
+                        if (slugKey) window.ARTICLE_FULL_CACHE[slugKey] = fullObj;
+                        parsed = window.extractArticleContent(fullObj, currentLang);
+                    }
+                } catch (e) {}
+            }
+
+            if (window.currentOpenArticleId !== (article.id || article.slug)) return;
+
             titleEl.textContent = window.translateTextStrong(parsed.title, currentLang);
 
-            let sanitized = parsed.body.replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').trim();
-            if (sanitized && !/<(p|div|h1|h2|h3|ul|ol|article|section)\b/i.test(sanitized)) {
+            // شريط معلومات المقال (وقت القراءة + عدد الكلمات + التاريخ)
+            if (metaBarEl) {
+                const pills = [];
+                if (fullObj.readingTimeMin) pills.push(`<span><i class="far fa-clock text-brand-gold mx-1"></i>${fullObj.readingTimeMin} ${dict.min_read || 'min'}</span>`);
+                if (fullObj.wordCountTr) pills.push(`<span><i class="fas fa-align-left text-brand-gold mx-1"></i>${fullObj.wordCountTr}+ ${dict.words_count || 'words'}</span>`);
+                if (fullObj.publishedAt || fullObj.createdAt) {
+                    const dStr = String(fullObj.publishedAt || fullObj.createdAt).slice(0, 10);
+                    pills.push(`<span><i class="far fa-calendar-alt text-brand-gold mx-1"></i>${dStr}</span>`);
+                }
+                metaBarEl.innerHTML = pills.join('<span class="opacity-40">•</span>');
+            }
+
+            // حقن أكواد Schema لمحركات البحث (Article + FAQPage + Breadcrumb)
+            if (fullObj.schemas) {
+                window.injectArticleSchemas(fullObj.schemas);
+            }
+
+            let sanitized = (parsed.body || parsed.excerpt || '').replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '').trim();
+            if (sanitized && !/<(p|div|h1|h2|h3|ul|ol|article|section|nav|aside)\b/i.test(sanitized)) {
                 sanitized = sanitized
                     .split(/\n{2,}/)
                     .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
@@ -2945,9 +3182,21 @@
             }
             bodyEl.innerHTML = sanitized;
 
+            // تفعيل الروابط الداخلية بين المقالات داخل القارئ مباشرةً
+            bodyEl.querySelectorAll('.uk-internal-links a[href*="/blog/"]').forEach(a => {
+                a.addEventListener('click', (ev) => {
+                    const m = (a.getAttribute('href') || '').match(/\/blog\/([^/?#]+)/);
+                    if (m && m[1] && window.ARTICLES_MAP && window.ARTICLES_MAP[m[1]]) {
+                        ev.preventDefault();
+                        window.openArticleModal(m[1]);
+                    }
+                });
+            });
+
             if (galleryEl) {
-                const extraImgs = parsed.images.filter(u => u && u !== article.image);
-                if (extraImgs.length > 0) {
+                const coverUrl = (fullObj.heroImage && fullObj.heroImage.publicUrl) || fullObj.heroImage || fullObj.image || '';
+                const extraImgs = parsed.images.filter(u => u && u !== coverUrl);
+                if (extraImgs.length > 0 && !/<figure class="uk-article-figure">/i.test(sanitized)) {
                     galleryEl.innerHTML = extraImgs.map(src => `
                         <div class="rounded-2xl overflow-hidden border border-brand-gold/30 shadow-xl bg-black/30">
                             <img src="${src.replace(/"/g, '&quot;')}" alt="" loading="lazy" class="w-full h-64 object-cover block">
@@ -3219,7 +3468,7 @@
         });
     </script>
     <!-- ========================================================================= -->
-    <!-- الجزء 4 من 4: Firebase الحقيقي + إصلاح الطيران والمدونة + التحويل الفاخر -->
+    <!-- الجزء 4 من 4: Firebase الحقيقي + محرك المدونة CDN + الخريطة الحية + التحويل الفاخر -->
     <!-- ========================================================================= -->
     <script>
         (function() {
@@ -3297,6 +3546,24 @@
             function getUpcomingDateStr(daysAhead) {
                 const d = new Date(Date.now() + (daysAhead || 14) * 86400000);
                 return d.toISOString().slice(0, 10);
+            }
+
+            function resolveArticleCover(art) {
+                if (!art) return 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1400&q=80';
+                if (art.heroImage && typeof art.heroImage === 'object' && art.heroImage.publicUrl) return art.heroImage.publicUrl;
+                if (typeof art.heroImage === 'string' && art.heroImage.startsWith('http')) return art.heroImage;
+                return art.image || art.imageUrl || art.coverImage || art.thumbnail || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1400&q=80';
+            }
+
+            function formatArticleCategoryLabel(art, lang) {
+                const cat = String((art && art.category) || '').toLowerCase();
+                if (cat === 'flight') {
+                    return lang === 'ar' ? '✈️ دليل الطيران' : (lang === 'ru' ? '✈️ АВИАГИД' : (lang === 'en' ? '✈️ FLIGHT GUIDE' : '✈️ UÇUŞ REHBERİ'));
+                }
+                if (cat === 'hotel') {
+                    return lang === 'ar' ? '🏨 دليل الفنادق والسياحة' : (lang === 'ru' ? '🏨 ОТЕЛИ И ТУРИЗМ' : (lang === 'en' ? '🏨 HOTEL & TRAVEL GUIDE' : '🏨 OTEL & SEYAHAT REHBERİ'));
+                }
+                return (art && art.category) || 'TÜRKİYE';
             }
 
             // =====================================================================
@@ -3440,7 +3707,7 @@
             }
 
             // =====================================================================
-            // مقالتان تحريريتان فاخرتان مدمجتان (تظهران فوراً في القالبين إذا كانت قاعدة البيانات فارغة)
+            // مقالتان تحريريتان فاخرتان مدمجتان (تظهران فوراً في القالبين قبل أول تشغيل)
             // =====================================================================
             const CURATED_EDITORIAL_ARTICLES = [
                 {
@@ -3459,34 +3726,10 @@
                         ru: "Стамбул на Босфоре: гид по элитным отелям, панорамным видам и идеальному отдыху"
                     },
                     bodies: {
-                        tr: `<p>İki kıtayı birleştiren büyüleyici silüetiyle <strong>İstanbul</strong>, yalnızca tarihi bir başkent değil; aynı zamanda Avrupa ve Orta Doğu'nun en seçkin lüks konaklama merkezlerinden biridir. Doğru bölge seçimi ve akıllı zamanlama ile Boğaz kıyısında unutulmaz bir tatili çok daha avantajlı bütçelerle planlayabilirsiniz.</p>
-                             <h3>1. Konaklama İçin En Seçkin Semtler</h3>
-                             <p>Tarihi yarımadanın büyüsünü hissetmek isteyenler için <strong>Sultanahmet</strong> butik otelleri eşsiz bir atmosfer sunarken; modern lüks, alışveriş ve Boğaz manzarası arayan misafirler için <strong>Beşiktaş, Nişantaşı ve Karaköy</strong> hattı öne çıkar.</p>
-                             <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="İstanbul Boğazı">
-                             <h3>2. Havalimanı Transferi ve Akıllı Ulaşım</h3>
-                             <p>İstanbul Havalimanı (IST) veya Sabiha Gökçen (SAW) inişinizde zaman kaybetmemek için önceden sabit fiyatlı özel transfer rezervasyonu yaptırmak, tatilinize konforlu bir başlangıç yapmanızı sağlar. İniş anında aktif olan 5G eSIM ile haritalarınız ve rezervasyonlarınız daima elinizin altında olur.</p>
-                             <h3>3. Sıra Beklemeden Kültür ve Gastronomi</h3>
-                             <p>Topkapı Sarayı, Yerebatan Sarnıcı ve Boğaz gün batımı turları için mobil biletlerinizi önceden alarak uzun kuyrukları geride bırakabilir, akşamınızı Boğaz manzaralı seçkin restoranlarda taçlandırabilirsiniz.</p>`,
-                        ar: `<p>تجمع <strong>إسطنبول</strong> بين سحر القارتين وتاريخ الإمبراطوريات وفخامة الضيافة العصرية، مما يجعلها الوجهة الأولى لعشاق السفر الراقي في المنطقة. وبالتخطيط الذكي واختيار الحي المناسب، يمكنك الاستمتاع بإقامة فاخرة مطلّة على مضيق البوسفور بأفضل قيمة ممكنة.</p>
-                             <h3>1. أرقى الأحياء لاختيار فندقك في إسطنبول</h3>
-                             <p>إذا كنت تبحث عن عبق التاريخ والقرب من المعالم الأثرية فإن فنادق <strong>السلطان أحمد</strong> البوتيكية هي خيارك الأمثل، أما لعشاق التسوق الفاخر والمطاعم العالمية وإطلالات البوسفور الساحرة فتتصدر مناطق <strong>نيشانتاشي وبشكتاش وكاراكوي</strong> القائمة بلا منازع.</p>
-                             <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="مضيق البوسفور إسطنبول">
-                             <h3>2. الوصول المريح من المطار والإنترنت الفوري</h3>
-                             <p>لبدء رحلتك براحة تامة منذ لحظة الهبوط في مطار إسطنبول (IST) أو صبيحة (SAW)، احرص على حجز خدمة التوصيل الخاص بسعر ثابت مسبقاً، وتفعيل شريحة <strong>5G eSIM</strong> قبل الإقلاع لتبقى متصلاً بالخرائط وتطبيقاتك فور لمس عجلات الطائرة أرض المطار.</p>
-                             <h3>3. جولات البوسفور وتخطي طوابير المعالم</h3>
-                             <p>وفّر ساعات الانتظار في قصر توبكابي وصهريج البازيليك ورحلات اليخت عند الغروب عبر تذاكر الموبايل الفورية، واجعل أمسيتك استثنائية على أحد تراسات البوسفور الراقية.</p>`,
-                        en: `<p>Spanning two continents with an iconic skyline, <strong>Istanbul</strong> blends timeless imperial heritage with world-class luxury hospitality. Choosing the right neighborhood and timing transforms your trip into an effortless, five-star escape.</p>
-                             <h3>1. Where to Stay in Style</h3>
-                             <p>For historic charm steps from grand landmarks, boutique palaces in <strong>Sultanahmet</strong> shine. For designer shopping, fine dining, and panoramic Bosphorus suites, look to <strong>Beşiktaş, Nişantaşı, and Karaköy</strong>.</p>
-                             <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="Istanbul Bosphorus">
-                             <h3>2. Seamless Airport Arrival &amp; 5G Connectivity</h3>
-                             <p>Pre-booking a fixed-price private transfer from Istanbul Airport (IST) eliminates queues, while activating a 5G travel eSIM before landing keeps navigation and concierge tools ready from minute one.</p>`,
-                        ru: `<p><strong>Стамбул</strong>, соединяющий два континента, сочетает величественную историю с высочайшим уровнем гостиничного сервиса. Правильный выбор района позволит насладиться видами Босфора с максимальным комфортом и выгодой.</p>
-                             <h3>1. Лучшие районы для проживания</h3>
-                             <p>Любителям истории идеально подойдут бутик-отели <strong>Султанахмета</strong>, а ценителям панорамных видов, гастрономии и шопинга — <strong>Бешикташ, Нишанташи и Каракёй</strong>.</p>
-                             <img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="Босфор Стамбул">
-                             <h3>2. VIP-трансфер и связь 5G</h3>
-                             <p>Забронируйте частный трансфер с фиксированной ценой заранее и подключите 5G eSIM до вылета, чтобы ваше путешествие началось безупречно с первой минуты.</p>`
+                        tr: `<p>İki kıtayı birleştiren büyüleyici silüetiyle <strong>İstanbul</strong>, yalnızca tarihi bir başkent değil; aynı zamanda Avrupa ve Orta Doğu'nun en seçkin lüks konaklama merkezlerinden biridir.</p><h3>1. Konaklama İçin En Seçkin Semtler</h3><p>Tarihi yarımadanın büyüsünü hissetmek isteyenler için <strong>Sultanahmet</strong> butik otelleri eşsiz bir atmosfer sunarken; modern lüks ve Boğaz manzarası arayanlar için <strong>Beşiktaş, Nişantaşı ve Karaköy</strong> hattı öne çıkar.</p><img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="İstanbul Boğazı"><h3>2. Havalimanı Transferi ve Akıllı Ulaşım</h3><p>İstanbul Havalimanı (IST) veya Sabiha Gökçen (SAW) inişinizde zaman kaybetmemek için önceden sabit fiyatlı özel transfer rezervasyonu yaptırmak, tatilinize konforlu bir başlangıç yapmanızı sağlar.</p>`,
+                        ar: `<p>تجمع <strong>إسطنبول</strong> بين سحر القارتين وتاريخ الإمبراطوريات وفخامة الضيافة العصرية، مما يجعلها الوجهة الأولى لعشاق السفر الراقي في المنطقة.</p><h3>1. أرقى الأحياء لاختيار فندقك في إسطنبول</h3><p>إذا كنت تبحث عن عبق التاريخ فإن فنادق <strong>السلطان أحمد</strong> البوتيكية هي خيارك الأمثل، أما لعشاق التسوق الفاخر وإطلالات البوسفور الساحرة فتتصدر مناطق <strong>نيشانتاشي وبشكتاش وكاراكوي</strong> القائمة.</p><img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="مضيق البوسفور إسطنبول"><h3>2. الوصول المريح من المطار والإنترنت الفوري</h3><p>احرص على حجز خدمة التوصيل الخاص بسعر ثابت مسبقاً، وتفعيل شريحة <strong>5G eSIM</strong> قبل الإقلاع لتبقى متصلاً فور الهبوط.</p>`,
+                        en: `<p>Spanning two continents with an iconic skyline, <strong>Istanbul</strong> blends timeless imperial heritage with world-class luxury hospitality.</p><h3>1. Where to Stay in Style</h3><p>For historic charm, boutique palaces in <strong>Sultanahmet</strong> shine. For panoramic Bosphorus suites, look to <strong>Beşiktaş, Nişantaşı, and Karaköy</strong>.</p><img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="Istanbul Bosphorus">`,
+                        ru: `<p><strong>Стамбул</strong>, соединяющий два континента, сочетает величественную историю с высочайшим уровнем гостиничного сервиса.</p><h3>1. Лучшие районы для проживания</h3><p>Любителям истории идеально подойдут бутик-отели <strong>Султанахмета</strong>, а ценителям панорамных видов — <strong>Бешикташ, Нишанташи и Каракёй</strong>.</p><img src="https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1200&q=80" alt="Босфор Стамбул">`
                     }
                 },
                 {
@@ -3505,30 +3748,10 @@
                         ru: "Анталья и Бирюзовое побережье: золотые правила выбора элитного курорта All-Inclusive"
                     },
                     bodies: {
-                        tr: `<p>Yılın 300 günü güneşli gökyüzü, turkuaz koyları ve dünyaca ünlü <strong>Ultra Her Şey Dahil</strong> tesisleriyle <strong>Antalya</strong>, Akdeniz'in rakipsiz tatil başkentidir. İster romantik bir balayı ister çocuklu keyifli bir aile tatili planlayın, doğru bölge seçimi deneyiminizi zirveye taşır.</p>
-                             <h3>1. Belek, Lara, Kemer mi Yoksa Kaleiçi mi?</h3>
-                             <p><strong>Belek</strong> dünyaca ünlü golf ve VIP resort otelleriyle öne çıkarken; <strong>Lara</strong> havalimanına sadece 15 dakika mesafede altın kumlu plajlar sunar. Çam ormanlarıyla denizin buluştuğu <strong>Kemer</strong> doğaseverler için, tarihi taş konaklarıyla <strong>Kaleiçi</strong> ise butik atmosfer arayanlar için biçilmiş kaftandır.</p>
-                             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Antalya Resort">
-                             <h3>2. Kendi Rotanızı Özgürce Keşfedin</h3>
-                             <p>Düşük depozitolu araç kiralama seçenekleriyle Düden Şelalesi, Kaş, Kaputaş Plajı ve antik Side tiyatrosunu kendi temponuzda keşfedebilir; her anı kusursuz bir Akdeniz anısına dönüştürebilirsiniz.</p>`,
-                        ar: `<p>بسمائها المشمسة 300 يوم في السنة ومياهها الفيروزية الصافية ومنتجعاتها العالمية الشاملة كلياً، تتربّع <strong>أنطاليا</strong> على عرش السياحة المتوسطية. وسواء كنت تخطط لشهر عسل رومانسي أو عطلة عائلية فاخرة، فإن اختيار المنطقة الساحلية المناسبة يصنع الفارق الكامل.</p>
-                             <h3>1. كيف تختار بين بيليك ولارا وكيمير وكاليتشي؟</h3>
-                             <p>تشتهر <strong>بيليك (Belek)</strong> بأفخم المنتجعات الملكية وملاعب الغولف، بينما تمنحك <strong>لارا (Lara)</strong> شواطئ ذهبية تبعد 15 دقيقة فقط عن المطار. أما <strong>كيمير (Kemer)</strong> فتمزج بين غابات الصنوبر والجبال والبحر، في حين تحتضن <strong>كاليتشي (Kaleiçi)</strong> الفنادق التاريخية البوتيكية الساحرة.</p>
-                             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="منتجعات أنطاليا الفاخرة">
-                             <h3>2. حرية استكشاف الشلالات والخلجان المخفية</h3>
-                             <p>باستئجار سيارة بضمان منخفض من مطار أنطاليا (AYT)، يمكنك الانطلاق بحرية لزيارة شلالات دودن، وشاطئ كابوتاش الساحر، ومدينة كاش ومسرح سيدي الأثري في رحلة لا تُنسى.</p>`,
-                        en: `<p>With 300 days of sunshine, crystalline turquoise bays, and world-renowned <strong>Ultra All-Inclusive</strong> resorts, <strong>Antalya</strong> reigns as the Mediterranean's premier luxury escape.</p>
-                             <h3>1. Choosing Between Belek, Lara, Kemer &amp; Kaleiçi</h3>
-                             <p><strong>Belek</strong> delivers flagship five-star golf and spa resorts; <strong>Lara</strong> offers golden sandy beaches just 15 minutes from AYT airport; <strong>Kemer</strong> pairs pine-clad mountains with emerald coves; and <strong>Kaleiçi</strong> enchants with historic Ottoman boutique hotels.</p>
-                             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Antalya Luxury Resort">
-                             <h3>2. Explore Hidden Coves at Your Own Pace</h3>
-                             <p>Pair your stay with a low-deposit local rental car to uncover Düden Waterfalls, ancient Side, and the iconic Kaputaş Beach along Turkey's scenic coastal highway.</p>`,
-                        ru: `<p>300 солнечных дней в году, бирюзовые бухты и лучшие курорты <strong>Ultra All-Inclusive</strong> делают <strong>Анталью</strong> безусловной столицей средиземноморского отдыха.</p>
-                             <h3>1. Белек, Лара, Кемер или Калеичи?</h3>
-                             <p><strong>Белек</strong> славится элитными гольф-курортами, <strong>Лара</strong> — золотыми пляжами всего в 15 минутах от аэропорта, <strong>Кемер</strong> — сосновыми горами, а <strong>Калеичи</strong> — атмосферой старого города.</p>
-                             <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Курорты Антальи">
-                             <h3>2. Полная свобода маршрутов</h3>
-                             <p>Арендуйте автомобиль с минимальным депозитом, чтобы свободно посетить водопады Дюден, античный Сиде и знаменитый пляж Капуташ.</p>`
+                        tr: `<p>Yılın 300 günü güneşli gökyüzü, turkuaz koyları ve dünyaca ünlü <strong>Ultra Her Şey Dahil</strong> tesisleriyle <strong>Antalya</strong>, Akdeniz'in rakipsiz tatil başkentidir.</p><h3>1. Belek, Lara, Kemer mi Yoksa Kaleiçi mi?</h3><p><strong>Belek</strong> golf ve VIP resort otelleriyle, <strong>Lara</strong> altın kumlu plajlarıyla, <strong>Kemer</strong> çam ormanlarıyla ve <strong>Kaleiçi</strong> butik konaklarıyla öne çıkar.</p><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Antalya Resort">`,
+                        ar: `<p>بسمائها المشمسة 300 يوم في السنة ومنتجعاتها العالمية الشاملة كلياً، تتربّع <strong>أنطاليا</strong> على عرش السياحة المتوسطية.</p><h3>1. كيف تختار بين بيليك ولارا وكيمير وكاليتشي؟</h3><p>تشتهر <strong>بيليك</strong> بأفخم المنتجعات الملكية، و<strong>لارا</strong> بشواطئها الذهبية القريبة من المطار، و<strong>كيمير</strong> بطبيعتها الجبلية الساحرة.</p><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="منتجعات أنطاليا الفاخرة">`,
+                        en: `<p>With 300 days of sunshine and world-renowned <strong>Ultra All-Inclusive</strong> resorts, <strong>Antalya</strong> reigns as the Mediterranean's premier luxury escape.</p><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Antalya Luxury Resort">`,
+                        ru: `<p>300 солнечных дней в году и лучшие курорты <strong>Ultra All-Inclusive</strong> делают <strong>Анталью</strong> столицей средиземноморского отдыха.</p><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1200&q=80" alt="Курорты Антальи">`
                     }
                 }
             ];
@@ -3876,7 +4099,7 @@
             };
 
             // =====================================================================
-            // 5. المدونة العالمية الفاخرة (قالبان فقط + قراءة بملء الشاشة الكاملة)
+            // 5. المدونة العالمية الفاخرة (قالبان فقط + قراءة 3000+ كلمة بملء الشاشة)
             // =====================================================================
             window.openArticleModal = function(articleId) {
                 const art = window.ARTICLES_MAP && window.ARTICLES_MAP[articleId];
@@ -3890,9 +4113,8 @@
                 const galleryEl = document.getElementById('modal-gallery');
                 const progEl = document.getElementById('article-read-progress');
 
-                const coverImg = art.image || art.imageUrl || art.coverImage || art.thumbnail || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1400&q=80';
-                if (imgEl) imgEl.src = coverImg;
-                if (catEl) catEl.textContent = art.category || 'UCUZAKAL JOURNAL';
+                if (imgEl) imgEl.src = resolveArticleCover(art);
+                if (catEl) catEl.textContent = formatArticleCategoryLabel(art, lang);
                 if (progEl) progEl.style.width = '0%';
 
                 window.renderAndTranslateFullArticle(art, lang, bodyEl, titleEl, galleryEl);
@@ -3910,6 +4132,14 @@
                 const modal = document.getElementById('article-modal');
                 if (modal) modal.classList.remove('active');
                 document.body.style.overflow = '';
+                document.querySelectorAll('script[data-uk-schema="article"]').forEach(s => s.remove());
+                try {
+                    const url = new URL(window.location.href);
+                    if (url.searchParams.has('article')) {
+                        url.searchParams.delete('article');
+                        window.history.replaceState({}, '', url.toString());
+                    }
+                } catch (e) {}
             };
 
             window.setBlogPage = function(pageIdx) {
@@ -3927,7 +4157,7 @@
                 const lang = document.documentElement.lang || 'tr';
                 const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                 const list = Object.values(window.ARTICLES_MAP || {})
-                    .sort((a, b) => toSortableTime(b.createdAt || b.updatedAt || b.date) - toSortableTime(a.createdAt || a.updatedAt || a.date));
+                    .sort((a, b) => toSortableTime(b.publishedAt || b.createdAt || b.updatedAt || b.date) - toSortableTime(a.publishedAt || a.createdAt || a.updatedAt || a.date));
 
                 if (list.length === 0) {
                     container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_articles_text || dict.no_deals_text)}</div>`;
@@ -3943,23 +4173,27 @@
                 const visibleTwo = list.slice(start, start + pageSize);
 
                 container.innerHTML = visibleTwo.map(art => {
+                    const keyId = art.slug || art.id;
                     const parsed = window.extractArticleContent(art, lang);
-                    const title = window.translateTextStrong(parsed.title || art.id, lang);
-                    const plainSnippet = parsed.body.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 185);
-                    const coverImg = art.image || art.imageUrl || art.coverImage || art.thumbnail || 'https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1400&q=80';
+                    const title = window.translateTextStrong(parsed.title || keyId, lang);
+                    const rawSnippet = parsed.excerpt || parsed.body.replace(/<[^>]+>/g, ' ');
+                    const plainSnippet = rawSnippet.replace(/\s+/g, ' ').trim().slice(0, 185);
+                    const coverImg = resolveArticleCover(art);
+                    const catLabel = formatArticleCategoryLabel(art, lang);
+                    const readBadge = art.readingTimeMin ? `${art.readingTimeMin} ${dict.min_read || 'min'}` : (dict.editorial_tag || 'EDITORIAL');
 
                     return `
                     <div class="gold-animated-frame">
-                        <article onclick="window.openArticleModal('${escJs(art.id)}')" class="editorial-blog-card group">
+                        <article onclick="window.openArticleModal('${escJs(keyId)}')" class="editorial-blog-card group">
                             <div class="editorial-cover-wrap">
                                 <img src="${escHtml(coverImg)}" alt="${escHtml(title)}" loading="lazy">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#060A14] via-[#060A14]/30 to-transparent"></div>
-                                <div class="absolute top-4 left-4 right-4 flex items-center justify-between gap-2">
-                                    <span class="px-3.5 py-1 rounded-full bg-black/75 backdrop-blur-md border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold tracking-[0.22em] uppercase">
-                                        ${escHtml(art.category || 'TÜRKİYE')}
+                                <div class="absolute inset-0 bg-gradient-to-t from-[#060A14]/70 via-transparent to-transparent"></div>
+                                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
+                                    <span class="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold tracking-[0.18em] uppercase">
+                                        ${escHtml(catLabel)}
                                     </span>
                                     <span class="px-3 py-1 rounded-full bg-brand-gold text-black text-[10px] font-black tracking-wider uppercase shadow-lg">
-                                        <i class="fas fa-crown mx-1"></i>${escHtml(dict.editorial_tag || 'EDITORIAL')}
+                                        <i class="fas fa-crown mx-1"></i>${escHtml(readBadge)}
                                     </span>
                                 </div>
                             </div>
@@ -4631,7 +4865,7 @@
             }
 
             // =====================================================================
-            // 10. تحميل البيانات الذكي المستقل (إصلاح جذري للطيران الـ 6 + قالبَي المدونة)
+            // 10. تحميل البيانات الذكي المستقل (صفر ضغط على قاعدة البيانات للمدونة)
             // =====================================================================
             async function fetchCollectionDocs(colName, maxCount) {
                 if (!fbDb) return [];
@@ -4650,10 +4884,12 @@
             async function bootstrapPlatformData() {
                 const bust = Math.floor(Date.now() / 300000);
 
-                // 1. تحميل البث الحي والأرشيف الدائم (30 يوماً) من ملفات GitHub Pages مجاناً
-                const [feedRes, archiveRes] = await Promise.allSettled([
+                // 1. تحميل البث الحي + الأرشيف + فهرس المدونة السريع من CDN (0 قراءة من Firestore)
+                const [feedRes, archiveRes, blogIdxCdnRes, blogIdxLocalRes] = await Promise.allSettled([
                     fetch(`./live_deals_feed.json?v=${bust}`).then(r => r.ok ? r.json() : null),
-                    fetch(`./deals_archive.json?v=${bust}`).then(r => r.ok ? r.json() : null)
+                    fetch(`./deals_archive.json?v=${bust}`).then(r => r.ok ? r.json() : null),
+                    fetch(`${window.BLOG_CDN_BASE}/live_blog_index.json?v=${bust}`).then(r => r.ok ? r.json() : null),
+                    fetch(`./live_blog_index.json?v=${bust}`).then(r => r.ok ? r.json() : null)
                 ]);
 
                 if (archiveRes.status === 'fulfilled' && archiveRes.value && archiveRes.value.deals) {
@@ -4672,7 +4908,7 @@
                     if (feedObj.partnerWeights) window.PARTNER_WEIGHTS = feedObj.partnerWeights;
                 }
 
-                // 2. قراءة Firestore عند نقص الفنادق أو الطيران (تطبيع كامل للبيانات)
+                // 2. قراءة Firestore عند نقص الفنادق أو الطيران فقط
                 if (window.HOTELS_DATA.length < 6 || window.FLIGHTS_DATA.length < 6) {
                     const [liveDocs, colFlights, colHotels] = await Promise.all([
                         fetchCollectionDocs('live_deals', 30),
@@ -4714,7 +4950,6 @@
                                 .forEach(pushUniqueFlight);
                         }
 
-                        // إكمال النقص تلقائياً حتى 6 عروض طيران حية وموثّقة حتى لا يظهر القسم ناقصاً أبداً
                         buildCuratedFlightsFallback().forEach(pushUniqueFlight);
                         window.FLIGHTS_DATA = mergedFlights.slice(0, 6);
                     }
@@ -4723,37 +4958,42 @@
                 window.renderHotels();
                 window.renderFlights();
 
-                // 3. فتح نافذة العرض الدائم فوراً إذا دخل الزائر من رابط سوشيال ميديا (?deal=...)
-                try {
-                    const params = new URLSearchParams(window.location.search);
-                    const dealParam = params.get('deal');
-                    if (dealParam) {
-                        window.openDealSpotlightById(dealParam);
-                    }
-                } catch (e) {}
+                // 3. قراءة مقالات المدونة من فهرس الـ CDN أولاً (0 قراءة من Firestore لحماية القاعدة)
+                const blogIdxObj = (blogIdxCdnRes.status === 'fulfilled' && blogIdxCdnRes.value && Array.isArray(blogIdxCdnRes.value.posts))
+                    ? blogIdxCdnRes.value
+                    : ((blogIdxLocalRes.status === 'fulfilled' && blogIdxLocalRes.value && Array.isArray(blogIdxLocalRes.value.posts)) ? blogIdxLocalRes.value : null);
 
-                // 4. تحميل مقالات المدونة من Firestore (بالتوازي لكل الأسماء المحتملة) مع شبكة الأمان التحريرية الفاخرة
-                const blogCollections = ['articles', 'blog_posts', 'posts', 'blog', 'seo_articles', 'journal'];
-                const blogResults = await Promise.all(blogCollections.map(col => fetchCollectionDocs(col, 20)));
-                blogResults.forEach(docs => {
-                    docs.forEach(item => {
-                        if (!item || item.status === 'draft') return;
-                        const parsed = window.extractArticleContent(item, document.documentElement.lang || 'tr');
-                        if (parsed.title || parsed.body) {
-                            window.ARTICLES_MAP[item.id] = item;
-                        }
+                if (blogIdxObj && blogIdxObj.posts.length > 0) {
+                    blogIdxObj.posts.forEach(post => {
+                        if (!post || post.status === 'draft') return;
+                        const key = post.slug || post.id;
+                        if (key) window.ARTICLES_MAP[key] = Object.assign({ id: key }, post);
                     });
-                });
+                }
 
-                // إن وُجدت مقالات داخل live_deals_feed.json نضمّها أيضاً
+                // قراءة احتياطية من Firestore فقط إذا لم توجد مقالات في فهرس الـ CDN بعد
+                if (Object.keys(window.ARTICLES_MAP).length === 0) {
+                    const blogCollections = ['blog_posts', 'articles'];
+                    const blogResults = await Promise.all(blogCollections.map(col => fetchCollectionDocs(col, 12)));
+                    blogResults.forEach(docs => {
+                        docs.forEach(item => {
+                            if (!item || item.status === 'draft') return;
+                            const key = item.slug || item.id;
+                            const parsed = window.extractArticleContent(item, document.documentElement.lang || 'tr');
+                            if (key && (parsed.title || parsed.body || item.jsonUrl)) {
+                                window.ARTICLES_MAP[key] = Object.assign({ id: key }, item);
+                            }
+                        });
+                    });
+                }
+
                 if (feedObj && Array.isArray(feedObj.articles)) {
                     feedObj.articles.forEach((item, idx) => {
-                        const id = item.id || `feed_art_${idx + 1}`;
+                        const id = item.slug || item.id || `feed_art_${idx + 1}`;
                         if (!window.ARTICLES_MAP[id]) window.ARTICLES_MAP[id] = Object.assign({ id }, item);
                     });
                 }
 
-                // شبكة الأمان الجذرية: إن لم توجد مقالات في قاعدة البيانات بعد، نظهر المقالتين التحريريتين الفاخرتين فوراً
                 if (Object.keys(window.ARTICLES_MAP).length === 0) {
                     CURATED_EDITORIAL_ARTICLES.forEach(art => {
                         window.ARTICLES_MAP[art.id] = art;
@@ -4761,6 +5001,18 @@
                 }
 
                 window.renderBlogCards();
+
+                // 4. فتح العرض الدائم (?deal=...) أو المقال المباشر (?article=...) فوراً
+                try {
+                    const params = new URLSearchParams(window.location.search);
+                    const dealParam = params.get('deal');
+                    const articleParam = params.get('article');
+                    if (dealParam) {
+                        window.openDealSpotlightById(dealParam);
+                    } else if (articleParam && window.ARTICLES_MAP[articleParam]) {
+                        window.openArticleModal(articleParam);
+                    }
+                } catch (e) {}
             }
 
             document.addEventListener('DOMContentLoaded', () => {
