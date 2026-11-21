@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-21T06:48:03.895927+00:00",
+  "updatedAt": "2026-11-21T18:27:55.316008+00:00",
   "posts": [
     {
       "slug": "flight-istanbul-istanbul-moskova-20261121",
@@ -28,7 +28,36 @@
       "price": "$68",
       "wordCountTr": 3173,
       "readingTimeMin": 15,
-      "publishedAt": "2026-11-21T06:48:03.895927+00:00"
+      "publishedAt": "2026-11-21T18:27:55.316008+00:00"
+    },
+    {
+      "slug": "hotel-istanbul-rehberi-20261121",
+      "category": "hotel",
+      "templateType": "hotel_blog",
+      "status": "published",
+      "city": "İstanbul",
+      "cityEn": "Istanbul",
+      "title": "İstanbul Otel, Resort ve Apart Rehberi (2026): $84'dan Başlayan %21 İndirimli En İyi Bölgeler",
+      "excerpt": "İstanbul seyahatinizde doğru bölgeyi ve konaklama tipini seçmek hem tatil kalitenizi ikiye katlar hem de bütçenizde %21 oranında gerçek tasarruf sağlar. Bu 2026 başucu rehberinde güncel $84 fırsatıyla birlikte semtleri, maliyetleri ve gizli ipuçlarını tüm şeffaflığıyla karşılaştırdık.",
+      "titles": {
+        "tr": "İstanbul Otel, Resort ve Apart Rehberi (2026): $84'dan Başlayan %21 İndirimli En İyi Bölgeler",
+        "ar": "دليل فنادق ومنتجعات وشقق إسطنبول الفندقية (2026): أفضل الأحياء بأسعار تبدأ من $84",
+        "ru": "Лучшие отели, курорты и апартаменты: Стамбул (2026) — от $84 со скидкой 21%",
+        "en": "Istanbul Hotels, Resorts & Serviced Apartments Guide (2026): Best Areas from $84"
+      },
+      "excerpts": {
+        "tr": "İstanbul seyahatinizde doğru bölgeyi ve konaklama tipini seçmek hem tatil kalitenizi ikiye katlar hem de bütçenizde %21 oranında gerçek tasarruf sağlar. Bu 2026 başucu rehberinde güncel $84 fırsatıyla birlikte semtleri, maliyetleri ve gizli ipuçlarını tüm şeffaflığıyla karşılaştırdık.",
+        "ar": "اختيار الحي المناسب ونوع الإقامة في إسطنبول هو المفتاح الذهبي لرحلة فاخرة وموفّرة في آنٍ واحد. في هذا الدليل المرجعي لعام 2026 نضع بين يديك مقارنة دقيقة للأحياء والأسعار ابتداءً من $84 مع توفير يصل إلى 21%.",
+        "ru": "Правильный выбор района и формата проживания в городе Стамбул помогает сэкономить до 21% бюджета без потери комфорта. В этом подробном гиде 2026 года мы сравнили лучшие районы, реальные расходы и актуальные предложения от $84.",
+        "en": "Choosing the right neighborhood and stay style in Istanbul can save up to 21% while dramatically upgrading your trip. This comprehensive 2026 guide compares top districts, real daily budgets, transport, and live deals from $84."
+      },
+      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-istanbul-rehberi-20261121_hero.webp",
+      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-istanbul-rehberi-20261121.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DKarakoy%2520Istanbul%2520Design%2520Serviced%2520Residence",
+      "price": "$84",
+      "wordCountTr": 3169,
+      "readingTimeMin": 15,
+      "publishedAt": "2026-11-21T18:27:23.340442+00:00"
     },
     {
       "slug": "hotel-ankara-rehberi-20261121",
@@ -174,35 +203,6 @@
       "wordCountTr": 3124,
       "readingTimeMin": 15,
       "publishedAt": "2026-11-21T04:16:09.486882+00:00"
-    },
-    {
-      "slug": "hotel-istanbul-rehberi-20261121",
-      "category": "hotel",
-      "templateType": "hotel_blog",
-      "status": "published",
-      "city": "İstanbul",
-      "cityEn": "Istanbul",
-      "title": "İstanbul Otel, Resort ve Apart Rehberi (2026): $127'dan Başlayan %25 İndirimli En İyi Bölgeler",
-      "excerpt": "İstanbul seyahatinizde doğru bölgeyi ve konaklama tipini seçmek hem tatil kalitenizi ikiye katlar hem de bütçenizde %25 oranında gerçek tasarruf sağlar. Bu 2026 başucu rehberinde güncel $127 fırsatıyla birlikte semtleri, maliyetleri ve gizli ipuçlarını tüm şeffaflığıyla karşılaştırdık.",
-      "titles": {
-        "tr": "İstanbul Otel, Resort ve Apart Rehberi (2026): $127'dan Başlayan %25 İndirimli En İyi Bölgeler",
-        "ar": "دليل فنادق ومنتجعات وشقق إسطنبول الفندقية (2026): أفضل الأحياء بأسعار تبدأ من $127",
-        "ru": "Лучшие отели, курорты и апартаменты: Стамбул (2026) — от $127 со скидкой 25%",
-        "en": "Istanbul Hotels, Resorts & Serviced Apartments Guide (2026): Best Areas from $127"
-      },
-      "excerpts": {
-        "tr": "İstanbul seyahatinizde doğru bölgeyi ve konaklama tipini seçmek hem tatil kalitenizi ikiye katlar hem de bütçenizde %25 oranında gerçek tasarruf sağlar. Bu 2026 başucu rehberinde güncel $127 fırsatıyla birlikte semtleri, maliyetleri ve gizli ipuçlarını tüm şeffaflığıyla karşılaştırdık.",
-        "ar": "اختيار الحي المناسب ونوع الإقامة في إسطنبول هو المفتاح الذهبي لرحلة فاخرة وموفّرة في آنٍ واحد. في هذا الدليل المرجعي لعام 2026 نضع بين يديك مقارنة دقيقة للأحياء والأسعار ابتداءً من $127 مع توفير يصل إلى 25%.",
-        "ru": "Правильный выбор района и формата проживания в городе Стамбул помогает сэкономить до 25% бюджета без потери комфорта. В этом подробном гиде 2026 года мы сравнили лучшие районы, реальные расходы и актуальные предложения от $127.",
-        "en": "Choosing the right neighborhood and stay style in Istanbul can save up to 25% while dramatically upgrading your trip. This comprehensive 2026 guide compares top districts, real daily budgets, transport, and live deals from $127."
-      },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-istanbul-rehberi-20261121_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-istanbul-rehberi-20261121.json",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DBosphorus%2520Istanbul%2520Luxury%25205%2520Star%2520Spa%2520Resort%2520Hotel",
-      "price": "$127",
-      "wordCountTr": 3106,
-      "readingTimeMin": 15,
-      "publishedAt": "2026-11-21T02:40:33.143771+00:00"
     }
   ],
   "totalPosts": 7
