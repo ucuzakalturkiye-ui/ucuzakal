@@ -1,4 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
 
-Sitemap: https://ucuzakal.com/sitemap.xml
+Sitemap: https://ucuzakal.pages.dev/sitemap.xml
+Sitemap: https://ucuzakal.pages.dev/sitemap_blog.xml
