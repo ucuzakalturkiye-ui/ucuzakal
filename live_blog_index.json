@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T08:11:47.163182+00:00",
+  "updatedAt": "2026-11-22T08:19:49.866263+00:00",
   "posts": [
     {
       "slug": "flight-istanbul-istanbul-moskova-20261122",
@@ -32,9 +32,44 @@
       "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/flight-istanbul-istanbul-moskova-20261122.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT3112MOW1%3Ft%3DDP17987250001798742400000290AYTVKO_3e720903c4700d837b9f2b5efed23f27_6630%26search_date%3D22112026%26expected_price_uuid%3D01a20164-cdf8-8030-6266-1db9ab4def1a%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3D2dW41kgjKAtyLG-X2bDjGA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D81",
       "price": "$81",
-      "wordCountTr": 2073,
+      "wordCountTr": 2071,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-22T08:11:47.163182+00:00"
+      "publishedAt": "2026-11-22T08:19:49.866263+00:00"
+    },
+    {
+      "slug": "hotel-istanbul-rehberi-20261122",
+      "category": "hotel",
+      "templateType": "hotel_blog",
+      "status": "published",
+      "city": "İstanbul",
+      "cityEn": "Istanbul",
+      "cities": {
+        "tr": "İstanbul",
+        "ar": "إسطنبول",
+        "ru": "Стамбул",
+        "en": "Istanbul"
+      },
+      "title": "İstanbul Otel, Resort ve Apart Rehberi (2026): $90'dan Başlayan En İyi Bölgeler",
+      "excerpt": "İstanbul seyahatinizde doğru semti ve konaklama tipini seçmek hem tatil konforunuzu ikiye katlar hem de toplam bütçenizde %23 gerçek tasarruf yaratır. Bu 2026 başucu rehberinde güncel $90 fırsatıyla birlikte en iyi bölgeleri, günlük harcamaları ve saha ipuçlarını şeffaf biçimde karşılaştırdık.",
+      "titles": {
+        "tr": "İstanbul Otel, Resort ve Apart Rehberi (2026): $90'dan Başlayan En İyi Bölgeler",
+        "ar": "دليل فنادق ومنتجعات وشقق إسطنبول الفندقية (2026): أفضل الأحياء من $90",
+        "ru": "Лучшие отели, курорты и апартаменты: Стамбул (2026) — от $90 (-23%)",
+        "en": "Istanbul Hotels, Resorts & Apartments Guide (2026): Best Areas from $90"
+      },
+      "excerpts": {
+        "tr": "İstanbul seyahatinizde doğru semti ve konaklama tipini seçmek hem tatil konforunuzu ikiye katlar hem de toplam bütçenizde %23 gerçek tasarruf yaratır. Bu 2026 başucu rehberinde güncel $90 fırsatıyla birlikte en iyi bölgeleri, günlük harcamaları ve saha ipuçlarını şeffaf biçimde karşılaştırdık.",
+        "ar": "اختيار الحي الصحيح ونوع الإقامة المناسب في إسطنبول هو الفارق الحقيقي بين رحلة عادية وتجربة فاخرة بتوفير يصل إلى 23%. في هذا الدليل السياحي الشامل لعام 2026 نضع بين يديك مقارنة ميدانية دقيقة لأفضل الأحياء والأسعار الحية ابتداءً من $90 مع جدول ميزانية وخطة يومية متكاملة.",
+        "ru": "Правильный выбор района и формата проживания в городе Стамбул помогает сэкономить до 23% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $90.",
+        "en": "Picking the right neighborhood and stay format in Istanbul can trim your trip budget by up to 23% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $90."
+      },
+      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-istanbul-rehberi-20261122_hero.webp",
+      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-istanbul-rehberi-20261122.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DSisli%2520Nisantasi%2520Istanbul%2520Serviced%2520Apartment%2520Suite%2520Hotel",
+      "price": "$90",
+      "wordCountTr": 2123,
+      "readingTimeMin": 10,
+      "publishedAt": "2026-11-22T08:19:37.351869+00:00"
     },
     {
       "slug": "hotel-ankara-rehberi-20261122",
@@ -362,5 +397,5 @@
       "publishedAt": "2026-11-21T04:16:09.486882+00:00"
     }
   ],
-  "totalPosts": 12
+  "totalPosts": 13
 }
