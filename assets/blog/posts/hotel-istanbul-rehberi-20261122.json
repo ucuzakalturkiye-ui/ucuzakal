@@ -5,7 +5,7 @@
   "originalLanguage": "tr",
   "status": "published",
   "publishedAt": "2026-11-22T08:19:37.351869+00:00",
-  "updatedAt": "2026-11-22T08:19:37.351869+00:00",
+  "updatedAt": "2026-11-22T08:29:53.640960+00:00",
   "city": "İstanbul",
   "cityEn": "Istanbul",
   "cities": {
@@ -29,7 +29,7 @@
     "width": 1280,
     "height": 720,
     "source": "Wikimedia Commons",
-    "credit": "PUBLIC DOMAIN",
+    "credit": "CC BY-SA 4.0",
     "alt": "Istanbul Türkiye otel ve seyahat rehberi - UcuzaKal"
   },
   "sectionImages": [
@@ -40,7 +40,7 @@
       "width": 1200,
       "height": 675,
       "source": "Wikimedia Commons",
-      "credit": "CC BY-SA 3.0",
+      "credit": "CC BY-SA 4.0",
       "alt": "İstanbul en iyi konaklama bölgeleri ve şehir manzarası",
       "caption": "İstanbul en iyi konaklama bölgeleri ve şehir manzarası",
       "alts": {
@@ -63,7 +63,7 @@
       "width": 1200,
       "height": 675,
       "source": "Wikimedia Commons",
-      "credit": "PUBLIC DOMAIN",
+      "credit": "CC BY-SA 3.0",
       "alt": "İstanbul lüks otel, resort ve apart daire seçenekleri",
       "caption": "İstanbul lüks otel, resort ve apart daire seçenekleri",
       "alts": {
@@ -85,8 +85,8 @@
       "publicUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-istanbul-rehberi-20261122_sec3.webp",
       "width": 1200,
       "height": 675,
-      "source": "Wikimedia Commons",
-      "credit": "CC BY 4.0",
+      "source": "Openverse",
+      "credit": null,
       "alt": "İstanbul 4 günlük gezi rotası ve öne çıkan duraklar",
       "caption": "İstanbul 4 günlük gezi rotası ve öne çıkan duraklar",
       "alts": {
