@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T07:11:35.558549+00:00",
+  "updatedAt": "2026-11-22T07:19:50.245244+00:00",
   "posts": [
     {
       "slug": "flight-istanbul-istanbul-moskova-20261122",
@@ -28,7 +28,36 @@
       "price": "$81",
       "wordCountTr": 3178,
       "readingTimeMin": 15,
-      "publishedAt": "2026-11-22T07:11:35.558549+00:00"
+      "publishedAt": "2026-11-22T07:19:50.245244+00:00"
+    },
+    {
+      "slug": "hotel-antalya-rehberi-20261122",
+      "category": "hotel",
+      "templateType": "hotel_blog",
+      "status": "published",
+      "city": "Antalya",
+      "cityEn": "Antalya",
+      "title": "Antalya Otel, Resort ve Apart Rehberi (2026): $110'dan Başlayan %22 İndirimli En İyi Bölgeler",
+      "excerpt": "Antalya seyahatinizde doğru bölgeyi ve konaklama tipini seçmek hem tatil kalitenizi ikiye katlar hem de bütçenizde %22 oranında gerçek tasarruf sağlar. Bu 2026 başucu rehberinde güncel $110 fırsatıyla birlikte semtleri, maliyetleri ve gizli ipuçlarını tüm şeffaflığıyla karşılaştırdık.",
+      "titles": {
+        "tr": "Antalya Otel, Resort ve Apart Rehberi (2026): $110'dan Başlayan %22 İndirimli En İyi Bölgeler",
+        "ar": "دليل فنادق ومنتجعات وشقق أنطاليا الفندقية (2026): أفضل الأحياء بأسعار تبدأ من $110",
+        "ru": "Лучшие отели, курорты и апартаменты: Анталья (2026) — от $110 со скидкой 22%",
+        "en": "Antalya Hotels, Resorts & Serviced Apartments Guide (2026): Best Areas from $110"
+      },
+      "excerpts": {
+        "tr": "Antalya seyahatinizde doğru bölgeyi ve konaklama tipini seçmek hem tatil kalitenizi ikiye katlar hem de bütçenizde %22 oranında gerçek tasarruf sağlar. Bu 2026 başucu rehberinde güncel $110 fırsatıyla birlikte semtleri, maliyetleri ve gizli ipuçlarını tüm şeffaflığıyla karşılaştırdık.",
+        "ar": "اختيار الحي المناسب ونوع الإقامة في أنطاليا هو المفتاح الذهبي لرحلة فاخرة وموفّرة في آنٍ واحد. في هذا الدليل المرجعي لعام 2026 نضع بين يديك مقارنة دقيقة للأحياء والأسعار ابتداءً من $110 مع توفير يصل إلى 22%.",
+        "ru": "Правильный выбор района и формата проживания в городе Анталья помогает сэкономить до 22% бюджета без потери комфорта. В этом подробном гиде 2026 года мы сравнили лучшие районы, реальные расходы и актуальные предложения от $110.",
+        "en": "Choosing the right neighborhood and stay style in Antalya can save up to 22% while dramatically upgrading your trip. This comprehensive 2026 guide compares top districts, real daily budgets, transport, and live deals from $110."
+      },
+      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-antalya-rehberi-20261122_hero.webp",
+      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-antalya-rehberi-20261122.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DLara%2520Beach%2520Antalya%2520Resort%2520Hotel",
+      "price": "$110",
+      "wordCountTr": 3154,
+      "readingTimeMin": 15,
+      "publishedAt": "2026-11-22T07:19:43.312754+00:00"
     },
     {
       "slug": "hotel-trabzon-rehberi-20261122",
@@ -292,5 +321,5 @@
       "publishedAt": "2026-11-21T04:16:09.486882+00:00"
     }
   ],
-  "totalPosts": 10
+  "totalPosts": 11
 }
