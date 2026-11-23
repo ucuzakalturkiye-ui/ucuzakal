@@ -1,6 +1,6 @@
 {
   "version": "7.0-omni14-hardened",
-  "updatedAt": "2026-11-22T04:50:28.368992+00:00",
+  "updatedAt": "2026-11-23T05:00:59.239218+00:00",
   "activeSeason": "autumn",
   "partnerWeights": {},
   "persuasionTaglines": {
@@ -28,539 +28,539 @@
   "mainHotels": [
     {
       "id": "hotel_deal_1",
-      "dealId": "H-20261122-ANTALYA",
+      "dealId": "H-20261123-ANTALYA",
       "type": "hotel",
-      "partner": "klook",
+      "partner": "kkday",
       "discoverySource": "rotating_district_curated",
       "city": "Antalya",
       "cityEn": "Antalya",
       "season": "autumn",
-      "title": "Antalya (Lara Sahil) %22 Tasarruflu Seçkin Konaklama",
-      "name": "Antalya (Lara Sahil) %22 Tasarruflu Seçkin Konaklama",
-      "description": "Antalya (Lara Sahil) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $110 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$110",
-      "priceUsd": 110,
-      "savingsPct": 22,
-      "dealScore": 91,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261122-ANTALYA_card.webp",
-      "localImage": "assets/deals/H-20261122-ANTALYA_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DLara%2520Beach%2520Antalya%2520Resort%2520Hotel",
+      "title": "Antalya (Belek Golf & Spa) %26 Tasarruflu Seçkin Konaklama",
+      "name": "Antalya (Belek Golf & Spa) %26 Tasarruflu Seçkin Konaklama",
+      "description": "Antalya (Belek Golf & Spa) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $142 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$142",
+      "priceUsd": 142,
+      "savingsPct": 26,
+      "dealScore": 93,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261123-ANTALYA_card.webp",
+      "localImage": "assets/deals/H-20261123-ANTALYA_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DBelek%2520Antalya%25205%2520Star%2520Resort%2520Spa",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "Antalya (Lara Sahil) %22 Tasarruflu Seçkin Konaklama",
-          "desc": "Antalya (Lara Sahil) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $110 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "Antalya (Belek Golf & Spa) %26 Tasarruflu Seçkin Konaklama",
+          "desc": "Antalya (Belek Golf & Spa) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $142 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 22% في أنطاليا — شاطئ لارا — عرض الخريف",
-          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في أنطاليا — شاطئ لارا، بسعر يبدأ من $110 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 26% في أنطاليا — منتجعات بيليك الفاخرة — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في أنطاليا — منتجعات بيليك الفاخرة، بسعر يبدأ من $142 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 22% in Antalya — Lara Beach — Autumn Value",
-          "desc": "Handpicked top-rated stay in Antalya — Lara Beach. Starting around $110/night with instant 1-click official partner booking."
+          "title": "Save 26% in Antalya — Belek Luxury Resort — Autumn Value",
+          "desc": "Handpicked top-rated stay in Antalya — Belek Luxury Resort. Starting around $142/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 22%: Анталья (пляж Лара) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранное проживание с высоким рейтингом в районе Анталья (пляж Лара) — от $110 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 26%: Анталья (Белек VIP Курорт) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Анталья (Белек VIP Курорт) — от $142 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-22T04:50:11.035941+00:00",
-      "createdTs": 1795323011
+      "updatedAt": "2026-11-23T05:00:39.684934+00:00",
+      "createdTs": 1795410039
     },
     {
       "id": "hotel_deal_2",
-      "dealId": "H-20261122-ISTANBUL",
+      "dealId": "H-20261123-ISTANBUL",
       "type": "hotel",
-      "partner": "klook",
+      "partner": "kkday",
       "discoverySource": "rotating_district_curated",
       "city": "İstanbul",
       "cityEn": "Istanbul",
       "season": "autumn",
-      "title": "İstanbul (Nişantaşı & Şişli Süit) %23 Tasarruflu Seçkin Konaklama",
-      "name": "İstanbul (Nişantaşı & Şişli Süit) %23 Tasarruflu Seçkin Konaklama",
-      "description": "İstanbul (Nişantaşı & Şişli Süit) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $90 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$90",
-      "priceUsd": 90,
-      "savingsPct": 23,
-      "dealScore": 91,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261122-ISTANBUL_card.webp",
-      "localImage": "assets/deals/H-20261122-ISTANBUL_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DSisli%2520Nisantasi%2520Istanbul%2520Serviced%2520Apartment%2520Suite%2520Hotel",
+      "title": "İstanbul (Taksim & Galata) %18 Tasarruflu Seçkin Konaklama",
+      "name": "İstanbul (Taksim & Galata) %18 Tasarruflu Seçkin Konaklama",
+      "description": "İstanbul (Taksim & Galata) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $81 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$81",
+      "priceUsd": 81,
+      "savingsPct": 18,
+      "dealScore": 89,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261123-ISTANBUL_card.webp",
+      "localImage": "assets/deals/H-20261123-ISTANBUL_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DTaksim%2520Galata%2520Istanbul%2520Hotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "İstanbul (Nişantaşı & Şişli Süit) %23 Tasarruflu Seçkin Konaklama",
-          "desc": "İstanbul (Nişantaşı & Şişli Süit) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $90 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "İstanbul (Taksim & Galata) %18 Tasarruflu Seçkin Konaklama",
+          "desc": "İstanbul (Taksim & Galata) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $81 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 23% في إسطنبول — شقق نيشانتاشي وشيشلي الفندقية — عرض الخريف",
-          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في إسطنبول — شقق نيشانتاشي وشيشلي الفندقية، بسعر يبدأ من $90 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 18% في إسطنبول — تقسيم وغلاطة — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في إسطنبول — تقسيم وغلاطة، بسعر يبدأ من $81 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 23% in Istanbul — Nisantasi Sisli Serviced Suites — Autumn Value",
-          "desc": "Handpicked top-rated stay in Istanbul — Nisantasi Sisli Serviced Suites. Starting around $90/night with instant 1-click official partner booking."
+          "title": "Save 18% in Istanbul — Taksim Galata — Autumn Value",
+          "desc": "Handpicked top-rated stay in Istanbul — Taksim Galata. Starting around $81/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 23%: Стамбул (Апарт-отель Нишанташи) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранное проживание с высоким рейтингом в районе Стамбул (Апарт-отель Нишанташи) — от $90 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 18%: Стамбул (Таксим Галата) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Стамбул (Таксим Галата) — от $81 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-22T04:50:11.035941+00:00",
-      "createdTs": 1795323011
+      "updatedAt": "2026-11-23T05:00:39.684934+00:00",
+      "createdTs": 1795410039
     },
     {
       "id": "hotel_deal_3",
-      "dealId": "H-20261122-IZMIR",
+      "dealId": "H-20261123-IZMIR",
       "type": "hotel",
-      "partner": "klook",
+      "partner": "kkday",
       "discoverySource": "rotating_district_curated",
       "city": "İzmir",
       "cityEn": "Izmir",
       "season": "autumn",
-      "title": "İzmir (Alsancak Kordon Süit) %18 Tasarruflu Seçkin Konaklama",
-      "name": "İzmir (Alsancak Kordon Süit) %18 Tasarruflu Seçkin Konaklama",
-      "description": "İzmir (Alsancak Kordon Süit) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $63 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$63",
-      "priceUsd": 63,
-      "savingsPct": 18,
-      "dealScore": 89,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261122-IZMIR_card.webp",
-      "localImage": "assets/deals/H-20261122-IZMIR_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DAlsancak%2520Izmir%2520Seafront%2520Serviced%2520Apartment%2520Suite",
+      "title": "İzmir (Kuşadası Ege) %24 Tasarruflu Seçkin Konaklama",
+      "name": "İzmir (Kuşadası Ege) %24 Tasarruflu Seçkin Konaklama",
+      "description": "İzmir (Kuşadası Ege) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $75 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$75",
+      "priceUsd": 75,
+      "savingsPct": 24,
+      "dealScore": 92,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261123-IZMIR_card.webp",
+      "localImage": "assets/deals/H-20261123-IZMIR_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DKusadasi%2520Izmir%2520Sea%2520Resort%2520Hotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "İzmir (Alsancak Kordon Süit) %18 Tasarruflu Seçkin Konaklama",
-          "desc": "İzmir (Alsancak Kordon Süit) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $63 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "İzmir (Kuşadası Ege) %24 Tasarruflu Seçkin Konaklama",
+          "desc": "İzmir (Kuşadası Ege) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $75 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 18% في إزمير — شقق ألسنجاك الفندقية — عرض الخريف",
-          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في إزمير — شقق ألسنجاك الفندقية، بسعر يبدأ من $63 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 24% في إزمير — منتجعات كوشاداسي إيجة — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في إزمير — منتجعات كوشاداسي إيجة، بسعر يبدأ من $75 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 18% in Izmir — Alsancak Seafront Apartments — Autumn Value",
-          "desc": "Handpicked top-rated stay in Izmir — Alsancak Seafront Apartments. Starting around $63/night with instant 1-click official partner booking."
+          "title": "Save 24% in Izmir — Kusadasi Aegean Resort — Autumn Value",
+          "desc": "Handpicked top-rated stay in Izmir — Kusadasi Aegean Resort. Starting around $75/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 18%: Измир (Апартаменты Алсанджак) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранное проживание с высоким рейтингом в районе Измир (Апартаменты Алсанджак) — от $63 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 24%: Измир (Курорт Кушадасы) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Измир (Курорт Кушадасы) — от $75 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-22T04:50:11.035941+00:00",
-      "createdTs": 1795323011
+      "updatedAt": "2026-11-23T05:00:39.684934+00:00",
+      "createdTs": 1795410039
     },
     {
       "id": "hotel_deal_4",
-      "dealId": "H-20261122-BURSA",
+      "dealId": "H-20261123-BURSA",
       "type": "hotel",
-      "partner": "klook",
+      "partner": "kkday",
       "discoverySource": "rotating_district_curated",
       "city": "Bursa",
       "cityEn": "Bursa",
       "season": "autumn",
-      "title": "Bursa (Uludağ Dağ Evi) %25 Tasarruflu Seçkin Konaklama",
-      "name": "Bursa (Uludağ Dağ Evi) %25 Tasarruflu Seçkin Konaklama",
-      "description": "Bursa (Uludağ Dağ Evi) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $104 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$104",
-      "priceUsd": 104,
-      "savingsPct": 25,
-      "dealScore": 92,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261122-BURSA_card.webp",
-      "localImage": "assets/deals/H-20261122-BURSA_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DUludag%2520Bursa%2520Mountain%2520Resort%2520Hotel",
+      "title": "Bursa (Çekirge Termal) %21 Tasarruflu Seçkin Konaklama",
+      "name": "Bursa (Çekirge Termal) %21 Tasarruflu Seçkin Konaklama",
+      "description": "Bursa (Çekirge Termal) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $61 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$61",
+      "priceUsd": 61,
+      "savingsPct": 21,
+      "dealScore": 90,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261123-BURSA_card.webp",
+      "localImage": "assets/deals/H-20261123-BURSA_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DBursa%2520Cekirge%2520Thermal%2520Spa%2520Resort%2520Hotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "Bursa (Uludağ Dağ Evi) %25 Tasarruflu Seçkin Konaklama",
-          "desc": "Bursa (Uludağ Dağ Evi) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $104 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "Bursa (Çekirge Termal) %21 Tasarruflu Seçkin Konaklama",
+          "desc": "Bursa (Çekirge Termal) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $61 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 25% في بورصة — منتجع جبل أولوداغ — عرض الخريف",
-          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في بورصة — منتجع جبل أولوداغ، بسعر يبدأ من $104 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 21% في بورصة — منتجعات تشيكيرجي الحرارية — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في بورصة — منتجعات تشيكيرجي الحرارية، بسعر يبدأ من $61 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 25% in Bursa — Uludag Mountain Resort — Autumn Value",
-          "desc": "Handpicked top-rated stay in Bursa — Uludag Mountain Resort. Starting around $104/night with instant 1-click official partner booking."
+          "title": "Save 21% in Bursa — Cekirge Thermal Spa Resort — Autumn Value",
+          "desc": "Handpicked top-rated stay in Bursa — Cekirge Thermal Spa Resort. Starting around $61/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 25%: Бурса (Горный курорт Улудаг) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранное проживание с высоким рейтингом в районе Бурса (Горный курорт Улудаг) — от $104 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 21%: Бурса (Термальный спа Чекирге) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Бурса (Термальный спа Чекирге) — от $61 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-22T04:50:11.035941+00:00",
-      "createdTs": 1795323011
+      "updatedAt": "2026-11-23T05:00:39.684934+00:00",
+      "createdTs": 1795410039
     },
     {
       "id": "hotel_deal_5",
-      "dealId": "H-20261122-TRABZON",
+      "dealId": "H-20261123-TRABZON",
       "type": "hotel",
-      "partner": "klook",
+      "partner": "kkday",
       "discoverySource": "rotating_district_curated",
       "city": "Trabzon",
       "cityEn": "Trabzon",
       "season": "autumn",
-      "title": "Trabzon (Ayder Yaylası) %24 Tasarruflu Seçkin Konaklama",
-      "name": "Trabzon (Ayder Yaylası) %24 Tasarruflu Seçkin Konaklama",
-      "description": "Trabzon (Ayder Yaylası) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $81 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$81",
-      "priceUsd": 81,
-      "savingsPct": 24,
-      "dealScore": 92,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261122-TRABZON_card.webp",
-      "localImage": "assets/deals/H-20261122-TRABZON_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DTrabzon%2520Ayder%2520Nature%2520Resort%2520Bungalow",
+      "title": "Trabzon (Ortahisar Aile Apart) %18 Tasarruflu Seçkin Konaklama",
+      "name": "Trabzon (Ortahisar Aile Apart) %18 Tasarruflu Seçkin Konaklama",
+      "description": "Trabzon (Ortahisar Aile Apart) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $52 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$52",
+      "priceUsd": 52,
+      "savingsPct": 18,
+      "dealScore": 89,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261123-TRABZON_card.webp",
+      "localImage": "assets/deals/H-20261123-TRABZON_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DTrabzon%2520City%2520Center%2520Family%2520Serviced%2520Apart%2520Hotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "Trabzon (Ayder Yaylası) %24 Tasarruflu Seçkin Konaklama",
-          "desc": "Trabzon (Ayder Yaylası) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $81 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "Trabzon (Ortahisar Aile Apart) %18 Tasarruflu Seçkin Konaklama",
+          "desc": "Trabzon (Ortahisar Aile Apart) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $52 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 24% في طرابزون — منتجع مرتفعات آيدر — عرض الخريف",
-          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في طرابزون — منتجع مرتفعات آيدر، بسعر يبدأ من $81 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 18% في طرابزون — شقق ميدان طرابزون الفندقية — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في طرابزون — شقق ميدان طرابزون الفندقية، بسعر يبدأ من $52 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 24% in Trabzon — Ayder Highlands Resort — Autumn Value",
-          "desc": "Handpicked top-rated stay in Trabzon — Ayder Highlands Resort. Starting around $81/night with instant 1-click official partner booking."
+          "title": "Save 18% in Trabzon — Trabzon Family Apart Hotel — Autumn Value",
+          "desc": "Handpicked top-rated stay in Trabzon — Trabzon Family Apart Hotel. Starting around $52/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 24%: Трабзон (Плато Айдер) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранное проживание с высоким рейтингом в районе Трабзон (Плато Айдер) — от $81 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 18%: Трабзон (Апарт-отель Трабзон) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Трабзон (Апарт-отель Трабзон) — от $52 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-22T04:50:11.035941+00:00",
-      "createdTs": 1795323011
+      "updatedAt": "2026-11-23T05:00:39.684934+00:00",
+      "createdTs": 1795410039
     },
     {
       "id": "hotel_deal_6",
-      "dealId": "H-20261122-ANKARA",
+      "dealId": "H-20261123-ANKARA",
       "type": "hotel",
       "partner": "kkday",
       "discoverySource": "rotating_district_curated",
       "city": "Ankara",
       "cityEn": "Ankara",
       "season": "autumn",
-      "title": "Ankara (Çankaya Prestij) %21 Tasarruflu Seçkin Konaklama",
-      "name": "Ankara (Çankaya Prestij) %21 Tasarruflu Seçkin Konaklama",
-      "description": "Ankara (Çankaya Prestij) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $71 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
-      "price": "$71",
-      "priceUsd": 71,
-      "savingsPct": 21,
-      "dealScore": 90,
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261122-ANKARA_card.webp",
-      "localImage": "assets/deals/H-20261122-ANKARA_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DCankaya%2520Ankara%25205%2520Star%2520Luxury%2520Hotel",
+      "title": "Ankara (Kavaklıdere Spa) %22 Tasarruflu Seçkin Konaklama",
+      "name": "Ankara (Kavaklıdere Spa) %22 Tasarruflu Seçkin Konaklama",
+      "description": "Ankara (Kavaklıdere Spa) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $65 başlangıç fiyatıyla doğrudan rezervasyon yapın.",
+      "price": "$65",
+      "priceUsd": 65,
+      "savingsPct": 22,
+      "dealScore": 91,
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/H-20261123-ANKARA_card.webp",
+      "localImage": "assets/deals/H-20261123-ANKARA_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DAnkara%2520Executive%2520Wellness%2520Spa%2520Resort",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "Ankara (Çankaya Prestij) %21 Tasarruflu Seçkin Konaklama",
-          "desc": "Ankara (Çankaya Prestij) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $71 başlangıç fiyatıyla doğrudan rezervasyon yapın."
+          "title": "Ankara (Kavaklıdere Spa) %22 Tasarruflu Seçkin Konaklama",
+          "desc": "Ankara (Kavaklıdere Spa) bölgesinde yüksek puanlı, anında onaylı özel konaklama fırsatı. $65 başlangıç fiyatıyla doğrudan rezervasyon yapın."
         },
         "ar": {
-          "title": "وفر 21% في أنقرة — فنادق تشانكايا الراقية — عرض الخريف",
-          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في أنقرة — فنادق تشانكايا الراقية، بسعر يبدأ من $71 لليلة مع حجز مباشر عبر الشريك الرسمي."
+          "title": "وفر 22% في أنقرة — منتجع كافاكليديري سبا — عرض الخريف",
+          "desc": "فرصة إقامة فاخرة بتقييم مرتفع وموقع مميز في أنقرة — منتجع كافاكليديري سبا، بسعر يبدأ من $65 لليلة مع حجز مباشر عبر الشريك الرسمي."
         },
         "en": {
-          "title": "Save 21% in Ankara — Cankaya Luxury Hotel — Autumn Value",
-          "desc": "Handpicked top-rated stay in Ankara — Cankaya Luxury Hotel. Starting around $71/night with instant 1-click official partner booking."
+          "title": "Save 22% in Ankara — Kavaklidere Wellness Spa Resort — Autumn Value",
+          "desc": "Handpicked top-rated stay in Ankara — Kavaklidere Wellness Spa Resort. Starting around $65/night with instant 1-click official partner booking."
         },
         "ru": {
-          "title": "Скидка 21%: Анкара (Отель Чанкая) — ОСЕННЯЯ ВЫГОДА",
-          "desc": "Отобранное проживание с высоким рейтингом в районе Анкара (Отель Чанкая) — от $71 за ночь с прямым мгновенным бронированием."
+          "title": "Скидка 22%: Анкара (Спа-отель Каваклыдере) — ОСЕННЯЯ ВЫГОДА",
+          "desc": "Отобранное проживание с высоким рейтингом в районе Анкара (Спа-отель Каваклыдере) — от $65 за ночь с прямым мгновенным бронированием."
         }
       },
-      "updatedAt": "2026-11-22T04:50:11.035941+00:00",
-      "createdTs": 1795323011
+      "updatedAt": "2026-11-23T05:00:39.684934+00:00",
+      "createdTs": 1795410039
     }
   ],
   "mainFlights": [
     {
       "id": "flight_deal_1",
-      "dealId": "F-20261122-AYT-IST",
+      "dealId": "F-20261123-ADB-AYT",
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "domestic_tr",
-      "routeKey": "AYT_IST",
-      "originIata": "AYT",
-      "destIata": "IST",
-      "departure": "Antalya",
-      "destination": "İstanbul",
-      "destCityEn": "Istanbul",
-      "route": "Antalya ✈️ İstanbul",
-      "title": "Antalya ✈️ İstanbul",
-      "airline": "AJet • VF3033",
+      "routeKey": "ADB_AYT",
+      "originIata": "ADB",
+      "destIata": "AYT",
+      "departure": "İzmir",
+      "destination": "Antalya",
+      "destCityEn": "Antalya",
+      "route": "İzmir ✈️ Antalya",
+      "title": "İzmir ✈️ Antalya",
+      "airline": "SunExpress • XQ9090",
       "transfers": 0,
-      "departureDate": "2027-02-22",
-      "price": "$27",
-      "priceUsd": 27,
-      "avgMarketUsd": 27,
-      "savingsPct": 48,
-      "dealScore": 68,
-      "description": "2027-02-22 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261122-AYT-IST_card.webp",
-      "localImage": "assets/deals/F-20261122-AYT-IST_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT2202IST1%3Ft%3DVF18033057001803311100000090AYTSAW_1387d8f1df1cf18c9adc84329352a80a_2210%26search_date%3D19112026%26expected_price_uuid%3D01a1f298-03a6-8031-61d4-4813d90eb4e9%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DG-6dHPTVj4hrz6unr1r5CQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+      "departureDate": "2027-01-02",
+      "price": "$26",
+      "priceUsd": 26,
+      "avgMarketUsd": 35,
+      "savingsPct": 25,
+      "dealScore": 77,
+      "description": "2027-01-02 tarihli SunExpress (Direkt Uçuş) — piyasa ortalamasından %25 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261123-ADB-AYT_card.webp",
+      "localImage": "assets/deals/F-20261123-ADB-AYT_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FADB0201AYT1%3Ft%3DXQ17988876001798891500000065ADBAYT_5802cc12a22c81119708f07c6cb0d73a_2092%26search_date%3D23112026%26expected_price_uuid%3D01a2068c-3652-8031-2daa-79b75bd9664d%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DKcD-QRc02Vah7oMpSoLWFw%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D26",
       "i18n": {
         "tr": {
-          "title": "Antalya ✈️ İstanbul",
-          "desc": "2027-02-22 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+          "title": "İzmir ✈️ Antalya",
+          "desc": "2027-01-02 tarihli SunExpress (Direkt Uçuş) — piyasa ortalamasından %25 daha avantajlı anında bilet."
         },
         "ar": {
-          "title": "أنطاليا ✈️ إسطنبول",
-          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2027-02-22 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+          "title": "إزمير ✈️ أنطاليا",
+          "desc": "تذكرة SunExpress (رحلة مباشرة) بتاريخ 2027-01-02 — أرخص بـ 25% من متوسط السوق مع حجز مباشر فوري."
         },
         "en": {
-          "title": "Antalya ✈️ Istanbul",
-          "desc": "AJet (Direct Flight) on 2027-02-22 — save 48% below average route fare with 1-click booking."
+          "title": "Izmir ✈️ Antalya",
+          "desc": "SunExpress (Direct Flight) on 2027-01-02 — save 25% below average route fare with 1-click booking."
         },
         "ru": {
-          "title": "Анталья ✈️ Стамбул",
-          "desc": "Рейс AJet (Прямой рейс) 2027-02-22 — на 48% дешевле средней цены, мгновенное бронирование."
+          "title": "Измир ✈️ Анталья",
+          "desc": "Рейс SunExpress (Прямой рейс) 2027-01-02 — на 25% дешевле средней цены, мгновенное бронирование."
         }
       },
-      "updatedAt": "2026-11-22T04:50:21.539876+00:00",
-      "createdTs": 1795323021
+      "updatedAt": "2026-11-23T05:00:51.323136+00:00",
+      "createdTs": 1795410051
     },
     {
       "id": "flight_deal_2",
-      "dealId": "F-20261122-ESB-IST",
+      "dealId": "F-20261123-IST-BJV",
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "domestic_tr",
-      "routeKey": "ESB_IST",
-      "originIata": "ESB",
-      "destIata": "IST",
-      "departure": "Ankara",
-      "destination": "İstanbul",
-      "destCityEn": "Istanbul",
-      "route": "Ankara ✈️ İstanbul",
-      "title": "Ankara ✈️ İstanbul",
-      "airline": "AJet • VF3009",
+      "routeKey": "IST_BJV",
+      "originIata": "IST",
+      "destIata": "BJV",
+      "departure": "İstanbul",
+      "destination": "Bodrum",
+      "destCityEn": "Bodrum",
+      "route": "İstanbul ✈️ Bodrum",
+      "title": "İstanbul ✈️ Bodrum",
+      "airline": "AJet • VF3094",
       "transfers": 0,
-      "departureDate": "2027-01-06",
+      "departureDate": "2027-01-07",
       "price": "$27",
       "priceUsd": 27,
       "avgMarketUsd": 27,
       "savingsPct": 48,
       "dealScore": 68,
-      "description": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261122-ESB-IST_card.webp",
-      "localImage": "assets/deals/F-20261122-ESB-IST_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FESB0601IST1%3Ft%3DVF17991942001799198700000075ESBSAW_46af5bb299ede96808cd2d39d5de2e91_2198%26search_date%3D18112026%26expected_price_uuid%3D01a1f017-90bd-8030-aacf-d92e4554e846%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DQJyFOBwNaWNImSel6Q5vsA%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+      "description": "2027-01-07 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261123-IST-BJV_card.webp",
+      "localImage": "assets/deals/F-20261123-IST-BJV_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST0701BJV1%3Ft%3DVF17993535001799358300000080SAWBJV_289a85840fd8d7e47a02394df24da4ca_2224%26search_date%3D18112026%26expected_price_uuid%3D01a1eda3-2b2a-8031-6acf-dad773dfa3e0%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3D_9GzhDI2VyGEVBidpS15sQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
       "i18n": {
         "tr": {
-          "title": "Ankara ✈️ İstanbul",
-          "desc": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+          "title": "İstanbul ✈️ Bodrum",
+          "desc": "2027-01-07 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
         },
         "ar": {
-          "title": "أنقرة ✈️ إسطنبول",
-          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2027-01-06 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+          "title": "إسطنبول ✈️ بودروم",
+          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2027-01-07 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
         },
         "en": {
-          "title": "Ankara ✈️ Istanbul",
-          "desc": "AJet (Direct Flight) on 2027-01-06 — save 48% below average route fare with 1-click booking."
+          "title": "Istanbul ✈️ Bodrum",
+          "desc": "AJet (Direct Flight) on 2027-01-07 — save 48% below average route fare with 1-click booking."
         },
         "ru": {
-          "title": "Анкара ✈️ Стамбул",
-          "desc": "Рейс AJet (Прямой рейс) 2027-01-06 — на 48% дешевле средней цены, мгновенное бронирование."
+          "title": "Стамбул ✈️ Бодрум",
+          "desc": "Рейс AJet (Прямой рейс) 2027-01-07 — на 48% дешевле средней цены, мгновенное бронирование."
         }
       },
-      "updatedAt": "2026-11-22T04:50:21.539876+00:00",
-      "createdTs": 1795323021
+      "updatedAt": "2026-11-23T05:00:51.323136+00:00",
+      "createdTs": 1795410051
     },
     {
       "id": "flight_deal_3",
-      "dealId": "F-20261122-IST-ADB",
+      "dealId": "F-20261123-ESB-AYT",
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "domestic_tr",
-      "routeKey": "IST_ADB",
-      "originIata": "IST",
-      "destIata": "ADB",
-      "departure": "İstanbul",
-      "destination": "İzmir",
-      "destCityEn": "Izmir",
-      "route": "İstanbul ✈️ İzmir",
-      "title": "İstanbul ✈️ İzmir",
-      "airline": "AJet • VF3066",
+      "routeKey": "ESB_AYT",
+      "originIata": "ESB",
+      "destIata": "AYT",
+      "departure": "Ankara",
+      "destination": "Antalya",
+      "destCityEn": "Antalya",
+      "route": "Ankara ✈️ Antalya",
+      "title": "Ankara ✈️ Antalya",
+      "airline": "AJet • VF4000",
       "transfers": 0,
-      "departureDate": "2027-01-06",
+      "departureDate": "2027-03-02",
       "price": "$27",
       "priceUsd": 27,
       "avgMarketUsd": 27,
       "savingsPct": 48,
       "dealScore": 68,
-      "description": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261122-IST-ADB_card.webp",
-      "localImage": "assets/deals/F-20261122-IST-ADB_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST0601ADB1%3Ft%3DVF17992404001799244900000075SAWADB_b38ef1cbe2819f642bd56175f615e8bf_2224%26search_date%3D18112026%26expected_price_uuid%3D01a1f025-aaf8-8031-2a14-05facf48e0ab%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3Di6x9CFg4Tj7TeQjJ9ONcAA%26destination_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+      "description": "2027-03-02 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261123-ESB-AYT_card.webp",
+      "localImage": "assets/deals/F-20261123-ESB-AYT_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FESB0203AYT1%3Ft%3DVF18039732001803977700000075ESBAYT_708bf7217e3c6b277ef347dfdaf92ba5_2200%26search_date%3D18112026%26expected_price_uuid%3D01a1ef3f-d52e-8031-2538-15afc21fccd2%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DJ9o3gq3daho_3xd0RFdhpQ%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
       "i18n": {
         "tr": {
-          "title": "İstanbul ✈️ İzmir",
-          "desc": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+          "title": "Ankara ✈️ Antalya",
+          "desc": "2027-03-02 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
         },
         "ar": {
-          "title": "إسطنبول ✈️ إزمير",
-          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2027-01-06 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+          "title": "أنقرة ✈️ أنطاليا",
+          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2027-03-02 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
         },
         "en": {
-          "title": "Istanbul ✈️ Izmir",
-          "desc": "AJet (Direct Flight) on 2027-01-06 — save 48% below average route fare with 1-click booking."
+          "title": "Ankara ✈️ Antalya",
+          "desc": "AJet (Direct Flight) on 2027-03-02 — save 48% below average route fare with 1-click booking."
         },
         "ru": {
-          "title": "Стамбул ✈️ Измир",
-          "desc": "Рейс AJet (Прямой рейс) 2027-01-06 — на 48% дешевле средней цены, мгновенное бронирование."
+          "title": "Анкара ✈️ Анталья",
+          "desc": "Рейс AJet (Прямой рейс) 2027-03-02 — на 48% дешевле средней цены, мгновенное бронирование."
         }
       },
-      "updatedAt": "2026-11-22T04:50:21.539876+00:00",
-      "createdTs": 1795323021
+      "updatedAt": "2026-11-23T05:00:51.323136+00:00",
+      "createdTs": 1795410051
     },
     {
       "id": "flight_deal_4",
-      "dealId": "F-20261122-AYT-MOW",
+      "dealId": "F-20261123-MOW-IST",
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "russia_tr",
-      "routeKey": "AYT_MOW",
-      "originIata": "AYT",
-      "destIata": "MOW",
-      "departure": "Antalya",
-      "destination": "Moskova",
-      "destCityEn": "Moscow",
-      "route": "Antalya ✈️ Moskova",
-      "title": "Antalya ✈️ Moskova",
-      "airline": "Pobeda • DP860",
+      "routeKey": "MOW_IST",
+      "originIata": "MOW",
+      "destIata": "IST",
+      "departure": "Moskova",
+      "destination": "İstanbul",
+      "destCityEn": "Istanbul",
+      "route": "Moskova ✈️ İstanbul",
+      "title": "Moskova ✈️ İstanbul",
+      "airline": "Pobeda • DP995",
       "transfers": 0,
-      "departureDate": "2026-12-31",
-      "price": "$81",
-      "priceUsd": 81,
-      "avgMarketUsd": 81,
+      "departureDate": "2026-11-24",
+      "price": "$72",
+      "priceUsd": 72,
+      "avgMarketUsd": 75,
       "savingsPct": 48,
       "dealScore": 69,
-      "description": "2026-12-31 tarihli Pobeda (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261122-AYT-MOW_card.webp",
-      "localImage": "assets/deals/F-20261122-AYT-MOW_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT3112MOW1%3Ft%3DDP17987250001798742400000290AYTVKO_3e720903c4700d837b9f2b5efed23f27_6630%26search_date%3D22112026%26expected_price_uuid%3D01a20164-cdf8-8030-6266-1db9ab4def1a%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3D2dW41kgjKAtyLG-X2bDjGA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D81",
+      "description": "2026-11-24 tarihli Pobeda (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261123-MOW-IST_card.webp",
+      "localImage": "assets/deals/F-20261123-MOW-IST_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2411IST1%3Ft%3DDP17955036001795522500000315VKOIST_0ba94e03f9e5896f2d42ff32a67b78bd_5854%26search_date%3D23112026%26expected_price_uuid%3D01a206c2-8b3b-8030-a870-dbd41364e275%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DkoeZvs5OW2AIKijvqz1lqQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D72",
       "i18n": {
         "tr": {
-          "title": "Antalya ✈️ Moskova",
-          "desc": "2026-12-31 tarihli Pobeda (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+          "title": "Moskova ✈️ İstanbul",
+          "desc": "2026-11-24 tarihli Pobeda (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
         },
         "ar": {
-          "title": "أنطاليا ✈️ موسكو",
-          "desc": "تذكرة Pobeda (رحلة مباشرة) بتاريخ 2026-12-31 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+          "title": "موسكو ✈️ إسطنبول",
+          "desc": "تذكرة Pobeda (رحلة مباشرة) بتاريخ 2026-11-24 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
         },
         "en": {
-          "title": "Antalya ✈️ Moscow",
-          "desc": "Pobeda (Direct Flight) on 2026-12-31 — save 48% below average route fare with 1-click booking."
+          "title": "Moscow ✈️ Istanbul",
+          "desc": "Pobeda (Direct Flight) on 2026-11-24 — save 48% below average route fare with 1-click booking."
         },
         "ru": {
-          "title": "Анталья ✈️ Москва",
-          "desc": "Рейс Pobeda (Прямой рейс) 2026-12-31 — на 48% дешевле средней цены, мгновенное бронирование."
+          "title": "Москва ✈️ Стамбул",
+          "desc": "Рейс Pobeda (Прямой рейс) 2026-11-24 — на 48% дешевле средней цены, мгновенное бронирование."
         }
       },
-      "updatedAt": "2026-11-22T04:50:21.539876+00:00",
-      "createdTs": 1795323021
+      "updatedAt": "2026-11-23T05:00:51.323136+00:00",
+      "createdTs": 1795410051
     },
     {
       "id": "flight_deal_5",
-      "dealId": "F-20261122-IST-DOH",
+      "dealId": "F-20261123-ALG-IST",
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "arab_tr",
-      "routeKey": "IST_DOH",
-      "originIata": "IST",
-      "destIata": "DOH",
-      "departure": "İstanbul",
-      "destination": "Doha",
-      "destCityEn": "Doha",
-      "route": "İstanbul ✈️ Doha",
-      "title": "İstanbul ✈️ Doha",
-      "airline": "Pegasus Airlines • PC614",
+      "routeKey": "ALG_IST",
+      "originIata": "ALG",
+      "destIata": "IST",
+      "departure": "Cezayir",
+      "destination": "İstanbul",
+      "destCityEn": "Istanbul",
+      "route": "Cezayir ✈️ İstanbul",
+      "title": "Cezayir ✈️ İstanbul",
+      "airline": "AJet • VF274",
       "transfers": 0,
-      "departureDate": "2027-02-04",
-      "price": "$121",
-      "priceUsd": 121,
-      "avgMarketUsd": 121,
+      "departureDate": "2026-12-05",
+      "price": "$61",
+      "priceUsd": 61,
+      "avgMarketUsd": 64,
       "savingsPct": 48,
       "dealScore": 69,
-      "description": "2027-02-04 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261122-IST-DOH_card.webp",
-      "localImage": "assets/deals/F-20261122-IST-DOH_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST0402DOH1%3Ft%3DPC18017748001801789200000240SAWDOH_c6b97adb32e8224d996149c8b0053d32_9917%26search_date%3D22112026%26expected_price_uuid%3D01a200cd-4472-8031-6017-909d428219d6%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3D4G9c-DvLBKTFsos9wLLrkg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D121",
+      "description": "2026-12-05 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261123-ALG-IST_card.webp",
+      "localImage": "assets/deals/F-20261123-ALG-IST_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FALG0512IST1%3Ft%3DVF17964762001796496300000215ALGSAW_78d319ebb934497f59632c3a912579bf_5007%26search_date%3D20112026%26expected_price_uuid%3D01a1fae8-e9db-8040-689b-204fc71601ef%26static_fare_key%3DTY%257CP0%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DixPnMxh_bwyERp0YQ_L6lw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D61",
       "i18n": {
         "tr": {
-          "title": "İstanbul ✈️ Doha",
-          "desc": "2027-02-04 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+          "title": "Cezayir ✈️ İstanbul",
+          "desc": "2026-12-05 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
         },
         "ar": {
-          "title": "إسطنبول ✈️ الدوحة",
-          "desc": "تذكرة Pegasus Airlines (رحلة مباشرة) بتاريخ 2027-02-04 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+          "title": "الجزائر ✈️ إسطنبول",
+          "desc": "تذكرة AJet (رحلة مباشرة) بتاريخ 2026-12-05 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
         },
         "en": {
-          "title": "Istanbul ✈️ Doha",
-          "desc": "Pegasus Airlines (Direct Flight) on 2027-02-04 — save 48% below average route fare with 1-click booking."
+          "title": "Algiers ✈️ Istanbul",
+          "desc": "AJet (Direct Flight) on 2026-12-05 — save 48% below average route fare with 1-click booking."
         },
         "ru": {
-          "title": "Стамбул ✈️ Доха",
-          "desc": "Рейс Pegasus Airlines (Прямой рейс) 2027-02-04 — на 48% дешевле средней цены, мгновенное бронирование."
+          "title": "Алжир ✈️ Стамбул",
+          "desc": "Рейс AJet (Прямой рейс) 2026-12-05 — на 48% дешевле средней цены, мгновенное бронирование."
         }
       },
-      "updatedAt": "2026-11-22T04:50:21.539876+00:00",
-      "createdTs": 1795323021
+      "updatedAt": "2026-11-23T05:00:51.323136+00:00",
+      "createdTs": 1795410051
     },
     {
       "id": "flight_deal_6",
-      "dealId": "F-20261122-CAI-IST",
+      "dealId": "F-20261123-DXB-AYT",
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "arab_tr",
-      "routeKey": "CAI_IST",
-      "originIata": "CAI",
-      "destIata": "IST",
-      "departure": "Kahire",
-      "destination": "İstanbul",
-      "destCityEn": "Istanbul",
-      "route": "Kahire ✈️ İstanbul",
-      "title": "Kahire ✈️ İstanbul",
-      "airline": "Pegasus Airlines • PC583",
+      "routeKey": "DXB_AYT",
+      "originIata": "DXB",
+      "destIata": "AYT",
+      "departure": "Dubai",
+      "destination": "Antalya",
+      "destCityEn": "Antalya",
+      "route": "Dubai ✈️ Antalya",
+      "title": "Dubai ✈️ Antalya",
+      "airline": "Pegasus Airlines • PC5173",
       "transfers": 0,
-      "departureDate": "2027-03-03",
-      "price": "$82",
-      "priceUsd": 82,
-      "avgMarketUsd": 83,
+      "departureDate": "2026-12-26",
+      "price": "$73",
+      "priceUsd": 73,
+      "avgMarketUsd": 74,
       "savingsPct": 48,
       "dealScore": 68,
-      "description": "2027-03-03 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
-      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261122-CAI-IST_card.webp",
-      "localImage": "assets/deals/F-20261122-CAI-IST_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FCAI0303IST1%3Ft%3DPC18040452001804056900000135SPXSAW_d513370c82cefcc73742e9240c2e518f_6725%26search_date%3D21112026%26expected_price_uuid%3D01a1ff2e-01b8-8030-286d-fbfeca631de2%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DsKrZmiHILsV5V5fDGvIAXA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
+      "description": "2026-12-26 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet.",
+      "image": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/deals/F-20261123-DXB-AYT_card.webp",
+      "localImage": "assets/deals/F-20261123-DXB-AYT_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ2612AYT1%3Ft%3DPC17982531001798266300000280SHJAYT_2f85cace177b584c099c003aeb202616_5933%26search_date%3D22112026%26expected_price_uuid%3D01a20544-43f3-8030-6b8a-afd163a77e92%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DrCDlpzhydcDID_7Wr5V1hQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D73",
       "i18n": {
         "tr": {
-          "title": "Kahire ✈️ İstanbul",
-          "desc": "2027-03-03 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
+          "title": "Dubai ✈️ Antalya",
+          "desc": "2026-12-26 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %48 daha avantajlı anında bilet."
         },
         "ar": {
-          "title": "القاهرة ✈️ إسطنبول",
-          "desc": "تذكرة Pegasus Airlines (رحلة مباشرة) بتاريخ 2027-03-03 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
+          "title": "دبي ✈️ أنطاليا",
+          "desc": "تذكرة Pegasus Airlines (رحلة مباشرة) بتاريخ 2026-12-26 — أرخص بـ 48% من متوسط السوق مع حجز مباشر فوري."
         },
         "en": {
-          "title": "Cairo ✈️ Istanbul",
-          "desc": "Pegasus Airlines (Direct Flight) on 2027-03-03 — save 48% below average route fare with 1-click booking."
+          "title": "Dubai ✈️ Antalya",
+          "desc": "Pegasus Airlines (Direct Flight) on 2026-12-26 — save 48% below average route fare with 1-click booking."
         },
         "ru": {
-          "title": "Каир ✈️ Стамбул",
-          "desc": "Рейс Pegasus Airlines (Прямой рейс) 2027-03-03 — на 48% дешевле средней цены, мгновенное бронирование."
+          "title": "Дубай ✈️ Анталья",
+          "desc": "Рейс Pegasus Airlines (Прямой рейс) 2026-12-26 — на 48% дешевле средней цены, мгновенное бронирование."
         }
       },
-      "updatedAt": "2026-11-22T04:50:21.539876+00:00",
-      "createdTs": 1795323021
+      "updatedAt": "2026-11-23T05:00:51.323136+00:00",
+      "createdTs": 1795410051
     }
   ],
   "conciergeHotels": {
@@ -1505,8 +1505,8 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (TZX ➔ Trabzon)",
         "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -1591,8 +1591,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (TZX ➔ Trabzon)",
           "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -1667,8 +1667,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (TZX ➔ Trabzon)",
           "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -1743,8 +1743,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (TZX ➔ Trabzon)",
           "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2143,8 +2143,8 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (YEI ➔ Bursa)",
         "title": "Private Airport Transfer (YEI ➔ Bursa)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -2218,8 +2218,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (YEI ➔ Bursa)",
           "title": "Private Airport Transfer (YEI ➔ Bursa)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2283,8 +2283,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (YEI ➔ Bursa)",
           "title": "Private Airport Transfer (YEI ➔ Bursa)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2348,8 +2348,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (YEI ➔ Bursa)",
           "title": "Private Airport Transfer (YEI ➔ Bursa)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2391,8 +2391,8 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (ESB ➔ Ankara)",
         "title": "Private Airport Transfer (ESB ➔ Ankara)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -2466,8 +2466,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (ESB ➔ Ankara)",
           "title": "Private Airport Transfer (ESB ➔ Ankara)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2520,8 +2520,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (ESB ➔ Ankara)",
           "title": "Private Airport Transfer (ESB ➔ Ankara)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2574,8 +2574,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (ESB ➔ Ankara)",
           "title": "Private Airport Transfer (ESB ➔ Ankara)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2952,8 +2952,8 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (NAV ➔ Cappadocia)",
         "title": "Private Airport Transfer (NAV ➔ Cappadocia)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -3046,8 +3046,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (NAV ➔ Cappadocia)",
           "title": "Private Airport Transfer (NAV ➔ Cappadocia)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": {
@@ -3130,8 +3130,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (NAV ➔ Cappadocia)",
           "title": "Private Airport Transfer (NAV ➔ Cappadocia)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": {
@@ -3214,8 +3214,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (NAV ➔ Cappadocia)",
           "title": "Private Airport Transfer (NAV ➔ Cappadocia)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
           "score": 0.833
         },
         "activityOffer": {
@@ -3276,15 +3276,6 @@
           "priceUsd": 27,
           "airlineCode": "VF",
           "airlineName": "AJet",
-          "flightNumber": "VF3033",
-          "departureDate": "2027-02-22",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT2202IST1%3Ft%3DVF18033057001803311100000090AYTSAW_1387d8f1df1cf18c9adc84329352a80a_2210%26search_date%3D19112026%26expected_price_uuid%3D01a1f298-03a6-8031-61d4-4813d90eb4e9%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DG-6dHPTVj4hrz6unr1r5CQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
-          "isRealApi": true
-        },
-        {
-          "priceUsd": 27,
-          "airlineCode": "VF",
-          "airlineName": "AJet",
           "flightNumber": "VF3031",
           "departureDate": "2027-02-26",
           "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT2602IST1%3Ft%3DVF18036399001803645300000090AYTSAW_ae7833ba6f3aaee4c4d3e680f4c328f2_2208%26search_date%3D17112026%26expected_price_uuid%3D01a1eb33-f7bb-8030-6c98-562780bff02b%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DkBFxXWnDSFxfdTiIWaPZBA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
@@ -3294,9 +3285,18 @@
           "priceUsd": 27,
           "airlineCode": "VF",
           "airlineName": "AJet",
-          "flightNumber": "VF3031",
-          "departureDate": "2027-02-17",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT1702IST1%3Ft%3DVF18028623001802867700000090AYTSAW_f271b1bdc08c6a02be1fba983031b5d6_2235%26search_date%3D21112026%26expected_price_uuid%3D01a1fe18-7590-8030-ed86-d4c3e7e087cd%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DkBFxXWnDSFxfdTiIWaPZBA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+          "flightNumber": "VF3035",
+          "departureDate": "2027-01-13",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT1301IST1%3Ft%3DVF17998638001799869200000090AYTSAW_32f54f3497ca14d75ecb24ffbd1e57a7_2239%26search_date%3D22112026%26expected_price_uuid%3D01a200bb-4f04-8031-2cd4-085f16835ae5%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DnVZXwwPKZb-r8GoD9-TsLQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+          "isRealApi": true
+        },
+        {
+          "priceUsd": 27,
+          "airlineCode": "PC",
+          "airlineName": "Pegasus Airlines",
+          "flightNumber": "PC2001",
+          "departureDate": "2027-02-28",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT2802IST1%3Ft%3DPC18038034001803808200000080AYTSAW_f932e6e2870149daa3ea37ad4c501a8d_2259%26search_date%3D17112026%26expected_price_uuid%3D01a1e919-7527-8031-298d-7624fea07f60%26static_fare_key%3DTY%257CP0%257CH0%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3Djhto2ttrvBlutn-LqtgyGQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
           "isRealApi": true
         }
       ],
@@ -3375,27 +3375,27 @@
           "priceUsd": 27,
           "airlineCode": "VF",
           "airlineName": "AJet",
-          "flightNumber": "VF3028",
-          "departureDate": "2027-02-26",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST2602AYT1%3Ft%3DVF18036201001803624900000080SAWAYT_d4608b05a7711abccf48744480cf7cb2_2224%26search_date%3D18112026%26expected_price_uuid%3D01a1ee10-0413-8030-ec4a-c6835a41378a%26static_fare_key%3DTY%257CP1%257CH1%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Ds9Ylf5xZKJseOp8VGw8aBA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
-          "isRealApi": true
-        },
-        {
-          "priceUsd": 27,
-          "airlineCode": "PC",
-          "airlineName": "Pegasus Airlines",
-          "flightNumber": "PC2006",
-          "departureDate": "2026-11-30",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST3011AYT1%3Ft%3DPC17960382001796042400000070SAWAYT_962bd74d2810c26b777634aac2115726_2229%26search_date%3D22112026%26expected_price_uuid%3D01a20196-84b6-8030-63fc-2ea49ab4d49e%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DXCw0c8mAj8GonRAv0sAw7Q%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+          "flightNumber": "VF3036",
+          "departureDate": "2027-01-11",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST1101AYT1%3Ft%3DVF17996937001799698500000080SAWAYT_b45152a1a88fd5edd891c5fab343f78d_2252%26search_date%3D21112026%26expected_price_uuid%3D01a2005f-8ad1-8030-20a4-15700f30d34e%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DyCb8jrXgYV75ozTo4bGo3w%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
           "isRealApi": true
         },
         {
           "priceUsd": 27,
           "airlineCode": "VF",
           "airlineName": "AJet",
-          "flightNumber": "VF3032",
-          "departureDate": "2027-01-04",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST0401AYT1%3Ft%3DVF17990646001799069400000080SAWAYT_b39bbc850e12a8c30ce35a5aabd7175c_2252%26search_date%3D22112026%26expected_price_uuid%3D01a2016c-0f9c-8030-e379-b8756a19c3e5%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DnV7_3cANeReNhOmT9XDwww%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+          "flightNumber": "VF3028",
+          "departureDate": "2027-01-26",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST2601AYT1%3Ft%3DVF18009417001800946500000080SAWAYT_2552a2ce4e68827e571688af860810f7_2252%26search_date%3D21112026%26expected_price_uuid%3D01a1fe69-6eed-8031-225c-1a529a4e05aa%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Ds9Ylf5xZKJseOp8VGw8aBA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+          "isRealApi": true
+        },
+        {
+          "priceUsd": 27,
+          "airlineCode": "VF",
+          "airlineName": "AJet",
+          "flightNumber": "VF3028",
+          "departureDate": "2027-02-17",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST1702AYT1%3Ft%3DVF18028425001802847300000080SAWAYT_9854fa648d6d1a4193f8360f5e164031_2252%26search_date%3D21112026%26expected_price_uuid%3D01a1fec3-22d6-8031-654b-80e50b3fe69e%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Ds9Ylf5xZKJseOp8VGw8aBA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
           "isRealApi": true
         }
       ],
@@ -3589,11 +3589,11 @@
         },
         {
           "priceUsd": 31,
-          "airlineCode": "VF",
-          "airlineName": "AJet",
-          "flightNumber": "VF5228",
-          "departureDate": "2026-12-04",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST0412TZX1%3Ft%3DVF17963718001796378100000105SAWTZX_1b1e8c690a32ad63814a6a0f312fdece_2525%26search_date%3D18112026%26expected_price_uuid%3D01a1f059-c952-8030-a645-944fd6bd9f53%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DJcDx7m4N_7vaBaR_AOwgng%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D31",
+          "airlineCode": "PC",
+          "airlineName": "Pegasus Airlines",
+          "flightNumber": "PC2810",
+          "departureDate": "2026-12-13",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST1312TZX1%3Ft%3DPC17971428001797148500000095SAWTZX_7ef9fbb8efad8c095e25d0824b0ffa35_2546%26search_date%3D20112026%26expected_price_uuid%3D01a1f902-0095-8040-af16-fe377afc552f%26static_fare_key%3DTY%257CP0%257CH0%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3Dx2XyYzRBaNqkIFnPUEu_NQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D31",
           "isRealApi": true
         }
       ],
@@ -3601,16 +3601,16 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (TZX ➔ Trabzon)",
         "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
         "score": 0.833
       },
       "transferOffer": {
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (TZX ➔ Trabzon)",
         "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -3681,9 +3681,9 @@
           "priceUsd": 27,
           "airlineCode": "VF",
           "airlineName": "AJet",
-          "flightNumber": "VF3079",
-          "departureDate": "2026-12-30",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FADB3012IST1%3Ft%3DVF17986170001798621800000080ADBSAW_649726ef2fb2a3886bf68bffa6e0b8fc_2198%26search_date%3D18112026%26expected_price_uuid%3D01a1f063-cb38-8030-ad03-1fba7fe0f91f%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3DNbsfVEqg0ULgowugVGC3SQ%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
+          "flightNumber": "VF3065",
+          "departureDate": "2027-01-11",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FADB1101IST1%3Ft%3DVF17996652001799670000000080ADBSAW_5f12065db145346567fd2d53d55ea304_2169%26search_date%3D22112026%26expected_price_uuid%3D01a204e7-c285-8030-a6d1-f37d32364244%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3Dl6FGXaxkGM1xZhSFwjoESg%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
           "isRealApi": true
         },
         {
@@ -4009,6 +4009,15 @@
       "destIata": "IST",
       "flightTiers": [
         {
+          "priceUsd": 100,
+          "airlineCode": "PC",
+          "airlineName": "Pegasus Airlines",
+          "flightNumber": "PC699",
+          "departureDate": "2027-01-18",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FJED1801IST1%3Ft%3DPC18002502001800264600000240JEDSAW_a713add4d8bdcdb1b9cf7f118fb3a575_8118%26search_date%3D23112026%26expected_price_uuid%3D01a2069b-6f37-8031-62a0-f46f032fc891%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Dp0jbvoaJchasUHS-pV35zg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D100",
+          "isRealApi": true
+        },
+        {
           "priceUsd": 101,
           "airlineCode": "PC",
           "airlineName": "Pegasus Airlines",
@@ -4018,21 +4027,12 @@
           "isRealApi": true
         },
         {
-          "priceUsd": 104,
-          "airlineCode": "PC",
-          "airlineName": "Pegasus Airlines",
-          "flightNumber": "PC699",
-          "departureDate": "2027-01-18",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FJED1801IST1%3Ft%3DPC18002502001800264600000240JEDSAW_a713add4d8bdcdb1b9cf7f118fb3a575_8482%26search_date%3D20112026%26expected_price_uuid%3D01a1f9ed-0878-8031-6381-1fe65d99d331%26static_fare_key%3DTY%257CP0%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Dp0jbvoaJchasUHS-pV35zg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D104",
-          "isRealApi": true
-        },
-        {
-          "priceUsd": 107,
-          "airlineCode": "VF",
-          "airlineName": "AJet",
-          "flightNumber": "VF190",
-          "departureDate": "2027-01-27",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FJED2701IST1%3Ft%3DVF18010212001801035300000235JEDSAW_c622aa3ae0ffeddd0cd55e07f8373508_8772%26search_date%3D17112026%26expected_price_uuid%3D01a1eba7-4f26-8040-ac49-e95f9c5d019c%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Duzgec70U95r53a57SMcgsA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D107",
+          "priceUsd": 102,
+          "airlineCode": "XY",
+          "airlineName": "Flynas",
+          "flightNumber": "XY557",
+          "departureDate": "2027-01-28",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FJED2801IST1%3Ft%3DXY18011520001801165800000230JEDIST_988797f39bd7bb97295b31e07ff4061d_8303%26search_date%3D22112026%26expected_price_uuid%3D01a205a9-a489-8030-aca9-99d674e98750%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DJ3bRmUmpY9qukOah8ZLRcQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D102",
           "isRealApi": true
         }
       ],
@@ -4139,16 +4139,16 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (TZX ➔ Trabzon)",
         "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
         "score": 0.833
       },
       "transferOffer": {
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (TZX ➔ Trabzon)",
         "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -4207,21 +4207,12 @@
       "destIata": "IST",
       "flightTiers": [
         {
-          "priceUsd": 109,
-          "airlineCode": "PC",
-          "airlineName": "Pegasus Airlines",
-          "flightNumber": "PC5173",
-          "departureDate": "2027-01-16",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ1601IST1%3Ft%3DPC18000675001800100800000615SHJAYTSAW_48985b1cd774a1cc4de019fccf00ddb2_8986%26search_date%3D20112026%26expected_price_uuid%3D01a1fa4b-674d-8030-e290-c80fe0b68ff6%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3D9Laui01UpTczgPn1WcPh0g%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D109",
-          "isRealApi": true
-        },
-        {
           "priceUsd": 110,
           "airlineCode": "PC",
           "airlineName": "Pegasus Airlines",
           "flightNumber": "PC5173",
-          "departureDate": "2026-12-26",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ2612IST1%3Ft%3DPC17982531001798280400000515SHJAYTSAW_01c4d70351b2dfaa93121145dcead919_9016%26search_date%3D21112026%26expected_price_uuid%3D01a20023-c57e-8030-ee69-93e2af2df3a5%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DLzpcWpklvV3A-JHZjbnptw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D110",
+          "departureDate": "2027-01-16",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ1601IST1%3Ft%3DPC18000675001800100800000615SHJAYTSAW_48985b1cd774a1cc4de019fccf00ddb2_8986%26search_date%3D22112026%26expected_price_uuid%3D01a20470-bca0-8030-e6f4-cc0081ccba3e%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3D9Laui01UpTczgPn1WcPh0g%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D110",
           "isRealApi": true
         },
         {
@@ -4231,6 +4222,15 @@
           "flightNumber": "PC5173",
           "departureDate": "2026-12-30",
           "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ3012IST1%3Ft%3DPC17985987001798629600000575SHJAYTSAW_82e5ff6088ed4dca6144b1a995ae8651_9066%26search_date%3D21112026%26expected_price_uuid%3D01a1ffa8-69c3-8031-24ab-51af88fdb478%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DIXUVNBMwa38u34XYySp1ew%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D110",
+          "isRealApi": true
+        },
+        {
+          "priceUsd": 111,
+          "airlineCode": "PC",
+          "airlineName": "Pegasus Airlines",
+          "flightNumber": "PC5173",
+          "departureDate": "2026-12-26",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ2612IST1%3Ft%3DPC17982531001798280400000515SHJAYTSAW_01c4d70351b2dfaa93121145dcead919_9016%26search_date%3D22112026%26expected_price_uuid%3D01a20495-9d67-8030-24f2-716d89c22886%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DLzpcWpklvV3A-JHZjbnptw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D111",
           "isRealApi": true
         }
       ],
@@ -4306,6 +4306,15 @@
       "destIata": "DXB",
       "flightTiers": [
         {
+          "priceUsd": 114,
+          "airlineCode": "PC",
+          "airlineName": "Pegasus Airlines",
+          "flightNumber": "PC746",
+          "departureDate": "2027-07-22",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST2207SHJ1%3Ft%3DPC18162930001816314300000295SAWSHJ_f27f38f006ae8c63330c1a0a1e5dabc3_9335%26search_date%3D19112026%26expected_price_uuid%3D01a1f3c6-7211-8031-6dae-f4b4bcc137fb%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DXFroNAIoabvnDaM73dVvwQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D114",
+          "isRealApi": true
+        },
+        {
           "priceUsd": 118,
           "airlineCode": "PC",
           "airlineName": "Pegasus Airlines",
@@ -4321,15 +4330,6 @@
           "flightNumber": "PC746",
           "departureDate": "2027-06-17",
           "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST1706SHJ1%3Ft%3DPC18132690001813290300000295SAWSHJ_a72fcbca6185d141c299556b8df0dca5_9924%26search_date%3D21112026%26expected_price_uuid%3D01a1fd8f-1e6b-8030-291b-cc89cf599598%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DXFroNAIoabvnDaM73dVvwQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D121",
-          "isRealApi": true
-        },
-        {
-          "priceUsd": 123,
-          "airlineCode": "PC",
-          "airlineName": "Pegasus Airlines",
-          "flightNumber": "PC746",
-          "departureDate": "2027-05-25",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST2505SHJ1%3Ft%3DPC18112818001811303100000295SAWSHJ_a88f2e56a588e21ccb9656d2f096c006_10059%26search_date%3D19112026%26expected_price_uuid%3D01a1f393-0864-8030-a4d8-755007d9d84f%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DXFroNAIoabvnDaM73dVvwQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D123",
           "isRealApi": true
         }
       ],
@@ -4405,30 +4405,30 @@
       "destIata": "AYT",
       "flightTiers": [
         {
+          "priceUsd": 73,
+          "airlineCode": "PC",
+          "airlineName": "Pegasus Airlines",
+          "flightNumber": "PC5173",
+          "departureDate": "2026-12-26",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ2612AYT1%3Ft%3DPC17982531001798266300000280SHJAYT_2f85cace177b584c099c003aeb202616_5933%26search_date%3D22112026%26expected_price_uuid%3D01a20544-43f3-8030-6b8a-afd163a77e92%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DrCDlpzhydcDID_7Wr5V1hQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D73",
+          "isRealApi": true
+        },
+        {
+          "priceUsd": 74,
+          "airlineCode": "PC",
+          "airlineName": "Pegasus Airlines",
+          "flightNumber": "PC5173",
+          "departureDate": "2026-12-23",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ2312AYT1%3Ft%3DPC17979939001798007100000280SHJAYT_5b1e2fb7dcbc15918bf459ccf919819a_6023%26search_date%3D22112026%26expected_price_uuid%3D01a2058f-513d-8030-af73-d7f4de5f4f3b%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DrCDlpzhydcDID_7Wr5V1hQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D74",
+          "isRealApi": true
+        },
+        {
           "priceUsd": 77,
           "airlineCode": "PC",
           "airlineName": "Pegasus Airlines",
           "flightNumber": "PC5173",
           "departureDate": "2027-01-20",
           "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ2001AYT1%3Ft%3DPC18004131001800426300000280SHJAYT_45109c0f6ed39e7f231707d5670db5f8_6306%26search_date%3D21112026%26expected_price_uuid%3D01a1fd3e-0257-8030-a21c-374535164921%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DrCDlpzhydcDID_7Wr5V1hQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D77",
-          "isRealApi": true
-        },
-        {
-          "priceUsd": 79,
-          "airlineCode": "PC",
-          "airlineName": "Pegasus Airlines",
-          "flightNumber": "PC5173",
-          "departureDate": "2026-12-30",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ3012AYT1%3Ft%3DPC17985987001798611900000280SHJAYT_e150858df14aec8d6945ff4c652cddb6_6520%26search_date%3D21112026%26expected_price_uuid%3D01a1ffae-b924-8030-67be-0810daaf69a0%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DrCDlpzhydcDID_7Wr5V1hQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D79",
-          "isRealApi": true
-        },
-        {
-          "priceUsd": 80,
-          "airlineCode": "PC",
-          "airlineName": "Pegasus Airlines",
-          "flightNumber": "PC5173",
-          "departureDate": "2026-12-26",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSHJ2612AYT1%3Ft%3DPC17982531001798266300000280SHJAYT_2f85cace177b584c099c003aeb202616_6554%26search_date%3D20112026%26expected_price_uuid%3D01a1f937-f7cd-8031-6fe4-1151154c89c3%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DrCDlpzhydcDID_7Wr5V1hQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D80",
           "isRealApi": true
         }
       ],
@@ -4504,15 +4504,6 @@
       "destIata": "IST",
       "flightTiers": [
         {
-          "priceUsd": 123,
-          "airlineCode": "PC",
-          "airlineName": "Pegasus Airlines",
-          "flightNumber": "PC615",
-          "departureDate": "2027-01-23",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FDOH2301IST1%3Ft%3DPC18006699001800686400000275DOHSAW_1d1b7b25cd38f3b3671d0de48d29e3d2_10195%26search_date%3D16112026%26expected_price_uuid%3D01a1e5d2-87ec-8040-68ab-e8830aa0e7ad%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DyMFH3HH_BqJAdb8p3tdnqg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D123",
-          "isRealApi": true
-        },
-        {
           "priceUsd": 125,
           "airlineCode": "PC",
           "airlineName": "Pegasus Airlines",
@@ -4526,8 +4517,17 @@
           "airlineCode": "PC",
           "airlineName": "Pegasus Airlines",
           "flightNumber": "PC615",
-          "departureDate": "2027-02-12",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FDOH1202IST1%3Ft%3DPC18023979001802414400000275DOHSAW_f7535c3fd412edbed8fe647c76347985_10503%26search_date%3D20112026%26expected_price_uuid%3D01a1f8e7-7ea6-8030-2a85-ac395194b1bc%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DyMFH3HH_BqJAdb8p3tdnqg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D128",
+          "departureDate": "2027-01-14",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FDOH1401IST1%3Ft%3DPC17998938001799910300000275DOHSAW_75914ac5d344aef1468bc7e1e6e51b26_10527%26search_date%3D19112026%26expected_price_uuid%3D01a1f53b-e618-8031-6be8-a6c79894d749%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3D2XTzlsseUMNnWBTE8aPSpw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D128",
+          "isRealApi": true
+        },
+        {
+          "priceUsd": 133,
+          "airlineCode": "PC",
+          "airlineName": "Pegasus Airlines",
+          "flightNumber": "PC615",
+          "departureDate": "2027-01-10",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FDOH1001IST1%3Ft%3DPC17995467001799563200000275DOHSAW_18666f1b288e0b25eeb4b05cbca3f968_10855%26search_date%3D22112026%26expected_price_uuid%3D01a20275-ead3-8030-eb17-12a585531ed7%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DyMFH3HH_BqJAdb8p3tdnqg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D133",
           "isRealApi": true
         }
       ],
@@ -4707,7 +4707,7 @@
           "airlineName": "Pegasus Airlines",
           "flightNumber": "PC583",
           "departureDate": "2027-03-03",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FCAI0303IST1%3Ft%3DPC18040452001804056900000135SPXSAW_d513370c82cefcc73742e9240c2e518f_6725%26search_date%3D21112026%26expected_price_uuid%3D01a1ff2e-01b8-8030-286d-fbfeca631de2%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DsKrZmiHILsV5V5fDGvIAXA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FCAI0303IST1%3Ft%3DPC18040452001804056900000135SPXSAW_d513370c82cefcc73742e9240c2e518f_6676%26search_date%3D22112026%26expected_price_uuid%3D01a20273-2b58-8030-6f18-30e0f08c7702%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DsKrZmiHILsV5V5fDGvIAXA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
           "isRealApi": true
         },
         {
@@ -4715,8 +4715,8 @@
           "airlineCode": "PC",
           "airlineName": "Pegasus Airlines",
           "flightNumber": "PC583",
-          "departureDate": "2027-01-16",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FCAI1601IST1%3Ft%3DPC18000708001800082500000135SPXSAW_c6a10b70be2b9eef574f1ae0d64d3966_6929%26search_date%3D20112026%26expected_price_uuid%3D01a1f699-9c06-8031-6d42-597c23255b20%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DsKrZmiHILsV5V5fDGvIAXA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D84",
+          "departureDate": "2027-03-10",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FCAI1003IST1%3Ft%3DPC18046500001804661700000135SPXSAW_eb3715c08e9d62f25f0d723aef3746d0_6809%26search_date%3D22112026%26expected_price_uuid%3D01a20434-3e92-8031-2fc7-86c0a450fc68%26static_fare_key%3DTY%257CP0%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DsKrZmiHILsV5V5fDGvIAXA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D84",
           "isRealApi": true
         },
         {
@@ -4814,17 +4814,17 @@
           "airlineCode": "VF",
           "airlineName": "AJet",
           "flightNumber": "VF540",
-          "departureDate": "2027-01-25",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAMM2501IST1%3Ft%3DVF18008490001800867600000310AMMESBSAW_f401571c0094adec085c70bd0441dc58_9278%26search_date%3D18112026%26expected_price_uuid%3D01a1ed49-469b-8031-2010-582cd5ed6344%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DgP3VLWKaY8IYPMT6lAws0Q%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D113",
+          "departureDate": "2027-01-14",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAMM1401IST1%3Ft%3DVF17998986001799936400000630AMMESBSAW_ad552cb8f84115e29fc6264d21b43729_9299%26search_date%3D22112026%26expected_price_uuid%3D01a200e2-35b0-8030-a410-f3380cce8dad%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Du4Tl8FrjXY0Utf036o5yXw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D113",
           "isRealApi": true
         },
         {
-          "priceUsd": 113,
+          "priceUsd": 114,
           "airlineCode": "VF",
           "airlineName": "AJet",
           "flightNumber": "VF540",
-          "departureDate": "2027-01-14",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAMM1401IST1%3Ft%3DVF17998986001799936400000630AMMESBSAW_ad552cb8f84115e29fc6264d21b43729_9299%26search_date%3D22112026%26expected_price_uuid%3D01a200e2-35b0-8030-a410-f3380cce8dad%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Du4Tl8FrjXY0Utf036o5yXw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D113",
+          "departureDate": "2027-01-11",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAMM1101IST1%3Ft%3DVF17996394001799665800000440AMMESBSAW_f62d6c8ad525d1b2d74367fbf4c0b3e1_9400%26search_date%3D18112026%26expected_price_uuid%3D01a1ee9b-2270-8031-60d7-c9070cf9ff7b%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DA9x6ivpJEV8A2BYZLjhR0Q%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D114",
           "isRealApi": true
         }
       ],
@@ -4900,30 +4900,30 @@
       "destIata": "IST",
       "flightTiers": [
         {
-          "priceUsd": 78,
-          "airlineCode": "VF",
-          "airlineName": "AJet",
-          "flightNumber": "VF132",
-          "departureDate": "2026-12-11",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FBGW1112IST1%3Ft%3DVF17969703001796981700000190BGWSAW_80c7f5a9047e6238e979d36e3fcc770f_6410%26search_date%3D19112026%26expected_price_uuid%3D01a1f529-4291-8031-6614-1fc5a20b431f%26static_fare_key%3DTY%257CP0%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DWK3cJarP2cMfXqdrekEKHg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D78",
-          "isRealApi": true
-        },
-        {
-          "priceUsd": 81,
-          "airlineCode": "VF",
-          "airlineName": "AJet",
-          "flightNumber": "VF132",
-          "departureDate": "2026-12-17",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FBGW1712IST1%3Ft%3DVF17974851001797496500000190BGWSAW_846352b2d9fea1384faeab1dfdb63d6f_6682%26search_date%3D19112026%26expected_price_uuid%3D01a1f5d5-6fd0-8030-67e2-73213bc105d1%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DmR6pKsAN-jZPMKL7unug5g%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D81",
-          "isRealApi": true
-        },
-        {
           "priceUsd": 82,
           "airlineCode": "VF",
           "airlineName": "AJet",
           "flightNumber": "VF134",
           "departureDate": "2026-12-21",
           "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FBGW2112IST1%3Ft%3DVF17978247001797836100000190BGWSAW_b431dccc40b0b256350442c525fe3f2d_6705%26search_date%3D20112026%26expected_price_uuid%3D01a1f67a-5725-8040-2499-3de67f28c58c%26static_fare_key%3DTY%257CP0%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DeARFMsVhKQtE1dajCcPUIQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
+          "isRealApi": true
+        },
+        {
+          "priceUsd": 85,
+          "airlineCode": "VF",
+          "airlineName": "AJet",
+          "flightNumber": "VF132",
+          "departureDate": "2026-12-19",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FBGW1912IST1%3Ft%3DVF17976579001797669300000190BGWSAW_838e4832b212118af0cc20f2aefd2829_7027%26search_date%3D19112026%26expected_price_uuid%3D01a1f321-4dd4-8040-6d02-164d803cef41%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DmR6pKsAN-jZPMKL7unug5g%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D85",
+          "isRealApi": true
+        },
+        {
+          "priceUsd": 86,
+          "airlineCode": "VF",
+          "airlineName": "AJet",
+          "flightNumber": "VF132",
+          "departureDate": "2026-12-22",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FBGW2212IST1%3Ft%3DVF17979171001797928500000190BGWSAW_5db085eb94fddaac8bcd60a9ab430784_7061%26search_date%3D16112026%26expected_price_uuid%3D01a1e629-f4da-8030-e4b2-1a7101175753%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DmR6pKsAN-jZPMKL7unug5g%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D85",
           "isRealApi": true
         }
       ],
@@ -4999,12 +4999,12 @@
       "destIata": "IST",
       "flightTiers": [
         {
-          "priceUsd": 71,
+          "priceUsd": 72,
           "airlineCode": "DP",
           "airlineName": "Pobeda",
           "flightNumber": "DP995",
-          "departureDate": "2026-11-23",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2311IST1%3Ft%3DDP17954172001795436100000315VKOIST_f631b4c5c1b88bf8e98a00b9e5bea977_5792%26search_date%3D22112026%26expected_price_uuid%3D01a20193-83b9-8031-6b96-28cfce4cf88d%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DkoeZvs5OW2AIKijvqz1lqQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D71",
+          "departureDate": "2026-11-24",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2411IST1%3Ft%3DDP17955036001795522500000315VKOIST_0ba94e03f9e5896f2d42ff32a67b78bd_5854%26search_date%3D23112026%26expected_price_uuid%3D01a206c2-8b3b-8030-a870-dbd41364e275%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DkoeZvs5OW2AIKijvqz1lqQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D72",
           "isRealApi": true
         },
         {
@@ -5013,16 +5013,16 @@
           "airlineName": "Pobeda",
           "flightNumber": "DP839",
           "departureDate": "2026-11-30",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW3011IST1%3Ft%3DDP17960220001796084400001040VKOAYTSAW_4c34a9b2b2798d1e0c83fed38b2b0fe7_6211%26search_date%3D22112026%26expected_price_uuid%3D01a20189-780a-8031-6dea-7f4673bf206a%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DArsPCkXxAt-89SWdOnXuaA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D76",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW3011IST1%3Ft%3DDP17960220001796076600000910VKOAYTSAW_d101ba0db9e8c7be842d5c27e39eb81c_6193%26search_date%3D23112026%26expected_price_uuid%3D01a206c5-96c9-8030-6f9d-ad8ab72d06e6%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DY7rsSduWKiq26Yl9JncR_A%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D76",
           "isRealApi": true
         },
         {
-          "priceUsd": 78,
+          "priceUsd": 77,
           "airlineCode": "DP",
           "airlineName": "Pobeda",
           "flightNumber": "DP839",
           "departureDate": "2026-11-29",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2911IST1%3Ft%3DDP17959392001796045700001775VKOAYTSAW_d99d9a1eddcb38116d403950612d5f02_6405%26search_date%3D22112026%26expected_price_uuid%3D01a2018e-74fb-8030-eae2-ac74e22deae4%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DnNIANSEYBeU1rc3VTwbt-g%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D78",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2911IST1%3Ft%3DDP17959392001796031000001530VKOAYTSAW_207ffa4b1f1e91ad1eac2384a5f9b5e5_6256%26search_date%3D23112026%26expected_price_uuid%3D01a206b1-8221-8030-edf6-2bd183ce8518%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DHwL_Ov84iQuMHgqVTVLCXg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D77",
           "isRealApi": true
         }
       ],
@@ -5102,8 +5102,8 @@
           "airlineCode": "DP",
           "airlineName": "Pobeda",
           "flightNumber": "DP839",
-          "departureDate": "2026-11-23",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2311AYT1%3Ft%3DDP17954172001795435800000310VKOAYT_a50e3740897da8b9e651b42522a39821_3600%26search_date%3D22112026%26expected_price_uuid%3D01a20194-fcf5-8030-625d-79a94c366b68%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DHB8jsrug2Ap1fjvdGFaxkQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
+          "departureDate": "2026-11-24",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2411AYT1%3Ft%3DDP17955126001795531200000310VKOAYT_4daeb4a246ee96d8c0b2bd3ebb900ad6_3600%26search_date%3D23112026%26expected_price_uuid%3D01a206c4-84c7-8031-24a7-57f5542a71dc%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DcgFuN7xBmt6QMeLEta-HRA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
           "isRealApi": true
         },
         {
@@ -5111,8 +5111,8 @@
           "airlineCode": "DP",
           "airlineName": "Pobeda",
           "flightNumber": "DP839",
-          "departureDate": "2026-11-25",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2511AYT1%3Ft%3DDP17956107001795629300000310VKOAYT_e8a26ce1161f7705a827ddcd4956d046_3600%26search_date%3D22112026%26expected_price_uuid%3D01a20193-c3c0-8031-2924-4d8c38488623%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3D2XJoIbgzokLe6USGXaQ0pQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
+          "departureDate": "2026-11-28",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2811AYT1%3Ft%3DDP17958648001795883400000310VKOAYT_c609e445324d1b9973989b7e9e7debb6_3600%26search_date%3D23112026%26expected_price_uuid%3D01a206c4-88f9-8031-280c-441f8ef840c1%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DWbN6Gc9Z9aXZJ8AgZJ9KGA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
           "isRealApi": true
         },
         {
@@ -5121,7 +5121,7 @@
           "airlineName": "Pobeda",
           "flightNumber": "DP839",
           "departureDate": "2026-11-29",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2911AYT1%3Ft%3DDP17959392001795957800000310VKOAYT_3cc073ff6fc3602bb61e4f1348ea5bb1_3600%26search_date%3D22112026%26expected_price_uuid%3D01a20192-b26a-8031-2e3b-3c2d7ef7c5ed%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3Dg_GX2VSkEgnaCZweDxCWkw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FMOW2911AYT1%3Ft%3DDP17959392001795957800000310VKOAYT_3cc073ff6fc3602bb61e4f1348ea5bb1_3600%26search_date%3D23112026%26expected_price_uuid%3D01a206c5-cfa2-8031-2a74-e95e21912807%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3Dg_GX2VSkEgnaCZweDxCWkw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D44",
           "isRealApi": true
         }
       ],
@@ -5197,12 +5197,21 @@
       "destIata": "IST",
       "flightTiers": [
         {
-          "priceUsd": 82,
+          "priceUsd": 83,
+          "airlineCode": "VF",
+          "airlineName": "AJet",
+          "flightNumber": "VF182",
+          "departureDate": "2027-01-29",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FGYD2901IST1%3Ft%3DVF18012261001801234200000195GYDSAW_bd269c3bc6da7cf1dc7a7a60fb16c9af_6788%26search_date%3D22112026%26expected_price_uuid%3D01a20443-1a31-8030-e183-5aa3b75f1db1%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DONl2EolfJVrTNnKQpSxE6A%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D83",
+          "isRealApi": true
+        },
+        {
+          "priceUsd": 84,
           "airlineCode": "VF",
           "airlineName": "AJet",
           "flightNumber": "VF182",
           "departureDate": "2026-12-16",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FGYD1612IST1%3Ft%3DVF17974242001797432300000195GYDSAW_7ffeba5eb22db0145028fcacf426f423_6739%26search_date%3D21112026%26expected_price_uuid%3D01a2002e-e726-8031-29ed-bfdf666251ab%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DgpkhV2v3j1UnTtUEt74J0Q%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FGYD1612IST1%3Ft%3DVF17974242001797432300000195GYDSAW_7ffeba5eb22db0145028fcacf426f423_6821%26search_date%3D23112026%26expected_price_uuid%3D01a206bb-b198-8030-a6d0-d9917eafc4db%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DgpkhV2v3j1UnTtUEt74J0Q%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D84",
           "isRealApi": true
         },
         {
@@ -5210,17 +5219,8 @@
           "airlineCode": "VF",
           "airlineName": "AJet",
           "flightNumber": "VF180",
-          "departureDate": "2026-12-20",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FGYD2012IST1%3Ft%3DVF17977458001797753900000195GYDSAW_1c24836376cae61c1eb76fa1a08e6588_7025%26search_date%3D21112026%26expected_price_uuid%3D01a1fef0-ef1d-8030-a4b0-a336ae369076%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DrQysV1SFDQNB9Xxi54tvuw%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D86",
-          "isRealApi": true
-        },
-        {
-          "priceUsd": 86,
-          "airlineCode": "VF",
-          "airlineName": "AJet",
-          "flightNumber": "VF182",
-          "departureDate": "2026-12-19",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FGYD1912IST1%3Ft%3DVF17976834001797691500000195GYDSAW_2ba29bd4f16f443ddab20d95643da8e3_7030%26search_date%3D21112026%26expected_price_uuid%3D01a1fd8d-8d37-8030-a4a3-cb3cd083372b%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DgpkhV2v3j1UnTtUEt74J0Q%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D86",
+          "departureDate": "2026-12-22",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FGYD2212IST1%3Ft%3DVF17979186001797926700000195GYDSAW_e2ac319ced5421ef2fedfa517fc32d7a_7019%26search_date%3D22112026%26expected_price_uuid%3D01a202af-c14b-8030-a06e-56e7606f823a%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DrQysV1SFDQNB9Xxi54tvuw%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D86",
           "isRealApi": true
         }
       ],
@@ -5300,8 +5300,8 @@
           "airlineCode": "PC",
           "airlineName": "Pegasus Airlines",
           "flightNumber": "PC319",
-          "departureDate": "2027-06-17",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FTBS1706IST1%3Ft%3DPC18132018001813206900000145TBSSAW_404178dfbff5d1e904b769879502f69f_6709%26search_date%3D22112026%26expected_price_uuid%3D01a20191-8547-8031-6b25-03641e167480%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DkDbrWOjZ2OWKsVn-JCn7cQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
+          "departureDate": "2027-06-06",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FTBS0606IST1%3Ft%3DPC18122514001812256500000145TBSSAW_cf5d9f82714b0c3174867469096914a6_6653%26search_date%3D22112026%26expected_price_uuid%3D01a20503-abff-8031-6836-1374a5b9f652%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DkDbrWOjZ2OWKsVn-JCn7cQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
           "isRealApi": true
         },
         {
@@ -5309,17 +5309,17 @@
           "airlineCode": "PC",
           "airlineName": "Pegasus Airlines",
           "flightNumber": "PC319",
-          "departureDate": "2027-07-30",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FTBS3007IST1%3Ft%3DPC18169170001816922100000145TBSSAW_f6319c2659470533ce7ca34b397c0cff_6718%26search_date%3D20112026%26expected_price_uuid%3D01a1f94d-7031-8030-a9c2-62a26ab70d21%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DkDbrWOjZ2OWKsVn-JCn7cQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
+          "departureDate": "2027-06-09",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FTBS0906IST1%3Ft%3DPC18125106001812515700000145TBSSAW_ce53fa30c53f00f89815e80907c21ab2_6653%26search_date%3D22112026%26expected_price_uuid%3D01a20504-2be9-8031-616a-65003a8f3656%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DkDbrWOjZ2OWKsVn-JCn7cQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
           "isRealApi": true
         },
         {
           "priceUsd": 82,
-          "airlineCode": "VF",
-          "airlineName": "AJet",
-          "flightNumber": "VF228",
-          "departureDate": "2027-04-29",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FTBS2904IST1%3Ft%3DVF18089745001808980200000155TBSSAW_8d2b69fc55f6932def293f61db907077_6741%26search_date%3D21112026%26expected_price_uuid%3D01a1ffd6-8c53-8030-2305-2e6db0388dfa%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DotZzM5h5QhHRVzSLiFeHUg%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
+          "airlineCode": "PC",
+          "airlineName": "Pegasus Airlines",
+          "flightNumber": "PC319",
+          "departureDate": "2027-06-17",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FTBS1706IST1%3Ft%3DPC18132018001813206900000145TBSSAW_404178dfbff5d1e904b769879502f69f_6709%26search_date%3D22112026%26expected_price_uuid%3D01a20191-8547-8031-6b25-03641e167480%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3DkDbrWOjZ2OWKsVn-JCn7cQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D82",
           "isRealApi": true
         }
       ],
@@ -5399,15 +5399,6 @@
           "airlineCode": "VF",
           "airlineName": "AJet",
           "flightNumber": "VF34",
-          "departureDate": "2027-01-04",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FFRA0401IST1%3Ft%3DVF17990706001799089500000195FRASAW_443190a467b80e2798dabfd00ab9c5b9_5739%26search_date%3D20112026%26expected_price_uuid%3D01a1f8b6-e987-8030-6635-667b580fcfd4%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Dr5HK6aDDRsDq123BqFN_Iw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D70",
-          "isRealApi": true
-        },
-        {
-          "priceUsd": 70,
-          "airlineCode": "VF",
-          "airlineName": "AJet",
-          "flightNumber": "VF34",
           "departureDate": "2027-01-13",
           "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FFRA1301IST1%3Ft%3DVF17998482001799867100000195FRASAW_a3020e14af4e14d9a14b0eac0d12c465_5733%26search_date%3D20112026%26expected_price_uuid%3D01a1f83c-5376-8030-a005-011d6f8173b2%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Dr5HK6aDDRsDq123BqFN_Iw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D70",
           "isRealApi": true
@@ -5419,6 +5410,15 @@
           "flightNumber": "VF34",
           "departureDate": "2027-01-12",
           "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FFRA1201IST1%3Ft%3DVF17997618001799780700000195FRASAW_884135fc6280a1baff506ab2b5db7ae6_5733%26search_date%3D20112026%26expected_price_uuid%3D01a1f850-9cc9-8030-ab4c-9bca74979ed1%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Dr5HK6aDDRsDq123BqFN_Iw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D70",
+          "isRealApi": true
+        },
+        {
+          "priceUsd": 70,
+          "airlineCode": "VF",
+          "airlineName": "AJet",
+          "flightNumber": "VF34",
+          "departureDate": "2027-03-04",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FFRA0403IST1%3Ft%3DVF18041682001804187100000195FRASAW_88324bf6a42069bb951305d892100248_5730%26search_date%3D20112026%26expected_price_uuid%3D01a1f9e7-290b-8030-687d-2e55cb2ad2dc%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3Dr5HK6aDDRsDq123BqFN_Iw%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D70",
           "isRealApi": true
         }
       ],
@@ -5512,12 +5512,12 @@
           "isRealApi": true
         },
         {
-          "priceUsd": 129,
-          "airlineCode": "KL",
-          "airlineName": "KL",
-          "flightNumber": "KL1014",
-          "departureDate": "2027-01-05",
-          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FLHR0501IST1%3Ft%3DKL17991714001799254500001205LHRAMSIST_0058fbf881d08c2ad5f97110ce7bb049_10560%26search_date%3D21112026%26expected_price_uuid%3D01a1ffdc-9262-8031-2565-8b422a61789b%26static_fare_key%3DTY%257CP1%257CH0%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3D-XXHzqV5RblWOtCceeTZfQ%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D129",
+          "priceUsd": 130,
+          "airlineCode": "LO",
+          "airlineName": "LO",
+          "flightNumber": "LO286",
+          "departureDate": "2027-02-11",
+          "bookingUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FLHR1102IST1%3Ft%3DLO18023274001802367300000485LHRWAWIST_8ac4953e880c7f8d74c1a20fe65063e0_10596%26search_date%3D22112026%26expected_price_uuid%3D01a20335-f6d9-8031-2e99-6e9c23604def%26static_fare_key%3DTY%257CP1%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3DUsaOycVevjqBPWdpml14sA%26origin_airports%3D0%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D130",
           "isRealApi": true
         }
       ],
@@ -5590,7 +5590,7 @@
     }
   },
   "aiRouterHealth": {
-    "date": "2026-11-22",
+    "date": "2026-11-23",
     "local_core_hits": 0,
     "providers": {
       "gemini": {
