@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://ucuzakal.pages.dev/blog/</loc>
-    <lastmod>2026-11-22</lastmod>
+    <lastmod>2026-11-23</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
   </url>
@@ -11,77 +12,313 @@
     <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261122_hero.webp?v=08742f83</image:loc>
+      <image:title>İstanbul ➔ Moskova Ucuz Uçak Bileti Rehberi (2026): $81&#x27;dan Başlayan %48 Tasarruf</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261122_sec1.webp?v=377a263b</image:loc>
+      <image:title>İstanbul uçuş ve havalimanı terminali rehberi</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261122_sec2.webp?v=f17def66</image:loc>
+      <image:title>İstanbul direkt uçuş ve rota planlaması</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261122_sec3.webp?v=2a107ca9</image:loc>
+      <image:title>İstanbul varış sonrası şehir merkezi ve ulaşım</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261122_sec4.webp?v=5a46a6d0</image:loc>
+      <image:title>İstanbul gezi rotası ve en güzel manzaralar</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/hotel-bursa-rehberi-20261122/</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-bursa-rehberi-20261122_hero.webp?v=89f37b99</image:loc>
+      <image:title>Bursa Otel, Resort ve Apart Rehberi (2026): $104&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-bursa-rehberi-20261122_sec1.webp?v=f916613b</image:loc>
+      <image:title>Bursa en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-bursa-rehberi-20261122_sec2.webp?v=1638d07f</image:loc>
+      <image:title>Bursa lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-bursa-rehberi-20261122_sec3.webp?v=67722496</image:loc>
+      <image:title>Bursa 4 günlük gezi rotası ve öne çıkan duraklar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-bursa-rehberi-20261122_sec4.webp?v=fa1acd7d</image:loc>
+      <image:title>Bursa yerel gastronomi ve geleneksel Türk mutfağı</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/hotel-istanbul-rehberi-20261122/</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261122_hero.webp?v=e847a7f4</image:loc>
+      <image:title>İstanbul Otel, Resort ve Apart Rehberi (2026): $90&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261122_sec1.webp?v=d97034bf</image:loc>
+      <image:title>İstanbul en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261122_sec2.webp?v=4c50e0b0</image:loc>
+      <image:title>İstanbul lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261122_sec3.webp?v=1c8467e5</image:loc>
+      <image:title>İstanbul 4 günlük gezi rotası ve öne çıkan duraklar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261122_sec4.webp?v=e9a93a88</image:loc>
+      <image:title>İstanbul yerel gastronomi ve geleneksel Türk mutfağı</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/hotel-ankara-rehberi-20261122/</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261122_hero.webp?v=956bf968</image:loc>
+      <image:title>Ankara Otel, Resort ve Apart Rehberi (2026): $71&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261122_sec1.webp?v=d150706b</image:loc>
+      <image:title>Ankara en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261122_sec2.webp?v=e2833fe5</image:loc>
+      <image:title>Ankara lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261122_sec3.webp?v=819bfeba</image:loc>
+      <image:title>Ankara 4 günlük gezi rotası ve öne çıkan duraklar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261122_sec4.webp?v=f8c3e150</image:loc>
+      <image:title>Ankara yerel gastronomi ve geleneksel Türk mutfağı</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/hotel-antalya-rehberi-20261122/</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261122_hero.webp?v=451f3b83</image:loc>
+      <image:title>Antalya Otel, Resort ve Apart Rehberi (2026): $110&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261122_sec1.webp?v=6e5afb25</image:loc>
+      <image:title>Antalya en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261122_sec2.webp?v=80454f76</image:loc>
+      <image:title>Antalya lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261122_sec3.webp?v=cf3d7342</image:loc>
+      <image:title>Antalya 4 günlük gezi rotası ve öne çıkan duraklar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261122_sec4.webp?v=e0cbda77</image:loc>
+      <image:title>Antalya yerel gastronomi ve geleneksel Türk mutfağı</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/hotel-trabzon-rehberi-20261122/</loc>
     <lastmod>2026-11-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-trabzon-rehberi-20261122_hero.webp?v=57dbabef</image:loc>
+      <image:title>Trabzon Otel, Resort ve Apart Rehberi (2026): $81&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-trabzon-rehberi-20261122_sec2.webp?v=29261ab3</image:loc>
+      <image:title>Trabzon en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-trabzon-rehberi-20261122_sec3.webp?v=ea9c09e1</image:loc>
+      <image:title>Trabzon lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-trabzon-rehberi-20261122_sec4.webp?v=1d389863</image:loc>
+      <image:title>Trabzon 4 günlük gezi rotası ve öne çıkan duraklar</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/flight-istanbul-istanbul-moskova-20261121/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261121_hero.webp?v=b5d86af5</image:loc>
+      <image:title>İstanbul ➔ Moskova Ucuz Uçak Bileti Rehberi (2026): $68&#x27;dan Başlayan %48 Tasarruf</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261121_sec1.webp?v=cdd7e734</image:loc>
+      <image:title>İstanbul uçuş ve havalimanı terminali rehberi</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261121_sec2.webp?v=a0c577eb</image:loc>
+      <image:title>İstanbul direkt uçuş ve rota planlaması</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261121_sec3.webp?v=414da849</image:loc>
+      <image:title>İstanbul varış sonrası şehir merkezi ve ulaşım</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261121_sec4.webp?v=3c2c9d8c</image:loc>
+      <image:title>İstanbul gezi rotası ve en güzel manzaralar</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/hotel-istanbul-rehberi-20261121/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261121_hero.webp?v=4370f535</image:loc>
+      <image:title>İstanbul Otel, Resort ve Apart Rehberi (2026): $84&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261121_sec1.webp?v=86475155</image:loc>
+      <image:title>İstanbul en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261121_sec2.webp?v=1983b6e1</image:loc>
+      <image:title>İstanbul lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261121_sec3.webp?v=dae53d81</image:loc>
+      <image:title>İstanbul 4 günlük gezi rotası ve öne çıkan duraklar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261121_sec4.webp?v=aa7cc45d</image:loc>
+      <image:title>İstanbul yerel gastronomi ve geleneksel Türk mutfağı</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/hotel-ankara-rehberi-20261121/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261121_hero.webp?v=e7b960ad</image:loc>
+      <image:title>Ankara Otel, Resort ve Apart Rehberi (2026): $65&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261121_sec1.webp?v=674a3600</image:loc>
+      <image:title>Ankara en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261121_sec2.webp?v=8d2e6978</image:loc>
+      <image:title>Ankara lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261121_sec3.webp?v=c0d83c46</image:loc>
+      <image:title>Ankara 4 günlük gezi rotası ve öne çıkan duraklar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261121_sec4.webp?v=7deac81f</image:loc>
+      <image:title>Ankara yerel gastronomi ve geleneksel Türk mutfağı</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/flight-istanbul-istanbul-bodrum-20261121/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-20261121_hero.webp?v=f922a903</image:loc>
+      <image:title>İstanbul ➔ Bodrum Ucuz Uçak Bileti Rehberi (2026): $27&#x27;dan Başlayan %48 Tasarruf</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-20261121_sec1.webp?v=05ce5b2f</image:loc>
+      <image:title>İstanbul uçuş ve havalimanı terminali rehberi</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-20261121_sec2.webp?v=a7cfc8b6</image:loc>
+      <image:title>İstanbul direkt uçuş ve rota planlaması</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-20261121_sec3.webp?v=1dcd58de</image:loc>
+      <image:title>İstanbul varış sonrası şehir merkezi ve ulaşım</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-20261121_sec4.webp?v=8566fd16</image:loc>
+      <image:title>İstanbul gezi rotası ve en güzel manzaralar</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/hotel-izmir-rehberi-20261121/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-izmir-rehberi-20261121_hero.webp?v=eb713b98</image:loc>
+      <image:title>İzmir Otel, Resort ve Apart Rehberi (2026): $79&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-izmir-rehberi-20261121_sec2.webp?v=a0c79791</image:loc>
+      <image:title>İzmir en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-izmir-rehberi-20261121_sec4.webp?v=06516cda</image:loc>
+      <image:title>İzmir lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/hotel-trabzon-rehberi-20261121/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-trabzon-rehberi-20261121_hero.webp?v=b5a94a90</image:loc>
+      <image:title>Trabzon Otel, Resort ve Apart Rehberi (2026): $75&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-trabzon-rehberi-20261121_sec2.webp?v=67324286</image:loc>
+      <image:title>Trabzon en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-trabzon-rehberi-20261121_sec4.webp?v=6cfb1ff3</image:loc>
+      <image:title>Trabzon lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/hotel-antalya-rehberi-20261121/</loc>
     <lastmod>2026-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261121_hero.webp?v=0ffa2cbc</image:loc>
+      <image:title>Antalya Otel, Resort ve Apart Rehberi (2026): $142&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261121_sec1.webp?v=07ec9415</image:loc>
+      <image:title>Antalya en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261121_sec2.webp?v=e1999c27</image:loc>
+      <image:title>Antalya lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261121_sec4.webp?v=2806e56d</image:loc>
+      <image:title>Antalya 4 günlük gezi rotası ve öne çıkan duraklar</image:title>
+    </image:image>
   </url>
 </urlset>

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T18:29:28.789214+00:00",
+  "updatedAt": "2026-11-23T00:53:29.943659+00:00",
   "posts": [
     {
       "slug": "flight-istanbul-istanbul-moskova-20261122",
@@ -28,13 +28,15 @@
         "ru": "Грамотный выбор дат и тарифа на маршруте Стамбул ➔ Москва позволяет сократить расходы на перелет до 48% и найти живые билеты от $81. В этом экспертном гиде собраны сравнения тарифов, правила багажа и точная логистика аэропортов.",
         "en": "Timing your Istanbul ➔ Moscow flight properly can trim airfare costs by up to 48%, unlocking verified live fares starting from $81. This 2026 blueprint breaks down airline tiers, hidden baggage fees, and door-to-hotel transfer math."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/flight-istanbul-istanbul-moskova-20261122_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/flight-istanbul-istanbul-moskova-20261122.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261122_hero.webp?v=08742f83",
+      "heroHash": "08742f83",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/flight-istanbul-istanbul-moskova-20261122.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT3112MOW1%3Ft%3DDP17987250001798742400000290AYTVKO_3e720903c4700d837b9f2b5efed23f27_6630%26search_date%3D22112026%26expected_price_uuid%3D01a20164-cdf8-8030-6266-1db9ab4def1a%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH1%257CR0%257CTBC0%26itinerary_key%3D2dW41kgjKAtyLG-X2bDjGA%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D81",
       "price": "$81",
-      "wordCountTr": 2067,
+      "wordCountTr": 2102,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-22T18:29:28.789214+00:00"
+      "publishedAt": "2026-11-22T18:29:28.789214+00:00",
+      "updatedAt": "2026-11-23T00:50:37.837280+00:00"
     },
     {
       "slug": "hotel-bursa-rehberi-20261122",
@@ -63,13 +65,15 @@
         "ru": "Правильный выбор района и формата проживания в городе Бурса помогает сэкономить до 25% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $104.",
         "en": "Picking the right neighborhood and stay format in Bursa can trim your trip budget by up to 25% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $104."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-bursa-rehberi-20261122_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-bursa-rehberi-20261122.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-bursa-rehberi-20261122_hero.webp?v=89f37b99",
+      "heroHash": "89f37b99",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-bursa-rehberi-20261122.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DUludag%2520Bursa%2520Mountain%2520Resort%2520Hotel",
       "price": "$104",
-      "wordCountTr": 2102,
+      "wordCountTr": 2131,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-22T18:29:00.138809+00:00"
+      "publishedAt": "2026-11-22T18:29:00.138809+00:00",
+      "updatedAt": "2026-11-23T00:50:57.791140+00:00"
     },
     {
       "slug": "hotel-istanbul-rehberi-20261122",
@@ -98,13 +102,15 @@
         "ru": "Правильный выбор района и формата проживания в городе Стамбул помогает сэкономить до 23% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $90.",
         "en": "Picking the right neighborhood and stay format in Istanbul can trim your trip budget by up to 23% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $90."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-istanbul-rehberi-20261122_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-istanbul-rehberi-20261122.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261122_hero.webp?v=e847a7f4",
+      "heroHash": "e847a7f4",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-istanbul-rehberi-20261122.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DSisli%2520Nisantasi%2520Istanbul%2520Serviced%2520Apartment%2520Suite%2520Hotel",
       "price": "$90",
-      "wordCountTr": 2119,
+      "wordCountTr": 2150,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-22T08:19:37.351869+00:00"
+      "publishedAt": "2026-11-22T08:19:37.351869+00:00",
+      "updatedAt": "2026-11-23T00:51:17.537833+00:00"
     },
     {
       "slug": "hotel-ankara-rehberi-20261122",
@@ -133,13 +139,15 @@
         "ru": "Правильный выбор района и формата проживания в городе Анкара помогает сэкономить до 21% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $71.",
         "en": "Picking the right neighborhood and stay format in Ankara can trim your trip budget by up to 21% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $71."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-ankara-rehberi-20261122_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-ankara-rehberi-20261122.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261122_hero.webp?v=956bf968",
+      "heroHash": "956bf968",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-ankara-rehberi-20261122.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DCankaya%2520Ankara%25205%2520Star%2520Luxury%2520Hotel",
       "price": "$71",
-      "wordCountTr": 2084,
+      "wordCountTr": 2115,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-22T08:11:25.439528+00:00"
+      "publishedAt": "2026-11-22T08:11:25.439528+00:00",
+      "updatedAt": "2026-11-23T00:51:34.866770+00:00"
     },
     {
       "slug": "hotel-antalya-rehberi-20261122",
@@ -168,13 +176,15 @@
         "ru": "Правильный выбор района и формата проживания в городе Анталья помогает сэкономить до 22% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $110.",
         "en": "Picking the right neighborhood and stay format in Antalya can trim your trip budget by up to 22% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $110."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-antalya-rehberi-20261122_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-antalya-rehberi-20261122.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261122_hero.webp?v=451f3b83",
+      "heroHash": "451f3b83",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-antalya-rehberi-20261122.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DLara%2520Beach%2520Antalya%2520Resort%2520Hotel",
       "price": "$110",
-      "wordCountTr": 2101,
+      "wordCountTr": 2132,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-22T07:19:43.312754+00:00"
+      "publishedAt": "2026-11-22T07:19:43.312754+00:00",
+      "updatedAt": "2026-11-23T00:51:46.939345+00:00"
     },
     {
       "slug": "hotel-trabzon-rehberi-20261122",
@@ -203,13 +213,15 @@
         "ru": "Правильный выбор района и формата проживания в городе Трабзон помогает сэкономить до 24% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $81.",
         "en": "Picking the right neighborhood and stay format in Trabzon can trim your trip budget by up to 24% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $81."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-trabzon-rehberi-20261122_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-trabzon-rehberi-20261122.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-trabzon-rehberi-20261122_hero.webp?v=57dbabef",
+      "heroHash": "57dbabef",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-trabzon-rehberi-20261122.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DTrabzon%2520Ayder%2520Nature%2520Resort%2520Bungalow",
       "price": "$81",
-      "wordCountTr": 2086,
+      "wordCountTr": 2116,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-22T07:11:18.973577+00:00"
+      "publishedAt": "2026-11-22T07:11:18.973577+00:00",
+      "updatedAt": "2026-11-23T00:51:58.000448+00:00"
     },
     {
       "slug": "flight-istanbul-istanbul-moskova-20261121",
@@ -238,13 +250,15 @@
         "ru": "Грамотный выбор дат и тарифа на маршруте Стамбул ➔ Москва позволяет сократить расходы на перелет до 48% и найти живые билеты от $68. В этом экспертном гиде собраны сравнения тарифов, правила багажа и точная логистика аэропортов.",
         "en": "Timing your Istanbul ➔ Moscow flight properly can trim airfare costs by up to 48%, unlocking verified live fares starting from $68. This 2026 blueprint breaks down airline tiers, hidden baggage fees, and door-to-hotel transfer math."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/flight-istanbul-istanbul-moskova-20261121_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/flight-istanbul-istanbul-moskova-20261121.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261121_hero.webp?v=b5d86af5",
+      "heroHash": "b5d86af5",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/flight-istanbul-istanbul-moskova-20261121.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST3112MOW1%3Ft%3D2S17987457001798759500000230ISTSVO_4aacbd3e3057781850fb73667f0840ed_5576%26search_date%3D21112026%26expected_price_uuid%3D01a1fc61-da36-8030-a824-33e25ac4c1a3%26static_fare_key%3DTY%257CP0%257CH1%257CL0%257CCH0%257CR0%257CTBC0%26itinerary_key%3D9NuQU1ERk3prptizHWNGZQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D68",
       "price": "$68",
-      "wordCountTr": 2070,
+      "wordCountTr": 2101,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-21T18:27:55.316008+00:00"
+      "publishedAt": "2026-11-21T18:27:55.316008+00:00",
+      "updatedAt": "2026-11-23T00:52:13.077313+00:00"
     },
     {
       "slug": "hotel-istanbul-rehberi-20261121",
@@ -273,13 +287,15 @@
         "ru": "Правильный выбор района и формата проживания в городе Стамбул помогает сэкономить до 21% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $84.",
         "en": "Picking the right neighborhood and stay format in Istanbul can trim your trip budget by up to 21% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $84."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-istanbul-rehberi-20261121_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-istanbul-rehberi-20261121.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261121_hero.webp?v=4370f535",
+      "heroHash": "4370f535",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-istanbul-rehberi-20261121.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DKarakoy%2520Istanbul%2520Design%2520Serviced%2520Residence",
       "price": "$84",
-      "wordCountTr": 2119,
+      "wordCountTr": 2150,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-21T18:27:23.340442+00:00"
+      "publishedAt": "2026-11-21T18:27:23.340442+00:00",
+      "updatedAt": "2026-11-23T00:52:23.414028+00:00"
     },
     {
       "slug": "hotel-ankara-rehberi-20261121",
@@ -308,13 +324,15 @@
         "ru": "Правильный выбор района и формата проживания в городе Анкара помогает сэкономить до 22% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $65.",
         "en": "Picking the right neighborhood and stay format in Ankara can trim your trip budget by up to 22% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $65."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-ankara-rehberi-20261121_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-ankara-rehberi-20261121.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261121_hero.webp?v=e7b960ad",
+      "heroHash": "e7b960ad",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-ankara-rehberi-20261121.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DAnkara%2520Executive%2520Wellness%2520Spa%2520Resort",
       "price": "$65",
-      "wordCountTr": 2084,
+      "wordCountTr": 2115,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-21T06:47:54.818503+00:00"
+      "publishedAt": "2026-11-21T06:47:54.818503+00:00",
+      "updatedAt": "2026-11-23T00:52:34.307001+00:00"
     },
     {
       "slug": "flight-istanbul-istanbul-bodrum-20261121",
@@ -343,13 +361,15 @@
         "ru": "Грамотный выбор дат и тарифа на маршруте Стамбул ➔ Бодрум позволяет сократить расходы на перелет до 48% и найти живые билеты от $27. В этом экспертном гиде собраны сравнения тарифов, правила багажа и точная логистика аэропортов.",
         "en": "Timing your Istanbul ➔ Bodrum flight properly can trim airfare costs by up to 48%, unlocking verified live fares starting from $27. This 2026 blueprint breaks down airline tiers, hidden baggage fees, and door-to-hotel transfer math."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/flight-istanbul-istanbul-bodrum-20261121_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/flight-istanbul-istanbul-bodrum-20261121.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-20261121_hero.webp?v=f922a903",
+      "heroHash": "f922a903",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/flight-istanbul-istanbul-bodrum-20261121.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST0701BJV1%3Ft%3DVF17993535001799358300000080SAWBJV_289a85840fd8d7e47a02394df24da4ca_2224%26search_date%3D18112026%26expected_price_uuid%3D01a1eda3-2b2a-8031-6acf-dad773dfa3e0%26static_fare_key%3DTY%257CP1%257CH1%257CL1_1_15%257CCH0%257CR0%257CTBC1%26itinerary_key%3D_9GzhDI2VyGEVBidpS15sQ%26expected_price_source%3Dshare%26expected_price_currency%3Dusd%26expected_price%3D27",
       "price": "$27",
-      "wordCountTr": 2070,
+      "wordCountTr": 2101,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-21T04:33:37.571101+00:00"
+      "publishedAt": "2026-11-21T04:33:37.571101+00:00",
+      "updatedAt": "2026-11-23T00:52:52.497415+00:00"
     },
     {
       "slug": "hotel-izmir-rehberi-20261121",
@@ -378,13 +398,15 @@
         "ru": "Правильный выбор района и формата проживания в городе Измир помогает сэкономить до 20% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $79.",
         "en": "Picking the right neighborhood and stay format in Izmir can trim your trip budget by up to 20% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $79."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-izmir-rehberi-20261121_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-izmir-rehberi-20261121.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-izmir-rehberi-20261121_hero.webp?v=eb713b98",
+      "heroHash": "eb713b98",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-izmir-rehberi-20261121.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DAlacati%2520Izmir%2520Boutique%2520Hotel",
       "price": "$79",
-      "wordCountTr": 2083,
+      "wordCountTr": 2114,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-21T04:33:30.007253+00:00"
+      "publishedAt": "2026-11-21T04:33:30.007253+00:00",
+      "updatedAt": "2026-11-23T00:53:03.317478+00:00"
     },
     {
       "slug": "hotel-trabzon-rehberi-20261121",
@@ -413,13 +435,15 @@
         "ru": "Правильный выбор района и формата проживания в городе Трабзон помогает сэкономить до 23% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $75.",
         "en": "Picking the right neighborhood and stay format in Trabzon can trim your trip budget by up to 23% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $75."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-trabzon-rehberi-20261121_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-trabzon-rehberi-20261121.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-trabzon-rehberi-20261121_hero.webp?v=b5a94a90",
+      "heroHash": "b5a94a90",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-trabzon-rehberi-20261121.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DUzungol%2520Trabzon%2520Lakefront%2520Resort%2520Chalet",
       "price": "$75",
-      "wordCountTr": 2077,
+      "wordCountTr": 2107,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-21T04:23:04.557037+00:00"
+      "publishedAt": "2026-11-21T04:23:04.557037+00:00",
+      "updatedAt": "2026-11-23T00:53:20.367590+00:00"
     },
     {
       "slug": "hotel-antalya-rehberi-20261121",
@@ -448,13 +472,15 @@
         "ru": "Правильный выбор района и формата проживания в городе Анталья помогает сэкономить до 26% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $142.",
         "en": "Picking the right neighborhood and stay format in Antalya can trim your trip budget by up to 26% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $142."
       },
-      "heroImage": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/images/hotel-antalya-rehberi-20261121_hero.webp",
-      "jsonUrl": "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/assets/blog/posts/hotel-antalya-rehberi-20261121.json",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261121_hero.webp?v=0ffa2cbc",
+      "heroHash": "0ffa2cbc",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-antalya-rehberi-20261121.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=633&marker=798779&p=9074&trs=597953&u=https%3A%2F%2Fwww.kkday.com%2Fen%2Fproduct%2Fproductlist%3Fkeyword%3DBelek%2520Antalya%25205%2520Star%2520Resort%2520Spa",
       "price": "$142",
-      "wordCountTr": 2101,
+      "wordCountTr": 2125,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-21T04:16:09.486882+00:00"
+      "publishedAt": "2026-11-21T04:16:09.486882+00:00",
+      "updatedAt": "2026-11-23T00:53:29.943659+00:00"
     }
   ],
   "totalPosts": 13
