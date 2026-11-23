@@ -5,7 +5,7 @@
   "originalLanguage": "tr",
   "status": "published",
   "publishedAt": "2026-11-21T18:27:55.316008+00:00",
-  "updatedAt": "2026-11-23T00:52:13.077313+00:00",
+  "updatedAt": "2026-11-23T01:29:22.449614+00:00",
   "city": "İstanbul",
   "cityEn": "Istanbul",
   "cities": {
@@ -22,7 +22,7 @@
     "en": 1145
   },
   "readingTimeMin": 10,
-  "externalAiPct": 9.5,
+  "externalAiPct": 0.0,
   "heroImage": {
     "localPath": "assets/blog/images/flight-istanbul-istanbul-moskova-20261121_hero.webp",
     "publicUrl": "https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261121_hero.webp?v=b5d86af5",
@@ -266,7 +266,7 @@
         }
       ],
       "datePublished": "2026-11-21T18:27:55.316008+00:00",
-      "dateModified": "2026-11-23T00:52:23.143655+00:00",
+      "dateModified": "2026-11-23T01:29:27.341828+00:00",
       "inLanguage": "tr-TR",
       "author": {
         "@type": "Organization",

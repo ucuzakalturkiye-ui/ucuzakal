@@ -5,7 +5,7 @@
   "originalLanguage": "tr",
   "status": "published",
   "publishedAt": "2026-11-22T08:11:25.439528+00:00",
-  "updatedAt": "2026-11-23T00:51:34.866770+00:00",
+  "updatedAt": "2026-11-23T01:29:02.123094+00:00",
   "city": "Ankara",
   "cityEn": "Ankara",
   "cities": {
@@ -22,7 +22,7 @@
     "en": 1114
   },
   "readingTimeMin": 10,
-  "externalAiPct": 9.5,
+  "externalAiPct": 0.0,
   "heroImage": {
     "localPath": "assets/blog/images/hotel-ankara-rehberi-20261122_hero.webp",
     "publicUrl": "https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261122_hero.webp?v=956bf968",
@@ -266,7 +266,7 @@
         }
       ],
       "datePublished": "2026-11-22T08:11:25.439528+00:00",
-      "dateModified": "2026-11-23T00:51:46.645698+00:00",
+      "dateModified": "2026-11-23T01:29:08.661602+00:00",
       "inLanguage": "tr-TR",
       "author": {
         "@type": "Organization",

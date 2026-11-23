@@ -5,7 +5,7 @@
   "originalLanguage": "tr",
   "status": "published",
   "publishedAt": "2026-11-21T04:16:09.486882+00:00",
-  "updatedAt": "2026-11-23T00:53:29.943659+00:00",
+  "updatedAt": "2026-11-23T01:29:57.574596+00:00",
   "city": "Antalya",
   "cityEn": "Antalya",
   "cities": {
@@ -22,7 +22,7 @@
     "en": 1132
   },
   "readingTimeMin": 10,
-  "externalAiPct": 9.5,
+  "externalAiPct": 0.0,
   "heroImage": {
     "localPath": "assets/blog/images/hotel-antalya-rehberi-20261121_hero.webp",
     "publicUrl": "https://ucuzakal.pages.dev/assets/blog/images/hotel-antalya-rehberi-20261121_hero.webp?v=0ffa2cbc",
@@ -238,7 +238,7 @@
         }
       ],
       "datePublished": "2026-11-21T04:16:09.486882+00:00",
-      "dateModified": "2026-11-23T00:53:39.049789+00:00",
+      "dateModified": "2026-11-23T01:30:02.696659+00:00",
       "inLanguage": "tr-TR",
       "author": {
         "@type": "Organization",

@@ -5,7 +5,7 @@
   "originalLanguage": "tr",
   "status": "published",
   "publishedAt": "2026-11-22T18:29:00.138809+00:00",
-  "updatedAt": "2026-11-23T00:50:57.791140+00:00",
+  "updatedAt": "2026-11-23T01:28:38.557529+00:00",
   "city": "Bursa",
   "cityEn": "Bursa",
   "cities": {
@@ -22,7 +22,7 @@
     "en": 1160
   },
   "readingTimeMin": 10,
-  "externalAiPct": 9.5,
+  "externalAiPct": 0.0,
   "heroImage": {
     "localPath": "assets/blog/images/hotel-bursa-rehberi-20261122_hero.webp",
     "publicUrl": "https://ucuzakal.pages.dev/assets/blog/images/hotel-bursa-rehberi-20261122_hero.webp?v=89f37b99",
@@ -266,7 +266,7 @@
         }
       ],
       "datePublished": "2026-11-22T18:29:00.138809+00:00",
-      "dateModified": "2026-11-23T00:51:16.537178+00:00",
+      "dateModified": "2026-11-23T01:28:46.363879+00:00",
       "inLanguage": "tr-TR",
       "author": {
         "@type": "Organization",

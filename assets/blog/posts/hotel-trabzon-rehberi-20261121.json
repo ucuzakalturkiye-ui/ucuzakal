@@ -5,7 +5,7 @@
   "originalLanguage": "tr",
   "status": "published",
   "publishedAt": "2026-11-21T04:23:04.557037+00:00",
-  "updatedAt": "2026-11-23T00:53:20.367590+00:00",
+  "updatedAt": "2026-11-23T01:29:52.467283+00:00",
   "city": "Trabzon",
   "cityEn": "Trabzon",
   "cities": {
@@ -22,7 +22,7 @@
     "en": 1114
   },
   "readingTimeMin": 10,
-  "externalAiPct": 9.5,
+  "externalAiPct": 0.0,
   "heroImage": {
     "localPath": "assets/blog/images/hotel-trabzon-rehberi-20261121_hero.webp",
     "publicUrl": "https://ucuzakal.pages.dev/assets/blog/images/hotel-trabzon-rehberi-20261121_hero.webp?v=b5a94a90",
@@ -204,7 +204,7 @@
         }
       ],
       "datePublished": "2026-11-21T04:23:04.557037+00:00",
-      "dateModified": "2026-11-23T00:53:29.668916+00:00",
+      "dateModified": "2026-11-23T01:29:57.342691+00:00",
       "inLanguage": "tr-TR",
       "author": {
         "@type": "Organization",

@@ -5,7 +5,7 @@
   "originalLanguage": "tr",
   "status": "published",
   "publishedAt": "2026-11-21T18:27:23.340442+00:00",
-  "updatedAt": "2026-11-23T00:52:23.414028+00:00",
+  "updatedAt": "2026-11-23T01:29:27.608431+00:00",
   "city": "İstanbul",
   "cityEn": "Istanbul",
   "cities": {
@@ -22,7 +22,7 @@
     "en": 1170
   },
   "readingTimeMin": 10,
-  "externalAiPct": 9.5,
+  "externalAiPct": 0.0,
   "heroImage": {
     "localPath": "assets/blog/images/hotel-istanbul-rehberi-20261121_hero.webp",
     "publicUrl": "https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261121_hero.webp?v=4370f535",
@@ -272,7 +272,7 @@
         }
       ],
       "datePublished": "2026-11-21T18:27:23.340442+00:00",
-      "dateModified": "2026-11-23T00:52:34.039992+00:00",
+      "dateModified": "2026-11-23T01:29:33.954823+00:00",
       "inLanguage": "tr-TR",
       "author": {
         "@type": "Organization",

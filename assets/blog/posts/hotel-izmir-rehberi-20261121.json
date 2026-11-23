@@ -5,7 +5,7 @@
   "originalLanguage": "tr",
   "status": "published",
   "publishedAt": "2026-11-21T04:33:30.007253+00:00",
-  "updatedAt": "2026-11-23T00:53:03.317478+00:00",
+  "updatedAt": "2026-11-23T01:29:46.225760+00:00",
   "city": "İzmir",
   "cityEn": "Izmir",
   "cities": {
@@ -22,7 +22,7 @@
     "en": 1121
   },
   "readingTimeMin": 10,
-  "externalAiPct": 9.5,
+  "externalAiPct": 0.0,
   "heroImage": {
     "localPath": "assets/blog/images/hotel-izmir-rehberi-20261121_hero.webp",
     "publicUrl": "https://ucuzakal.pages.dev/assets/blog/images/hotel-izmir-rehberi-20261121_hero.webp?v=eb713b98",
@@ -205,7 +205,7 @@
         }
       ],
       "datePublished": "2026-11-21T04:33:30.007253+00:00",
-      "dateModified": "2026-11-23T00:53:20.096562+00:00",
+      "dateModified": "2026-11-23T01:29:52.224417+00:00",
       "inLanguage": "tr-TR",
       "author": {
         "@type": "Organization",
