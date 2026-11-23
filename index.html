@@ -158,6 +158,55 @@
             background: linear-gradient(135deg, #FFFFFF 0%, #F8FAFC 100%);
         }
 
+        /* زر المجلة السياحية الفاخر في الشريط العلوي */
+        .journal-nav-outer {
+            position: relative;
+            display: inline-flex;
+            padding: 1.7px;
+            border-radius: 999px;
+            background: conic-gradient(from var(--gold-angle), rgba(212, 175, 55, 0.22) 0deg, #D4AF37 55deg, #FFF5C8 92deg, #D4AF37 130deg, rgba(212, 175, 55, 0.16) 210deg, #E8C55B 295deg, rgba(212, 175, 55, 0.22) 360deg);
+            animation: goldBeamSpin 4.8s linear infinite;
+            box-shadow: 0 0 18px -5px rgba(212, 175, 55, 0.52);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            text-decoration: none;
+        }
+
+        .journal-nav-outer:hover {
+            transform: translateY(-1.5px) scale(1.02);
+            box-shadow: 0 0 28px -4px rgba(246, 226, 153, 0.85);
+        }
+
+        .journal-nav-inner {
+            border-radius: 999px;
+            padding: 0.32rem 0.72rem 0.32rem 0.38rem;
+            transition: background 0.25s ease, color 0.25s ease;
+        }
+
+        @media (min-width: 640px) {
+            .journal-nav-inner {
+                padding: 0.38rem 0.95rem 0.38rem 0.45rem;
+            }
+        }
+
+        html.dark .journal-nav-inner {
+            background: linear-gradient(135deg, #0E172E 0%, #050811 100%);
+            color: #F8FAFC;
+        }
+
+        html.light .journal-nav-inner {
+            background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+            color: #FFFDF7;
+        }
+
+        .journal-nav-outer:hover .journal-nav-inner {
+            background: linear-gradient(135deg, #D4AF37 0%, #F3E094 55%, #C89F28 100%);
+            color: #050811;
+        }
+
+        .journal-nav-outer:hover .journal-nav-arrow {
+            color: #050811 !important;
+        }
+
         .brand-crown-badge {
             animation: crownHaloPulse 3s ease-in-out infinite;
         }
@@ -209,6 +258,7 @@
 
         @media (prefers-reduced-motion: reduce) {
             .brand-logo-outer,
+            .journal-nav-outer,
             .brand-crown-badge,
             .brand-gold-text,
             .gold-animated-frame {
@@ -932,7 +982,7 @@
 <body class="min-h-screen antialiased selection:bg-brand-gold selection:text-black">
 
     <!-- ========================================================================= -->
-    <!-- شريط التنقل العلوي الفاخر (شعاع ذهبي دوّار فاخر حول اسم الموقع) -->
+    <!-- شريط التنقل العلوي الفاخر (شعاع ذهبي دوّار فاخر + زر المجلة السياحية الفاخر) -->
     <!-- ========================================================================= -->
     <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/88 dark:bg-[#050811]/92 border-b border-brand-gold/25">
         <div class="max-w-7xl mx-auto px-3 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-2 sm:gap-3">
@@ -953,6 +1003,18 @@
             </a>
 
             <div class="flex items-center gap-1.5 sm:gap-2.5">
+                <!-- زر المجلة السياحية الفاخر (يوجه مباشرة إلى /blog/ بنفس لغة الزائر) -->
+                <a id="header-journal-btn" href="https://ucuzakal.pages.dev/blog/"
+                   class="journal-nav-outer shrink-0 group" title="UcuzaKal Travel Journal">
+                    <span class="journal-nav-inner flex items-center gap-1.5 sm:gap-2">
+                        <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-br from-brand-gold via-amber-200 to-amber-600 text-black flex items-center justify-center shrink-0 shadow-sm">
+                            <i class="fas fa-book-open text-[9px] sm:text-[10px]"></i>
+                        </span>
+                        <span data-i18n="nav_journal" class="text-[11px] sm:text-xs font-extrabold tracking-wide whitespace-nowrap">Seyahat Dergisi</span>
+                        <i class="journal-nav-arrow fas fa-arrow-up-right-from-square text-[9px] text-brand-gold opacity-85 hidden md:inline"></i>
+                    </span>
+                </a>
+
                 <!-- محول اللغات الـ 11 -->
                 <select id="lang-switcher" onchange="window.changeLanguage(this.value)" aria-label="Language Switcher"
                     class="bg-slate-100 dark:bg-slate-900/95 border border-brand-gold/40 text-slate-900 dark:text-white text-[11px] sm:text-xs font-bold rounded-full px-2 sm:px-3.5 py-1.5 sm:py-2 outline-none focus:border-brand-gold cursor-pointer">
@@ -1291,6 +1353,13 @@
         </div>
         <div id="blog-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
         <div id="blog-pagination" class="hidden flex items-center justify-center gap-3 mt-10"></div>
+        <div class="text-center mt-10">
+            <a id="section-journal-btn" href="https://ucuzakal.pages.dev/blog/" class="luxury-cta-btn text-xs sm:text-sm">
+                <i class="fas fa-book-open"></i>
+                <span data-i18n="explore_all_blog">Tüm Seyahat Rehberlerini Keşfet</span>
+                <i class="fas fa-arrow-up-right-from-square text-[11px]"></i>
+            </a>
+        </div>
     </section>
 
     <!-- ========================================================================= -->
@@ -1704,7 +1773,7 @@
         window.FLIGHTS_DATA = [];
         window.ARTICLES_MAP = {};
         window.ARTICLE_FULL_CACHE = {};
-        window.BLOG_CDN_BASE = "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal-ai-core/main";
+        window.BLOG_CDN_BASE = "https://ucuzakal.pages.dev";
         window.DEALS_ARCHIVE_MAP = {};
         window.CONCIERGE_HOTELS_DB = {};
         window.CONCIERGE_FLIGHTS_DB = {};
@@ -2336,6 +2405,8 @@
     <script>
         const BASE_TR_DICT = {
             google_login: "Gmail Girişi",
+            nav_journal: "Seyahat Dergisi",
+            explore_all_blog: "Tüm Seyahat Rehberlerini Keşfet",
             hero_title: "Seçkin Rotaları Lüksle Keşfedin",
             hero_subtitle: "Türkiye'nin en gözde destinasyonlarında sizin için özenle derlenmiş ayrıcalıklı konaklama ve uçuş fırsatları.",
             smart_hub_title: "Akıllı Seyahat Asistanınız",
@@ -2476,6 +2547,8 @@
 
         const BASE_AR_DICT = {
             google_login: "دخول Gmail",
+            nav_journal: "المجلة السياحية",
+            explore_all_blog: "تصفّح جميع مقالات المجلة السياحية",
             hero_title: "اكتشف أرقى الوجهات التركية بفخامة استثنائية",
             hero_subtitle: "أفضل عروض الفنادق والمنتجعات وتذاكر الطيران المنتقاة بعناية فائقة في أجمل مدن تركيا.",
             smart_hub_title: "المستشار السياحي الذكي",
@@ -2616,6 +2689,8 @@
 
         const BASE_EN_DICT = {
             google_login: "Gmail Login",
+            nav_journal: "Travel Journal",
+            explore_all_blog: "Explore All Travel Guides",
             hero_title: "Discover Elite Turkish Routes in Luxury",
             hero_subtitle: "Handpicked luxury stays and verified flight deals across Turkey's most iconic destinations.",
             smart_hub_title: "Your Smart Travel Concierge",
@@ -2756,6 +2831,8 @@
 
         const BASE_RU_DICT = Object.assign({}, BASE_EN_DICT, {
             google_login: "Вход Gmail",
+            nav_journal: "Журнал",
+            explore_all_blog: "Все гиды и статьи журнала",
             hero_title: "Откройте элитные маршруты Турции",
             hero_subtitle: "Тщательно отобранные отели, курорты и выгодные авиабилеты по лучшим направлениям Турции.",
             smart_hub_title: "Умный AI-Консьерж Путешествий",
@@ -2823,6 +2900,8 @@
             en: BASE_EN_DICT,
             ru: BASE_RU_DICT,
             es: Object.assign({}, BASE_EN_DICT, {
+                nav_journal: "Revista",
+                explore_all_blog: "Explorar Todas las Guías",
                 hero_title: "Descubre las Mejores Rutas de Turquía",
                 smart_hub_title: "Tu Asistente Inteligente de Viajes",
                 tab_hotel: "Hoteles", tab_flight: "Vuelos",
@@ -2837,6 +2916,8 @@
                 spotlight_book_now: "Reservar Directamente", spotlight_copy_link: "Copiar Enlace"
             }),
             ku: Object.assign({}, BASE_TR_DICT, {
+                nav_journal: "Kovara Geştê",
+                explore_all_blog: "Hemû Rêberên Geştê Bibîne",
                 hero_title: "Rêyên Herî Baş ên Tirkiyeyê Bibînin",
                 smart_hub_title: "Alîkarê Geştyariyê yê Jîr",
                 tab_hotel: "Alîkarê Otêlan", tab_flight: "Alîkarê Firînê",
@@ -2851,6 +2932,8 @@
                 spotlight_book_now: "Rezervasyona Rasterast", spotlight_copy_link: "Lînkê Kopî Bike"
             }),
             zh: Object.assign({}, BASE_EN_DICT, {
+                nav_journal: "旅行杂志",
+                explore_all_blog: "浏览全部旅行指南",
                 hero_title: "奢华探索土耳其精选目的地",
                 smart_hub_title: "智能AI旅行管家",
                 tab_hotel: "酒店助手", tab_flight: "机票助手",
@@ -2865,6 +2948,8 @@
                 spotlight_book_now: "立即直接预订", spotlight_copy_link: "复制链接"
             }),
             az: Object.assign({}, BASE_TR_DICT, {
+                nav_journal: "Səyahət Jurnalı",
+                explore_all_blog: "Bütün Səyahət Bələdçilərini Kəşf Et",
                 hero_title: "Türkiyənin Seçkin Marşrutlarını Kəşf Edin",
                 smart_hub_title: "Ağıllı Səyahət Köməkçiniz",
                 tab_hotel: "Otel Köməkçisi", tab_flight: "Uçuş Köməkçisi",
@@ -2877,6 +2962,8 @@
                 redirect_instant_cta: "Dərhal Rezervasiya Səhifəsinə Keç"
             }),
             ka: Object.assign({}, BASE_EN_DICT, {
+                nav_journal: "ჟურნალი",
+                explore_all_blog: "ყველა გზამკვლევის ნახვა",
                 hero_title: "აღმოაჩინეთ თურქეთის საუკეთესო მარშრუტები",
                 smart_hub_title: "ჭკვიანი მოგზაურობის ასისტენტი",
                 tab_hotel: "სასტუმროები", tab_flight: "ავიაბილეთები",
@@ -2889,6 +2976,8 @@
             }),
             fa: Object.assign({}, BASE_AR_DICT, {
                 google_login: "ورود با Gmail",
+                nav_journal: "مجله گردشگری",
+                explore_all_blog: "مشاهده تمام مقالات مجله گردشگری",
                 hero_title: "بهترین مسیرهای گردشگری ترکیه را کشف کنید",
                 smart_hub_title: "دستیار هوشمند سفر ترکیه",
                 tab_hotel: "دستیار هتل", tab_flight: "دستیار پرواز",
@@ -2903,6 +2992,8 @@
                 spotlight_book_now: "رزرو مستقیم", spotlight_copy_link: "کپی لینک"
             }),
             kk: Object.assign({}, BASE_RU_DICT, {
+                nav_journal: "Саяхат журналы",
+                explore_all_blog: "Барлық саяхат нұсқаулықтарын көру",
                 hero_title: "Түркияның үздік бағыттарын ашыңыз",
                 smart_hub_title: "Ақылды AI саяхат көмекшісі",
                 tab_hotel: "Қонақүйлер", tab_flight: "Әуе билеттері",
@@ -3209,7 +3300,7 @@
             }
         };
 
-        // تبديل اللغة وتحديث الاتجاه والواجهة بالكامل
+        // تبديل اللغة وتحديث الاتجاه والواجهة وروابط المجلة السياحية بالكامل
         window.changeLanguage = function(lang) {
             const safeLang = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) ? lang : 'tr';
             const dict = window.TRANSLATIONS[safeLang];
@@ -3230,6 +3321,18 @@
                 const key = el.getAttribute('data-i18n-placeholder');
                 if (dict[key] !== undefined) el.setAttribute('placeholder', dict[key]);
             });
+
+            // تحديث روابط أزرار المجلة السياحية لتفتح مباشرة بنفس لغة الزائر
+            const blogLang = ['tr', 'ar', 'ru', 'en'].includes(safeLang)
+                ? safeLang
+                : (safeLang === 'fa' ? 'ar' : (safeLang === 'kk' ? 'ru' : (safeLang === 'az' ? 'tr' : 'en')));
+            const blogHref = blogLang === 'tr'
+                ? 'https://ucuzakal.pages.dev/blog/'
+                : `https://ucuzakal.pages.dev/blog/?lang=${blogLang}`;
+            const headerJournalBtn = document.getElementById('header-journal-btn');
+            const sectionJournalBtn = document.getElementById('section-journal-btn');
+            if (headerJournalBtn) headerJournalBtn.href = blogHref;
+            if (sectionJournalBtn) sectionJournalBtn.href = blogHref;
 
             if (typeof window.updateHotelBtnText === 'function') window.updateHotelBtnText();
             if (typeof window.calculateTotal === 'function') window.calculateTotal();
@@ -4884,12 +4987,12 @@
             async function bootstrapPlatformData() {
                 const bust = Math.floor(Date.now() / 300000);
 
-                // 1. تحميل البث الحي + الأرشيف + فهرس المدونة السريع من CDN (0 قراءة من Firestore)
-                const [feedRes, archiveRes, blogIdxCdnRes, blogIdxLocalRes] = await Promise.allSettled([
+                // 1. تحميل البث الحي + الأرشيف + فهرس المدونة السريع من الدومين مباشرة (0 قراءة من Firestore)
+                const [feedRes, archiveRes, blogIdxLocalRes, blogIdxCdnRes] = await Promise.allSettled([
                     fetch(`./live_deals_feed.json?v=${bust}`).then(r => r.ok ? r.json() : null),
                     fetch(`./deals_archive.json?v=${bust}`).then(r => r.ok ? r.json() : null),
-                    fetch(`${window.BLOG_CDN_BASE}/live_blog_index.json?v=${bust}`).then(r => r.ok ? r.json() : null),
-                    fetch(`./live_blog_index.json?v=${bust}`).then(r => r.ok ? r.json() : null)
+                    fetch(`./live_blog_index.json?v=${bust}`).then(r => r.ok ? r.json() : null),
+                    fetch(`${window.BLOG_CDN_BASE}/live_blog_index.json?v=${bust}`).then(r => r.ok ? r.json() : null)
                 ]);
 
                 if (archiveRes.status === 'fulfilled' && archiveRes.value && archiveRes.value.deals) {
@@ -4958,10 +5061,10 @@
                 window.renderHotels();
                 window.renderFlights();
 
-                // 3. قراءة مقالات المدونة من فهرس الـ CDN أولاً (0 قراءة من Firestore لحماية القاعدة)
-                const blogIdxObj = (blogIdxCdnRes.status === 'fulfilled' && blogIdxCdnRes.value && Array.isArray(blogIdxCdnRes.value.posts))
-                    ? blogIdxCdnRes.value
-                    : ((blogIdxLocalRes.status === 'fulfilled' && blogIdxLocalRes.value && Array.isArray(blogIdxLocalRes.value.posts)) ? blogIdxLocalRes.value : null);
+                // 3. قراءة مقالات المدونة من فهرس الدومين أولاً (0 قراءة من Firestore لحماية القاعدة)
+                const blogIdxObj = (blogIdxLocalRes.status === 'fulfilled' && blogIdxLocalRes.value && Array.isArray(blogIdxLocalRes.value.posts))
+                    ? blogIdxLocalRes.value
+                    : ((blogIdxCdnRes.status === 'fulfilled' && blogIdxCdnRes.value && Array.isArray(blogIdxCdnRes.value.posts)) ? blogIdxCdnRes.value : null);
 
                 if (blogIdxObj && blogIdxObj.posts.length > 0) {
                     blogIdxObj.posts.forEach(post => {
@@ -4971,7 +5074,7 @@
                     });
                 }
 
-                // قراءة احتياطية من Firestore فقط إذا لم توجد مقالات في فهرس الـ CDN بعد
+                // قراءة احتياطية من Firestore فقط إذا لم توجد مقالات في فهرس الدومين بعد
                 if (Object.keys(window.ARTICLES_MAP).length === 0) {
                     const blogCollections = ['blog_posts', 'articles'];
                     const blogResults = await Promise.all(blogCollections.map(col => fetchCollectionDocs(col, 12)));
