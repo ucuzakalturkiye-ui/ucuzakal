@@ -62,18 +62,29 @@
             --gold-deep: #8C6611;
         }
 
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         html {
             scroll-behavior: smooth;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow-x: clip;
+            max-width: 100%;
+            overflow-x: hidden;
         }
 
         body {
             font-family: 'Plus Jakarta Sans', 'Tajawal', sans-serif;
             transition: background-color 0.25s ease, color 0.25s ease;
-            overflow-x: clip;
+            max-width: 100%;
+            overflow-x: hidden;
             width: 100%;
+            margin: 0;
+        }
+
+        img, svg, video {
+            max-width: 100%;
         }
 
         html.dark body {
@@ -94,15 +105,6 @@
             font-family: 'Tajawal', 'Cairo', sans-serif;
             letter-spacing: 0 !important;
             line-height: 1.32 !important;
-        }
-
-        /* تحسين أداء العرض على الموبايل للأقسام السفلية بدون تغيير التصميم */
-        #hotels-section,
-        #flights-section,
-        #blog-section,
-        footer {
-            content-visibility: auto;
-            contain-intrinsic-size: 1px 680px;
         }
 
         /* ===================================================================== */
@@ -147,6 +149,7 @@
             animation: goldBeamSpin 4.2s linear infinite;
             box-shadow: 0 0 22px -6px rgba(212, 175, 55, 0.55);
             transition: transform 0.25s ease, box-shadow 0.25s ease;
+            max-width: 100%;
         }
 
         .brand-logo-outer:hover {
@@ -194,7 +197,7 @@
 
         .journal-nav-inner {
             border-radius: 999px;
-            padding: 0.3rem 0.62rem 0.3rem 0.35rem;
+            padding: 0.34rem 0.72rem 0.34rem 0.4rem;
             transition: background 0.25s ease, color 0.25s ease;
         }
 
@@ -243,6 +246,7 @@
             background: conic-gradient(from var(--gold-angle), rgba(212, 175, 55, 0.15) 0deg, #D4AF37 48deg, #FFF3BD 85deg, #D4AF37 120deg, rgba(212, 175, 55, 0.12) 195deg, #E8C55B 275deg, rgba(212, 175, 55, 0.15) 360deg);
             animation: goldBeamSpin 7.5s linear infinite;
             transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
+            min-width: 0;
         }
 
         .gold-animated-frame:hover {
@@ -271,21 +275,24 @@
             box-shadow: 0 18px 36px -14px rgba(212, 175, 55, 0.5);
         }
 
-        /* تسريع فائق على الموبايل: نحافظ على الإطارات الذهبية الفاخرة مع إيقاف إعادة الرسم المستمرة الثقيلة */
+        /* سلاسة قصوى على الهاتف مع الحفاظ على الإطارات الذهبية */
         @media (max-width: 768px) {
             .gold-animated-frame:not(.concierge-frame) {
                 animation: none !important;
                 background: linear-gradient(135deg, rgba(212, 175, 55, 0.65) 0%, rgba(255, 241, 181, 0.85) 50%, rgba(212, 175, 55, 0.4) 100%);
             }
             .gold-animated-frame.concierge-frame {
-                border-radius: 1.5rem;
+                border-radius: 1.45rem;
                 animation-duration: 12s;
             }
             .concierge-shell {
-                border-radius: 1.42rem !important;
+                border-radius: 1.38rem !important;
             }
             .gold-animated-frame:hover {
                 transform: none;
+            }
+            .luxury-input {
+                font-size: 16px !important;
             }
         }
 
@@ -300,7 +307,7 @@
         }
 
         /* ===================================================================== */
-        /* صورة الواجهة الرئيسية (Hero Section) — متجاوبة تماماً للموبايل والكمبيوتر */
+        /* صورة الواجهة الرئيسية — ظهور كامل 100% بدون قص على الهاتف والكمبيوتر */
         /* ===================================================================== */
         .hero-stage {
             position: relative;
@@ -318,45 +325,33 @@
             width: 100%;
             max-width: 1680px;
             margin: 0 auto;
-            min-height: 250px;
-        }
-
-        @media (min-width: 640px) {
-            .hero-image-canvas {
-                min-height: 360px;
-            }
         }
 
         .hero-full-img {
             width: 100%;
             height: auto;
-            min-height: 250px;
             display: block;
-            object-fit: cover;
-        }
-
-        @media (min-width: 768px) {
-            .hero-full-img {
-                object-fit: contain;
-            }
+            object-fit: contain;
         }
 
         .hero-scrim-overlay {
             position: absolute;
             inset: 0;
             background:
-                radial-gradient(circle at 50% 42%, rgba(4, 7, 15, 0.48) 0%, rgba(4, 7, 15, 0.28) 55%, rgba(4, 7, 15, 0.72) 100%),
-                linear-gradient(180deg, rgba(4, 7, 15, 0.42) 0%, rgba(4, 7, 15, 0.3) 45%, rgba(4, 7, 15, 0.9) 92%, #04070F 100%);
+                radial-gradient(circle at 50% 42%, rgba(4, 7, 15, 0.36) 0%, rgba(4, 7, 15, 0.18) 55%, rgba(4, 7, 15, 0.62) 100%),
+                linear-gradient(180deg, rgba(4, 7, 15, 0.32) 0%, rgba(4, 7, 15, 0.18) 50%, rgba(4, 7, 15, 0.88) 95%, #04070F 100%);
             pointer-events: none;
         }
 
         html.light .hero-scrim-overlay {
             background:
-                radial-gradient(circle at 50% 42%, rgba(8, 13, 25, 0.5) 0%, rgba(8, 13, 25, 0.28) 55%, rgba(8, 13, 25, 0.65) 100%),
-                linear-gradient(180deg, rgba(8, 13, 25, 0.38) 0%, rgba(8, 13, 25, 0.25) 50%, rgba(8, 13, 25, 0.8) 90%, #F6F7FB 100%);
+                radial-gradient(circle at 50% 42%, rgba(8, 13, 25, 0.38) 0%, rgba(8, 13, 25, 0.2) 55%, rgba(8, 13, 25, 0.58) 100%),
+                linear-gradient(180deg, rgba(8, 13, 25, 0.3) 0%, rgba(8, 13, 25, 0.18) 50%, rgba(8, 13, 25, 0.78) 95%, #F6F7FB 100%);
         }
 
-        /* Ultra Luxury Inner Cards */
+        /* ===================================================================== */
+        /* بطاقات العروض + عرض كامل وسلس للصور والشعار (16:9 بدون قص أو تعتيم) */
+        /* ===================================================================== */
         .ultra-luxury-card {
             position: relative;
             display: flex;
@@ -365,6 +360,7 @@
             border-radius: calc(1.6rem - 1.7px);
             overflow: hidden;
             height: 100%;
+            min-width: 0;
         }
 
         html.dark .ultra-luxury-card {
@@ -378,17 +374,28 @@
         .img-frame {
             position: relative;
             width: 100%;
-            height: 220px;
+            aspect-ratio: 16 / 9;
+            height: auto !important;
             overflow: hidden;
-            background: #0A1020;
+            background: #060B16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .img-frame img {
-            transition: transform 0.5s ease;
+            width: 100%;
+            height: 100%;
+            object-fit: contain !important;
+            object-position: center;
+            display: block;
+            transform: none !important;
+            transition: opacity 0.25s ease;
         }
 
-        .gold-animated-frame:hover .img-frame img {
-            transform: scale(1.04);
+        /* إزالة التعتيم السفلي فوق صور الطيران ليظهر شعار الموقع بوضوح تام */
+        .img-frame > .bg-gradient-to-t {
+            display: none !important;
         }
 
         .gold-divider {
@@ -409,6 +416,7 @@
             flex-direction: column;
             height: 100%;
             cursor: pointer;
+            min-width: 0;
         }
 
         html.dark .editorial-blog-card {
@@ -424,18 +432,18 @@
             width: 100%;
             aspect-ratio: 16 / 9;
             overflow: hidden;
-            background: #090F1E;
+            background: #060B16;
         }
 
         .editorial-cover-wrap img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+            object-fit: contain;
+            display: block;
         }
 
-        .gold-animated-frame:hover .editorial-cover-wrap img {
-            transform: scale(1.04);
+        .editorial-cover-wrap > .bg-gradient-to-t {
+            display: none;
         }
 
         #article-modal {
@@ -468,6 +476,7 @@
         .article-body-content {
             font-size: 1.03rem;
             line-height: 1.95;
+            overflow-wrap: break-word;
         }
 
         @media (min-width: 768px) {
@@ -499,12 +508,13 @@
 
         .article-body-content img {
             width: 100%;
-            max-height: 520px;
-            object-fit: cover;
+            height: auto;
+            object-fit: contain;
             border-radius: 1.25rem;
             margin: 1.75rem 0;
             border: 1px solid rgba(212, 175, 55, 0.35);
             box-shadow: 0 18px 40px -15px rgba(0, 0, 0, 0.55);
+            background: #060B16;
         }
 
         .article-body-content ul,
@@ -539,10 +549,10 @@
 
         .article-body-content .uk-compare-table {
             width: 100%;
-            min-width: 540px;
+            min-width: 500px;
             border-collapse: collapse;
             margin: 0 !important;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
         }
 
         .article-body-content .uk-compare-table th {
@@ -550,12 +560,12 @@
             color: #D4AF37;
             font-weight: 800;
             text-align: start;
-            padding: 0.85rem 1rem;
+            padding: 0.8rem 0.95rem;
             border-bottom: 1px solid rgba(212, 175, 55, 0.35);
         }
 
         .article-body-content .uk-compare-table td {
-            padding: 0.8rem 1rem;
+            padding: 0.75rem 0.95rem;
             border-bottom: 1px solid rgba(148, 163, 184, 0.18);
             vertical-align: top;
         }
@@ -614,9 +624,9 @@
 
         .redirect-orbital-stage {
             position: relative;
-            width: 128px;
-            height: 128px;
-            margin: 0 auto 1.5rem;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.35rem;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -642,21 +652,21 @@
         }
 
         .redirect-center-emblem {
-            width: 74px;
-            height: 74px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             background: linear-gradient(135deg, #D4AF37 0%, #FFF1B5 52%, #B88A1A 100%);
             color: #050811;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.85rem;
+            font-size: 1.75rem;
             box-shadow: 0 0 38px rgba(212, 175, 55, 0.65);
             animation: planeFloatLuxury 2.2s ease-in-out infinite;
         }
 
         /* ===================================================================== */
-        /* المستشار السياحي الذكي — ألوان أوضح وأكثر راحة للعين */
+        /* المستشار السياحي الذكي — ألوان واضحة ومريحة + خانات فارغة نظيفة */
         /* ===================================================================== */
         .concierge-shell {
             background: linear-gradient(165deg, #0D1529 0%, #070C1A 100%);
@@ -664,16 +674,17 @@
         }
 
         .concierge-tab-btn {
-            padding: 0.72rem 1.5rem;
+            padding: 0.72rem 1.35rem;
             border-radius: 999px;
             font-weight: 800;
-            font-size: 0.88rem;
+            font-size: 0.86rem;
             color: #F1F5F9;
             background: rgba(255, 255, 255, 0.06);
             border: 1.5px solid rgba(212, 175, 55, 0.42);
             transition: all 0.22s ease;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             cursor: pointer;
         }
@@ -700,7 +711,7 @@
             align-items: center;
             justify-content: space-between;
             gap: 0.35rem;
-            font-size: 0.78rem;
+            font-size: 0.8rem;
             font-weight: 700;
             color: #F1F5F9;
             margin-bottom: 0.45rem;
@@ -724,7 +735,7 @@
             border: 1.5px solid rgba(212, 175, 55, 0.42);
             color: #FFFFFF;
             border-radius: 0.9rem;
-            padding: 0.85rem 1rem;
+            padding: 0.82rem 1rem;
             font-size: 0.94rem;
             font-weight: 600;
             outline: none;
@@ -732,7 +743,7 @@
             min-height: 46px;
         }
 
-        .luxury-input::placeholder { color: #94A3B8; font-weight: 500; }
+        .luxury-input::placeholder { color: transparent; }
         .luxury-input:focus {
             border-color: #F3E5AB;
             background: #15223D;
@@ -748,7 +759,7 @@
 
         .concierge-alert-box {
             border-radius: 1rem;
-            padding: 0.9rem 1.15rem;
+            padding: 0.9rem 1.1rem;
             font-size: 0.85rem;
             font-weight: 700;
             line-height: 1.65;
@@ -778,7 +789,7 @@
             color: #050811;
             font-weight: 900;
             border-radius: 999px;
-            padding: 0.9rem 2.2rem;
+            padding: 0.88rem 2rem;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -791,11 +802,11 @@
         .luxury-cta-btn:hover { transform: translateY(-2px); box-shadow: 0 16px 38px rgba(212, 175, 55, 0.5); }
 
         /* ===================================================================== */
-        /* أيقونات السوشيال ميديا بألوانها الحقيقية داخل إطارات ذهبية متحركة */
+        /* أيقونات السوشيال ميديا */
         /* ===================================================================== */
         .social-platform-box {
             border-radius: calc(1.45rem - 1.8px);
-            padding: 1.15rem 0.85rem;
+            padding: 1.05rem 0.75rem;
             height: 100%;
             display: flex;
             flex-direction: column;
@@ -806,15 +817,15 @@
         html.light .social-platform-box { background: #FFFFFF; }
 
         .social-brand-circle {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 999px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             color: #FFFFFF;
-            margin: 0 auto 0.65rem;
+            margin: 0 auto 0.6rem;
             box-shadow: 0 10px 24px -6px rgba(0, 0, 0, 0.55);
             transition: transform 0.3s ease;
         }
@@ -834,7 +845,7 @@
             align-items: center;
             justify-content: space-between;
             width: 100%;
-            padding: 0.44rem 0.72rem;
+            padding: 0.44rem 0.65rem;
             border-radius: 0.72rem;
             font-size: 11px;
             font-weight: 700;
@@ -879,11 +890,11 @@
             color: #F8FAFC;
             font-size: 11px;
             font-weight: 800;
-            padding: 0.45rem 0.85rem;
+            padding: 0.42rem 0.78rem;
             border-radius: 999px;
             display: inline-flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 0.35rem;
             cursor: pointer;
             transition: background-color 0.18s ease, color 0.18s ease;
         }
@@ -973,12 +984,11 @@
 
         .leaflet-popup-tip { background: #0A1224 !important; }
 
-        /* بطاقات العروض فوق الخريطة — ألوان عالية الوضوح ومريحة للعين بدون ضبابية ثقيلة تسبب التهنيج */
         .on-map-offer-card {
             background: rgba(10, 17, 34, 0.97);
             border: 1.5px solid rgba(212, 175, 55, 0.5);
             border-radius: 1.15rem;
-            padding: 0.95rem 1.05rem;
+            padding: 0.9rem 1rem;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -1001,7 +1011,7 @@
             display: none;
             align-items: center;
             justify-content: center;
-            padding: 1rem;
+            padding: 0.85rem;
             overflow-y: auto;
         }
 
@@ -1040,81 +1050,85 @@
 <body class="min-h-screen antialiased selection:bg-brand-gold selection:text-black">
 
     <!-- ========================================================================= -->
-    <!-- شريط التنقل العلوي الفاخر (متجاوب 100% للموبايل والكمبيوتر) -->
+    <!-- شريط التنقل العلوي — متجاوب 100% للهاتف بدون قص أو خروج عن الشاشة -->
     <!-- ========================================================================= -->
     <header class="sticky top-0 z-50 bg-white/95 dark:bg-[#050811]/95 border-b border-brand-gold/25">
-        <div class="max-w-7xl mx-auto px-2.5 sm:px-6 h-16 sm:h-20 flex items-center justify-between gap-1.5 sm:gap-3">
-            <a href="#" class="brand-logo-outer shrink-0 group">
-                <div class="brand-logo-wrap flex items-center gap-1.5 sm:gap-2.5">
-                    <div class="brand-crown-badge w-7 h-7 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-brand-gold via-amber-200 to-amber-600 flex items-center justify-center text-black shrink-0">
-                        <i class="fas fa-crown text-[11px] sm:text-sm"></i>
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2 sm:py-0 sm:h-20 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 sm:gap-3">
+            <a href="#" class="brand-logo-outer shrink-0 group mx-auto sm:mx-0">
+                <div class="brand-logo-wrap flex items-center gap-2 sm:gap-2.5">
+                    <div class="brand-crown-badge w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-brand-gold via-amber-200 to-amber-600 flex items-center justify-center text-black shrink-0">
+                        <i class="fas fa-crown text-xs sm:text-sm"></i>
                     </div>
                     <div>
-                        <div class="font-luxury text-xs sm:text-lg font-extrabold tracking-wider text-slate-900 dark:text-white leading-none">
+                        <div class="font-luxury text-sm sm:text-lg font-extrabold tracking-wider text-slate-900 dark:text-white leading-none">
                             UCUZAKAL <span class="brand-gold-text">TÜRKİYE</span>
                         </div>
-                        <div class="text-[7px] sm:text-[9px] tracking-[0.22em] uppercase text-slate-500 dark:text-brand-goldLight/85 mt-0.5 font-semibold">
+                        <div class="text-[8px] sm:text-[9px] tracking-[0.22em] uppercase text-slate-500 dark:text-brand-goldLight/85 mt-0.5 font-semibold">
                             LUXURY TRAVEL AI
                         </div>
                     </div>
                 </div>
             </a>
 
-            <div class="flex items-center gap-1 sm:gap-2.5 shrink-0">
+            <div class="flex items-center justify-between sm:justify-end gap-1.5 sm:gap-2.5 w-full sm:w-auto">
                 <a id="header-journal-btn" href="https://ucuzakal.pages.dev/blog/"
                    class="journal-nav-outer shrink-0 group" title="UcuzaKal Travel Journal">
                     <span class="journal-nav-inner flex items-center gap-1.5 sm:gap-2">
                         <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-gradient-to-br from-brand-gold via-amber-200 to-amber-600 text-black flex items-center justify-center shrink-0 shadow-sm">
                             <i class="fas fa-book-open text-[9px] sm:text-[10px]"></i>
                         </span>
-                        <span data-i18n="nav_journal" class="text-[10px] sm:text-xs font-extrabold tracking-wide whitespace-nowrap">Seyahat Dergisi</span>
+                        <span data-i18n="nav_journal" class="text-[11px] sm:text-xs font-extrabold tracking-wide whitespace-nowrap">Seyahat Dergisi</span>
                         <i class="journal-nav-arrow fas fa-arrow-up-right-from-square text-[9px] text-brand-gold opacity-85 hidden md:inline"></i>
                     </span>
                 </a>
 
-                <select id="lang-switcher" onchange="window.changeLanguage(this.value)" aria-label="Language Switcher"
-                    class="bg-slate-100 dark:bg-slate-900 border border-brand-gold/45 text-slate-900 dark:text-white text-[10px] sm:text-xs font-bold rounded-full px-1.5 sm:px-3.5 py-1.5 sm:py-2 outline-none focus:border-brand-gold cursor-pointer max-w-[92px] sm:max-w-none">
-                    <option value="tr">🇹🇷 Türkçe</option>
-                    <option value="ar">🇸🇦 العربية</option>
-                    <option value="en">🇬🇧 English</option>
-                    <option value="ru">🇷🇺 Русский</option>
-                    <option value="es">🇪🇸 Español</option>
-                    <option value="ku">☀️ Kurdî</option>
-                    <option value="zh">🇨🇳 中文</option>
-                    <option value="az">🇦🇿 Azərbaycanca</option>
-                    <option value="ka">🇬🇪 ქართული</option>
-                    <option value="fa">🇮🇷 فارسی</option>
-                    <option value="kk">🇰🇿 Қазақша</option>
-                </select>
+                <div class="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
+                    <select id="lang-switcher" onchange="window.changeLanguage(this.value)" aria-label="Language Switcher"
+                        class="bg-slate-100 dark:bg-slate-900 border border-brand-gold/45 text-slate-900 dark:text-white text-[11px] sm:text-xs font-bold rounded-full px-2.5 sm:px-3.5 py-1.5 sm:py-2 outline-none focus:border-brand-gold cursor-pointer">
+                        <option value="tr">🇹🇷 Türkçe</option>
+                        <option value="ar">🇸🇦 العربية</option>
+                        <option value="en">🇬🇧 English</option>
+                        <option value="ru">🇷🇺 Русский</option>
+                        <option value="es">🇪🇸 Español</option>
+                        <option value="ku">☀️ Kurdî</option>
+                        <option value="zh">🇨🇳 中文</option>
+                        <option value="az">🇦🇿 Azərbaycanca</option>
+                        <option value="ka">🇬🇪 ქართული</option>
+                        <option value="fa">🇮🇷 فارسی</option>
+                        <option value="kk">🇰🇿 Қазақша</option>
+                    </select>
 
-                <button onclick="window.toggleTheme()" aria-label="Toggle Theme"
-                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-100 dark:bg-slate-900 border border-brand-gold/35 flex items-center justify-center hover:border-brand-gold transition cursor-pointer shrink-0">
-                    <i id="theme-icon" class="fas fa-sun text-xs sm:text-sm text-brand-gold"></i>
-                </button>
+                    <button onclick="window.toggleTheme()" aria-label="Toggle Theme"
+                        class="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-slate-100 dark:bg-slate-900 border border-brand-gold/35 flex items-center justify-center hover:border-brand-gold transition cursor-pointer shrink-0">
+                        <i id="theme-icon" class="fas fa-sun text-xs sm:text-sm text-brand-gold"></i>
+                    </button>
 
-                <button id="auth-btn" onclick="window.loginWithGoogle()"
-                    class="bg-slate-900 dark:bg-brand-gold/15 text-white dark:text-brand-gold border border-brand-gold/45 hover:bg-brand-gold hover:text-black transition rounded-full px-2 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer shrink-0">
-                    <img id="auth-avatar" src="" alt="" class="hidden w-5 h-5 rounded-full object-cover border border-brand-gold">
-                    <i id="auth-google-icon" class="fab fa-google"></i>
-                    <span id="auth-text" data-i18n="google_login" class="hidden sm:inline">Gmail Girişi</span>
-                </button>
+                    <button id="auth-btn" onclick="window.loginWithGoogle()"
+                        class="bg-slate-900 dark:bg-brand-gold/15 text-white dark:text-brand-gold border border-brand-gold/45 hover:bg-brand-gold hover:text-black transition rounded-full px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer shrink-0">
+                        <img id="auth-avatar" src="" alt="" class="hidden w-5 h-5 rounded-full object-cover border border-brand-gold">
+                        <i id="auth-google-icon" class="fab fa-google"></i>
+                        <span id="auth-text" data-i18n="google_login" class="hidden sm:inline">Gmail Girişi</span>
+                    </button>
+                </div>
             </div>
         </div>
     </header>
 
     <!-- ========================================================================= -->
-    <!-- الواجهة الرئيسية (تحميل بأولوية قصوى وعرض احترافي للموبايل والكمبيوتر) -->
+    <!-- الواجهة الرئيسية — صورة كاملة بلا قص على الهاتف ونص واضح ومرتب -->
     <!-- ========================================================================= -->
     <section class="hero-stage">
         <div class="hero-image-canvas">
-            <img src="./hero-bg.png.png" alt="UcuzaKal Türkiye" fetchpriority="high" decoding="async" class="hero-full-img">
-            <div class="hero-scrim-overlay"></div>
+            <div class="relative w-full">
+                <img src="./hero-bg.png.png" alt="UcuzaKal Türkiye" fetchpriority="high" decoding="async" class="hero-full-img">
+                <div class="hero-scrim-overlay hidden md:block"></div>
+            </div>
 
-            <div class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 pb-6 sm:pb-12">
-                <span class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-black/70 border border-brand-gold/55 text-brand-goldLight text-[9px] sm:text-xs font-extrabold tracking-[0.18em] uppercase mb-2 sm:mb-5 shadow-lg">
+            <div class="relative md:absolute md:inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8 py-5 sm:py-8 md:pb-12 bg-gradient-to-b from-[#04070F]/90 to-[#04070F] md:bg-none">
+                <span class="inline-flex items-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full bg-black/70 border border-brand-gold/55 text-brand-goldLight text-[10px] sm:text-xs font-extrabold tracking-[0.16em] uppercase mb-2.5 sm:mb-4 shadow-lg">
                     <i class="fas fa-sparkles text-brand-gold"></i> UCUZAKAL TÜRKİYE • AI CONCIERGE
                 </span>
-                <h1 data-i18n="hero_title" class="font-luxury text-lg sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white max-w-4xl leading-snug mb-2 sm:mb-4 drop-shadow-[0_4px_18px_rgba(0,0,0,0.9)]">
+                <h1 data-i18n="hero_title" class="font-luxury text-xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white max-w-4xl leading-snug mb-2 sm:mb-4 drop-shadow-[0_4px_18px_rgba(0,0,0,0.9)]">
                     Seçkin Rotaları Lüksle Keşfedin
                 </h1>
                 <p data-i18n="hero_subtitle" class="text-slate-100 text-xs sm:text-base md:text-lg max-w-2xl mx-auto font-medium leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)]">
@@ -1125,9 +1139,9 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- المستشار السياحي الذكي (قفل المدخلات الإجبارية + خانة عدد الأفراد + دقة كاملة) -->
+    <!-- المستشار السياحي الذكي (خانات فارغة تماماً بدون أي أمثلة + قفل صارم) -->
     <!-- ========================================================================= -->
-    <section id="smart-concierge" class="max-w-6xl mx-auto px-3 sm:px-6 -mt-3 sm:-mt-10 relative z-20 mb-14 sm:mb-24">
+    <section id="smart-concierge" class="max-w-6xl mx-auto px-3 sm:px-6 mt-4 md:-mt-10 relative z-20 mb-14 sm:mb-24">
         <div class="gold-animated-frame concierge-frame">
             <div class="concierge-shell p-4 sm:p-8 md:p-10">
                 <div class="text-center mb-6 sm:mb-8">
@@ -1139,18 +1153,18 @@
                     </p>
 
                     <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mt-5">
-                        <button id="tab-hotel" type="button" onclick="window.switchConcierge('hotel')" class="concierge-tab-btn active">
+                        <button id="tab-hotel" type="button" onclick="window.switchConcierge('hotel')" class="concierge-tab-btn active flex-1 sm:flex-none">
                             <i class="fas fa-hotel"></i>
                             <span data-i18n="tab_hotel">Konaklama Asistanı</span>
                         </button>
-                        <button id="tab-flight" type="button" onclick="window.switchConcierge('flight')" class="concierge-tab-btn">
+                        <button id="tab-flight" type="button" onclick="window.switchConcierge('flight')" class="concierge-tab-btn flex-1 sm:flex-none">
                             <i class="fas fa-plane"></i>
                             <span data-i18n="tab_flight">Uçuş Asistanı</span>
                         </button>
                     </div>
                 </div>
 
-                <!-- لوحة مستشار الفنادق والمنتجعات والشقق (Klook + Kayak) -->
+                <!-- لوحة مستشار الفنادق والمنتجعات والشقق (خانات فارغة تماماً) -->
                 <div id="panel-hotel" class="concierge-panel active">
                     <div id="hc-validation-msg" class="hidden concierge-alert-box is-error"></div>
 
@@ -1159,19 +1173,19 @@
                             <label for="hc-budget" class="concierge-label">
                                 <span><span data-i18n="c_budget">Bütçeniz (Gecelik USD)</span><span class="req-star">*</span></span>
                             </label>
-                            <input id="hc-budget" type="number" min="1" step="1" value="" data-i18n-placeholder="ph_hotel_budget" placeholder="" oninput="window.clearFieldError(this); window.calculateTotal()" autocomplete="off" class="luxury-input">
+                            <input id="hc-budget" type="number" min="1" step="1" value="" placeholder="" oninput="window.clearFieldError(this); window.calculateTotal()" autocomplete="off" class="luxury-input">
                         </div>
                         <div>
                             <label for="hc-days" class="concierge-label">
                                 <span><span data-i18n="c_days">Konaklama Süresi (Gün)</span><span class="req-star">*</span></span>
                             </label>
-                            <input id="hc-days" type="number" min="1" max="60" value="" data-i18n-placeholder="ph_hotel_days" placeholder="" oninput="window.clearFieldError(this); window.calculateTotal()" autocomplete="off" class="luxury-input">
+                            <input id="hc-days" type="number" min="1" max="60" value="" placeholder="" oninput="window.clearFieldError(this); window.calculateTotal()" autocomplete="off" class="luxury-input">
                         </div>
                         <div>
                             <label for="hc-guests" class="concierge-label">
                                 <span><span data-i18n="c_guests">Kişi Sayısı</span><span class="req-star">*</span></span>
                             </label>
-                            <input id="hc-guests" type="number" min="1" max="20" value="" data-i18n-placeholder="ph_hotel_guests" placeholder="" oninput="window.clearFieldError(this); window.calculateTotal()" autocomplete="off" class="luxury-input">
+                            <input id="hc-guests" type="number" min="1" max="20" value="" placeholder="" oninput="window.clearFieldError(this); window.calculateTotal()" autocomplete="off" class="luxury-input">
                         </div>
                     </div>
 
@@ -1301,7 +1315,7 @@
                     </div>
                 </div>
 
-                <!-- لوحة مستشار الطيران (تركيا + 35 دولة محددة + قبول جميع اللغات + قفل المدينة والميزانية والدرجة) -->
+                <!-- لوحة مستشار الطيران (خانات فارغة تماماً بدون أي أمثلة) -->
                 <div id="panel-flight" class="concierge-panel">
                     <div id="fc-validation-msg" class="hidden concierge-alert-box is-error"></div>
 
@@ -1330,14 +1344,14 @@
                                     <span><span data-i18n="f_city_label">İl / Şehir</span><span class="req-star">*</span></span>
                                 </label>
                                 <select id="fc-from-tr-city" onchange="window.clearFieldError(this)" class="luxury-input hidden"></select>
-                                <input id="fc-from-world-city" type="text" value="" data-i18n-placeholder="ph_city" placeholder="" oninput="window.clearFieldError(this)" autocomplete="off" class="luxury-input">
+                                <input id="fc-from-world-city" type="text" value="" placeholder="" oninput="window.clearFieldError(this)" autocomplete="off" class="luxury-input">
                             </div>
                             <div>
                                 <label for="fc-from-airport" class="concierge-label">
                                     <span data-i18n="f_airport_label">Havalimanı Adı</span>
                                     <span data-i18n="opt_badge" class="opt-tag">(İsteğe bağlı)</span>
                                 </label>
-                                <input id="fc-from-airport" type="text" value="" data-i18n-placeholder="ph_airport" placeholder="" autocomplete="off" class="luxury-input">
+                                <input id="fc-from-airport" type="text" value="" placeholder="" autocomplete="off" class="luxury-input">
                             </div>
                         </div>
 
@@ -1357,14 +1371,14 @@
                                     <span><span data-i18n="f_city_label">İl / Şehir</span><span class="req-star">*</span></span>
                                 </label>
                                 <select id="fc-to-tr-city" onchange="window.clearFieldError(this)" class="luxury-input"></select>
-                                <input id="fc-to-world-city" type="text" value="" data-i18n-placeholder="ph_city" placeholder="" oninput="window.clearFieldError(this)" autocomplete="off" class="luxury-input hidden">
+                                <input id="fc-to-world-city" type="text" value="" placeholder="" oninput="window.clearFieldError(this)" autocomplete="off" class="luxury-input hidden">
                             </div>
                             <div>
                                 <label for="fc-to-airport" class="concierge-label">
                                     <span data-i18n="f_airport_label">Havalimanı Adı</span>
                                     <span data-i18n="opt_badge" class="opt-tag">(İsteğe bağlı)</span>
                                 </label>
-                                <input id="fc-to-airport" type="text" value="" data-i18n-placeholder="ph_airport" placeholder="" autocomplete="off" class="luxury-input">
+                                <input id="fc-to-airport" type="text" value="" placeholder="" autocomplete="off" class="luxury-input">
                             </div>
                         </div>
                     </div>
@@ -1374,14 +1388,14 @@
                             <label for="fc-budget" class="concierge-label">
                                 <span><span data-i18n="f_budget">Bütçeniz (USD)</span><span class="req-star">*</span></span>
                             </label>
-                            <input id="fc-budget" type="number" min="1" step="1" value="" data-i18n-placeholder="ph_flight_budget" placeholder="" oninput="window.clearFieldError(this)" autocomplete="off" class="luxury-input">
+                            <input id="fc-budget" type="number" min="1" step="1" value="" placeholder="" oninput="window.clearFieldError(this)" autocomplete="off" class="luxury-input">
                         </div>
                         <div>
                             <label for="fc-class" class="concierge-label">
                                 <span><span data-i18n="f_class">Uçuş Sınıfı</span><span class="req-star">*</span></span>
                             </label>
                             <select id="fc-class" onchange="window.clearFieldError(this)" class="luxury-input">
-                                <option value="" data-i18n="class_select_placeholder">-- Bilet Sınıfını Seçin --</option>
+                                <option value=""></option>
                                 <option value="economy" data-i18n="class_eco">Ekonomi</option>
                                 <option value="premium" data-i18n="class_prem">Premium Ekonomi</option>
                                 <option value="business" data-i18n="class_bus">Business Class</option>
@@ -1393,7 +1407,7 @@
                                 <span data-i18n="f_airline">Havayolu</span>
                                 <span data-i18n="opt_badge" class="opt-tag">(İsteğe bağlı)</span>
                             </label>
-                            <input id="fc-airline" type="text" value="" data-i18n-placeholder="ph_airline" placeholder="" autocomplete="off" class="luxury-input">
+                            <input id="fc-airline" type="text" value="" placeholder="" autocomplete="off" class="luxury-input">
                         </div>
                     </div>
 
@@ -1411,43 +1425,43 @@
     <!-- ========================================================================= -->
     <!-- قسم عروض الفنادق (6 بطاقات بإطارات ذهبية فاخرة) -->
     <!-- ========================================================================= -->
-    <section id="hotels-section" class="max-w-7xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
-        <div class="text-center mb-10 sm:mb-14">
+    <section id="hotels-section" class="max-w-7xl mx-auto px-3 sm:px-6 mb-16 sm:mb-28">
+        <div class="text-center mb-8 sm:mb-14">
             <span data-i18n="hotels_sub" class="text-brand-gold text-[11px] font-extrabold tracking-[0.32em] uppercase block mb-2">ÖZEL SEÇKİ</span>
             <h2 data-i18n="hotels_heading" class="font-luxury text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
                 Özel Seçki Koleksiyonu
             </h2>
             <div class="gold-divider"></div>
         </div>
-        <div id="hotels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+        <div id="hotels-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8"></div>
     </section>
 
     <!-- ========================================================================= -->
     <!-- قسم عروض الطيران (6 بطاقات بإطارات ذهبية فاخرة) -->
     <!-- ========================================================================= -->
-    <section id="flights-section" class="max-w-7xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
-        <div class="text-center mb-10 sm:mb-14">
+    <section id="flights-section" class="max-w-7xl mx-auto px-3 sm:px-6 mb-16 sm:mb-28">
+        <div class="text-center mb-8 sm:mb-14">
             <span data-i18n="flights_sub" class="text-brand-gold text-[11px] font-extrabold tracking-[0.32em] uppercase block mb-2">GÖKLERDEKİ ZARAFET</span>
             <h2 data-i18n="flights_heading" class="font-luxury text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
                 Ayrıcalıklı Uçuşlar
             </h2>
             <div class="gold-divider"></div>
         </div>
-        <div id="flights-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"></div>
+        <div id="flights-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8"></div>
     </section>
 
     <!-- ========================================================================= -->
-    <!-- قسم المدونة الفاخرة (قالبان تحريريان + قراءة بملء الشاشة) -->
+    <!-- قسم المدونة الفاخرة -->
     <!-- ========================================================================= -->
-    <section id="blog-section" class="max-w-7xl mx-auto px-4 sm:px-6 mb-20 sm:mb-28">
-        <div class="text-center mb-10 sm:mb-14">
+    <section id="blog-section" class="max-w-7xl mx-auto px-3 sm:px-6 mb-16 sm:mb-28">
+        <div class="text-center mb-8 sm:mb-14">
             <span data-i18n="blog_sub" class="text-brand-gold text-[11px] font-extrabold tracking-[0.32em] uppercase block mb-2">SEYAHAT REHBERİ</span>
             <h2 data-i18n="blog_heading" class="font-luxury text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
                 UcuzaKal Seyahat Günlüğü
             </h2>
             <div class="gold-divider"></div>
         </div>
-        <div id="blog-container" class="grid grid-cols-1 lg:grid-cols-2 gap-8"></div>
+        <div id="blog-container" class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8"></div>
         <div id="blog-pagination" class="hidden flex items-center justify-center gap-3 mt-10"></div>
         <div class="text-center mt-10">
             <a id="section-journal-btn" href="https://ucuzakal.pages.dev/blog/" class="luxury-cta-btn text-xs sm:text-sm">
@@ -1461,8 +1475,8 @@
     <!-- ========================================================================= -->
     <!-- من نحن + التقييمات -->
     <!-- ========================================================================= -->
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 mb-20">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    <section class="max-w-6xl mx-auto px-3 sm:px-6 mb-16 sm:mb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
             <div class="gold-animated-frame">
                 <div class="ultra-luxury-card p-6 sm:p-9">
                     <div>
@@ -1515,7 +1529,7 @@
             <i class="fas fa-times"></i>
         </button>
 
-        <div class="w-full max-w-xl text-center px-5 sm:px-8 py-9 rounded-[2rem] bg-[#070C1A]/95 border border-brand-gold/50 shadow-[0_30px_90px_rgba(0,0,0,0.9)]">
+        <div class="w-full max-w-xl text-center px-5 sm:px-8 py-8 rounded-[2rem] bg-[#070C1A]/95 border border-brand-gold/50 shadow-[0_30px_90px_rgba(0,0,0,0.9)]">
             <div class="redirect-orbital-stage">
                 <div class="redirect-ring-outer"></div>
                 <div class="redirect-ring-inner"></div>
@@ -1582,8 +1596,8 @@
                 <h1 id="modal-title" class="font-luxury text-2xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight text-center mb-4"></h1>
                 <div id="modal-meta-bar" class="flex flex-wrap items-center justify-center gap-3 text-xs font-bold text-slate-500 dark:text-brand-goldLight/85 mb-6 sm:mb-8"></div>
 
-                <div class="w-full rounded-[1.5rem] overflow-hidden border border-brand-gold/35 shadow-2xl mb-8 sm:mb-10 bg-black/40 aspect-video">
-                    <img id="modal-img" src="" alt="" class="w-full h-full object-cover block">
+                <div class="w-full rounded-[1.5rem] overflow-hidden border border-brand-gold/35 shadow-2xl mb-8 sm:mb-10 bg-[#060B16] aspect-video">
+                    <img id="modal-img" src="" alt="" class="w-full h-full object-contain block">
                 </div>
 
                 <div id="modal-body" class="article-body-content max-w-3xl mx-auto text-slate-800 dark:text-slate-200"></div>
@@ -1612,12 +1626,12 @@
 
             <div id="spotlight-status-banner" class="hidden px-5 py-3 text-xs font-bold text-center border-b border-brand-gold/25"></div>
 
-            <div class="relative w-full h-56 sm:h-72 bg-[#04070F] overflow-hidden">
-                <img id="spotlight-img" src="" alt="UcuzaKal Deal" class="w-full h-full object-cover">
-                <span id="spotlight-badge" class="absolute top-4 left-4 bg-brand-gold text-black text-[11px] font-extrabold px-3 py-1 rounded-full shadow-lg"></span>
+            <div class="relative w-full aspect-video bg-[#04070F] overflow-hidden">
+                <img id="spotlight-img" src="" alt="UcuzaKal Deal" class="w-full h-full object-contain">
+                <span id="spotlight-badge" class="absolute top-3 left-3 bg-brand-gold text-black text-[11px] font-extrabold px-3 py-1 rounded-full shadow-lg"></span>
             </div>
 
-            <div class="p-6 sm:p-7">
+            <div class="p-5 sm:p-7">
                 <div id="spotlight-city" class="text-brand-gold text-[11px] font-extrabold tracking-[0.28em] uppercase mb-1.5"></div>
                 <h3 id="spotlight-title" class="font-luxury text-xl sm:text-2xl font-extrabold text-white mb-2 leading-snug"></h3>
                 <div id="spotlight-sub" class="text-xs text-slate-300 font-semibold mb-3"></div>
@@ -1648,7 +1662,7 @@
     <div id="copy-toast"><i class="fas fa-check-circle text-emerald-400 mx-1"></i> <span id="copy-toast-text">Link kopyalandı!</span></div>
 
     <!-- ========================================================================= -->
-    <!-- شاشة الخريطة التفاعلية الحية (سلسة وسريعة بدون تهنيج) -->
+    <!-- شاشة الخريطة التفاعلية الحية -->
     <!-- ========================================================================= -->
     <div id="cinematic-overlay">
         <div id="concierge-real-map"></div>
@@ -1692,10 +1706,10 @@
             </div>
         </div>
 
-        <div class="mt-auto relative z-20 pointer-events-none p-2.5 sm:p-4 space-y-2.5 max-h-[65dvh] overflow-y-auto" style="-webkit-overflow-scrolling: touch;">
+        <div class="mt-auto relative z-20 pointer-events-none p-2.5 sm:p-4 space-y-2.5 max-h-[60dvh] overflow-y-auto" style="-webkit-overflow-scrolling: touch;">
             <div id="persuasion-card-box" class="hidden pointer-events-auto max-w-5xl mx-auto rounded-2xl bg-[#081022]/96 border border-brand-gold/50 px-3.5 sm:px-4 py-2.5 shadow-2xl">
                 <div class="flex flex-wrap items-center justify-between gap-3">
-                    <div class="flex items-center gap-2.5 flex-1 min-w-[210px]">
+                    <div class="flex items-center gap-2.5 flex-1 min-w-[200px]">
                         <div class="w-8 h-8 rounded-full bg-brand-gold/20 border border-brand-gold/60 text-brand-gold flex items-center justify-center shrink-0">
                             <i class="fas fa-crown text-xs"></i>
                         </div>
@@ -1729,14 +1743,14 @@
     <!-- ========================================================================= -->
     <!-- التذييل وقسم السوشيال ميديا الـ 18 -->
     <!-- ========================================================================= -->
-    <footer class="border-t border-brand-gold/25 bg-slate-100/80 dark:bg-[#03050B] py-14 px-4 sm:px-6 text-center">
+    <footer class="border-t border-brand-gold/25 bg-slate-100/80 dark:bg-[#03050B] py-12 sm:py-14 px-3 sm:px-6 text-center">
         <div class="max-w-7xl mx-auto">
             <h3 data-i18n="global_channels" class="font-luxury text-base sm:text-xl font-extrabold text-brand-gold tracking-[0.18em] uppercase mb-2">
                 Global Resmi Kanallarımız
             </h3>
             <div class="gold-divider mb-8"></div>
 
-            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 mb-10">
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-4 mb-10">
                 <div class="gold-animated-frame social-frame">
                     <div class="social-platform-box">
                         <div class="social-brand-circle brand-fb"><i class="fab fa-facebook-f"></i></div>
