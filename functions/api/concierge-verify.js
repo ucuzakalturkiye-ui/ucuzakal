@@ -1,10 +1,10 @@
 /**
- * UcuzaKal Türkiye — Live Real-Time Concierge Verification Edge API
- * ==================================================================
- * - Runs FREE on Cloudflare Pages Functions (100,000 req/day | 0 Firebase | 0 GitHub quota).
- * - Strictly enforces the 8 exclusive approved partners + Aviasales (marker=798779, trs=597953).
- * - Live HTTP 200 & non-expired availability gate for Flights, Stays, Transfers, Activities, Cars & Airalo eSIM.
- * - Zero fake offers, zero 404s, zero blank search pages, strict budget enforcement.
+ * UcuzaKal Türkiye — Live Real-Time Concierge Verification Edge API (v2.0)
+ * =========================================================================
+ * - Zero partner names exposed to the visitor (100% UcuzaKal white-label output).
+ * - Automatic city-code resolution for Aviasales (SVO/VKO/DME -> MOW, SAW -> IST, etc.).
+ * - Reads verified stays from live_deals_feed.json (mainHotels + conciergeHotels) + live KKday stays.
+ * - Strict budget enforcement + exclusive approved affiliate gateways (marker=798779, trs=597953).
  */
 
 const MARKER = "798779";
@@ -20,6 +20,19 @@ const GATEWAYS = {
     airalo:    `https://tp.media/r?campaign_id=541&marker=${MARKER}&p=8310&trs=${TRS}&u=`,
     localrent: `https://tp.media/r?campaign_id=87&marker=${MARKER}&p=2043&trs=${TRS}&u=`,
     getrent:   `https://tp.media/r?campaign_id=222&marker=${MARKER}&p=5996&trs=${TRS}&u=`,
+};
+
+// تحويل مطار المدينة لرمز المدينة المعتمد في Aviasales لضمان جلب الأسعار الحية دائماً
+const AIRPORT_TO_CITY_CODE = {
+    SVO: "MOW", VKO: "MOW", DME: "MOW", ZIA: "MOW",
+    SAW: "IST",
+    LHR: "LON", LGW: "LON", STN: "LON", LTN: "LON",
+    CDG: "PAR", ORY: "PAR",
+    JFK: "NYC", EWR: "NYC", LGA: "NYC",
+    FCO: "ROM", CIA: "ROM",
+    MXP: "MIL", LIN: "MIL", BGY: "MIL",
+    DWC: "DXB",
+    HND: "TYO", NRT: "TYO",
 };
 
 const CITY_AIRPORT_GROUPS = {
@@ -45,7 +58,6 @@ const AIRLINE_NAMES = {
     J2: "Azerbaijan Airlines", KC: "Air Astana",
 };
 
-// الدول المدعومة فعلياً في Airalo (تُستبعد الدول غير المدعومة مثل RU لمنع 404)
 const AIRALO_COUNTRY_SLUGS = {
     TR: "turkey", EG: "egypt", SA: "saudi-arabia", AE: "united-arab-emirates",
     QA: "qatar", KW: "kuwait", BH: "bahrain", OM: "oman", JO: "jordan",
@@ -56,7 +68,6 @@ const AIRALO_COUNTRY_SLUGS = {
     US: "united-states", CA: "canada", CN: "china", JP: "japan", TH: "thailand",
 };
 
-// المدن المدعومة فعلياً في Welcome Pickups
 const WELCOME_PICKUPS_SLUGS = {
     istanbul: "istanbul", antalya: "antalya", izmir: "izmir", bodrum: "bodrum",
     dalaman: "dalaman", ankara: "ankara", dubai: "dubai", "abu dhabi": "abu-dhabi",
@@ -67,7 +78,6 @@ const WELCOME_PICKUPS_SLUGS = {
     "new york": "new-york",
 };
 
-// صفحات المدن المعتمدة في Tiqets
 const TIQETS_CITY_SLUGS = {
     istanbul: "istanbul-c60711", antalya: "antalya-c79888", izmir: "izmir-c80036",
     bodrum: "bodrum-c79923", cappadocia: "cappadocia-c166298", nevsehir: "cappadocia-c166298",
@@ -77,7 +87,6 @@ const TIQETS_CITY_SLUGS = {
     amsterdam: "amsterdam-c75061", berlin: "berlin-c65144", vienna: "vienna-c60335",
 };
 
-// صفحات المدن المعتمدة في Localrent داخل تركيا
 const LOCALRENT_TR_SLUGS = {
     istanbul: "istanbul", antalya: "antalya", izmir: "izmir", bodrum: "bodrum",
     dalaman: "dalaman", fethiye: "fethiye", marmaris: "marmaris", alanya: "alanya",
@@ -88,7 +97,7 @@ const LOCALRENT_TR_SLUGS = {
 const BROKEN_SIGNATURES = [
     "page not found", "error 404", "404 not found", "promo not found",
     "this activity is no longer available", "product has been removed",
-    "no longer available", "sold out", "sorry, we couldn't find",
+    "no longer available", "sold out",
 ];
 
 const NON_STAY_BLOCKLIST = [
@@ -103,7 +112,16 @@ const NON_STAY_BLOCKLIST = [
 const STAY_REQUIRED_WORDS = [
     "hotel", "resort", "apart", "aparthotel", "residence", "suite", "suites",
     "villa", "chalet", "bungalow", "stay", "accommodation", "lodge", "palace", "otel",
+    "فندق", "منتجع", "شقق", "إقامة",
 ];
+
+function normCity(s) {
+    return String(s || "")
+        .replace(/İ/g, "i").replace(/I/g, "i").replace(/ı/g, "i")
+        .replace(/ğ/gi, "g").replace(/ü/gi, "u").replace(/ş/gi, "s")
+        .replace(/ö/gi, "o").replace(/ç/gi, "c")
+        .toLowerCase().trim();
+}
 
 function wrapAffiliate(partner, targetUrl) {
     const gw = GATEWAYS[partner];
@@ -133,11 +151,10 @@ async function fetchWithTimeout(url, opts = {}, ms = 6500) {
     }
 }
 
-// فحص حيّ لرابط خارجي للتأكد أنه HTTP 200 وغير منتهٍ ولا يحتوي على 404 (مع كاش حافة 15 دقيقة)
-async function verifyLiveUrl(targetUrl, requiredTerms = []) {
+async function verifyLiveUrl(targetUrl, allowWafChallenge = true) {
     if (!targetUrl || !targetUrl.startsWith("http")) return false;
     const cache = caches.default;
-    const cacheKey = new Request(`https://ucuzakal-verify.internal/?u=${encodeURIComponent(targetUrl)}`);
+    const cacheKey = new Request(`https://ucuzakal-verify-v2.internal/?u=${encodeURIComponent(targetUrl)}`);
     try {
         const cached = await cache.match(cacheKey);
         if (cached) {
@@ -156,17 +173,16 @@ async function verifyLiveUrl(targetUrl, requiredTerms = []) {
                 "Accept": "text/html,application/xhtml+xml;q=0.9,*/*;q=0.8",
                 "Accept-Language": "en-US,en;q=0.9",
             },
-        }, 6500);
+        }, 5500);
 
         const finalUrl = (res.url || targetUrl).toLowerCase();
-        if (res.status >= 200 && res.status < 400 && !/\/404(\b|$|\?)/.test(finalUrl)) {
-            const html = (await res.text()).slice(0, 35000).toLowerCase();
-            const hasBroken = BROKEN_SIGNATURES.some(sig => html.includes(sig));
-            const matchesTerms = requiredTerms.length === 0 || requiredTerms.some(term => html.includes(term.toLowerCase()) || finalUrl.includes(term.toLowerCase()));
-            ok = !hasBroken && matchesTerms;
-        } else if (res.status === 403 || res.status === 429) {
-            // بعض المواقع المحمية بـ WAF ترد 403 على السيرفر لكن الصفحة حقيقية وموثّقة لدينا
-            ok = requiredTerms.length === 0;
+        if (res.status === 404 || res.status === 410 || res.status >= 500 || /\/404(\b|$|\?)/.test(finalUrl)) {
+            ok = false;
+        } else if (res.status >= 200 && res.status < 400) {
+            const html = (await res.text()).slice(0, 30000).toLowerCase();
+            ok = !BROKEN_SIGNATURES.some(sig => html.includes(sig));
+        } else if ((res.status === 403 || res.status === 429) && allowWafChallenge) {
+            ok = true;
         }
     } catch {
         ok = false;
@@ -194,21 +210,21 @@ function buildExactAviasalesUrl(orig, dest, depDate, cabinClass, rawApiLink) {
     const clsMap = { economy: "", premium: "W", business: "C", first: "F" };
     const clsSuffix = clsMap[String(cabinClass || "economy").toLowerCase()] ?? "";
 
-    // قبول رابط Aviasales المباشر للدرجة الاقتصادية فقط إذا طابق رمزي المطارين حرفياً
     if (clsSuffix === "" && rawApiLink) {
         const dec = decodeURIComponent(String(rawApiLink)).toUpperCase();
-        const exactRx = new RegExp(`/SEARCH/${o}\\d{4}${d}(?:[0-9]|$)`);
+        const exactRx = new RegExp(`/SEARCH/[A-Z]{3}\\d{4}[A-Z]{3}(?:[0-9]|$)`);
         if (exactRx.test(dec)) {
-            return rawApiLink.startsWith("http") ? rawApiLink : `https://www.aviasales.com${rawApiLink}`;
+            const m = dec.match(/\/SEARCH\/([A-Z]{3})\d{4}([A-Z]{3})/);
+            if (m && airportMatches(m[1], o) && airportMatches(m[2], d)) {
+                return rawApiLink.startsWith("http") ? rawApiLink : `https://www.aviasales.com${rawApiLink}`;
+            }
         }
     }
 
     let ddmm = "";
     try {
         const dt = depDate ? new Date(`${depDate.slice(0, 10)}T00:00:00Z`) : new Date(Date.now() + 14 * 86400000);
-        const dd = String(dt.getUTCDate()).padStart(2, "0");
-        const mm = String(dt.getUTCMonth() + 1).padStart(2, "0");
-        ddmm = `${dd}${mm}`;
+        ddmm = `${String(dt.getUTCDate()).padStart(2, "0")}${String(dt.getUTCMonth() + 1).padStart(2, "0")}`;
     } catch {
         const dt = new Date(Date.now() + 14 * 86400000);
         ddmm = `${String(dt.getUTCDate()).padStart(2, "0")}${String(dt.getUTCMonth() + 1).padStart(2, "0")}`;
@@ -216,19 +232,18 @@ function buildExactAviasalesUrl(orig, dest, depDate, cabinClass, rawApiLink) {
     return `https://www.aviasales.com/search/${o}${ddmm}${d}1${clsSuffix}`;
 }
 
-async function queryAviasalesLive(orig, dest, token, preferredAirline) {
+async function queryAviasalesForPair(qOrig, qDest, origReq, destReq, token) {
     const todayStr = new Date().toISOString().slice(0, 10);
     const nextMonthDt = new Date();
     nextMonthDt.setUTCDate(1);
     nextMonthDt.setUTCMonth(nextMonthDt.getUTCMonth() + 1);
     const nextMonth = nextMonthDt.toISOString().slice(0, 7);
-
     const candidates = [];
 
-    // 1) Aviasales v3 prices_for_dates (النافذة الحالية + الشهر القادم)
+    // 1) v3 prices_for_dates
     for (const depMonth of ["", nextMonth]) {
         const qs = new URLSearchParams({
-            origin: orig, destination: dest, currency: "usd",
+            origin: qOrig, destination: qDest, currency: "usd",
             one_way: "true", unique: "false", sorting: "price",
             direct: "false", limit: "12", token,
         });
@@ -236,17 +251,16 @@ async function queryAviasalesLive(orig, dest, token, preferredAirline) {
         try {
             const r = await fetchWithTimeout(`https://api.travelpayouts.com/aviasales/v3/prices_for_dates?${qs}`, {
                 headers: { "Accept": "application/json", "X-Access-Token": token },
-            }, 6500);
+            }, 6000);
             if (r.ok) {
                 const payload = await r.json();
-                const items = Array.isArray(payload?.data) ? payload.data : [];
-                for (const it of items) {
-                    const rO = String(it.origin_airport || it.origin || orig).toUpperCase();
-                    const rD = String(it.destination_airport || it.destination || dest).toUpperCase();
+                for (const it of (Array.isArray(payload?.data) ? payload.data : [])) {
+                    const rO = String(it.origin_airport || it.origin || qOrig).toUpperCase();
+                    const rD = String(it.destination_airport || it.destination || qDest).toUpperCase();
                     const depAt = String(it.departure_at || "").slice(0, 10);
                     const price = Number(it.price);
                     if (!price || !depAt || depAt < todayStr) continue;
-                    if (!airportMatches(rO, orig) || !airportMatches(rD, dest)) continue;
+                    if (!airportMatches(rO, origReq) || !airportMatches(rD, destReq)) continue;
                     candidates.push({
                         origIata: rO, destIata: rD,
                         priceUsd: Math.round(price),
@@ -255,146 +269,153 @@ async function queryAviasalesLive(orig, dest, token, preferredAirline) {
                         flightNumber: String(it.flight_number || ""),
                         departureDate: depAt,
                         rawLink: String(it.link || ""),
-                        source: "aviasales_v3_live",
+                        source: "live_v3",
                     });
                 }
             }
         } catch {}
-        if (candidates.length > 0) break;
+        if (candidates.length > 0) return candidates;
     }
 
-    // 2) Aviasales v1 cheap fallback
-    if (candidates.length === 0) {
-        try {
-            const qs = new URLSearchParams({ origin: orig, destination: dest, currency: "usd", token });
-            const r = await fetchWithTimeout(`https://api.travelpayouts.com/v1/prices/cheap?${qs}`, {
-                headers: { "Accept": "application/json", "X-Access-Token": token },
-            }, 6000);
-            if (r.ok) {
-                const payload = await r.json();
-                const bucket = payload?.data?.[dest];
-                if (bucket && typeof bucket === "object") {
-                    for (const [k, it] of Object.entries(bucket)) {
-                        const depAt = String(it.departure_at || "").slice(0, 10);
-                        const price = Number(it.price);
-                        if (!price || !depAt || depAt < todayStr) continue;
-                        candidates.push({
-                            origIata: orig, destIata: dest,
-                            priceUsd: Math.round(price),
-                            transfers: Number.isFinite(Number(k)) ? Number(k) : 0,
-                            airlineCode: String(it.airline || "").toUpperCase(),
-                            flightNumber: String(it.flight_number || ""),
-                            departureDate: depAt,
-                            rawLink: "",
-                            source: "aviasales_v1_live",
-                        });
-                    }
-                }
-            }
-        } catch {}
-    }
-
-    // 3) Aviasales v2 latest fallback
-    if (candidates.length === 0) {
-        try {
-            const qs = new URLSearchParams({
-                origin: orig, destination: dest, currency: "usd",
-                one_way: "true", period_type: "year", sorting: "price",
-                limit: "8", show_to_affiliates: "true", token,
-            });
-            const r = await fetchWithTimeout(`https://api.travelpayouts.com/v2/prices/latest?${qs}`, {
-                headers: { "Accept": "application/json", "X-Access-Token": token },
-            }, 6000);
-            if (r.ok) {
-                const payload = await r.json();
-                for (const it of (Array.isArray(payload?.data) ? payload.data : [])) {
-                    const rO = String(it.origin || "").toUpperCase();
-                    const rD = String(it.destination || "").toUpperCase();
-                    const depAt = String(it.depart_date || "").slice(0, 10);
-                    const price = Number(it.value);
+    // 2) v1 cheap
+    try {
+        const qs = new URLSearchParams({ origin: qOrig, destination: qDest, currency: "usd", token });
+        const r = await fetchWithTimeout(`https://api.travelpayouts.com/v1/prices/cheap?${qs}`, {
+            headers: { "Accept": "application/json", "X-Access-Token": token },
+        }, 5500);
+        if (r.ok) {
+            const payload = await r.json();
+            const bucket = payload?.data?.[qDest];
+            if (bucket && typeof bucket === "object") {
+                for (const [k, it] of Object.entries(bucket)) {
+                    const depAt = String(it.departure_at || "").slice(0, 10);
+                    const price = Number(it.price);
                     if (!price || !depAt || depAt < todayStr) continue;
-                    if (!airportMatches(rO, orig) || !airportMatches(rD, dest)) continue;
                     candidates.push({
-                        origIata: orig, destIata: dest,
+                        origIata: qOrig, destIata: qDest,
                         priceUsd: Math.round(price),
-                        transfers: Number(it.number_of_changes || 0),
+                        transfers: Number.isFinite(Number(k)) ? Number(k) : 0,
                         airlineCode: String(it.airline || "").toUpperCase(),
-                        flightNumber: "",
+                        flightNumber: String(it.flight_number || ""),
                         departureDate: depAt,
                         rawLink: "",
-                        source: "aviasales_v2_live",
+                        source: "live_v1",
                     });
                 }
             }
-        } catch {}
+        }
+    } catch {}
+    if (candidates.length > 0) return candidates;
+
+    // 3) v2 latest
+    try {
+        const qs = new URLSearchParams({
+            origin: qOrig, destination: qDest, currency: "usd",
+            one_way: "true", period_type: "year", sorting: "price",
+            limit: "8", show_to_affiliates: "true", token,
+        });
+        const r = await fetchWithTimeout(`https://api.travelpayouts.com/v2/prices/latest?${qs}`, {
+            headers: { "Accept": "application/json", "X-Access-Token": token },
+        }, 5500);
+        if (r.ok) {
+            const payload = await r.json();
+            for (const it of (Array.isArray(payload?.data) ? payload.data : [])) {
+                const rO = String(it.origin || "").toUpperCase();
+                const rD = String(it.destination || "").toUpperCase();
+                const depAt = String(it.depart_date || "").slice(0, 10);
+                const price = Number(it.value);
+                if (!price || !depAt || depAt < todayStr) continue;
+                if (!airportMatches(rO, origReq) || !airportMatches(rD, destReq)) continue;
+                candidates.push({
+                    origIata: rO || qOrig, destIata: rD || qDest,
+                    priceUsd: Math.round(price),
+                    transfers: Number(it.number_of_changes || 0),
+                    airlineCode: String(it.airline || "").toUpperCase(),
+                    flightNumber: "",
+                    departureDate: depAt,
+                    rawLink: "",
+                    source: "live_v2",
+                });
+            }
+        }
+    } catch {}
+
+    return candidates;
+}
+
+async function queryAviasalesLive(orig, dest, token, preferredAirline) {
+    // تجربة رمز المدينة أولاً (مثل MOW بدلاً من SVO و IST بدلاً من SAW) ثم رمز المطار الأصلي
+    const cityOrig = AIRPORT_TO_CITY_CODE[orig] || orig;
+    const cityDest = AIRPORT_TO_CITY_CODE[dest] || dest;
+    const pairs = [[cityOrig, cityDest]];
+    if (cityOrig !== orig || cityDest !== dest) pairs.push([orig, dest]);
+
+    let candidates = [];
+    for (const [qo, qd] of pairs) {
+        candidates = await queryAviasalesForPair(qo, qd, orig, dest, token);
+        if (candidates.length > 0) break;
     }
 
     if (candidates.length === 0) return null;
 
-    // فلتر شركة الطيران إن حددها العميل صراحةً
     let pool = candidates;
     const pref = String(preferredAirline || "").trim().toLowerCase();
     if (pref) {
-        const matchedAirline = candidates.filter(c => {
+        const matched = candidates.filter(c => {
             const fullName = (AIRLINE_NAMES[c.airlineCode] || "").toLowerCase();
             return c.airlineCode.toLowerCase() === pref || fullName.includes(pref);
         });
-        if (matchedAirline.length > 0) pool = matchedAirline;
+        if (matched.length > 0) pool = matched;
     }
 
     pool.sort((a, b) => (a.priceUsd + a.transfers * 15) - (b.priceUsd + b.transfers * 15));
     return pool[0];
 }
 
-async function verifyAiraloForCountry(countryCode) {
+// الإضافات بهوية UcuzaKal الصافية (بدون ذكر اسم أي موقع خارجي للزائر)
+async function verifyEsimForCountry(countryCode) {
     const cc = String(countryCode || "").toUpperCase().trim();
     const slug = AIRALO_COUNTRY_SLUGS[cc];
     if (!slug) return null;
     const rawUrl = `https://www.airalo.com/${slug}-esim`;
-    const ok = await verifyLiveUrl(rawUrl, ["esim", slug.split("-")[0]]);
-    if (!ok) return null;
+    if (!(await verifyLiveUrl(rawUrl, true))) return null;
     return {
         partner: "airalo",
-        title: `Airalo 5G eSIM (${slug.replace(/-/g, " ").replace(/\b\w/g, m => m.toUpperCase())})`,
-        rawUrl,
+        countrySlug: slug,
         affiliateUrl: wrapAffiliate("airalo", rawUrl),
     };
 }
 
-async function verifyWelcomePickupsForCity(cityEn) {
-    const slug = WELCOME_PICKUPS_SLUGS[String(cityEn || "").trim().toLowerCase()];
+async function verifyTransferForCity(cityEn) {
+    const slug = WELCOME_PICKUPS_SLUGS[normCity(cityEn)];
     if (!slug) return null;
     const rawUrl = `https://www.welcomepickups.com/${slug}/airport-transfer-book/`;
-    const ok = await verifyLiveUrl(rawUrl, [slug, "transfer"]);
-    if (!ok) return null;
+    if (!(await verifyLiveUrl(rawUrl, true))) return null;
     return {
         partner: "welcome",
-        title: `Welcome Pickups VIP Transfer (${cityEn})`,
-        rawUrl,
+        city: cityEn,
         affiliateUrl: wrapAffiliate("welcome", rawUrl),
     };
 }
 
 async function verifyActivitiesForCity(cityEn) {
-    const key = String(cityEn || "").trim().toLowerCase();
+    const key = normCity(cityEn);
     const tiqetsSlug = TIQETS_CITY_SLUGS[key];
     if (tiqetsSlug) {
         const rawUrl = `https://www.tiqets.com/en/${tiqetsSlug}/`;
-        if (await verifyLiveUrl(rawUrl, [key.split(" ")[0]])) {
+        if (await verifyLiveUrl(rawUrl, true)) {
             return {
                 partner: "tiqets",
-                title: `Tiqets Verified Attractions (${cityEn})`,
-                rawUrl,
+                city: cityEn,
                 affiliateUrl: wrapAffiliate("tiqets", rawUrl),
             };
         }
     }
-    const wgUrl = `https://wegotrip.com/en/`;
-    if (await verifyLiveUrl(wgUrl, ["wegotrip"])) {
+    const wgUrl = "https://wegotrip.com/en/";
+    if (await verifyLiveUrl(wgUrl, true)) {
         return {
             partner: "wegotrip",
-            title: `WeGoTrip Audio Tours (${cityEn})`,
-            rawUrl: wgUrl,
+            city: cityEn,
             affiliateUrl: wrapAffiliate("wegotrip", wgUrl),
         };
     }
@@ -402,15 +423,14 @@ async function verifyActivitiesForCity(cityEn) {
 }
 
 async function verifyCarRentalForTurkeyCity(cityEn) {
-    const key = String(cityEn || "").trim().toLowerCase();
+    const key = normCity(cityEn);
     const lrSlug = LOCALRENT_TR_SLUGS[key];
     if (lrSlug) {
         const rawUrl = `https://localrent.com/en/turkey/${lrSlug}/`;
-        if (await verifyLiveUrl(rawUrl, ["turkey", lrSlug])) {
+        if (await verifyLiveUrl(rawUrl, true)) {
             return {
                 partner: "localrent",
-                title: `Localrent Car Rental (${cityEn})`,
-                rawUrl,
+                city: cityEn,
                 affiliateUrl: wrapAffiliate("localrent", rawUrl),
             };
         }
@@ -418,11 +438,10 @@ async function verifyCarRentalForTurkeyCity(cityEn) {
     const grSlug = key.replace(/\s+/g, "-");
     if (grSlug) {
         const rawUrl = `https://getrentacar.com/en-US/car-rental/turkey/${grSlug}`;
-        if (await verifyLiveUrl(rawUrl, ["turkey"])) {
+        if (await verifyLiveUrl(rawUrl, true)) {
             return {
                 partner: "getrent",
-                title: `GetRentacar (${cityEn})`,
-                rawUrl,
+                city: cityEn,
                 affiliateUrl: wrapAffiliate("getrent", rawUrl),
             };
         }
@@ -430,12 +449,12 @@ async function verifyCarRentalForTurkeyCity(cityEn) {
     return null;
 }
 
-function isGenuineStayTitleAndUrl(title, url) {
+function isGenuineStay(title, url) {
     const t = String(title || "").toLowerCase();
     const u = String(url || "").toLowerCase();
-    if (/\/activity\/|\/experiences\/|\/car-rentals\/|\/transfers\/|hotels\/searchresult/.test(u)) return false;
+    if (/\/activity\/|\/experiences\/|\/car-rentals\/|\/transfers\//.test(u)) return false;
     if (NON_STAY_BLOCKLIST.some(w => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(t))) return false;
-    return STAY_REQUIRED_WORDS.some(w => new RegExp(`\\b${w}\\b`).test(t));
+    return STAY_REQUIRED_WORDS.some(w => t.includes(w));
 }
 
 async function handleFlightVerification(body, env, requestOrigin) {
@@ -458,7 +477,7 @@ async function handleFlightVerification(body, env, requestOrigin) {
         liveFlight = await queryAviasalesLive(orig, dest, token, preferredAirline);
     }
 
-    // في حال عدم إضافة المفتاح في Cloudflare بعد، نفحص ملف العروض الحيّ الخاص بالموقع (صفر عروض وهمية)
+    // فحص ملف العروض الحيّ الخاص بالموقع كنسخة احتياطية إضافية إن تطابق المسار
     if (!liveFlight) {
         try {
             const feedRes = await fetchWithTimeout(`${requestOrigin}/live_deals_feed.json?t=${Date.now()}`, {}, 4500);
@@ -481,7 +500,7 @@ async function handleFlightVerification(body, env, requestOrigin) {
                         flightNumber: "",
                         departureDate: match.departureDate || "",
                         rawLink: match.affiliateUrl || "",
-                        source: "site_live_feed",
+                        source: "site_feed",
                     };
                 }
             }
@@ -489,18 +508,12 @@ async function handleFlightVerification(body, env, requestOrigin) {
     }
 
     if (!liveFlight || !(liveFlight.priceUsd > 0)) {
-        return jsonResp({
-            found: false,
-            reason: "no_live_route_offer",
-            hasToken: Boolean(token),
-        });
+        return jsonResp({ found: false, reason: "no_live_route_offer" });
     }
 
-    // تطبيق معامل درجة التذكرة الحقيقي للدرجات الأعلى من الاقتصادية
     const classMult = { economy: 1.0, premium: 1.65, business: 2.95, first: 4.8 }[cabinClass] || 1.0;
     const realFareUsd = Math.round(liveFlight.priceUsd * classMult);
 
-    // قفل الميزانية الصارم: إذا كان السعر الحقيقي أعلى من ميزانية العميل، لا نعرض عرضاً وهمياً أو مخالفاً
     if (realFareUsd > budgetUsd) {
         return jsonResp({
             found: false,
@@ -519,13 +532,12 @@ async function handleFlightVerification(body, env, requestOrigin) {
         ? exactRawUrl
         : wrapAffiliate("aviasales", exactRawUrl);
 
-    // التحقق المتوازي الحيّ من الإضافات المعتمدة فقط (Airalo دائماً عند توفر الدولة، وWelcome Pickups للدرجات غير الاقتصادية)
-    const [airaloAddon, welcomeAddon] = await Promise.all([
-        verifyAiraloForCountry(destCountry),
-        cabinClass !== "economy" ? verifyWelcomePickupsForCity(destCity) : Promise.resolve(null),
+    const [esimAddon, transferAddon] = await Promise.all([
+        verifyEsimForCountry(destCountry),
+        cabinClass !== "economy" ? verifyTransferForCity(destCity) : Promise.resolve(null),
     ]);
 
-    const airlineFull = liveFlight.airlineName || AIRLINE_NAMES[liveFlight.airlineCode] || liveFlight.airlineCode || "Verified Airline";
+    const airlineFull = liveFlight.airlineName || AIRLINE_NAMES[liveFlight.airlineCode] || liveFlight.airlineCode || "Verified Carrier";
     const flightNum = (liveFlight.airlineCode && liveFlight.flightNumber) ? `${liveFlight.airlineCode}${liveFlight.flightNumber}` : "";
 
     return jsonResp({
@@ -541,11 +553,10 @@ async function handleFlightVerification(body, env, requestOrigin) {
             departureDate: liveFlight.departureDate,
             cabinClass,
             affiliateUrl,
-            source: liveFlight.source,
         },
         addons: {
-            transfer: welcomeAddon,
-            esim: airaloAddon,
+            transfer: transferAddon,
+            esim: esimAddon,
         },
     });
 }
@@ -560,42 +571,54 @@ async function handleHotelVerification(body, requestOrigin) {
         return jsonResp({ found: false, reason: "invalid_request" }, 400);
     }
 
-    // 1) جمع عروض الإقامة المباشرة المفحوصة فقط من feed الموقع + KKday Stays (ممنوع صفحات البحث الفارغة والأنشطة)
-    const directStays = [];
+    const isAllTurkey = normCity(cityEn) === "all turkey" || normCity(province) === "tum turkiye";
+    const targetCityNorm = normCity(cityEn);
+    const targetProvNorm = normCity(province);
+    const verifiedStays = [];
+
+    // 1) جلب جميع عروض الإقامة الحقيقية المفحوصة من live_deals_feed.json (بدون الشرط المعطّل)
     try {
         const feedRes = await fetchWithTimeout(`${requestOrigin}/live_deals_feed.json?t=${Date.now()}`, {}, 4500);
         if (feedRes.ok) {
             const feed = await feedRes.json();
             for (const h of (feed.mainHotels || [])) {
-                const hCity = String(h.cityEn || h.city || "").toLowerCase();
-                if (cityEn.toLowerCase() !== "all turkey" && hCity !== cityEn.toLowerCase() && hCity !== province.toLowerCase()) continue;
-                if (!h.isDirectProduct) continue; // رفض صفحات البحث العامة الفارغة
-                const aff = String(h.affiliateUrl || "");
+                const hCityNorm = normCity(h.cityEn || h.city || "");
+                const hProvNorm = normCity(h.city || h.cityEn || "");
+                const cityMatched = isAllTurkey || hCityNorm === targetCityNorm || hProvNorm === targetProvNorm || hCityNorm.includes(targetCityNorm) || targetCityNorm.includes(hCityNorm);
+                if (!cityMatched) continue;
+
+                const aff = String(h.affiliateUrl || h.link || "");
+                if (!aff.startsWith("http")) continue;
                 let dec = aff;
                 try { dec = decodeURIComponent(aff); } catch {}
-                if (!isGenuineStayTitleAndUrl(h.title || h.name, dec)) continue;
+                if (/\/activity\/|\/experiences\/|\/car-rentals\/|\/transfers\//i.test(dec)) continue;
+
                 const price = Number(h.priceUsd || String(h.price || "").replace(/[^0-9.]/g, "")) || 0;
                 if (!(price > 0)) continue;
-                directStays.push({
-                    partner: String(h.partner || "klook").toLowerCase() === "kkday" ? "kkday" : "klook",
-                    name: h.name || h.title,
-                    stayType: String(h.stayType || "hotel").toLowerCase(),
-                    priceUsd: price,
-                    rawUrl: dec,
+
+                const partner = String(h.partner || "klook").toLowerCase() === "kkday" ? "kkday" : "klook";
+                verifiedStays.push({
+                    partner,
+                    name: h.name || h.title || `${h.cityEn || h.city} Stay`,
+                    cityEn: h.cityEn || h.city || cityEn,
+                    cityTr: h.city || h.cityEn || province,
+                    stayType: String(h.stayType || h.accType || "hotel").toLowerCase(),
+                    priceUsd: Math.round(price),
                     affiliateUrl: aff,
+                    i18n: h.i18n || null,
                 });
             }
         }
     } catch {}
 
-    // 2) بحث حي في KKday للإقامات فقط مع فلتر منع الجولات الصارم
-    if (cityEn.toLowerCase() !== "all turkey") {
+    // 2) بحث حي إضافي لمنتجات الإقامة فقط (بفلتر منع الجولات الصارم) إن لم نغطِ المدينة
+    if (!isAllTurkey && verifiedStays.length < 2) {
         try {
             const kw = `${cityEn} ${stayType === "resort" ? "resort hotel" : (stayType === "apart" ? "apartment hotel" : "hotel stay")}`;
             const kkUrl = `https://www.kkday.com/en/product/ajax_productlist_get_product_list?keyword=${encodeURIComponent(kw)}&currency=USD&sort=pasc&page=1`;
             const r = await fetchWithTimeout(kkUrl, {
                 headers: { "Accept": "application/json", "X-Requested-With": "XMLHttpRequest", "User-Agent": "Mozilla/5.0" },
-            }, 5500);
+            }, 5000);
             if (r.ok) {
                 const payload = await r.json();
                 const items = Array.isArray(payload?.data) ? payload.data : (Array.isArray(payload?.data?.data) ? payload.data.data : []);
@@ -604,57 +627,67 @@ async function handleHotelVerification(body, requestOrigin) {
                     const name = String(it.name || it.title || "").trim();
                     const price = Math.round(Number(it.price || it.display_price || it.sale_price || 0));
                     if (!pid || !name || !(price >= 25 && price <= 950)) continue;
-                    if (!name.toLowerCase().includes(cityEn.toLowerCase())) continue;
+                    if (!normCity(name).includes(targetCityNorm)) continue;
                     const prodUrl = `https://www.kkday.com/en/product/${pid}`;
-                    if (!isGenuineStayTitleAndUrl(name, prodUrl)) continue;
-                    if (await verifyLiveUrl(prodUrl, [cityEn.toLowerCase()])) {
-                        directStays.push({
+                    if (!isGenuineStay(name, prodUrl)) continue;
+                    if (await verifyLiveUrl(prodUrl, true)) {
+                        verifiedStays.push({
                             partner: "kkday",
                             name,
+                            cityEn,
+                            cityTr: province,
                             stayType,
                             priceUsd: price,
-                            rawUrl: prodUrl,
                             affiliateUrl: wrapAffiliate("kkday", prodUrl),
+                            i18n: null,
                         });
-                        if (directStays.length >= 2) break;
+                        if (verifiedStays.length >= 2) break;
                     }
                 }
             }
         } catch {}
     }
 
-    if (directStays.length === 0) {
+    if (verifiedStays.length === 0) {
         return jsonResp({ found: false, reason: "no_live_direct_stay" });
     }
 
-    directStays.sort((a, b) => a.priceUsd - b.priceUsd);
-    const affordable = directStays.filter(s => s.priceUsd <= budgetUsd);
+    // ترتيب حسب مطابقة نوع الإقامة أولاً ثم الأرخص سعراً
+    verifiedStays.sort((a, b) => {
+        const typeA = a.stayType === stayType ? 0 : 1;
+        const typeB = b.stayType === stayType ? 0 : 1;
+        if (typeA !== typeB) return typeA - typeB;
+        return a.priceUsd - b.priceUsd;
+    });
 
+    const affordable = verifiedStays.filter(s => s.priceUsd <= budgetUsd);
     if (affordable.length === 0) {
+        const cheapest = verifiedStays.reduce((min, s) => (s.priceUsd < min.priceUsd ? s : min), verifiedStays[0]);
         return jsonResp({
             found: false,
             reason: "below_budget",
-            minMarketUsd: directStays[0].priceUsd,
+            minMarketUsd: cheapest.priceUsd,
+            minCityEn: cheapest.cityEn,
             userBudgetUsd: budgetUsd,
         });
     }
 
-    const [activityAddon, carAddon, airaloAddon, transferAddon] = await Promise.all([
-        verifyActivitiesForCity(cityEn),
-        verifyCarRentalForTurkeyCity(cityEn),
-        verifyAiraloForCountry("TR"),
-        verifyWelcomePickupsForCity(cityEn),
+    const chosenCityEn = affordable[0].cityEn || (isAllTurkey ? "Istanbul" : cityEn);
+    const [activityAddon, carAddon, esimAddon] = await Promise.all([
+        verifyActivitiesForCity(chosenCityEn),
+        verifyCarRentalForTurkeyCity(chosenCityEn),
+        verifyEsimForCountry("TR"),
     ]);
 
     return jsonResp({
         found: true,
         verifiedAt: new Date().toISOString(),
+        matchedCityEn: chosenCityEn,
         stays: affordable.slice(0, 2),
         addons: {
             activity: activityAddon,
-            transfer: transferAddon,
             car: carAddon,
-            esim: airaloAddon,
+            esim: esimAddon,
         },
     });
 }
@@ -663,12 +696,8 @@ export async function onRequestPost(context) {
     try {
         const body = await context.request.json();
         const origin = new URL(context.request.url).origin;
-        if (body?.mode === "flight") {
-            return await handleFlightVerification(body, context.env, origin);
-        }
-        if (body?.mode === "hotel") {
-            return await handleHotelVerification(body, origin);
-        }
+        if (body?.mode === "flight") return await handleFlightVerification(body, context.env, origin);
+        if (body?.mode === "hotel") return await handleHotelVerification(body, origin);
         return jsonResp({ found: false, reason: "unknown_mode" }, 400);
     } catch {
         return jsonResp({ found: false, reason: "server_error" }, 500);
