@@ -4100,7 +4100,7 @@
         });
     </script>
 <!-- ========================================================================= -->
-    <!-- الجزء 4 من 4: استعادة العروض والمدونة + حركة الطائرة 360° + حساب الأفراد -->
+    <!-- الجزء 4 من 4: استعادة العروض والمدونة عبر Edge + منع قص الأزرار + حركة 360° -->
     <!-- ========================================================================= -->
     <style>
         /* إلغاء الواجهة الشفافة والخط العلوي أعلى الخريطة وإبقاء أزرار التحكم فقط */
@@ -4129,6 +4129,16 @@
         #cinematic-overlay .uk-top-bar-cleaned button.active {
             background: #D4AF37 !important;
             color: #000000 !important;
+        }
+        /* منع قص أزرار الحجز والأسعار أسفل الخريطة */
+        #cinematic-overlay .uk-bottom-dock-safe {
+            max-height: 58vh !important;
+            overflow-y: auto !important;
+            padding-bottom: 20px !important;
+            scrollbar-width: thin;
+        }
+        .on-map-offer-card {
+            padding: 12px 14px !important;
         }
         /* خلفيات داكنة صلبة للصناديق السفلية فوق الخريطة */
         #persuasion-card-box,
@@ -4182,7 +4192,12 @@
 
             const RAW_REPO_BASE = "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main";
             const DEEP_SEARCH_DURATION_MS = 20000;
-            const CACHE_TTL_24H = 24 * 60 * 60 * 1000;
+            const SAFE_IMG_FALLBACK = window.FALLBACK_DEAL_IMG || "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=900&q=80";
+
+            window.HOTELS_DATA = Array.isArray(window.HOTELS_DATA) ? window.HOTELS_DATA : [];
+            window.FLIGHTS_DATA = Array.isArray(window.FLIGHTS_DATA) ? window.FLIGHTS_DATA : [];
+            window.ARTICLES_MAP = (window.ARTICLES_MAP && typeof window.ARTICLES_MAP === 'object') ? window.ARTICLES_MAP : {};
+            window.DEALS_ARCHIVE_MAP = (window.DEALS_ARCHIVE_MAP && typeof window.DEALS_ARCHIVE_MAP === 'object') ? window.DEALS_ARCHIVE_MAP : {};
 
             const APPROVED_GATEWAYS = {
                 aviasales: "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=",
@@ -4455,6 +4470,34 @@
                 const lang = document.documentElement.lang || 'tr';
                 return DEEP_I18N[lang] || (lang === 'fa' ? DEEP_I18N.ar : DEEP_I18N.en);
             };
+            const getUiDict = () => {
+                const lang = document.documentElement.lang || 'tr';
+                return (window.TRANSLATIONS && (window.TRANSLATIONS[lang] || window.TRANSLATIONS.tr)) || {};
+            };
+
+            // دوال مساعدة محمية بالكامل ضد أي خطأ صامت
+            const safeTranslate = (txt, lang) => {
+                try { return typeof window.translateTextStrong === 'function' ? window.translateTextStrong(txt, lang) : String(txt || ''); }
+                catch (e) { return String(txt || ''); }
+            };
+            const safePickField = (item, key, fallback, lang) => {
+                try {
+                    if (typeof window.pickDealLocalizedField === 'function') return window.pickDealLocalizedField(item, key, fallback, lang);
+                    if (item && item.i18n && item.i18n[lang] && item.i18n[lang][key]) return item.i18n[lang][key];
+                    return fallback || '';
+                } catch (e) { return fallback || ''; }
+            };
+            const safeExtractArticle = (art, lang) => {
+                try {
+                    if (typeof window.extractArticleContent === 'function') return window.extractArticleContent(art, lang);
+                } catch (e) {}
+                const loc = (art && art.i18n && (art.i18n[lang] || art.i18n.tr || art.i18n.en)) || {};
+                return {
+                    title: loc.title || (art && art.title) || '',
+                    excerpt: loc.excerpt || (art && art.excerpt) || '',
+                    body: loc.body || loc.content || (art && (art.body || art.content)) || ''
+                };
+            };
 
             const AR_PROVINCES = {
                 "Tüm Türkiye": "جميع أنحاء تركيا", "İstanbul": "إسطنبول", "Antalya": "أنطاليا",
@@ -4470,7 +4513,7 @@
             function formatDestName(rawName, lang) {
                 if (rawName === 'Tüm Türkiye' || rawName === 'All Turkey') return getDeepDict().all_turkey;
                 if (lang === 'ar' && AR_PROVINCES[rawName]) return AR_PROVINCES[rawName];
-                return window.translateTextStrong(rawName, lang);
+                return safeTranslate(rawName, lang);
             }
 
             function localizeTurkeySelects() {
@@ -4485,12 +4528,16 @@
                 });
             }
 
-            function stripTransparentTopMapBar() {
+            function prepareMapOverlayShell() {
                 const bar = document.getElementById('cinematic-bar');
                 if (bar && bar.parentElement) bar.parentElement.style.display = 'none';
                 const btnClose = document.querySelector('#cinematic-overlay button[onclick*="closeCinematicOverlay"]');
                 const topBox = (btnClose && btnClose.closest('.pointer-events-auto')) || (document.getElementById('hud-live-telemetry') && document.getElementById('hud-live-telemetry').closest('.pointer-events-auto'));
                 if (topBox) topBox.classList.add('uk-top-bar-cleaned');
+                const dealsGrid = document.getElementById('concierge-deals-grid');
+                if (dealsGrid && dealsGrid.parentElement) {
+                    dealsGrid.parentElement.classList.add('uk-bottom-dock-safe');
+                }
             }
 
             const origChangeLang = window.changeLanguage;
@@ -4522,7 +4569,8 @@
                 const cleanLocal = String(localPath || '').replace(/^\/+/, '');
                 if (step === 0 && cleanLocal) { imgEl.dataset.imgStep = '1'; imgEl.src = `${RAW_REPO_BASE}/${cleanLocal}?t=${Date.now()}`; return; }
                 if (step <= 1 && remoteUrl && remoteUrl.startsWith('http') && imgEl.src !== remoteUrl) { imgEl.dataset.imgStep = '2'; imgEl.src = remoteUrl; return; }
-                window.handleSafeImgError(imgEl);
+                if (typeof window.handleSafeImgError === 'function') window.handleSafeImgError(imgEl);
+                else imgEl.src = SAFE_IMG_FALLBACK;
             };
 
             function initFirebaseServices() {
@@ -4552,6 +4600,21 @@
                 const p = Date.parse(String(v)); return Number.isFinite(p) ? p : 0;
             };
 
+            function resolveContainer(ids, sectionHint) {
+                for (const id of ids) {
+                    const el = document.getElementById(id);
+                    if (el) return el;
+                }
+                if (sectionHint) {
+                    const sec = document.getElementById(sectionHint);
+                    if (sec) {
+                        const grid = sec.querySelector('.grid');
+                        if (grid) return grid;
+                    }
+                }
+                return null;
+            }
+
             function showInlineFormAlert(boxId, message, level) {
                 const box = document.getElementById(boxId);
                 if (!box) return;
@@ -4564,11 +4627,11 @@
             const hideInlineFormAlert = id => { const b = document.getElementById(id); if (b) b.classList.add('hidden'); };
 
             function resolveArticleCover(art) {
-                if (!art) return window.FALLBACK_DEAL_IMG;
+                if (!art) return SAFE_IMG_FALLBACK;
                 if (art.heroImage && typeof art.heroImage === 'object' && window.isValidExternalUrl(art.heroImage.publicUrl)) return art.heroImage.publicUrl;
                 if (typeof art.heroImage === 'string' && window.isValidExternalUrl(art.heroImage)) return art.heroImage;
                 const c = art.image || art.imageUrl || art.coverImage || art.thumbnail || '';
-                return window.isValidExternalUrl(c) ? c : window.FALLBACK_DEAL_IMG;
+                return window.isValidExternalUrl(c) ? c : SAFE_IMG_FALLBACK;
             }
 
             function formatArticleCategoryLabel(art, lang) {
@@ -4582,10 +4645,9 @@
                 const cleanLocal = String(raw.localImage || raw.local_image || '').replace(/^\/+/, '');
                 if (cleanLocal) return `./${cleanLocal}?v=${raw.createdTs || Date.now()}`;
                 const remote = raw.image || raw.imageUrl || raw.coverImage || '';
-                return window.isValidExternalUrl(remote) ? remote : window.FALLBACK_DEAL_IMG;
+                return window.isValidExternalUrl(remote) ? remote : SAFE_IMG_FALLBACK;
             }
 
-            // تطبيع مرن يقبل كل صيغ الحقول ولا يُسقط أي عرض صالح
             function normalizeFlightRecord(raw, idx) {
                 if (!raw || typeof raw !== 'object') return null;
                 let origIata = String(raw.originIata || raw.origin_iata || raw.origin || raw.fromIata || raw.from || '').toUpperCase().trim();
@@ -4627,7 +4689,9 @@
                 if (!raw || typeof raw !== 'object') return null;
                 const rawUrl = raw.affiliateUrl || raw.affiliate_url || raw.link || raw.url || '';
                 const partner = String(raw.partner || 'klook').toLowerCase() === 'kkday' ? 'kkday' : 'klook';
-                const safeUrl = window.isValidExternalUrl(rawUrl)
+                let decUrl = rawUrl; try { decUrl = decodeURIComponent(rawUrl); } catch (e) {}
+                const isLegacyBlankKlook = /klook\.com\/(?:[a-z]{2}-[a-z]{2}\/)?hotels\/?(?:\?|$)/i.test(decUrl);
+                const safeUrl = (window.isValidExternalUrl(rawUrl) && !isLegacyBlankKlook)
                     ? rawUrl
                     : window.buildHotelStayOffer(partner, raw.cityEn || raw.city || 'Istanbul', raw.stayType || 'hotel');
                 const priceNum = raw.priceUsd || raw.price_usd || '';
@@ -4645,7 +4709,7 @@
             // 1. تسجيل الدخول بحساب Google
             function updateAuthButtonUI(user) {
                 const avatarEl = document.getElementById('auth-avatar'), iconEl = document.getElementById('auth-google-icon'), txtEl = document.getElementById('auth-text');
-                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const dict = getUiDict();
                 if (user) {
                     const name = (user.displayName || (user.email ? user.email.split('@')[0] : 'Member')).split(' ')[0];
                     if (txtEl) { txtEl.removeAttribute('data-i18n'); txtEl.textContent = name; }
@@ -4659,12 +4723,12 @@
             }
 
             window.loginWithGoogle = async function() {
-                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const dict = getUiDict();
                 if (!fbAuth) initFirebaseServices();
                 if (!fbAuth) return;
                 if (fbAuth.currentUser) {
                     if (window.confirm(`${fbAuth.currentUser.email || ''}\n${dict.sign_out_prompt || 'Sign out?'}`)) {
-                        try { await fbAuth.signOut(); window.showCopyToast(dict.signed_out_msg || 'Signed out'); } catch (e) {}
+                        try { await fbAuth.signOut(); if (window.showCopyToast) window.showCopyToast(dict.signed_out_msg || 'Signed out'); } catch (e) {}
                     }
                     return;
                 }
@@ -4672,7 +4736,7 @@
                 provider.setCustomParameters({ prompt: 'select_account' });
                 try {
                     const res = await fbAuth.signInWithPopup(provider);
-                    if (res && res.user) window.showCopyToast(`${dict.signed_in_msg || 'Signed in'}: ${res.user.displayName || res.user.email}`);
+                    if (res && res.user && window.showCopyToast) window.showCopyToast(`${dict.signed_in_msg || 'Signed in'}: ${res.user.displayName || res.user.email}`);
                 } catch (err) {
                     if (err && (err.code === 'auth/popup-blocked' || err.code === 'auth/cancelled-popup-request')) {
                         try { await fbAuth.signInWithRedirect(provider); } catch (e2) {}
@@ -4682,7 +4746,7 @@
 
             window.logClickTelemetry = function() {};
 
-            // 2. التبديل بين المساعدين + حساب دقيق لعدد الأفراد والغرف ونصيب الفرد
+            // 2. التبديل بين المساعدين + حساب الأفراد والغرف ونصيب الفرد
             window.switchConcierge = function(tab) {
                 const isHotel = tab === 'hotel';
                 const tabH = document.getElementById('tab-hotel'), tabF = document.getElementById('tab-flight');
@@ -4698,8 +4762,8 @@
             window.updateHotelBtnText = function() {
                 const typeSel = document.getElementById('hc-type'), btnSpan = document.getElementById('btn-hotel-text');
                 if (!typeSel || !btnSpan) return;
-                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                btnSpan.textContent = dict[typeSel.value === 'resort' ? 'btn_resort' : (typeSel.value === 'apart' ? 'btn_apart' : 'btn_hotel')] || dict.btn_hotel;
+                const dict = getUiDict();
+                btnSpan.textContent = dict[typeSel.value === 'resort' ? 'btn_resort' : (typeSel.value === 'apart' ? 'btn_apart' : 'btn_hotel')] || dict.btn_hotel || 'Search';
             };
 
             window.calculateTotal = function() {
@@ -4709,9 +4773,7 @@
                 const rawDays = parseInt(daysEl.value, 10);
                 const rawGuests = guestsEl ? parseInt(guestsEl.value, 10) : 0;
                 if (perRoomNight > 0 && Number.isFinite(rawDays) && rawDays > 0) {
-                    const lang = document.documentElement.lang || 'tr';
-                    const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                    const d = getDeepDict();
+                    const dict = getUiDict(), d = getDeepDict();
                     const guests = (Number.isFinite(rawGuests) && rawGuests >= 1) ? rawGuests : 1;
                     const rooms = Math.max(1, Math.ceil(guests / 2));
                     const totalNum = Math.round(perRoomNight * rawDays * rooms);
@@ -4723,82 +4785,92 @@
                 } else outEl.textContent = '';
             };
 
-            // 3. عرض عروض الفنادق والطيران أسفل المساعد (نفس التصميم السابق تماماً)
+            // 3. عرض عروض الفنادق والطيران أسفل المساعد (محمي تماماً ضد أي خطأ صامت)
             window.renderHotels = function() {
-                const container = document.getElementById('hotels-container');
-                if (!container) return;
-                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                if (!Array.isArray(window.HOTELS_DATA) || window.HOTELS_DATA.length === 0) {
-                    container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_deals_text)}</div>`;
-                    return;
-                }
-                container.innerHTML = window.HOTELS_DATA.map((h, idx) => {
-                    const dealId = h.dealId || h.id || `hotel_deal_${idx + 1}`;
-                    const cityDisp = window.translateTextStrong(h.city || 'TÜRKİYE', lang);
-                    const titleDisp = window.pickDealLocalizedField(h, 'title', h.name || h.title || cityDisp, lang);
-                    const descDisp = window.pickDealLocalizedField(h, 'desc', h.description || '', lang);
-                    const savBadge = h.savingsPct ? `<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-black px-2.5 py-1 rounded-full shadow-md">🔥 -${escHtml(h.savingsPct)}%</span>` : '';
-                    return `
-                    <div class="gold-animated-frame"><div class="ultra-luxury-card group">
-                        <a href="${escHtml(h.affiliateUrl)}" onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(h.affiliateUrl)}', 'hotel', '${escJs(titleDisp)}', '${escJs(h.partner || 'klook')}', '${escJs(h.cityEn || h.city || '')}', 'hotel_grid', '${escJs(dealId)}', event)" class="flex-1 flex flex-col">
-                            <div class="img-frame">
-                                <img src="${escHtml(h.image || window.FALLBACK_DEAL_IMG)}" alt="${escHtml(titleDisp)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(h.localImage || '')}', '${escJs(h.remoteImage || '')}')" class="w-full h-full object-contain">
-                                ${savBadge}
-                                <button type="button" title="${escHtml(dict.share_btn_title)}" onclick="window.copyDealShareLink('${escJs(dealId)}', event)" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer"><i class="fas fa-share-alt text-xs"></i></button>
-                            </div>
-                            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                                <div>
-                                    <div class="text-[11px] font-extrabold text-brand-gold uppercase tracking-[0.22em] mb-1.5">🇹🇷 ${escHtml(cityDisp)}</div>
-                                    <h3 class="font-luxury text-lg font-extrabold text-slate-900 dark:text-white leading-snug mb-2 group-hover:text-brand-gold transition">${escHtml(titleDisp)}</h3>
-                                    <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-4">${escHtml(descDisp)}</p>
+                try {
+                    const container = resolveContainer(['hotels-container', 'hotels-grid', 'hotel-deals-grid'], 'hotels-section');
+                    if (!container) return;
+                    const lang = document.documentElement.lang || 'tr', dict = getUiDict();
+                    if (!Array.isArray(window.HOTELS_DATA) || window.HOTELS_DATA.length === 0) {
+                        container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_deals_text || 'Loading...')}</div>`;
+                        return;
+                    }
+                    const bookClick = (url, title, partner, city, id) => (typeof window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG === 'function')
+                        ? `return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(url)}', 'hotel', '${escJs(title)}', '${escJs(partner)}', '${escJs(city)}', 'hotel_grid', '${escJs(id)}', event)`
+                        : 'return true';
+                    container.innerHTML = window.HOTELS_DATA.map((h, idx) => {
+                        const dealId = h.dealId || h.id || `hotel_deal_${idx + 1}`;
+                        const cityDisp = safeTranslate(h.city || 'TÜRKİYE', lang);
+                        const titleDisp = safePickField(h, 'title', h.name || h.title || cityDisp, lang);
+                        const descDisp = safePickField(h, 'desc', h.description || '', lang);
+                        const savBadge = h.savingsPct ? `<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-black px-2.5 py-1 rounded-full shadow-md">🔥 -${escHtml(h.savingsPct)}%</span>` : '';
+                        return `
+                        <div class="gold-animated-frame"><div class="ultra-luxury-card group">
+                            <a href="${escHtml(h.affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="${bookClick(h.affiliateUrl, titleDisp, h.partner || 'klook', h.cityEn || h.city || '', dealId)}" class="flex-1 flex flex-col">
+                                <div class="img-frame">
+                                    <img src="${escHtml(h.image || SAFE_IMG_FALLBACK)}" alt="${escHtml(titleDisp)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(h.localImage || '')}', '${escJs(h.remoteImage || '')}')" class="w-full h-full object-contain">
+                                    ${savBadge}
+                                    <button type="button" title="${escHtml(dict.share_btn_title || 'Share')}" onclick="window.copyDealShareLink && window.copyDealShareLink('${escJs(dealId)}', event)" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer"><i class="fas fa-share-alt text-xs"></i></button>
                                 </div>
-                                <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
-                                    <div><span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span><span class="font-luxury text-xl font-black text-brand-gold">${escHtml(h.price || '')}</span></div>
-                                    <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold inline-flex items-center gap-1.5">${escHtml(dict.book_deal_btn)} <i class="fas fa-arrow-up-right-from-square text-[10px]"></i></span>
+                                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                                    <div>
+                                        <div class="text-[11px] font-extrabold text-brand-gold uppercase tracking-[0.22em] mb-1.5">🇹🇷 ${escHtml(cityDisp)}</div>
+                                        <h3 class="font-luxury text-lg font-extrabold text-slate-900 dark:text-white leading-snug mb-2 group-hover:text-brand-gold transition">${escHtml(titleDisp)}</h3>
+                                        <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-4">${escHtml(descDisp)}</p>
+                                    </div>
+                                    <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
+                                        <div><span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from || '')}</span><span class="font-luxury text-xl font-black text-brand-gold">${escHtml(h.price || '')}</span></div>
+                                        <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold inline-flex items-center gap-1.5">${escHtml(dict.book_deal_btn || 'Book')} <i class="fas fa-arrow-up-right-from-square text-[10px]"></i></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div></div>`;
-                }).join('');
+                            </a>
+                        </div></div>`;
+                    }).join('');
+                } catch (e) {}
             };
 
             window.renderFlights = function() {
-                const container = document.getElementById('flights-container');
-                if (!container) return;
-                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                if (!Array.isArray(window.FLIGHTS_DATA) || window.FLIGHTS_DATA.length === 0) {
-                    container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_deals_text)}</div>`;
-                    return;
-                }
-                container.innerHTML = window.FLIGHTS_DATA.map((f, idx) => {
-                    const dealId = f.dealId || f.id || `flight_deal_${idx + 1}`;
-                    const routeTitle = window.pickDealLocalizedField(f, 'title', f.route || f.title || `${f.originIata || ''} ✈️ ${f.destIata || ''}`, lang);
-                    const descDisp = window.pickDealLocalizedField(f, 'desc', f.description || '', lang);
-                    const savBadge = f.savingsPct ? `<span class="bg-brand-gold text-black text-[10px] font-black px-2.5 py-0.5 rounded-full">🔥 -${escHtml(f.savingsPct)}%</span>` : '';
-                    const segLabel = f.segment === 'domestic_tr' ? '🇹🇷 DOMESTIC' : (f.segment === 'russia_tr' ? '🇷🇺 ⇄ 🇹🇷' : '🌍 ⇄ 🇹🇷');
-                    return `
-                    <div class="gold-animated-frame"><div class="ultra-luxury-card group">
-                        <a href="${escHtml(f.affiliateUrl)}" onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(f.affiliateUrl)}', 'flight', '${escJs(routeTitle)}', 'aviasales', '${escJs(f.destCityEn || f.destination || '')}', 'flight_grid', '${escJs(dealId)}', event)" class="flex flex-col justify-between h-full">
-                            <div class="img-frame">
-                                <img src="${escHtml(f.image || window.FALLBACK_DEAL_IMG)}" alt="${escHtml(routeTitle)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(f.localImage || '')}', '${escJs(f.remoteImage || '')}')" class="w-full h-full object-contain">
-                                <span class="absolute top-3 left-3 bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full">${escHtml(segLabel)}</span>
-                                <button type="button" title="${escHtml(dict.share_btn_title)}" onclick="window.copyDealShareLink('${escJs(dealId)}', event)" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer"><i class="fas fa-share-alt text-xs"></i></button>
-                            </div>
-                            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                                <div>
-                                    <div class="flex items-center gap-2 mb-2.5">${savBadge}<span class="text-[11px] font-bold text-brand-gold/90 truncate"><i class="fas fa-plane-departure mx-1"></i>${escHtml(f.airline || '')}</span></div>
-                                    <h3 class="font-luxury text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition mb-1.5 leading-snug">${escHtml(routeTitle)}</h3>
-                                    ${f.departureDate ? `<div class="text-[11px] font-semibold text-slate-400 mb-2"><i class="far fa-calendar-alt mx-1 text-brand-gold"></i>${escHtml(f.departureDate)}</div>` : ''}
-                                    <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-5">${escHtml(descDisp)}</p>
+                try {
+                    const container = resolveContainer(['flights-container', 'flights-grid', 'flight-deals-grid'], 'flights-section');
+                    if (!container) return;
+                    const lang = document.documentElement.lang || 'tr', dict = getUiDict();
+                    if (!Array.isArray(window.FLIGHTS_DATA) || window.FLIGHTS_DATA.length === 0) {
+                        container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_deals_text || 'Loading...')}</div>`;
+                        return;
+                    }
+                    const bookClick = (url, title, dest, id) => (typeof window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG === 'function')
+                        ? `return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(url)}', 'flight', '${escJs(title)}', 'aviasales', '${escJs(dest)}', 'flight_grid', '${escJs(id)}', event)`
+                        : 'return true';
+                    container.innerHTML = window.FLIGHTS_DATA.map((f, idx) => {
+                        const dealId = f.dealId || f.id || `flight_deal_${idx + 1}`;
+                        const routeTitle = safePickField(f, 'title', f.route || f.title || `${f.originIata || ''} ✈️ ${f.destIata || ''}`, lang);
+                        const descDisp = safePickField(f, 'desc', f.description || '', lang);
+                        const savBadge = f.savingsPct ? `<span class="bg-brand-gold text-black text-[10px] font-black px-2.5 py-0.5 rounded-full">🔥 -${escHtml(f.savingsPct)}%</span>` : '';
+                        const segLabel = f.segment === 'domestic_tr' ? '🇹🇷 DOMESTIC' : (f.segment === 'russia_tr' ? '🇷🇺 ⇄ 🇹🇷' : '🌍 ⇄ 🇹🇷');
+                        return `
+                        <div class="gold-animated-frame"><div class="ultra-luxury-card group">
+                            <a href="${escHtml(f.affiliateUrl)}" target="_blank" rel="noopener noreferrer" onclick="${bookClick(f.affiliateUrl, routeTitle, f.destCityEn || f.destination || '', dealId)}" class="flex flex-col justify-between h-full">
+                                <div class="img-frame">
+                                    <img src="${escHtml(f.image || SAFE_IMG_FALLBACK)}" alt="${escHtml(routeTitle)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(f.localImage || '')}', '${escJs(f.remoteImage || '')}')" class="w-full h-full object-contain">
+                                    <span class="absolute top-3 left-3 bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full">${escHtml(segLabel)}</span>
+                                    <button type="button" title="${escHtml(dict.share_btn_title || 'Share')}" onclick="window.copyDealShareLink && window.copyDealShareLink('${escJs(dealId)}', event)" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer"><i class="fas fa-share-alt text-xs"></i></button>
                                 </div>
-                                <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
-                                    <div><span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span><span class="font-luxury text-2xl font-black text-brand-gold">${escHtml(f.price || dict.live_price_badge)}</span></div>
-                                    <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold inline-flex items-center gap-1.5">${escHtml(dict.book_deal_btn)} <i class="fas fa-plane text-[10px]"></i></span>
+                                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                                    <div>
+                                        <div class="flex items-center gap-2 mb-2.5">${savBadge}<span class="text-[11px] font-bold text-brand-gold/90 truncate"><i class="fas fa-plane-departure mx-1"></i>${escHtml(f.airline || '')}</span></div>
+                                        <h3 class="font-luxury text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition mb-1.5 leading-snug">${escHtml(routeTitle)}</h3>
+                                        ${f.departureDate ? `<div class="text-[11px] font-semibold text-slate-400 mb-2"><i class="far fa-calendar-alt mx-1 text-brand-gold"></i>${escHtml(f.departureDate)}</div>` : ''}
+                                        <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-5">${escHtml(descDisp)}</p>
+                                    </div>
+                                    <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
+                                        <div><span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from || '')}</span><span class="font-luxury text-2xl font-black text-brand-gold">${escHtml(f.price || dict.live_price_badge || '')}</span></div>
+                                        <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold inline-flex items-center gap-1.5">${escHtml(dict.book_deal_btn || 'Book')} <i class="fas fa-plane text-[10px]"></i></span>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div></div>`;
-                }).join('');
+                            </a>
+                        </div></div>`;
+                    }).join('');
+                } catch (e) {}
             };
 
             // 4. المدونة والتقييمات
@@ -4808,10 +4880,16 @@
                 window.currentOpenArticleId = articleId;
                 const lang = document.documentElement.lang || 'tr';
                 const imgEl = document.getElementById('modal-img'), catEl = document.getElementById('modal-category'), titleEl = document.getElementById('modal-title'), bodyEl = document.getElementById('modal-body'), galleryEl = document.getElementById('modal-gallery'), progEl = document.getElementById('article-read-progress');
-                if (imgEl) { imgEl.onerror = function() { window.handleSafeImgError(this); }; imgEl.src = resolveArticleCover(art); }
+                if (imgEl) { imgEl.onerror = function() { this.src = SAFE_IMG_FALLBACK; }; imgEl.src = resolveArticleCover(art); }
                 if (catEl) catEl.textContent = formatArticleCategoryLabel(art, lang);
                 if (progEl) progEl.style.width = '0%';
-                window.renderAndTranslateFullArticle(art, lang, bodyEl, titleEl, galleryEl);
+                if (typeof window.renderAndTranslateFullArticle === 'function') {
+                    window.renderAndTranslateFullArticle(art, lang, bodyEl, titleEl, galleryEl);
+                } else {
+                    const parsed = safeExtractArticle(art, lang);
+                    if (titleEl) titleEl.textContent = parsed.title;
+                    if (bodyEl) bodyEl.innerHTML = parsed.body;
+                }
                 const modal = document.getElementById('article-modal');
                 if (modal) { modal.classList.add('active'); modal.scrollTop = 0; }
                 document.body.style.overflow = 'hidden';
@@ -4833,54 +4911,57 @@
             };
 
             window.renderBlogCards = function() {
-                const container = document.getElementById('blog-container'), pagEl = document.getElementById('blog-pagination');
-                if (!container) return;
-                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                const list = Object.values(window.ARTICLES_MAP || {}).sort((a, b) => toSortableTime(b.publishedAt || b.createdAt || b.updatedAt || b.date) - toSortableTime(a.publishedAt || a.createdAt || a.updatedAt || a.date));
-                if (list.length === 0) {
-                    container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_articles_text || dict.no_deals_text)}</div>`;
-                    if (pagEl) pagEl.classList.add('hidden');
-                    return;
-                }
-                const pageSize = 2, totalPages = Math.ceil(list.length / pageSize);
-                if (window.blogPageIndex >= totalPages) window.blogPageIndex = 0;
-                const visibleTwo = list.slice(window.blogPageIndex * pageSize, window.blogPageIndex * pageSize + pageSize);
-                container.innerHTML = visibleTwo.map(art => {
-                    const keyId = art.slug || art.id, parsed = window.extractArticleContent(art, lang);
-                    const title = window.translateTextStrong(parsed.title || keyId, lang);
-                    const snippet = (parsed.excerpt || parsed.body.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim().slice(0, 185);
-                    const coverImg = resolveArticleCover(art), catLabel = formatArticleCategoryLabel(art, lang);
-                    const readBadge = art.readingTimeMin ? `${art.readingTimeMin} ${dict.min_read || 'min'}` : (dict.editorial_tag || 'EDITORIAL');
-                    return `
-                    <div class="gold-animated-frame"><article onclick="window.openArticleModal('${escJs(keyId)}')" class="editorial-blog-card group">
-                        <div class="editorial-cover-wrap">
-                            <img src="${escHtml(coverImg)}" alt="${escHtml(title)}" loading="lazy" decoding="async" onerror="window.handleSafeImgError(this)">
-                            <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
-                                <span class="px-3 py-1 rounded-full bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold tracking-[0.18em] uppercase">${escHtml(catLabel)}</span>
-                                <span class="px-3 py-1 rounded-full bg-brand-gold text-black text-[10px] font-black tracking-wider uppercase shadow-lg"><i class="fas fa-crown mx-1"></i>${escHtml(readBadge)}</span>
+                try {
+                    const container = resolveContainer(['blog-container', 'blog-grid', 'articles-container'], 'blog-section');
+                    const pagEl = document.getElementById('blog-pagination');
+                    if (!container) return;
+                    const lang = document.documentElement.lang || 'tr', dict = getUiDict();
+                    const list = Object.values(window.ARTICLES_MAP || {}).sort((a, b) => toSortableTime(b.publishedAt || b.createdAt || b.updatedAt || b.date) - toSortableTime(a.publishedAt || a.createdAt || a.updatedAt || a.date));
+                    if (list.length === 0) {
+                        container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_articles_text || dict.no_deals_text || '')}</div>`;
+                        if (pagEl) pagEl.classList.add('hidden');
+                        return;
+                    }
+                    const pageSize = 2, totalPages = Math.ceil(list.length / pageSize);
+                    if (!Number.isFinite(window.blogPageIndex) || window.blogPageIndex >= totalPages) window.blogPageIndex = 0;
+                    const visibleTwo = list.slice(window.blogPageIndex * pageSize, window.blogPageIndex * pageSize + pageSize);
+                    container.innerHTML = visibleTwo.map(art => {
+                        const keyId = art.slug || art.id, parsed = safeExtractArticle(art, lang);
+                        const title = safeTranslate(parsed.title || keyId, lang);
+                        const snippet = (parsed.excerpt || String(parsed.body || '').replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim().slice(0, 185);
+                        const coverImg = resolveArticleCover(art), catLabel = formatArticleCategoryLabel(art, lang);
+                        const readBadge = art.readingTimeMin ? `${art.readingTimeMin} ${dict.min_read || 'min'}` : (dict.editorial_tag || 'EDITORIAL');
+                        return `
+                        <div class="gold-animated-frame"><article onclick="window.openArticleModal('${escJs(keyId)}')" class="editorial-blog-card group">
+                            <div class="editorial-cover-wrap">
+                                <img src="${escHtml(coverImg)}" alt="${escHtml(title)}" loading="lazy" decoding="async" onerror="this.src='${escJs(SAFE_IMG_FALLBACK)}'">
+                                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
+                                    <span class="px-3 py-1 rounded-full bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold tracking-[0.18em] uppercase">${escHtml(catLabel)}</span>
+                                    <span class="px-3 py-1 rounded-full bg-brand-gold text-black text-[10px] font-black tracking-wider uppercase shadow-lg"><i class="fas fa-crown mx-1"></i>${escHtml(readBadge)}</span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-luxury text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition leading-snug mb-3">${escHtml(title)}</h3>
-                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-6">${escHtml(snippet)}${snippet.length >= 180 ? '...' : ''}</p>
+                            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <h3 class="font-luxury text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition leading-snug mb-3">${escHtml(title)}</h3>
+                                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-6">${escHtml(snippet)}${snippet.length >= 180 ? '...' : ''}</p>
+                                </div>
+                                <div class="pt-5 border-t border-slate-200 dark:border-brand-gold/20 flex items-center justify-between gap-3">
+                                    <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-brand-gold"><span>${escHtml(dict.read_more || 'Read')}</span><i class="fas fa-arrow-right text-xs"></i></span>
+                                    <span class="w-9 h-9 rounded-full bg-brand-gold/12 border border-brand-gold/40 text-brand-gold flex items-center justify-center"><i class="fas fa-expand-alt text-xs"></i></span>
+                                </div>
                             </div>
-                            <div class="pt-5 border-t border-slate-200 dark:border-brand-gold/20 flex items-center justify-between gap-3">
-                                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-brand-gold"><span>${escHtml(dict.read_more)}</span><i class="fas fa-arrow-right text-xs"></i></span>
-                                <span class="w-9 h-9 rounded-full bg-brand-gold/12 border border-brand-gold/40 text-brand-gold flex items-center justify-center"><i class="fas fa-expand-alt text-xs"></i></span>
-                            </div>
-                        </div>
-                    </article></div>`;
-                }).join('');
-                if (pagEl) {
-                    if (totalPages > 1) {
-                        pagEl.innerHTML = `
-                            <button type="button" ${window.blogPageIndex === 0 ? 'disabled' : ''} onclick="window.setBlogPage(${window.blogPageIndex - 1})" class="px-4 py-2 rounded-full border border-brand-gold/40 text-xs font-bold text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition disabled:opacity-35 cursor-pointer">${escHtml(dict.prev_articles || 'Prev')}</button>
-                            <span class="text-xs font-extrabold text-brand-gold px-2">${window.blogPageIndex + 1} / ${totalPages}</span>
-                            <button type="button" ${window.blogPageIndex >= totalPages - 1 ? 'disabled' : ''} onclick="window.setBlogPage(${window.blogPageIndex + 1})" class="px-4 py-2 rounded-full border border-brand-gold/40 text-xs font-bold text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition disabled:opacity-35 cursor-pointer">${escHtml(dict.next_articles || 'Next')}</button>`;
-                        pagEl.classList.remove('hidden');
-                    } else pagEl.classList.add('hidden');
-                }
+                        </article></div>`;
+                    }).join('');
+                    if (pagEl) {
+                        if (totalPages > 1) {
+                            pagEl.innerHTML = `
+                                <button type="button" ${window.blogPageIndex === 0 ? 'disabled' : ''} onclick="window.setBlogPage(${window.blogPageIndex - 1})" class="px-4 py-2 rounded-full border border-brand-gold/40 text-xs font-bold text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition disabled:opacity-35 cursor-pointer">${escHtml(dict.prev_articles || 'Prev')}</button>
+                                <span class="text-xs font-extrabold text-brand-gold px-2">${window.blogPageIndex + 1} / ${totalPages}</span>
+                                <button type="button" ${window.blogPageIndex >= totalPages - 1 ? 'disabled' : ''} onclick="window.setBlogPage(${window.blogPageIndex + 1})" class="px-4 py-2 rounded-full border border-brand-gold/40 text-xs font-bold text-slate-700 dark:text-brand-gold hover:bg-brand-gold hover:text-black transition disabled:opacity-35 cursor-pointer">${escHtml(dict.next_articles || 'Next')}</button>`;
+                            pagEl.classList.remove('hidden');
+                        } else pagEl.classList.add('hidden');
+                    }
+                } catch (e) {}
             };
 
             const articleModalEl = document.getElementById('article-modal');
@@ -4913,7 +4994,7 @@
 
             window.closeCinematicOverlay = function(fromPopState) {
                 clearRadarTimers();
-                window.activeSearchSessionId++;
+                window.activeSearchSessionId = (window.activeSearchSessionId || 0) + 1;
                 if (window.ConciergeAudio) window.ConciergeAudio.stopAll();
                 if (window.leafletMapInstance) {
                     try { window.leafletMapInstance.stop(); window.leafletMapInstance.closePopup(); if (window.leafletMarkersLayer) window.leafletMarkersLayer.clearLayers(); } catch (e) {}
@@ -4934,7 +5015,9 @@
 
             document.addEventListener('keydown', e => {
                 if (e.key === 'Escape') {
-                    window.cancelBookingRedirect(); window.hideArticleModal(); window.hideDealSpotlight();
+                    if (window.cancelBookingRedirect) window.cancelBookingRedirect();
+                    window.hideArticleModal();
+                    if (window.hideDealSpotlight) window.hideDealSpotlight();
                     const ov = document.getElementById('cinematic-overlay');
                     if (ov && ov.classList.contains('active')) window.closeCinematicOverlay(false);
                 }
@@ -4945,7 +5028,7 @@
                 const btnS = document.getElementById('btn-map-streets'), btnH = document.getElementById('btn-map-hybrid');
                 if (btnS) btnS.classList.toggle('active', window.currentMapMode === 'streets');
                 if (btnH) btnH.classList.toggle('active', window.currentMapMode === 'hybrid');
-                if (window.leafletMapInstance && typeof L !== 'undefined') {
+                if (window.leafletMapInstance && typeof L !== 'undefined' && window.GOOGLE_REAL_MAP_LAYERS) {
                     if (window.activeTileLayer) window.leafletMapInstance.removeLayer(window.activeTileLayer);
                     window.activeTileLayer = L.tileLayer(window.GOOGLE_REAL_MAP_LAYERS[window.currentMapMode], {
                         maxZoom: 17, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'], updateWhenIdle: true, keepBuffer: 2, attribution: 'Google Maps'
@@ -4973,7 +5056,7 @@
             }
 
             function applyIsolatedTurkeyMask(map) {
-                if (!map || !window.leafletMarkersLayer || typeof L === 'undefined') return;
+                if (!map || !window.leafletMarkersLayer || typeof L === 'undefined' || !window.TURKEY_BORDER_POLYGON) return;
                 const worldOuter = [[-85, -180], [-85, 180], [85, 180], [85, -180]];
                 const turkeyHole = window.TURKEY_BORDER_POLYGON;
                 L.polygon([worldOuter, turkeyHole], { stroke: false, fillColor: '#04070F', fillOpacity: 0.96, interactive: false }).addTo(window.leafletMarkersLayer);
@@ -5041,9 +5124,7 @@
 
             async function callLiveVerifyEdge(payload) {
                 const endpoints = ['./api/concierge-verify'];
-                if (window.location.hostname !== 'ucuzakal.pages.dev') {
-                    endpoints.push('https://ucuzakal.pages.dev/api/concierge-verify');
-                }
+                if (window.location.hostname !== 'ucuzakal.pages.dev') endpoints.push('https://ucuzakal.pages.dev/api/concierge-verify');
                 for (const ep of endpoints) {
                     const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
                     const timer = ctrl ? setTimeout(() => ctrl.abort(), 16000) : null;
@@ -5052,10 +5133,7 @@
                             method: 'POST', headers: { 'Content-Type': 'application/json' },
                             body: JSON.stringify(payload), cache: 'no-store', signal: ctrl ? ctrl.signal : undefined
                         });
-                        if (r.ok) {
-                            const j = await r.json();
-                            if (j && j.found) return j;
-                        }
+                        if (r.ok) { const j = await r.json(); if (j && j.found) return j; }
                     } catch (e) {}
                     finally { if (timer) clearTimeout(timer); }
                 }
@@ -5066,7 +5144,7 @@
                 const alertEl = document.getElementById('budget-advisor-alert');
                 if (!alertEl) return;
                 alertEl.classList.remove('hidden');
-                alertEl.className = `pointer-events-auto max-w-4xl mx-auto rounded-2xl px-4 py-2.5 text-xs font-bold text-center border ${isLow ? 'text-amber-200 border-amber-400/70' : 'text-emerald-200 border-emerald-400/65'}`;
+                alertEl.className = `pointer-events-auto max-w-4xl mx-auto rounded-2xl px-4 py-2 text-xs font-bold text-center border ${isLow ? 'text-amber-200 border-amber-400/70' : 'text-emerald-200 border-emerald-400/65'}`;
                 alertEl.innerHTML = `<i class="fas ${isLow ? 'fa-exclamation-triangle text-amber-400' : 'fa-check-circle text-emerald-400'} mx-1.5"></i>${escHtml(messageText)}`;
             }
 
@@ -5105,10 +5183,10 @@
             };
 
             window.updateTripReadinessUI = function() {
-                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const dict = getUiDict();
                 const lbl = document.getElementById('readiness-label'), fill = document.getElementById('readiness-bar-fill');
                 const pct = Math.min(100, Math.round((window.currentTripReadinessSet.size / Math.max(1, window.currentTripTotalCards)) * 100));
-                if (lbl) lbl.textContent = pct >= 100 ? dict.readiness_complete : `${dict.readiness_prefix} ${pct}%`;
+                if (lbl) lbl.textContent = pct >= 100 ? (dict.readiness_complete || '100%') : `${dict.readiness_prefix || ''} ${pct}%`;
                 if (fill) fill.style.width = `${Math.max(8, pct)}%`;
             };
 
@@ -5122,12 +5200,12 @@
                 grid.innerHTML = safeCards.map((c, idx) => `
                     <div id="map-offer-card-${idx}" class="on-map-offer-card">
                         <div>
-                            <div class="inline-flex items-center gap-1.5 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-brand-gold/20 border border-brand-gold/45 text-brand-goldLight mb-2">${escHtml(c.badge)}</div>
-                            <div class="text-xs sm:text-[13px] font-extrabold text-white leading-snug mb-1.5">${escHtml(c.title)}</div>
-                            <div class="text-[11px] text-slate-300 font-semibold mb-1.5 leading-snug">${escHtml(c.sub)}</div>
-                            ${c.extraSplit ? `<div class="text-[11px] font-extrabold text-emerald-300 mb-2.5">${escHtml(c.extraSplit)}</div>` : '<div class="mb-2"></div>'}
+                            <div class="inline-flex items-center gap-1.5 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full bg-brand-gold/20 border border-brand-gold/45 text-brand-goldLight mb-1.5">${escHtml(c.badge)}</div>
+                            <div class="text-xs sm:text-[13px] font-extrabold text-white leading-snug mb-1">${escHtml(c.title)}</div>
+                            <div class="text-[11px] text-slate-300 font-semibold mb-1 leading-snug">${escHtml(c.sub)}</div>
+                            ${c.extraSplit ? `<div class="text-[11px] font-extrabold text-emerald-300 mb-2">${escHtml(c.extraSplit)}</div>` : '<div class="mb-2"></div>'}
                         </div>
-                        <div class="flex items-center justify-between gap-2 pt-2.5 border-t border-white/15">
+                        <div class="flex items-center justify-between gap-2 pt-2 border-t border-white/15">
                             <span class="font-luxury text-xs sm:text-sm font-black text-brand-goldLight">${escHtml(c.price)}</span>
                             <a href="${escHtml(c.url)}" target="_blank" rel="noopener noreferrer" onclick="window.markOfferChecked(${idx})"
                                class="px-3.5 py-1.5 rounded-full bg-brand-gold text-black text-[11px] font-black hover:opacity-90 transition inline-flex items-center gap-1.5 shrink-0">
@@ -5137,9 +5215,9 @@
                     </div>`).join('');
             }
 
-            // 6. مستشار الفنادق والمنتجعات والشقق (فندق واحد دقيق + حساب الأفراد ونصيب الفرد)
+            // 6. مستشار الفنادق والمنتجعات والشقق
             window.startHotelConcierge = async function() {
-                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr, d = getDeepDict();
+                const lang = document.documentElement.lang || 'tr', dict = getUiDict(), d = getDeepDict();
                 const budgetEl = document.getElementById('hc-budget'), daysEl = document.getElementById('hc-days'), guestsEl = document.getElementById('hc-guests');
                 const userBudgetPerRoom = parseBudgetNum(budgetEl && budgetEl.value), days = parseInt((daysEl && daysEl.value) || '', 10), guests = parseInt((guestsEl && guestsEl.value) || '', 10);
 
@@ -5150,7 +5228,7 @@
                 if (!(Number.isFinite(guests) && guests >= 1)) missing.push(guestsEl);
                 if (missing.length > 0) {
                     missing.forEach(el => { if (el) el.classList.add('input-error-ring'); });
-                    showInlineFormAlert('hc-validation-msg', dict.err_hotel_missing_fields, 'error');
+                    showInlineFormAlert('hc-validation-msg', dict.err_hotel_missing_fields || 'Required fields missing', 'error');
                     if (missing[0]) missing[0].focus();
                     return;
                 }
@@ -5161,12 +5239,12 @@
                 const destVal = (document.getElementById('hc-dest') && document.getElementById('hc-dest').value) || 'Tüm Türkiye';
                 const accType = (document.getElementById('hc-type') && document.getElementById('hc-type').value) || 'hotel';
                 const isAllTr = destVal === 'Tüm Türkiye';
-                const pInfo = isAllTr ? { cityEn: 'All Turkey', lat: 39.0, lng: 35.2, minHotel: 34 } : (window.TURKEY_81_COORDS[destVal] || { cityEn: destVal, lat: 39.0, lng: 35.2, minHotel: 34 });
+                const pInfo = isAllTr ? { cityEn: 'All Turkey', lat: 39.0, lng: 35.2, minHotel: 34 } : ((window.TURKEY_81_COORDS && window.TURKEY_81_COORDS[destVal]) || { cityEn: destVal, lat: 39.0, lng: 35.2, minHotel: 34 });
                 const destLabel = formatDestName(destVal, lang);
 
                 clearRadarTimers();
-                stripTransparentTopMapBar();
-                const sessionId = ++window.activeSearchSessionId;
+                prepareMapOverlayShell();
+                const sessionId = (window.activeSearchSessionId = (window.activeSearchSessionId || 0) + 1);
                 const overlay = document.getElementById('cinematic-overlay');
                 if (overlay) overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
@@ -5206,60 +5284,46 @@
                 const isLow = totalUserNightBudget < minMarketUsd;
                 const guestsPhrase = `${guests} ${dict.guests_label || 'Guests'}` + (rooms > 1 ? ` (${rooms} ${d.rooms_lbl})` : '');
                 showBudgetAlertBanner(isLow, (isLow ? d.low_budget_hotel : d.good_budget_hotel)
-                    .replace('$USER', `$${totalUserNightBudget}`)
-                    .replace('$MIN', `$${minMarketUsd}`)
-                    .replace('$GUESTS', guestsPhrase));
+                    .replace('$USER', `$${totalUserNightBudget}`).replace('$MIN', `$${minMarketUsd}`).replace('$GUESTS', guestsPhrase));
 
                 const stayTitleTpl = accType === 'resort' ? d.stay_title_resort : (accType === 'apart' ? d.stay_title_apart : d.stay_title_hotel);
                 const cityDisp = formatDestName(bestStay.cityTr || bestStay.cityEn || destVal, lang);
-                const stayTitle = bestStay.name
-                    ? (bestStay.i18n ? window.pickDealLocalizedField(bestStay, 'title', bestStay.name, lang) : bestStay.name)
-                    : stayTitleTpl.replace('$CITY', cityDisp);
+                const stayTitle = bestStay.name ? safePickField(bestStay, 'title', bestStay.name, lang) : stayTitleTpl.replace('$CITY', cityDisp);
 
                 const totalStayUsd = Math.round(bestStay.priceUsd * days);
                 const perPersonTotal = Math.round(totalStayUsd / guests);
                 const roomNote = rooms > 1 ? ` • ${rooms} ${d.rooms_lbl}` : '';
-                const splitLine = guests > 1
-                    ? `👤 ${d.per_person_lbl}: ~$${perPersonTotal.toLocaleString('en-US')} (${days} ${dict.days_label || 'Days'})`
-                    : '';
+                const splitLine = guests > 1 ? `👤 ${d.per_person_lbl}: ~$${perPersonTotal.toLocaleString('en-US')} (${days} ${dict.days_label || 'Days'})` : '';
 
-                const cards = [
-                    {
-                        badge: d.stay_badge,
-                        title: stayTitle,
-                        sub: `${cityDisp} • ${dict.total_stay} ~$${totalStayUsd.toLocaleString('en-US')} (${days} ${dict.days_label || 'Days'} • ${guests} ${dict.guests_label || 'Guests'}${roomNote})`,
-                        extraSplit: splitLine,
-                        price: `~$${bestStay.priceUsd} ${dict.per_night}`,
-                        cta: d.stay_cta,
-                        icon: 'fas fa-hotel',
-                        url: bestStay.affiliateUrl
-                    }
-                ];
+                const cards = [{
+                    badge: d.stay_badge, title: stayTitle,
+                    sub: `${cityDisp} • ${dict.total_stay || 'Total'} ~$${totalStayUsd.toLocaleString('en-US')} (${days} ${dict.days_label || 'Days'} • ${guests} ${dict.guests_label || 'Guests'}${roomNote})`,
+                    extraSplit: splitLine, price: `~$${bestStay.priceUsd} ${dict.per_night || ''}`,
+                    cta: d.stay_cta, icon: 'fas fa-hotel', url: bestStay.affiliateUrl
+                }];
 
                 const add = (apiRes && apiRes.addons) || {};
                 if (add.activity && window.isValidExternalUrl(add.activity.affiliateUrl)) {
-                    cards.push({ badge: d.activity_badge.replace('$CITY', cityDisp), title: d.activity_title.replace('$CITY', cityDisp), sub: d.activity_sub, price: dict.live_price_badge, cta: d.activity_cta, icon: 'fas fa-ticket-alt', url: add.activity.affiliateUrl });
+                    cards.push({ badge: d.activity_badge.replace('$CITY', cityDisp), title: d.activity_title.replace('$CITY', cityDisp), sub: d.activity_sub, price: dict.live_price_badge || '', cta: d.activity_cta, icon: 'fas fa-ticket-alt', url: add.activity.affiliateUrl });
                 }
                 if (add.car && window.isValidExternalUrl(add.car.affiliateUrl)) {
-                    cards.push({ badge: d.car_badge.replace('$CITY', cityDisp), title: d.car_title.replace('$CITY', cityDisp), sub: d.car_sub, price: dict.live_price_badge, cta: d.car_cta, icon: 'fas fa-car', url: add.car.affiliateUrl });
+                    cards.push({ badge: d.car_badge.replace('$CITY', cityDisp), title: d.car_title.replace('$CITY', cityDisp), sub: d.car_sub, price: dict.live_price_badge || '', cta: d.car_cta, icon: 'fas fa-car', url: add.car.affiliateUrl });
                 }
-                const esimUrl = (add.esim && window.isValidExternalUrl(add.esim.affiliateUrl))
-                    ? add.esim.affiliateUrl
-                    : `${APPROVED_GATEWAYS.airalo}${encodeURIComponent('https://www.airalo.com/turkey-esim')}`;
-                cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: esimUrl });
+                const esimUrl = (add.esim && window.isValidExternalUrl(add.esim.affiliateUrl)) ? add.esim.affiliateUrl : `${APPROVED_GATEWAYS.airalo}${encodeURIComponent('https://www.airalo.com/turkey-esim')}`;
+                cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge || '', cta: d.esim_cta, icon: 'fas fa-sim-card', url: esimUrl });
 
                 renderPersuasionBox('hotel', cards.length);
                 renderConciergeOfferCards(cards);
             };
 
-            // 7. مستشار الطيران (حركة طائرة سلسة 360° في كل الوجهات + صيغة درجات Aviasales الصحيحة)
+            // 7. مستشار الطيران (حركة طائرة 360° سلسة + صيغة درجات Aviasales w1/c1/f1)
             function readAndValidateFlightEndpoint(side) {
                 const sel = document.getElementById(`fc-${side}-country`), trCity = document.getElementById(`fc-${side}-tr-city`), wCity = document.getElementById(`fc-${side}-world-city`), airEl = document.getElementById(`fc-${side}-airport`);
                 const code = (sel && sel.selectedIndex >= 0 && sel.options[sel.selectedIndex].getAttribute('data-code')) || '';
                 const airRaw = (airEl && airEl.value.trim()) || '';
                 if (code === 'TR') {
                     const prov = (trCity && trCity.value) || '';
-                    if (!prov || !window.TURKEY_81_COORDS[prov]) return { ok: false, reason: 'missing', field: trCity };
+                    if (!prov || !window.TURKEY_81_COORDS || !window.TURKEY_81_COORDS[prov]) return { ok: false, reason: 'missing', field: trCity };
                     const pInfo = window.TURKEY_81_COORDS[prov];
                     if (pInfo.hasAirport === false) return { ok: false, reason: 'no_airport', field: trCity, enteredCity: prov, nearestAirport: pInfo.airport };
                     const expIata = (airRaw.match(/\(([A-Z]{3})\)/i) || airRaw.match(/\b([A-Z]{3})\b/))?.[1]?.toUpperCase() || '';
@@ -5272,7 +5336,7 @@
             }
 
             window.startFlightConcierge = async function() {
-                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr, d = getDeepDict();
+                const lang = document.documentElement.lang || 'tr', dict = getUiDict(), d = getDeepDict();
                 const budgetEl = document.getElementById('fc-budget'), classEl = document.getElementById('fc-class'), airlineEl = document.getElementById('fc-airline');
                 const fromCityEl = document.getElementById('fc-from-world-city'), toCityEl = document.getElementById('fc-to-world-city'), fromTrEl = document.getElementById('fc-from-tr-city'), toTrEl = document.getElementById('fc-to-tr-city');
                 [budgetEl, classEl, fromCityEl, toCityEl, fromTrEl, toTrEl].forEach(el => { if (el) el.classList.remove('input-error-ring'); });
@@ -5287,7 +5351,7 @@
                 if (!cabinClass) missing.push(classEl);
                 if (missing.length > 0) {
                     missing.forEach(el => { if (el) el.classList.add('input-error-ring'); });
-                    showInlineFormAlert('fc-validation-msg', dict.err_flight_missing_fields, 'error');
+                    showInlineFormAlert('fc-validation-msg', dict.err_flight_missing_fields || 'Required fields missing', 'error');
                     if (missing[0]) missing[0].focus();
                     return;
                 }
@@ -5298,13 +5362,13 @@
                     if (bad.field) bad.field.focus();
                     return;
                 }
-                if (!origRes.ok || !destRes.ok || !origRes.iata || !destRes.iata) { showInlineFormAlert('fc-validation-msg', dict.err_flight_no_deals, 'warn'); return; }
-                if (origRes.iata === destRes.iata) { showInlineFormAlert('fc-validation-msg', dict.err_flight_same_route, 'error'); return; }
+                if (!origRes.ok || !destRes.ok || !origRes.iata || !destRes.iata) { showInlineFormAlert('fc-validation-msg', dict.err_flight_no_deals || '', 'warn'); return; }
+                if (origRes.iata === destRes.iata) { showInlineFormAlert('fc-validation-msg', dict.err_flight_same_route || '', 'error'); return; }
                 hideInlineFormAlert('fc-validation-msg');
 
                 clearRadarTimers();
-                stripTransparentTopMapBar();
-                const sessionId = ++window.activeSearchSessionId;
+                prepareMapOverlayShell();
+                const sessionId = (window.activeSearchSessionId = (window.activeSearchSessionId || 0) + 1);
                 const orig = origRes, dest = destRes;
                 const km = Math.max(180, haversineKm(orig.lat, orig.lng, dest.lat, dest.lng));
                 const estHours = Math.max(0.8, Math.round((km / 780) * 10) / 10);
@@ -5321,27 +5385,19 @@
                 if (map && typeof L !== 'undefined') {
                     map.setMaxBounds(null); map.setMinZoom(2);
                     map.fitBounds(L.latLngBounds([[orig.lat, orig.lng], [dest.lat, dest.lng]]), {
-                        paddingTopLeft: [70, 75],
-                        paddingBottomRight: [70, 340],
-                        maxZoom: 5,
-                        animate: false
+                        paddingTopLeft: [70, 75], paddingBottomRight: [70, 340], maxZoom: 5, animate: false
                     });
                     L.marker([orig.lat, orig.lng], { icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring origin-ring"></div><div class="radar-target-dot origin-dot"></div><div class="radar-country-label">🛫 ${escHtml(origDisp)} (${escHtml(orig.iata)})</div></div>`, iconSize: [0, 0] }) }).addTo(window.leafletMarkersLayer);
                     L.marker([dest.lat, dest.lng], { icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring"></div><div class="radar-target-dot"></div><div class="radar-country-label">🛬 ${escHtml(destDisp)} (${escHtml(dest.iata)})</div></div>`, iconSize: [0, 0] }) }).addTo(window.leafletMarkersLayer);
 
-                    // بناء منحنى سلس من 120 نقطة يعمل في كل الاتجاهات (شمال/جنوب/شرق/غرب)
                     const dLatAll = dest.lat - orig.lat, dLngAll = dest.lng - orig.lng;
                     const arcLift = Math.min(7, Math.max(1.5, km / 550));
                     const ctrlLat = midLat + (Math.abs(dLngAll) > Math.abs(dLatAll) ? arcLift : 0);
                     const ctrlLng = midLng + (Math.abs(dLngAll) <= Math.abs(dLatAll) ? (dLatAll >= 0 ? -arcLift * 0.45 : arcLift * 0.45) : 0);
-                    const curvePts = [];
-                    const STEPS = 120;
+                    const curvePts = [], STEPS = 120;
                     for (let i = 0; i <= STEPS; i++) {
                         const t = i / STEPS;
-                        curvePts.push([
-                            (1 - t) * (1 - t) * orig.lat + 2 * (1 - t) * t * ctrlLat + t * t * dest.lat,
-                            (1 - t) * (1 - t) * orig.lng + 2 * (1 - t) * t * ctrlLng + t * t * dest.lng
-                        ]);
+                        curvePts.push([(1 - t) * (1 - t) * orig.lat + 2 * (1 - t) * t * ctrlLat + t * t * dest.lat, (1 - t) * (1 - t) * orig.lng + 2 * (1 - t) * t * ctrlLng + t * t * dest.lng]);
                     }
                     L.polyline(curvePts, { color: '#D4AF37', weight: 3.2, dashArray: '8, 6', opacity: 0.96 }).addTo(window.leafletMarkersLayer);
 
@@ -5360,23 +5416,14 @@
                     function stepJet(now) {
                         if (sessionId !== window.activeSearchSessionId) return;
                         if (animStart === null) animStart = now;
-                        const elapsed = Math.max(0, now - animStart);
-                        const p = Math.min(1, elapsed / flightDuration);
-                        const exactIdx = p * STEPS;
-                        const i0 = Math.min(STEPS - 1, Math.floor(exactIdx));
-                        const frac = exactIdx - i0;
+                        const p = Math.min(1, Math.max(0, now - animStart) / flightDuration);
+                        const exactIdx = p * STEPS, i0 = Math.min(STEPS - 1, Math.floor(exactIdx)), frac = exactIdx - i0;
                         const p0 = curvePts[i0], p1 = curvePts[i0 + 1];
-                        const curLat = p0[0] + (p1[0] - p0[0]) * frac;
-                        const curLng = p0[1] + (p1[1] - p0[1]) * frac;
+                        const curLat = p0[0] + (p1[0] - p0[0]) * frac, curLng = p0[1] + (p1[1] - p0[1]) * frac;
                         jetMarker.setLatLng([curLat, curLng]);
-
-                        const cosLat = Math.cos(curLat * Math.PI / 180);
-                        const angleDeg = Math.atan2((p1[1] - p0[1]) * cosLat, p1[0] - p0[0]) * 180 / Math.PI;
+                        const angleDeg = Math.atan2((p1[1] - p0[1]) * Math.cos(curLat * Math.PI / 180), p1[0] - p0[0]) * 180 / Math.PI;
                         const el = jetMarker.getElement();
-                        if (el) {
-                            const svg = el.querySelector('.real-jet-svg');
-                            if (svg) svg.style.transform = `rotate(${angleDeg.toFixed(1)}deg)`;
-                        }
+                        if (el) { const svg = el.querySelector('.real-jet-svg'); if (svg) svg.style.transform = `rotate(${angleDeg.toFixed(1)}deg)`; }
                         if (p < 1) window.flightAnimFrame = requestAnimationFrame(stepJet);
                     }
                     window.flightAnimFrame = requestAnimationFrame(stepJet);
@@ -5390,7 +5437,6 @@
                 if (!timerDone || sessionId !== window.activeSearchSessionId) return;
                 if (window.ConciergeAudio) window.ConciergeAudio.playLanding();
 
-                // صيغة Aviasales الصحيحة للدرجة (حرف صغير قبل عدد الركاب: w1 / c1 / f1)
                 const clsCode = { economy: '', premium: 'w', business: 'c', first: 'f' }[cabinClass] || '';
                 const fut = new Date(Date.now() + 14 * 86400000);
                 const ddmm = `${String(fut.getUTCDate()).padStart(2, '0')}${String(fut.getUTCMonth() + 1).padStart(2, '0')}`;
@@ -5413,17 +5459,16 @@
                 subParts.push(`~${estHours}h`);
 
                 const cards = [{ badge: `${d.flight_badge} • ${cabinLabel}`, title: `${origDisp} (${fl.origIata}) ✈️ ${destDisp} (${fl.destIata})`, sub: subParts.join(' • '), price: `~$${fl.priceUsd}`, cta: d.flight_cta, icon: 'fas fa-plane', url: fl.affiliateUrl }];
-
                 const add = (apiRes && apiRes.addons) || {};
                 if (cabinClass !== 'economy' && add.transfer && window.isValidExternalUrl(add.transfer.affiliateUrl)) {
-                    cards.push({ badge: d.transfer_badge, title: d.transfer_title.replace('$CITY', destDisp), sub: d.transfer_sub, price: dict.live_price_badge, cta: d.transfer_cta, icon: 'fas fa-taxi', url: add.transfer.affiliateUrl });
+                    cards.push({ badge: d.transfer_badge, title: d.transfer_title.replace('$CITY', destDisp), sub: d.transfer_sub, price: dict.live_price_badge || '', cta: d.transfer_cta, icon: 'fas fa-taxi', url: add.transfer.affiliateUrl });
                 }
                 const destSlug = AIRALO_DEST_SLUGS[String(dest.countryCode || '').toUpperCase()];
                 const flightEsimUrl = (add.esim && window.isValidExternalUrl(add.esim.affiliateUrl))
                     ? add.esim.affiliateUrl
                     : (destSlug ? `${APPROVED_GATEWAYS.airalo}${encodeURIComponent(`https://www.airalo.com/${destSlug}-esim`)}` : '');
                 if (flightEsimUrl) {
-                    cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: flightEsimUrl });
+                    cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge || '', cta: d.esim_cta, icon: 'fas fa-sim-card', url: flightEsimUrl });
                 }
 
                 renderPersuasionBox('flight', cards.length);
@@ -5431,7 +5476,7 @@
             };
 
             // =====================================================================
-            // 8. تحميل محصّن ومتعدد المصادر لعروض الفنادق والطيران والمدونة (مع كاش 24 ساعة)
+            // 8. تغذية فورية مضمونة 100% لعروض الفنادق والطيران والمدونة عبر Cloudflare Edge
             // =====================================================================
             async function fetchJsonSafe(url, timeoutMs) {
                 const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
@@ -5441,20 +5486,6 @@
                     return r.ok ? await r.json() : null;
                 } catch (e) { return null; }
                 finally { if (timer) clearTimeout(timer); }
-            }
-
-            function readLsCache(key) {
-                try {
-                    const raw = localStorage.getItem(key);
-                    if (!raw) return null;
-                    const parsed = JSON.parse(raw);
-                    if (parsed && parsed.ts && (Date.now() - parsed.ts < CACHE_TTL_24H)) return parsed.data;
-                } catch (e) {}
-                return null;
-            }
-
-            function writeLsCache(key, data) {
-                try { localStorage.setItem(key, JSON.stringify({ ts: Date.now(), data })); } catch (e) {}
             }
 
             function extractDealsArrays(feedObj) {
@@ -5482,7 +5513,7 @@
                 return true;
             }
 
-            function applyArchiveAsDealsFallback(archObj) {
+            function applyArchiveFallback(archObj) {
                 if (!archObj || !archObj.deals) return false;
                 const all = Array.isArray(archObj.deals) ? archObj.deals : Object.values(archObj.deals);
                 const h = [], f = [];
@@ -5493,122 +5524,86 @@
                     if (isFl && f.length < 6) f.push(item);
                     else if (!isFl && h.length < 6) h.push(item);
                 });
-                if (!h.length && !f.length) return false;
-                return applyFeedData({ mainHotels: h, mainFlights: f, updatedAt: Date.now() });
+                return (h.length || f.length) ? applyFeedData({ mainHotels: h, mainFlights: f, updatedAt: Date.now() }) : false;
             }
 
-            async function loadDealsFromFirestoreOnce() {
-                const cached = readLsCache('uk_deals_fb_cache_v1');
-                if (cached && applyFeedData(cached)) return true;
-                if (!fbDb) return false;
-                const hList = [], fList = [];
-                for (const col of ['hotels', 'hotel_deals']) {
-                    if (hList.length) break;
-                    try {
-                        const snap = await fbDb.collection(col).limit(6).get();
-                        snap.forEach(doc => hList.push(Object.assign({ id: doc.id }, doc.data())));
-                    } catch (e) {}
-                }
-                for (const col of ['flights', 'flight_deals']) {
-                    if (fList.length) break;
-                    try {
-                        const snap = await fbDb.collection(col).limit(6).get();
-                        snap.forEach(doc => fList.push(Object.assign({ id: doc.id }, doc.data())));
-                    } catch (e) {}
-                }
-                if (hList.length || fList.length) {
-                    const pack = { mainHotels: hList, mainFlights: fList, updatedAt: Date.now() };
-                    writeLsCache('uk_deals_fb_cache_v1', pack);
-                    return applyFeedData(pack);
-                }
-                return false;
-            }
-
-            async function loadBlogFromFirestoreOnce() {
-                const cached = readLsCache('uk_blog_fb_cache_v1');
-                if (Array.isArray(cached) && cached.length) return cached;
-                if (!fbDb) return [];
-                for (const col of ['articles', 'blog_posts', 'blog']) {
-                    try {
-                        const snap = await fbDb.collection(col).limit(10).get();
-                        const arr = [];
-                        snap.forEach(doc => arr.push(Object.assign({ id: doc.id }, doc.data())));
-                        if (arr.length) { writeLsCache('uk_blog_fb_cache_v1', arr); return arr; }
-                    } catch (e) {}
-                }
-                return [];
+            function applyBlogPayload(blogIdx) {
+                const posts = (blogIdx && (blogIdx.posts || blogIdx.articles)) || (Array.isArray(blogIdx) ? blogIdx : []);
+                if (!posts.length) return false;
+                posts.forEach(post => {
+                    if (!post || post.status === 'draft') return;
+                    const key = post.slug || post.id;
+                    if (key) window.ARTICLES_MAP[key] = Object.assign({ id: key }, post);
+                });
+                window.renderBlogCards();
+                return true;
             }
 
             function handleUrlDeepLinks() {
                 try {
                     const params = new URLSearchParams(window.location.search);
                     const dealParam = params.get('deal'), articleParam = params.get('article');
-                    if (dealParam && !window._deepLinkHandled && ((window.HOTELS_DATA && window.HOTELS_DATA.length) || (window.FLIGHTS_DATA && window.FLIGHTS_DATA.length))) {
+                    if (dealParam && !window._deepLinkHandled && (window.HOTELS_DATA.length || window.FLIGHTS_DATA.length)) {
                         window._deepLinkHandled = true;
-                        window.openDealSpotlightById(dealParam);
-                    } else if (articleParam && window.ARTICLES_MAP && window.ARTICLES_MAP[articleParam] && !window._deepLinkHandled) {
+                        if (window.openDealSpotlightById) window.openDealSpotlightById(dealParam);
+                    } else if (articleParam && window.ARTICLES_MAP[articleParam] && !window._deepLinkHandled) {
                         window._deepLinkHandled = true;
                         window.openArticleModal(articleParam);
                     }
                 } catch (e) {}
             }
 
-            function bootstrapPlatformData() {
+            async function bootstrapPlatformData() {
                 if (window._ukBootstrapped) return;
                 window._ukBootstrapped = true;
 
                 initFirebaseServices();
-                stripTransparentTopMapBar();
+                prepareMapOverlayShell();
                 try { window.switchGoogleMapLayer(window.currentMapMode); } catch (e) {}
                 localizeTurkeySelects();
                 const ts = Date.now();
 
-                // 1) تحميل الفنادق والطيران (ملف محلي ⬅️ GitHub Raw ⬅️ الأرشيف ⬅️ Firestore بكاش 24 ساعة)
-                (async () => {
-                    let loaded = false;
-                    const localData = await fetchJsonSafe(`./live_deals_feed.json?t=${ts}`, 15000);
-                    if (localData && applyFeedData(localData)) { loaded = true; handleUrlDeepLinks(); }
+                let dealsReady = false;
+                let blogReady = false;
 
-                    const rawData = await fetchJsonSafe(`${RAW_REPO_BASE}/live_deals_feed.json?t=${ts}`, 15000);
-                    if (rawData && applyFeedData(rawData)) { loaded = true; handleUrlDeepLinks(); }
-
-                    let arch = await fetchJsonSafe(`./deals_archive.json?t=${ts}`, 15000);
-                    if (!arch || !arch.deals) arch = await fetchJsonSafe(`${RAW_REPO_BASE}/deals_archive.json?t=${ts}`, 15000);
-                    if (arch && arch.deals) {
-                        window.DEALS_ARCHIVE_MAP = arch.deals;
-                        if (!loaded) loaded = applyArchiveAsDealsFallback(arch);
-                        handleUrlDeepLinks();
+                // 1) الجلب المباشر والأسرع من خادم Cloudflare Edge (يقرأ ASSETS داخلياً في أجزاء من الثانية)
+                const edgeUrls = [`./api/concierge-verify?feed=home&t=${ts}`];
+                if (window.location.hostname !== 'ucuzakal.pages.dev') edgeUrls.push(`https://ucuzakal.pages.dev/api/concierge-verify?feed=home&t=${ts}`);
+                for (const u of edgeUrls) {
+                    const pack = await fetchJsonSafe(u, 10000);
+                    if (pack && pack.ok) {
+                        if (pack.archive && pack.archive.deals) window.DEALS_ARCHIVE_MAP = pack.archive.deals;
+                        if (pack.dealsFeed && applyFeedData(pack.dealsFeed)) dealsReady = true;
+                        else if (pack.archive && applyArchiveFallback(pack.archive)) dealsReady = true;
+                        if (pack.blogIndex && applyBlogPayload(pack.blogIndex)) blogReady = true;
+                        if (dealsReady && blogReady) break;
                     }
+                }
 
-                    if (!loaded) {
-                        await loadDealsFromFirestoreOnce();
-                        handleUrlDeepLinks();
+                // 2) بدائل إضافية فورية في حال لم يكتمل أي قسم بعد
+                if (!dealsReady) {
+                    for (const u of [`./live_deals_feed.json?t=${ts}`, `${RAW_REPO_BASE}/live_deals_feed.json?t=${ts}`]) {
+                        const d = await fetchJsonSafe(u, 15000);
+                        if (d && applyFeedData(d)) { dealsReady = true; break; }
                     }
-                })();
-
-                // 2) تحميل المدونة (ملف محلي ⬅️ مجلد blog ⬅️ GitHub Raw ⬅️ Firestore بكاش 24 ساعة)
-                (async () => {
-                    if (!window.ARTICLES_MAP) window.ARTICLES_MAP = {};
-                    const blogUrls = [
-                        `./live_blog_index.json?t=${ts}`,
-                        `./blog/live_blog_index.json?t=${ts}`,
-                        `${RAW_REPO_BASE}/live_blog_index.json?t=${ts}`
-                    ];
-                    let posts = [];
-                    for (const u of blogUrls) {
-                        const idx = await fetchJsonSafe(u, 12000);
-                        const arr = (idx && (idx.posts || idx.articles)) || (Array.isArray(idx) ? idx : []);
-                        if (arr.length) { posts = arr; break; }
+                }
+                if (!dealsReady) {
+                    for (const u of [`./deals_archive.json?t=${ts}`, `${RAW_REPO_BASE}/deals_archive.json?t=${ts}`]) {
+                        const a = await fetchJsonSafe(u, 15000);
+                        if (a && a.deals) {
+                            window.DEALS_ARCHIVE_MAP = a.deals;
+                            if (applyArchiveFallback(a)) { dealsReady = true; break; }
+                        }
                     }
-                    if (!posts.length) posts = await loadBlogFromFirestoreOnce();
-                    posts.forEach(post => {
-                        if (!post || post.status === 'draft') return;
-                        const key = post.slug || post.id;
-                        if (key) window.ARTICLES_MAP[key] = Object.assign({ id: key }, post);
-                    });
-                    window.renderBlogCards();
-                    handleUrlDeepLinks();
-                })();
+                }
+                if (!blogReady) {
+                    for (const u of [`./live_blog_index.json?t=${ts}`, `./blog/live_blog_index.json?t=${ts}`, `${RAW_REPO_BASE}/live_blog_index.json?t=${ts}`]) {
+                        const b = await fetchJsonSafe(u, 12000);
+                        if (b && applyBlogPayload(b)) { blogReady = true; break; }
+                    }
+                    if (!blogReady) window.renderBlogCards();
+                }
+                handleUrlDeepLinks();
             }
 
             if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootstrapPlatformData);
