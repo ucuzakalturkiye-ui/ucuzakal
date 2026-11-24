@@ -1,9 +1,9 @@
 /**
- * UcuzaKal Türkiye — Live Real-Time Concierge Engine (v3.1)
- * - All 81 Turkish provinces (Hotels, Resorts, Aparts) + All global flight countries.
- * - Low budget: warns visitor AND returns real market offers for their stay/cabin class.
- * - 100% White-Label (zero external partner names exposed).
- * - Exclusive approved gateways only (marker=798779, trs=597953). Zero Firebase/GitHub quota.
+ * UcuzaKal Türkiye — Live Real-Time Concierge Engine (v3.2)
+ * - Strictly 1 accurate stay card per search (with Turkey lock).
+ * - Exact-city-only Activities & Car Rentals (hidden if city is not directly supported).
+ * - Guaranteed 5G eSIM for all verified destination countries + Aviasales live fares.
+ * - 100% White-Label & exclusive approved gateways (marker=798779, trs=597953).
  */
 
 const MARKER = "798779";
@@ -41,17 +41,19 @@ const CITY_GROUPS = {
 
 const AIRLINES = {
     PC: "Pegasus Airlines", TK: "Turkish Airlines", VF: "AJet", XQ: "SunExpress",
-    SV: "Saudia", XY: "Flynas", F3: "flyadeal", EK: "Emirates", FZ: "flydubai",
-    G9: "Air Arabia", EY: "Etihad Airways", QR: "Qatar Airways", KU: "Kuwait Airways",
-    J9: "Jazeera Airways", MS: "EgyptAir", SM: "Air Cairo", NP: "Nile Air",
-    RJ: "Royal Jordanian", IA: "Iraqi Airways", ME: "Middle East Airlines",
-    AT: "Royal Air Maroc", AH: "Air Algérie", GF: "Gulf Air", WY: "Oman Air",
-    SU: "Aeroflot", DP: "Pobeda", S7: "S7 Airlines", U6: "Ural Airlines",
-    UT: "Utair", WZ: "Red Wings", N4: "Nordwind", TU: "Tunisair",
-    LH: "Lufthansa", BA: "British Airways", AF: "Air France", KL: "KLM",
+    "2S": "Southwind Airlines", SV: "Saudia", XY: "Flynas", F3: "flyadeal",
+    EK: "Emirates", FZ: "flydubai", G9: "Air Arabia", EY: "Etihad Airways",
+    QR: "Qatar Airways", KU: "Kuwait Airways", J9: "Jazeera Airways",
+    MS: "EgyptAir", SM: "Air Cairo", NP: "Nile Air", RJ: "Royal Jordanian",
+    IA: "Iraqi Airways", ME: "Middle East Airlines", AT: "Royal Air Maroc",
+    AH: "Air Algérie", GF: "Gulf Air", WY: "Oman Air", SU: "Aeroflot",
+    DP: "Pobeda", S7: "S7 Airlines", U6: "Ural Airlines", UT: "Utair",
+    WZ: "Red Wings", N4: "Nordwind", TU: "Tunisair", LH: "Lufthansa",
+    BA: "British Airways", AF: "Air France", KL: "KLM",
     J2: "Azerbaijan Airlines", KC: "Air Astana", LX: "SWISS", AZ: "ITA Airways",
 };
 
+// الدول المؤكدة في Airalo
 const AIRALO_SLUGS = {
     TR: "turkey", EG: "egypt", SA: "saudi-arabia", AE: "united-arab-emirates",
     QA: "qatar", KW: "kuwait", BH: "bahrain", OM: "oman", JO: "jordan",
@@ -64,6 +66,7 @@ const AIRALO_SLUGS = {
     PT: "portugal", MY: "malaysia", ID: "indonesia", SG: "singapore", KR: "south-korea",
 };
 
+// المدن المدعومة بصفحة مخصصة في Welcome Pickups
 const WELCOME_SLUGS = {
     istanbul: "istanbul", antalya: "antalya", izmir: "izmir", bodrum: "bodrum",
     dalaman: "dalaman", ankara: "ankara", dubai: "dubai", "abu dhabi": "abu-dhabi",
@@ -74,21 +77,32 @@ const WELCOME_SLUGS = {
     "new york": "new-york", lisbon: "lisbon", brussels: "brussels",
 };
 
-const TIQETS_SLUGS = {
-    istanbul: "istanbul-c60711", antalya: "antalya-c79888", izmir: "izmir-c80036",
-    bodrum: "bodrum-c79923", mugla: "bodrum-c79923", cappadocia: "cappadocia-c166298",
-    nevsehir: "cappadocia-c166298", dubai: "dubai-c60005", cairo: "cairo-c60420",
-    london: "london-c67458", paris: "paris-c66746", rome: "rome-c71631",
-    barcelona: "barcelona-c66342", madrid: "madrid-c66254", athens: "athens-c68557",
-    amsterdam: "amsterdam-c75061", berlin: "berlin-c65144", vienna: "vienna-c60335",
+// المدن التركية التي لها صفحة أنشطة مخصصة ومؤكدة في Tiqets فقط (تُخفى لبقية المدن)
+const TIQETS_EXACT_SLUGS = {
+    istanbul: "istanbul-c60711",
+    antalya: "antalya-c79888",
+    izmir: "izmir-c80036",
+    bodrum: "bodrum-c79923",
+    mugla: "bodrum-c79923",
+    cappadocia: "cappadocia-c166298",
+    nevsehir: "cappadocia-c166298",
 };
 
-const LOCALRENT_TR = {
-    istanbul: "istanbul", antalya: "antalya", izmir: "izmir", bodrum: "bodrum",
-    dalaman: "dalaman", fethiye: "fethiye", marmaris: "marmaris", alanya: "alanya",
-    trabzon: "trabzon", ankara: "ankara", bursa: "bursa", cappadocia: "cappadocia",
-    mugla: "mugla", nevsehir: "cappadocia", adana: "adana", gaziantep: "gaziantep",
-    kayseri: "kayseri", samsun: "samsun",
+// المدن التركية التي لها صفحة مستقلة فعلياً في Localrent (لا تتحول لأنطاليا)
+const LOCALRENT_EXACT_TR = {
+    istanbul: "istanbul",
+    antalya: "antalya",
+    izmir: "izmir",
+    bodrum: "bodrum",
+    dalaman: "dalaman",
+    fethiye: "fethiye",
+    marmaris: "marmaris",
+    alanya: "alanya",
+    trabzon: "trabzon",
+    ankara: "ankara",
+    cappadocia: "cappadocia",
+    nevsehir: "cappadocia",
+    mugla: "bodrum",
 };
 
 const BROKEN_SIGS = ["page not found", "error 404", "404 not found", "promo not found", "product has been removed"];
@@ -125,10 +139,11 @@ async function loadSiteFeed(context) {
     return null;
 }
 
-async function verifyUrl(url) {
+// فحص رابط المدينة للتأكد أنه لا يعيد التوجيه لصفحة عامة أو مدينة أخرى ولا يرجع 404
+async function verifyExactCityUrl(url, mustKeepSegment = "") {
     if (!url || !url.startsWith("http")) return false;
     const cache = caches.default;
-    const key = new Request(`https://ucuzakal-v3.internal/?u=${encodeURIComponent(url)}`);
+    const key = new Request(`https://ucuzakal-v32.internal/?u=${encodeURIComponent(url)}&s=${encodeURIComponent(mustKeepSegment)}`);
     try {
         const hit = await cache.match(key);
         if (hit) return Boolean((await hit.json())?.ok);
@@ -141,11 +156,15 @@ async function verifyUrl(url) {
             headers: { "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/130.0.0.0 Safari/537.36" },
         }, 4500);
         const fu = (res.url || url).toLowerCase();
-        if (res.status === 404 || res.status === 410 || res.status >= 500 || /\/404(\b|$|\?)/.test(fu)) ok = false;
-        else if (res.status >= 200 && res.status < 400) {
+        const keptSlug = !mustKeepSegment || fu.includes(mustKeepSegment.toLowerCase());
+        if (!keptSlug || res.status === 404 || res.status === 410 || res.status >= 500 || /\/404(\b|$|\?)/.test(fu)) {
+            ok = false;
+        } else if (res.status >= 200 && res.status < 400) {
             const html = (await res.text()).slice(0, 22000).toLowerCase();
             ok = !BROKEN_SIGS.some(sig => html.includes(sig));
-        } else if (res.status === 403 || res.status === 429) ok = true;
+        } else if (res.status === 403 || res.status === 429) {
+            ok = keptSlug;
+        }
     } catch { ok = false; }
 
     try { await cache.put(key, new Response(JSON.stringify({ ok }), { headers: { "Content-Type": "application/json", "Cache-Control": "public, max-age=900" } })); } catch {}
@@ -182,14 +201,14 @@ async function queryAviasales(orig, dest, token, prefAirline) {
 
     let list = [];
     for (const [qo, qd] of pairs) {
+        // 1) v3 prices_for_dates
         for (const depMonth of ["", nextMonth]) {
-            const qs = new URLSearchParams({ origin: qo, destination: qd, currency: "usd", one_way: "true", sorting: "price", limit: "12", token });
+            const qs = new URLSearchParams({ origin: qo, destination: qd, currency: "usd", one_way: "true", sorting: "price", direct: "false", limit: "15", token });
             if (depMonth) qs.set("departure_at", depMonth);
             try {
                 const r = await fetchT(`https://api.travelpayouts.com/aviasales/v3/prices_for_dates?${qs}`, { headers: { "X-Access-Token": token } }, 5000);
                 if (r.ok) {
-                    const items = (await r.json())?.data || [];
-                    for (const it of items) {
+                    for (const it of ((await r.json())?.data || [])) {
                         const rO = String(it.origin_airport || it.origin || qo).toUpperCase();
                         const rD = String(it.destination_airport || it.destination || qd).toUpperCase();
                         const dep = String(it.departure_at || "").slice(0, 10), p = Number(it.price);
@@ -202,6 +221,7 @@ async function queryAviasales(orig, dest, token, prefAirline) {
         }
         if (list.length) break;
 
+        // 2) v1 cheap
         try {
             const qs = new URLSearchParams({ origin: qo, destination: qd, currency: "usd", token });
             const r = await fetchT(`https://api.travelpayouts.com/v1/prices/cheap?${qs}`, { headers: { "X-Access-Token": token } }, 4500);
@@ -211,6 +231,21 @@ async function queryAviasales(orig, dest, token, prefAirline) {
                     const dep = String(it.departure_at || "").slice(0, 10), p = Number(it.price);
                     if (!p || !dep || dep < today) continue;
                     list.push({ origIata: qo, destIata: qd, priceUsd: Math.round(p), transfers: Number.isFinite(Number(k)) ? Number(k) : 0, airlineCode: String(it.airline || "").toUpperCase(), flightNumber: String(it.flight_number || ""), departureDate: dep, rawLink: "" });
+                }
+            }
+        } catch {}
+        if (list.length) break;
+
+        // 3) v2 latest
+        try {
+            const qs = new URLSearchParams({ origin: qo, destination: qd, currency: "usd", one_way: "true", period_type: "year", sorting: "price", limit: "10", show_to_affiliates: "true", token });
+            const r = await fetchT(`https://api.travelpayouts.com/v2/prices/latest?${qs}`, { headers: { "X-Access-Token": token } }, 4500);
+            if (r.ok) {
+                for (const it of ((await r.json())?.data || [])) {
+                    const rO = String(it.origin || "").toUpperCase(), rD = String(it.destination || "").toUpperCase();
+                    const dep = String(it.depart_date || "").slice(0, 10), p = Number(it.value);
+                    if (!p || !dep || dep < today || !airportMatches(rO, orig) || !airportMatches(rD, dest)) continue;
+                    list.push({ origIata: rO || qo, destIata: rD || qd, priceUsd: Math.round(p), transfers: Number(it.number_of_changes || 0), airlineCode: String(it.airline || "").toUpperCase(), flightNumber: "", departureDate: dep, rawLink: "" });
                 }
             }
         } catch {}
@@ -227,43 +262,49 @@ async function queryAviasales(orig, dest, token, prefAirline) {
     return list[0];
 }
 
-async function verifyEsim(cc) {
+// شريحة Airalo للدول المعتمدة مباشرةً (دون السماح لحماية WAF بإسقاطها)
+function resolveVerifiedEsim(cc) {
     const slug = AIRALO_SLUGS[String(cc || "").toUpperCase().trim()];
     if (!slug) return null;
-    const u = `https://www.airalo.com/${slug}-esim`;
-    return (await verifyUrl(u)) ? { affiliateUrl: wrapAff("airalo", u) } : null;
+    return { affiliateUrl: wrapAff("airalo", `https://www.airalo.com/${slug}-esim`) };
 }
 
-async function verifyTransfer(cityEn) {
+async function resolveExactTransfer(cityEn) {
     const slug = WELCOME_SLUGS[normCity(cityEn)];
     if (!slug) return null;
     const u = `https://www.welcomepickups.com/${slug}/airport-transfer-book/`;
-    return (await verifyUrl(u)) ? { affiliateUrl: wrapAff("welcome", u) } : null;
+    return (await verifyExactCityUrl(u, slug)) ? { affiliateUrl: wrapAff("welcome", u) } : null;
 }
 
-async function verifyActivity(cityEn) {
-    const ts = TIQETS_SLUGS[normCity(cityEn)];
-    if (ts) {
-        const u = `https://www.tiqets.com/en/${ts}/`;
-        if (await verifyUrl(u)) return { affiliateUrl: wrapAff("tiqets", u) };
+// أنشطة لنفس المدينة المختارة فقط — لا تحويل لصفحة رئيسية ولا دول أخرى
+async function resolveExactActivity(cityEn) {
+    const ts = TIQETS_EXACT_SLUGS[normCity(cityEn)];
+    if (!ts) return null;
+    const u = `https://www.tiqets.com/en/${ts}/`;
+    return (await verifyExactCityUrl(u, ts.split("-")[0])) ? { affiliateUrl: wrapAff("tiqets", u) } : null;
+}
+
+// تأجير سيارات لنفس المدينة المختارة فقط — إذا تحوّل لأنطاليا أو صفحة عامة يُرفض وتُخفى البطاقة
+async function resolveExactCar(cityEn) {
+    const key = normCity(cityEn);
+    const lr = LOCALRENT_EXACT_TR[key];
+    if (lr) {
+        const u1 = `https://localrent.com/en/turkey/${lr}/`;
+        if (await verifyExactCityUrl(u1, lr)) return { affiliateUrl: wrapAff("localrent", u1) };
     }
-    const wg = "https://wegotrip.com/en/";
-    return (await verifyUrl(wg)) ? { affiliateUrl: wrapAff("wegotrip", wg) } : null;
+    // محاولة الشريك الثاني GetRentacar لنفس المدينة بدقة
+    if (key && key !== "all turkey") {
+        const slug = key.replace(/\s+/g, "-");
+        const u2 = `https://getrentacar.com/en-US/car-rental/turkey/${slug}`;
+        if (await verifyExactCityUrl(u2, slug)) return { affiliateUrl: wrapAff("getrent", u2) };
+    }
+    return null;
 }
 
-async function verifyCar(cityEn) {
-    const lr = LOCALRENT_TR[normCity(cityEn)];
-    const u1 = lr ? `https://localrent.com/en/turkey/${lr}/` : "https://localrent.com/en/turkey/";
-    if (await verifyUrl(u1)) return { affiliateUrl: wrapAff("localrent", u1) };
-    const u2 = "https://getrentacar.com/en-US/car-rental/turkey";
-    return (await verifyUrl(u2)) ? { affiliateUrl: wrapAff("getrent", u2) } : null;
-}
-
-function buildStayUrl(partner, cityEn, stayType) {
-    const kw = `${cityEn && normCity(cityEn) !== "all turkey" ? cityEn : "Turkey"} ${stayType === "resort" ? "resort" : (stayType === "apart" ? "apart hotel" : "hotel")}`;
-    return partner === "kkday"
-        ? wrapAff("kkday", `https://www.kkday.com/en/product/productlist?keyword=${encodeURIComponent(kw)}`)
-        : wrapAff("klook", `https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(kw)}`);
+function buildAccurateKlookStayUrl(cityEn, stayType) {
+    const stayWord = stayType === "resort" ? "resort" : (stayType === "apart" ? "apart hotel" : "hotel");
+    const safeCity = (cityEn && normCity(cityEn) !== "all turkey") ? `${cityEn} Turkey` : "Turkey";
+    return wrapAff("klook", `https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(`${safeCity} ${stayWord}`)}&type=hotel`);
 }
 
 async function handleFlight(body, context) {
@@ -305,10 +346,8 @@ async function handleFlight(body, context) {
         ? live.rawLink
         : buildFlightUrl(fO, fD, depDate, cabinClass, live?.rawLink || "");
 
-    const [esim, transfer] = await Promise.all([
-        verifyEsim(destCountry),
-        cabinClass !== "economy" ? verifyTransfer(destCity) : Promise.resolve(null),
-    ]);
+    const esim = resolveVerifiedEsim(destCountry);
+    const transfer = cabinClass !== "economy" ? await resolveExactTransfer(destCity) : null;
 
     const alName = live?.airlineName || AIRLINES[live?.airlineCode] || live?.airlineCode || prefAirline || "";
     const alNum = (live?.airlineCode && live?.flightNumber) ? `${live.airlineCode}${live.flightNumber}` : "";
@@ -340,7 +379,7 @@ async function handleHotel(body, context) {
 
     const isAllTr = normCity(cityEn) === "all turkey" || normCity(province) === "tum turkiye";
     const tCity = normCity(cityEn), tProv = normCity(province);
-    const stays = [];
+    const candidates = [];
 
     const feed = await loadSiteFeed(context);
     for (const h of (feed?.mainHotels || [])) {
@@ -351,7 +390,7 @@ async function handleHotel(body, context) {
         let dec = aff; try { dec = decodeURIComponent(aff); } catch {}
         if (/\/activity\/|\/experiences\/|\/car-rentals\/|\/transfers\//i.test(dec)) continue;
         const price = Math.round(Number(h.priceUsd || String(h.price || "").replace(/[^0-9.]/g, "")) || baseMin);
-        stays.push({
+        candidates.push({
             name: h.name || h.title || null, cityEn: h.cityEn || h.city || cityEn,
             cityTr: h.city || h.cityEn || province, stayType: String(h.stayType || h.accType || "hotel").toLowerCase(),
             priceUsd: price, affiliateUrl: aff, i18n: h.i18n || null,
@@ -360,28 +399,40 @@ async function handleHotel(body, context) {
 
     const rooms = Math.max(1, Math.ceil(guests / 2));
     const marketNight = Math.round(baseMin * (stayType === "resort" ? 1.45 : (stayType === "apart" ? 0.85 : 1.0)) * rooms);
-    const dispCity = isAllTr ? "Antalya" : cityEn;
-    const dispProv = isAllTr ? "Antalya" : province;
+    const dispCity = isAllTr ? "Istanbul" : cityEn;
+    const dispProv = isAllTr ? "İstanbul" : province;
 
-    if (stays.length === 0) {
-        stays.push({ name: null, cityEn: dispCity, cityTr: dispProv, stayType, priceUsd: marketNight, affiliateUrl: buildStayUrl("klook", dispCity, stayType), i18n: null });
-        stays.push({ name: null, cityEn: dispCity, cityTr: dispProv, stayType, priceUsd: Math.round(marketNight * 1.08), affiliateUrl: buildStayUrl("kkday", dispCity, stayType), i18n: null });
-    } else if (stays.length === 1) {
-        stays.push({ name: null, cityEn: stays[0].cityEn, cityTr: stays[0].cityTr, stayType, priceUsd: Math.max(marketNight, Math.round(stays[0].priceUsd * 1.06)), affiliateUrl: buildStayUrl("kkday", stays[0].cityEn, stayType), i18n: null });
+    // اختيار عرض إقامة واحد فقط دقيق ومطابق للمدينة ونوع الإقامة والميزانية
+    let bestStay = null;
+    if (candidates.length > 0) {
+        candidates.sort((a, b) => {
+            const typeScoreA = a.stayType === stayType ? 0 : 1;
+            const typeScoreB = b.stayType === stayType ? 0 : 1;
+            if (typeScoreA !== typeScoreB) return typeScoreA - typeScoreB;
+            const diffA = a.priceUsd <= budgetUsd ? (budgetUsd - a.priceUsd) : (a.priceUsd - budgetUsd + 1000);
+            const diffB = b.priceUsd <= budgetUsd ? (budgetUsd - b.priceUsd) : (b.priceUsd - budgetUsd + 1000);
+            return diffA - diffB;
+        });
+        bestStay = candidates[0];
+    } else {
+        bestStay = {
+            name: null, cityEn: dispCity, cityTr: dispProv, stayType,
+            priceUsd: marketNight, affiliateUrl: buildAccurateKlookStayUrl(dispCity, stayType), i18n: null,
+        };
     }
 
-    stays.sort((a, b) => (a.stayType === stayType ? 0 : 1) - (b.stayType === stayType ? 0 : 1) || a.priceUsd - b.priceUsd);
-    const chosenCity = stays[0].cityEn || dispCity;
-
-    const [activity, car, esim] = await Promise.all([
-        verifyActivity(chosenCity), verifyCar(chosenCity), verifyEsim("TR"),
+    const chosenCity = bestStay.cityEn || dispCity;
+    const [activity, car] = await Promise.all([
+        resolveExactActivity(chosenCity),
+        resolveExactCar(chosenCity),
     ]);
+    const esim = resolveVerifiedEsim("TR");
 
     return jsonResp({
         found: true,
-        belowBudget: stays[0].priceUsd > budgetUsd,
-        minMarketUsd: stays[0].priceUsd,
-        stays: stays.slice(0, 2),
+        belowBudget: bestStay.priceUsd > budgetUsd,
+        minMarketUsd: bestStay.priceUsd,
+        stays: [bestStay],
         addons: { activity, car, esim },
     });
 }
