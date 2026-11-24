@@ -3,9 +3,61 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://ucuzakal.pages.dev/blog/</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://ucuzakal.pages.dev/blog/flight-istanbul-istanbul-moskova-20261124/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261124/hero.webp?v=f2b32e2f77</image:loc>
+      <image:title>İstanbul ➔ Moskova Ucuz Uçak Bileti Rehberi (2026): $81&#x27;dan Başlayan %46 Tasarruf</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261124/sec_1.webp?v=bc53f5382a</image:loc>
+      <image:title>İstanbul uçuş ve havalimanı terminali rehberi</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261124/sec_2.webp?v=3d1a8ff5d4</image:loc>
+      <image:title>İstanbul direkt uçuş ve rota planlaması</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261124/sec_3.webp?v=7aef1fd26f</image:loc>
+      <image:title>İstanbul varış sonrası şehir merkezi ve ulaşım</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261124/sec_4.webp?v=c40f3c4bc5</image:loc>
+      <image:title>İstanbul gezi rotası ve en güzel manzaralar</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://ucuzakal.pages.dev/blog/hotel-ankara-rehberi-20261124/</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261124/hero.webp?v=a30e2316ec</image:loc>
+      <image:title>Ankara Otel, Resort ve Apart Rehberi (2026): $73&#x27;dan Başlayan En İyi Bölgeler</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261124/sec_1.webp?v=19225ed9a0</image:loc>
+      <image:title>Ankara en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261124/sec_2.webp?v=7cb563586b</image:loc>
+      <image:title>Ankara lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261124/sec_3.webp?v=32cc5ff2cd</image:loc>
+      <image:title>Ankara 4 günlük gezi rotası ve öne çıkan duraklar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261124/sec_4.webp?v=4c507d87ed</image:loc>
+      <image:title>Ankara yerel gastronomi ve geleneksel Türk mutfağı</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/flight-istanbul-istanbul-bodrum-20261123/</loc>

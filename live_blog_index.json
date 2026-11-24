@@ -1,6 +1,80 @@
 {
-  "updatedAt": "2026-11-23T18:43:06.516834+00:00",
+  "updatedAt": "2026-11-24T06:49:40.485946+00:00",
   "posts": [
+    {
+      "slug": "flight-istanbul-istanbul-moskova-20261124",
+      "category": "flight",
+      "templateType": "flight_blog",
+      "status": "published",
+      "city": "İstanbul",
+      "cityEn": "Istanbul",
+      "cities": {
+        "tr": "İstanbul",
+        "ar": "إسطنبول",
+        "ru": "Стамбул",
+        "en": "Istanbul"
+      },
+      "title": "İstanbul ➔ Moskova Ucuz Uçak Bileti Rehberi (2026): $81'dan Başlayan %46 Tasarruf",
+      "excerpt": "İstanbul ➔ Moskova hattında doğru gün, havalimanı ve bagaj sınıfı seçimiyle bilet bütçenizi %46 azaltmak elinizde. Bu kapsamlı 2026 rehberinde $81 başlangıçlı canlı fırsatı, havayolu farklarını ve şehir içi transfer maliyetlerini tüm verileriyle analiz ettik.",
+      "titles": {
+        "tr": "İstanbul ➔ Moskova Ucuz Uçak Bileti Rehberi (2026): $81'dan Başlayan %46 Tasarruf",
+        "ar": "دليل أرخص تذاكر طيران إسطنبول ← موسكو (2026): أسعار تبدأ من $81 وتوفير 46%",
+        "ru": "Дешевые авиабилеты Стамбул ➔ Москва (2026): цены от $81 и экономия до 46%",
+        "en": "Istanbul ➔ Moscow Cheap Flights Guide (2026): Live Fares from $81 & Save 46%"
+      },
+      "excerpts": {
+        "tr": "İstanbul ➔ Moskova hattında doğru gün, havalimanı ve bagaj sınıfı seçimiyle bilet bütçenizi %46 azaltmak elinizde. Bu kapsamlı 2026 rehberinde $81 başlangıçlı canlı fırsatı, havayolu farklarını ve şehir içi transfer maliyetlerini tüm verileriyle analiz ettik.",
+        "ar": "التخطيط الذكي لمسار إسطنبول ← موسكو يصنع فارقاً فورياً بين دفع سعر مضاعف واقتناص تذكرة حية تبدأ من $81 بتوفير يصل إلى 46%. يضع هذا الدليل المرجعي لعام 2026 بين يديك مقارنة واضحة للرحلات المباشرة، سياسات الأمتعة، وتكاليف المواصلات الحقيقية من لحظة الهبوط.",
+        "ru": "Грамотный выбор дат и тарифа на маршруте Стамбул ➔ Москва позволяет сократить расходы на перелет до 46% и найти живые билеты от $81. В этом экспертном гиде собраны сравнения тарифов, правила багажа и точная логистика аэропортов.",
+        "en": "Timing your Istanbul ➔ Moscow flight properly can trim airfare costs by up to 46%, unlocking verified live fares starting from $81. This 2026 blueprint breaks down airline tiers, hidden baggage fees, and door-to-hotel transfer math."
+      },
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261124/hero.webp?v=f2b32e2f77",
+      "heroHash": "f2b32e2f77",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/flight-istanbul-istanbul-moskova-20261124.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT2912VKO1",
+      "price": "$81",
+      "wordCountTr": 2096,
+      "readingTimeMin": 10,
+      "publishedAt": "2026-11-24T06:49:40.485946+00:00",
+      "updatedAt": "2026-11-24T06:49:40.485946+00:00"
+    },
+    {
+      "slug": "hotel-ankara-rehberi-20261124",
+      "category": "hotel",
+      "templateType": "hotel_blog",
+      "status": "published",
+      "city": "Ankara",
+      "cityEn": "Ankara",
+      "cities": {
+        "tr": "Ankara",
+        "ar": "أنقرة",
+        "ru": "Анкара",
+        "en": "Ankara"
+      },
+      "title": "Ankara Otel, Resort ve Apart Rehberi (2026): $73'dan Başlayan En İyi Bölgeler",
+      "excerpt": "Ankara seyahatinizde doğru semti ve konaklama tipini seçmek hem tatil konforunuzu ikiye katlar hem de toplam bütçenizde %22 gerçek tasarruf yaratır. Bu 2026 başucu rehberinde güncel $73 fırsatıyla birlikte en iyi bölgeleri, günlük harcamaları ve saha ipuçlarını şeffaf biçimde karşılaştırdık.",
+      "titles": {
+        "tr": "Ankara Otel, Resort ve Apart Rehberi (2026): $73'dan Başlayan En İyi Bölgeler",
+        "ar": "دليل فنادق ومنتجعات وشقق أنقرة الفندقية (2026): أفضل الأحياء من $73",
+        "ru": "Лучшие отели, курорты и апартаменты: Анкара (2026) — от $73 (-22%)",
+        "en": "Ankara Hotels, Resorts & Apartments Guide (2026): Best Areas from $73"
+      },
+      "excerpts": {
+        "tr": "Ankara seyahatinizde doğru semti ve konaklama tipini seçmek hem tatil konforunuzu ikiye katlar hem de toplam bütçenizde %22 gerçek tasarruf yaratır. Bu 2026 başucu rehberinde güncel $73 fırsatıyla birlikte en iyi bölgeleri, günlük harcamaları ve saha ipuçlarını şeffaf biçimde karşılaştırdık.",
+        "ar": "اختيار الحي الصحيح ونوع الإقامة المناسب في أنقرة هو الفارق الحقيقي بين رحلة عادية وتجربة فاخرة بتوفير يصل إلى 22%. في هذا الدليل السياحي الشامل لعام 2026 نضع بين يديك مقارنة ميدانية دقيقة لأفضل الأحياء والأسعار الحية ابتداءً من $73 مع جدول ميزانية وخطة يومية متكاملة.",
+        "ru": "Правильный выбор района и формата проживания в городе Анкара помогает сэкономить до 22% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $73.",
+        "en": "Picking the right neighborhood and stay format in Ankara can trim your trip budget by up to 22% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $73."
+      },
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-ankara-rehberi-20261124/hero.webp?v=a30e2316ec",
+      "heroHash": "a30e2316ec",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-ankara-rehberi-20261124.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fhotels%2Fsearchresult%2F%3Fcity_name%3DAnkara%26check_in%3D2026-12-08%26check_out%3D2026-12-11%26adult_num%3D2%26room_num%3D1%26keyword%3DCankaya%2520Ankara%2520Hotel",
+      "price": "$73",
+      "wordCountTr": 2114,
+      "readingTimeMin": 10,
+      "publishedAt": "2026-11-24T06:48:47.948900+00:00",
+      "updatedAt": "2026-11-24T06:48:47.948900+00:00"
+    },
     {
       "slug": "flight-istanbul-istanbul-bodrum-20261123",
       "category": "flight",
@@ -631,5 +705,5 @@
       "updatedAt": "2026-11-23T07:54:32.618569+00:00"
     }
   ],
-  "totalPosts": 17
+  "totalPosts": 19
 }
