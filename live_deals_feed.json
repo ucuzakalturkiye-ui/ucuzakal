@@ -1,6 +1,10 @@
 {
   "version": "7.0-72h-verified",
+<<<<<<< HEAD
   "updatedAt": "2026-11-24T00:07:00.862260+00:00",
+=======
+  "updatedAt": "2026-11-24T00:09:14.446940+00:00",
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
   "activeSeason": "autumn",
   "partnerWeights": {},
   "persuasionTaglines": {
@@ -66,8 +70,13 @@
           "desc": "Востребованное проверенное размещение (курорт) в районе Белек, Анталья — от $146/ночь с прямым бронированием через Klook."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:48.242988+00:00",
       "createdTs": 1795478808
+=======
+      "updatedAt": "2026-11-24T00:08:58.800618+00:00",
+      "createdTs": 1795478938
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     },
     {
       "id": "hotel_deal_2",
@@ -109,8 +118,13 @@
           "desc": "Востребованное проверенное размещение (отель) в районе Султанахмет, Стамбул — от $79/ночь с прямым бронированием через Klook."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:48.242988+00:00",
       "createdTs": 1795478808
+=======
+      "updatedAt": "2026-11-24T00:08:58.800618+00:00",
+      "createdTs": 1795478938
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     },
     {
       "id": "hotel_deal_3",
@@ -152,8 +166,13 @@
           "desc": "Востребованное проверенное размещение (апарт-отель) в районе Алсанджак, Измир — от $63/ночь с прямым бронированием через Klook."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:48.242988+00:00",
       "createdTs": 1795478808
+=======
+      "updatedAt": "2026-11-24T00:08:58.800618+00:00",
+      "createdTs": 1795478938
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     },
     {
       "id": "hotel_deal_4",
@@ -195,8 +214,13 @@
           "desc": "Востребованное проверенное размещение (курорт) в районе Чекирге Термал, Бурса — от $71/ночь с прямым бронированием через Klook."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:48.242988+00:00",
       "createdTs": 1795478808
+=======
+      "updatedAt": "2026-11-24T00:08:58.800618+00:00",
+      "createdTs": 1795478938
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     },
     {
       "id": "hotel_deal_5",
@@ -238,8 +262,13 @@
           "desc": "Востребованное проверенное размещение (апарт-отель) в районе центр Трабзона, Трабзон — от $52/ночь с прямым бронированием через Klook."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:48.242988+00:00",
       "createdTs": 1795478808
+=======
+      "updatedAt": "2026-11-24T00:08:58.800618+00:00",
+      "createdTs": 1795478938
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     },
     {
       "id": "hotel_deal_6",
@@ -281,8 +310,13 @@
           "desc": "Востребованное проверенное размещение (курорт) в районе Кызылджахамам Термал, Анкара — от $81/ночь с прямым бронированием через Klook."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:48.242988+00:00",
       "createdTs": 1795478808
+=======
+      "updatedAt": "2026-11-24T00:08:58.800618+00:00",
+      "createdTs": 1795478938
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     }
   ],
   "mainFlights": [
@@ -332,16 +366,26 @@
           "desc": "Рейс AJet (Прямой рейс) 2027-01-06 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:55.878950+00:00",
       "createdTs": 1795478815
     },
     {
       "id": "flight_deal_2",
       "dealId": "F-20261124-SAW-ADB",
+=======
+      "updatedAt": "2026-11-24T00:09:07.732239+00:00",
+      "createdTs": 1795478947
+    },
+    {
+      "id": "flight_deal_2",
+      "dealId": "F-20261124-ADB-SAW",
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
       "type": "flight",
       "partner": "aviasales",
       "apiSource": "aviasales_v3",
       "segment": "domestic_tr",
+<<<<<<< HEAD
       "routeKey": "SAW_ADB",
       "originIata": "SAW",
       "destIata": "ADB",
@@ -353,12 +397,26 @@
       "airline": "AJet • VF3066",
       "transfers": 0,
       "departureDate": "2027-01-06",
+=======
+      "routeKey": "ADB_SAW",
+      "originIata": "ADB",
+      "destIata": "SAW",
+      "departure": "İzmir",
+      "destination": "İstanbul",
+      "destCityEn": "Istanbul",
+      "route": "İzmir (ADB) ✈️ İstanbul (SAW)",
+      "title": "İzmir (ADB) ✈️ İstanbul (SAW)",
+      "airline": "AJet • VF3065",
+      "transfers": 0,
+      "departureDate": "2027-01-11",
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
       "price": "$27",
       "priceUsd": 27,
       "avgMarketUsd": 54,
       "savingsPct": 46,
       "googleMomentum": 34,
       "dealScore": 99,
+<<<<<<< HEAD
       "description": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
       "image": "https://ucuzakal.pages.dev/assets/deals/F-20261124-SAW-ADB_card.webp?v=dc41953b1e",
       "localImage": "assets/deals/F-20261124-SAW-ADB_card.webp",
@@ -383,6 +441,32 @@
       },
       "updatedAt": "2026-11-24T00:06:55.878950+00:00",
       "createdTs": 1795478815
+=======
+      "description": "2027-01-11 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
+      "image": "https://ucuzakal.pages.dev/assets/deals/F-20261124-ADB-SAW_card.webp?v=6909c73c27",
+      "localImage": "assets/deals/F-20261124-ADB-SAW_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FADB1101SAW1",
+      "i18n": {
+        "tr": {
+          "title": "İzmir (ADB) ✈️ İstanbul (SAW)",
+          "desc": "2027-01-11 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon."
+        },
+        "ar": {
+          "title": "إزمير (ADB) ✈️ إسطنبول (SAW)",
+          "desc": "رحلة AJet (رحلة مباشرة) بتاريخ 2027-01-11 — وفر 46% عن متوسط السوق مع تحويل مباشر لنفس المسار على صفحة الحجز الرسمية."
+        },
+        "en": {
+          "title": "Izmir (ADB) ✈️ Istanbul (SAW)",
+          "desc": "AJet (Direct Flight) on 2027-01-11 — save 46% below average route fare with direct exact-route official booking."
+        },
+        "ru": {
+          "title": "Измир (ADB) ✈️ Стамбул (SAW)",
+          "desc": "Рейс AJet (Прямой рейс) 2027-01-11 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
+        }
+      },
+      "updatedAt": "2026-11-24T00:09:07.732239+00:00",
+      "createdTs": 1795478947
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     },
     {
       "id": "flight_deal_3",
@@ -430,8 +514,13 @@
           "desc": "Рейс Pobeda (Прямой рейс) 2026-11-26 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:55.878950+00:00",
       "createdTs": 1795478815
+=======
+      "updatedAt": "2026-11-24T00:09:07.732239+00:00",
+      "createdTs": 1795478947
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     },
     {
       "id": "flight_deal_4",
@@ -479,8 +568,13 @@
           "desc": "Рейс AJet (Прямой рейс) 2027-01-03 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:55.878950+00:00",
       "createdTs": 1795478815
+=======
+      "updatedAt": "2026-11-24T00:09:07.732239+00:00",
+      "createdTs": 1795478947
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     },
     {
       "id": "flight_deal_5",
@@ -528,8 +622,13 @@
           "desc": "Рейс Pegasus Airlines (Прямой рейс) 2027-06-13 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:55.878950+00:00",
       "createdTs": 1795478815
+=======
+      "updatedAt": "2026-11-24T00:09:07.732239+00:00",
+      "createdTs": 1795478947
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     },
     {
       "id": "flight_deal_6",
@@ -577,8 +676,13 @@
           "desc": "Рейс AJet (Прямой рейс) 2026-12-03 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
         }
       },
+<<<<<<< HEAD
       "updatedAt": "2026-11-24T00:06:55.878950+00:00",
       "createdTs": 1795478815
+=======
+      "updatedAt": "2026-11-24T00:09:07.732239+00:00",
+      "createdTs": 1795478947
+>>>>>>> 4d0302f (🤖 Auto-Update 72H Verified Deals, Memory & Clean Branded WebP Cards)
     }
   ],
   "conciergeHotels": {
@@ -1523,8 +1627,8 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (TZX ➔ Trabzon)",
         "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -1609,8 +1713,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (TZX ➔ Trabzon)",
           "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -1685,8 +1789,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (TZX ➔ Trabzon)",
           "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -1761,8 +1865,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (TZX ➔ Trabzon)",
           "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2161,8 +2265,8 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (YEI ➔ Bursa)",
         "title": "Private Airport Transfer (YEI ➔ Bursa)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -2236,8 +2340,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (YEI ➔ Bursa)",
           "title": "Private Airport Transfer (YEI ➔ Bursa)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2301,8 +2405,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (YEI ➔ Bursa)",
           "title": "Private Airport Transfer (YEI ➔ Bursa)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2366,8 +2470,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (YEI ➔ Bursa)",
           "title": "Private Airport Transfer (YEI ➔ Bursa)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2409,8 +2513,8 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (ESB ➔ Ankara)",
         "title": "Private Airport Transfer (ESB ➔ Ankara)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -2484,8 +2588,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (ESB ➔ Ankara)",
           "title": "Private Airport Transfer (ESB ➔ Ankara)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2538,8 +2642,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (ESB ➔ Ankara)",
           "title": "Private Airport Transfer (ESB ➔ Ankara)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2592,8 +2696,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (ESB ➔ Ankara)",
           "title": "Private Airport Transfer (ESB ➔ Ankara)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": null,
@@ -2970,8 +3074,8 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (NAV ➔ Cappadocia)",
         "title": "Private Airport Transfer (NAV ➔ Cappadocia)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -3064,8 +3168,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (NAV ➔ Cappadocia)",
           "title": "Private Airport Transfer (NAV ➔ Cappadocia)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": {
@@ -3148,8 +3252,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (NAV ➔ Cappadocia)",
           "title": "Private Airport Transfer (NAV ➔ Cappadocia)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": {
@@ -3232,8 +3336,8 @@
           "partner": "kiwitaxi",
           "name": "Private Airport Transfer (NAV ➔ Cappadocia)",
           "title": "Private Airport Transfer (NAV ➔ Cappadocia)",
-          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+          "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+          "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
           "score": 0.833
         },
         "activityOffer": {
@@ -3619,16 +3723,16 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (TZX ➔ Trabzon)",
         "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
         "score": 0.833
       },
       "transferOffer": {
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (TZX ➔ Trabzon)",
         "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
         "score": 0.833
       },
       "car": {
@@ -4139,16 +4243,16 @@
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (TZX ➔ Trabzon)",
         "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
         "score": 0.833
       },
       "transferOffer": {
         "partner": "kiwitaxi",
         "name": "Private Airport Transfer (TZX ➔ Trabzon)",
         "title": "Private Airport Transfer (TZX ➔ Trabzon)",
-        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
-        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fturkey",
+        "url": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
+        "bookingUrl": "https://tp.media/r?campaign_id=1&marker=798779&p=647&trs=597953&u=https%3A%2F%2Fkiwitaxi.com%2Fen%2Fturkey",
         "score": 0.833
       },
       "car": {
