@@ -1,14 +1,14 @@
 /**
- * UcuzaKal Türkiye — Live Concierge Engine (v3.4)
- * - Fixes Tiqets redirect bug (uses exact city+Turkey query instead of wrong numeric IDs).
- * - Blocks legacy blank Klook /hotels/ URLs from live_deals_feed.json.
+ * UcuzaKal Türkiye — Live Concierge & Edge Feed Engine (v3.5)
+ * - Serves home deals + blog index directly via Cloudflare ASSETS (?feed=home) — 0 Firebase/GitHub quota.
+ * - Fixes Tiqets redirect bug (exact city+Turkey search) & blocks legacy blank Klook /hotels/ URLs.
  * - Exact Aviasales cabin class links (w1/c1/f1) + live v3/v1/v2 fare lookup.
- * - Exclusive approved gateways (marker=798779, trs=597953). Zero Firebase/GitHub quota.
+ * - Exclusive approved gateways (marker=798779, trs=597953).
  */
 
 const MARKER = "798779";
 const TRS = "597953";
-const RAW_FEED_URL = "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main/live_deals_feed.json";
+const RAW_BASE = "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main";
 
 const GATEWAYS = {
     aviasales: `https://tp.media/r?campaign_id=100&marker=${MARKER}&p=4114&trs=${TRS}&u=`,
@@ -75,38 +75,18 @@ const WELCOME_SLUGS = {
     "new york": "new-york", lisbon: "lisbon", brussels: "brussels",
 };
 
-// المدن التركية السياحية المدعومة ببحث Tiqets المباشر (بدون معرّفات رقمية خاطئة)
 const TIQETS_TR_CITIES = {
-    istanbul: "Istanbul",
-    antalya: "Antalya",
-    izmir: "Izmir",
-    bodrum: "Bodrum",
-    mugla: "Bodrum",
-    cappadocia: "Cappadocia",
-    nevsehir: "Cappadocia",
-    alanya: "Alanya",
-    fethiye: "Fethiye",
-    marmaris: "Marmaris",
-    ankara: "Ankara",
-    bursa: "Bursa",
-    trabzon: "Trabzon",
+    istanbul: "Istanbul", antalya: "Antalya", izmir: "Izmir", bodrum: "Bodrum",
+    mugla: "Bodrum", cappadocia: "Cappadocia", nevsehir: "Cappadocia",
+    alanya: "Alanya", fethiye: "Fethiye", marmaris: "Marmaris",
+    ankara: "Ankara", bursa: "Bursa", trabzon: "Trabzon",
 };
 
-// المدن التركية المؤكدة بصفحات مستقلة في Localrent
 const LOCALRENT_EXACT_TR = {
-    istanbul: "istanbul",
-    antalya: "antalya",
-    izmir: "izmir",
-    bodrum: "bodrum",
-    dalaman: "dalaman",
-    fethiye: "fethiye",
-    marmaris: "marmaris",
-    alanya: "alanya",
-    trabzon: "trabzon",
-    ankara: "ankara",
-    cappadocia: "cappadocia",
-    nevsehir: "cappadocia",
-    mugla: "bodrum",
+    istanbul: "istanbul", antalya: "antalya", izmir: "izmir", bodrum: "bodrum",
+    dalaman: "dalaman", fethiye: "fethiye", marmaris: "marmaris", alanya: "alanya",
+    trabzon: "trabzon", ankara: "ankara", cappadocia: "cappadocia",
+    nevsehir: "cappadocia", mugla: "bodrum",
 };
 
 const REAL_ROOM_FLOOR_USD = {
@@ -133,15 +113,15 @@ async function fetchT(url, opts = {}, ms = 6000) {
     finally { clearTimeout(t); }
 }
 
-async function loadSiteFeed(context) {
+async function loadAssetJson(context, relPath) {
     try {
         if (context.env && context.env.ASSETS) {
-            const r = await context.env.ASSETS.fetch(new Request(new URL("/live_deals_feed.json", context.request.url).toString()));
+            const r = await context.env.ASSETS.fetch(new Request(new URL(relPath, context.request.url).toString()));
             if (r.ok) return await r.json();
         }
     } catch {}
     try {
-        const r = await fetchT(`${RAW_FEED_URL}?t=${Date.now()}`, {}, 6000);
+        const r = await fetchT(`${RAW_BASE}${relPath}?t=${Date.now()}`, {}, 6500);
         if (r.ok) return await r.json();
     } catch {}
     return null;
@@ -245,11 +225,9 @@ function resolveExactTransfer(cityEn) {
     return slug ? { affiliateUrl: wrapAff("welcome", `https://www.welcomepickups.com/${slug}/airport-transfer-book/`) } : null;
 }
 
-// بحث Tiqets المباشر باسم المدينة التركية فقط (يمنع التحويل لأمريكا أو بلجيكا نهائياً)
 function resolveExactActivity(cityEn) {
     const cleanCity = TIQETS_TR_CITIES[normCity(cityEn)];
-    if (!cleanCity) return null;
-    return { affiliateUrl: wrapAff("tiqets", `https://www.tiqets.com/en/search?q=${encodeURIComponent(`${cleanCity} Turkey`)}`) };
+    return cleanCity ? { affiliateUrl: wrapAff("tiqets", `https://www.tiqets.com/en/search?q=${encodeURIComponent(`${cleanCity} Turkey`)}`) } : null;
 }
 
 function resolveExactCar(cityEn) {
@@ -263,7 +241,6 @@ function buildAccurateKlookStayUrl(cityEn, stayType) {
     return wrapAff("klook", `https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(`${safeCity} ${stayWord}`)}&type=hotel&sort=price_asc`);
 }
 
-// كشف ورفض روابط Klook الفارغة القديمة (/hotels/) التي تفتح خانة Where to?
 function isDirectStayProductUrl(affUrl) {
     let dec = String(affUrl || "");
     try { dec = decodeURIComponent(dec); } catch {}
@@ -291,7 +268,7 @@ async function handleFlight(body, context) {
     let live = token ? await queryAviasales(orig, dest, token, prefAirline) : null;
 
     if (!live) {
-        const feed = await loadSiteFeed(context);
+        const feed = await loadAssetJson(context, "/live_deals_feed.json");
         const today = new Date().toISOString().slice(0, 10);
         const m = (feed?.mainFlights || []).find(f => airportMatches(f.originIata, orig) && airportMatches(f.destIata, dest) && (!f.departureDate || f.departureDate >= today));
         if (m) {
@@ -314,7 +291,6 @@ async function handleFlight(body, context) {
 
     const esim = resolveVerifiedEsim(destCountry);
     const transfer = cabinClass !== "economy" ? resolveExactTransfer(destCity) : null;
-
     const alName = live?.airlineName || AIRLINES[live?.airlineCode] || live?.airlineCode || prefAirline || "";
     const alNum = (live?.airlineCode && live?.flightNumber) ? `${live.airlineCode}${live.flightNumber}` : "";
 
@@ -348,8 +324,7 @@ async function handleHotel(body, context) {
     const tCity = normCity(cityEn), tProv = normCity(province);
     const directCandidates = [];
 
-    // قبول روابط الفنادق المباشرة فقط من feed واستبعاد أي رابط /hotels/ فارغ
-    const feed = await loadSiteFeed(context);
+    const feed = await loadAssetJson(context, "/live_deals_feed.json");
     for (const h of (feed?.mainHotels || [])) {
         const hc = normCity(h.cityEn || h.city || ""), hp = normCity(h.city || h.cityEn || "");
         if (!isAllTr && hc !== tCity && hp !== tProv && !hc.includes(tCity) && !tCity.includes(hc)) continue;
@@ -402,7 +377,16 @@ async function handleHotel(body, context) {
 }
 
 export async function onRequestGet(context) {
-    return jsonResp({ ok: true, version: "3.4", hasAviasalesToken: Boolean(context.env?.AVIASALES_API_TOKEN) });
+    const url = new URL(context.request.url);
+    if (url.searchParams.get("feed") === "home") {
+        const [dealsFeed, blogIndex, archive] = await Promise.all([
+            loadAssetJson(context, "/live_deals_feed.json"),
+            loadAssetJson(context, "/live_blog_index.json"),
+            loadAssetJson(context, "/deals_archive.json"),
+        ]);
+        return jsonResp({ ok: true, version: "3.5", dealsFeed, blogIndex, archive });
+    }
+    return jsonResp({ ok: true, version: "3.5", hasAviasalesToken: Boolean(context.env?.AVIASALES_API_TOKEN) });
 }
 
 export async function onRequestPost(context) {
