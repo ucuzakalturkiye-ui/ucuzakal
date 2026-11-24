@@ -4121,7 +4121,7 @@
         });
     </script>
     <!-- ========================================================================= -->
-    <!-- الجزء 4 من 4: محرك العروض الحقيقية فقط (بدون عروض وهمية) + Klook & KKday + الخريطة -->
+    <!-- الجزء 4 من 4: تحميل فوري غير معطّل (بدون عروض وهمية) + Klook & KKday + الخريطة -->
     <!-- ========================================================================= -->
     <script>
         (function() {
@@ -4136,26 +4136,22 @@
             };
 
             const RAW_REPO_BASE = "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main";
-            const PAGES_SITE_BASE = "https://ucuzakal.pages.dev";
 
             let fbAuth = null;
             let fbDb = null;
 
-            // تصحيح فحص الروابط بحيث لا يرفض رابطاً صحيحاً يحتوي بالصدفة على أرقام 404 داخل التجزئة
             window.isValidExternalUrl = function(u) {
                 if (!u || typeof u !== 'string') return false;
                 const s = u.trim();
-                return /^https?:\/\/.+/i.test(s) && !/(\/404(\b|$|\?)|error[_-]?404|undefined|null)/i.test(s);
+                return /^(https?:\/\/|\.\/|assets\/)/i.test(s) && !/(\/404(\b|$|\?)|error[_-]?404|undefined|null)/i.test(s);
             };
 
-            // تحديث روابط الإقامة لتستخدم شريكيك الرسميين فقط: Klook (137) و KKday (633) بكود 798779
+            // روابط الإقامة الرسمية على شريكيك المفعّلين: Klook (137) و KKday (633) بكود 798779
             window.buildHotelStayOffer = function(partnerKey, cityEn, accType, overrideUrl, opts) {
                 const pKey = String(partnerKey || 'klook').toLowerCase() === 'kkday' ? 'kkday' : 'klook';
                 const gw = window.UCUZAKAL_AGENT_CONFIG.gateways[pKey];
                 if (overrideUrl && overrideUrl.startsWith('https://tp.media/')) return overrideUrl;
-                if (overrideUrl && overrideUrl.startsWith('http')) {
-                    return gw + encodeURIComponent(overrideUrl);
-                }
+                if (overrideUrl && overrideUrl.startsWith('http')) return gw + encodeURIComponent(overrideUrl);
 
                 const safeCity = (cityEn || 'Istanbul').trim();
                 const days = Math.max(1, Math.min(30, parseInt((opts && opts.days) || 3, 10) || 3));
@@ -4173,13 +4169,19 @@
                 return gw + encodeURIComponent(rawKlookHotel);
             };
 
-            // دالة ذكية لاستعادة صورك المصممة من GitHub Raw فوراً إن تأخر كاش Cloudflare ثوانٍ
-            window.handleDealImgError = function(imgEl, localPath) {
+            // استعادة فورية متدرجة لصور العروض: المسار المحلي -> GitHub Raw -> الرابط الأصلي -> البديل الآمن
+            window.handleDealImgError = function(imgEl, localPath, remoteUrl) {
                 if (!imgEl) return;
-                if (localPath && imgEl.dataset.triedRaw !== '1') {
-                    imgEl.dataset.triedRaw = '1';
-                    const cleanLocal = String(localPath).replace(/^\/+/, '');
+                const step = parseInt(imgEl.dataset.imgStep || '0', 10);
+                const cleanLocal = String(localPath || '').replace(/^\/+/, '');
+                if (step === 0 && cleanLocal) {
+                    imgEl.dataset.imgStep = '1';
                     imgEl.src = `${RAW_REPO_BASE}/${cleanLocal}?t=${Date.now()}`;
+                    return;
+                }
+                if (step <= 1 && remoteUrl && remoteUrl.startsWith('http') && imgEl.src !== remoteUrl) {
+                    imgEl.dataset.imgStep = '2';
+                    imgEl.src = remoteUrl;
                     return;
                 }
                 window.handleSafeImgError(imgEl);
@@ -4276,7 +4278,14 @@
                 return (art && art.category) || 'TÜRKİYE';
             }
 
-            // تطبيع بطاقة الطيران الحقيقية مع ضمان تطابق الرابط 100% مع نفس المسار المعلن
+            function pickFastDealImage(raw) {
+                const cleanLocal = String(raw.localImage || '').replace(/^\/+/, '');
+                const vTag = raw.createdTs || Date.now();
+                if (cleanLocal) return `./${cleanLocal}?v=${vTag}`;
+                if (window.isValidExternalUrl(raw.image)) return raw.image;
+                return window.FALLBACK_DEAL_IMG;
+            }
+
             function normalizeFlightRecord(raw, idx) {
                 if (!raw || typeof raw !== 'object') return null;
                 const origIata = String(raw.originIata || '').toUpperCase().trim();
@@ -4317,14 +4326,14 @@
                     departureDate: raw.departureDate || '',
                     price: cleanPrice,
                     savingsPct: raw.savingsPct || 0,
-                    image: window.isValidExternalUrl(raw.image) ? raw.image : (raw.localImage ? `${RAW_REPO_BASE}/${raw.localImage}` : window.FALLBACK_DEAL_IMG),
+                    remoteImage: raw.image || '',
+                    image: pickFastDealImage(raw),
                     localImage: raw.localImage || '',
                     affiliateUrl: cleanUrl,
                     description: raw.description || ''
                 });
             }
 
-            // تطبيع بطاقة الإقامة الحقيقية (فنادق / منتجعات / شقق) ومنع أي رابط نشاط
             function normalizeHotelRecord(raw, idx) {
                 if (!raw || typeof raw !== 'object') return null;
                 const cityRaw = raw.cityEn || raw.city || 'Istanbul';
@@ -4345,7 +4354,8 @@
                     type: 'hotel',
                     stayType: stayType,
                     partner: partner,
-                    image: window.isValidExternalUrl(raw.image) ? raw.image : (raw.localImage ? `${RAW_REPO_BASE}/${raw.localImage}` : window.FALLBACK_DEAL_IMG),
+                    remoteImage: raw.image || '',
+                    image: pickFastDealImage(raw),
                     localImage: raw.localImage || '',
                     affiliateUrl: safeUrl
                 });
@@ -4493,7 +4503,7 @@
             };
 
             // =====================================================================
-            // 4. عرض بطاقات الفنادق والطيران الحقيقية فقط (صفر عروض وهمية)
+            // 4. عرض بطاقات الفنادق والطيران الحقيقية فقط
             // =====================================================================
             window.renderHotels = function() {
                 const container = document.getElementById('hotels-container');
@@ -4511,7 +4521,7 @@
                     const cityDisp = window.translateTextStrong(h.city || 'TÜRKİYE', lang);
                     const titleDisp = window.pickDealLocalizedField(h, 'title', h.name || h.title || cityDisp, lang);
                     const descDisp = window.pickDealLocalizedField(h, 'desc', h.description || '', lang);
-                    const imgSrc = window.isValidExternalUrl(h.image) ? h.image : window.FALLBACK_DEAL_IMG;
+                    const imgSrc = h.image || window.FALLBACK_DEAL_IMG;
                     const affUrl = h.affiliateUrl || window.buildHotelStayOffer(h.partner || 'klook', h.cityEn || h.city || 'Istanbul', h.stayType || 'hotel');
                     const savBadge = h.savingsPct ? `<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-black px-2.5 py-1 rounded-full shadow-md">🔥 -${escHtml(h.savingsPct)}%</span>` : '';
 
@@ -4522,7 +4532,7 @@
                                onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(affUrl)}', 'hotel', '${escJs(titleDisp)}', '${escJs(h.partner || 'klook')}', '${escJs(h.cityEn || h.city || '')}', 'hotel_grid', '${escJs(dealId)}', event)"
                                class="flex-1 flex flex-col">
                                 <div class="img-frame">
-                                    <img src="${escHtml(imgSrc)}" alt="${escHtml(titleDisp)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(h.localImage || '')}')" class="w-full h-full object-contain">
+                                    <img src="${escHtml(imgSrc)}" alt="${escHtml(titleDisp)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(h.localImage || '')}', '${escJs(h.remoteImage || '')}')" class="w-full h-full object-contain">
                                     ${savBadge}
                                     <button type="button" title="${escHtml(dict.share_btn_title)}"
                                         onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
@@ -4576,7 +4586,7 @@
                     const affUrl = f.affiliateUrl || window.buildFlightDirectUrl(f.originIata || 'IST', f.destIata || 'AYT', null, null, 'economy');
                     const savBadge = f.savingsPct ? `<span class="bg-brand-gold text-black text-[10px] font-black px-2.5 py-0.5 rounded-full">🔥 -${escHtml(f.savingsPct)}%</span>` : '';
                     const segLabel = f.segment === 'domestic_tr' ? '🇹🇷 DOMESTIC' : (f.segment === 'russia_tr' ? '🇷🇺 ⇄ 🇹🇷' : '🌍 ⇄ 🇹🇷');
-                    const cardImg = window.isValidExternalUrl(f.image) ? f.image : window.FALLBACK_DEAL_IMG;
+                    const cardImg = f.image || window.FALLBACK_DEAL_IMG;
 
                     return `
                     <div class="gold-animated-frame">
@@ -4585,7 +4595,7 @@
                                onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(affUrl)}', 'flight', '${escJs(routeTitle)}', 'aviasales', '${escJs(f.destCityEn || f.destination || '')}', 'flight_grid', '${escJs(dealId)}', event)"
                                class="flex flex-col justify-between h-full">
                                 <div class="img-frame">
-                                    <img src="${escHtml(cardImg)}" alt="${escHtml(routeTitle)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(f.localImage || '')}')" class="w-full h-full object-contain">
+                                    <img src="${escHtml(cardImg)}" alt="${escHtml(routeTitle)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(f.localImage || '')}', '${escJs(f.remoteImage || '')}')" class="w-full h-full object-contain">
                                     <span class="absolute top-3 left-3 bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full">${escHtml(segLabel)}</span>
                                     <button type="button" title="${escHtml(dict.share_btn_title)}"
                                         onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
@@ -4844,9 +4854,7 @@
 
             window.addEventListener('popstate', () => {
                 const overlay = document.getElementById('cinematic-overlay');
-                if (overlay && overlay.classList.contains('active')) {
-                    window.closeCinematicOverlay(true);
-                }
+                if (overlay && overlay.classList.contains('active')) window.closeCinematicOverlay(true);
             });
 
             document.addEventListener('keydown', (e) => {
@@ -5025,7 +5033,7 @@
             }
 
             // =====================================================================
-            // 8. مستشار الفنادق والمنتجعات والشقق (Klook 137 + KKday 633 + قفل صارم)
+            // 8. مستشار الفنادق والمنتجعات والشقق (Klook 137 + KKday 633)
             // =====================================================================
             function findVerifiedStaysForRequest(destVal, accType, vibeKey, userBudget) {
                 const candidateProvinces = destVal === 'Tüm Türkiye'
@@ -5279,7 +5287,7 @@
             };
 
             // =====================================================================
-            // 9. مستشار الطيران (36 دولة + قفل المدينة والميزانية والدرجة + كشف عدم وجود مطار)
+            // 9. مستشار الطيران (36 دولة + قفل المدينة والميزانية والدرجة)
             // =====================================================================
             function readAndValidateFlightEndpoint(side) {
                 const sel = document.getElementById(`fc-${side}-country`);
@@ -5520,7 +5528,6 @@
                     }
                 ];
 
-                // الدرجة الاقتصادية: شريحة الهاتف eSIM فقط (دون توصيل) — والدرجات الأعلى: توصيل + شريحة عند التوفر
                 if (opts.cabinClass !== 'economy') {
                     const transferObj = window.buildSmartTransferWaterfall(dest.city, dest.iata, dest.countryCode, null, dest.countryCode === 'TR');
                     if (transferObj && window.isValidExternalUrl(transferObj.url)) {
@@ -5583,32 +5590,64 @@
             }
 
             // =====================================================================
-            // 10. قراءة أحدث ملف live_deals_feed.json حقيقي بدون كاش وبدون عروض وهمية
+            // 10. تحميل فوري غير معطّل بمُهل زمنية صارمة (يعرض العروض في جزء من الثانية)
             // =====================================================================
-            async function fetchJsonNoStore(url) {
+            async function fetchJsonWithTimeout(url, timeoutMs) {
+                const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+                const timer = ctrl ? setTimeout(() => ctrl.abort(), timeoutMs || 4500) : null;
                 try {
-                    const r = await fetch(url, { cache: 'no-store' });
+                    const r = await fetch(url, {
+                        cache: 'no-store',
+                        signal: ctrl ? ctrl.signal : undefined
+                    });
                     if (!r.ok) return null;
                     return await r.json();
                 } catch (e) {
                     return null;
+                } finally {
+                    if (timer) clearTimeout(timer);
                 }
             }
 
-            async function loadFreshestLiveFeed() {
-                const ts = Date.now();
-                const candidates = await Promise.all([
-                    fetchJsonNoStore(`./live_deals_feed.json?t=${ts}`),
-                    fetchJsonNoStore(`${RAW_REPO_BASE}/live_deals_feed.json?t=${ts}`),
-                    fetchJsonNoStore(`${PAGES_SITE_BASE}/live_deals_feed.json?t=${ts}`)
-                ]);
+            let currentFeedUpdatedTs = 0;
 
-                const validFeeds = candidates.filter(f => f && (Array.isArray(f.mainHotels) || Array.isArray(f.mainFlights)));
-                if (validFeeds.length === 0) return null;
+            function applyFeedData(feedObj) {
+                if (!feedObj || typeof feedObj !== 'object') return false;
+                const tsVal = toSortableTime(feedObj.updatedAt);
+                if (currentFeedUpdatedTs > 0 && tsVal > 0 && tsVal < currentFeedUpdatedTs) return false;
 
-                // اختيار النسخة الأحدث زمنياً دائماً لضمان عدم ظهور كاش قديم أبداً
-                validFeeds.sort((a, b) => toSortableTime(b.updatedAt) - toSortableTime(a.updatedAt));
-                return validFeeds[0];
+                const hFeed = feedObj.mainHotels || feedObj.hotels || [];
+                const fFeed = feedObj.mainFlights || feedObj.flights || [];
+                const normH = Array.isArray(hFeed) ? hFeed.map(normalizeHotelRecord).filter(Boolean).slice(0, 6) : [];
+                const normF = Array.isArray(fFeed) ? fFeed.map(normalizeFlightRecord).filter(Boolean).slice(0, 6) : [];
+
+                if (normH.length === 0 && normF.length === 0) return false;
+
+                currentFeedUpdatedTs = tsVal || Date.now();
+                if (normH.length > 0) window.HOTELS_DATA = normH;
+                if (normF.length > 0) window.FLIGHTS_DATA = normF;
+                if (feedObj.conciergeHotels) window.CONCIERGE_HOTELS_DB = feedObj.conciergeHotels;
+                if (feedObj.conciergeFlights) window.CONCIERGE_FLIGHTS_DB = feedObj.conciergeFlights;
+                if (feedObj.partnerWeights) window.PARTNER_WEIGHTS = feedObj.partnerWeights;
+
+                window.renderHotels();
+                window.renderFlights();
+                return true;
+            }
+
+            function handleUrlDeepLinks() {
+                try {
+                    const params = new URLSearchParams(window.location.search);
+                    const dealParam = params.get('deal');
+                    const articleParam = params.get('article');
+                    if (dealParam && !window._deepLinkHandled) {
+                        window._deepLinkHandled = true;
+                        window.openDealSpotlightById(dealParam);
+                    } else if (articleParam && window.ARTICLES_MAP[articleParam] && !window._deepLinkHandled) {
+                        window._deepLinkHandled = true;
+                        window.openArticleModal(articleParam);
+                    }
+                } catch (e) {}
             }
 
             async function bootstrapPlatformData() {
@@ -5616,61 +5655,42 @@
                 window.switchGoogleMapLayer(window.currentMapMode);
                 const ts = Date.now();
 
-                const [feedObj, archiveLocal, archiveRaw, blogIdxLocal, blogIdxCdn] = await Promise.all([
-                    loadFreshestLiveFeed(),
-                    fetchJsonNoStore(`./deals_archive.json?t=${ts}`),
-                    fetchJsonNoStore(`${RAW_REPO_BASE}/deals_archive.json?t=${ts}`),
-                    fetchJsonNoStore(`./live_blog_index.json?t=${ts}`),
-                    fetchJsonNoStore(`${PAGES_SITE_BASE}/live_blog_index.json?t=${ts}`)
-                ]);
+                // 1) العرض الفوري من نفس الدومين أولاً دون انتظار أي رابط خارجي
+                const localFeed = await fetchJsonWithTimeout(`./live_deals_feed.json?t=${ts}`, 4500);
+                const loadedLocally = applyFeedData(localFeed);
 
-                const archiveObj = (archiveRaw && archiveRaw.deals && toSortableTime(archiveRaw.updatedAt) >= toSortableTime(archiveLocal && archiveLocal.updatedAt))
-                    ? archiveRaw
-                    : archiveLocal;
-                if (archiveObj && archiveObj.deals) {
-                    window.DEALS_ARCHIVE_MAP = archiveObj.deals;
-                }
-
-                if (feedObj) {
-                    const hFeed = feedObj.mainHotels || feedObj.hotels || [];
-                    const fFeed = feedObj.mainFlights || feedObj.flights || [];
-                    window.HOTELS_DATA = Array.isArray(hFeed) ? hFeed.map(normalizeHotelRecord).filter(Boolean).slice(0, 6) : [];
-                    window.FLIGHTS_DATA = Array.isArray(fFeed) ? fFeed.map(normalizeFlightRecord).filter(Boolean).slice(0, 6) : [];
-                    if (feedObj.conciergeHotels) window.CONCIERGE_HOTELS_DB = feedObj.conciergeHotels;
-                    if (feedObj.conciergeFlights) window.CONCIERGE_FLIGHTS_DB = feedObj.conciergeFlights;
-                    if (feedObj.partnerWeights) window.PARTNER_WEIGHTS = feedObj.partnerWeights;
-                } else {
-                    window.HOTELS_DATA = [];
-                    window.FLIGHTS_DATA = [];
-                }
-
-                window.renderHotels();
-                window.renderFlights();
-
-                const blogIdxObj = (blogIdxLocal && Array.isArray(blogIdxLocal.posts) && blogIdxLocal.posts.length > 0)
-                    ? blogIdxLocal
-                    : ((blogIdxCdn && Array.isArray(blogIdxCdn.posts) && blogIdxCdn.posts.length > 0) ? blogIdxCdn : null);
-
-                if (blogIdxObj) {
-                    blogIdxObj.posts.forEach(post => {
-                        if (!post || post.status === 'draft') return;
-                        const key = post.slug || post.id;
-                        if (key) window.ARTICLES_MAP[key] = Object.assign({ id: key }, post);
-                    });
-                }
-
-                window.renderBlogCards();
-
-                try {
-                    const params = new URLSearchParams(window.location.search);
-                    const dealParam = params.get('deal');
-                    const articleParam = params.get('article');
-                    if (dealParam) {
-                        window.openDealSpotlightById(dealParam);
-                    } else if (articleParam && window.ARTICLES_MAP[articleParam]) {
-                        window.openArticleModal(articleParam);
+                // 2) فحص خلفي سريع لمستودع GitHub (أو بديل فوري إن تعثّر الملف المحلي)
+                fetchJsonWithTimeout(`${RAW_REPO_BASE}/live_deals_feed.json?t=${ts}`, 5000).then(rawFeed => {
+                    if (rawFeed && (!loadedLocally || toSortableTime(rawFeed.updatedAt) > currentFeedUpdatedTs)) {
+                        applyFeedData(rawFeed);
                     }
-                } catch (e) {}
+                    handleUrlDeepLinks();
+                });
+
+                // 3) تحميل الأرشيف الدائم بشكل مستقل تماماً (لا يعطّل العروض أبداً)
+                fetchJsonWithTimeout(`./deals_archive.json?t=${ts}`, 4500).then(arch => {
+                    if (arch && arch.deals) {
+                        window.DEALS_ARCHIVE_MAP = arch.deals;
+                        handleUrlDeepLinks();
+                    }
+                });
+
+                // 4) تحميل فهرس المدونة بشكل مستقل تماماً (مع بديل GitHub Raw)
+                (async () => {
+                    let blogIdx = await fetchJsonWithTimeout(`./live_blog_index.json?t=${ts}`, 4500);
+                    if (!blogIdx || !Array.isArray(blogIdx.posts) || blogIdx.posts.length === 0) {
+                        blogIdx = await fetchJsonWithTimeout(`${RAW_REPO_BASE}/live_blog_index.json?t=${ts}`, 5000);
+                    }
+                    if (blogIdx && Array.isArray(blogIdx.posts)) {
+                        blogIdx.posts.forEach(post => {
+                            if (!post || post.status === 'draft') return;
+                            const key = post.slug || post.id;
+                            if (key) window.ARTICLES_MAP[key] = Object.assign({ id: key }, post);
+                        });
+                    }
+                    window.renderBlogCards();
+                    handleUrlDeepLinks();
+                })();
             }
 
             document.addEventListener('DOMContentLoaded', () => {
