@@ -4121,7 +4121,7 @@
         });
     </script>
     <!-- ========================================================================= -->
-    <!-- الجزء 4 من 4: محرك الخريطة السلس + مستشار الفنادق (Klook & Kayak) + الطيران + Firebase -->
+    <!-- الجزء 4 من 4: محرك العروض الحقيقية فقط (بدون عروض وهمية) + Klook & KKday + الخريطة -->
     <!-- ========================================================================= -->
     <script>
         (function() {
@@ -4135,15 +4135,60 @@
                 measurementId: "G-ST7LSMMXEB"
             };
 
+            const RAW_REPO_BASE = "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main";
+            const PAGES_SITE_BASE = "https://ucuzakal.pages.dev";
+
             let fbAuth = null;
             let fbDb = null;
+
+            // تصحيح فحص الروابط بحيث لا يرفض رابطاً صحيحاً يحتوي بالصدفة على أرقام 404 داخل التجزئة
+            window.isValidExternalUrl = function(u) {
+                if (!u || typeof u !== 'string') return false;
+                const s = u.trim();
+                return /^https?:\/\/.+/i.test(s) && !/(\/404(\b|$|\?)|error[_-]?404|undefined|null)/i.test(s);
+            };
+
+            // تحديث روابط الإقامة لتستخدم شريكيك الرسميين فقط: Klook (137) و KKday (633) بكود 798779
+            window.buildHotelStayOffer = function(partnerKey, cityEn, accType, overrideUrl, opts) {
+                const pKey = String(partnerKey || 'klook').toLowerCase() === 'kkday' ? 'kkday' : 'klook';
+                const gw = window.UCUZAKAL_AGENT_CONFIG.gateways[pKey];
+                if (overrideUrl && overrideUrl.startsWith('https://tp.media/')) return overrideUrl;
+                if (overrideUrl && overrideUrl.startsWith('http')) {
+                    return gw + encodeURIComponent(overrideUrl);
+                }
+
+                const safeCity = (cityEn || 'Istanbul').trim();
+                const days = Math.max(1, Math.min(30, parseInt((opts && opts.days) || 3, 10) || 3));
+                const guests = Math.max(1, Math.min(12, parseInt((opts && opts.guests) || 2, 10) || 2));
+                const checkIn = new Date(Date.now() + 14 * 86400000).toISOString().slice(0, 10);
+                const checkOut = new Date(Date.now() + (14 + days) * 86400000).toISOString().slice(0, 10);
+                const stayLabel = accType === 'resort' ? 'resort' : (accType === 'apart' ? 'apartment' : 'hotel');
+
+                if (pKey === 'kkday') {
+                    const q = encodeURIComponent(`${safeCity} Turkey ${stayLabel}`);
+                    return gw + encodeURIComponent(`https://www.kkday.com/en/product/productlist?keyword=${q}`);
+                }
+
+                const rawKlookHotel = `https://www.klook.com/en-US/hotels/searchresult/?city_name=${encodeURIComponent(safeCity)}&check_in=${checkIn}&check_out=${checkOut}&adult_num=${guests}&room_num=1&keyword=${encodeURIComponent(safeCity + ' ' + stayLabel)}`;
+                return gw + encodeURIComponent(rawKlookHotel);
+            };
+
+            // دالة ذكية لاستعادة صورك المصممة من GitHub Raw فوراً إن تأخر كاش Cloudflare ثوانٍ
+            window.handleDealImgError = function(imgEl, localPath) {
+                if (!imgEl) return;
+                if (localPath && imgEl.dataset.triedRaw !== '1') {
+                    imgEl.dataset.triedRaw = '1';
+                    const cleanLocal = String(localPath).replace(/^\/+/, '');
+                    imgEl.src = `${RAW_REPO_BASE}/${cleanLocal}?t=${Date.now()}`;
+                    return;
+                }
+                window.handleSafeImgError(imgEl);
+            };
 
             function initFirebaseServices() {
                 try {
                     if (typeof firebase !== 'undefined') {
-                        if (!firebase.apps.length) {
-                            firebase.initializeApp(FIREBASE_CONFIG);
-                        }
+                        if (!firebase.apps.length) firebase.initializeApp(FIREBASE_CONFIG);
                         fbAuth = firebase.auth();
                         fbDb = firebase.firestore();
                         fbAuth.onAuthStateChanged(user => updateAuthButtonUI(user));
@@ -4197,11 +4242,6 @@
                 return Number.isFinite(parsed) ? parsed : 0;
             }
 
-            function getUpcomingDateStr(daysAhead) {
-                const d = new Date(Date.now() + (daysAhead || 14) * 86400000);
-                return d.toISOString().slice(0, 10);
-            }
-
             function showInlineFormAlert(boxId, message, level) {
                 const box = document.getElementById(boxId);
                 if (!box) return;
@@ -4236,186 +4276,7 @@
                 return (art && art.category) || 'TÜRKİYE';
             }
 
-            // =====================================================================
-            // عروض الطيران الاحتياطية (2 داخلي + 1 روسيا + 3 دول عربية — مطابقة 100%)
-            // =====================================================================
-            function buildCuratedFlightsFallback() {
-                return [
-                    {
-                        id: "flight_deal_1",
-                        dealId: "F-TR-IST-AYT",
-                        type: "flight",
-                        segment: "domestic_tr",
-                        originIata: "IST",
-                        destIata: "AYT",
-                        destCityEn: "Antalya",
-                        route: "İstanbul (IST) ✈️ Antalya (AYT)",
-                        airline: "Turkish Airlines / Pegasus",
-                        departureDate: getUpcomingDateStr(10),
-                        price: "$39",
-                        savingsPct: 24,
-                        image: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1000&q=80",
-                        affiliateUrl: window.buildFlightDirectUrl("IST", "AYT", null, null, "economy"),
-                        i18n: {
-                            tr: { title: "İstanbul (IST) ✈️ Antalya (AYT)", desc: "Akdeniz'in incisi Antalya'ya direkt, hızlı ve doğrulanmış en avantajlı uçak bileti fırsatları." },
-                            ar: { title: "إسطنبول (IST) ✈️ أنطاليا (AYT)", desc: "رحلات طيران داخلية مباشرة من إسطنبول إلى أنطاليا بأفضل الأسعار الحية ورابط الحجز الرسمي." },
-                            en: { title: "Istanbul (IST) ✈️ Antalya (AYT)", desc: "Direct daily flights from Istanbul to Antalya with verified live fares and instant booking." },
-                            ru: { title: "Стамбул (IST) ✈️ Анталья (AYT)", desc: "Прямые ежедневные рейсы из Стамбула в Анталью по лучшим проверенным тарифам." }
-                        }
-                    },
-                    {
-                        id: "flight_deal_2",
-                        dealId: "F-TR-IST-ADB",
-                        type: "flight",
-                        segment: "domestic_tr",
-                        originIata: "IST",
-                        destIata: "ADB",
-                        destCityEn: "Izmir",
-                        route: "İstanbul (IST) ✈️ İzmir (ADB)",
-                        airline: "Pegasus / AJet",
-                        departureDate: getUpcomingDateStr(12),
-                        price: "$34",
-                        savingsPct: 22,
-                        image: "https://images.unsplash.com/photo-1589561454226-796a8aa89b05?auto=format&fit=crop&w=1000&q=80",
-                        affiliateUrl: window.buildFlightDirectUrl("IST", "ADB", null, null, "economy"),
-                        i18n: {
-                            tr: { title: "İstanbul (IST) ✈️ İzmir (ADB)", desc: "Ege'nin kalbi İzmir rotasına esnek saatli, anında onaylı direkt iç hat uçuşları." },
-                            ar: { title: "إسطنبول (IST) ✈️ إزمير (ADB)", desc: "رحلات مباشرة سريعة من إسطنبول إلى إزمير بأسعار تنافسية ورابط حجز رسمي مباشر." },
-                            en: { title: "Istanbul (IST) ✈️ Izmir (ADB)", desc: "Frequent direct domestic flights from Istanbul to Izmir with verified live ticket availability." },
-                            ru: { title: "Стамбул (IST) ✈️ Измир (ADB)", desc: "Быстрые прямые рейсы из Стамбула в Измир с мгновенным подтверждением." }
-                        }
-                    },
-                    {
-                        id: "flight_deal_3",
-                        dealId: "F-RU-SVO-AYT",
-                        type: "flight",
-                        segment: "russia_tr",
-                        originIata: "SVO",
-                        destIata: "AYT",
-                        destCityEn: "Antalya",
-                        route: "Moskova (SVO) ✈️ Antalya (AYT)",
-                        airline: "Turkish Airlines / Aeroflot",
-                        departureDate: getUpcomingDateStr(16),
-                        price: "$139",
-                        savingsPct: 27,
-                        image: "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1000&q=80",
-                        affiliateUrl: window.buildFlightDirectUrl("SVO", "AYT", null, null, "economy"),
-                        i18n: {
-                            tr: { title: "Moskova (SVO) ✈️ Antalya (AYT)", desc: "Rusya'dan Antalya sahillerine yüksek konforlu direkt uçuşlarda en seçkin canlı fiyatlar." },
-                            ar: { title: "موسكو (SVO) ✈️ أنطاليا (AYT)", desc: "أقوى عروض الطيران المباشر من موسكو إلى أنطاليا بتحديث حي للأسعار وحجز رسمي." },
-                            en: { title: "Moscow (SVO) ✈️ Antalya (AYT)", desc: "Top-value direct flights from Moscow to Antalya with instant official partner booking." },
-                            ru: { title: "Москва (SVO) ✈️ Анталья (AYT)", desc: "Лучшие прямые рейсы из Москвы в Анталью — проверенные цены и бронирование." }
-                        }
-                    },
-                    {
-                        id: "flight_deal_4",
-                        dealId: "F-AR-RUH-IST",
-                        type: "flight",
-                        segment: "arab_tr",
-                        originIata: "RUH",
-                        destIata: "IST",
-                        destCityEn: "Istanbul",
-                        route: "Riyad (RUH) ✈️ İstanbul (IST)",
-                        airline: "Turkish Airlines / Flynas",
-                        departureDate: getUpcomingDateStr(15),
-                        price: "$149",
-                        savingsPct: 25,
-                        image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1000&q=80",
-                        affiliateUrl: window.buildFlightDirectUrl("RUH", "IST", null, null, "economy"),
-                        i18n: {
-                            tr: { title: "Riyad (RUH) ✈️ İstanbul (IST)", desc: "Suudi Arabistan'dan İstanbul'a direkt uçuşlarda özel canlı tarifeler." },
-                            ar: { title: "الرياض (RUH) ✈️ إسطنبول (IST)", desc: "رحلات مباشرة يومية من الرياض إلى إسطنبول بأفضل سعر حي ورابط حجز رسمي." },
-                            en: { title: "Riyadh (RUH) ✈️ Istanbul (IST)", desc: "Daily direct flights from Riyadh to Istanbul with verified live fares." },
-                            ru: { title: "Эр-Рияд (RUH) ✈️ Стамбул (IST)", desc: "Прямые рейсы из Эр-Рияда в Стамбул с проверенными актуальными тарифами." }
-                        }
-                    },
-                    {
-                        id: "flight_deal_5",
-                        dealId: "F-AR-DXB-IST",
-                        type: "flight",
-                        segment: "arab_tr",
-                        originIata: "DXB",
-                        destIata: "IST",
-                        destCityEn: "Istanbul",
-                        route: "Dubai (DXB) ✈️ İstanbul (IST)",
-                        airline: "Emirates / Turkish Airlines",
-                        departureDate: getUpcomingDateStr(18),
-                        price: "$135",
-                        savingsPct: 28,
-                        image: "https://images.unsplash.com/photo-1541432901042-2d8bd64b4a9b?auto=format&fit=crop&w=1000&q=80",
-                        affiliateUrl: window.buildFlightDirectUrl("DXB", "IST", null, null, "economy"),
-                        i18n: {
-                            tr: { title: "Dubai (DXB) ✈️ İstanbul (IST)", desc: "Dubai'den İstanbul'a uzanan direkt uçuşlarda anlık kontrol edilmiş en iyi fiyatlar." },
-                            ar: { title: "دبي (DXB) ✈️ إسطنبول (IST)", desc: "أفضل تذاكر الطيران المباشر من دبي إلى إسطنبول بحجز مباشر عبر الشريك الرسمي." },
-                            en: { title: "Dubai (DXB) ✈️ Istanbul (IST)", desc: "Verified direct flights connecting Dubai and Istanbul with live fare comparison." },
-                            ru: { title: "Дубай (DXB) ✈️ Стамбул (IST)", desc: "Прямые перелёты из Дубая в Стамбул по лучшим проверенным ценам." }
-                        }
-                    },
-                    {
-                        id: "flight_deal_6",
-                        dealId: "F-AR-CAI-IST",
-                        type: "flight",
-                        segment: "arab_tr",
-                        originIata: "CAI",
-                        destIata: "IST",
-                        destCityEn: "Istanbul",
-                        route: "Kahire (CAI) ✈️ İstanbul (IST)",
-                        airline: "EgyptAir / Turkish Airlines",
-                        departureDate: getUpcomingDateStr(14),
-                        price: "$118",
-                        savingsPct: 23,
-                        image: "https://images.unsplash.com/photo-1527838832700-5059252407fa?auto=format&fit=crop&w=1000&q=80",
-                        affiliateUrl: window.buildFlightDirectUrl("CAI", "IST", null, null, "economy"),
-                        i18n: {
-                            tr: { title: "Kahire (CAI) ✈️ İstanbul (IST)", desc: "Kahire'den İstanbul'a her gün düzenli direkt uçuş fırsatları." },
-                            ar: { title: "القاهرة (CAI) ✈️ إسطنبول (IST)", desc: "رحلات مباشرة يومية من القاهرة إلى إسطنبول بأفضل أسعار السوق الموثّقة." },
-                            en: { title: "Cairo (CAI) ✈️ Istanbul (IST)", desc: "Daily direct flights from Cairo to Istanbul with verified partner booking." },
-                            ru: { title: "Каир (CAI) ✈️ Стамбул (IST)", desc: "Ежедневные прямые рейсы из Каира в Стамбул по выгодным тарифам." }
-                        }
-                    }
-                ];
-            }
-
-            const CURATED_EDITORIAL_ARTICLES = [
-                {
-                    id: "editorial_istanbul_luxury_guide",
-                    category: "hotel",
-                    image: "https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?auto=format&fit=crop&w=1400&q=80",
-                    createdAt: "2026-11-18T10:00:00Z",
-                    titles: {
-                        tr: "Boğaz'ın İncisi İstanbul: 5 Yıldızlı Konaklama ve Gizli Lüks Rotalar Rehberi",
-                        ar: "إسطنبول جوهرة البوسفور: الدليل الفاخر لأرقى الفنادق والإطلالات والتجارب الاستثنائية",
-                        en: "Istanbul Bosphorus Luxury Guide: Elite Stays, Secret Views & Seamless Travel",
-                        ru: "Стамбул на Босфоре: гид по элитным отелям и панорамным видам"
-                    },
-                    bodies: {
-                        tr: `<p>İki kıtayı birleştiren büyüleyici silüetiyle <strong>İstanbul</strong>, Avrupa ve Orta Doğu'nun en seçkin lüks konaklama merkezlerinden biridir.</p>`,
-                        ar: `<p>تجمع <strong>إسطنبول</strong> بين سحر القارتين وتاريخ الإمبراطوريات وفخامة الضيافة العصرية.</p>`,
-                        en: `<p>Spanning two continents with an iconic skyline, <strong>Istanbul</strong> blends timeless heritage with world-class luxury hospitality.</p>`,
-                        ru: `<p><strong>Стамбул</strong>, соединяющий два континента, сочетает историю с высочайшим уровнем сервиса.</p>`
-                    }
-                },
-                {
-                    id: "editorial_antalya_turquoise_resorts",
-                    category: "hotel",
-                    image: "https://images.unsplash.com/photo-1540541338287-41700207dee6?auto=format&fit=crop&w=1400&q=80",
-                    createdAt: "2026-11-17T10:00:00Z",
-                    titles: {
-                        tr: "Antalya ve Turkuaz Kıyılar: Her Şey Dahil Lüks Resort Seçmenin Altın Kuralları",
-                        ar: "أنطاليا والساحل الفيروزي: الدليل الذهبي لاختيار أفخم المنتجعات الشاطئية بأقل سعر",
-                        en: "Antalya & The Turquoise Coast: Golden Rules for Booking Luxury Beach Resorts",
-                        ru: "Анталья и Бирюзовое побережье: правила выбора элитного курорта All-Inclusive"
-                    },
-                    bodies: {
-                        tr: `<p>Yılın 300 günü güneşli gökyüzü ve dünyaca ünlü <strong>Ultra Her Şey Dahil</strong> tesisleriyle <strong>Antalya</strong>, Akdeniz'in tatil başkentidir.</p>`,
-                        ar: `<p>بسمائها المشمسة 300 يوم في السنة ومنتجعاتها العالمية، تتربّع <strong>أنطاليا</strong> على عرش السياحة المتوسطية.</p>`,
-                        en: `<p>With 300 days of sunshine and world-renowned <strong>Ultra All-Inclusive</strong> resorts, <strong>Antalya</strong> reigns as the Mediterranean's premier escape.</p>`,
-                        ru: `<p>300 солнечных дней в году и лучшие курорты <strong>Ultra All-Inclusive</strong> делают <strong>Анталью</strong> столицей отдыха.</p>`
-                    }
-                }
-            ];
-
-            // تطبيع بطاقة الطيران مع ضمان تطابق الرابط 100% مع نفس المسار المعلن (لا أخطاء مسارات أبداً)
+            // تطبيع بطاقة الطيران الحقيقية مع ضمان تطابق الرابط 100% مع نفس المسار المعلن
             function normalizeFlightRecord(raw, idx) {
                 if (!raw || typeof raw !== 'object') return null;
                 const origIata = String(raw.originIata || '').toUpperCase().trim();
@@ -4424,9 +4285,9 @@
 
                 const cleanPrice = (raw.price && String(raw.price).trim())
                     ? String(raw.price).trim()
-                    : (raw.priceUsd ? `$${raw.priceUsd}` : (origIata === 'IST' ? '$42' : '$145'));
+                    : (raw.priceUsd ? `$${raw.priceUsd}` : '');
+                if (!cleanPrice) return null;
 
-                // نتحقق أن رابط الحجز يحتوي فعلاً على نفس رمزي المطارين وإلا نعيد بناء رابط Aviasales الرسمي لنفس المسار بالضبط
                 const rawLink = raw.affiliateUrl || raw.link || raw.url || '';
                 let decodedLink = '';
                 try { decodedLink = decodeURIComponent(rawLink); } catch (e) { decodedLink = rawLink; }
@@ -4439,7 +4300,7 @@
                     : window.buildFlightDirectUrl(origIata, destIata, null, null, 'economy');
 
                 const cleanSegment = raw.segment || (
-                    ['LED', 'SVO', 'VKO', 'DME', 'KZN', 'AER'].includes(origIata) || ['LED', 'SVO', 'VKO', 'DME'].includes(destIata)
+                    ['LED', 'SVO', 'VKO', 'DME', 'KZN', 'AER', 'MOW'].includes(origIata) || ['LED', 'SVO', 'VKO', 'DME', 'MOW'].includes(destIata)
                         ? 'russia_tr'
                         : (['IST', 'SAW', 'ESB', 'ADB', 'AYT', 'TZX', 'BJV', 'DLM'].includes(origIata) && ['IST', 'SAW', 'ESB', 'ADB', 'AYT', 'TZX', 'BJV', 'DLM'].includes(destIata)
                             ? 'domestic_tr' : 'arab_tr')
@@ -4452,17 +4313,18 @@
                     originIata: origIata,
                     destIata: destIata,
                     segment: cleanSegment,
-                    airline: raw.airline || 'Turkish Airlines / Pegasus',
-                    departureDate: raw.departureDate || getUpcomingDateStr(12 + idx),
+                    airline: raw.airline || 'Verified Carrier',
+                    departureDate: raw.departureDate || '',
                     price: cleanPrice,
-                    savingsPct: raw.savingsPct || 22,
-                    image: window.isValidExternalUrl(raw.image) ? raw.image : window.FALLBACK_DEAL_IMG,
+                    savingsPct: raw.savingsPct || 0,
+                    image: window.isValidExternalUrl(raw.image) ? raw.image : (raw.localImage ? `${RAW_REPO_BASE}/${raw.localImage}` : window.FALLBACK_DEAL_IMG),
+                    localImage: raw.localImage || '',
                     affiliateUrl: cleanUrl,
-                    description: raw.description || 'Verified direct flight offer with exact-route official booking link.'
+                    description: raw.description || ''
                 });
             }
 
-            // تطبيع بطاقة الفندق بحيث لا توجه أبداً إلى نشاط أو صفحة 404
+            // تطبيع بطاقة الإقامة الحقيقية (فنادق / منتجعات / شقق) ومنع أي رابط نشاط
             function normalizeHotelRecord(raw, idx) {
                 if (!raw || typeof raw !== 'object') return null;
                 const cityRaw = raw.cityEn || raw.city || 'Istanbul';
@@ -4471,9 +4333,8 @@
                 let decoded = '';
                 try { decoded = decodeURIComponent(rawUrl).toLowerCase(); } catch (e) { decoded = String(rawUrl).toLowerCase(); }
 
-                // رفض أي رابط يوجّه لنشاط (activity) أو تأجير سيارات بدلاً من الفنادق وإعادة بنائه لقسم فنادق Klook/Kayak
                 const isWrongCategoryUrl = /\/activity\/|car-rental|transfer|esim|experiences/i.test(decoded);
-                const partner = String(raw.partner || 'klook').toLowerCase() === 'kayak' ? 'kayak' : 'klook';
+                const partner = String(raw.partner || 'klook').toLowerCase() === 'kkday' ? 'kkday' : 'klook';
                 const safeUrl = (window.isValidExternalUrl(rawUrl) && !isWrongCategoryUrl)
                     ? rawUrl
                     : window.buildHotelStayOffer(partner, cityRaw, stayType);
@@ -4484,7 +4345,8 @@
                     type: 'hotel',
                     stayType: stayType,
                     partner: partner,
-                    image: window.isValidExternalUrl(raw.image) ? raw.image : window.FALLBACK_DEAL_IMG,
+                    image: window.isValidExternalUrl(raw.image) ? raw.image : (raw.localImage ? `${RAW_REPO_BASE}/${raw.localImage}` : window.FALLBACK_DEAL_IMG),
+                    localImage: raw.localImage || '',
                     affiliateUrl: safeUrl
                 });
             }
@@ -4529,9 +4391,7 @@
                 const lang = document.documentElement.lang || 'tr';
                 const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
 
-                if (!fbAuth) {
-                    initFirebaseServices();
-                }
+                if (!fbAuth) initFirebaseServices();
                 if (!fbAuth) {
                     window.showCopyToast('Google Auth is initializing, please try again.');
                     return;
@@ -4581,7 +4441,7 @@
             };
 
             // =====================================================================
-            // 3. التبديل بين المساعدين وحساب الميزانية الكلية مع عدد الأفراد
+            // 3. التبديل بين المساعدين وحساب الميزانية الكلية
             // =====================================================================
             window.switchConcierge = function(tab) {
                 const isHotel = tab === 'hotel';
@@ -4633,7 +4493,7 @@
             };
 
             // =====================================================================
-            // 4. عرض بطاقات الفنادق والطيران (روابط وصور محمية 100% ضد 404)
+            // 4. عرض بطاقات الفنادق والطيران الحقيقية فقط (صفر عروض وهمية)
             // =====================================================================
             window.renderHotels = function() {
                 const container = document.getElementById('hotels-container');
@@ -4662,7 +4522,7 @@
                                onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(affUrl)}', 'hotel', '${escJs(titleDisp)}', '${escJs(h.partner || 'klook')}', '${escJs(h.cityEn || h.city || '')}', 'hotel_grid', '${escJs(dealId)}', event)"
                                class="flex-1 flex flex-col">
                                 <div class="img-frame">
-                                    <img src="${escHtml(imgSrc)}" alt="${escHtml(titleDisp)}" loading="lazy" decoding="async" onerror="window.handleSafeImgError(this)" class="w-full h-full object-cover">
+                                    <img src="${escHtml(imgSrc)}" alt="${escHtml(titleDisp)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(h.localImage || '')}')" class="w-full h-full object-contain">
                                     ${savBadge}
                                     <button type="button" title="${escHtml(dict.share_btn_title)}"
                                         onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
@@ -4685,7 +4545,7 @@
                                     <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
                                         <div>
                                             <span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span>
-                                            <span class="font-luxury text-xl font-black text-brand-gold">${escHtml(h.price || '$59')}</span>
+                                            <span class="font-luxury text-xl font-black text-brand-gold">${escHtml(h.price || '')}</span>
                                         </div>
                                         <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">
                                             ${escHtml(dict.book_deal_btn)} <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
@@ -4724,9 +4584,8 @@
                             <a href="${escHtml(affUrl)}"
                                onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(affUrl)}', 'flight', '${escJs(routeTitle)}', 'aviasales', '${escJs(f.destCityEn || f.destination || '')}', 'flight_grid', '${escJs(dealId)}', event)"
                                class="flex flex-col justify-between h-full">
-                                <div class="img-frame h-44">
-                                    <img src="${escHtml(cardImg)}" alt="${escHtml(routeTitle)}" loading="lazy" decoding="async" onerror="window.handleSafeImgError(this)" class="w-full h-full object-cover">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-[#070B16] via-transparent to-transparent"></div>
+                                <div class="img-frame">
+                                    <img src="${escHtml(cardImg)}" alt="${escHtml(routeTitle)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(f.localImage || '')}')" class="w-full h-full object-contain">
                                     <span class="absolute top-3 left-3 bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full">${escHtml(segLabel)}</span>
                                     <button type="button" title="${escHtml(dict.share_btn_title)}"
                                         onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
@@ -4738,7 +4597,7 @@
                                     <div>
                                         <div class="flex items-center gap-2 mb-2.5">
                                             ${savBadge}
-                                            <span class="text-[11px] font-bold text-brand-gold/90 truncate"><i class="fas fa-plane-departure mx-1"></i>${escHtml(f.airline || 'Turkish Airlines')}</span>
+                                            <span class="text-[11px] font-bold text-brand-gold/90 truncate"><i class="fas fa-plane-departure mx-1"></i>${escHtml(f.airline || '')}</span>
                                         </div>
 
                                         <h3 class="font-luxury text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition mb-1.5 leading-snug">
@@ -4857,7 +4716,6 @@
                         <article onclick="window.openArticleModal('${escJs(keyId)}')" class="editorial-blog-card group">
                             <div class="editorial-cover-wrap">
                                 <img src="${escHtml(coverImg)}" alt="${escHtml(title)}" loading="lazy" decoding="async" onerror="window.handleSafeImgError(this)">
-                                <div class="absolute inset-0 bg-gradient-to-t from-[#060A14]/70 via-transparent to-transparent"></div>
                                 <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
                                     <span class="px-3 py-1 rounded-full bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold tracking-[0.18em] uppercase">
                                         ${escHtml(catLabel)}
@@ -5009,9 +4867,7 @@
                 if (btnH) btnH.classList.toggle('active', window.currentMapMode === 'hybrid');
 
                 if (window.leafletMapInstance && typeof L !== 'undefined') {
-                    if (window.activeTileLayer) {
-                        window.leafletMapInstance.removeLayer(window.activeTileLayer);
-                    }
+                    if (window.activeTileLayer) window.leafletMapInstance.removeLayer(window.activeTileLayer);
                     window.activeTileLayer = L.tileLayer(window.GOOGLE_REAL_MAP_LAYERS[window.currentMapMode], {
                         maxZoom: 17,
                         subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
@@ -5089,7 +4945,7 @@
                 window.currentTripTotalCards = Math.max(1, totalCards);
 
                 if (titleEl) titleEl.textContent = dict.persuasion_title;
-                if (headEl) headEl.textContent = mode === 'flight' ? dict.persuasion_headline_flight : dict.persuasion_headline_hotel;
+                if (headEl) headEl.textContent = mode === 'flight' ? dict.persuasion_headline_flight : dict.persuasion_headline_hotel.replace(/Kayak/g, 'KKday');
 
                 if (detEl) {
                     detEl.classList.add('hidden');
@@ -5169,7 +5025,7 @@
             }
 
             // =====================================================================
-            // 8. مستشار الفنادق والمنتجعات والشقق (قفل صارم + Klook & Kayak + دقة 100%)
+            // 8. مستشار الفنادق والمنتجعات والشقق (Klook 137 + KKday 633 + قفل صارم)
             // =====================================================================
             function findVerifiedStaysForRequest(destVal, accType, vibeKey, userBudget) {
                 const candidateProvinces = destVal === 'Tüm Türkiye'
@@ -5183,7 +5039,6 @@
                     const pInfo = window.TURKEY_81_COORDS[prov];
                     if (!pInfo) return;
 
-                    // 1) البحث أولاً في العروض الحية المفحوصة على الموقع
                     (window.HOTELS_DATA || []).forEach(live => {
                         const liveCity = String(live.city || live.cityEn || '').toLowerCase();
                         const matchesCity = liveCity === prov.toLowerCase() || liveCity === pInfo.cityEn.toLowerCase();
@@ -5204,15 +5059,11 @@
                         }
                     });
 
-                    // 2) البحث في بنك الإقامات الموثّقة (فنادق / منتجعات / شقق)
                     const bankList = (window.VERIFIED_STAY_TIERS_FALLBACK[prov] && window.VERIFIED_STAY_TIERS_FALLBACK[prov][accType]) || [];
                     bankList.forEach(st => {
                         const item = Object.assign({ province: prov }, st);
-                        if (Array.isArray(st.vibes) && st.vibes.includes(vibeKey)) {
-                            exactMatches.push(item);
-                        } else {
-                            similarMatches.push(item);
-                        }
+                        if (Array.isArray(st.vibes) && st.vibes.includes(vibeKey)) exactMatches.push(item);
+                        else similarMatches.push(item);
                     });
                 });
 
@@ -5223,12 +5074,8 @@
                     return withinBudget.length ? withinBudget[withinBudget.length - 1] : sorted[0];
                 };
 
-                if (exactMatches.length > 0) {
-                    return { found: true, isSimilar: false, stay: pickClosest(exactMatches) };
-                }
-                if (similarMatches.length > 0) {
-                    return { found: true, isSimilar: true, stay: pickClosest(similarMatches) };
-                }
+                if (exactMatches.length > 0) return { found: true, isSimilar: false, stay: pickClosest(exactMatches) };
+                if (similarMatches.length > 0) return { found: true, isSimilar: true, stay: pickClosest(similarMatches) };
                 return { found: false, isSimilar: false, stay: null };
             }
 
@@ -5244,7 +5091,6 @@
                 const days = parseInt((daysEl && daysEl.value) || '', 10);
                 const guests = parseInt((guestsEl && guestsEl.value) || '', 10);
 
-                // قفل صارم: لا يُفتح المساعد إطلاقاً بدون إدخال (الميزانية + عدد الأيام + عدد الأفراد)
                 const missingFields = [];
                 if (!(userBudget > 0)) missingFields.push(budgetEl);
                 if (!(Number.isFinite(days) && days >= 1)) missingFields.push(daysEl);
@@ -5266,8 +5112,6 @@
                 const vibeKey = (document.getElementById('hc-vibe') && document.getElementById('hc-vibe').value) || 'luxury';
 
                 const matchRes = findVerifiedStaysForRequest(destVal, accType, vibeKey, userBudget);
-
-                // إذا لم يتوفر عرض إقامة حقيقي موثّق لتلك الوجهة: لا نختلق عرضاً وهمياً ونعتذر بوضوح
                 if (!matchRes.found || !matchRes.stay) {
                     showInlineFormAlert('hc-validation-msg', dict.err_hotel_no_deals, 'warn');
                     return;
@@ -5301,12 +5145,12 @@
                 if (gridEl) gridEl.innerHTML = '';
                 if (alertEl) alertEl.classList.add('hidden');
                 if (bar) bar.style.width = '35%';
-                if (statusEl) statusEl.textContent = dict.radar_step_1;
+                if (statusEl) statusEl.textContent = (dict.radar_step_1 || '').replace(/Kayak/g, 'KKday');
                 if (subEl) {
                     const typeName = dict[accType === 'resort' ? 't_resort' : (accType === 'apart' ? 't_apart' : 't_hotel')];
                     subEl.textContent = `🇹🇷 ${window.translateTextStrong(province, lang)} • ${typeName} • ${days} ${dict.days_label || 'Days'} • ${guests} ${dict.guests_label || 'Guests'}`;
                 }
-                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block"></span> KLOOK + KAYAK • ${escHtml(pInfo.cityEn.toUpperCase())}`;
+                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block"></span> KLOOK + KKDAY • ${escHtml(pInfo.cityEn.toUpperCase())}`;
 
                 window.ConciergeAudio.playRadarPing(980);
 
@@ -5337,12 +5181,15 @@
 
                     const stayOpts = { days: days, guests: guests };
                     const klookUrl = window.buildHotelStayOffer('klook', pInfo.cityEn, accType, (chosenStay.partner === 'klook' ? chosenStay.overrideUrl : null), stayOpts);
-                    const kayakUrl = window.buildHotelStayOffer('kayak', pInfo.cityEn, accType, (chosenStay.partner === 'kayak' ? chosenStay.overrideUrl : null), stayOpts);
+                    const kkdayUrl = window.buildHotelStayOffer('kkday', pInfo.cityEn, accType, (chosenStay.partner === 'kkday' ? chosenStay.overrideUrl : null), stayOpts);
 
                     const syncedCity = (window.CONCIERGE_HOTELS_DB && window.CONCIERGE_HOTELS_DB[province]) || {};
                     const mobObj = window.buildSmartMobilityOffer(province, pInfo.cityEn, 'TR', vibeKey, syncedCity.car, syncedCity.bike);
                     const actObj = window.buildStrictActivityOffer(province, pInfo.cityEn, vibeKey, lang, syncedCity.activity);
                     const esimObj = window.buildSmartEsimOffer('TR', days >= 4, syncedCity.esim);
+
+                    const kkdayBadge = (dict.badge_stay_kayak || dict.badge_stay).replace(/Kayak/g, 'KKday');
+                    const kkdayCta = (dict.btn_book_kayak || dict.book_deal_btn).replace(/Kayak/g, 'KKday');
 
                     const cards = [
                         {
@@ -5356,18 +5203,17 @@
                             url: klookUrl
                         },
                         {
-                            partner: 'kayak',
-                            badge: dict.badge_stay_kayak || dict.badge_stay,
-                            title: `${chosenStay.name} (Kayak)`,
+                            partner: 'kkday',
+                            badge: kkdayBadge,
+                            title: `${chosenStay.name} (KKday)`,
                             sub: `${pInfo.cityEn} • ${dict.total_stay} ~$${realMarketTotal}`,
                             price: `~$${realMarketNight} ${dict.per_night}`,
-                            cta: dict.btn_book_kayak || dict.book_deal_btn,
+                            cta: kkdayCta,
                             icon: 'fas fa-building',
-                            url: kayakUrl
+                            url: kkdayUrl
                         }
                     ];
 
-                    // إضافة الخدمات الدقيقة المرتبطة بالوجهة فقط إذا توفرت فعلياً (بدون أي إضافات وهمية)
                     if (actObj && window.isValidExternalUrl(actObj.url)) {
                         cards.push({
                             partner: actObj.partner,
@@ -5417,11 +5263,9 @@
                                     .replace('$TOTAL', `$${realMarketTotal}`)
                             );
                         } else {
-                            alertParts.push(dict.good_budget_msg);
+                            alertParts.push((dict.good_budget_msg || '').replace(/Kayak/g, 'KKday'));
                         }
-                        if (matchRes.isSimilar && dict.similar_hotel_notice) {
-                            alertParts.push(dict.similar_hotel_notice);
-                        }
+                        if (matchRes.isSimilar && dict.similar_hotel_notice) alertParts.push(dict.similar_hotel_notice);
                         alertEl.classList.remove('hidden');
                         alertEl.className = `pointer-events-auto max-w-4xl mx-auto rounded-2xl px-4 py-2 text-xs font-bold text-center border ${isLowBudget ? 'bg-amber-950/90 border-amber-400/70 text-amber-100' : 'bg-emerald-950/90 border-emerald-400/65 text-emerald-100'}`;
                         alertEl.innerHTML = `<i class="fas ${isLowBudget ? 'fa-exclamation-triangle' : 'fa-check-circle'} mx-1.5"></i>${escHtml(alertParts.join(' • '))}`;
@@ -5435,7 +5279,7 @@
             };
 
             // =====================================================================
-            // 9. مستشار الطيران (36 دولة + قفل المدينة والميزانية والدرجة + كشف عدم وجود مطار + قاعدة الاقتصادية)
+            // 9. مستشار الطيران (36 دولة + قفل المدينة والميزانية والدرجة + كشف عدم وجود مطار)
             // =====================================================================
             function readAndValidateFlightEndpoint(side) {
                 const sel = document.getElementById(`fc-${side}-country`);
@@ -5448,41 +5292,23 @@
 
                 if (code === 'TR') {
                     const prov = (trCity && trCity.value) || '';
-                    if (!prov || !window.TURKEY_81_COORDS[prov]) {
-                        return { ok: false, reason: 'missing', field: trCity };
-                    }
+                    if (!prov || !window.TURKEY_81_COORDS[prov]) return { ok: false, reason: 'missing', field: trCity };
                     const pInfo = window.TURKEY_81_COORDS[prov];
                     if (pInfo.hasAirport === false) {
-                        return {
-                            ok: false,
-                            reason: 'no_airport',
-                            field: trCity,
-                            enteredCity: prov,
-                            nearestAirport: pInfo.airport
-                        };
+                        return { ok: false, reason: 'no_airport', field: trCity, enteredCity: prov, nearestAirport: pInfo.airport };
                     }
                     const explicitIata = (airRaw.match(/\(([A-Z]{3})\)/i) || airRaw.match(/\b([A-Z]{3})\b/))?.[1]?.toUpperCase() || '';
                     return {
-                        ok: true,
-                        countryCode: 'TR',
-                        city: pInfo.cityEn,
-                        province: prov,
-                        iata: explicitIata || pInfo.iata,
-                        airport: airRaw || pInfo.airport,
-                        lat: pInfo.lat,
-                        lng: pInfo.lng
+                        ok: true, countryCode: 'TR', city: pInfo.cityEn, province: prov,
+                        iata: explicitIata || pInfo.iata, airport: airRaw || pInfo.airport, lat: pInfo.lat, lng: pInfo.lng
                     };
                 }
 
                 const rawCityText = (wCity && wCity.value.trim()) || '';
-                if (!rawCityText) {
-                    return { ok: false, reason: 'missing', field: wCity };
-                }
+                if (!rawCityText) return { ok: false, reason: 'missing', field: wCity };
 
                 const resolved = window.resolveFlightCityInput(code, rawCityText, airRaw);
-                if (!resolved.ok) {
-                    return Object.assign({ field: wCity }, resolved);
-                }
+                if (!resolved.ok) return Object.assign({ field: wCity }, resolved);
                 return resolved;
             }
 
@@ -5509,7 +5335,6 @@
                 const origRes = readAndValidateFlightEndpoint('from');
                 const destRes = readAndValidateFlightEndpoint('to');
 
-                // 1) التحقق الإجباري من المدينة والميزانية ودرجة التذكرة قبل فتح المستشار
                 const missingFields = [];
                 if (origRes.reason === 'missing') missingFields.push(origRes.field);
                 if (destRes.reason === 'missing') missingFields.push(destRes.field);
@@ -5523,22 +5348,15 @@
                     return;
                 }
 
-                // 2) التحقق من وجود مطار في المدينة المدخلة وتوجيه الزائر لأقرب مطار عند عدم وجوده
                 if (origRes.reason === 'no_airport') {
                     if (origRes.field) origRes.field.classList.add('input-error-ring');
-                    const msg = (dict.err_no_airport_city || '')
-                        .replace('$CITY', origRes.enteredCity || '')
-                        .replace('$NEAREST', origRes.nearestAirport || '');
-                    showInlineFormAlert('fc-validation-msg', msg, 'warn');
+                    showInlineFormAlert('fc-validation-msg', (dict.err_no_airport_city || '').replace('$CITY', origRes.enteredCity || '').replace('$NEAREST', origRes.nearestAirport || ''), 'warn');
                     if (origRes.field) origRes.field.focus();
                     return;
                 }
                 if (destRes.reason === 'no_airport') {
                     if (destRes.field) destRes.field.classList.add('input-error-ring');
-                    const msg = (dict.err_no_airport_city || '')
-                        .replace('$CITY', destRes.enteredCity || '')
-                        .replace('$NEAREST', destRes.nearestAirport || '');
-                    showInlineFormAlert('fc-validation-msg', msg, 'warn');
+                    showInlineFormAlert('fc-validation-msg', (dict.err_no_airport_city || '').replace('$CITY', destRes.enteredCity || '').replace('$NEAREST', destRes.nearestAirport || ''), 'warn');
                     if (destRes.field) destRes.field.focus();
                     return;
                 }
@@ -5547,7 +5365,6 @@
                     showInlineFormAlert('fc-validation-msg', dict.err_flight_no_deals, 'warn');
                     return;
                 }
-
                 if (origRes.iata === destRes.iata) {
                     showInlineFormAlert('fc-validation-msg', dict.err_flight_same_route, 'error');
                     return;
@@ -5562,7 +5379,6 @@
                 const km = Math.max(180, haversineKm(orig.lat, orig.lng, dest.lat, dest.lng));
                 const estHours = Math.max(0.8, Math.round((km / 780) * 10) / 10);
 
-                // حساب سعر السوق الحقيقي حسب المسافة + العروض الحية المطابقة + درجة التذكرة
                 const liveMatch = (window.FLIGHTS_DATA || []).find(f => f.originIata === orig.iata && f.destIata === dest.iata);
                 const liveEcoPrice = liveMatch ? parseBudgetNum(liveMatch.price) : 0;
                 const distBaseEco = km < 900 ? 45 : (km < 2200 ? 115 : (km < 3800 ? 175 : (km < 7500 ? 390 : 590)));
@@ -5595,7 +5411,7 @@
                 if (gridEl) gridEl.innerHTML = '';
                 if (alertEl) alertEl.classList.add('hidden');
                 if (bar) bar.style.width = '25%';
-                if (statusEl) statusEl.textContent = dict.radar_step_1;
+                if (statusEl) statusEl.textContent = (dict.radar_step_1 || '').replace(/Kayak/g, 'KKday');
                 if (subEl) subEl.textContent = `${orig.city} (${orig.iata}) ➔ ✈️ ${dest.city} (${dest.iata}) • ${cabinLabel} • ${km} KM`;
                 if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block"></span> ${escHtml(orig.iata)} ➔ ${escHtml(dest.iata)} (${escHtml(cabinClass.toUpperCase())})`;
 
@@ -5685,7 +5501,6 @@
                 if (bar) bar.style.width = '100%';
                 if (statusEl) statusEl.textContent = dict.radar_step_3;
 
-                // بناء رابط حجز مطابق حرفياً لنفس المسار ونفس درجة التذكرة مع وسم العمولة
                 const exactOverride = (opts.cabinClass === 'economy' && opts.liveMatch && opts.liveMatch.affiliateUrl)
                     ? opts.liveMatch.affiliateUrl
                     : null;
@@ -5705,8 +5520,7 @@
                     }
                 ];
 
-                // قاعدة الدرجة الاقتصادية الصارمة: شريحة الهاتف eSIM فقط (بدون توصيل مطار)
-                // وللدرجات الأعلى (Premium / Business / First): توصيل المطار + شريحة الهاتف فقط إذا كانت متاحة فعلياً
+                // الدرجة الاقتصادية: شريحة الهاتف eSIM فقط (دون توصيل) — والدرجات الأعلى: توصيل + شريحة عند التوفر
                 if (opts.cabinClass !== 'economy') {
                     const transferObj = window.buildSmartTransferWaterfall(dest.city, dest.iata, dest.countryCode, null, dest.countryCode === 'TR');
                     if (transferObj && window.isValidExternalUrl(transferObj.url)) {
@@ -5769,115 +5583,80 @@
             }
 
             // =====================================================================
-            // 10. تحميل البيانات السريع والمستقل (صفر تعطيل للواجهة)
+            // 10. قراءة أحدث ملف live_deals_feed.json حقيقي بدون كاش وبدون عروض وهمية
             // =====================================================================
-            async function fetchCollectionDocs(colName, maxCount) {
-                if (!fbDb) return [];
+            async function fetchJsonNoStore(url) {
                 try {
-                    const snap = await fbDb.collection(colName).limit(maxCount || 20).get();
-                    const items = [];
-                    snap.forEach(doc => items.push(Object.assign({ id: doc.id }, doc.data())));
-                    return items;
+                    const r = await fetch(url, { cache: 'no-store' });
+                    if (!r.ok) return null;
+                    return await r.json();
                 } catch (e) {
-                    return [];
+                    return null;
                 }
+            }
+
+            async function loadFreshestLiveFeed() {
+                const ts = Date.now();
+                const candidates = await Promise.all([
+                    fetchJsonNoStore(`./live_deals_feed.json?t=${ts}`),
+                    fetchJsonNoStore(`${RAW_REPO_BASE}/live_deals_feed.json?t=${ts}`),
+                    fetchJsonNoStore(`${PAGES_SITE_BASE}/live_deals_feed.json?t=${ts}`)
+                ]);
+
+                const validFeeds = candidates.filter(f => f && (Array.isArray(f.mainHotels) || Array.isArray(f.mainFlights)));
+                if (validFeeds.length === 0) return null;
+
+                // اختيار النسخة الأحدث زمنياً دائماً لضمان عدم ظهور كاش قديم أبداً
+                validFeeds.sort((a, b) => toSortableTime(b.updatedAt) - toSortableTime(a.updatedAt));
+                return validFeeds[0];
             }
 
             async function bootstrapPlatformData() {
                 initFirebaseServices();
                 window.switchGoogleMapLayer(window.currentMapMode);
-                const bust = Math.floor(Date.now() / 300000);
+                const ts = Date.now();
 
-                const [feedRes, archiveRes, blogIdxLocalRes, blogIdxCdnRes] = await Promise.allSettled([
-                    fetch(`./live_deals_feed.json?v=${bust}`).then(r => r.ok ? r.json() : null),
-                    fetch(`./deals_archive.json?v=${bust}`).then(r => r.ok ? r.json() : null),
-                    fetch(`./live_blog_index.json?v=${bust}`).then(r => r.ok ? r.json() : null),
-                    fetch(`${window.BLOG_CDN_BASE}/live_blog_index.json?v=${bust}`).then(r => r.ok ? r.json() : null)
+                const [feedObj, archiveLocal, archiveRaw, blogIdxLocal, blogIdxCdn] = await Promise.all([
+                    loadFreshestLiveFeed(),
+                    fetchJsonNoStore(`./deals_archive.json?t=${ts}`),
+                    fetchJsonNoStore(`${RAW_REPO_BASE}/deals_archive.json?t=${ts}`),
+                    fetchJsonNoStore(`./live_blog_index.json?t=${ts}`),
+                    fetchJsonNoStore(`${PAGES_SITE_BASE}/live_blog_index.json?t=${ts}`)
                 ]);
 
-                if (archiveRes.status === 'fulfilled' && archiveRes.value && archiveRes.value.deals) {
-                    window.DEALS_ARCHIVE_MAP = archiveRes.value.deals;
+                const archiveObj = (archiveRaw && archiveRaw.deals && toSortableTime(archiveRaw.updatedAt) >= toSortableTime(archiveLocal && archiveLocal.updatedAt))
+                    ? archiveRaw
+                    : archiveLocal;
+                if (archiveObj && archiveObj.deals) {
+                    window.DEALS_ARCHIVE_MAP = archiveObj.deals;
                 }
 
-                let feedObj = null;
-                if (feedRes.status === 'fulfilled' && feedRes.value) {
-                    feedObj = feedRes.value;
-                    const hFeed = feedObj.mainHotels || feedObj.hotels;
-                    const fFeed = feedObj.mainFlights || feedObj.flights;
-                    if (Array.isArray(hFeed) && hFeed.length > 0) window.HOTELS_DATA = hFeed.map(normalizeHotelRecord).filter(Boolean);
-                    if (Array.isArray(fFeed) && fFeed.length > 0) window.FLIGHTS_DATA = fFeed.map(normalizeFlightRecord).filter(Boolean);
+                if (feedObj) {
+                    const hFeed = feedObj.mainHotels || feedObj.hotels || [];
+                    const fFeed = feedObj.mainFlights || feedObj.flights || [];
+                    window.HOTELS_DATA = Array.isArray(hFeed) ? hFeed.map(normalizeHotelRecord).filter(Boolean).slice(0, 6) : [];
+                    window.FLIGHTS_DATA = Array.isArray(fFeed) ? fFeed.map(normalizeFlightRecord).filter(Boolean).slice(0, 6) : [];
                     if (feedObj.conciergeHotels) window.CONCIERGE_HOTELS_DB = feedObj.conciergeHotels;
                     if (feedObj.conciergeFlights) window.CONCIERGE_FLIGHTS_DB = feedObj.conciergeFlights;
                     if (feedObj.partnerWeights) window.PARTNER_WEIGHTS = feedObj.partnerWeights;
-                }
-
-                if (window.HOTELS_DATA.length < 6 || window.FLIGHTS_DATA.length < 6) {
-                    const [liveDocs, colFlights, colHotels] = await Promise.all([
-                        fetchCollectionDocs('live_deals', 30),
-                        window.FLIGHTS_DATA.length < 6 ? fetchCollectionDocs('flights', 15) : Promise.resolve([]),
-                        window.HOTELS_DATA.length === 0 ? fetchCollectionDocs('hotels', 12) : Promise.resolve([])
-                    ]);
-
-                    if (window.HOTELS_DATA.length === 0) {
-                        const fromLiveH = liveDocs.filter(d => String(d.id).startsWith('hotel_deal_') || d.type === 'hotel')
-                            .sort((a, b) => String(a.id).localeCompare(String(b.id)))
-                            .map(normalizeHotelRecord).filter(Boolean);
-                        window.HOTELS_DATA = fromLiveH.length > 0 ? fromLiveH : colHotels.slice(0, 6).map(normalizeHotelRecord).filter(Boolean);
-                    }
-
-                    if (window.FLIGHTS_DATA.length < 6) {
-                        const fromLiveF = liveDocs.filter(d => String(d.id).startsWith('flight_deal_') || d.type === 'flight')
-                            .sort((a, b) => String(a.id).localeCompare(String(b.id)))
-                            .map(normalizeFlightRecord).filter(Boolean);
-
-                        const mergedFlights = [...window.FLIGHTS_DATA];
-                        const seenRoutes = new Set(mergedFlights.map(f => `${f.originIata}-${f.destIata}`));
-                        const pushUniqueFlight = (item) => {
-                            if (!item || mergedFlights.length >= 6) return;
-                            const key = `${item.originIata}-${item.destIata}`;
-                            if (seenRoutes.has(key)) return;
-                            seenRoutes.add(key);
-                            mergedFlights.push(item);
-                        };
-
-                        fromLiveF.forEach(pushUniqueFlight);
-                        colFlights.map(normalizeFlightRecord).filter(Boolean).forEach(pushUniqueFlight);
-                        buildCuratedFlightsFallback().forEach(pushUniqueFlight);
-                        window.FLIGHTS_DATA = mergedFlights.slice(0, 6);
-                    }
+                } else {
+                    window.HOTELS_DATA = [];
+                    window.FLIGHTS_DATA = [];
                 }
 
                 window.renderHotels();
                 window.renderFlights();
 
-                const blogIdxObj = (blogIdxLocalRes.status === 'fulfilled' && blogIdxLocalRes.value && Array.isArray(blogIdxLocalRes.value.posts))
-                    ? blogIdxLocalRes.value
-                    : ((blogIdxCdnRes.status === 'fulfilled' && blogIdxCdnRes.value && Array.isArray(blogIdxCdnRes.value.posts)) ? blogIdxCdnRes.value : null);
+                const blogIdxObj = (blogIdxLocal && Array.isArray(blogIdxLocal.posts) && blogIdxLocal.posts.length > 0)
+                    ? blogIdxLocal
+                    : ((blogIdxCdn && Array.isArray(blogIdxCdn.posts) && blogIdxCdn.posts.length > 0) ? blogIdxCdn : null);
 
-                if (blogIdxObj && blogIdxObj.posts.length > 0) {
+                if (blogIdxObj) {
                     blogIdxObj.posts.forEach(post => {
                         if (!post || post.status === 'draft') return;
                         const key = post.slug || post.id;
                         if (key) window.ARTICLES_MAP[key] = Object.assign({ id: key }, post);
                     });
-                }
-
-                if (Object.keys(window.ARTICLES_MAP).length === 0) {
-                    const blogResults = await Promise.all(['blog_posts', 'articles'].map(col => fetchCollectionDocs(col, 12)));
-                    blogResults.forEach(docs => {
-                        docs.forEach(item => {
-                            if (!item || item.status === 'draft') return;
-                            const key = item.slug || item.id;
-                            const parsed = window.extractArticleContent(item, document.documentElement.lang || 'tr');
-                            if (key && (parsed.title || parsed.body || item.jsonUrl)) {
-                                window.ARTICLES_MAP[key] = Object.assign({ id: key }, item);
-                            }
-                        });
-                    });
-                }
-
-                if (Object.keys(window.ARTICLES_MAP).length === 0) {
-                    CURATED_EDITORIAL_ARTICLES.forEach(art => { window.ARTICLES_MAP[art.id] = art; });
                 }
 
                 window.renderBlogCards();
