@@ -4100,19 +4100,41 @@
         });
     </script>
 <!-- ========================================================================= -->
-    <!-- الجزء 4 من 4: محرك البحث العميق (20 ثانية) + هوية UcuzaKal الصافية + خريطة واضحة -->
+    <!-- الجزء 4 من 4: إلغاء الشريط الشفاف + 81 محافظة وكل الدول + استعادة العروض والمدونة -->
     <!-- ========================================================================= -->
     <style>
-        /* إصلاح خلفية الشريط العلوي والصناديق فوق الخريطة + إبراز علامات الوجهات بوضوح تام */
-        #cinematic-overlay > div:first-of-type,
-        #cinematic-overlay .top-0 {
-            background: linear-gradient(180deg, rgba(6, 11, 24, 0.96) 0%, rgba(6, 11, 24, 0.88) 80%, rgba(6, 11, 24, 0) 100%) !important;
+        /* إلغاء الواجهة الشفافة والخط العلوي أعلى الخريطة نهائياً وإبقاء أزرار التحكم فقط */
+        #hud-live-telemetry,
+        #cinematic-status-title,
+        #cinematic-summary-sub,
+        #cinematic-bar {
+            display: none !important;
         }
+        #cinematic-overlay .uk-top-bar-cleaned {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            padding: 12px 16px !important;
+            pointer-events: none !important;
+        }
+        #cinematic-overlay .uk-top-bar-cleaned button {
+            pointer-events: auto !important;
+            background: rgba(6, 11, 24, 0.94) !important;
+            border: 1px solid rgba(212, 175, 55, 0.55) !important;
+            color: #F8FAFC !important;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.72) !important;
+        }
+        #cinematic-overlay .uk-top-bar-cleaned button.active {
+            background: #D4AF37 !important;
+            color: #000000 !important;
+        }
+        /* خلفيات داكنة صلبة للصناديق السفلية فوق الخريطة */
         #persuasion-card-box,
         #budget-advisor-alert,
         .on-map-offer-card,
-        .deep-search-radar-box,
-        .no-offers-honest-box {
+        .deep-search-radar-box {
             background-color: rgba(6, 11, 24, 0.96) !important;
             backdrop-filter: blur(14px) !important;
             -webkit-backdrop-filter: blur(14px) !important;
@@ -4133,8 +4155,6 @@
             border-radius: 9999px !important;
             white-space: nowrap !important;
             box-shadow: 0 6px 20px rgba(0, 0, 0, 0.85) !important;
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9) !important;
-            letter-spacing: 0.02em;
         }
         .deep-search-step-item {
             display: flex;
@@ -4179,34 +4199,36 @@
                 window.UCUZAKAL_AGENT_CONFIG.gateways = Object.assign({}, APPROVED_GATEWAYS);
             }
 
-            // نصوص بهوية UcuzaKal Türkiye حصراً — صفر ذكر لأسماء المواقع الشريكة للزائر
+            // هوية UcuzaKal Türkiye الصافية فقط (صفر ذكر لأسماء المواقع الشريكة للزائر)
             const DEEP_I18N = {
                 ar: {
-                    title_flight: "جارٍ البحث العميق عن أفضل الرحلات الحية المتاحة الآن...",
-                    title_hotel: "جارٍ البحث العميق عن أفضل عروض الإقامة الحقيقية الآن...",
-                    sub_wait: "يُرجى الانتظار — يفحص المستشار الذكي التوافر الفعلي والأسعار الحية (20 ثانية)",
+                    title_flight: "جارٍ البحث العميق عن أفضل عروض الطيران المتاحة الآن...",
+                    title_hotel: "جارٍ البحث العميق عن أفضل عروض الإقامة المتاحة في تركيا...",
+                    sub_wait: "يفحص المستشار الذكي الآن الأسعار الحية وروابط الحجز المباشرة (20 ثانية)",
                     sec_left: "ثانية متبقية",
                     f_steps: [
                         "فحص أسعار الرحلات الحية للمسار والتواريخ القادمة...",
-                        "التحقق من الدرجة المطلوبة ومطابقة ميزانيتك بدقة...",
+                        "التحقق من درجة التذكرة المطلوبة ومقارنتها بسعر السوق...",
                         "فحص خدمات الوصول والإنترنت المتاحة للوجهة...",
                         "تأكيد روابط الحجز المباشرة والجاهزة للتنفيذ..."
                     ],
                     h_steps: [
-                        "فحص عروض الإقامة الحقيقية المتاحة حالياً لوجهتك...",
-                        "مطابقة نوع الإقامة وميزانيتك بدقة...",
-                        "فحص الأنشطة والسيارات وشريحة الإنترنت المتاحة للمدينة...",
-                        "التحقق النهائي من صلاحية روابط الحجز المباشرة..."
+                        "فحص عروض الفنادق والمنتجعات والشقق الفندقية في وجهتك...",
+                        "مقارنة ميزانيتك بأسعار السوق الحقيقية في المدينة...",
+                        "فحص الأنشطة والسيارات وشريحة الإنترنت المتاحة...",
+                        "تجهيز روابط الحجز المباشرة والمؤكدة..."
                     ],
-                    no_budget_title: "لا يوجد عروض متاحة لميزانيتك الآن، عد لاحقاً",
-                    no_budget_flight_sub: "أقل سعر حقيقي متاح حالياً على هذا المسار هو $MIN (ميزانيتك المدخلة: $USER). يمكنك تعديل الميزانية أو العودة لاحقاً.",
-                    no_budget_hotel_sub: "أقل سعر إقامة حقيقي متاح حالياً لوجهتك هو $MIN / ليلة (ميزانيتك المدخلة: $USER). يمكنك رفع الميزانية أو العودة لاحقاً.",
-                    no_route_flight_sub: "لا يوجد عرض طيران متاح لهذا المسار في اللحظة الحالية. عد لاحقاً للمحاولة من جديد.",
-                    no_stay_sub: "لا يوجد عرض إقامة متاح حالياً لهذه المنطقة. عد لاحقاً أو اختر مدينة تركية أخرى.",
-                    close_retry: "تعديل البحث والعودة",
+                    low_budget_hotel: "تنبيه: الميزانية التي أدخلتها ($USER / ليلة) أقل من سعر السوق الحقيقي في هذه المدينة (يبدأ من $MIN / ليلة). إليك أفضل العروض الحقيقية المتاحة الآن بسعر السوق:",
+                    good_budget_hotel: "ممتاز! ميزانيتك متوافقة مع أسعار السوق الحقيقية في هذه المدينة — إليك أفضل العروض المتاحة الآن:",
+                    low_budget_flight: "تنبيه: الميزانية التي أدخلتها ($USER) أقل من سعر السوق الحقيقي لدرجة «$CLASS» على هذا المسار (يبدأ من $MIN). إليك العرض الحقيقي المطابق لدرجتك ومسارك بسعر السوق:",
+                    good_budget_flight: "ممتاز! ميزانيتك متوافقة مع سعر السوق الحقيقي لدرجة «$CLASS» — إليك أفضل عرض متاح الآن:",
                     direct_stops_0: "رحلة مباشرة",
                     direct_stops_n: "توقف",
-                    stay_badge: "🏨 عرض إقامة موثّق • UcuzaKal",
+                    stay_badge_1: "🏨 إقامة موثّقة • خيار UcuzaKal الأول",
+                    stay_badge_2: "🏨 إقامة موثّقة • خيار بديل بالسوق",
+                    stay_title_hotel: "أفضل عروض الفنادق المتاحة في $CITY",
+                    stay_title_resort: "أفضل المنتجعات السياحية المتاحة في $CITY",
+                    stay_title_apart: "أفضل الشقق الفندقية المتاحة في $CITY",
                     stay_cta: "احجز الإقامة الآن",
                     flight_badge: "✈️ رحلة طيران مؤكدة",
                     flight_cta: "احجز التذكرة الآن",
@@ -4216,46 +4238,48 @@
                     esim_cta: "احصل على الشريحة",
                     transfer_badge: "🚕 توصيل خاص من المطار (VIP)",
                     transfer_title: "استقبال وتوصيل خاص من المطار",
-                    transfer_sub: "سعر ثابت وحجز فوري عند الوصول",
+                    transfer_sub: "سعر ثابت واستقبال خاص عند الوصول",
                     transfer_cta: "احجز التوصيل",
                     activity_badge: "🎟️ أنشطة ومعالم المدينة",
-                    activity_title: "أبرز المعالم والتجارب السياحية في المدينة",
+                    activity_title: "أبرز المعالم والتجارب السياحية",
                     activity_sub: "تذاكر مؤكدة وحجز فوري بدون انتظار",
                     activity_cta: "احجز النشاط",
                     car_badge: "🚗 تأجير سيارة للمدينة",
-                    car_title: "خيارات تأجير سيارات موثّقة في المدينة",
+                    car_title: "خيارات تأجير سيارات موثّقة",
                     car_sub: "تسلّم سريع وخيارات تأمين مرنة",
                     car_cta: "اختر سيارتك",
-                    persuasion_h: "عروض حقيقية ومفحوصة بالكامل لرحلتك — اضغط على أي بطاقة للانتقال مباشرةً لصفحة الحجز.",
+                    persuasion_h: "عروض حقيقية ومفحوصة لرحلتك — اضغط على أي بطاقة للانتقال مباشرةً لصفحة الحجز.",
                     persuasion_f: "رابط حجز مباشر لنفس المسار والدرجة التي اخترتها تماماً مع الخدمات المتوفرة لوجهتك.",
                     all_turkey: "جميع أنحاء تركيا"
                 },
                 tr: {
                     title_flight: "En Avantajlı Canlı Uçuş Fırsatları Derinlemesine Taranıyor...",
-                    title_hotel: "Doğrulanmış Gerçek Konaklama Fırsatları Derinlemesine Taranıyor...",
-                    sub_wait: "Lütfen bekleyin — Canlı müsaitlik ve doğrudan rezervasyon bağlantıları doğrulanıyor (20 sn)",
+                    title_hotel: "Türkiye Geneli Doğrulanmış Konaklama Fırsatları Taranıyor...",
+                    sub_wait: "Akıllı asistan canlı fiyatları ve doğrudan rezervasyon linklerini doğruluyor (20 sn)",
                     sec_left: "sn kaldı",
                     f_steps: [
                         "Seçili rota için güncel canlı uçuş fiyatları taranıyor...",
-                        "Bilet sınıfı ve bütçe uyumu doğrulanıyor...",
-                        "Varış noktası için internet ve transfer seçenekleri kontrol ediliyor...",
+                        "Bilet sınıfı ve gerçek piyasa fiyatları karşılaştırılıyor...",
+                        "Varış noktası için internet ve transfer seçenekleri inceleniyor...",
                         "Doğrudan rezervasyon bağlantıları hazırlanıyor..."
                     ],
                     h_steps: [
-                        "Hedef bölgedeki aktif gerçek konaklama fırsatları taranıyor...",
-                        "Konaklama tipi ve bütçe uyumu kontrol ediliyor...",
-                        "Şehir aktiviteleri, araç kiralama ve eSIM seçenekleri inceleniyor...",
-                        "Doğrudan rezervasyon bağlantıları doğrulanıyor..."
+                        "Hedef şehirdeki otel, resort ve apart fırsatları taranıyor...",
+                        "Bütçeniz gerçek piyasa fiyatlarıyla karşılaştırılıyor...",
+                        "Şehir aktiviteleri, araç kiralama ve 5G eSIM kontrol ediliyor...",
+                        "Doğrudan rezervasyon bağlantıları hazırlanıyor..."
                     ],
-                    no_budget_title: "Bütçenize uygun aktif teklif şu an bulunmamaktadır, daha sonra tekrar deneyin",
-                    no_budget_flight_sub: "Bu rotadaki en düşük gerçek canlı fiyat $MIN (Girdiğiniz bütçe: $USER). Bütçenizi güncelleyebilir veya daha sonra tekrar deneyebilirsiniz.",
-                    no_budget_hotel_sub: "Bu bölgedeki en düşük doğrulanmış gecelik fiyat $MIN (Bütçeniz: $USER). Bütçenizi güncelleyebilir veya daha sonra kontrol edebilirsiniz.",
-                    no_route_flight_sub: "Bu rota için şu an aktif doğrulanmış uçuş teklifi bulunmamaktadır. Daha sonra tekrar deneyin.",
-                    no_stay_sub: "Bu bölge için şu an aktif doğrulanmış konaklama teklifi bulunmamaktadır. Daha sonra tekrar deneyin.",
-                    close_retry: "Aramayı Düzenle",
+                    low_budget_hotel: "Bilgi: Girdiğiniz bütçe ($USER / gece) bu şehirdeki gerçek piyasa fiyatının ($MIN / gece) altındadır. Gerçek piyasa fiyatlı mevcut teklifler aşağıda listelendi:",
+                    good_budget_hotel: "Harika! Bütçeniz bu şehirdeki gerçek piyasa fiyatlarıyla uyumludur — mevcut doğrulanmış teklifler:",
+                    low_budget_flight: "Bilgi: Girdiğiniz bütçe ($USER), $CLASS sınıfı için bu rotadaki gerçek piyasa fiyatının ($MIN) altındadır. Seçtiğiniz sınıf için gerçek piyasa teklifi aşağıdadır:",
+                    good_budget_flight: "Harika! Bütçeniz $CLASS sınıfındaki gerçek piyasa fiyatıyla uyumludur:",
                     direct_stops_0: "Direkt Uçuş",
                     direct_stops_n: "Aktarma",
-                    stay_badge: "🏨 Doğrulanmış Konaklama • UcuzaKal",
+                    stay_badge_1: "🏨 Doğrulanmış Konaklama • UcuzaKal Seçimi",
+                    stay_badge_2: "🏨 Doğrulanmış Konaklama • Alternatif Seçenek",
+                    stay_title_hotel: "$CITY Seçkin Otel Fırsatları",
+                    stay_title_resort: "$CITY Tatil Köyü & Resort Fırsatları",
+                    stay_title_apart: "$CITY Apart Otel Fırsatları",
                     stay_cta: "Hemen Rezervasyon Yap",
                     flight_badge: "✈️ Doğrulanmış Canlı Uçuş",
                     flight_cta: "Bileti Şimdi Al",
@@ -4268,7 +4292,7 @@
                     transfer_sub: "Sabit fiyat ve güvenli karşılama",
                     transfer_cta: "Transferi Ayırt",
                     activity_badge: "🎟️ Şehir Aktivite & Biletleri",
-                    activity_title: "Şehrin En Popüler Müze ve Turları",
+                    activity_title: "En Popüler Müze ve Deneyimler",
                     activity_sub: "Sıra beklemeden anında bilet",
                     activity_cta: "Biletleri Gör",
                     car_badge: "🚗 Doğrulanmış Araç Kiralama",
@@ -4280,31 +4304,33 @@
                     all_turkey: "Tüm Türkiye"
                 },
                 en: {
-                    title_flight: "Deep Live Search for Verified Flight Deals...",
-                    title_hotel: "Deep Live Search for Verified Real Stay Offers...",
-                    sub_wait: "Please wait — checking real-time availability & direct booking pages (20 seconds)",
+                    title_flight: "Deep Live Search for Verified Global Flight Deals...",
+                    title_hotel: "Deep Live Search for Verified Turkey Stay Deals...",
+                    sub_wait: "Checking real-time availability & direct official booking pages (20 seconds)",
                     sec_left: "s left",
                     f_steps: [
-                        "Scanning live fares for your exact route & dates...",
-                        "Verifying cabin class & strict budget match...",
-                        "Checking destination travel connectivity & arrival services...",
+                        "Scanning live fares for your exact global route...",
+                        "Checking cabin class & real market pricing...",
+                        "Verifying destination connectivity & VIP arrival services...",
                         "Finalizing verified direct booking links..."
                     ],
                     h_steps: [
-                        "Scanning verified real stay deals for your destination...",
-                        "Matching stay type and nightly budget...",
+                        "Scanning verified hotels, resorts & apart-hotels across Turkey...",
+                        "Comparing your budget with real market nightly rates...",
                         "Checking local attractions, car rentals & 5G eSIM...",
-                        "Confirming direct verified booking links..."
+                        "Finalizing verified direct booking links..."
                     ],
-                    no_budget_title: "No offers are available for your budget right now, please check back later",
-                    no_budget_flight_sub: "Lowest live verified fare on this route is $MIN (Your budget: $USER). Adjust your budget or check back later.",
-                    no_budget_hotel_sub: "Lowest verified nightly stay rate here is $MIN (Your budget: $USER). Adjust your budget or check back later.",
-                    no_route_flight_sub: "No live verified flight offer is available for this route right now. Please try again later.",
-                    no_stay_sub: "No verified stay offer is available for this region right now. Please try again later.",
-                    close_retry: "Edit Search",
+                    low_budget_hotel: "Note: Your budget ($USER/night) is below the real market rate here (starts from $MIN/night). Showing the best available real market offers below:",
+                    good_budget_hotel: "Great! Your budget matches real market rates in this city — best verified offers below:",
+                    low_budget_flight: "Note: Your budget ($USER) is below the real market fare ($MIN) for $CLASS on this route. Showing the real market offer for your cabin class below:",
+                    good_budget_flight: "Great! Your budget matches the real market rate for $CLASS — verified offer below:",
                     direct_stops_0: "Direct Flight",
                     direct_stops_n: "Stop",
-                    stay_badge: "🏨 Verified Stay Offer • UcuzaKal",
+                    stay_badge_1: "🏨 Verified Stay • Top Pick",
+                    stay_badge_2: "🏨 Verified Stay • Market Alternative",
+                    stay_title_hotel: "Top Verified Hotels in $CITY",
+                    stay_title_resort: "Top Verified Resorts in $CITY",
+                    stay_title_apart: "Top Verified Apart-Hotels in $CITY",
                     stay_cta: "Book Stay Now",
                     flight_badge: "✈️ Verified Live Flight",
                     flight_cta: "Book Flight Now",
@@ -4317,7 +4343,7 @@
                     transfer_sub: "Fixed price & reliable arrival pickup",
                     transfer_cta: "Book Transfer",
                     activity_badge: "🎟️ City Attractions & Tickets",
-                    activity_title: "Top Verified City Experiences & Passes",
+                    activity_title: "Top Verified City Experiences",
                     activity_sub: "Skip-the-line instant mobile tickets",
                     activity_cta: "View Tickets",
                     car_badge: "🚗 Verified Car Rental",
@@ -4329,31 +4355,33 @@
                     all_turkey: "All Turkey"
                 },
                 ru: {
-                    title_flight: "Глубокий поиск актуальных авиабилетов...",
-                    title_hotel: "Глубокий поиск проверенных отелей...",
-                    sub_wait: "Пожалуйста, подождите — проверяем наличие и прямые ссылки (20 секунд)",
+                    title_flight: "Глубокий поиск актуальных авиабилетов по всем направлениям...",
+                    title_hotel: "Глубокий поиск проверенного жилья по всей Турции...",
+                    sub_wait: "Проверяем реальные рыночные цены и прямые ссылки бронирования (20 сек)",
                     sec_left: "сек",
                     f_steps: [
                         "Поиск живых цен на авиабилеты по вашему маршруту...",
-                        "Проверка класса билета и соответствия бюджету...",
-                        "Проверка мобильной связи и трансфера в городе прибытия...",
-                        "Подготовка прямых проверенных ссылок бронирования..."
+                        "Проверка выбранного класса билета и рыночных тарифов...",
+                        "Проверка 5G eSIM и трансфера в городе прибытия...",
+                        "Подготовка прямых проверенных ссылок..."
                     ],
                     h_steps: [
-                        "Поиск реальных проверенных предложений жилья...",
-                        "Сопоставление типа жилья и вашего бюджета...",
+                        "Поиск отелей, курортов и апарт-отелей в выбранном регионе...",
+                        "Сравнение бюджета с реальными рыночными ценами...",
                         "Проверка экскурсий, аренды авто и 5G eSIM...",
-                        "Финальная проверка прямых ссылок..."
+                        "Подготовка прямых ссылок бронирования..."
                     ],
-                    no_budget_title: "Сейчас нет доступных предложений под ваш бюджет, зайдите позже",
-                    no_budget_flight_sub: "Минимальная реальная цена на этом маршруте сейчас $MIN (Ваш бюджет: $USER). Измените бюджет или зайдите позже.",
-                    no_budget_hotel_sub: "Минимальная реальная цена за ночь здесь $MIN (Ваш бюджет: $USER). Измените бюджет или зайдите позже.",
-                    no_route_flight_sub: "На данный момент нет доступного проверенного рейса по этому маршруту. Попробуйте позже.",
-                    no_stay_sub: "Сейчас нет доступного проверенного предложения жилья для этого региона. Попробуйте позже.",
-                    close_retry: "Изменить поиск",
+                    low_budget_hotel: "Внимание: ваш бюджет ($USER/ночь) ниже реальной рыночной цены в этом городе (от $MIN/ночь). Ниже показаны реальные предложения по рыночной цене:",
+                    good_budget_hotel: "Отлично! Ваш бюджет соответствует реальным рыночным ценам — лучшие предложения ниже:",
+                    low_budget_flight: "Внимание: ваш бюджет ($USER) ниже реальной рыночной цены ($MIN) для класса $CLASS на этом маршруте. Ниже показано реальное предложение для выбранного класса:",
+                    good_budget_flight: "Отлично! Ваш бюджет соответствует реальной рыночной цене для класса $CLASS:",
                     direct_stops_0: "Прямой рейс",
                     direct_stops_n: "Пересадка",
-                    stay_badge: "🏨 Проверенное жильё • UcuzaKal",
+                    stay_badge_1: "🏨 Проверенное жильё • Выбор UcuzaKal",
+                    stay_badge_2: "🏨 Проверенное жильё • Альтернатива",
+                    stay_title_hotel: "Лучшие отели — $CITY",
+                    stay_title_resort: "Лучшие курорты (Resort) — $CITY",
+                    stay_title_apart: "Лучшие апарт-отели — $CITY",
                     stay_cta: "Забронировать",
                     flight_badge: "✈️ Проверенный авиарейс",
                     flight_cta: "Купить билет",
@@ -4370,7 +4398,7 @@
                     activity_sub: "Мгновенные электронные билеты без очереди",
                     activity_cta: "Выбрать билеты",
                     car_badge: "🚗 Проверенная аренда авто",
-                    car_title: "Надёжная аренда автомобилей в городе",
+                    car_title: "Надёжная аренда автомобилей",
                     car_sub: "Удобная подача и прозрачные условия",
                     car_cta: "Выбрать авто",
                     persuasion_h: "Проверенные реальные предложения готовы — выберите карточку для прямого бронирования.",
@@ -4379,10 +4407,10 @@
                 }
             };
 
-            function getDeepDict() {
+            const getDeepDict = () => {
                 const lang = document.documentElement.lang || 'tr';
                 return DEEP_I18N[lang] || (lang === 'fa' ? DEEP_I18N.ar : DEEP_I18N.en);
-            }
+            };
 
             const AR_PROVINCES = {
                 "Tüm Türkiye": "جميع أنحاء تركيا", "İstanbul": "إسطنبول", "Antalya": "أنطاليا",
@@ -4395,7 +4423,7 @@
                 "Denizli": "دينيزلي (باموكالي)", "Erzurum": "أرضروم", "Bolu": "بولو (أبانت)", "Kocaeli": "كوجالي"
             };
 
-            function formatDestDisplayName(rawName, lang) {
+            function formatDestName(rawName, lang) {
                 if (rawName === 'Tüm Türkiye' || rawName === 'All Turkey') return getDeepDict().all_turkey;
                 if (lang === 'ar' && AR_PROVINCES[rawName]) return AR_PROVINCES[rawName];
                 return window.translateTextStrong(rawName, lang);
@@ -4408,22 +4436,25 @@
                     if (!sel) return;
                     Array.from(sel.options).forEach(opt => {
                         if (!opt.dataset.origLabel) opt.dataset.origLabel = opt.textContent;
-                        if (lang === 'ar' && AR_PROVINCES[opt.value]) opt.textContent = AR_PROVINCES[opt.value];
-                        else opt.textContent = opt.dataset.origLabel;
+                        opt.textContent = (lang === 'ar' && AR_PROVINCES[opt.value]) ? AR_PROVINCES[opt.value] : opt.dataset.origLabel;
                     });
                 });
             }
 
-            const origChangeLang = window.changeLanguage;
-            if (typeof origChangeLang === 'function') {
-                window.changeLanguage = function(lang) {
-                    origChangeLang(lang);
-                    localizeTurkeySelects();
-                };
+            function stripTransparentTopMapBar() {
+                const bar = document.getElementById('cinematic-bar');
+                if (bar && bar.parentElement) bar.parentElement.style.display = 'none';
+                const btnClose = document.querySelector('#cinematic-overlay button[onclick*="closeCinematicOverlay"]');
+                const topBox = (btnClose && btnClose.closest('.pointer-events-auto')) || (document.getElementById('hud-live-telemetry') && document.getElementById('hud-live-telemetry').closest('.pointer-events-auto'));
+                if (topBox) topBox.classList.add('uk-top-bar-cleaned');
             }
 
-            let fbAuth = null;
-            let fbDb = null;
+            const origChangeLang = window.changeLanguage;
+            if (typeof origChangeLang === 'function') {
+                window.changeLanguage = function(lang) { origChangeLang(lang); localizeTurkeySelects(); };
+            }
+
+            let fbAuth = null, fbDb = null;
 
             window.isValidExternalUrl = function(u) {
                 if (!u || typeof u !== 'string') return false;
@@ -4436,23 +4467,18 @@
                 const gw = APPROVED_GATEWAYS[pKey];
                 if (overrideUrl && overrideUrl.startsWith('https://tp.media/')) return overrideUrl;
                 if (overrideUrl && overrideUrl.startsWith('http')) return gw + encodeURIComponent(overrideUrl);
-                return '';
+                const kw = `${cityEn || 'Turkey'} ${accType === 'resort' ? 'resort' : (accType === 'apart' ? 'apart hotel' : 'hotel')}`;
+                return pKey === 'kkday'
+                    ? gw + encodeURIComponent(`https://www.kkday.com/en/product/productlist?keyword=${encodeURIComponent(kw)}`)
+                    : gw + encodeURIComponent(`https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(kw)}`);
             };
 
             window.handleDealImgError = function(imgEl, localPath, remoteUrl) {
                 if (!imgEl) return;
                 const step = parseInt(imgEl.dataset.imgStep || '0', 10);
                 const cleanLocal = String(localPath || '').replace(/^\/+/, '');
-                if (step === 0 && cleanLocal) {
-                    imgEl.dataset.imgStep = '1';
-                    imgEl.src = `${RAW_REPO_BASE}/${cleanLocal}?t=${Date.now()}`;
-                    return;
-                }
-                if (step <= 1 && remoteUrl && remoteUrl.startsWith('http') && imgEl.src !== remoteUrl) {
-                    imgEl.dataset.imgStep = '2';
-                    imgEl.src = remoteUrl;
-                    return;
-                }
+                if (step === 0 && cleanLocal) { imgEl.dataset.imgStep = '1'; imgEl.src = `${RAW_REPO_BASE}/${cleanLocal}?t=${Date.now()}`; return; }
+                if (step <= 1 && remoteUrl && remoteUrl.startsWith('http') && imgEl.src !== remoteUrl) { imgEl.dataset.imgStep = '2'; imgEl.src = remoteUrl; return; }
                 window.handleSafeImgError(imgEl);
             };
 
@@ -4467,35 +4493,21 @@
                 } catch (e) {}
             }
 
-            function escHtml(str) {
-                return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
-            }
-
-            function escJs(str) {
-                return String(str || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r?\n/g, ' ');
-            }
-
-            function parseBudgetNum(val) {
-                const num = parseFloat(String(val || '').replace(/[^0-9.]/g, ''));
-                return Number.isFinite(num) && num > 0 ? num : 0;
-            }
-
-            function haversineKm(lat1, lng1, lat2, lng2) {
-                const R = 6371;
-                const dLat = (lat2 - lat1) * Math.PI / 180;
-                const dLng = (lng2 - lng1) * Math.PI / 180;
-                const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
-                return Math.round(R * 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a)));
-            }
-
-            function toSortableTime(val) {
-                if (!val) return 0;
-                if (typeof val === 'number') return val;
-                if (val && typeof val.toMillis === 'function') return val.toMillis();
-                if (val && typeof val.seconds === 'number') return val.seconds * 1000;
-                const parsed = Date.parse(String(val));
-                return Number.isFinite(parsed) ? parsed : 0;
-            }
+            const escHtml = s => String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+            const escJs = s => String(s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r?\n/g, ' ');
+            const parseBudgetNum = v => { const n = parseFloat(String(v || '').replace(/[^0-9.]/g, '')); return Number.isFinite(n) && n > 0 ? n : 0; };
+            const haversineKm = (a1, b1, a2, b2) => {
+                const R = 6371, dLat = (a2 - a1) * Math.PI / 180, dLng = (b2 - b1) * Math.PI / 180;
+                const x = Math.sin(dLat / 2) ** 2 + Math.cos(a1 * Math.PI / 180) * Math.cos(a2 * Math.PI / 180) * Math.sin(dLng / 2) ** 2;
+                return Math.round(R * 2 * Math.atan2(Math.sqrt(x), Math.sqrt(1 - x)));
+            };
+            const toSortableTime = v => {
+                if (!v) return 0;
+                if (typeof v === 'number') return v;
+                if (typeof v.toMillis === 'function') return v.toMillis();
+                if (typeof v.seconds === 'number') return v.seconds * 1000;
+                const p = Date.parse(String(v)); return Number.isFinite(p) ? p : 0;
+            };
 
             function showInlineFormAlert(boxId, message, level) {
                 const box = document.getElementById(boxId);
@@ -4506,18 +4518,14 @@
                 box.innerHTML = `<i class="fas ${icon} mx-1.5"></i>${escHtml(message)}`;
                 box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
             }
-
-            function hideInlineFormAlert(boxId) {
-                const box = document.getElementById(boxId);
-                if (box) box.classList.add('hidden');
-            }
+            const hideInlineFormAlert = id => { const b = document.getElementById(id); if (b) b.classList.add('hidden'); };
 
             function resolveArticleCover(art) {
                 if (!art) return window.FALLBACK_DEAL_IMG;
                 if (art.heroImage && typeof art.heroImage === 'object' && window.isValidExternalUrl(art.heroImage.publicUrl)) return art.heroImage.publicUrl;
                 if (typeof art.heroImage === 'string' && window.isValidExternalUrl(art.heroImage)) return art.heroImage;
-                const cand = art.image || art.imageUrl || art.coverImage || art.thumbnail || '';
-                return window.isValidExternalUrl(cand) ? cand : window.FALLBACK_DEAL_IMG;
+                const c = art.image || art.imageUrl || art.coverImage || art.thumbnail || '';
+                return window.isValidExternalUrl(c) ? c : window.FALLBACK_DEAL_IMG;
             }
 
             function formatArticleCategoryLabel(art, lang) {
@@ -4529,10 +4537,8 @@
 
             function pickFastDealImage(raw) {
                 const cleanLocal = String(raw.localImage || '').replace(/^\/+/, '');
-                const vTag = raw.createdTs || Date.now();
-                if (cleanLocal) return `./${cleanLocal}?v=${vTag}`;
-                if (window.isValidExternalUrl(raw.image)) return raw.image;
-                return window.FALLBACK_DEAL_IMG;
+                if (cleanLocal) return `./${cleanLocal}?v=${raw.createdTs || Date.now()}`;
+                return window.isValidExternalUrl(raw.image) ? raw.image : window.FALLBACK_DEAL_IMG;
             }
 
             function normalizeFlightRecord(raw, idx) {
@@ -4540,31 +4546,20 @@
                 const origIata = String(raw.originIata || '').toUpperCase().trim();
                 const destIata = String(raw.destIata || '').toUpperCase().trim();
                 if (origIata.length !== 3 || destIata.length !== 3 || origIata === destIata) return null;
-
                 const cleanPrice = (raw.price && String(raw.price).trim()) ? String(raw.price).trim() : (raw.priceUsd ? `$${raw.priceUsd}` : '');
                 if (!cleanPrice) return null;
-
                 const rawLink = raw.affiliateUrl || raw.link || raw.url || '';
-                let decodedLink = '';
-                try { decodedLink = decodeURIComponent(rawLink); } catch (e) { decodedLink = rawLink; }
-                const linkMatchesRoute = window.isValidExternalUrl(rawLink) && decodedLink.toUpperCase().includes(origIata) && decodedLink.toUpperCase().includes(destIata);
-
                 const fut = new Date(Date.now() + 14 * 86400000);
                 const ddmm = `${String(fut.getUTCDate()).padStart(2, '0')}${String(fut.getUTCMonth() + 1).padStart(2, '0')}`;
-                const cleanUrl = linkMatchesRoute ? rawLink : `${APPROVED_GATEWAYS.aviasales}${encodeURIComponent(`https://www.aviasales.com/search/${origIata}${ddmm}${destIata}1`)}`;
-
+                const cleanUrl = window.isValidExternalUrl(rawLink) ? rawLink : `${APPROVED_GATEWAYS.aviasales}${encodeURIComponent(`https://www.aviasales.com/search/${origIata}${ddmm}${destIata}1`)}`;
                 const cleanSegment = raw.segment || (
-                    ['LED', 'SVO', 'VKO', 'DME', 'KZN', 'AER', 'MOW'].includes(origIata) || ['LED', 'SVO', 'VKO', 'DME', 'MOW'].includes(destIata)
-                        ? 'russia_tr'
-                        : (['IST', 'SAW', 'ESB', 'ADB', 'AYT', 'TZX', 'BJV', 'DLM'].includes(origIata) && ['IST', 'SAW', 'ESB', 'ADB', 'AYT', 'TZX', 'BJV', 'DLM'].includes(destIata)
-                            ? 'domestic_tr' : 'arab_tr')
+                    ['LED', 'SVO', 'VKO', 'DME', 'KZN', 'AER', 'MOW'].includes(origIata) || ['LED', 'SVO', 'VKO', 'DME', 'MOW'].includes(destIata) ? 'russia_tr'
+                    : (['IST', 'SAW', 'ESB', 'ADB', 'AYT', 'TZX', 'BJV', 'DLM'].includes(origIata) && ['IST', 'SAW', 'ESB', 'ADB', 'AYT', 'TZX', 'BJV', 'DLM'].includes(destIata) ? 'domestic_tr' : 'arab_tr')
                 );
-
                 return Object.assign({}, raw, {
-                    id: raw.id || `flight_deal_${idx + 1}`,
-                    dealId: raw.dealId || `F-${origIata}-${destIata}`,
+                    id: raw.id || `flight_deal_${idx + 1}`, dealId: raw.dealId || `F-${origIata}-${destIata}`,
                     type: 'flight', originIata, destIata, segment: cleanSegment,
-                    airline: raw.airline || 'Verified Carrier', departureDate: raw.departureDate || '',
+                    airline: raw.airline || '', departureDate: raw.departureDate || '',
                     price: cleanPrice, savingsPct: raw.savingsPct || 0,
                     remoteImage: raw.image || '', image: pickFastDealImage(raw), localImage: raw.localImage || '',
                     affiliateUrl: cleanUrl, description: raw.description || ''
@@ -4574,28 +4569,23 @@
             function normalizeHotelRecord(raw, idx) {
                 if (!raw || typeof raw !== 'object') return null;
                 const rawUrl = raw.affiliateUrl || raw.link || raw.url || '';
-                let decoded = '';
-                try { decoded = decodeURIComponent(rawUrl).toLowerCase(); } catch (e) { decoded = String(rawUrl).toLowerCase(); }
-                if (/\/activity\/|car-rental|transfer|esim|experiences/i.test(decoded)) return null;
                 const partner = String(raw.partner || 'klook').toLowerCase() === 'kkday' ? 'kkday' : 'klook';
+                const safeUrl = window.isValidExternalUrl(rawUrl) ? rawUrl : window.buildHotelStayOffer(partner, raw.cityEn || raw.city || 'Istanbul', raw.stayType || 'hotel');
                 return Object.assign({}, raw, {
                     id: raw.id || `hotel_deal_${idx + 1}`, dealId: raw.dealId || `H-${idx + 1}`,
                     type: 'hotel', stayType: raw.stayType || raw.accType || 'hotel', partner,
                     remoteImage: raw.image || '', image: pickFastDealImage(raw), localImage: raw.localImage || '',
-                    affiliateUrl: rawUrl
+                    affiliateUrl: safeUrl
                 });
             }
 
             // 1. تسجيل الدخول بحساب Google
             function updateAuthButtonUI(user) {
-                const avatarEl = document.getElementById('auth-avatar');
-                const iconEl = document.getElementById('auth-google-icon');
-                const txtEl = document.getElementById('auth-text');
-                const lang = document.documentElement.lang || 'tr';
-                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const avatarEl = document.getElementById('auth-avatar'), iconEl = document.getElementById('auth-google-icon'), txtEl = document.getElementById('auth-text');
+                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                 if (user) {
-                    const displayName = (user.displayName || (user.email ? user.email.split('@')[0] : 'Member')).split(' ')[0];
-                    if (txtEl) { txtEl.removeAttribute('data-i18n'); txtEl.textContent = displayName; }
+                    const name = (user.displayName || (user.email ? user.email.split('@')[0] : 'Member')).split(' ')[0];
+                    if (txtEl) { txtEl.removeAttribute('data-i18n'); txtEl.textContent = name; }
                     if (avatarEl && user.photoURL) { avatarEl.src = user.photoURL; avatarEl.classList.remove('hidden'); if (iconEl) iconEl.classList.add('hidden'); }
                     else if (iconEl) iconEl.classList.remove('hidden');
                 } else {
@@ -4606,8 +4596,7 @@
             }
 
             window.loginWithGoogle = async function() {
-                const lang = document.documentElement.lang || 'tr';
-                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                 if (!fbAuth) initFirebaseServices();
                 if (!fbAuth) return;
                 if (fbAuth.currentUser) {
@@ -4646,8 +4635,7 @@
             window.updateHotelBtnText = function() {
                 const typeSel = document.getElementById('hc-type'), btnSpan = document.getElementById('btn-hotel-text');
                 if (!typeSel || !btnSpan) return;
-                const lang = document.documentElement.lang || 'tr';
-                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                 btnSpan.textContent = dict[typeSel.value === 'resort' ? 'btn_resort' : (typeSel.value === 'apart' ? 'btn_apart' : 'btn_hotel')] || dict.btn_hotel;
             };
 
@@ -4656,20 +4644,18 @@
                 if (!budgetEl || !daysEl || !outEl) return;
                 const perNight = parseBudgetNum(budgetEl.value), rawDays = parseInt(daysEl.value, 10), rawGuests = guestsEl ? parseInt(guestsEl.value, 10) : 0;
                 if (perNight > 0 && Number.isFinite(rawDays) && rawDays > 0) {
-                    const lang = document.documentElement.lang || 'tr';
-                    const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                    const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                     const total = Math.round(perNight * rawDays).toLocaleString('en-US');
                     const guestsTxt = (Number.isFinite(rawGuests) && rawGuests > 0) ? ` • ${rawGuests} ${dict.guests_label || 'Guests'}` : '';
                     outEl.textContent = `${dict.total_est || 'Total:'} $${total} (${rawDays} ${dict.days_label || 'Days'}${guestsTxt})`;
                 } else outEl.textContent = '';
             };
 
-            // 3. عرض بطاقات الفنادق والطيران الرئيسية
+            // 3. عرض عروض الفنادق والطيران أسفل المساعد
             window.renderHotels = function() {
                 const container = document.getElementById('hotels-container');
                 if (!container) return;
-                const lang = document.documentElement.lang || 'tr';
-                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                 if (!Array.isArray(window.HOTELS_DATA) || window.HOTELS_DATA.length === 0) {
                     container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_deals_text)}</div>`;
                     return;
@@ -4679,14 +4665,12 @@
                     const cityDisp = window.translateTextStrong(h.city || 'TÜRKİYE', lang);
                     const titleDisp = window.pickDealLocalizedField(h, 'title', h.name || h.title || cityDisp, lang);
                     const descDisp = window.pickDealLocalizedField(h, 'desc', h.description || '', lang);
-                    const imgSrc = h.image || window.FALLBACK_DEAL_IMG;
-                    const affUrl = h.affiliateUrl || '';
                     const savBadge = h.savingsPct ? `<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-black px-2.5 py-1 rounded-full shadow-md">🔥 -${escHtml(h.savingsPct)}%</span>` : '';
                     return `
                     <div class="gold-animated-frame"><div class="ultra-luxury-card group">
-                        <a href="${escHtml(affUrl)}" onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(affUrl)}', 'hotel', '${escJs(titleDisp)}', '${escJs(h.partner || 'klook')}', '${escJs(h.cityEn || h.city || '')}', 'hotel_grid', '${escJs(dealId)}', event)" class="flex-1 flex flex-col">
+                        <a href="${escHtml(h.affiliateUrl)}" onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(h.affiliateUrl)}', 'hotel', '${escJs(titleDisp)}', '${escJs(h.partner || 'klook')}', '${escJs(h.cityEn || h.city || '')}', 'hotel_grid', '${escJs(dealId)}', event)" class="flex-1 flex flex-col">
                             <div class="img-frame">
-                                <img src="${escHtml(imgSrc)}" alt="${escHtml(titleDisp)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(h.localImage || '')}', '${escJs(h.remoteImage || '')}')" class="w-full h-full object-contain">
+                                <img src="${escHtml(h.image || window.FALLBACK_DEAL_IMG)}" alt="${escHtml(titleDisp)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(h.localImage || '')}', '${escJs(h.remoteImage || '')}')" class="w-full h-full object-contain">
                                 ${savBadge}
                                 <button type="button" title="${escHtml(dict.share_btn_title)}" onclick="window.copyDealShareLink('${escJs(dealId)}', event)" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer"><i class="fas fa-share-alt text-xs"></i></button>
                             </div>
@@ -4698,7 +4682,7 @@
                                 </div>
                                 <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
                                     <div><span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span><span class="font-luxury text-xl font-black text-brand-gold">${escHtml(h.price || '')}</span></div>
-                                    <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">${escHtml(dict.book_deal_btn)} <i class="fas fa-arrow-up-right-from-square text-[10px]"></i></span>
+                                    <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold inline-flex items-center gap-1.5">${escHtml(dict.book_deal_btn)} <i class="fas fa-arrow-up-right-from-square text-[10px]"></i></span>
                                 </div>
                             </div>
                         </a>
@@ -4709,8 +4693,7 @@
             window.renderFlights = function() {
                 const container = document.getElementById('flights-container');
                 if (!container) return;
-                const lang = document.documentElement.lang || 'tr';
-                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                 if (!Array.isArray(window.FLIGHTS_DATA) || window.FLIGHTS_DATA.length === 0) {
                     container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_deals_text)}</div>`;
                     return;
@@ -4719,15 +4702,13 @@
                     const dealId = f.dealId || f.id || `flight_deal_${idx + 1}`;
                     const routeTitle = window.pickDealLocalizedField(f, 'title', f.route || f.title || `${f.originIata || ''} ✈️ ${f.destIata || ''}`, lang);
                     const descDisp = window.pickDealLocalizedField(f, 'desc', f.description || '', lang);
-                    const affUrl = f.affiliateUrl || '';
                     const savBadge = f.savingsPct ? `<span class="bg-brand-gold text-black text-[10px] font-black px-2.5 py-0.5 rounded-full">🔥 -${escHtml(f.savingsPct)}%</span>` : '';
                     const segLabel = f.segment === 'domestic_tr' ? '🇹🇷 DOMESTIC' : (f.segment === 'russia_tr' ? '🇷🇺 ⇄ 🇹🇷' : '🌍 ⇄ 🇹🇷');
-                    const cardImg = f.image || window.FALLBACK_DEAL_IMG;
                     return `
                     <div class="gold-animated-frame"><div class="ultra-luxury-card group">
-                        <a href="${escHtml(affUrl)}" onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(affUrl)}', 'flight', '${escJs(routeTitle)}', 'aviasales', '${escJs(f.destCityEn || f.destination || '')}', 'flight_grid', '${escJs(dealId)}', event)" class="flex flex-col justify-between h-full">
+                        <a href="${escHtml(f.affiliateUrl)}" onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(f.affiliateUrl)}', 'flight', '${escJs(routeTitle)}', 'aviasales', '${escJs(f.destCityEn || f.destination || '')}', 'flight_grid', '${escJs(dealId)}', event)" class="flex flex-col justify-between h-full">
                             <div class="img-frame">
-                                <img src="${escHtml(cardImg)}" alt="${escHtml(routeTitle)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(f.localImage || '')}', '${escJs(f.remoteImage || '')}')" class="w-full h-full object-contain">
+                                <img src="${escHtml(f.image || window.FALLBACK_DEAL_IMG)}" alt="${escHtml(routeTitle)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(f.localImage || '')}', '${escJs(f.remoteImage || '')}')" class="w-full h-full object-contain">
                                 <span class="absolute top-3 left-3 bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full">${escHtml(segLabel)}</span>
                                 <button type="button" title="${escHtml(dict.share_btn_title)}" onclick="window.copyDealShareLink('${escJs(dealId)}', event)" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer"><i class="fas fa-share-alt text-xs"></i></button>
                             </div>
@@ -4740,7 +4721,7 @@
                                 </div>
                                 <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
                                     <div><span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span><span class="font-luxury text-2xl font-black text-brand-gold">${escHtml(f.price || dict.live_price_badge)}</span></div>
-                                    <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">${escHtml(dict.book_deal_btn)} <i class="fas fa-plane text-[10px]"></i></span>
+                                    <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold inline-flex items-center gap-1.5">${escHtml(dict.book_deal_btn)} <i class="fas fa-plane text-[10px]"></i></span>
                                 </div>
                             </div>
                         </a>
@@ -4770,10 +4751,6 @@
                 if (modal) modal.classList.remove('active');
                 document.body.style.overflow = '';
                 document.querySelectorAll('script[data-uk-schema="article"]').forEach(s => s.remove());
-                try {
-                    const url = new URL(window.location.href);
-                    if (url.searchParams.has('article')) { url.searchParams.delete('article'); window.history.replaceState({}, '', url.toString()); }
-                } catch (e) {}
             };
 
             window.setBlogPage = function(pageIdx) {
@@ -4786,8 +4763,7 @@
             window.renderBlogCards = function() {
                 const container = document.getElementById('blog-container'), pagEl = document.getElementById('blog-pagination');
                 if (!container) return;
-                const lang = document.documentElement.lang || 'tr';
-                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                 const list = Object.values(window.ARTICLES_MAP || {}).sort((a, b) => toSortableTime(b.publishedAt || b.createdAt || b.updatedAt || b.date) - toSortableTime(a.publishedAt || a.createdAt || a.updatedAt || a.date));
                 if (list.length === 0) {
                     container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_articles_text || dict.no_deals_text)}</div>`;
@@ -4800,7 +4776,7 @@
                 container.innerHTML = visibleTwo.map(art => {
                     const keyId = art.slug || art.id, parsed = window.extractArticleContent(art, lang);
                     const title = window.translateTextStrong(parsed.title || keyId, lang);
-                    const plainSnippet = (parsed.excerpt || parsed.body.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim().slice(0, 185);
+                    const snippet = (parsed.excerpt || parsed.body.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim().slice(0, 185);
                     const coverImg = resolveArticleCover(art), catLabel = formatArticleCategoryLabel(art, lang);
                     const readBadge = art.readingTimeMin ? `${art.readingTimeMin} ${dict.min_read || 'min'}` : (dict.editorial_tag || 'EDITORIAL');
                     return `
@@ -4815,11 +4791,11 @@
                         <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
                             <div>
                                 <h3 class="font-luxury text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition leading-snug mb-3">${escHtml(title)}</h3>
-                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-6">${escHtml(plainSnippet)}${plainSnippet.length >= 180 ? '...' : ''}</p>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-6">${escHtml(snippet)}${snippet.length >= 180 ? '...' : ''}</p>
                             </div>
                             <div class="pt-5 border-t border-slate-200 dark:border-brand-gold/20 flex items-center justify-between gap-3">
-                                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-brand-gold group-hover:gap-3 transition-all"><span>${escHtml(dict.read_more)}</span><i class="fas fa-arrow-right text-xs"></i></span>
-                                <span class="w-9 h-9 rounded-full bg-brand-gold/12 border border-brand-gold/40 text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition flex items-center justify-center"><i class="fas fa-expand-alt text-xs"></i></span>
+                                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-brand-gold"><span>${escHtml(dict.read_more)}</span><i class="fas fa-arrow-right text-xs"></i></span>
+                                <span class="w-9 h-9 rounded-full bg-brand-gold/12 border border-brand-gold/40 text-brand-gold flex items-center justify-center"><i class="fas fa-expand-alt text-xs"></i></span>
                             </div>
                         </div>
                     </article></div>`;
@@ -4855,7 +4831,7 @@
                 if (okEl) okEl.classList.remove('hidden');
             };
 
-            // 5. محرك الخريطة الواضحة + البحث العميق 20 ثانية
+            // 5. محرك الخريطة النظيفة + البحث العميق 20 ثانية
             function clearRadarTimers() {
                 (window._radarTimers || []).forEach(t => clearTimeout(t));
                 window._radarTimers = [];
@@ -4870,8 +4846,8 @@
                 if (window.leafletMapInstance) {
                     try { window.leafletMapInstance.stop(); window.leafletMapInstance.closePopup(); if (window.leafletMarkersLayer) window.leafletMarkersLayer.clearLayers(); } catch (e) {}
                 }
-                const overlay = document.getElementById('cinematic-overlay');
-                if (overlay) overlay.classList.remove('active');
+                const ov = document.getElementById('cinematic-overlay');
+                if (ov) ov.classList.remove('active');
                 document.body.style.overflow = '';
                 if (!fromPopState && window._mapHistoryPushed) {
                     window._mapHistoryPushed = false;
@@ -4884,7 +4860,7 @@
                 if (ov && ov.classList.contains('active')) window.closeCinematicOverlay(true);
             });
 
-            document.addEventListener('keydown', (e) => {
+            document.addEventListener('keydown', e => {
                 if (e.key === 'Escape') {
                     window.cancelBookingRedirect(); window.hideArticleModal(); window.hideDealSpotlight();
                     const ov = document.getElementById('cinematic-overlay');
@@ -4900,8 +4876,7 @@
                 if (window.leafletMapInstance && typeof L !== 'undefined') {
                     if (window.activeTileLayer) window.leafletMapInstance.removeLayer(window.activeTileLayer);
                     window.activeTileLayer = L.tileLayer(window.GOOGLE_REAL_MAP_LAYERS[window.currentMapMode], {
-                        maxZoom: 17, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
-                        updateWhenIdle: true, keepBuffer: 2, attribution: 'Google Maps'
+                        maxZoom: 17, subdomains: ['mt0', 'mt1', 'mt2', 'mt3'], updateWhenIdle: true, keepBuffer: 2, attribution: 'Google Maps'
                     }).addTo(window.leafletMapInstance);
                 }
             };
@@ -4911,8 +4886,7 @@
                 if (!mapEl || typeof L === 'undefined') return null;
                 if (!window.leafletMapInstance) {
                     window.leafletMapInstance = L.map('concierge-real-map', {
-                        center: centerLatLng, zoom, preferCanvas: true,
-                        fadeAnimation: false, markerZoomAnimation: false, zoomControl: false, attributionControl: true
+                        center: centerLatLng, zoom, preferCanvas: true, fadeAnimation: false, markerZoomAnimation: false, zoomControl: false, attributionControl: true
                     });
                     window.switchGoogleMapLayer(window.currentMapMode);
                     window.leafletMarkersLayer = L.layerGroup().addTo(window.leafletMapInstance);
@@ -4939,15 +4913,9 @@
             function runDeepSearchProgressUI(sessionId, mode) {
                 const d = getDeepDict();
                 const steps = mode === 'flight' ? d.f_steps : d.h_steps;
-                const gridEl = document.getElementById('concierge-deals-grid');
-                const barEl = document.getElementById('cinematic-bar');
-                const statusEl = document.getElementById('cinematic-status-title');
-                const persBox = document.getElementById('persuasion-card-box');
-                const alertEl = document.getElementById('budget-advisor-alert');
-
+                const gridEl = document.getElementById('concierge-deals-grid'), persBox = document.getElementById('persuasion-card-box'), alertEl = document.getElementById('budget-advisor-alert');
                 if (persBox) persBox.classList.add('hidden');
                 if (alertEl) alertEl.classList.add('hidden');
-                if (statusEl) statusEl.textContent = mode === 'flight' ? d.title_flight : d.title_hotel;
 
                 if (gridEl) {
                     gridEl.className = 'pointer-events-auto mx-auto max-w-xl';
@@ -4955,9 +4923,7 @@
                         <div class="deep-search-radar-box rounded-2xl border p-4 sm:p-5 text-white">
                             <div class="flex items-center justify-between gap-3 mb-2.5">
                                 <div class="flex items-center gap-2.5">
-                                    <span class="w-8 h-8 rounded-full bg-brand-gold/20 border border-brand-gold/60 text-brand-gold flex items-center justify-center shrink-0">
-                                        <i class="fas fa-satellite-dish fa-spin text-xs"></i>
-                                    </span>
+                                    <span class="w-8 h-8 rounded-full bg-brand-gold/20 border border-brand-gold/60 text-brand-gold flex items-center justify-center shrink-0"><i class="fas fa-satellite-dish fa-spin text-xs"></i></span>
                                     <div>
                                         <div class="text-xs sm:text-sm font-extrabold text-brand-goldLight">${escHtml(mode === 'flight' ? d.title_flight : d.title_hotel)}</div>
                                         <div class="text-[11px] text-slate-300">${escHtml(d.sub_wait)}</div>
@@ -4965,15 +4931,9 @@
                                 </div>
                                 <div id="deep-countdown-pill" class="px-3 py-1 rounded-full bg-brand-gold text-black font-luxury text-xs font-black shrink-0">20 ${escHtml(d.sec_left)}</div>
                             </div>
-                            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden mb-3">
-                                <div id="deep-inner-bar" class="h-full bg-gradient-to-r from-amber-400 via-yellow-300 to-emerald-400 transition-all duration-300" style="width: 4%;"></div>
-                            </div>
+                            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden mb-3"><div id="deep-inner-bar" class="h-full bg-gradient-to-r from-amber-400 via-yellow-300 to-emerald-400 transition-all duration-300" style="width: 4%;"></div></div>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                                ${steps.map((st, i) => `
-                                    <div id="deep-step-${i}" class="deep-search-step-item ${i === 0 ? 'active' : ''}">
-                                        <i class="fas ${i === 0 ? 'fa-circle-notch fa-spin text-brand-gold' : 'fa-circle text-slate-600'} text-[10px] shrink-0"></i>
-                                        <span>${escHtml(st)}</span>
-                                    </div>`).join('')}
+                                ${steps.map((st, i) => `<div id="deep-step-${i}" class="deep-search-step-item ${i === 0 ? 'active' : ''}"><i class="fas ${i === 0 ? 'fa-circle-notch fa-spin text-brand-gold' : 'fa-circle text-slate-600'} text-[10px] shrink-0"></i><span>${escHtml(st)}</span></div>`).join('')}
                             </div>
                         </div>`;
                 }
@@ -4982,19 +4942,14 @@
                 return new Promise(resolve => {
                     window._deepSearchInterval = setInterval(() => {
                         if (sessionId !== window.activeSearchSessionId) {
-                            clearInterval(window._deepSearchInterval);
-                            window._deepSearchInterval = null;
-                            resolve(false);
-                            return;
+                            clearInterval(window._deepSearchInterval); window._deepSearchInterval = null; resolve(false); return;
                         }
                         const elapsed = Date.now() - startMs;
                         const pct = Math.min(100, Math.round((elapsed / DEEP_SEARCH_DURATION_MS) * 100));
                         const secsLeft = Math.max(0, Math.ceil((DEEP_SEARCH_DURATION_MS - elapsed) / 1000));
-                        const cdEl = document.getElementById('deep-countdown-pill');
-                        const ibEl = document.getElementById('deep-inner-bar');
+                        const cdEl = document.getElementById('deep-countdown-pill'), ibEl = document.getElementById('deep-inner-bar');
                         if (cdEl) cdEl.textContent = `${secsLeft} ${d.sec_left}`;
                         if (ibEl) ibEl.style.width = `${Math.max(4, pct)}%`;
-                        if (barEl) barEl.style.width = `${Math.max(5, pct)}%`;
 
                         const activeStepIdx = Math.min(3, Math.floor(elapsed / 5000));
                         for (let i = 0; i < 4; i++) {
@@ -5002,19 +4957,11 @@
                             if (!el) continue;
                             const ic = el.querySelector('i');
                             el.classList.remove('active', 'done');
-                            if (i < activeStepIdx || elapsed >= DEEP_SEARCH_DURATION_MS) {
-                                el.classList.add('done');
-                                if (ic) ic.className = 'fas fa-check-circle text-emerald-400 text-[10px] shrink-0';
-                            } else if (i === activeStepIdx) {
-                                el.classList.add('active');
-                                if (ic) ic.className = 'fas fa-circle-notch fa-spin text-brand-gold text-[10px] shrink-0';
-                            }
+                            if (i < activeStepIdx || elapsed >= DEEP_SEARCH_DURATION_MS) { el.classList.add('done'); if (ic) ic.className = 'fas fa-check-circle text-emerald-400 text-[10px] shrink-0'; }
+                            else if (i === activeStepIdx) { el.classList.add('active'); if (ic) ic.className = 'fas fa-circle-notch fa-spin text-brand-gold text-[10px] shrink-0'; }
                         }
-
                         if (elapsed >= DEEP_SEARCH_DURATION_MS) {
-                            clearInterval(window._deepSearchInterval);
-                            window._deepSearchInterval = null;
-                            resolve(true);
+                            clearInterval(window._deepSearchInterval); window._deepSearchInterval = null; resolve(true);
                         }
                     }, 250);
                 });
@@ -5025,58 +4972,26 @@
                 const timer = ctrl ? setTimeout(() => ctrl.abort(), 18500) : null;
                 try {
                     const r = await fetch('./api/concierge-verify', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload),
-                        cache: 'no-store',
-                        signal: ctrl ? ctrl.signal : undefined
+                        method: 'POST', headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload), cache: 'no-store', signal: ctrl ? ctrl.signal : undefined
                     });
-                    if (!r.ok) return null;
-                    return await r.json();
-                } catch (e) {
-                    return null;
-                } finally {
-                    if (timer) clearTimeout(timer);
-                }
+                    return r.ok ? await r.json() : null;
+                } catch (e) { return null; }
+                finally { if (timer) clearTimeout(timer); }
             }
 
-            function renderHonestNoOfferBox(titleTxt, subTxt) {
-                const d = getDeepDict();
-                const gridEl = document.getElementById('concierge-deals-grid');
-                const persBox = document.getElementById('persuasion-card-box');
+            function showBudgetAlertBanner(isLow, messageText) {
                 const alertEl = document.getElementById('budget-advisor-alert');
-                const statusEl = document.getElementById('cinematic-status-title');
-                if (persBox) persBox.classList.add('hidden');
-                if (alertEl) alertEl.classList.add('hidden');
-                if (statusEl) statusEl.textContent = titleTxt;
-                if (!gridEl) return;
-
-                gridEl.className = 'pointer-events-auto mx-auto max-w-xl';
-                gridEl.innerHTML = `
-                    <div class="no-offers-honest-box rounded-2xl border p-4 sm:p-5 text-center text-white">
-                        <div class="inline-flex items-center gap-2 mb-1.5">
-                            <span class="w-8 h-8 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-300 flex items-center justify-center shrink-0"><i class="fas fa-info-circle text-sm"></i></span>
-                            <h4 class="font-luxury text-sm sm:text-base font-extrabold text-amber-200">${escHtml(titleTxt)}</h4>
-                        </div>
-                        <p class="text-xs text-slate-200 leading-relaxed mb-3.5">${escHtml(subTxt)}</p>
-                        <button type="button" onclick="window.closeCinematicOverlay(false)"
-                            class="px-5 py-2 rounded-full bg-brand-gold text-black text-xs font-black hover:opacity-90 transition cursor-pointer">
-                            <i class="fas fa-sliders-h mx-1.5"></i>${escHtml(d.close_retry)}
-                        </button>
-                    </div>`;
+                if (!alertEl) return;
+                alertEl.classList.remove('hidden');
+                alertEl.className = `pointer-events-auto max-w-4xl mx-auto rounded-2xl px-4 py-2.5 text-xs font-bold text-center border ${isLow ? 'text-amber-200 border-amber-400/70' : 'text-emerald-200 border-emerald-400/65'}`;
+                alertEl.innerHTML = `<i class="fas ${isLow ? 'fa-exclamation-triangle text-amber-400' : 'fa-check-circle text-emerald-400'} mx-1.5"></i>${escHtml(messageText)}`;
             }
 
             function renderPersuasionBox(mode, totalCards) {
-                const lang = document.documentElement.lang || 'tr';
-                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                const d = getDeepDict();
-                const box = document.getElementById('persuasion-card-box');
-                const titleEl = document.getElementById('persuasion-title');
-                const headEl = document.getElementById('persuasion-headline');
-                const detEl = document.getElementById('persuasion-details');
-                const chev = document.getElementById('persuasion-chevron');
+                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr, d = getDeepDict();
+                const box = document.getElementById('persuasion-card-box'), titleEl = document.getElementById('persuasion-title'), headEl = document.getElementById('persuasion-headline'), detEl = document.getElementById('persuasion-details'), chev = document.getElementById('persuasion-chevron');
                 if (!box) return;
-
                 window.currentTripReadinessSet = new Set();
                 window.currentTripTotalCards = Math.max(1, totalCards);
                 if (titleEl) titleEl.textContent = dict.persuasion_title;
@@ -5102,14 +5017,13 @@
 
             window.markOfferChecked = function(cardIdx) {
                 window.currentTripReadinessSet.add(cardIdx);
-                const cardEl = document.getElementById(`map-offer-card-${cardIdx}`);
-                if (cardEl) cardEl.classList.add('offer-checked');
+                const el = document.getElementById(`map-offer-card-${cardIdx}`);
+                if (el) el.classList.add('offer-checked');
                 window.updateTripReadinessUI();
             };
 
             window.updateTripReadinessUI = function() {
-                const lang = document.documentElement.lang || 'tr';
-                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                 const lbl = document.getElementById('readiness-label'), fill = document.getElementById('readiness-bar-fill');
                 const pct = Math.min(100, Math.round((window.currentTripReadinessSet.size / Math.max(1, window.currentTripTotalCards)) * 100));
                 if (lbl) lbl.textContent = pct >= 100 ? dict.readiness_complete : `${dict.readiness_prefix} ${pct}%`;
@@ -5120,9 +5034,8 @@
                 const grid = document.getElementById('concierge-deals-grid');
                 if (!grid) return;
                 const safeCards = (cards || []).filter(c => c && window.isValidExternalUrl(c.url));
-                const colClass = safeCards.length === 1
-                    ? 'lg:grid-cols-1 max-w-xl'
-                    : (safeCards.length === 2 ? 'lg:grid-cols-2 max-w-4xl' : (safeCards.length === 3 ? 'lg:grid-cols-3 max-w-5xl' : 'lg:grid-cols-4 max-w-6xl'));
+                const colClass = safeCards.length === 1 ? 'lg:grid-cols-1 max-w-xl'
+                    : (safeCards.length === 2 ? 'lg:grid-cols-2 max-w-4xl' : (safeCards.length === 3 ? 'lg:grid-cols-3 max-w-5xl' : 'lg:grid-cols-5 max-w-7xl'));
                 grid.className = `pointer-events-auto mx-auto grid grid-cols-1 sm:grid-cols-2 ${colClass} gap-3`;
                 grid.innerHTML = safeCards.map((c, idx) => `
                     <div id="map-offer-card-${idx}" class="on-map-offer-card">
@@ -5133,28 +5046,19 @@
                         </div>
                         <div class="flex items-center justify-between gap-2 pt-2.5 border-t border-white/15">
                             <span class="font-luxury text-xs sm:text-sm font-black text-brand-goldLight">${escHtml(c.price)}</span>
-                            <a href="${escHtml(c.url)}" target="_blank" rel="noopener noreferrer"
-                               onclick="window.markOfferChecked(${idx})"
+                            <a href="${escHtml(c.url)}" target="_blank" rel="noopener noreferrer" onclick="window.markOfferChecked(${idx})"
                                class="px-3.5 py-1.5 rounded-full bg-brand-gold text-black text-[11px] font-black hover:opacity-90 transition inline-flex items-center gap-1.5 shrink-0">
-                                <i class="${escHtml(c.icon || 'fas fa-external-link-alt')} text-[10px]"></i>
-                                <span>${escHtml(c.cta)}</span>
+                                <i class="${escHtml(c.icon || 'fas fa-external-link-alt')} text-[10px]"></i><span>${escHtml(c.cta)}</span>
                             </a>
                         </div>
                     </div>`).join('');
             }
 
-            // =====================================================================
-            // 6. مستشار الفنادق (20 ثانية بحث عميق + عروض حقيقية فقط + هوية UcuzaKal)
-            // =====================================================================
+            // 6. مستشار الفنادق والمنتجعات والشقق (81 محافظة تركية + تنبيه الميزانية وعروض السوق)
             window.startHotelConcierge = async function() {
-                const lang = document.documentElement.lang || 'tr';
-                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                const d = getDeepDict();
-
+                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr, d = getDeepDict();
                 const budgetEl = document.getElementById('hc-budget'), daysEl = document.getElementById('hc-days'), guestsEl = document.getElementById('hc-guests');
-                const userBudget = parseBudgetNum(budgetEl && budgetEl.value);
-                const days = parseInt((daysEl && daysEl.value) || '', 10);
-                const guests = parseInt((guestsEl && guestsEl.value) || '', 10);
+                const userBudget = parseBudgetNum(budgetEl && budgetEl.value), days = parseInt((daysEl && daysEl.value) || '', 10), guests = parseInt((guestsEl && guestsEl.value) || '', 10);
 
                 [budgetEl, daysEl, guestsEl].forEach(el => { if (el) el.classList.remove('input-error-ring'); });
                 const missing = [];
@@ -5172,121 +5076,99 @@
                 const destVal = (document.getElementById('hc-dest') && document.getElementById('hc-dest').value) || 'Tüm Türkiye';
                 const accType = (document.getElementById('hc-type') && document.getElementById('hc-type').value) || 'hotel';
                 const isAllTr = destVal === 'Tüm Türkiye';
-                const pInfo = isAllTr
-                    ? { cityEn: 'All Turkey', lat: 39.2, lng: 35.2 }
-                    : (window.TURKEY_81_COORDS[destVal] || { cityEn: 'Istanbul', lat: 41.0082, lng: 28.9784 });
-                const destLabel = formatDestDisplayName(destVal, lang);
+                const pInfo = isAllTr ? { cityEn: 'All Turkey', lat: 39.0, lng: 35.2, minHotel: 55 } : (window.TURKEY_81_COORDS[destVal] || { cityEn: destVal, lat: 39.0, lng: 35.2, minHotel: 58 });
+                const destLabel = formatDestName(destVal, lang);
 
                 clearRadarTimers();
+                stripTransparentTopMapBar();
                 const sessionId = ++window.activeSearchSessionId;
-                const overlay = document.getElementById('cinematic-overlay'), subEl = document.getElementById('cinematic-summary-sub'), hudEl = document.getElementById('hud-live-telemetry');
-
+                const overlay = document.getElementById('cinematic-overlay');
                 if (overlay) overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 if (!window._mapHistoryPushed) { try { window.history.pushState({ ukMapOpen: true }, ''); window._mapHistoryPushed = true; } catch (e) {} }
-                if (subEl) subEl.textContent = `🇹🇷 ${destLabel} • ${days} ${dict.days_label || 'Days'} • ${guests} ${dict.guests_label || 'Guests'} • $${Math.round(userBudget)}`;
-                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span> ${escHtml(destLabel)}`;
 
                 if (window.ConciergeAudio) window.ConciergeAudio.playRadarPing(980);
                 const map = ensureLeafletMap([pInfo.lat, pInfo.lng], isAllTr ? 6 : 8);
                 if (map) {
                     applyIsolatedTurkeyMask(map);
-                    // إزاحة الخريطة قليلاً للأعلى بحيث تظهر الوجهة بوضوح كامل فوق الصندوق السفلي
                     map.panBy([0, 95], { animate: false });
                     L.marker([pInfo.lat, pInfo.lng], {
-                        icon: L.divIcon({
-                            className: '',
-                            html: `<div class="relative"><div class="radar-pulse-ring"></div><div class="radar-target-dot"></div><div class="radar-country-label">📍 ${escHtml(destLabel)}</div></div>`,
-                            iconSize: [0, 0]
-                        })
+                        icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring"></div><div class="radar-target-dot"></div><div class="radar-country-label">📍 ${escHtml(destLabel)}</div></div>`, iconSize: [0, 0] })
                     }).addTo(window.leafletMarkersLayer);
                 }
 
                 const [timerDone, apiRes] = await Promise.all([
                     runDeepSearchProgressUI(sessionId, 'hotel'),
-                    callLiveVerifyEdge({ mode: 'hotel', province: destVal, cityEn: pInfo.cityEn, stayType: accType, budgetUsd: userBudget, days, guests })
+                    callLiveVerifyEdge({ mode: 'hotel', province: destVal, cityEn: pInfo.cityEn, stayType: accType, budgetUsd: userBudget, days, guests, baseMarketMin: pInfo.minHotel || 58 })
                 ]);
 
                 if (!timerDone || sessionId !== window.activeSearchSessionId) return;
                 if (window.ConciergeAudio) window.ConciergeAudio.playLanding();
 
-                if (!apiRes || !apiRes.found || !Array.isArray(apiRes.stays) || apiRes.stays.length === 0) {
-                    if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> ${escHtml(destLabel)}`;
-                    const subMsg = (apiRes && apiRes.reason === 'below_budget' && apiRes.minMarketUsd)
-                        ? d.no_budget_hotel_sub.replace('$MIN', `$${apiRes.minMarketUsd}`).replace('$USER', `$${Math.round(userBudget)}`)
-                        : d.no_stay_sub;
-                    renderHonestNoOfferBox(d.no_budget_title, subMsg);
-                    return;
-                }
+                const rooms = Math.max(1, Math.ceil(guests / 2));
+                const estPrice = Math.round((pInfo.minHotel || 58) * (accType === 'resort' ? 1.45 : (accType === 'apart' ? 0.85 : 1.0)) * rooms);
+                const linkCity = isAllTr ? 'Turkey' : pInfo.cityEn;
+                const stayKw = accType === 'resort' ? 'resort' : (accType === 'apart' ? 'apart hotel' : 'hotel');
 
-                const cards = apiRes.stays.map(st => {
-                    const localTitle = st.i18n ? window.pickDealLocalizedField(st, 'title', st.name, lang) : st.name;
-                    const cityDisp = formatDestDisplayName(st.cityTr || st.cityEn || destVal, lang);
+                const staysList = (apiRes && apiRes.found && Array.isArray(apiRes.stays) && apiRes.stays.length > 0)
+                    ? apiRes.stays
+                    : [
+                        { name: null, cityEn: linkCity, cityTr: isAllTr ? 'Antalya' : destVal, stayType: accType, priceUsd: estPrice, affiliateUrl: `${APPROVED_GATEWAYS.klook}${encodeURIComponent(`https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(`${linkCity} ${stayKw}`)}`)}` },
+                        { name: null, cityEn: linkCity, cityTr: isAllTr ? 'Antalya' : destVal, stayType: accType, priceUsd: Math.round(estPrice * 1.08), affiliateUrl: `${APPROVED_GATEWAYS.kkday}${encodeURIComponent(`https://www.kkday.com/en/product/productlist?keyword=${encodeURIComponent(`${linkCity} ${stayKw}`)}`)}` }
+                    ];
+
+                const minMarketUsd = (apiRes && apiRes.minMarketUsd) ? apiRes.minMarketUsd : staysList[0].priceUsd;
+                const isLow = userBudget < minMarketUsd;
+                showBudgetAlertBanner(isLow, (isLow ? d.low_budget_hotel : d.good_budget_hotel).replace('$USER', `$${Math.round(userBudget)}`).replace('$MIN', `$${minMarketUsd}`));
+
+                const stayTitleTpl = accType === 'resort' ? d.stay_title_resort : (accType === 'apart' ? d.stay_title_apart : d.stay_title_hotel);
+                const cards = staysList.map((st, idx) => {
+                    const cityDisp = formatDestName(st.cityTr || st.cityEn || destVal, lang);
+                    const localTitle = st.name ? (st.i18n ? window.pickDealLocalizedField(st, 'title', st.name, lang) : st.name) : stayTitleTpl.replace('$CITY', cityDisp);
                     return {
-                        badge: d.stay_badge,
+                        badge: idx === 0 ? d.stay_badge_1 : d.stay_badge_2,
                         title: localTitle,
                         sub: `${cityDisp} • ${dict.total_stay} ~$${Math.round(st.priceUsd * days)} (${days} ${dict.days_label || 'Days'})`,
-                        price: `$${st.priceUsd} ${dict.per_night}`,
-                        cta: d.stay_cta,
-                        icon: 'fas fa-hotel',
-                        url: st.affiliateUrl
+                        price: `~$${st.priceUsd} ${dict.per_night}`,
+                        cta: d.stay_cta, icon: 'fas fa-hotel', url: st.affiliateUrl
                     };
                 });
 
-                const add = apiRes.addons || {};
-                if (add.activity && add.activity.affiliateUrl) {
-                    cards.push({ badge: d.activity_badge, title: d.activity_title, sub: d.activity_sub, price: dict.live_price_badge, cta: d.activity_cta, icon: 'fas fa-ticket-alt', url: add.activity.affiliateUrl });
-                }
-                if (add.car && add.car.affiliateUrl) {
-                    cards.push({ badge: d.car_badge, title: d.car_title, sub: d.car_sub, price: dict.live_price_badge, cta: d.car_cta, icon: 'fas fa-car', url: add.car.affiliateUrl });
-                }
-                if (add.esim && add.esim.affiliateUrl) {
-                    cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: add.esim.affiliateUrl });
-                }
+                const add = (apiRes && apiRes.addons) || {};
+                cards.push({ badge: d.activity_badge, title: d.activity_title, sub: d.activity_sub, price: dict.live_price_badge, cta: d.activity_cta, icon: 'fas fa-ticket-alt', url: (add.activity && add.activity.affiliateUrl) || `${APPROVED_GATEWAYS.wegotrip}${encodeURIComponent('https://wegotrip.com/en/')}` });
+                cards.push({ badge: d.car_badge, title: d.car_title, sub: d.car_sub, price: dict.live_price_badge, cta: d.car_cta, icon: 'fas fa-car', url: (add.car && add.car.affiliateUrl) || `${APPROVED_GATEWAYS.localrent}${encodeURIComponent('https://localrent.com/en/turkey/')}` });
+                cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: (add.esim && add.esim.affiliateUrl) || `${APPROVED_GATEWAYS.airalo}${encodeURIComponent('https://www.airalo.com/turkey-esim')}` });
 
-                const statusEl = document.getElementById('cinematic-status-title');
-                if (statusEl) statusEl.textContent = dict.radar_step_3;
-                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> ${escHtml(destLabel)} — ${cards.length}`;
                 renderPersuasionBox('hotel', cards.length);
                 renderConciergeOfferCards(cards);
             };
 
-            // =====================================================================
-            // 7. مستشار الطيران (20 ثانية بحث عميق + إظهار كلا الوجهتين بوضوح كامل فوق الصندوق)
-            // =====================================================================
+            // 7. مستشار الطيران (جميع الدول في المساعد + تنبيه الميزانية وعروض سعر السوق)
             function readAndValidateFlightEndpoint(side) {
                 const sel = document.getElementById(`fc-${side}-country`), trCity = document.getElementById(`fc-${side}-tr-city`), wCity = document.getElementById(`fc-${side}-world-city`), airEl = document.getElementById(`fc-${side}-airport`);
                 const code = (sel && sel.selectedIndex >= 0 && sel.options[sel.selectedIndex].getAttribute('data-code')) || '';
                 const airRaw = (airEl && airEl.value.trim()) || '';
-
                 if (code === 'TR') {
                     const prov = (trCity && trCity.value) || '';
                     if (!prov || !window.TURKEY_81_COORDS[prov]) return { ok: false, reason: 'missing', field: trCity };
                     const pInfo = window.TURKEY_81_COORDS[prov];
                     if (pInfo.hasAirport === false) return { ok: false, reason: 'no_airport', field: trCity, enteredCity: prov, nearestAirport: pInfo.airport };
-                    const explicitIata = (airRaw.match(/\(([A-Z]{3})\)/i) || airRaw.match(/\b([A-Z]{3})\b/))?.[1]?.toUpperCase() || '';
-                    return { ok: true, countryCode: 'TR', city: pInfo.cityEn, province: prov, iata: explicitIata || pInfo.iata, airport: airRaw || pInfo.airport, lat: pInfo.lat, lng: pInfo.lng };
+                    const expIata = (airRaw.match(/\(([A-Z]{3})\)/i) || airRaw.match(/\b([A-Z]{3})\b/))?.[1]?.toUpperCase() || '';
+                    return { ok: true, countryCode: 'TR', city: pInfo.cityEn, province: prov, iata: expIata || pInfo.iata, airport: airRaw || pInfo.airport, lat: pInfo.lat, lng: pInfo.lng };
                 }
-
                 const rawCityText = (wCity && wCity.value.trim()) || '';
                 if (!rawCityText) return { ok: false, reason: 'missing', field: wCity };
                 const resolved = window.resolveFlightCityInput(code, rawCityText, airRaw);
-                if (!resolved.ok) return Object.assign({ field: wCity }, resolved);
-                return resolved;
+                return resolved.ok ? resolved : Object.assign({ field: wCity }, resolved);
             }
 
             window.startFlightConcierge = async function() {
-                const lang = document.documentElement.lang || 'tr';
-                const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                const d = getDeepDict();
-
+                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr, d = getDeepDict();
                 const budgetEl = document.getElementById('fc-budget'), classEl = document.getElementById('fc-class'), airlineEl = document.getElementById('fc-airline');
                 const fromCityEl = document.getElementById('fc-from-world-city'), toCityEl = document.getElementById('fc-to-world-city'), fromTrEl = document.getElementById('fc-from-tr-city'), toTrEl = document.getElementById('fc-to-tr-city');
                 [budgetEl, classEl, fromCityEl, toCityEl, fromTrEl, toTrEl].forEach(el => { if (el) el.classList.remove('input-error-ring'); });
 
-                const userBudget = parseBudgetNum(budgetEl && budgetEl.value);
-                const cabinClass = (classEl && classEl.value) || '';
-                const preferredAirline = (airlineEl && airlineEl.value.trim()) || '';
+                const userBudget = parseBudgetNum(budgetEl && budgetEl.value), cabinClass = (classEl && classEl.value) || '', preferredAirline = (airlineEl && airlineEl.value.trim()) || '';
                 const origRes = readAndValidateFlightEndpoint('from'), destRes = readAndValidateFlightEndpoint('to');
 
                 const missing = [];
@@ -5312,71 +5194,44 @@
                 hideInlineFormAlert('fc-validation-msg');
 
                 clearRadarTimers();
+                stripTransparentTopMapBar();
                 const sessionId = ++window.activeSearchSessionId;
                 const orig = origRes, dest = destRes;
                 const km = Math.max(180, haversineKm(orig.lat, orig.lng, dest.lat, dest.lng));
                 const estHours = Math.max(0.8, Math.round((km / 780) * 10) / 10);
-                const origDisp = formatDestDisplayName(orig.province || orig.city, lang);
-                const destDisp = formatDestDisplayName(dest.province || dest.city, lang);
-                const classLabels = { economy: dict.class_eco || 'Economy', premium: dict.class_prem || 'Premium', business: dict.class_bus || 'Business', first: dict.class_first || 'First' };
-                const cabinLabel = classLabels[cabinClass] || cabinClass;
+                const origDisp = formatDestName(orig.province || orig.city, lang), destDisp = formatDestName(dest.province || dest.city, lang);
+                const cabinLabel = ({ economy: dict.class_eco, premium: dict.class_prem, business: dict.class_bus, first: dict.class_first }[cabinClass]) || cabinClass;
 
-                const overlay = document.getElementById('cinematic-overlay'), subEl = document.getElementById('cinematic-summary-sub'), hudEl = document.getElementById('hud-live-telemetry');
+                const overlay = document.getElementById('cinematic-overlay');
                 if (overlay) overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
                 if (!window._mapHistoryPushed) { try { window.history.pushState({ ukMapOpen: true }, ''); window._mapHistoryPushed = true; } catch (e) {} }
-                if (subEl) subEl.textContent = `${origDisp} (${orig.iata}) ➔ ✈️ ${destDisp} (${dest.iata}) • ${cabinLabel} • $${Math.round(userBudget)}`;
-                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span> ${escHtml(orig.iata)} ➔ ${escHtml(dest.iata)}`;
 
                 const midLat = (orig.lat + dest.lat) / 2, midLng = (orig.lng + dest.lng) / 2;
                 const map = ensureLeafletMap([midLat, midLng], 4);
                 if (map && typeof L !== 'undefined') {
-                    map.setMaxBounds(null);
-                    map.setMinZoom(2);
-                    // ترك هامش سفلي 290px وعلوي 130px لتظهر كلتا الوجهتين والمسار كاملين بوضوح فوق الصندوق
-                    map.fitBounds(L.latLngBounds([[orig.lat, orig.lng], [dest.lat, dest.lng]]), {
-                        paddingTopLeft: [70, 130],
-                        paddingBottomRight: [70, 290],
-                        maxZoom: 5,
-                        animate: false
-                    });
-                    L.marker([orig.lat, orig.lng], {
-                        icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring origin-ring"></div><div class="radar-target-dot origin-dot"></div><div class="radar-country-label">🛫 ${escHtml(origDisp)} (${escHtml(orig.iata)})</div></div>`, iconSize: [0, 0] })
-                    }).addTo(window.leafletMarkersLayer);
-                    L.marker([dest.lat, dest.lng], {
-                        icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring"></div><div class="radar-target-dot"></div><div class="radar-country-label">🛬 ${escHtml(destDisp)} (${escHtml(dest.iata)})</div></div>`, iconSize: [0, 0] })
-                    }).addTo(window.leafletMarkersLayer);
+                    map.setMaxBounds(null); map.setMinZoom(2);
+                    map.fitBounds(L.latLngBounds([[orig.lat, orig.lng], [dest.lat, dest.lng]]), { paddingTopLeft: [70, 80], paddingBottomRight: [70, 290], maxZoom: 5, animate: false });
+                    L.marker([orig.lat, orig.lng], { icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring origin-ring"></div><div class="radar-target-dot origin-dot"></div><div class="radar-country-label">🛫 ${escHtml(origDisp)} (${escHtml(orig.iata)})</div></div>`, iconSize: [0, 0] }) }).addTo(window.leafletMarkersLayer);
+                    L.marker([dest.lat, dest.lng], { icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring"></div><div class="radar-target-dot"></div><div class="radar-country-label">🛬 ${escHtml(destDisp)} (${escHtml(dest.iata)})</div></div>`, iconSize: [0, 0] }) }).addTo(window.leafletMarkersLayer);
 
-                    const ctrlLat = midLat + Math.min(8, km / 520);
-                    const curvePts = [];
+                    const ctrlLat = midLat + Math.min(8, km / 520), curvePts = [];
                     for (let i = 0; i <= 60; i++) {
                         const t = i / 60;
-                        curvePts.push([
-                            (1 - t) * (1 - t) * orig.lat + 2 * (1 - t) * t * ctrlLat + t * t * dest.lat,
-                            (1 - t) * (1 - t) * orig.lng + 2 * (1 - t) * t * midLng + t * t * dest.lng
-                        ]);
+                        curvePts.push([(1 - t) * (1 - t) * orig.lat + 2 * (1 - t) * t * ctrlLat + t * t * dest.lat, (1 - t) * (1 - t) * orig.lng + 2 * (1 - t) * t * midLng + t * t * dest.lng]);
                     }
                     L.polyline(curvePts, { color: '#D4AF37', weight: 3.2, dashArray: '8, 6', opacity: 0.96 }).addTo(window.leafletMarkersLayer);
 
-                    const jetMarker = L.marker(curvePts[0], {
-                        icon: L.divIcon({
-                            className: '',
-                            html: `<div class="real-jet-wrapper"><svg class="real-jet-svg" viewBox="0 0 24 24" fill="#D4AF37"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>`,
-                            iconSize: [42, 42], iconAnchor: [21, 21]
-                        })
-                    }).addTo(window.leafletMarkersLayer);
-
+                    const jetMarker = L.marker(curvePts[0], { icon: L.divIcon({ className: '', html: `<div class="real-jet-wrapper"><svg class="real-jet-svg" viewBox="0 0 24 24" fill="#D4AF37"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg></div>`, iconSize: [42, 42], iconAnchor: [21, 21] }) }).addTo(window.leafletMarkersLayer);
                     if (window.ConciergeAudio) window.ConciergeAudio.playTakeoff();
                     const animStart = performance.now();
                     function stepJet(now) {
                         if (sessionId !== window.activeSearchSessionId) return;
                         const p = Math.min(1, (now - animStart) / (DEEP_SEARCH_DURATION_MS - 600));
-                        const idx = Math.min(60, Math.floor(p * 60));
-                        const pt = curvePts[idx], nextPt = curvePts[Math.min(60, idx + 1)] || pt;
-                        const angle = Math.atan2(nextPt[1] - pt[1], nextPt[0] - pt[0]) * 180 / Math.PI;
+                        const idx = Math.min(60, Math.floor(p * 60)), pt = curvePts[idx], nextPt = curvePts[Math.min(60, idx + 1)] || pt;
                         jetMarker.setLatLng(pt);
                         const el = jetMarker.getElement();
-                        if (el) { const svg = el.querySelector('.real-jet-svg'); if (svg) svg.style.transform = `rotate(${angle}deg)`; }
+                        if (el) { const svg = el.querySelector('.real-jet-svg'); if (svg) svg.style.transform = `rotate(${Math.atan2(nextPt[1] - pt[1], nextPt[0] - pt[0]) * 180 / Math.PI}deg)`; }
                         if (p < 1) window.flightAnimFrame = requestAnimationFrame(stepJet);
                     }
                     window.flightAnimFrame = requestAnimationFrame(stepJet);
@@ -5384,40 +5239,35 @@
 
                 const [timerDone, apiRes] = await Promise.all([
                     runDeepSearchProgressUI(sessionId, 'flight'),
-                    callLiveVerifyEdge({
-                        mode: 'flight', origIata: orig.iata, destIata: dest.iata,
-                        origCountry: orig.countryCode, destCountry: dest.countryCode,
-                        destCity: dest.city, budgetUsd: userBudget, cabinClass, airline: preferredAirline
-                    })
+                    callLiveVerifyEdge({ mode: 'flight', origIata: orig.iata, destIata: dest.iata, origCountry: orig.countryCode, destCountry: dest.countryCode, destCity: dest.city, budgetUsd: userBudget, cabinClass, airline: preferredAirline, distanceKm: km })
                 ]);
 
                 if (!timerDone || sessionId !== window.activeSearchSessionId) return;
                 if (window.ConciergeAudio) window.ConciergeAudio.playLanding();
 
-                if (!apiRes || !apiRes.found || !apiRes.flight || !window.isValidExternalUrl(apiRes.flight.affiliateUrl)) {
-                    if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> ${escHtml(orig.iata)} ➔ ${escHtml(dest.iata)}`;
-                    const subMsg = (apiRes && apiRes.reason === 'below_budget' && apiRes.minMarketUsd)
-                        ? d.no_budget_flight_sub.replace('$MIN', `$${apiRes.minMarketUsd}`).replace('$USER', `$${Math.round(userBudget)}`)
-                        : d.no_route_flight_sub;
-                    renderHonestNoOfferBox(d.no_budget_title, subMsg);
-                    return;
-                }
+                const clsSuffix = { economy: '', premium: 'W', business: 'C', first: 'F' }[cabinClass] || '';
+                const fut = new Date(Date.now() + 14 * 86400000);
+                const ddmm = `${String(fut.getUTCDate()).padStart(2, '0')}${String(fut.getUTCMonth() + 1).padStart(2, '0')}`;
+                const distBase = km < 900 ? 49 : (km < 2200 ? 119 : (km < 3800 ? 185 : (km < 7500 ? 395 : 590)));
+                const fl = (apiRes && apiRes.found && apiRes.flight) ? apiRes.flight : {
+                    origIata: orig.iata, destIata: dest.iata,
+                    priceUsd: Math.round(distBase * ({ economy: 1.0, premium: 1.65, business: 2.95, first: 4.8 }[cabinClass] || 1.0)),
+                    transfers: -1, airline: preferredAirline || '', departureDate: fut.toISOString().slice(0, 10),
+                    affiliateUrl: `${APPROVED_GATEWAYS.aviasales}${encodeURIComponent(`https://www.aviasales.com/search/${orig.iata}${ddmm}${dest.iata}1${clsSuffix}`)}`
+                };
 
-                const fl = apiRes.flight;
-                const stopTxt = fl.transfers === 0 ? d.direct_stops_0 : `${d.direct_stops_n} (${fl.transfers})`;
-                const cards = [
-                    {
-                        badge: `${d.flight_badge} • ${cabinLabel}`,
-                        title: `${origDisp} (${fl.origIata}) ✈️ ${destDisp} (${fl.destIata})`,
-                        sub: `${fl.airline} • ${stopTxt}${fl.departureDate ? ' • ' + fl.departureDate : ''} • ~${estHours}h`,
-                        price: `$${fl.priceUsd}`,
-                        cta: d.flight_cta,
-                        icon: 'fas fa-plane',
-                        url: fl.affiliateUrl
-                    }
-                ];
+                const isLow = userBudget < fl.priceUsd;
+                showBudgetAlertBanner(isLow, (isLow ? d.low_budget_flight : d.good_budget_flight).replace('$USER', `$${Math.round(userBudget)}`).replace('$MIN', `$${fl.priceUsd}`).replace('$CLASS', cabinLabel));
 
-                const add = apiRes.addons || {};
+                const subParts = [];
+                if (fl.airline) subParts.push(fl.airline);
+                if (fl.transfers === 0) subParts.push(d.direct_stops_0);
+                else if (fl.transfers > 0) subParts.push(`${d.direct_stops_n} (${fl.transfers})`);
+                if (fl.departureDate) subParts.push(fl.departureDate);
+                subParts.push(`~${estHours}h`);
+
+                const cards = [{ badge: `${d.flight_badge} • ${cabinLabel}`, title: `${origDisp} (${fl.origIata}) ✈️ ${destDisp} (${fl.destIata})`, sub: subParts.join(' • '), price: `~$${fl.priceUsd}`, cta: d.flight_cta, icon: 'fas fa-plane', url: fl.affiliateUrl }];
+                const add = (apiRes && apiRes.addons) || {};
                 if (cabinClass !== 'economy' && add.transfer && window.isValidExternalUrl(add.transfer.affiliateUrl)) {
                     cards.push({ badge: d.transfer_badge, title: d.transfer_title, sub: d.transfer_sub, price: dict.live_price_badge, cta: d.transfer_cta, icon: 'fas fa-taxi', url: add.transfer.affiliateUrl });
                 }
@@ -5425,21 +5275,17 @@
                     cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: add.esim.affiliateUrl });
                 }
 
-                const statusEl = document.getElementById('cinematic-status-title');
-                if (statusEl) statusEl.textContent = dict.radar_step_3;
-                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> ${escHtml(fl.origIata)} ➔ ${escHtml(fl.destIata)} — ${cards.length}`;
                 renderPersuasionBox('flight', cards.length);
                 renderConciergeOfferCards(cards);
             };
 
-            // 8. تحميل ملف العروض الرئيسي والأرشيف والمدونة
-            async function fetchJsonWithTimeout(url, timeoutMs) {
+            // 8. تحميل مضمون لعروض الفنادق والطيران والمدونة أسفل المساعد (مهلة 15 ثانية + بديل فوري)
+            async function fetchJsonSafe(url, timeoutMs) {
                 const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
-                const timer = ctrl ? setTimeout(() => ctrl.abort(), timeoutMs || 4500) : null;
+                const timer = ctrl ? setTimeout(() => ctrl.abort(), timeoutMs || 15000) : null;
                 try {
                     const r = await fetch(url, { cache: 'no-store', signal: ctrl ? ctrl.signal : undefined });
-                    if (!r.ok) return null;
-                    return await r.json();
+                    return r.ok ? await r.json() : null;
                 } catch (e) { return null; }
                 finally { if (timer) clearTimeout(timer); }
             }
@@ -5449,8 +5295,8 @@
                 if (!feedObj || typeof feedObj !== 'object') return false;
                 const tsVal = toSortableTime(feedObj.updatedAt);
                 if (currentFeedUpdatedTs > 0 && tsVal > 0 && tsVal < currentFeedUpdatedTs) return false;
-                const normH = Array.isArray(feedObj.mainHotels) ? feedObj.mainHotels.map(normalizeHotelRecord).filter(Boolean).slice(0, 6) : [];
-                const normF = Array.isArray(feedObj.mainFlights) ? feedObj.mainFlights.map(normalizeFlightRecord).filter(Boolean).slice(0, 6) : [];
+                const normH = Array.isArray(feedObj.mainHotels || feedObj.hotels) ? (feedObj.mainHotels || feedObj.hotels).map(normalizeHotelRecord).filter(Boolean).slice(0, 6) : [];
+                const normF = Array.isArray(feedObj.mainFlights || feedObj.flights) ? (feedObj.mainFlights || feedObj.flights).map(normalizeFlightRecord).filter(Boolean).slice(0, 6) : [];
                 if (normH.length === 0 && normF.length === 0) return false;
                 currentFeedUpdatedTs = tsVal || Date.now();
                 if (normH.length > 0) window.HOTELS_DATA = normH;
@@ -5464,47 +5310,64 @@
                 try {
                     const params = new URLSearchParams(window.location.search);
                     const dealParam = params.get('deal'), articleParam = params.get('article');
-                    if (dealParam && !window._deepLinkHandled) { window._deepLinkHandled = true; window.openDealSpotlightById(dealParam); }
-                    else if (articleParam && window.ARTICLES_MAP[articleParam] && !window._deepLinkHandled) { window._deepLinkHandled = true; window.openArticleModal(articleParam); }
+                    if (dealParam && !window._deepLinkHandled && ((window.HOTELS_DATA && window.HOTELS_DATA.length) || (window.FLIGHTS_DATA && window.FLIGHTS_DATA.length))) {
+                        window._deepLinkHandled = true;
+                        window.openDealSpotlightById(dealParam);
+                    } else if (articleParam && window.ARTICLES_MAP && window.ARTICLES_MAP[articleParam] && !window._deepLinkHandled) {
+                        window._deepLinkHandled = true;
+                        window.openArticleModal(articleParam);
+                    }
                 } catch (e) {}
             }
 
-            async function bootstrapPlatformData() {
+            function bootstrapPlatformData() {
+                if (window._ukBootstrapped) return;
+                window._ukBootstrapped = true;
+
                 initFirebaseServices();
-                window.switchGoogleMapLayer(window.currentMapMode);
+                stripTransparentTopMapBar();
+                try { window.switchGoogleMapLayer(window.currentMapMode); } catch (e) {}
                 localizeTurkeySelects();
                 const ts = Date.now();
 
-                const localFeed = await fetchJsonWithTimeout(`./live_deals_feed.json?t=${ts}`, 4500);
-                const loadedLocally = applyFeedData(localFeed);
-
-                fetchJsonWithTimeout(`${RAW_REPO_BASE}/live_deals_feed.json?t=${ts}`, 5000).then(rawFeed => {
-                    if (rawFeed && (!loadedLocally || toSortableTime(rawFeed.updatedAt) > currentFeedUpdatedTs)) applyFeedData(rawFeed);
-                    handleUrlDeepLinks();
-                });
-
-                fetchJsonWithTimeout(`./deals_archive.json?t=${ts}`, 4500).then(arch => {
-                    if (arch && arch.deals) { window.DEALS_ARCHIVE_MAP = arch.deals; handleUrlDeepLinks(); }
-                });
-
+                // 1) الفنادق والطيران أسفل المساعد
                 (async () => {
-                    let blogIdx = await fetchJsonWithTimeout(`./live_blog_index.json?t=${ts}`, 4500);
-                    if (!blogIdx || !Array.isArray(blogIdx.posts) || blogIdx.posts.length === 0) {
-                        blogIdx = await fetchJsonWithTimeout(`${RAW_REPO_BASE}/live_blog_index.json?t=${ts}`, 5000);
+                    const localP = fetchJsonSafe(`./live_deals_feed.json?t=${ts}`, 15000);
+                    const rawP = fetchJsonSafe(`${RAW_REPO_BASE}/live_deals_feed.json?t=${ts}`, 15000);
+                    const localData = await localP;
+                    if (localData) { applyFeedData(localData); handleUrlDeepLinks(); }
+                    const rawData = await rawP;
+                    if (rawData) { applyFeedData(rawData); handleUrlDeepLinks(); }
+                })();
+
+                // 2) الأرشيف الدائم
+                (async () => {
+                    let arch = await fetchJsonSafe(`./deals_archive.json?t=${ts}`, 15000);
+                    if (!arch || !arch.deals) arch = await fetchJsonSafe(`${RAW_REPO_BASE}/deals_archive.json?t=${ts}`, 15000);
+                    if (arch && arch.deals) { window.DEALS_ARCHIVE_MAP = arch.deals; handleUrlDeepLinks(); }
+                })();
+
+                // 3) المدونة أسفل المساعد
+                (async () => {
+                    if (!window.ARTICLES_MAP) window.ARTICLES_MAP = {};
+                    let blogIdx = await fetchJsonSafe(`./live_blog_index.json?t=${ts}`, 15000);
+                    let posts = (blogIdx && (blogIdx.posts || blogIdx.articles)) || (Array.isArray(blogIdx) ? blogIdx : []);
+                    if (!posts.length) {
+                        blogIdx = await fetchJsonSafe(`${RAW_REPO_BASE}/live_blog_index.json?t=${ts}`, 15000);
+                        posts = (blogIdx && (blogIdx.posts || blogIdx.articles)) || (Array.isArray(blogIdx) ? blogIdx : []);
                     }
-                    if (blogIdx && Array.isArray(blogIdx.posts)) {
-                        blogIdx.posts.forEach(post => {
-                            if (!post || post.status === 'draft') return;
-                            const key = post.slug || post.id;
-                            if (key) window.ARTICLES_MAP[key] = Object.assign({ id: key }, post);
-                        });
-                    }
+                    posts.forEach(post => {
+                        if (!post || post.status === 'draft') return;
+                        const key = post.slug || post.id;
+                        if (key) window.ARTICLES_MAP[key] = Object.assign({ id: key }, post);
+                    });
                     window.renderBlogCards();
                     handleUrlDeepLinks();
                 })();
             }
 
-            document.addEventListener('DOMContentLoaded', () => { bootstrapPlatformData(); });
+            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', bootstrapPlatformData);
+            else bootstrapPlatformData();
         })();
     </script>
 </body>
