@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T21:13:14.465858+00:00",
+  "updatedAt": "2026-11-24T21:34:17.867660+00:00",
   "deals": {
     "H-20261119-ANTALYA": {
       "id": "hotel_deal_1",
@@ -3629,44 +3629,44 @@
       "id": "hotel_deal_1",
       "dealId": "H-20261124-ANTALYA",
       "type": "hotel",
-      "stayType": "resort",
+      "stayType": "hotel",
       "partner": "klook",
-      "discoverySource": "klook_turkey_bookable_results",
+      "discoverySource": "klook_hotels_city_verified_fallback",
       "city": "Antalya",
       "cityEn": "Antalya",
       "season": "autumn",
-      "title": "Antalya (Belek) — Lüks Resort %26 Tasarruf",
-      "name": "Antalya (Belek) — Lüks Resort %26 Tasarruf",
-      "description": "Antalya Belek bölgesinde yüksek talep gören seçkin lüks resort fırsatı. $123/gece başlangıç fiyatıyla anında güvenli rezervasyon.",
-      "price": "$123",
-      "priceUsd": 123,
-      "savingsPct": 26,
-      "dealScore": 89,
-      "marketDemandScore": 23,
-      "image": "https://ucuzakal.pages.dev/assets/deals/H-20261124-ANTALYA_card.webp?v=f7ae372621",
+      "title": "Antalya (Kaleiçi) — Seçkin Otel %19 Tasarruf",
+      "name": "Antalya (Kaleiçi) — Seçkin Otel %19 Tasarruf",
+      "description": "Antalya Kaleiçi bölgesinde yüksek talep gören seçkin seçkin otel fırsatı. $52/gece başlangıç fiyatıyla anında güvenli rezervasyon.",
+      "price": "$52",
+      "priceUsd": 52,
+      "savingsPct": 19,
+      "dealScore": 95,
+      "marketDemandScore": 64,
+      "image": "https://ucuzakal.pages.dev/assets/deals/H-20261124-ANTALYA_card.webp?v=15688e0024",
       "localImage": "assets/deals/H-20261124-ANTALYA_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DAntalya%2520Turkey%2520resort%26type%3Dhotel",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DAntalya%2520Turkey%2520hotel%26type%3Dhotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "Antalya (Belek) — Lüks Resort %26 Tasarruf",
-          "desc": "Antalya Belek bölgesinde yüksek talep gören seçkin lüks resort fırsatı. $123/gece başlangıç fiyatıyla anında güvenli rezervasyon."
+          "title": "Antalya (Kaleiçi) — Seçkin Otel %19 Tasarruf",
+          "desc": "Antalya Kaleiçi bölgesinde yüksek talep gören seçkin seçkin otel fırsatı. $52/gece başlangıç fiyatıyla anında güvenli rezervasyon."
         },
         "ar": {
-          "title": "منتجع فاخر في أنطاليا (بيليك) — وفر 26%",
-          "desc": "من أكثر خيارات الإقامة طلباً وتميّزاً في أنطاليا (بيليك) الآن، بسعر يبدأ من $123 لليلة مع حجز مباشر وسريع وتأكيد فوري."
+          "title": "فندق مختار في أنطاليا (كاليتشي) — وفر 19%",
+          "desc": "من أكثر خيارات الإقامة طلباً ورواجاً في أنطاليا (كاليتشي) الآن، بسعر يبدأ من $52 لليلة مع تحويل مباشر لصفحة الحجز وتأكيد فوري."
         },
         "en": {
-          "title": "Antalya (Belek) Luxury Resort — Save 26%",
-          "desc": "High-demand curated luxury resort stay in Antalya (Belek) starting from $123/night with instant direct booking."
+          "title": "Antalya (Kaleici) Curated Hotel — Save 19%",
+          "desc": "High-demand curated curated hotel stay in Antalya (Kaleici) starting from $52/night with instant direct booking."
         },
         "ru": {
-          "title": "Анталья (Белек): Люкс-курорт со скидкой 26%",
-          "desc": "Востребованное размещение (люкс-курорт) в районе Белек, Анталья — от $123/ночь с мгновенным прямым бронированием."
+          "title": "Анталья (Калеичи): Избранный отель со скидкой 19%",
+          "desc": "Востребованное размещение (избранный отель) в районе Калеичи, Анталья — от $52/ночь с мгновенным прямым бронированием."
         }
       },
-      "updatedAt": "2026-11-24T21:12:53.952375+00:00",
-      "createdTs": 1795554773
+      "updatedAt": "2026-11-24T21:34:01.942966+00:00",
+      "createdTs": 1795556041
     },
     "H-20261124-ISTANBUL": {
       "id": "hotel_deal_2",
@@ -3674,85 +3674,85 @@
       "type": "hotel",
       "stayType": "hotel",
       "partner": "klook",
-      "discoverySource": "klook_turkey_bookable_results",
+      "discoverySource": "klook_hotels_city_verified_fallback",
       "city": "İstanbul",
       "cityEn": "Istanbul",
       "season": "autumn",
-      "title": "İstanbul (Sultanahmet) — Seçkin Otel %22 Tasarruf",
-      "name": "İstanbul (Sultanahmet) — Seçkin Otel %22 Tasarruf",
-      "description": "İstanbul Sultanahmet bölgesinde yüksek talep gören seçkin seçkin otel fırsatı. $63/gece başlangıç fiyatıyla anında güvenli rezervasyon.",
-      "price": "$63",
-      "priceUsd": 63,
-      "savingsPct": 22,
+      "title": "İstanbul (Taksim & Galata) — Seçkin Otel %20 Tasarruf",
+      "name": "İstanbul (Taksim & Galata) — Seçkin Otel %20 Tasarruf",
+      "description": "İstanbul Taksim & Galata bölgesinde yüksek talep gören seçkin seçkin otel fırsatı. $65/gece başlangıç fiyatıyla anında güvenli rezervasyon.",
+      "price": "$65",
+      "priceUsd": 65,
+      "savingsPct": 20,
       "dealScore": 95,
-      "marketDemandScore": 45,
+      "marketDemandScore": 58,
       "image": "https://ucuzakal.pages.dev/assets/deals/H-20261124-ISTANBUL_card.webp?v=1eac3c89fe",
       "localImage": "assets/deals/H-20261124-ISTANBUL_card.webp",
       "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DIstanbul%2520Turkey%2520hotel%26type%3Dhotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "İstanbul (Sultanahmet) — Seçkin Otel %22 Tasarruf",
-          "desc": "İstanbul Sultanahmet bölgesinde yüksek talep gören seçkin seçkin otel fırsatı. $63/gece başlangıç fiyatıyla anında güvenli rezervasyon."
+          "title": "İstanbul (Taksim & Galata) — Seçkin Otel %20 Tasarruf",
+          "desc": "İstanbul Taksim & Galata bölgesinde yüksek talep gören seçkin seçkin otel fırsatı. $65/gece başlangıç fiyatıyla anında güvenli rezervasyon."
         },
         "ar": {
-          "title": "فندق مختار في إسطنبول (السلطان أحمد) — وفر 22%",
-          "desc": "من أكثر خيارات الإقامة طلباً وتميّزاً في إسطنبول (السلطان أحمد) الآن، بسعر يبدأ من $63 لليلة مع حجز مباشر وسريع وتأكيد فوري."
+          "title": "فندق مختار في إسطنبول (تقسيم وغلاطة) — وفر 20%",
+          "desc": "من أكثر خيارات الإقامة طلباً ورواجاً في إسطنبول (تقسيم وغلاطة) الآن، بسعر يبدأ من $65 لليلة مع تحويل مباشر لصفحة الحجز وتأكيد فوري."
         },
         "en": {
-          "title": "Istanbul (Sultanahmet) Curated Hotel — Save 22%",
-          "desc": "High-demand curated curated hotel stay in Istanbul (Sultanahmet) starting from $63/night with instant direct booking."
+          "title": "Istanbul (Taksim Galata) Curated Hotel — Save 20%",
+          "desc": "High-demand curated curated hotel stay in Istanbul (Taksim Galata) starting from $65/night with instant direct booking."
         },
         "ru": {
-          "title": "Стамбул (Султанахмет): Избранный отель со скидкой 22%",
-          "desc": "Востребованное размещение (избранный отель) в районе Султанахмет, Стамбул — от $63/ночь с мгновенным прямым бронированием."
+          "title": "Стамбул (Таксим и Галата): Избранный отель со скидкой 20%",
+          "desc": "Востребованное размещение (избранный отель) в районе Таксим и Галата, Стамбул — от $65/ночь с мгновенным прямым бронированием."
         }
       },
-      "updatedAt": "2026-11-24T21:12:53.952375+00:00",
-      "createdTs": 1795554773
+      "updatedAt": "2026-11-24T21:34:01.942966+00:00",
+      "createdTs": 1795556041
     },
     "H-20261124-IZMIR": {
       "id": "hotel_deal_3",
       "dealId": "H-20261124-IZMIR",
       "type": "hotel",
-      "stayType": "apart",
+      "stayType": "hotel",
       "partner": "klook",
-      "discoverySource": "klook_turkey_bookable_results",
+      "discoverySource": "klook_hotels_city_verified_fallback",
       "city": "İzmir",
       "cityEn": "Izmir",
       "season": "autumn",
-      "title": "İzmir (Alsancak Kordon) — Apart & Rezidans %19 Tasarruf",
-      "name": "İzmir (Alsancak Kordon) — Apart & Rezidans %19 Tasarruf",
-      "description": "İzmir Alsancak Kordon bölgesinde yüksek talep gören seçkin apart & rezidans fırsatı. $54/gece başlangıç fiyatıyla anında güvenli rezervasyon.",
-      "price": "$54",
-      "priceUsd": 54,
-      "savingsPct": 19,
-      "dealScore": 87,
-      "marketDemandScore": 12,
-      "image": "https://ucuzakal.pages.dev/assets/deals/H-20261124-IZMIR_card.webp?v=125015e43e",
+      "title": "İzmir (Alaçatı) — Seçkin Otel %21 Tasarruf",
+      "name": "İzmir (Alaçatı) — Seçkin Otel %21 Tasarruf",
+      "description": "İzmir Alaçatı bölgesinde yüksek talep gören seçkin seçkin otel fırsatı. $69/gece başlangıç fiyatıyla anında güvenli rezervasyon.",
+      "price": "$69",
+      "priceUsd": 69,
+      "savingsPct": 21,
+      "dealScore": 91,
+      "marketDemandScore": 39,
+      "image": "https://ucuzakal.pages.dev/assets/deals/H-20261124-IZMIR_card.webp?v=99b06b8255",
       "localImage": "assets/deals/H-20261124-IZMIR_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DIzmir%2520Turkey%2520apart%2520hotel%26type%3Dhotel",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DIzmir%2520Turkey%2520hotel%26type%3Dhotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "İzmir (Alsancak Kordon) — Apart & Rezidans %19 Tasarruf",
-          "desc": "İzmir Alsancak Kordon bölgesinde yüksek talep gören seçkin apart & rezidans fırsatı. $54/gece başlangıç fiyatıyla anında güvenli rezervasyon."
+          "title": "İzmir (Alaçatı) — Seçkin Otel %21 Tasarruf",
+          "desc": "İzmir Alaçatı bölgesinde yüksek talep gören seçkin seçkin otel fırsatı. $69/gece başlangıç fiyatıyla anında güvenli rezervasyon."
         },
         "ar": {
-          "title": "شقة فندقية راقية في إزمير (ألسنجاك كوردون) — وفر 19%",
-          "desc": "من أكثر خيارات الإقامة طلباً وتميّزاً في إزمير (ألسنجاك كوردون) الآن، بسعر يبدأ من $54 لليلة مع حجز مباشر وسريع وتأكيد فوري."
+          "title": "فندق مختار في إزمير (ألاتشاتي) — وفر 21%",
+          "desc": "من أكثر خيارات الإقامة طلباً ورواجاً في إزمير (ألاتشاتي) الآن، بسعر يبدأ من $69 لليلة مع تحويل مباشر لصفحة الحجز وتأكيد فوري."
         },
         "en": {
-          "title": "Izmir (Alsancak) Serviced Apartment — Save 19%",
-          "desc": "High-demand curated serviced apartment stay in Izmir (Alsancak) starting from $54/night with instant direct booking."
+          "title": "Izmir (Alacati) Curated Hotel — Save 21%",
+          "desc": "High-demand curated curated hotel stay in Izmir (Alacati) starting from $69/night with instant direct booking."
         },
         "ru": {
-          "title": "Измир (Алсанджак): Апарт-отель со скидкой 19%",
-          "desc": "Востребованное размещение (апарт-отель) в районе Алсанджак, Измир — от $54/ночь с мгновенным прямым бронированием."
+          "title": "Измир (Алачаты): Избранный отель со скидкой 21%",
+          "desc": "Востребованное размещение (избранный отель) в районе Алачаты, Измир — от $69/ночь с мгновенным прямым бронированием."
         }
       },
-      "updatedAt": "2026-11-24T21:12:53.952375+00:00",
-      "createdTs": 1795554773
+      "updatedAt": "2026-11-24T21:34:01.942966+00:00",
+      "createdTs": 1795556041
     },
     "H-20261124-BURSA": {
       "id": "hotel_deal_4",
@@ -3760,85 +3760,85 @@
       "type": "hotel",
       "stayType": "resort",
       "partner": "klook",
-      "discoverySource": "klook_turkey_bookable_results",
+      "discoverySource": "klook_hotels_city_verified_fallback",
       "city": "Bursa",
       "cityEn": "Bursa",
       "season": "autumn",
       "title": "Bursa (Çekirge Termal) — Lüks Resort %22 Tasarruf",
       "name": "Bursa (Çekirge Termal) — Lüks Resort %22 Tasarruf",
-      "description": "Bursa Çekirge Termal bölgesinde yüksek talep gören seçkin lüks resort fırsatı. $61/gece başlangıç fiyatıyla anında güvenli rezervasyon.",
-      "price": "$61",
-      "priceUsd": 61,
+      "description": "Bursa Çekirge Termal bölgesinde yüksek talep gören seçkin lüks resort fırsatı. $63/gece başlangıç fiyatıyla anında güvenli rezervasyon.",
+      "price": "$63",
+      "priceUsd": 63,
       "savingsPct": 22,
-      "dealScore": 84,
-      "marketDemandScore": 0,
+      "dealScore": 89,
+      "marketDemandScore": 26,
       "image": "https://ucuzakal.pages.dev/assets/deals/H-20261124-BURSA_card.webp?v=cade5d21dd",
       "localImage": "assets/deals/H-20261124-BURSA_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DBursa%2520Turkey%2520resort%26type%3Dhotel",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DBursa%2520Turkey%2520resort%2520hotel%26type%3Dhotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
           "title": "Bursa (Çekirge Termal) — Lüks Resort %22 Tasarruf",
-          "desc": "Bursa Çekirge Termal bölgesinde yüksek talep gören seçkin lüks resort fırsatı. $61/gece başlangıç fiyatıyla anında güvenli rezervasyon."
+          "desc": "Bursa Çekirge Termal bölgesinde yüksek talep gören seçkin lüks resort fırsatı. $63/gece başlangıç fiyatıyla anında güvenli rezervasyon."
         },
         "ar": {
           "title": "منتجع فاخر في بورصة (تشيكيرجي الحرارية) — وفر 22%",
-          "desc": "من أكثر خيارات الإقامة طلباً وتميّزاً في بورصة (تشيكيرجي الحرارية) الآن، بسعر يبدأ من $61 لليلة مع حجز مباشر وسريع وتأكيد فوري."
+          "desc": "من أكثر خيارات الإقامة طلباً ورواجاً في بورصة (تشيكيرجي الحرارية) الآن، بسعر يبدأ من $63 لليلة مع تحويل مباشر لصفحة الحجز وتأكيد فوري."
         },
         "en": {
           "title": "Bursa (Cekirge Thermal) Luxury Resort — Save 22%",
-          "desc": "High-demand curated luxury resort stay in Bursa (Cekirge Thermal) starting from $61/night with instant direct booking."
+          "desc": "High-demand curated luxury resort stay in Bursa (Cekirge Thermal) starting from $63/night with instant direct booking."
         },
         "ru": {
           "title": "Бурса (Чекирге Термал): Люкс-курорт со скидкой 22%",
-          "desc": "Востребованное размещение (люкс-курорт) в районе Чекирге Термал, Бурса — от $61/ночь с мгновенным прямым бронированием."
+          "desc": "Востребованное размещение (люкс-курорт) в районе Чекирге Термал, Бурса — от $63/ночь с мгновенным прямым бронированием."
         }
       },
-      "updatedAt": "2026-11-24T21:12:53.952375+00:00",
-      "createdTs": 1795554773
+      "updatedAt": "2026-11-24T21:34:01.942966+00:00",
+      "createdTs": 1795556041
     },
     "H-20261124-TRABZON": {
       "id": "hotel_deal_5",
       "dealId": "H-20261124-TRABZON",
       "type": "hotel",
-      "stayType": "apart",
+      "stayType": "hotel",
       "partner": "klook",
-      "discoverySource": "klook_turkey_bookable_results",
+      "discoverySource": "klook_hotels_city_verified_fallback",
       "city": "Trabzon",
       "cityEn": "Trabzon",
       "season": "autumn",
-      "title": "Trabzon (Ortahisar Merkez) — Apart & Rezidans %19 Tasarruf",
-      "name": "Trabzon (Ortahisar Merkez) — Apart & Rezidans %19 Tasarruf",
-      "description": "Trabzon Ortahisar Merkez bölgesinde yüksek talep gören seçkin apart & rezidans fırsatı. $46/gece başlangıç fiyatıyla anında güvenli rezervasyon.",
-      "price": "$46",
-      "priceUsd": 46,
-      "savingsPct": 19,
-      "dealScore": 84,
-      "marketDemandScore": 0,
-      "image": "https://ucuzakal.pages.dev/assets/deals/H-20261124-TRABZON_card.webp?v=a826f47f79",
+      "title": "Trabzon (Yomra Sahil) — Seçkin Otel %21 Tasarruf",
+      "name": "Trabzon (Yomra Sahil) — Seçkin Otel %21 Tasarruf",
+      "description": "Trabzon Yomra Sahil bölgesinde yüksek talep gören seçkin seçkin otel fırsatı. $60/gece başlangıç fiyatıyla anında güvenli rezervasyon.",
+      "price": "$60",
+      "priceUsd": 60,
+      "savingsPct": 21,
+      "dealScore": 93,
+      "marketDemandScore": 46,
+      "image": "https://ucuzakal.pages.dev/assets/deals/H-20261124-TRABZON_card.webp?v=b129531e1f",
       "localImage": "assets/deals/H-20261124-TRABZON_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DTrabzon%2520Turkey%2520apart%2520hotel%26type%3Dhotel",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DTrabzon%2520Turkey%2520hotel%26type%3Dhotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
-          "title": "Trabzon (Ortahisar Merkez) — Apart & Rezidans %19 Tasarruf",
-          "desc": "Trabzon Ortahisar Merkez bölgesinde yüksek talep gören seçkin apart & rezidans fırsatı. $46/gece başlangıç fiyatıyla anında güvenli rezervasyon."
+          "title": "Trabzon (Yomra Sahil) — Seçkin Otel %21 Tasarruf",
+          "desc": "Trabzon Yomra Sahil bölgesinde yüksek talep gören seçkin seçkin otel fırsatı. $60/gece başlangıç fiyatıyla anında güvenli rezervasyon."
         },
         "ar": {
-          "title": "شقة فندقية راقية في طرابزون (وسط طرابزون) — وفر 19%",
-          "desc": "من أكثر خيارات الإقامة طلباً وتميّزاً في طرابزون (وسط طرابزون) الآن، بسعر يبدأ من $46 لليلة مع حجز مباشر وسريع وتأكيد فوري."
+          "title": "فندق مختار في طرابزون (ساحل يومرا) — وفر 21%",
+          "desc": "من أكثر خيارات الإقامة طلباً ورواجاً في طرابزون (ساحل يومرا) الآن، بسعر يبدأ من $60 لليلة مع تحويل مباشر لصفحة الحجز وتأكيد فوري."
         },
         "en": {
-          "title": "Trabzon (Ortahisar) Serviced Apartment — Save 19%",
-          "desc": "High-demand curated serviced apartment stay in Trabzon (Ortahisar) starting from $46/night with instant direct booking."
+          "title": "Trabzon (Yomra) Curated Hotel — Save 21%",
+          "desc": "High-demand curated curated hotel stay in Trabzon (Yomra) starting from $60/night with instant direct booking."
         },
         "ru": {
-          "title": "Трабзон (центр Трабзона): Апарт-отель со скидкой 19%",
-          "desc": "Востребованное размещение (апарт-отель) в районе центр Трабзона, Трабзон — от $46/ночь с мгновенным прямым бронированием."
+          "title": "Трабзон (Йомра): Избранный отель со скидкой 21%",
+          "desc": "Востребованное размещение (избранный отель) в районе Йомра, Трабзон — от $60/ночь с мгновенным прямым бронированием."
         }
       },
-      "updatedAt": "2026-11-24T21:12:53.952375+00:00",
-      "createdTs": 1795554773
+      "updatedAt": "2026-11-24T21:34:01.942966+00:00",
+      "createdTs": 1795556041
     },
     "H-20261124-ANKARA": {
       "id": "hotel_deal_6",
@@ -3846,7 +3846,7 @@
       "type": "hotel",
       "stayType": "resort",
       "partner": "klook",
-      "discoverySource": "klook_turkey_bookable_results",
+      "discoverySource": "klook_hotels_city_verified_fallback",
       "city": "Ankara",
       "cityEn": "Ankara",
       "season": "autumn",
@@ -3856,11 +3856,11 @@
       "price": "$69",
       "priceUsd": 69,
       "savingsPct": 24,
-      "dealScore": 85,
-      "marketDemandScore": 7,
+      "dealScore": 90,
+      "marketDemandScore": 33,
       "image": "https://ucuzakal.pages.dev/assets/deals/H-20261124-ANKARA_card.webp?v=dbe9eb42fb",
       "localImage": "assets/deals/H-20261124-ANKARA_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DAnkara%2520Turkey%2520resort%26type%3Dhotel",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DAnkara%2520Turkey%2520resort%2520hotel%26type%3Dhotel",
       "isDirectProduct": false,
       "i18n": {
         "tr": {
@@ -3869,7 +3869,7 @@
         },
         "ar": {
           "title": "منتجع فاخر في أنقرة (منتجعات أنقرة الحرارية) — وفر 24%",
-          "desc": "من أكثر خيارات الإقامة طلباً وتميّزاً في أنقرة (منتجعات أنقرة الحرارية) الآن، بسعر يبدأ من $69 لليلة مع حجز مباشر وسريع وتأكيد فوري."
+          "desc": "من أكثر خيارات الإقامة طلباً ورواجاً في أنقرة (منتجعات أنقرة الحرارية) الآن، بسعر يبدأ من $69 لليلة مع تحويل مباشر لصفحة الحجز وتأكيد فوري."
         },
         "en": {
           "title": "Ankara (Kizilcahamam Thermal) Luxury Resort — Save 24%",
@@ -3880,8 +3880,8 @@
           "desc": "Востребованное размещение (люкс-курорт) в районе Кызылджахамам Термал, Анкара — от $69/ночь с мгновенным прямым бронированием."
         }
       },
-      "updatedAt": "2026-11-24T21:12:53.952375+00:00",
-      "createdTs": 1795554773
+      "updatedAt": "2026-11-24T21:34:01.942966+00:00",
+      "createdTs": 1795556041
     },
     "F-20261124-TZX-SAW": {
       "id": "flight_deal_1",
@@ -3898,39 +3898,39 @@
       "destCityEn": "Istanbul",
       "route": "Trabzon (TZX) ✈️ İstanbul (SAW)",
       "title": "Trabzon (TZX) ✈️ İstanbul (SAW)",
-      "airline": "AJet • VF3329",
+      "airline": "Turkish Airlines • TK3331",
       "transfers": 0,
-      "departureDate": "2027-01-06",
+      "departureDate": "2026-12-10",
       "price": "$29",
       "priceUsd": 29,
-      "avgMarketUsd": 68,
+      "avgMarketUsd": 29,
       "savingsPct": 46,
       "googleMomentum": 36,
-      "dealScore": 99,
-      "description": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
+      "dealScore": 90,
+      "description": "2026-12-10 tarihli Turkish Airlines (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
       "image": "https://ucuzakal.pages.dev/assets/deals/F-20261124-TZX-SAW_card.webp?v=02c0197a62",
       "localImage": "assets/deals/F-20261124-TZX-SAW_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FTZX0601SAW1",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FTZX1012SAW1",
       "i18n": {
         "tr": {
           "title": "Trabzon (TZX) ✈️ İstanbul (SAW)",
-          "desc": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon."
+          "desc": "2026-12-10 tarihli Turkish Airlines (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon."
         },
         "ar": {
           "title": "طرابزون (TZX) ✈️ إسطنبول (SAW)",
-          "desc": "رحلة AJet (رحلة مباشرة) بتاريخ 2027-01-06 — وفر 46% عن متوسط السوق مع تحويل مباشر لنفس المسار على صفحة الحجز الرسمية."
+          "desc": "رحلة Turkish Airlines (رحلة مباشرة) بتاريخ 2026-12-10 — وفر 46% عن متوسط السوق مع تحويل مباشر لنفس المسار على صفحة الحجز الرسمية."
         },
         "en": {
           "title": "Trabzon (TZX) ✈️ Istanbul (SAW)",
-          "desc": "AJet (Direct Flight) on 2027-01-06 — save 46% below average route fare with direct exact-route official booking."
+          "desc": "Turkish Airlines (Direct Flight) on 2026-12-10 — save 46% below average route fare with direct exact-route official booking."
         },
         "ru": {
           "title": "Трабзон (TZX) ✈️ Стамбул (SAW)",
-          "desc": "Рейс AJet (Прямой рейс) 2027-01-06 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
+          "desc": "Рейс Turkish Airlines (Прямой рейс) 2026-12-10 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
         }
       },
-      "updatedAt": "2026-11-24T00:06:55.878950+00:00",
-      "createdTs": 1795478815
+      "updatedAt": "2026-11-24T21:34:13.290387+00:00",
+      "createdTs": 1795556053
     },
     "F-20261124-SAW-ADB": {
       "id": "flight_deal_2",
@@ -3947,39 +3947,39 @@
       "destCityEn": "Izmir",
       "route": "İstanbul (SAW) ✈️ İzmir (ADB)",
       "title": "İstanbul (SAW) ✈️ İzmir (ADB)",
-      "airline": "AJet • VF3066",
+      "airline": "Pegasus Airlines • PC2184",
       "transfers": 0,
-      "departureDate": "2027-01-06",
+      "departureDate": "2026-11-28",
       "price": "$27",
       "priceUsd": 27,
-      "avgMarketUsd": 54,
+      "avgMarketUsd": 27,
       "savingsPct": 46,
       "googleMomentum": 34,
-      "dealScore": 99,
-      "description": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
+      "dealScore": 88,
+      "description": "2026-11-28 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
       "image": "https://ucuzakal.pages.dev/assets/deals/F-20261124-SAW-ADB_card.webp?v=dc41953b1e",
       "localImage": "assets/deals/F-20261124-SAW-ADB_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSAW0601ADB1",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSAW2811ADB1",
       "i18n": {
         "tr": {
           "title": "İstanbul (SAW) ✈️ İzmir (ADB)",
-          "desc": "2027-01-06 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon."
+          "desc": "2026-11-28 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon."
         },
         "ar": {
           "title": "إسطنبول (SAW) ✈️ إزمير (ADB)",
-          "desc": "رحلة AJet (رحلة مباشرة) بتاريخ 2027-01-06 — وفر 46% عن متوسط السوق مع تحويل مباشر لنفس المسار على صفحة الحجز الرسمية."
+          "desc": "رحلة Pegasus Airlines (رحلة مباشرة) بتاريخ 2026-11-28 — وفر 46% عن متوسط السوق مع تحويل مباشر لنفس المسار على صفحة الحجز الرسمية."
         },
         "en": {
           "title": "Istanbul (SAW) ✈️ Izmir (ADB)",
-          "desc": "AJet (Direct Flight) on 2027-01-06 — save 46% below average route fare with direct exact-route official booking."
+          "desc": "Pegasus Airlines (Direct Flight) on 2026-11-28 — save 46% below average route fare with direct exact-route official booking."
         },
         "ru": {
           "title": "Стамбул (SAW) ✈️ Измир (ADB)",
-          "desc": "Рейс AJet (Прямой рейс) 2027-01-06 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
+          "desc": "Рейс Pegasus Airlines (Прямой рейс) 2026-11-28 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
         }
       },
-      "updatedAt": "2026-11-24T00:06:55.878950+00:00",
-      "createdTs": 1795478815
+      "updatedAt": "2026-11-24T21:34:13.290387+00:00",
+      "createdTs": 1795556053
     },
     "F-20261124-VKO-AYT": {
       "id": "flight_deal_3",
@@ -3998,37 +3998,37 @@
       "title": "Moskova (VKO) ✈️ Antalya (AYT)",
       "airline": "Pobeda • DP839",
       "transfers": 0,
-      "departureDate": "2026-11-26",
+      "departureDate": "2026-11-25",
       "price": "$44",
       "priceUsd": 44,
-      "avgMarketUsd": 265,
+      "avgMarketUsd": 44,
       "savingsPct": 46,
       "googleMomentum": 34,
-      "dealScore": 99,
-      "description": "2026-11-26 tarihli Pobeda (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
+      "dealScore": 88,
+      "description": "2026-11-25 tarihli Pobeda (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
       "image": "https://ucuzakal.pages.dev/assets/deals/F-20261124-VKO-AYT_card.webp?v=cfb42178d9",
       "localImage": "assets/deals/F-20261124-VKO-AYT_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FVKO2611AYT1",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FVKO2511AYT1",
       "i18n": {
         "tr": {
           "title": "Moskova (VKO) ✈️ Antalya (AYT)",
-          "desc": "2026-11-26 tarihli Pobeda (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon."
+          "desc": "2026-11-25 tarihli Pobeda (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon."
         },
         "ar": {
           "title": "موسكو (VKO) ✈️ أنطاليا (AYT)",
-          "desc": "رحلة Pobeda (رحلة مباشرة) بتاريخ 2026-11-26 — وفر 46% عن متوسط السوق مع تحويل مباشر لنفس المسار على صفحة الحجز الرسمية."
+          "desc": "رحلة Pobeda (رحلة مباشرة) بتاريخ 2026-11-25 — وفر 46% عن متوسط السوق مع تحويل مباشر لنفس المسار على صفحة الحجز الرسمية."
         },
         "en": {
           "title": "Moscow (VKO) ✈️ Antalya (AYT)",
-          "desc": "Pobeda (Direct Flight) on 2026-11-26 — save 46% below average route fare with direct exact-route official booking."
+          "desc": "Pobeda (Direct Flight) on 2026-11-25 — save 46% below average route fare with direct exact-route official booking."
         },
         "ru": {
           "title": "Москва (VKO) ✈️ Анталья (AYT)",
-          "desc": "Рейс Pobeda (Прямой рейс) 2026-11-26 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
+          "desc": "Рейс Pobeda (Прямой рейс) 2026-11-25 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
         }
       },
-      "updatedAt": "2026-11-24T00:06:55.878950+00:00",
-      "createdTs": 1795478815
+      "updatedAt": "2026-11-24T21:34:13.290387+00:00",
+      "createdTs": 1795556053
     },
     "F-20261124-ALG-SAW": {
       "id": "flight_deal_4",
@@ -4047,37 +4047,37 @@
       "title": "Cezayir (ALG) ✈️ İstanbul (SAW)",
       "airline": "AJet • VF274",
       "transfers": 0,
-      "departureDate": "2027-01-03",
-      "price": "$60",
-      "priceUsd": 60,
-      "avgMarketUsd": 240,
+      "departureDate": "2027-01-04",
+      "price": "$59",
+      "priceUsd": 59,
+      "avgMarketUsd": 60,
       "savingsPct": 46,
       "googleMomentum": 40,
-      "dealScore": 99,
-      "description": "2027-01-03 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
+      "dealScore": 94,
+      "description": "2027-01-04 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
       "image": "https://ucuzakal.pages.dev/assets/deals/F-20261124-ALG-SAW_card.webp?v=9e85267b28",
       "localImage": "assets/deals/F-20261124-ALG-SAW_card.webp",
-      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FALG0301SAW1",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FALG0401SAW1",
       "i18n": {
         "tr": {
           "title": "Cezayir (ALG) ✈️ İstanbul (SAW)",
-          "desc": "2027-01-03 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon."
+          "desc": "2027-01-04 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon."
         },
         "ar": {
           "title": "الجزائر (ALG) ✈️ إسطنبول (SAW)",
-          "desc": "رحلة AJet (رحلة مباشرة) بتاريخ 2027-01-03 — وفر 46% عن متوسط السوق مع تحويل مباشر لنفس المسار على صفحة الحجز الرسمية."
+          "desc": "رحلة AJet (رحلة مباشرة) بتاريخ 2027-01-04 — وفر 46% عن متوسط السوق مع تحويل مباشر لنفس المسار على صفحة الحجز الرسمية."
         },
         "en": {
           "title": "Algiers (ALG) ✈️ Istanbul (SAW)",
-          "desc": "AJet (Direct Flight) on 2027-01-03 — save 46% below average route fare with direct exact-route official booking."
+          "desc": "AJet (Direct Flight) on 2027-01-04 — save 46% below average route fare with direct exact-route official booking."
         },
         "ru": {
           "title": "Алжир (ALG) ✈️ Стамбул (SAW)",
-          "desc": "Рейс AJet (Прямой рейс) 2027-01-03 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
+          "desc": "Рейс AJet (Прямой рейс) 2027-01-04 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
         }
       },
-      "updatedAt": "2026-11-24T00:06:55.878950+00:00",
-      "createdTs": 1795478815
+      "updatedAt": "2026-11-24T21:34:13.290387+00:00",
+      "createdTs": 1795556053
     },
     "F-20261124-SAW-KWI": {
       "id": "flight_deal_5",
@@ -4129,7 +4129,7 @@
       "createdTs": 1795478815
     },
     "F-20261124-EBL-SAW": {
-      "id": "flight_deal_6",
+      "id": "flight_deal_5",
       "dealId": "F-20261124-EBL-SAW",
       "type": "flight",
       "partner": "aviasales",
@@ -4148,10 +4148,10 @@
       "departureDate": "2026-12-03",
       "price": "$69",
       "priceUsd": 69,
-      "avgMarketUsd": 190,
+      "avgMarketUsd": 69,
       "savingsPct": 46,
       "googleMomentum": 40,
-      "dealScore": 99,
+      "dealScore": 94,
       "description": "2026-12-03 tarihli AJet (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
       "image": "https://ucuzakal.pages.dev/assets/deals/F-20261124-EBL-SAW_card.webp?v=5e772e7b18",
       "localImage": "assets/deals/F-20261124-EBL-SAW_card.webp",
@@ -4174,8 +4174,8 @@
           "desc": "Рейс AJet (Прямой рейс) 2026-12-03 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
         }
       },
-      "updatedAt": "2026-11-24T00:06:55.878950+00:00",
-      "createdTs": 1795478815
+      "updatedAt": "2026-11-24T21:34:13.290387+00:00",
+      "createdTs": 1795556053
     },
     "F-20261124-SAW-AYT": {
       "id": "flight_deal_1",
@@ -4764,6 +4764,55 @@
       },
       "updatedAt": "2026-11-24T21:13:05.233189+00:00",
       "createdTs": 1795554785
+    },
+    "F-20261124-SAW-JED": {
+      "id": "flight_deal_6",
+      "dealId": "F-20261124-SAW-JED",
+      "type": "flight",
+      "partner": "aviasales",
+      "apiSource": "aviasales_v3",
+      "segment": "arab_tr",
+      "routeKey": "SAW_JED",
+      "originIata": "SAW",
+      "destIata": "JED",
+      "departure": "İstanbul",
+      "destination": "Cidde",
+      "destCityEn": "Jeddah",
+      "route": "İstanbul (SAW) ✈️ Cidde (JED)",
+      "title": "İstanbul (SAW) ✈️ Cidde (JED)",
+      "airline": "Pegasus Airlines • PC694",
+      "transfers": 0,
+      "departureDate": "2027-09-13",
+      "price": "$98",
+      "priceUsd": 98,
+      "avgMarketUsd": 98,
+      "savingsPct": 46,
+      "googleMomentum": 40,
+      "dealScore": 94,
+      "description": "2027-09-13 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon.",
+      "image": "https://ucuzakal.pages.dev/assets/deals/F-20261124-SAW-JED_card.webp?v=702f8146b1",
+      "localImage": "assets/deals/F-20261124-SAW-JED_card.webp",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSAW1309JED1",
+      "i18n": {
+        "tr": {
+          "title": "İstanbul (SAW) ✈️ Cidde (JED)",
+          "desc": "2027-09-13 tarihli Pegasus Airlines (Direkt Uçuş) — piyasa ortalamasından %46 daha avantajlı, birebir aynı rota için resmi rezervasyon."
+        },
+        "ar": {
+          "title": "إسطنبول (SAW) ✈️ جدة (JED)",
+          "desc": "رحلة Pegasus Airlines (رحلة مباشرة) بتاريخ 2027-09-13 — وفر 46% عن متوسط السوق مع تحويل مباشر لنفس المسار على صفحة الحجز الرسمية."
+        },
+        "en": {
+          "title": "Istanbul (SAW) ✈️ Jeddah (JED)",
+          "desc": "Pegasus Airlines (Direct Flight) on 2027-09-13 — save 46% below average route fare with direct exact-route official booking."
+        },
+        "ru": {
+          "title": "Стамбул (SAW) ✈️ Джидда (JED)",
+          "desc": "Рейс Pegasus Airlines (Прямой рейс) 2027-09-13 — скидка 46% от средней цены, прямой переход на официальную страницу бронирования."
+        }
+      },
+      "updatedAt": "2026-11-24T21:34:13.290387+00:00",
+      "createdTs": 1795556053
     }
   }
 }
