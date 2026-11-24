@@ -4475,7 +4475,6 @@
                 return (window.TRANSLATIONS && (window.TRANSLATIONS[lang] || window.TRANSLATIONS.tr)) || {};
             };
 
-            // دوال مساعدة محمية بالكامل ضد أي خطأ صامت
             const safeTranslate = (txt, lang) => {
                 try { return typeof window.translateTextStrong === 'function' ? window.translateTextStrong(txt, lang) : String(txt || ''); }
                 catch (e) { return String(txt || ''); }
@@ -4676,7 +4675,7 @@
                 return Object.assign({}, raw, {
                     id: raw.id || `flight_deal_${idx + 1}`,
                     dealId: raw.dealId || (origIata && destIata ? `F-${origIata}-${destIata}` : `F-${idx + 1}`),
-                    type: 'flight', originIata, destIata, segment: cleanSegment,
+                    type: 'flight', originIata: origIata, destIata: destIata, segment: cleanSegment,
                     airline: raw.airline || '', departureDate: raw.departureDate || raw.departure_date || '',
                     price: cleanPrice, savingsPct: raw.savingsPct || raw.savings_pct || 0,
                     remoteImage: raw.image || raw.imageUrl || '', image: pickFastDealImage(raw),
@@ -4785,7 +4784,7 @@
                 } else outEl.textContent = '';
             };
 
-            // 3. عرض عروض الفنادق والطيران أسفل المساعد (محمي تماماً ضد أي خطأ صامت)
+            // 3. عرض عروض الفنادق والطيران أسفل المساعد
             window.renderHotels = function() {
                 try {
                     const container = resolveContainer(['hotels-container', 'hotels-grid', 'hotel-deals-grid'], 'hotels-section');
@@ -5566,7 +5565,6 @@
                 let dealsReady = false;
                 let blogReady = false;
 
-                // 1) الجلب المباشر والأسرع من خادم Cloudflare Edge (يقرأ ASSETS داخلياً في أجزاء من الثانية)
                 const edgeUrls = [`./api/concierge-verify?feed=home&t=${ts}`];
                 if (window.location.hostname !== 'ucuzakal.pages.dev') edgeUrls.push(`https://ucuzakal.pages.dev/api/concierge-verify?feed=home&t=${ts}`);
                 for (const u of edgeUrls) {
@@ -5580,7 +5578,6 @@
                     }
                 }
 
-                // 2) بدائل إضافية فورية في حال لم يكتمل أي قسم بعد
                 if (!dealsReady) {
                     for (const u of [`./live_deals_feed.json?t=${ts}`, `${RAW_REPO_BASE}/live_deals_feed.json?t=${ts}`]) {
                         const d = await fetchJsonSafe(u, 15000);
