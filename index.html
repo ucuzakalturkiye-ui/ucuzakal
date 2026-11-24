@@ -4100,10 +4100,10 @@
         });
     </script>
 <!-- ========================================================================= -->
-    <!-- الجزء 4 من 4: إلغاء الشريط الشفاف + 81 محافظة وكل الدول + استعادة العروض والمدونة -->
+    <!-- الجزء 4 من 4: صياغة تسويقية راقية + فندق واحد دقيق + خدمات المدينة فقط -->
     <!-- ========================================================================= -->
     <style>
-        /* إلغاء الواجهة الشفافة والخط العلوي أعلى الخريطة نهائياً وإبقاء أزرار التحكم فقط */
+        /* إلغاء الواجهة الشفافة والخط العلوي أعلى الخريطة وإبقاء أزرار التحكم فقط */
         #hud-live-telemetry,
         #cinematic-status-title,
         #cinematic-summary-sub,
@@ -4195,214 +4195,250 @@
                 getrent:   "https://tp.media/r?campaign_id=222&marker=798779&p=5996&trs=597953&u="
             };
 
+            const AIRALO_DEST_SLUGS = {
+                TR: "turkey", EG: "egypt", SA: "saudi-arabia", AE: "united-arab-emirates",
+                QA: "qatar", KW: "kuwait", BH: "bahrain", OM: "oman", JO: "jordan",
+                IQ: "iraq", MA: "morocco", TN: "tunisia", DZ: "algeria", LB: "lebanon",
+                DE: "germany", FR: "france", GB: "united-kingdom", UK: "united-kingdom",
+                IT: "italy", ES: "spain", NL: "netherlands", GR: "greece", AT: "austria",
+                CH: "switzerland", GE: "georgia", AZ: "azerbaijan", KZ: "kazakhstan",
+                US: "united-states", CA: "canada", CN: "china", JP: "japan", TH: "thailand",
+                BE: "belgium", SE: "sweden", NO: "norway", PL: "poland", CZ: "czech-republic",
+                PT: "portugal", MY: "malaysia", ID: "indonesia", SG: "singapore", KR: "south-korea"
+            };
+
             if (window.UCUZAKAL_AGENT_CONFIG) {
                 window.UCUZAKAL_AGENT_CONFIG.gateways = Object.assign({}, APPROVED_GATEWAYS);
             }
 
-            // هوية UcuzaKal Türkiye الصافية فقط (صفر ذكر لأسماء المواقع الشريكة للزائر)
+            // لغة تسويقية فاخرة واحترافية 100% بهوية UcuzaKal Türkiye (صفر عبارات تقنية أو أسماء شركاء)
             const DEEP_I18N = {
                 ar: {
-                    title_flight: "جارٍ البحث العميق عن أفضل عروض الطيران المتاحة الآن...",
-                    title_hotel: "جارٍ البحث العميق عن أفضل عروض الإقامة المتاحة في تركيا...",
-                    sub_wait: "يفحص المستشار الذكي الآن الأسعار الحية وروابط الحجز المباشرة (20 ثانية)",
-                    sec_left: "ثانية متبقية",
+                    title_flight: "ننتقي لك أفضل رحلات الطيران المتاحة الآن...",
+                    title_hotel: "ننتقي لك أفضل خيارات الإقامة في وجهتك التركية...",
+                    sub_wait: "يرصد مستشارك الذكي أحدث الأسعار المتاحة لتصميم تجربة سفر استثنائية (20 ثانية)",
+                    sec_left: "ثانية",
                     f_steps: [
-                        "فحص أسعار الرحلات الحية للمسار والتواريخ القادمة...",
-                        "التحقق من درجة التذكرة المطلوبة ومقارنتها بسعر السوق...",
-                        "فحص خدمات الوصول والإنترنت المتاحة للوجهة...",
-                        "تأكيد روابط الحجز المباشرة والجاهزة للتنفيذ..."
+                        "مقارنة أحدث أسعار التذاكر على مسارك المختار...",
+                        "اختيار أفضل قيمة مطابقة لدرجة السفر المفضلة...",
+                        "تجهيز خدمات الوصول والاتصال الفوري لوجهتك...",
+                        "إعداد خطة رحلتك للحجز الفوري..."
                     ],
                     h_steps: [
-                        "فحص عروض الفنادق والمنتجعات والشقق الفندقية في وجهتك...",
-                        "مقارنة ميزانيتك بأسعار السوق الحقيقية في المدينة...",
-                        "فحص الأنشطة والسيارات وشريحة الإنترنت المتاحة...",
-                        "تجهيز روابط الحجز المباشرة والمؤكدة..."
+                        "استعراض أرقى خيارات الإقامة المتاحة في مدينتك...",
+                        "مواءمة الخيارات مع ميزانيتك وأسلوب عطلتك...",
+                        "اختيار التجارب والخدمات المتوفرة فعلياً في مدينتك...",
+                        "إعداد باقة إقامتك للحجز الفوري..."
                     ],
-                    low_budget_hotel: "تنبيه: الميزانية التي أدخلتها ($USER / ليلة) أقل من سعر السوق الحقيقي في هذه المدينة (يبدأ من $MIN / ليلة). إليك أفضل العروض الحقيقية المتاحة الآن بسعر السوق:",
-                    good_budget_hotel: "ممتاز! ميزانيتك متوافقة مع أسعار السوق الحقيقية في هذه المدينة — إليك أفضل العروض المتاحة الآن:",
-                    low_budget_flight: "تنبيه: الميزانية التي أدخلتها ($USER) أقل من سعر السوق الحقيقي لدرجة «$CLASS» على هذا المسار (يبدأ من $MIN). إليك العرض الحقيقي المطابق لدرجتك ومسارك بسعر السوق:",
-                    good_budget_flight: "ممتاز! ميزانيتك متوافقة مع سعر السوق الحقيقي لدرجة «$CLASS» — إليك أفضل عرض متاح الآن:",
+                    low_budget_hotel: "تبدأ أسعار الإقامة الحقيقية في هذه المدينة من $MIN / ليلة (أعلى قليلاً من ميزانيتك $USER / ليلة) — إليك أفضل خيار متاح بسعر السوق الآن:",
+                    good_budget_hotel: "اختيار مثالي! ميزانيتك تناسب أرقى خيارات الإقامة في هذه المدينة — إليك ترشيحنا الأول لك:",
+                    low_budget_flight: "تبدأ أسعار درجة «$CLASS» على هذا المسار حالياً من $MIN (أعلى من ميزانيتك $USER) — إليك أفضل رحلة متاحة لدرجتك بسعر السوق:",
+                    good_budget_flight: "اختيار مثالي! ميزانيتك تناسب أفضل أسعار درجة «$CLASS» على هذا المسار — إليك رحلتك المرشّحة:",
                     direct_stops_0: "رحلة مباشرة",
                     direct_stops_n: "توقف",
-                    stay_badge_1: "🏨 إقامة موثّقة • خيار UcuzaKal الأول",
-                    stay_badge_2: "🏨 إقامة موثّقة • خيار بديل بالسوق",
-                    stay_title_hotel: "أفضل عروض الفنادق المتاحة في $CITY",
-                    stay_title_resort: "أفضل المنتجعات السياحية المتاحة في $CITY",
-                    stay_title_apart: "أفضل الشقق الفندقية المتاحة في $CITY",
-                    stay_cta: "احجز الإقامة الآن",
-                    flight_badge: "✈️ رحلة طيران مؤكدة",
-                    flight_cta: "احجز التذكرة الآن",
-                    esim_badge: "📶 شريحة إنترنت 5G للوجهة",
-                    esim_title: "باقة إنترنت 5G فورية عند الوصول",
-                    esim_sub: "تفعيل فوري بدون رسوم تجوال",
-                    esim_cta: "احصل على الشريحة",
+                    stay_badge: "🏨 ترشيح UcuzaKal الأفضل لإقامتك",
+                    stay_title_hotel: "أفضل فنادق $CITY المتاحة للحجز الآن",
+                    stay_title_resort: "أفضل منتجعات $CITY المتاحة للحجز الآن",
+                    stay_title_apart: "أفضل الشقق الفندقية في $CITY للحجز الآن",
+                    stay_cta: "احجز إقامتك الآن",
+                    flight_badge: "✈️ رحلتك المرشّحة",
+                    flight_cta: "احجز تذكرتك الآن",
+                    esim_badge: "📶 إنترنت 5G فوري عند الهبوط",
+                    esim_title: "باقة إنترنت 5G لوجهتك بدون تجوال",
+                    esim_sub: "تفعيل فوري خلال ثوانٍ وتغطية سريعة طوال رحلتك",
+                    esim_cta: "فعّل الإنترنت الآن",
                     transfer_badge: "🚕 توصيل خاص من المطار (VIP)",
-                    transfer_title: "استقبال وتوصيل خاص من المطار",
-                    transfer_sub: "سعر ثابت واستقبال خاص عند الوصول",
+                    transfer_title: "استقبال وتوصيل خاص في $CITY",
+                    transfer_sub: "سائقك بانتظارك عند الوصول بسعر ثابت ومريح",
                     transfer_cta: "احجز التوصيل",
-                    activity_badge: "🎟️ أنشطة ومعالم المدينة",
-                    activity_title: "أبرز المعالم والتجارب السياحية",
-                    activity_sub: "تذاكر مؤكدة وحجز فوري بدون انتظار",
-                    activity_cta: "احجز النشاط",
-                    car_badge: "🚗 تأجير سيارة للمدينة",
-                    car_title: "خيارات تأجير سيارات موثّقة",
-                    car_sub: "تسلّم سريع وخيارات تأمين مرنة",
+                    activity_badge: "🎟️ تجارب ومعالم $CITY",
+                    activity_title: "أبرز المعالم والأنشطة في $CITY",
+                    activity_sub: "تذاكر فورية وتجارب لا تُنسى بدون انتظار",
+                    activity_cta: "استكشف الأنشطة",
+                    car_badge: "🚗 تأجير سيارة في $CITY",
+                    car_title: "سيارات جاهزة للاستلام في $CITY",
+                    car_sub: "حرية التنقل الكاملة بخيارات استلام وتأمين مرنة",
                     car_cta: "اختر سيارتك",
-                    persuasion_h: "عروض حقيقية ومفحوصة لرحلتك — اضغط على أي بطاقة للانتقال مباشرةً لصفحة الحجز.",
-                    persuasion_f: "رابط حجز مباشر لنفس المسار والدرجة التي اخترتها تماماً مع الخدمات المتوفرة لوجهتك.",
+                    p_title: "خطة رحلتك المختارة بعناية جاهزة الآن",
+                    p_h: "انتقينا لك أفضل خيار إقامة مطابق لمدينتك مع الخدمات المتوفرة فعلياً لراحتك.",
+                    p_f: "تذكرتك المباشرة لنفس المسار والدرجة التي اخترتها مع خدمات سفر متكاملة.",
+                    p1_t: "حجز مباشر وسلس",
+                    p1_d: "انتقال فوري لصفحة الحجز الرسمية لإتمام خطتك بكل أمان وراحة.",
+                    p2_t: "خدمات مخصّصة لوجهتك",
+                    p2_d: "نرشّح فقط الأنشطة والسيارات والإنترنت المتوفرة فعلياً في مدينتك.",
+                    p3_t: "أفضل قيمة في السوق",
+                    p3_d: "شفافية تامة في أسعار السوق الحقيقية لتخطيط ميزانيتك بثقة كاملة.",
                     all_turkey: "جميع أنحاء تركيا"
                 },
                 tr: {
-                    title_flight: "En Avantajlı Canlı Uçuş Fırsatları Derinlemesine Taranıyor...",
-                    title_hotel: "Türkiye Geneli Doğrulanmış Konaklama Fırsatları Taranıyor...",
-                    sub_wait: "Akıllı asistan canlı fiyatları ve doğrudan rezervasyon linklerini doğruluyor (20 sn)",
-                    sec_left: "sn kaldı",
+                    title_flight: "Sizin İçin En Avantajlı Uçuşları Seçiyoruz...",
+                    title_hotel: "Hedef Şehrinizdeki En Seçkin Konaklamayı Hazırlıyoruz...",
+                    sub_wait: "Akıllı seyahat asistanınız güncel fiyatları ve ayrıcalıklı fırsatları derliyor (20 sn)",
+                    sec_left: "sn",
                     f_steps: [
-                        "Seçili rota için güncel canlı uçuş fiyatları taranıyor...",
-                        "Bilet sınıfı ve gerçek piyasa fiyatları karşılaştırılıyor...",
-                        "Varış noktası için internet ve transfer seçenekleri inceleniyor...",
-                        "Doğrudan rezervasyon bağlantıları hazırlanıyor..."
+                        "Rotanızdaki en avantajlı güncel biletler karşılaştırılıyor...",
+                        "Seçtiğiniz kabin sınıfı için en iyi seçenek belirleniyor...",
+                        "Varış noktanız için 5G internet ve transfer seçenekleri hazırlanıyor...",
+                        "Seyahat planınız tek tıkla rezervasyona hazırlanıyor..."
                     ],
                     h_steps: [
-                        "Hedef şehirdeki otel, resort ve apart fırsatları taranıyor...",
-                        "Bütçeniz gerçek piyasa fiyatlarıyla karşılaştırılıyor...",
-                        "Şehir aktiviteleri, araç kiralama ve 5G eSIM kontrol ediliyor...",
-                        "Doğrudan rezervasyon bağlantıları hazırlanıyor..."
+                        "Şehrinizdeki en seçkin konaklama fırsatları inceleniyor...",
+                        "Bütçeniz ve tatil tarzınızla en uyumlu seçenek seçiliyor...",
+                        "Yalnızca şehrinizde sunulan yerel deneyimler kontrol ediliyor...",
+                        "Kişisel tatil planınız rezervasyona hazırlanıyor..."
                     ],
-                    low_budget_hotel: "Bilgi: Girdiğiniz bütçe ($USER / gece) bu şehirdeki gerçek piyasa fiyatının ($MIN / gece) altındadır. Gerçek piyasa fiyatlı mevcut teklifler aşağıda listelendi:",
-                    good_budget_hotel: "Harika! Bütçeniz bu şehirdeki gerçek piyasa fiyatlarıyla uyumludur — mevcut doğrulanmış teklifler:",
-                    low_budget_flight: "Bilgi: Girdiğiniz bütçe ($USER), $CLASS sınıfı için bu rotadaki gerçek piyasa fiyatının ($MIN) altındadır. Seçtiğiniz sınıf için gerçek piyasa teklifi aşağıdadır:",
-                    good_budget_flight: "Harika! Bütçeniz $CLASS sınıfındaki gerçek piyasa fiyatıyla uyumludur:",
+                    low_budget_hotel: "Bu şehirde güncel konaklama fiyatları $MIN / gece seviyesinden başlamaktadır (Bütçeniz: $USER / gece) — sizin için en avantajlı piyasa seçeneği:",
+                    good_budget_hotel: "Harika seçim! Bütçeniz bu şehirdeki en seçkin fırsatlarla uyumlu — sizin için öne çıkan önerimiz:",
+                    low_budget_flight: "Bu rotada $CLASS sınıfı güncel fiyatları $MIN seviyesinden başlamaktadır (Bütçeniz: $USER) — seçtiğiniz sınıf için en avantajlı uçuş:",
+                    good_budget_flight: "Harika seçim! Bütçeniz $CLASS sınıfı güncel fiyatlarıyla tam uyumlu — sizin için önerilen uçuş:",
                     direct_stops_0: "Direkt Uçuş",
                     direct_stops_n: "Aktarma",
-                    stay_badge_1: "🏨 Doğrulanmış Konaklama • UcuzaKal Seçimi",
-                    stay_badge_2: "🏨 Doğrulanmış Konaklama • Alternatif Seçenek",
+                    stay_badge: "🏨 UcuzaKal En İyi Konaklama Önerisi",
                     stay_title_hotel: "$CITY Seçkin Otel Fırsatları",
-                    stay_title_resort: "$CITY Tatil Köyü & Resort Fırsatları",
-                    stay_title_apart: "$CITY Apart Otel Fırsatları",
+                    stay_title_resort: "$CITY Seçkin Tatil Köyü & Resort Fırsatları",
+                    stay_title_apart: "$CITY Seçkin Apart Otel Fırsatları",
                     stay_cta: "Hemen Rezervasyon Yap",
-                    flight_badge: "✈️ Doğrulanmış Canlı Uçuş",
+                    flight_badge: "✈️ Önerilen Uçuşunuz",
                     flight_cta: "Bileti Şimdi Al",
                     esim_badge: "📶 Anında 5G eSIM İnternet",
-                    esim_title: "Varış Ülkesi İçin 5G eSIM Paketi",
-                    esim_sub: "Dolaşım ücreti olmadan anında aktivasyon",
-                    esim_cta: "eSIM Al",
+                    esim_title: "Dolaşım Ücretsiz 5G Seyahat İnterneti",
+                    esim_sub: "İndiğiniz anda saniyeler içinde yüksek hızda bağlanın",
+                    esim_cta: "İnterneti Aktifleştir",
                     transfer_badge: "🚕 VIP Havalimanı Transferi",
-                    transfer_title: "Özel Havalimanı Karşılama & Transfer",
-                    transfer_sub: "Sabit fiyat ve güvenli karşılama",
+                    transfer_title: "$CITY Özel Havalimanı Karşılama",
+                    transfer_sub: "Sabit fiyatlı ve konforlu özel transfer deneyimi",
                     transfer_cta: "Transferi Ayırt",
-                    activity_badge: "🎟️ Şehir Aktivite & Biletleri",
-                    activity_title: "En Popüler Müze ve Deneyimler",
-                    activity_sub: "Sıra beklemeden anında bilet",
-                    activity_cta: "Biletleri Gör",
-                    car_badge: "🚗 Doğrulanmış Araç Kiralama",
-                    car_title: "Şehir İçi Doğrulanmış Araç Seçenekleri",
-                    car_sub: "Hızlı teslimat ve esnek seçenekler",
+                    activity_badge: "🎟️ $CITY Deneyim & Biletleri",
+                    activity_title: "$CITY En Popüler Müze ve Aktiviteleri",
+                    activity_sub: "Sıra beklemeden anında onaylı deneyimler",
+                    activity_cta: "Aktiviteleri Keşfet",
+                    car_badge: "🚗 $CITY Araç Kiralama",
+                    car_title: "$CITY Güvenilir Araç Kiralama Seçenekleri",
+                    car_sub: "Özgürce seyahat için hızlı teslimat ve esnek seçenekler",
                     car_cta: "Aracını Seç",
-                    persuasion_h: "Seyahatiniz için doğrulanmış gerçek fırsatlar hazır — doğrudan rezervasyon için seçin.",
-                    persuasion_f: "Birebir seçtiğiniz rota ve bilet sınıfına özel doğrudan rezervasyon bağlantısı.",
+                    p_title: "Size Özel Seyahat Planınız Hazır",
+                    p_h: "Seçtiğiniz şehir için en doğru konaklama ve yalnızca bölgenizde sunulan ayrıcalıklı hizmetler.",
+                    p_f: "Seçtiğiniz rota ve kabin sınıfına özel doğrudan rezervasyon ve seyahat ayrıcalıkları.",
+                    p1_t: "Hızlı ve Güvenli Rezervasyon",
+                    p1_d: "Resmi rezervasyon sayfasına tek tıkla ve zahmetsizce ulaşın.",
+                    p2_t: "Şehrinize Özel Seçenekler",
+                    p2_d: "Yalnızca destinasyonunuzda gerçekten sunulan aktivite ve hizmetler listelenir.",
+                    p3_t: "Şeffaf Piyasa Avantajı",
+                    p3_d: "Bütçenizi güvenle planlamanız için en güncel gerçek piyasa fiyatlarını sunarız.",
                     all_turkey: "Tüm Türkiye"
                 },
                 en: {
-                    title_flight: "Deep Live Search for Verified Global Flight Deals...",
-                    title_hotel: "Deep Live Search for Verified Turkey Stay Deals...",
-                    sub_wait: "Checking real-time availability & direct official booking pages (20 seconds)",
-                    sec_left: "s left",
+                    title_flight: "Curating the Best Available Flights for Your Route...",
+                    title_hotel: "Curating Your Ideal Stay in Turkey...",
+                    sub_wait: "Your smart concierge is comparing live fares and local travel essentials (20 seconds)",
+                    sec_left: "s",
                     f_steps: [
-                        "Scanning live fares for your exact global route...",
-                        "Checking cabin class & real market pricing...",
-                        "Verifying destination connectivity & VIP arrival services...",
-                        "Finalizing verified direct booking links..."
+                        "Comparing live fares across your exact route...",
+                        "Selecting the best value for your chosen cabin class...",
+                        "Preparing instant 5G connectivity & arrival comforts...",
+                        "Finalizing your seamless travel plan..."
                     ],
                     h_steps: [
-                        "Scanning verified hotels, resorts & apart-hotels across Turkey...",
-                        "Comparing your budget with real market nightly rates...",
-                        "Checking local attractions, car rentals & 5G eSIM...",
-                        "Finalizing verified direct booking links..."
+                        "Reviewing top-rated stays across your chosen city...",
+                        "Matching stay options with your budget & style...",
+                        "Curating verified local experiences available in your city...",
+                        "Preparing your tailored stay plan..."
                     ],
-                    low_budget_hotel: "Note: Your budget ($USER/night) is below the real market rate here (starts from $MIN/night). Showing the best available real market offers below:",
-                    good_budget_hotel: "Great! Your budget matches real market rates in this city — best verified offers below:",
-                    low_budget_flight: "Note: Your budget ($USER) is below the real market fare ($MIN) for $CLASS on this route. Showing the real market offer for your cabin class below:",
-                    good_budget_flight: "Great! Your budget matches the real market rate for $CLASS — verified offer below:",
+                    low_budget_hotel: "Current market rates in this city start from $MIN/night (your budget: $USER/night) — here is our top-value pick available now:",
+                    good_budget_hotel: "Great match! Your budget fits top-rated stays in this city — here is our top pick for you:",
+                    low_budget_flight: "Current $CLASS fares on this route start from $MIN (your budget: $USER) — here is the best live option for your cabin class:",
+                    good_budget_flight: "Great match! Your budget fits live $CLASS rates on this route — here is your curated flight:",
                     direct_stops_0: "Direct Flight",
                     direct_stops_n: "Stop",
-                    stay_badge_1: "🏨 Verified Stay • Top Pick",
-                    stay_badge_2: "🏨 Verified Stay • Market Alternative",
-                    stay_title_hotel: "Top Verified Hotels in $CITY",
-                    stay_title_resort: "Top Verified Resorts in $CITY",
-                    stay_title_apart: "Top Verified Apart-Hotels in $CITY",
-                    stay_cta: "Book Stay Now",
-                    flight_badge: "✈️ Verified Live Flight",
-                    flight_cta: "Book Flight Now",
+                    stay_badge: "🏨 UcuzaKal Top Stay Pick",
+                    stay_title_hotel: "Top Available Hotels in $CITY",
+                    stay_title_resort: "Top Available Resorts in $CITY",
+                    stay_title_apart: "Top Available Apart-Hotels in $CITY",
+                    stay_cta: "Book Your Stay",
+                    flight_badge: "✈️ Your Curated Flight",
+                    flight_cta: "Book Your Flight",
                     esim_badge: "📶 Instant 5G Travel eSIM",
-                    esim_title: "5G Destination eSIM Data Plan",
-                    esim_sub: "Instant activation with zero roaming fees",
-                    esim_cta: "Get eSIM",
+                    esim_title: "High-Speed 5G Data With Zero Roaming",
+                    esim_sub: "Activate in seconds and stay connected the moment you land",
+                    esim_cta: "Activate 5G Data",
                     transfer_badge: "🚕 VIP Airport Transfer",
-                    transfer_title: "Private Airport Meet & Greet Transfer",
-                    transfer_sub: "Fixed price & reliable arrival pickup",
-                    transfer_cta: "Book Transfer",
-                    activity_badge: "🎟️ City Attractions & Tickets",
-                    activity_title: "Top Verified City Experiences",
-                    activity_sub: "Skip-the-line instant mobile tickets",
-                    activity_cta: "View Tickets",
-                    car_badge: "🚗 Verified Car Rental",
-                    car_title: "Verified City Car Rental Options",
-                    car_sub: "Easy pickup & flexible coverage",
-                    car_cta: "Choose Car",
-                    persuasion_h: "Verified real offers ready for your trip — click any card for direct booking.",
-                    persuasion_f: "Direct verified booking matching your exact route and cabin class.",
+                    transfer_title: "Private Airport Pickup in $CITY",
+                    transfer_sub: "Fixed-price, stress-free meet & greet on arrival",
+                    transfer_cta: "Reserve Transfer",
+                    activity_badge: "🎟️ $CITY Experiences",
+                    activity_title: "Top Attractions & Activities in $CITY",
+                    activity_sub: "Skip-the-line mobile tickets for unforgettable moments",
+                    activity_cta: "Explore Activities",
+                    car_badge: "🚗 $CITY Car Rental",
+                    car_title: "Flexible Car Rentals in $CITY",
+                    car_sub: "Explore at your own pace with easy local pickup",
+                    car_cta: "Choose Your Car",
+                    p_title: "Your Curated Travel Plan Is Ready",
+                    p_h: "Your top handpicked stay for this city, paired only with services genuinely available at your destination.",
+                    p_f: "Direct booking tailored to your exact route and cabin class, with curated arrival essentials.",
+                    p1_t: "Seamless Direct Booking",
+                    p1_d: "Go straight to the official reservation page to lock in your trip effortlessly.",
+                    p2_t: "Tailored to Your City",
+                    p2_d: "We only show tours, rentals, and connectivity truly available for your destination.",
+                    p3_t: "Transparent Market Value",
+                    p3_d: "Clear real-time market pricing so you can plan your trip with total confidence.",
                     all_turkey: "All Turkey"
                 },
                 ru: {
-                    title_flight: "Глубокий поиск актуальных авиабилетов по всем направлениям...",
-                    title_hotel: "Глубокий поиск проверенного жилья по всей Турции...",
-                    sub_wait: "Проверяем реальные рыночные цены и прямые ссылки бронирования (20 сек)",
+                    title_flight: "Подбираем лучшие авиабилеты по вашему маршруту...",
+                    title_hotel: "Подбираем идеальное проживание в выбранном городе...",
+                    sub_wait: "Ваш умный консьерж сравнивает актуальные тарифы и локальные сервисы (20 сек)",
                     sec_left: "сек",
                     f_steps: [
-                        "Поиск живых цен на авиабилеты по вашему маршруту...",
-                        "Проверка выбранного класса билета и рыночных тарифов...",
-                        "Проверка 5G eSIM и трансфера в городе прибытия...",
-                        "Подготовка прямых проверенных ссылок..."
+                        "Сравнение актуальных тарифов по вашему маршруту...",
+                        "Подбор лучшего варианта для выбранного класса перелёта...",
+                        "Подготовка 5G-связи и комфортного трансфера...",
+                        "Оформление вашего персонального плана поездки..."
                     ],
                     h_steps: [
-                        "Поиск отелей, курортов и апарт-отелей в выбранном регионе...",
-                        "Сравнение бюджета с реальными рыночными ценами...",
-                        "Проверка экскурсий, аренды авто и 5G eSIM...",
-                        "Подготовка прямых ссылок бронирования..."
+                        "Отбор лучших вариантов проживания в вашем городе...",
+                        "Сопоставление предложений с вашим бюджетом...",
+                        "Подбор экскурсий и сервисов, доступных именно в этом городе...",
+                        "Подготовка плана поездки к бронированию..."
                     ],
-                    low_budget_hotel: "Внимание: ваш бюджет ($USER/ночь) ниже реальной рыночной цены в этом городе (от $MIN/ночь). Ниже показаны реальные предложения по рыночной цене:",
-                    good_budget_hotel: "Отлично! Ваш бюджет соответствует реальным рыночным ценам — лучшие предложения ниже:",
-                    low_budget_flight: "Внимание: ваш бюджет ($USER) ниже реальной рыночной цены ($MIN) для класса $CLASS на этом маршруте. Ниже показано реальное предложение для выбранного класса:",
-                    good_budget_flight: "Отлично! Ваш бюджет соответствует реальной рыночной цене для класса $CLASS:",
+                    low_budget_hotel: "Текущие рыночные цены в этом городе начинаются от $MIN/ночь (ваш бюджет: $USER/ночь) — лучший доступный вариант сейчас:",
+                    good_budget_hotel: "Отличный выбор! Ваш бюджет подходит для лучших вариантов в этом городе — наша главная рекомендация:",
+                    low_budget_flight: "Текущие тарифы класса $CLASS на этом маршруте начинаются от $MIN (ваш бюджет: $USER) — лучший вариант для вашего класса:",
+                    good_budget_flight: "Отличный выбор! Ваш бюджет полностью соответствует тарифам класса $CLASS — рекомендуемый рейс:",
                     direct_stops_0: "Прямой рейс",
                     direct_stops_n: "Пересадка",
-                    stay_badge_1: "🏨 Проверенное жильё • Выбор UcuzaKal",
-                    stay_badge_2: "🏨 Проверенное жильё • Альтернатива",
+                    stay_badge: "🏨 Лучший выбор UcuzaKal",
                     stay_title_hotel: "Лучшие отели — $CITY",
                     stay_title_resort: "Лучшие курорты (Resort) — $CITY",
                     stay_title_apart: "Лучшие апарт-отели — $CITY",
                     stay_cta: "Забронировать",
-                    flight_badge: "✈️ Проверенный авиарейс",
+                    flight_badge: "✈️ Рекомендуемый рейс",
                     flight_cta: "Купить билет",
                     esim_badge: "📶 Интернет 5G eSIM",
-                    esim_title: "Пакет 5G eSIM для страны прибытия",
-                    esim_sub: "Мгновенная активация без роуминга",
-                    esim_cta: "Оформить eSIM",
+                    esim_title: "Скоростной 5G-интернет без роуминга",
+                    esim_sub: "Мгновенное подключение сразу после прилёта",
+                    esim_cta: "Подключить 5G",
                     transfer_badge: "🚕 VIP-трансфер из аэропорта",
-                    transfer_title: "Индивидуальный трансфер из аэропорта",
-                    transfer_sub: "Фиксированная цена и встреча в зале прилёта",
+                    transfer_title: "Индивидуальный трансфер — $CITY",
+                    transfer_sub: "Фиксированная цена и комфортная встреча в аэропорту",
                     transfer_cta: "Заказать трансфер",
-                    activity_badge: "🎟️ Экскурсии и билеты",
-                    activity_title: "Лучшие достопримечательности города",
-                    activity_sub: "Мгновенные электронные билеты без очереди",
+                    activity_badge: "🎟️ Впечатления — $CITY",
+                    activity_title: "Лучшие экскурсии и билеты в $CITY",
+                    activity_sub: "Электронные билеты без очередей",
                     activity_cta: "Выбрать билеты",
-                    car_badge: "🚗 Проверенная аренда авто",
-                    car_title: "Надёжная аренда автомобилей",
-                    car_sub: "Удобная подача и прозрачные условия",
+                    car_badge: "🚗 Аренда авто — $CITY",
+                    car_title: "Удобная аренда автомобилей в $CITY",
+                    car_sub: "Свобода передвижения и прозрачные условия",
                     car_cta: "Выбрать авто",
-                    persuasion_h: "Проверенные реальные предложения готовы — выберите карточку для прямого бронирования.",
-                    persuasion_f: "Прямая ссылка бронирования точно на выбранный маршрут и класс перелёта.",
+                    p_title: "Ваш персональный план поездки готов",
+                    p_h: "Лучший вариант проживания в выбранном городе и только действительно доступные на месте сервисы.",
+                    p_f: "Прямое бронирование точно по вашему маршруту и классу перелёта с нужными услугами.",
+                    p1_t: "Удобное прямое бронирование",
+                    p1_d: "Мгновенный переход на официальную страницу бронирования без лишних шагов.",
+                    p2_t: "Сервисы именно для вашего города",
+                    p2_d: "Показываем только экскурсии, авто и связь, реально доступные в точке прибытия.",
+                    p3_t: "Прозрачные рыночные цены",
+                    p3_d: "Актуальные тарифы для уверенного и выгодного планирования поездки.",
                     all_turkey: "Вся Турция"
                 }
             };
@@ -4467,10 +4503,9 @@
                 const gw = APPROVED_GATEWAYS[pKey];
                 if (overrideUrl && overrideUrl.startsWith('https://tp.media/')) return overrideUrl;
                 if (overrideUrl && overrideUrl.startsWith('http')) return gw + encodeURIComponent(overrideUrl);
-                const kw = `${cityEn || 'Turkey'} ${accType === 'resort' ? 'resort' : (accType === 'apart' ? 'apart hotel' : 'hotel')}`;
-                return pKey === 'kkday'
-                    ? gw + encodeURIComponent(`https://www.kkday.com/en/product/productlist?keyword=${encodeURIComponent(kw)}`)
-                    : gw + encodeURIComponent(`https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(kw)}`);
+                const stayWord = accType === 'resort' ? 'resort' : (accType === 'apart' ? 'apart hotel' : 'hotel');
+                const safeCity = (cityEn && cityEn.toLowerCase() !== 'all turkey') ? `${cityEn} Turkey` : 'Turkey';
+                return APPROVED_GATEWAYS.klook + encodeURIComponent(`https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(`${safeCity} ${stayWord}`)}&type=hotel`);
             };
 
             window.handleDealImgError = function(imgEl, localPath, remoteUrl) {
@@ -4989,19 +5024,19 @@
             }
 
             function renderPersuasionBox(mode, totalCards) {
-                const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr, d = getDeepDict();
+                const d = getDeepDict();
                 const box = document.getElementById('persuasion-card-box'), titleEl = document.getElementById('persuasion-title'), headEl = document.getElementById('persuasion-headline'), detEl = document.getElementById('persuasion-details'), chev = document.getElementById('persuasion-chevron');
                 if (!box) return;
                 window.currentTripReadinessSet = new Set();
                 window.currentTripTotalCards = Math.max(1, totalCards);
-                if (titleEl) titleEl.textContent = dict.persuasion_title;
-                if (headEl) headEl.textContent = mode === 'flight' ? d.persuasion_f : d.persuasion_h;
+                if (titleEl) titleEl.textContent = d.p_title;
+                if (headEl) headEl.textContent = mode === 'flight' ? d.p_f : d.p_h;
                 if (detEl) {
                     detEl.classList.add('hidden');
                     detEl.innerHTML = `
-                        <div class="rounded-xl p-2.5"><div class="text-[11px] font-extrabold text-brand-goldLight mb-1"><i class="fas fa-shield-alt mx-1"></i>${escHtml(dict.p_pt1_t)}</div><p class="text-[10px] text-slate-200 leading-relaxed">${escHtml(dict.p_pt1_d)}</p></div>
-                        <div class="rounded-xl p-2.5"><div class="text-[11px] font-extrabold text-emerald-300 mb-1"><i class="fas fa-check-double mx-1"></i>${escHtml(dict.p_pt2_t)}</div><p class="text-[10px] text-slate-200 leading-relaxed">${escHtml(dict.p_pt2_d)}</p></div>
-                        <div class="rounded-xl p-2.5"><div class="text-[11px] font-extrabold text-amber-300 mb-1"><i class="fas fa-scale-balanced mx-1"></i>${escHtml(dict.p_pt3_t)}</div><p class="text-[10px] text-slate-200 leading-relaxed">${escHtml(dict.p_pt3_d)}</p></div>`;
+                        <div class="rounded-xl p-2.5"><div class="text-[11px] font-extrabold text-brand-goldLight mb-1"><i class="fas fa-shield-alt mx-1"></i>${escHtml(d.p1_t)}</div><p class="text-[10px] text-slate-200 leading-relaxed">${escHtml(d.p1_d)}</p></div>
+                        <div class="rounded-xl p-2.5"><div class="text-[11px] font-extrabold text-emerald-300 mb-1"><i class="fas fa-sparkles mx-1"></i>${escHtml(d.p2_t)}</div><p class="text-[10px] text-slate-200 leading-relaxed">${escHtml(d.p2_d)}</p></div>
+                        <div class="rounded-xl p-2.5"><div class="text-[11px] font-extrabold text-amber-300 mb-1"><i class="fas fa-gem mx-1"></i>${escHtml(d.p3_t)}</div><p class="text-[10px] text-slate-200 leading-relaxed">${escHtml(d.p3_d)}</p></div>`;
                 }
                 if (chev) chev.className = 'fas fa-chevron-down text-[10px]';
                 box.classList.remove('hidden');
@@ -5035,7 +5070,7 @@
                 if (!grid) return;
                 const safeCards = (cards || []).filter(c => c && window.isValidExternalUrl(c.url));
                 const colClass = safeCards.length === 1 ? 'lg:grid-cols-1 max-w-xl'
-                    : (safeCards.length === 2 ? 'lg:grid-cols-2 max-w-4xl' : (safeCards.length === 3 ? 'lg:grid-cols-3 max-w-5xl' : 'lg:grid-cols-5 max-w-7xl'));
+                    : (safeCards.length === 2 ? 'lg:grid-cols-2 max-w-3xl' : (safeCards.length === 3 ? 'lg:grid-cols-3 max-w-5xl' : 'lg:grid-cols-4 max-w-6xl'));
                 grid.className = `pointer-events-auto mx-auto grid grid-cols-1 sm:grid-cols-2 ${colClass} gap-3`;
                 grid.innerHTML = safeCards.map((c, idx) => `
                     <div id="map-offer-card-${idx}" class="on-map-offer-card">
@@ -5054,7 +5089,7 @@
                     </div>`).join('');
             }
 
-            // 6. مستشار الفنادق والمنتجعات والشقق (81 محافظة تركية + تنبيه الميزانية وعروض السوق)
+            // 6. مستشار الفنادق والمنتجعات والشقق (عرض إقامة واحد دقيق + خدمات نفس المدينة فقط)
             window.startHotelConcierge = async function() {
                 const lang = document.documentElement.lang || 'tr', dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr, d = getDeepDict();
                 const budgetEl = document.getElementById('hc-budget'), daysEl = document.getElementById('hc-days'), guestsEl = document.getElementById('hc-guests');
@@ -5105,45 +5140,73 @@
                 if (!timerDone || sessionId !== window.activeSearchSessionId) return;
                 if (window.ConciergeAudio) window.ConciergeAudio.playLanding();
 
+                // بطاقة إقامة واحدة فقط دقيقة ومطابقة للمدينة والنوع
                 const rooms = Math.max(1, Math.ceil(guests / 2));
                 const estPrice = Math.round((pInfo.minHotel || 58) * (accType === 'resort' ? 1.45 : (accType === 'apart' ? 0.85 : 1.0)) * rooms);
-                const linkCity = isAllTr ? 'Turkey' : pInfo.cityEn;
                 const stayKw = accType === 'resort' ? 'resort' : (accType === 'apart' ? 'apart hotel' : 'hotel');
+                const safeTurkeyCity = isAllTr ? 'Turkey' : `${pInfo.cityEn} Turkey`;
 
-                const staysList = (apiRes && apiRes.found && Array.isArray(apiRes.stays) && apiRes.stays.length > 0)
-                    ? apiRes.stays
-                    : [
-                        { name: null, cityEn: linkCity, cityTr: isAllTr ? 'Antalya' : destVal, stayType: accType, priceUsd: estPrice, affiliateUrl: `${APPROVED_GATEWAYS.klook}${encodeURIComponent(`https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(`${linkCity} ${stayKw}`)}`)}` },
-                        { name: null, cityEn: linkCity, cityTr: isAllTr ? 'Antalya' : destVal, stayType: accType, priceUsd: Math.round(estPrice * 1.08), affiliateUrl: `${APPROVED_GATEWAYS.kkday}${encodeURIComponent(`https://www.kkday.com/en/product/productlist?keyword=${encodeURIComponent(`${linkCity} ${stayKw}`)}`)}` }
-                    ];
+                const bestStay = (apiRes && apiRes.found && Array.isArray(apiRes.stays) && apiRes.stays[0])
+                    ? apiRes.stays[0]
+                    : {
+                        name: null, cityEn: isAllTr ? 'Istanbul' : pInfo.cityEn, cityTr: isAllTr ? 'İstanbul' : destVal,
+                        stayType: accType, priceUsd: estPrice,
+                        affiliateUrl: `${APPROVED_GATEWAYS.klook}${encodeURIComponent(`https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(`${safeTurkeyCity} ${stayKw}`)}&type=hotel`)}`
+                    };
 
-                const minMarketUsd = (apiRes && apiRes.minMarketUsd) ? apiRes.minMarketUsd : staysList[0].priceUsd;
+                const minMarketUsd = (apiRes && apiRes.minMarketUsd) ? apiRes.minMarketUsd : bestStay.priceUsd;
                 const isLow = userBudget < minMarketUsd;
                 showBudgetAlertBanner(isLow, (isLow ? d.low_budget_hotel : d.good_budget_hotel).replace('$USER', `$${Math.round(userBudget)}`).replace('$MIN', `$${minMarketUsd}`));
 
                 const stayTitleTpl = accType === 'resort' ? d.stay_title_resort : (accType === 'apart' ? d.stay_title_apart : d.stay_title_hotel);
-                const cards = staysList.map((st, idx) => {
-                    const cityDisp = formatDestName(st.cityTr || st.cityEn || destVal, lang);
-                    const localTitle = st.name ? (st.i18n ? window.pickDealLocalizedField(st, 'title', st.name, lang) : st.name) : stayTitleTpl.replace('$CITY', cityDisp);
-                    return {
-                        badge: idx === 0 ? d.stay_badge_1 : d.stay_badge_2,
-                        title: localTitle,
-                        sub: `${cityDisp} • ${dict.total_stay} ~$${Math.round(st.priceUsd * days)} (${days} ${dict.days_label || 'Days'})`,
-                        price: `~$${st.priceUsd} ${dict.per_night}`,
-                        cta: d.stay_cta, icon: 'fas fa-hotel', url: st.affiliateUrl
-                    };
-                });
+                const cityDisp = formatDestName(bestStay.cityTr || bestStay.cityEn || destVal, lang);
+                const stayTitle = bestStay.name
+                    ? (bestStay.i18n ? window.pickDealLocalizedField(bestStay, 'title', bestStay.name, lang) : bestStay.name)
+                    : stayTitleTpl.replace('$CITY', cityDisp);
 
+                const cards = [
+                    {
+                        badge: d.stay_badge,
+                        title: stayTitle,
+                        sub: `${cityDisp} • ${dict.total_stay} ~$${Math.round(bestStay.priceUsd * days)} (${days} ${dict.days_label || 'Days'})`,
+                        price: `~$${bestStay.priceUsd} ${dict.per_night}`,
+                        cta: d.stay_cta,
+                        icon: 'fas fa-hotel',
+                        url: bestStay.affiliateUrl
+                    }
+                ];
+
+                // إظهار الأنشطة وتأجير السيارات فقط إذا تأكد الخادم أن لها رابطاً مباشراً لنفس المدينة
                 const add = (apiRes && apiRes.addons) || {};
-                cards.push({ badge: d.activity_badge, title: d.activity_title, sub: d.activity_sub, price: dict.live_price_badge, cta: d.activity_cta, icon: 'fas fa-ticket-alt', url: (add.activity && add.activity.affiliateUrl) || `${APPROVED_GATEWAYS.wegotrip}${encodeURIComponent('https://wegotrip.com/en/')}` });
-                cards.push({ badge: d.car_badge, title: d.car_title, sub: d.car_sub, price: dict.live_price_badge, cta: d.car_cta, icon: 'fas fa-car', url: (add.car && add.car.affiliateUrl) || `${APPROVED_GATEWAYS.localrent}${encodeURIComponent('https://localrent.com/en/turkey/')}` });
-                cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: (add.esim && add.esim.affiliateUrl) || `${APPROVED_GATEWAYS.airalo}${encodeURIComponent('https://www.airalo.com/turkey-esim')}` });
+                if (add.activity && window.isValidExternalUrl(add.activity.affiliateUrl)) {
+                    cards.push({
+                        badge: d.activity_badge.replace('$CITY', cityDisp),
+                        title: d.activity_title.replace('$CITY', cityDisp),
+                        sub: d.activity_sub, price: dict.live_price_badge, cta: d.activity_cta,
+                        icon: 'fas fa-ticket-alt', url: add.activity.affiliateUrl
+                    });
+                }
+                if (add.car && window.isValidExternalUrl(add.car.affiliateUrl)) {
+                    cards.push({
+                        badge: d.car_badge.replace('$CITY', cityDisp),
+                        title: d.car_title.replace('$CITY', cityDisp),
+                        sub: d.car_sub, price: dict.live_price_badge, cta: d.car_cta,
+                        icon: 'fas fa-car', url: add.car.affiliateUrl
+                    });
+                }
+                const esimUrl = (add.esim && window.isValidExternalUrl(add.esim.affiliateUrl))
+                    ? add.esim.affiliateUrl
+                    : `${APPROVED_GATEWAYS.airalo}${encodeURIComponent('https://www.airalo.com/turkey-esim')}`;
+                cards.push({
+                    badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub,
+                    price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: esimUrl
+                });
 
                 renderPersuasionBox('hotel', cards.length);
                 renderConciergeOfferCards(cards);
             };
 
-            // 7. مستشار الطيران (جميع الدول في المساعد + تنبيه الميزانية وعروض سعر السوق)
+            // 7. مستشار الطيران (جميع الدول + شريحة 5G للدول المدعومة + توصيل VIP للدرجات الأعلى)
             function readAndValidateFlightEndpoint(side) {
                 const sel = document.getElementById(`fc-${side}-country`), trCity = document.getElementById(`fc-${side}-tr-city`), wCity = document.getElementById(`fc-${side}-world-city`), airEl = document.getElementById(`fc-${side}-airport`);
                 const code = (sel && sel.selectedIndex >= 0 && sel.options[sel.selectedIndex].getAttribute('data-code')) || '';
@@ -5267,19 +5330,24 @@
                 subParts.push(`~${estHours}h`);
 
                 const cards = [{ badge: `${d.flight_badge} • ${cabinLabel}`, title: `${origDisp} (${fl.origIata}) ✈️ ${destDisp} (${fl.destIata})`, sub: subParts.join(' • '), price: `~$${fl.priceUsd}`, cta: d.flight_cta, icon: 'fas fa-plane', url: fl.affiliateUrl }];
+
                 const add = (apiRes && apiRes.addons) || {};
                 if (cabinClass !== 'economy' && add.transfer && window.isValidExternalUrl(add.transfer.affiliateUrl)) {
-                    cards.push({ badge: d.transfer_badge, title: d.transfer_title, sub: d.transfer_sub, price: dict.live_price_badge, cta: d.transfer_cta, icon: 'fas fa-taxi', url: add.transfer.affiliateUrl });
+                    cards.push({ badge: d.transfer_badge, title: d.transfer_title.replace('$CITY', destDisp), sub: d.transfer_sub, price: dict.live_price_badge, cta: d.transfer_cta, icon: 'fas fa-taxi', url: add.transfer.affiliateUrl });
                 }
-                if (add.esim && window.isValidExternalUrl(add.esim.affiliateUrl)) {
-                    cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: add.esim.affiliateUrl });
+                const destSlug = AIRALO_DEST_SLUGS[String(dest.countryCode || '').toUpperCase()];
+                const flightEsimUrl = (add.esim && window.isValidExternalUrl(add.esim.affiliateUrl))
+                    ? add.esim.affiliateUrl
+                    : (destSlug ? `${APPROVED_GATEWAYS.airalo}${encodeURIComponent(`https://www.airalo.com/${destSlug}-esim`)}` : '');
+                if (flightEsimUrl) {
+                    cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: flightEsimUrl });
                 }
 
                 renderPersuasionBox('flight', cards.length);
                 renderConciergeOfferCards(cards);
             };
 
-            // 8. تحميل مضمون لعروض الفنادق والطيران والمدونة أسفل المساعد (مهلة 15 ثانية + بديل فوري)
+            // 8. تحميل مضمون لعروض الفنادق والطيران والمدونة أسفل المساعد
             async function fetchJsonSafe(url, timeoutMs) {
                 const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
                 const timer = ctrl ? setTimeout(() => ctrl.abort(), timeoutMs || 15000) : null;
@@ -5330,7 +5398,6 @@
                 localizeTurkeySelects();
                 const ts = Date.now();
 
-                // 1) الفنادق والطيران أسفل المساعد
                 (async () => {
                     const localP = fetchJsonSafe(`./live_deals_feed.json?t=${ts}`, 15000);
                     const rawP = fetchJsonSafe(`${RAW_REPO_BASE}/live_deals_feed.json?t=${ts}`, 15000);
@@ -5340,14 +5407,12 @@
                     if (rawData) { applyFeedData(rawData); handleUrlDeepLinks(); }
                 })();
 
-                // 2) الأرشيف الدائم
                 (async () => {
                     let arch = await fetchJsonSafe(`./deals_archive.json?t=${ts}`, 15000);
                     if (!arch || !arch.deals) arch = await fetchJsonSafe(`${RAW_REPO_BASE}/deals_archive.json?t=${ts}`, 15000);
                     if (arch && arch.deals) { window.DEALS_ARCHIVE_MAP = arch.deals; handleUrlDeepLinks(); }
                 })();
 
-                // 3) المدونة أسفل المساعد
                 (async () => {
                     if (!window.ARTICLES_MAP) window.ARTICLES_MAP = {};
                     let blogIdx = await fetchJsonSafe(`./live_blog_index.json?t=${ts}`, 15000);
