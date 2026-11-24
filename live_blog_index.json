@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T06:49:40.485946+00:00",
+  "updatedAt": "2026-11-24T18:41:36.056634+00:00",
   "posts": [
     {
       "slug": "flight-istanbul-istanbul-moskova-20261124",
@@ -28,15 +28,52 @@
         "ru": "Грамотный выбор дат и тарифа на маршруте Стамбул ➔ Москва позволяет сократить расходы на перелет до 46% и найти живые билеты от $81. В этом экспертном гиде собраны сравнения тарифов, правила багажа и точная логистика аэропортов.",
         "en": "Timing your Istanbul ➔ Moscow flight properly can trim airfare costs by up to 46%, unlocking verified live fares starting from $81. This 2026 blueprint breaks down airline tiers, hidden baggage fees, and door-to-hotel transfer math."
       },
-      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261124/hero.webp?v=f2b32e2f77",
-      "heroHash": "f2b32e2f77",
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-20261124/hero.webp?v=cbd0de90f7",
+      "heroHash": "cbd0de90f7",
       "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/flight-istanbul-istanbul-moskova-20261124.json",
       "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FAYT2912VKO1",
       "price": "$81",
-      "wordCountTr": 2096,
+      "wordCountTr": 2097,
       "readingTimeMin": 10,
-      "publishedAt": "2026-11-24T06:49:40.485946+00:00",
-      "updatedAt": "2026-11-24T06:49:40.485946+00:00"
+      "publishedAt": "2026-11-24T18:41:36.056634+00:00",
+      "updatedAt": "2026-11-24T18:41:36.056634+00:00"
+    },
+    {
+      "slug": "hotel-istanbul-rehberi-20261124",
+      "category": "hotel",
+      "templateType": "hotel_blog",
+      "status": "published",
+      "city": "İstanbul",
+      "cityEn": "Istanbul",
+      "cities": {
+        "tr": "İstanbul",
+        "ar": "إسطنبول",
+        "ru": "Стамбул",
+        "en": "Istanbul"
+      },
+      "title": "İstanbul Otel, Resort ve Apart Rehberi (2026): $132'dan Başlayan En İyi Bölgeler",
+      "excerpt": "İstanbul seyahatinizde doğru semti ve konaklama tipini seçmek hem tatil konforunuzu ikiye katlar hem de toplam bütçenizde %25 gerçek tasarruf yaratır. Bu 2026 başucu rehberinde güncel $132 fırsatıyla birlikte en iyi bölgeleri, günlük harcamaları ve saha ipuçlarını şeffaf biçimde karşılaştırdık.",
+      "titles": {
+        "tr": "İstanbul Otel, Resort ve Apart Rehberi (2026): $132'dan Başlayan En İyi Bölgeler",
+        "ar": "دليل فنادق ومنتجعات وشقق إسطنبول الفندقية (2026): أفضل الأحياء من $132",
+        "ru": "Лучшие отели, курорты и апартаменты: Стамбул (2026) — от $132 (-25%)",
+        "en": "Istanbul Hotels, Resorts & Apartments Guide (2026): Best Areas from $132"
+      },
+      "excerpts": {
+        "tr": "İstanbul seyahatinizde doğru semti ve konaklama tipini seçmek hem tatil konforunuzu ikiye katlar hem de toplam bütçenizde %25 gerçek tasarruf yaratır. Bu 2026 başucu rehberinde güncel $132 fırsatıyla birlikte en iyi bölgeleri, günlük harcamaları ve saha ipuçlarını şeffaf biçimde karşılaştırdık.",
+        "ar": "اختيار الحي الصحيح ونوع الإقامة المناسب في إسطنبول هو الفارق الحقيقي بين رحلة عادية وتجربة فاخرة بتوفير يصل إلى 25%. في هذا الدليل السياحي الشامل لعام 2026 نضع بين يديك مقارنة ميدانية دقيقة لأفضل الأحياء والأسعار الحية ابتداءً من $132 مع جدول ميزانية وخطة يومية متكاملة.",
+        "ru": "Правильный выбор района и формата проживания в городе Стамбул помогает сэкономить до 25% бюджета без потери комфорта. В этом подробном гиде 2026 года собраны сравнения районов, реальные расходы и проверенные предложения от $132.",
+        "en": "Picking the right neighborhood and stay format in Istanbul can trim your trip budget by up to 25% while dramatically elevating comfort. This 2026 editorial guide compares top districts, real daily budgets, airport logistics, and verified live deals from $132."
+      },
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-rehberi-20261124/hero.webp?v=092ebccbdf",
+      "heroHash": "092ebccbdf",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-istanbul-rehberi-20261124.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fhotels%2Fsearchresult%2F%3Fcity_name%3DIstanbul%26check_in%3D2026-12-08%26check_out%3D2026-12-11%26adult_num%3D2%26room_num%3D1%26keyword%3DBosphorus%2520Besiktas%2520Istanbul%2520Hotel",
+      "price": "$132",
+      "wordCountTr": 2149,
+      "readingTimeMin": 10,
+      "publishedAt": "2026-11-24T18:41:11.084242+00:00",
+      "updatedAt": "2026-11-24T18:41:11.084242+00:00"
     },
     {
       "slug": "hotel-ankara-rehberi-20261124",
@@ -705,5 +742,5 @@
       "updatedAt": "2026-11-23T07:54:32.618569+00:00"
     }
   ],
-  "totalPosts": 19
+  "totalPosts": 20
 }
