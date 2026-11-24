@@ -4100,10 +4100,14 @@
         });
     </script>
 <!-- ========================================================================= -->
-    <!-- الجزء 4 من 4: محرك البحث العميق الحيّ (20 ثانية) + الشركاء الرسميون حصراً -->
+    <!-- الجزء 4 من 4: محرك البحث العميق (20 ثانية) + هوية UcuzaKal الصافية + خريطة واضحة -->
     <!-- ========================================================================= -->
     <style>
-        /* إصلاح خلفية الصناديق الشفافة فوق الخريطة فقط دون المساس بأي تصميم سابق */
+        /* إصلاح خلفية الشريط العلوي والصناديق فوق الخريطة + إبراز علامات الوجهات بوضوح تام */
+        #cinematic-overlay > div:first-of-type,
+        #cinematic-overlay .top-0 {
+            background: linear-gradient(180deg, rgba(6, 11, 24, 0.96) 0%, rgba(6, 11, 24, 0.88) 80%, rgba(6, 11, 24, 0) 100%) !important;
+        }
         #persuasion-card-box,
         #budget-advisor-alert,
         .on-map-offer-card,
@@ -4112,12 +4116,25 @@
             background-color: rgba(6, 11, 24, 0.96) !important;
             backdrop-filter: blur(14px) !important;
             -webkit-backdrop-filter: blur(14px) !important;
-            border-color: rgba(212, 175, 55, 0.45) !important;
-            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.72) !important;
+            border-color: rgba(212, 175, 55, 0.48) !important;
+            box-shadow: 0 14px 36px rgba(0, 0, 0, 0.78) !important;
         }
         #persuasion-details > div {
-            background-color: rgba(15, 23, 42, 0.95) !important;
+            background-color: rgba(15, 23, 42, 0.96) !important;
             border: 1px solid rgba(212, 175, 55, 0.28) !important;
+        }
+        #cinematic-overlay .radar-country-label {
+            background: rgba(6, 11, 24, 0.96) !important;
+            color: #FEF3C7 !important;
+            border: 2px solid #D4AF37 !important;
+            font-weight: 900 !important;
+            font-size: 13px !important;
+            padding: 5px 14px !important;
+            border-radius: 9999px !important;
+            white-space: nowrap !important;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.85) !important;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9) !important;
+            letter-spacing: 0.02em;
         }
         .deep-search-step-item {
             display: flex;
@@ -4146,7 +4163,6 @@
             const RAW_REPO_BASE = "https://raw.githubusercontent.com/ucuzakalturkiye-ui/ucuzakal/main";
             const DEEP_SEARCH_DURATION_MS = 20000;
 
-            // الشركاء الرسميون المعتمدون حصراً بكود marker=798779 و trs=597953
             const APPROVED_GATEWAYS = {
                 aviasales: "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=",
                 klook:     "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=",
@@ -4163,134 +4179,203 @@
                 window.UCUZAKAL_AGENT_CONFIG.gateways = Object.assign({}, APPROVED_GATEWAYS);
             }
 
+            // نصوص بهوية UcuzaKal Türkiye حصراً — صفر ذكر لأسماء المواقع الشريكة للزائر
             const DEEP_I18N = {
                 ar: {
-                    title_flight: "جارٍ البحث العميق في رحلات Aviasales والشركاء الرسميين...",
-                    title_hotel: "جارٍ البحث العميق عن عروض إقامة حقيقية مفحوصة...",
-                    sub_wait: "يُرجى الانتظار — يفحص المستشار الآن التوافر الحيّ وروابط الحجز المباشرة (20 ثانية)",
+                    title_flight: "جارٍ البحث العميق عن أفضل الرحلات الحية المتاحة الآن...",
+                    title_hotel: "جارٍ البحث العميق عن أفضل عروض الإقامة الحقيقية الآن...",
+                    sub_wait: "يُرجى الانتظار — يفحص المستشار الذكي التوافر الفعلي والأسعار الحية (20 ثانية)",
                     sec_left: "ثانية متبقية",
                     f_steps: [
-                        "فحص أسعار Aviasales الحية للمسار والتواريخ القادمة...",
+                        "فحص أسعار الرحلات الحية للمسار والتواريخ القادمة...",
                         "التحقق من الدرجة المطلوبة ومطابقة ميزانيتك بدقة...",
-                        "فحص توافر شريحة Airalo (eSIM) والتوصيل عبر Welcome Pickups (HTTP 200)...",
-                        "تأكيد روابط الحجز المباشرة الخالية من 404 بكود الإحالة..."
+                        "فحص خدمات الوصول والإنترنت المتاحة للوجهة...",
+                        "تأكيد روابط الحجز المباشرة والجاهزة للتنفيذ..."
                     ],
                     h_steps: [
-                        "فحص عروض الإقامة المباشرة المتاحة على Klook و KKday...",
-                        "استبعاد أي جولات أو صفحات بحث فارغة ومطابقة ميزانيتك...",
-                        "فحص الأنشطة (Tiqets / WeGoTrip) والسيارات (Localrent / GetRentacar) و Airalo...",
-                        "التحقق النهائي من صلاحية الروابط المباشرة (HTTP 200)..."
+                        "فحص عروض الإقامة الحقيقية المتاحة حالياً لوجهتك...",
+                        "مطابقة نوع الإقامة وميزانيتك بدقة...",
+                        "فحص الأنشطة والسيارات وشريحة الإنترنت المتاحة للمدينة...",
+                        "التحقق النهائي من صلاحية روابط الحجز المباشرة..."
                     ],
                     no_budget_title: "لا يوجد عروض متاحة لميزانيتك الآن، عد لاحقاً",
-                    no_budget_flight_sub: "أقل سعر حقيقي متاح حالياً على هذا المسار هو $MIN (ميزانيتك المدخلة: $USER). يمكنك رفع الميزانية أو العودة لاحقاً.",
-                    no_budget_hotel_sub: "أقل سعر إقامة حقيقي مفحوص متاح حالياً في هذه المدينة هو $MIN / ليلة (ميزانيتك: $USER). عد لاحقاً أو جرّب تعديل الميزانية.",
-                    no_route_flight_sub: "لم يتوفر عرض طيران حيّ ومؤكد لهذا المسار في اللحظة الحالية. عد لاحقاً للمحاولة من جديد.",
-                    no_stay_sub: "لا يوجد عرض إقامة مباشر ومفحوص متاح حالياً لهذه المدينة على Klook أو KKday. عد لاحقاً.",
+                    no_budget_flight_sub: "أقل سعر حقيقي متاح حالياً على هذا المسار هو $MIN (ميزانيتك المدخلة: $USER). يمكنك تعديل الميزانية أو العودة لاحقاً.",
+                    no_budget_hotel_sub: "أقل سعر إقامة حقيقي متاح حالياً لوجهتك هو $MIN / ليلة (ميزانيتك المدخلة: $USER). يمكنك رفع الميزانية أو العودة لاحقاً.",
+                    no_route_flight_sub: "لا يوجد عرض طيران متاح لهذا المسار في اللحظة الحالية. عد لاحقاً للمحاولة من جديد.",
+                    no_stay_sub: "لا يوجد عرض إقامة متاح حالياً لهذه المنطقة. عد لاحقاً أو اختر مدينة تركية أخرى.",
                     close_retry: "تعديل البحث والعودة",
                     direct_stops_0: "رحلة مباشرة",
                     direct_stops_n: "توقف",
-                    airalo_badge: "📶 شريحة إنترنت 5G • Airalo",
-                    airalo_sub: "باقة إنترنت رسمية مفحوصة للوجهة",
-                    welcome_badge: "🚕 توصيل خاص من المطار • Welcome Pickups",
-                    tiqets_badge: "🎟️ أنشطة ومعالم رسمية • Tiqets",
-                    wegotrip_badge: "🎧 جولات وأنشطة • WeGoTrip",
-                    car_badge: "🚗 تأجير سيارة مفحوص"
+                    stay_badge: "🏨 عرض إقامة موثّق • UcuzaKal",
+                    stay_cta: "احجز الإقامة الآن",
+                    flight_badge: "✈️ رحلة طيران مؤكدة",
+                    flight_cta: "احجز التذكرة الآن",
+                    esim_badge: "📶 شريحة إنترنت 5G للوجهة",
+                    esim_title: "باقة إنترنت 5G فورية عند الوصول",
+                    esim_sub: "تفعيل فوري بدون رسوم تجوال",
+                    esim_cta: "احصل على الشريحة",
+                    transfer_badge: "🚕 توصيل خاص من المطار (VIP)",
+                    transfer_title: "استقبال وتوصيل خاص من المطار",
+                    transfer_sub: "سعر ثابت وحجز فوري عند الوصول",
+                    transfer_cta: "احجز التوصيل",
+                    activity_badge: "🎟️ أنشطة ومعالم المدينة",
+                    activity_title: "أبرز المعالم والتجارب السياحية في المدينة",
+                    activity_sub: "تذاكر مؤكدة وحجز فوري بدون انتظار",
+                    activity_cta: "احجز النشاط",
+                    car_badge: "🚗 تأجير سيارة للمدينة",
+                    car_title: "خيارات تأجير سيارات موثّقة في المدينة",
+                    car_sub: "تسلّم سريع وخيارات تأمين مرنة",
+                    car_cta: "اختر سيارتك",
+                    persuasion_h: "عروض حقيقية ومفحوصة بالكامل لرحلتك — اضغط على أي بطاقة للانتقال مباشرةً لصفحة الحجز.",
+                    persuasion_f: "رابط حجز مباشر لنفس المسار والدرجة التي اخترتها تماماً مع الخدمات المتوفرة لوجهتك.",
+                    all_turkey: "جميع أنحاء تركيا"
                 },
                 tr: {
-                    title_flight: "Aviasales ve Resmi İş Ortaklarında Derin Arama Yapılıyor...",
+                    title_flight: "En Avantajlı Canlı Uçuş Fırsatları Derinlemesine Taranıyor...",
                     title_hotel: "Doğrulanmış Gerçek Konaklama Fırsatları Derinlemesine Taranıyor...",
                     sub_wait: "Lütfen bekleyin — Canlı müsaitlik ve doğrudan rezervasyon bağlantıları doğrulanıyor (20 sn)",
                     sec_left: "sn kaldı",
                     f_steps: [
-                        "Seçili rota için Aviasales canlı fiyatları taranıyor...",
+                        "Seçili rota için güncel canlı uçuş fiyatları taranıyor...",
                         "Bilet sınıfı ve bütçe uyumu doğrulanıyor...",
-                        "Airalo eSIM ve Welcome Pickups transfer uygunluğu (HTTP 200) kontrol ediliyor...",
-                        "404 içermeyen doğrudan rezervasyon linkleri kilitleniyor..."
+                        "Varış noktası için internet ve transfer seçenekleri kontrol ediliyor...",
+                        "Doğrudan rezervasyon bağlantıları hazırlanıyor..."
                     ],
                     h_steps: [
-                        "Klook ve KKday doğrudan konaklama teklifleri taranıyor...",
-                        "Turlar ve boş arama sayfaları elenip bütçeniz kontrol ediliyor...",
-                        "Tiqets, WeGoTrip, Localrent, GetRentacar ve Airalo canlı taranıyor...",
-                        "Son HTTP 200 bağlantı doğrulaması tamamlanıyor..."
+                        "Hedef bölgedeki aktif gerçek konaklama fırsatları taranıyor...",
+                        "Konaklama tipi ve bütçe uyumu kontrol ediliyor...",
+                        "Şehir aktiviteleri, araç kiralama ve eSIM seçenekleri inceleniyor...",
+                        "Doğrudan rezervasyon bağlantıları doğrulanıyor..."
                     ],
                     no_budget_title: "Bütçenize uygun aktif teklif şu an bulunmamaktadır, daha sonra tekrar deneyin",
                     no_budget_flight_sub: "Bu rotadaki en düşük gerçek canlı fiyat $MIN (Girdiğiniz bütçe: $USER). Bütçenizi güncelleyebilir veya daha sonra tekrar deneyebilirsiniz.",
-                    no_budget_hotel_sub: "Bu şehirdeki en düşük doğrulanmış gecelik fiyat $MIN (Bütçeniz: $USER). Daha sonra tekrar kontrol edin.",
-                    no_route_flight_sub: "Bu rota için şu an doğrulanmış canlı uçuş teklifi bulunamadı. Lütfen daha sonra tekrar deneyin.",
-                    no_stay_sub: "Bu şehir için Klook veya KKday üzerinde şu an doğrulanmış doğrudan konaklama teklifi yok. Daha sonra tekrar deneyin.",
+                    no_budget_hotel_sub: "Bu bölgedeki en düşük doğrulanmış gecelik fiyat $MIN (Bütçeniz: $USER). Bütçenizi güncelleyebilir veya daha sonra kontrol edebilirsiniz.",
+                    no_route_flight_sub: "Bu rota için şu an aktif doğrulanmış uçuş teklifi bulunmamaktadır. Daha sonra tekrar deneyin.",
+                    no_stay_sub: "Bu bölge için şu an aktif doğrulanmış konaklama teklifi bulunmamaktadır. Daha sonra tekrar deneyin.",
                     close_retry: "Aramayı Düzenle",
                     direct_stops_0: "Direkt Uçuş",
                     direct_stops_n: "Aktarma",
-                    airalo_badge: "📶 5G eSIM İnternet • Airalo",
-                    airalo_sub: "Doğrulanmış resmi ülke eSIM paketi",
-                    welcome_badge: "🚕 VIP Havalimanı Transferi • Welcome Pickups",
-                    tiqets_badge: "🎟️ Resmi Müze & Etkinlikler • Tiqets",
-                    wegotrip_badge: "🎧 Sesli Turlar • WeGoTrip",
-                    car_badge: "🚗 Doğrulanmış Araç Kiralama"
+                    stay_badge: "🏨 Doğrulanmış Konaklama • UcuzaKal",
+                    stay_cta: "Hemen Rezervasyon Yap",
+                    flight_badge: "✈️ Doğrulanmış Canlı Uçuş",
+                    flight_cta: "Bileti Şimdi Al",
+                    esim_badge: "📶 Anında 5G eSIM İnternet",
+                    esim_title: "Varış Ülkesi İçin 5G eSIM Paketi",
+                    esim_sub: "Dolaşım ücreti olmadan anında aktivasyon",
+                    esim_cta: "eSIM Al",
+                    transfer_badge: "🚕 VIP Havalimanı Transferi",
+                    transfer_title: "Özel Havalimanı Karşılama & Transfer",
+                    transfer_sub: "Sabit fiyat ve güvenli karşılama",
+                    transfer_cta: "Transferi Ayırt",
+                    activity_badge: "🎟️ Şehir Aktivite & Biletleri",
+                    activity_title: "Şehrin En Popüler Müze ve Turları",
+                    activity_sub: "Sıra beklemeden anında bilet",
+                    activity_cta: "Biletleri Gör",
+                    car_badge: "🚗 Doğrulanmış Araç Kiralama",
+                    car_title: "Şehir İçi Doğrulanmış Araç Seçenekleri",
+                    car_sub: "Hızlı teslimat ve esnek seçenekler",
+                    car_cta: "Aracını Seç",
+                    persuasion_h: "Seyahatiniz için doğrulanmış gerçek fırsatlar hazır — doğrudan rezervasyon için seçin.",
+                    persuasion_f: "Birebir seçtiğiniz rota ve bilet sınıfına özel doğrudan rezervasyon bağlantısı.",
+                    all_turkey: "Tüm Türkiye"
                 },
                 en: {
-                    title_flight: "Deep Live Search Across Aviasales & Official Partners...",
+                    title_flight: "Deep Live Search for Verified Flight Deals...",
                     title_hotel: "Deep Live Search for Verified Real Stay Offers...",
-                    sub_wait: "Please wait — verifying live availability & direct booking pages (20 seconds)",
+                    sub_wait: "Please wait — checking real-time availability & direct booking pages (20 seconds)",
                     sec_left: "s left",
                     f_steps: [
-                        "Scanning live Aviasales fares for your exact route...",
+                        "Scanning live fares for your exact route & dates...",
                         "Verifying cabin class & strict budget match...",
-                        "Checking Airalo eSIM & Welcome Pickups live availability (HTTP 200)...",
-                        "Locking verified zero-404 official booking links..."
+                        "Checking destination travel connectivity & arrival services...",
+                        "Finalizing verified direct booking links..."
                     ],
                     h_steps: [
-                        "Scanning direct Klook & KKday stay offers...",
-                        "Filtering out tours/blank pages & checking your budget...",
-                        "Verifying Tiqets, WeGoTrip, Localrent, GetRentacar & Airalo...",
-                        "Final HTTP 200 live link lock..."
+                        "Scanning verified real stay deals for your destination...",
+                        "Matching stay type and nightly budget...",
+                        "Checking local attractions, car rentals & 5G eSIM...",
+                        "Confirming direct verified booking links..."
                     ],
                     no_budget_title: "No offers are available for your budget right now, please check back later",
                     no_budget_flight_sub: "Lowest live verified fare on this route is $MIN (Your budget: $USER). Adjust your budget or check back later.",
-                    no_budget_hotel_sub: "Lowest verified stay rate in this city is $MIN/night (Your budget: $USER). Check back later or adjust your budget.",
+                    no_budget_hotel_sub: "Lowest verified nightly stay rate here is $MIN (Your budget: $USER). Adjust your budget or check back later.",
                     no_route_flight_sub: "No live verified flight offer is available for this route right now. Please try again later.",
-                    no_stay_sub: "No direct verified stay offer is available on Klook or KKday for this city right now. Check back later.",
+                    no_stay_sub: "No verified stay offer is available for this region right now. Please try again later.",
                     close_retry: "Edit Search",
                     direct_stops_0: "Direct Flight",
                     direct_stops_n: "Stop",
-                    airalo_badge: "📶 5G Travel eSIM • Airalo",
-                    airalo_sub: "Verified official destination eSIM",
-                    welcome_badge: "🚕 VIP Airport Transfer • Welcome Pickups",
-                    tiqets_badge: "🎟️ Verified Attractions • Tiqets",
-                    wegotrip_badge: "🎧 Audio Tours • WeGoTrip",
-                    car_badge: "🚗 Verified Car Rental"
+                    stay_badge: "🏨 Verified Stay Offer • UcuzaKal",
+                    stay_cta: "Book Stay Now",
+                    flight_badge: "✈️ Verified Live Flight",
+                    flight_cta: "Book Flight Now",
+                    esim_badge: "📶 Instant 5G Travel eSIM",
+                    esim_title: "5G Destination eSIM Data Plan",
+                    esim_sub: "Instant activation with zero roaming fees",
+                    esim_cta: "Get eSIM",
+                    transfer_badge: "🚕 VIP Airport Transfer",
+                    transfer_title: "Private Airport Meet & Greet Transfer",
+                    transfer_sub: "Fixed price & reliable arrival pickup",
+                    transfer_cta: "Book Transfer",
+                    activity_badge: "🎟️ City Attractions & Tickets",
+                    activity_title: "Top Verified City Experiences & Passes",
+                    activity_sub: "Skip-the-line instant mobile tickets",
+                    activity_cta: "View Tickets",
+                    car_badge: "🚗 Verified Car Rental",
+                    car_title: "Verified City Car Rental Options",
+                    car_sub: "Easy pickup & flexible coverage",
+                    car_cta: "Choose Car",
+                    persuasion_h: "Verified real offers ready for your trip — click any card for direct booking.",
+                    persuasion_f: "Direct verified booking matching your exact route and cabin class.",
+                    all_turkey: "All Turkey"
                 },
                 ru: {
-                    title_flight: "Глубокий поиск реальных рейсов Aviasales и партнёров...",
+                    title_flight: "Глубокий поиск актуальных авиабилетов...",
                     title_hotel: "Глубокий поиск проверенных отелей...",
                     sub_wait: "Пожалуйста, подождите — проверяем наличие и прямые ссылки (20 секунд)",
                     sec_left: "сек",
                     f_steps: [
-                        "Поиск живых цен Aviasales по вашему маршруту...",
+                        "Поиск живых цен на авиабилеты по вашему маршруту...",
                         "Проверка класса билета и соответствия бюджету...",
-                        "Проверка Airalo eSIM и трансфера Welcome Pickups (HTTP 200)...",
-                        "Фиксация прямых проверенных ссылок бронирования..."
+                        "Проверка мобильной связи и трансфера в городе прибытия...",
+                        "Подготовка прямых проверенных ссылок бронирования..."
                     ],
                     h_steps: [
-                        "Поиск прямых предложений отелей на Klook и KKday...",
-                        "Фильтрация туров и проверка вашего бюджета...",
-                        "Проверка Tiqets, WeGoTrip, Localrent, GetRentacar и Airalo...",
-                        "Финальная проверка ссылок HTTP 200..."
+                        "Поиск реальных проверенных предложений жилья...",
+                        "Сопоставление типа жилья и вашего бюджета...",
+                        "Проверка экскурсий, аренды авто и 5G eSIM...",
+                        "Финальная проверка прямых ссылок..."
                     ],
                     no_budget_title: "Сейчас нет доступных предложений под ваш бюджет, зайдите позже",
                     no_budget_flight_sub: "Минимальная реальная цена на этом маршруте сейчас $MIN (Ваш бюджет: $USER). Измените бюджет или зайдите позже.",
-                    no_budget_hotel_sub: "Минимальная реальная цена в этом городе $MIN/ночь (Ваш бюджет: $USER). Зайдите позже.",
+                    no_budget_hotel_sub: "Минимальная реальная цена за ночь здесь $MIN (Ваш бюджет: $USER). Измените бюджет или зайдите позже.",
                     no_route_flight_sub: "На данный момент нет доступного проверенного рейса по этому маршруту. Попробуйте позже.",
-                    no_stay_sub: "Сейчас нет прямого проверенного предложения жилья для этого города. Попробуйте позже.",
+                    no_stay_sub: "Сейчас нет доступного проверенного предложения жилья для этого региона. Попробуйте позже.",
                     close_retry: "Изменить поиск",
                     direct_stops_0: "Прямой рейс",
                     direct_stops_n: "Пересадка",
-                    airalo_badge: "📶 5G eSIM Интернет • Airalo",
-                    airalo_sub: "Проверенный пакет eSIM для страны прибытия",
-                    welcome_badge: "🚕 VIP-трансфер из аэропорта • Welcome Pickups",
-                    tiqets_badge: "🎟️ Билеты и экскурсии • Tiqets",
-                    wegotrip_badge: "🎧 Аудиогиды • WeGoTrip",
-                    car_badge: "🚗 Проверенная аренда авто"
+                    stay_badge: "🏨 Проверенное жильё • UcuzaKal",
+                    stay_cta: "Забронировать",
+                    flight_badge: "✈️ Проверенный авиарейс",
+                    flight_cta: "Купить билет",
+                    esim_badge: "📶 Интернет 5G eSIM",
+                    esim_title: "Пакет 5G eSIM для страны прибытия",
+                    esim_sub: "Мгновенная активация без роуминга",
+                    esim_cta: "Оформить eSIM",
+                    transfer_badge: "🚕 VIP-трансфер из аэропорта",
+                    transfer_title: "Индивидуальный трансфер из аэропорта",
+                    transfer_sub: "Фиксированная цена и встреча в зале прилёта",
+                    transfer_cta: "Заказать трансфер",
+                    activity_badge: "🎟️ Экскурсии и билеты",
+                    activity_title: "Лучшие достопримечательности города",
+                    activity_sub: "Мгновенные электронные билеты без очереди",
+                    activity_cta: "Выбрать билеты",
+                    car_badge: "🚗 Проверенная аренда авто",
+                    car_title: "Надёжная аренда автомобилей в городе",
+                    car_sub: "Удобная подача и прозрачные условия",
+                    car_cta: "Выбрать авто",
+                    persuasion_h: "Проверенные реальные предложения готовы — выберите карточку для прямого бронирования.",
+                    persuasion_f: "Прямая ссылка бронирования точно на выбранный маршрут и класс перелёта.",
+                    all_turkey: "Вся Турция"
                 }
             };
 
@@ -4299,7 +4384,6 @@
                 return DEEP_I18N[lang] || (lang === 'fa' ? DEEP_I18N.ar : DEEP_I18N.en);
             }
 
-            // تعريب أسماء المحافظات التركية في القوائم المنسدلة عند اختيار اللغة العربية فقط
             const AR_PROVINCES = {
                 "Tüm Türkiye": "جميع أنحاء تركيا", "İstanbul": "إسطنبول", "Antalya": "أنطاليا",
                 "İzmir": "إزمير", "Bursa": "بورصة", "Trabzon": "طرابزون", "Ankara": "أنقرة",
@@ -4311,6 +4395,12 @@
                 "Denizli": "دينيزلي (باموكالي)", "Erzurum": "أرضروم", "Bolu": "بولو (أبانت)", "Kocaeli": "كوجالي"
             };
 
+            function formatDestDisplayName(rawName, lang) {
+                if (rawName === 'Tüm Türkiye' || rawName === 'All Turkey') return getDeepDict().all_turkey;
+                if (lang === 'ar' && AR_PROVINCES[rawName]) return AR_PROVINCES[rawName];
+                return window.translateTextStrong(rawName, lang);
+            }
+
             function localizeTurkeySelects() {
                 const lang = document.documentElement.lang || 'tr';
                 ['hc-dest', 'fc-from-tr-city', 'fc-to-tr-city'].forEach(selId => {
@@ -4318,11 +4408,8 @@
                     if (!sel) return;
                     Array.from(sel.options).forEach(opt => {
                         if (!opt.dataset.origLabel) opt.dataset.origLabel = opt.textContent;
-                        if (lang === 'ar' && AR_PROVINCES[opt.value]) {
-                            opt.textContent = AR_PROVINCES[opt.value];
-                        } else {
-                            opt.textContent = opt.dataset.origLabel;
-                        }
+                        if (lang === 'ar' && AR_PROVINCES[opt.value]) opt.textContent = AR_PROVINCES[opt.value];
+                        else opt.textContent = opt.dataset.origLabel;
                     });
                 });
             }
@@ -4381,15 +4468,11 @@
             }
 
             function escHtml(str) {
-                return String(str || '')
-                    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
-                    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+                return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#39;');
             }
 
             function escJs(str) {
-                return String(str || '')
-                    .replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;')
-                    .replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r?\n/g, ' ');
+                return String(str || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\r?\n/g, ' ');
             }
 
             function parseBudgetNum(val) {
@@ -4464,15 +4547,11 @@
                 const rawLink = raw.affiliateUrl || raw.link || raw.url || '';
                 let decodedLink = '';
                 try { decodedLink = decodeURIComponent(rawLink); } catch (e) { decodedLink = rawLink; }
-                const linkMatchesRoute = window.isValidExternalUrl(rawLink)
-                    && decodedLink.toUpperCase().includes(origIata)
-                    && decodedLink.toUpperCase().includes(destIata);
+                const linkMatchesRoute = window.isValidExternalUrl(rawLink) && decodedLink.toUpperCase().includes(origIata) && decodedLink.toUpperCase().includes(destIata);
 
                 const fut = new Date(Date.now() + 14 * 86400000);
                 const ddmm = `${String(fut.getUTCDate()).padStart(2, '0')}${String(fut.getUTCMonth() + 1).padStart(2, '0')}`;
-                const cleanUrl = linkMatchesRoute
-                    ? rawLink
-                    : `${APPROVED_GATEWAYS.aviasales}${encodeURIComponent(`https://www.aviasales.com/search/${origIata}${ddmm}${destIata}1`)}`;
+                const cleanUrl = linkMatchesRoute ? rawLink : `${APPROVED_GATEWAYS.aviasales}${encodeURIComponent(`https://www.aviasales.com/search/${origIata}${ddmm}${destIata}1`)}`;
 
                 const cleanSegment = raw.segment || (
                     ['LED', 'SVO', 'VKO', 'DME', 'KZN', 'AER', 'MOW'].includes(origIata) || ['LED', 'SVO', 'VKO', 'DME', 'MOW'].includes(destIata)
@@ -4484,17 +4563,11 @@
                 return Object.assign({}, raw, {
                     id: raw.id || `flight_deal_${idx + 1}`,
                     dealId: raw.dealId || `F-${origIata}-${destIata}`,
-                    type: 'flight',
-                    originIata, destIata, segment: cleanSegment,
-                    airline: raw.airline || 'Verified Carrier',
-                    departureDate: raw.departureDate || '',
-                    price: cleanPrice,
-                    savingsPct: raw.savingsPct || 0,
-                    remoteImage: raw.image || '',
-                    image: pickFastDealImage(raw),
-                    localImage: raw.localImage || '',
-                    affiliateUrl: cleanUrl,
-                    description: raw.description || ''
+                    type: 'flight', originIata, destIata, segment: cleanSegment,
+                    airline: raw.airline || 'Verified Carrier', departureDate: raw.departureDate || '',
+                    price: cleanPrice, savingsPct: raw.savingsPct || 0,
+                    remoteImage: raw.image || '', image: pickFastDealImage(raw), localImage: raw.localImage || '',
+                    affiliateUrl: cleanUrl, description: raw.description || ''
                 });
             }
 
@@ -4506,35 +4579,25 @@
                 if (/\/activity\/|car-rental|transfer|esim|experiences/i.test(decoded)) return null;
                 const partner = String(raw.partner || 'klook').toLowerCase() === 'kkday' ? 'kkday' : 'klook';
                 return Object.assign({}, raw, {
-                    id: raw.id || `hotel_deal_${idx + 1}`,
-                    dealId: raw.dealId || `H-${idx + 1}`,
-                    type: 'hotel',
-                    stayType: raw.stayType || raw.accType || 'hotel',
-                    partner,
-                    remoteImage: raw.image || '',
-                    image: pickFastDealImage(raw),
-                    localImage: raw.localImage || '',
+                    id: raw.id || `hotel_deal_${idx + 1}`, dealId: raw.dealId || `H-${idx + 1}`,
+                    type: 'hotel', stayType: raw.stayType || raw.accType || 'hotel', partner,
+                    remoteImage: raw.image || '', image: pickFastDealImage(raw), localImage: raw.localImage || '',
                     affiliateUrl: rawUrl
                 });
             }
 
-            // =====================================================================
-            // 1. تسجيل الدخول بحساب Google (Firebase Auth فقط)
-            // =====================================================================
+            // 1. تسجيل الدخول بحساب Google
             function updateAuthButtonUI(user) {
                 const avatarEl = document.getElementById('auth-avatar');
                 const iconEl = document.getElementById('auth-google-icon');
                 const txtEl = document.getElementById('auth-text');
                 const lang = document.documentElement.lang || 'tr';
                 const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-
                 if (user) {
                     const displayName = (user.displayName || (user.email ? user.email.split('@')[0] : 'Member')).split(' ')[0];
                     if (txtEl) { txtEl.removeAttribute('data-i18n'); txtEl.textContent = displayName; }
-                    if (avatarEl && user.photoURL) {
-                        avatarEl.src = user.photoURL; avatarEl.classList.remove('hidden');
-                        if (iconEl) iconEl.classList.add('hidden');
-                    } else if (iconEl) iconEl.classList.remove('hidden');
+                    if (avatarEl && user.photoURL) { avatarEl.src = user.photoURL; avatarEl.classList.remove('hidden'); if (iconEl) iconEl.classList.add('hidden'); }
+                    else if (iconEl) iconEl.classList.remove('hidden');
                 } else {
                     if (avatarEl) { avatarEl.src = ''; avatarEl.classList.add('hidden'); }
                     if (iconEl) iconEl.classList.remove('hidden');
@@ -4565,61 +4628,43 @@
                 }
             };
 
-            // 0 كتابة في Firestore لتوفير 100% من الحصة المجانية
             window.logClickTelemetry = function() {};
 
-            // =====================================================================
-            // 2. التبديل بين المساعدين وحساب الميزانية الكلية
-            // =====================================================================
+            // 2. التبديل بين المساعدين وحساب الميزانية
             window.switchConcierge = function(tab) {
                 const isHotel = tab === 'hotel';
-                const tabH = document.getElementById('tab-hotel');
-                const tabF = document.getElementById('tab-flight');
-                const panH = document.getElementById('panel-hotel');
-                const panF = document.getElementById('panel-flight');
+                const tabH = document.getElementById('tab-hotel'), tabF = document.getElementById('tab-flight');
+                const panH = document.getElementById('panel-hotel'), panF = document.getElementById('panel-flight');
                 if (tabH) tabH.classList.toggle('active', isHotel);
                 if (tabF) tabF.classList.toggle('active', !isHotel);
                 if (panH) panH.classList.toggle('active', isHotel);
                 if (panF) panF.classList.toggle('active', !isHotel);
-                if (!isHotel && typeof window.initFlightSelectors === 'function') {
-                    window.initFlightSelectors(document.documentElement.lang || 'tr');
-                }
+                if (!isHotel && typeof window.initFlightSelectors === 'function') window.initFlightSelectors(document.documentElement.lang || 'tr');
                 localizeTurkeySelects();
             };
 
             window.updateHotelBtnText = function() {
-                const typeSel = document.getElementById('hc-type');
-                const btnSpan = document.getElementById('btn-hotel-text');
+                const typeSel = document.getElementById('hc-type'), btnSpan = document.getElementById('btn-hotel-text');
                 if (!typeSel || !btnSpan) return;
                 const lang = document.documentElement.lang || 'tr';
                 const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                const key = typeSel.value === 'resort' ? 'btn_resort' : (typeSel.value === 'apart' ? 'btn_apart' : 'btn_hotel');
-                btnSpan.textContent = dict[key] || dict.btn_hotel;
+                btnSpan.textContent = dict[typeSel.value === 'resort' ? 'btn_resort' : (typeSel.value === 'apart' ? 'btn_apart' : 'btn_hotel')] || dict.btn_hotel;
             };
 
             window.calculateTotal = function() {
-                const budgetEl = document.getElementById('hc-budget');
-                const daysEl = document.getElementById('hc-days');
-                const guestsEl = document.getElementById('hc-guests');
-                const outEl = document.getElementById('total-calc-display');
+                const budgetEl = document.getElementById('hc-budget'), daysEl = document.getElementById('hc-days'), guestsEl = document.getElementById('hc-guests'), outEl = document.getElementById('total-calc-display');
                 if (!budgetEl || !daysEl || !outEl) return;
-                const perNight = parseBudgetNum(budgetEl.value);
-                const rawDays = parseInt(daysEl.value, 10);
-                const rawGuests = guestsEl ? parseInt(guestsEl.value, 10) : 0;
+                const perNight = parseBudgetNum(budgetEl.value), rawDays = parseInt(daysEl.value, 10), rawGuests = guestsEl ? parseInt(guestsEl.value, 10) : 0;
                 if (perNight > 0 && Number.isFinite(rawDays) && rawDays > 0) {
                     const lang = document.documentElement.lang || 'tr';
                     const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                     const total = Math.round(perNight * rawDays).toLocaleString('en-US');
                     const guestsTxt = (Number.isFinite(rawGuests) && rawGuests > 0) ? ` • ${rawGuests} ${dict.guests_label || 'Guests'}` : '';
                     outEl.textContent = `${dict.total_est || 'Total:'} $${total} (${rawDays} ${dict.days_label || 'Days'}${guestsTxt})`;
-                } else {
-                    outEl.textContent = '';
-                }
+                } else outEl.textContent = '';
             };
 
-            // =====================================================================
-            // 3. عرض بطاقات الفنادق والطيران الرئيسية (نفس التصميم السابق تماماً)
-            // =====================================================================
+            // 3. عرض بطاقات الفنادق والطيران الرئيسية
             window.renderHotels = function() {
                 const container = document.getElementById('hotels-container');
                 if (!container) return;
@@ -4638,45 +4683,26 @@
                     const affUrl = h.affiliateUrl || '';
                     const savBadge = h.savingsPct ? `<span class="absolute top-3 left-3 bg-brand-gold text-black text-[10px] font-black px-2.5 py-1 rounded-full shadow-md">🔥 -${escHtml(h.savingsPct)}%</span>` : '';
                     return `
-                    <div class="gold-animated-frame">
-                        <div class="ultra-luxury-card group">
-                            <a href="${escHtml(affUrl)}"
-                               onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(affUrl)}', 'hotel', '${escJs(titleDisp)}', '${escJs(h.partner || 'klook')}', '${escJs(h.cityEn || h.city || '')}', 'hotel_grid', '${escJs(dealId)}', event)"
-                               class="flex-1 flex flex-col">
-                                <div class="img-frame">
-                                    <img src="${escHtml(imgSrc)}" alt="${escHtml(titleDisp)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(h.localImage || '')}', '${escJs(h.remoteImage || '')}')" class="w-full h-full object-contain">
-                                    ${savBadge}
-                                    <button type="button" title="${escHtml(dict.share_btn_title)}"
-                                        onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
-                                        class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
-                                        <i class="fas fa-share-alt text-xs"></i>
-                                    </button>
+                    <div class="gold-animated-frame"><div class="ultra-luxury-card group">
+                        <a href="${escHtml(affUrl)}" onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(affUrl)}', 'hotel', '${escJs(titleDisp)}', '${escJs(h.partner || 'klook')}', '${escJs(h.cityEn || h.city || '')}', 'hotel_grid', '${escJs(dealId)}', event)" class="flex-1 flex flex-col">
+                            <div class="img-frame">
+                                <img src="${escHtml(imgSrc)}" alt="${escHtml(titleDisp)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(h.localImage || '')}', '${escJs(h.remoteImage || '')}')" class="w-full h-full object-contain">
+                                ${savBadge}
+                                <button type="button" title="${escHtml(dict.share_btn_title)}" onclick="window.copyDealShareLink('${escJs(dealId)}', event)" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer"><i class="fas fa-share-alt text-xs"></i></button>
+                            </div>
+                            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <div class="text-[11px] font-extrabold text-brand-gold uppercase tracking-[0.22em] mb-1.5">🇹🇷 ${escHtml(cityDisp)}</div>
+                                    <h3 class="font-luxury text-lg font-extrabold text-slate-900 dark:text-white leading-snug mb-2 group-hover:text-brand-gold transition">${escHtml(titleDisp)}</h3>
+                                    <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-4">${escHtml(descDisp)}</p>
                                 </div>
-                                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                                    <div>
-                                        <div class="text-[11px] font-extrabold text-brand-gold uppercase tracking-[0.22em] mb-1.5">
-                                            🇹🇷 ${escHtml(cityDisp)}
-                                        </div>
-                                        <h3 class="font-luxury text-lg font-extrabold text-slate-900 dark:text-white leading-snug mb-2 group-hover:text-brand-gold transition">
-                                            ${escHtml(titleDisp)}
-                                        </h3>
-                                        <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-4">
-                                            ${escHtml(descDisp)}
-                                        </p>
-                                    </div>
-                                    <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
-                                        <div>
-                                            <span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span>
-                                            <span class="font-luxury text-xl font-black text-brand-gold">${escHtml(h.price || '')}</span>
-                                        </div>
-                                        <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">
-                                            ${escHtml(dict.book_deal_btn)} <i class="fas fa-arrow-up-right-from-square text-[10px]"></i>
-                                        </span>
-                                    </div>
+                                <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
+                                    <div><span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span><span class="font-luxury text-xl font-black text-brand-gold">${escHtml(h.price || '')}</span></div>
+                                    <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">${escHtml(dict.book_deal_btn)} <i class="fas fa-arrow-up-right-from-square text-[10px]"></i></span>
                                 </div>
-                            </a>
-                        </div>
-                    </div>`;
+                            </div>
+                        </a>
+                    </div></div>`;
                 }).join('');
             };
 
@@ -4698,64 +4724,37 @@
                     const segLabel = f.segment === 'domestic_tr' ? '🇹🇷 DOMESTIC' : (f.segment === 'russia_tr' ? '🇷🇺 ⇄ 🇹🇷' : '🌍 ⇄ 🇹🇷');
                     const cardImg = f.image || window.FALLBACK_DEAL_IMG;
                     return `
-                    <div class="gold-animated-frame">
-                        <div class="ultra-luxury-card group">
-                            <a href="${escHtml(affUrl)}"
-                               onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(affUrl)}', 'flight', '${escJs(routeTitle)}', 'aviasales', '${escJs(f.destCityEn || f.destination || '')}', 'flight_grid', '${escJs(dealId)}', event)"
-                               class="flex flex-col justify-between h-full">
-                                <div class="img-frame">
-                                    <img src="${escHtml(cardImg)}" alt="${escHtml(routeTitle)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(f.localImage || '')}', '${escJs(f.remoteImage || '')}')" class="w-full h-full object-contain">
-                                    <span class="absolute top-3 left-3 bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full">${escHtml(segLabel)}</span>
-                                    <button type="button" title="${escHtml(dict.share_btn_title)}"
-                                        onclick="window.copyDealShareLink('${escJs(dealId)}', event)"
-                                        class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer">
-                                        <i class="fas fa-share-alt text-xs"></i>
-                                    </button>
+                    <div class="gold-animated-frame"><div class="ultra-luxury-card group">
+                        <a href="${escHtml(affUrl)}" onclick="return window.trpZELkorMwhkkpShF5PvT8YnqRCupnLTNG('${escJs(affUrl)}', 'flight', '${escJs(routeTitle)}', 'aviasales', '${escJs(f.destCityEn || f.destination || '')}', 'flight_grid', '${escJs(dealId)}', event)" class="flex flex-col justify-between h-full">
+                            <div class="img-frame">
+                                <img src="${escHtml(cardImg)}" alt="${escHtml(routeTitle)}" loading="lazy" decoding="async" onerror="window.handleDealImgError(this, '${escJs(f.localImage || '')}', '${escJs(f.remoteImage || '')}')" class="w-full h-full object-contain">
+                                <span class="absolute top-3 left-3 bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold px-2.5 py-1 rounded-full">${escHtml(segLabel)}</span>
+                                <button type="button" title="${escHtml(dict.share_btn_title)}" onclick="window.copyDealShareLink('${escJs(dealId)}', event)" class="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-black/75 border border-brand-gold/60 text-brand-gold hover:bg-brand-gold hover:text-black transition flex items-center justify-center cursor-pointer"><i class="fas fa-share-alt text-xs"></i></button>
+                            </div>
+                            <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-2.5">${savBadge}<span class="text-[11px] font-bold text-brand-gold/90 truncate"><i class="fas fa-plane-departure mx-1"></i>${escHtml(f.airline || '')}</span></div>
+                                    <h3 class="font-luxury text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition mb-1.5 leading-snug">${escHtml(routeTitle)}</h3>
+                                    ${f.departureDate ? `<div class="text-[11px] font-semibold text-slate-400 mb-2"><i class="far fa-calendar-alt mx-1 text-brand-gold"></i>${escHtml(f.departureDate)}</div>` : ''}
+                                    <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-5">${escHtml(descDisp)}</p>
                                 </div>
-                                <div class="p-5 sm:p-6 flex-1 flex flex-col justify-between">
-                                    <div>
-                                        <div class="flex items-center gap-2 mb-2.5">
-                                            ${savBadge}
-                                            <span class="text-[11px] font-bold text-brand-gold/90 truncate"><i class="fas fa-plane-departure mx-1"></i>${escHtml(f.airline || '')}</span>
-                                        </div>
-                                        <h3 class="font-luxury text-lg sm:text-xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition mb-1.5 leading-snug">
-                                            ${escHtml(routeTitle)}
-                                        </h3>
-                                        ${f.departureDate ? `<div class="text-[11px] font-semibold text-slate-400 mb-2"><i class="far fa-calendar-alt mx-1 text-brand-gold"></i>${escHtml(f.departureDate)}</div>` : ''}
-                                        <p class="text-xs sm:text-[13px] text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-5">
-                                            ${escHtml(descDisp)}
-                                        </p>
-                                    </div>
-                                    <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
-                                        <div>
-                                            <span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span>
-                                            <span class="font-luxury text-2xl font-black text-brand-gold">${escHtml(f.price || dict.live_price_badge)}</span>
-                                        </div>
-                                        <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">
-                                            ${escHtml(dict.book_deal_btn)} <i class="fas fa-plane text-[10px]"></i>
-                                        </span>
-                                    </div>
+                                <div class="pt-4 border-t border-slate-200 dark:border-white/10 flex items-center justify-between gap-2">
+                                    <div><span class="block text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400">${escHtml(dict.starting_from)}</span><span class="font-luxury text-2xl font-black text-brand-gold">${escHtml(f.price || dict.live_price_badge)}</span></div>
+                                    <span class="px-4 py-2 rounded-full bg-brand-gold text-black text-xs font-extrabold group-hover:shadow-lg group-hover:shadow-brand-gold/30 transition inline-flex items-center gap-1.5">${escHtml(dict.book_deal_btn)} <i class="fas fa-plane text-[10px]"></i></span>
                                 </div>
-                            </a>
-                        </div>
-                    </div>`;
+                            </div>
+                        </a>
+                    </div></div>`;
                 }).join('');
             };
 
-            // =====================================================================
-            // 4. المدونة وقارئ المقالات + شريط التقدم + التقييمات
-            // =====================================================================
+            // 4. المدونة والتقييمات
             window.openArticleModal = function(articleId) {
                 const art = window.ARTICLES_MAP && window.ARTICLES_MAP[articleId];
                 if (!art) return;
                 window.currentOpenArticleId = articleId;
                 const lang = document.documentElement.lang || 'tr';
-                const imgEl = document.getElementById('modal-img');
-                const catEl = document.getElementById('modal-category');
-                const titleEl = document.getElementById('modal-title');
-                const bodyEl = document.getElementById('modal-body');
-                const galleryEl = document.getElementById('modal-gallery');
-                const progEl = document.getElementById('article-read-progress');
+                const imgEl = document.getElementById('modal-img'), catEl = document.getElementById('modal-category'), titleEl = document.getElementById('modal-title'), bodyEl = document.getElementById('modal-body'), galleryEl = document.getElementById('modal-gallery'), progEl = document.getElementById('article-read-progress');
                 if (imgEl) { imgEl.onerror = function() { window.handleSafeImgError(this); }; imgEl.src = resolveArticleCover(art); }
                 if (catEl) catEl.textContent = formatArticleCategoryLabel(art, lang);
                 if (progEl) progEl.style.width = '0%';
@@ -4773,10 +4772,7 @@
                 document.querySelectorAll('script[data-uk-schema="article"]').forEach(s => s.remove());
                 try {
                     const url = new URL(window.location.href);
-                    if (url.searchParams.has('article')) {
-                        url.searchParams.delete('article');
-                        window.history.replaceState({}, '', url.toString());
-                    }
+                    if (url.searchParams.has('article')) { url.searchParams.delete('article'); window.history.replaceState({}, '', url.toString()); }
                 } catch (e) {}
             };
 
@@ -4788,52 +4784,45 @@
             };
 
             window.renderBlogCards = function() {
-                const container = document.getElementById('blog-container');
-                const pagEl = document.getElementById('blog-pagination');
+                const container = document.getElementById('blog-container'), pagEl = document.getElementById('blog-pagination');
                 if (!container) return;
                 const lang = document.documentElement.lang || 'tr';
                 const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                const list = Object.values(window.ARTICLES_MAP || {})
-                    .sort((a, b) => toSortableTime(b.publishedAt || b.createdAt || b.updatedAt || b.date) - toSortableTime(a.publishedAt || a.createdAt || a.updatedAt || a.date));
+                const list = Object.values(window.ARTICLES_MAP || {}).sort((a, b) => toSortableTime(b.publishedAt || b.createdAt || b.updatedAt || b.date) - toSortableTime(a.publishedAt || a.createdAt || a.updatedAt || a.date));
                 if (list.length === 0) {
                     container.innerHTML = `<div class="col-span-full text-center py-10 text-slate-400 text-sm">${escHtml(dict.no_articles_text || dict.no_deals_text)}</div>`;
                     if (pagEl) pagEl.classList.add('hidden');
                     return;
                 }
-                const pageSize = 2;
-                const totalPages = Math.ceil(list.length / pageSize);
+                const pageSize = 2, totalPages = Math.ceil(list.length / pageSize);
                 if (window.blogPageIndex >= totalPages) window.blogPageIndex = 0;
                 const visibleTwo = list.slice(window.blogPageIndex * pageSize, window.blogPageIndex * pageSize + pageSize);
                 container.innerHTML = visibleTwo.map(art => {
-                    const keyId = art.slug || art.id;
-                    const parsed = window.extractArticleContent(art, lang);
+                    const keyId = art.slug || art.id, parsed = window.extractArticleContent(art, lang);
                     const title = window.translateTextStrong(parsed.title || keyId, lang);
                     const plainSnippet = (parsed.excerpt || parsed.body.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' ').trim().slice(0, 185);
-                    const coverImg = resolveArticleCover(art);
-                    const catLabel = formatArticleCategoryLabel(art, lang);
+                    const coverImg = resolveArticleCover(art), catLabel = formatArticleCategoryLabel(art, lang);
                     const readBadge = art.readingTimeMin ? `${art.readingTimeMin} ${dict.min_read || 'min'}` : (dict.editorial_tag || 'EDITORIAL');
                     return `
-                    <div class="gold-animated-frame">
-                        <article onclick="window.openArticleModal('${escJs(keyId)}')" class="editorial-blog-card group">
-                            <div class="editorial-cover-wrap">
-                                <img src="${escHtml(coverImg)}" alt="${escHtml(title)}" loading="lazy" decoding="async" onerror="window.handleSafeImgError(this)">
-                                <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
-                                    <span class="px-3 py-1 rounded-full bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold tracking-[0.18em] uppercase">${escHtml(catLabel)}</span>
-                                    <span class="px-3 py-1 rounded-full bg-brand-gold text-black text-[10px] font-black tracking-wider uppercase shadow-lg"><i class="fas fa-crown mx-1"></i>${escHtml(readBadge)}</span>
-                                </div>
+                    <div class="gold-animated-frame"><article onclick="window.openArticleModal('${escJs(keyId)}')" class="editorial-blog-card group">
+                        <div class="editorial-cover-wrap">
+                            <img src="${escHtml(coverImg)}" alt="${escHtml(title)}" loading="lazy" decoding="async" onerror="window.handleSafeImgError(this)">
+                            <div class="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between gap-2">
+                                <span class="px-3 py-1 rounded-full bg-black/75 border border-brand-gold/55 text-brand-gold text-[10px] font-extrabold tracking-[0.18em] uppercase">${escHtml(catLabel)}</span>
+                                <span class="px-3 py-1 rounded-full bg-brand-gold text-black text-[10px] font-black tracking-wider uppercase shadow-lg"><i class="fas fa-crown mx-1"></i>${escHtml(readBadge)}</span>
                             </div>
-                            <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
-                                <div>
-                                    <h3 class="font-luxury text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition leading-snug mb-3">${escHtml(title)}</h3>
-                                    <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-6">${escHtml(plainSnippet)}${plainSnippet.length >= 180 ? '...' : ''}</p>
-                                </div>
-                                <div class="pt-5 border-t border-slate-200 dark:border-brand-gold/20 flex items-center justify-between gap-3">
-                                    <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-brand-gold group-hover:gap-3 transition-all"><span>${escHtml(dict.read_more)}</span><i class="fas fa-arrow-right text-xs"></i></span>
-                                    <span class="w-9 h-9 rounded-full bg-brand-gold/12 border border-brand-gold/40 text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition flex items-center justify-center"><i class="fas fa-expand-alt text-xs"></i></span>
-                                </div>
+                        </div>
+                        <div class="p-6 sm:p-8 flex-1 flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-luxury text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-brand-gold transition leading-snug mb-3">${escHtml(title)}</h3>
+                                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed line-clamp-3 mb-6">${escHtml(plainSnippet)}${plainSnippet.length >= 180 ? '...' : ''}</p>
                             </div>
-                        </article>
-                    </div>`;
+                            <div class="pt-5 border-t border-slate-200 dark:border-brand-gold/20 flex items-center justify-between gap-3">
+                                <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-brand-gold group-hover:gap-3 transition-all"><span>${escHtml(dict.read_more)}</span><i class="fas fa-arrow-right text-xs"></i></span>
+                                <span class="w-9 h-9 rounded-full bg-brand-gold/12 border border-brand-gold/40 text-brand-gold group-hover:bg-brand-gold group-hover:text-black transition flex items-center justify-center"><i class="fas fa-expand-alt text-xs"></i></span>
+                            </div>
+                        </div>
+                    </article></div>`;
                 }).join('');
                 if (pagEl) {
                     if (totalPages > 1) {
@@ -4852,43 +4841,26 @@
                     const progEl = document.getElementById('article-read-progress');
                     if (!progEl) return;
                     const maxScroll = articleModalEl.scrollHeight - articleModalEl.clientHeight;
-                    const pct = maxScroll > 0 ? Math.min(100, Math.round((articleModalEl.scrollTop / maxScroll) * 100)) : 0;
-                    progEl.style.width = `${pct}%`;
+                    progEl.style.width = `${maxScroll > 0 ? Math.min(100, Math.round((articleModalEl.scrollTop / maxScroll) * 100)) : 0}%`;
                 }, { passive: true });
             }
 
             window.submitReview = function() {
-                const nameEl = document.getElementById('user-review-name');
-                const textEl = document.getElementById('user-review-text');
-                const okEl = document.getElementById('review-success-msg');
+                const nameEl = document.getElementById('user-review-name'), textEl = document.getElementById('user-review-text'), okEl = document.getElementById('review-success-msg');
                 if (!nameEl || !textEl) return;
                 const name = nameEl.value.trim(), text = textEl.value.trim();
                 if (!name || !text) return;
-                if (fbDb) {
-                    fbDb.collection('reviews').add({
-                        name, text, rating: window.selectedRating || 5,
-                        userEmail: (fbAuth && fbAuth.currentUser && fbAuth.currentUser.email) || '',
-                        createdAt: new Date().toISOString()
-                    }).catch(() => {});
-                }
+                if (fbDb) fbDb.collection('reviews').add({ name, text, rating: window.selectedRating || 5, userEmail: (fbAuth && fbAuth.currentUser && fbAuth.currentUser.email) || '', createdAt: new Date().toISOString() }).catch(() => {});
                 nameEl.value = ''; textEl.value = '';
                 if (okEl) okEl.classList.remove('hidden');
             };
 
-            // =====================================================================
-            // 5. محرك الخريطة + شاشة البحث العميق (20 ثانية)
-            // =====================================================================
+            // 5. محرك الخريطة الواضحة + البحث العميق 20 ثانية
             function clearRadarTimers() {
                 (window._radarTimers || []).forEach(t => clearTimeout(t));
                 window._radarTimers = [];
-                if (window._deepSearchInterval) {
-                    clearInterval(window._deepSearchInterval);
-                    window._deepSearchInterval = null;
-                }
-                if (window.flightAnimFrame) {
-                    cancelAnimationFrame(window.flightAnimFrame);
-                    window.flightAnimFrame = null;
-                }
+                if (window._deepSearchInterval) { clearInterval(window._deepSearchInterval); window._deepSearchInterval = null; }
+                if (window.flightAnimFrame) { cancelAnimationFrame(window.flightAnimFrame); window.flightAnimFrame = null; }
             }
 
             window.closeCinematicOverlay = function(fromPopState) {
@@ -4896,11 +4868,7 @@
                 window.activeSearchSessionId++;
                 if (window.ConciergeAudio) window.ConciergeAudio.stopAll();
                 if (window.leafletMapInstance) {
-                    try {
-                        window.leafletMapInstance.stop();
-                        window.leafletMapInstance.closePopup();
-                        if (window.leafletMarkersLayer) window.leafletMarkersLayer.clearLayers();
-                    } catch (e) {}
+                    try { window.leafletMapInstance.stop(); window.leafletMapInstance.closePopup(); if (window.leafletMarkersLayer) window.leafletMarkersLayer.clearLayers(); } catch (e) {}
                 }
                 const overlay = document.getElementById('cinematic-overlay');
                 if (overlay) overlay.classList.remove('active');
@@ -4908,9 +4876,7 @@
                 if (!fromPopState && window._mapHistoryPushed) {
                     window._mapHistoryPushed = false;
                     try { window.history.back(); } catch (e) {}
-                } else {
-                    window._mapHistoryPushed = false;
-                }
+                } else window._mapHistoryPushed = false;
             };
 
             window.addEventListener('popstate', () => {
@@ -4920,9 +4886,7 @@
 
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
-                    window.cancelBookingRedirect();
-                    window.hideArticleModal();
-                    window.hideDealSpotlight();
+                    window.cancelBookingRedirect(); window.hideArticleModal(); window.hideDealSpotlight();
                     const ov = document.getElementById('cinematic-overlay');
                     if (ov && ov.classList.contains('active')) window.closeCinematicOverlay(false);
                 }
@@ -4930,8 +4894,7 @@
 
             window.switchGoogleMapLayer = function(mode) {
                 window.currentMapMode = (mode === 'hybrid') ? 'hybrid' : 'streets';
-                const btnS = document.getElementById('btn-map-streets');
-                const btnH = document.getElementById('btn-map-hybrid');
+                const btnS = document.getElementById('btn-map-streets'), btnH = document.getElementById('btn-map-hybrid');
                 if (btnS) btnS.classList.toggle('active', window.currentMapMode === 'streets');
                 if (btnH) btnH.classList.toggle('active', window.currentMapMode === 'hybrid');
                 if (window.leafletMapInstance && typeof L !== 'undefined') {
@@ -4969,7 +4932,7 @@
                 const turkeyHole = window.TURKEY_BORDER_POLYGON;
                 L.polygon([worldOuter, turkeyHole], { stroke: false, fillColor: '#04070F', fillOpacity: 0.96, interactive: false }).addTo(window.leafletMarkersLayer);
                 L.polyline([...turkeyHole, turkeyHole[0]], { color: '#D4AF37', weight: 2.2, opacity: 0.95, interactive: false }).addTo(window.leafletMarkersLayer);
-                map.setMaxBounds([[33.5, 23.0], [44.2, 47.5]]);
+                map.setMaxBounds([[32.0, 22.0], [45.0, 48.0]]);
                 map.setMinZoom(5);
             }
 
@@ -4987,28 +4950,28 @@
                 if (statusEl) statusEl.textContent = mode === 'flight' ? d.title_flight : d.title_hotel;
 
                 if (gridEl) {
-                    gridEl.className = 'pointer-events-auto mx-auto max-w-2xl';
+                    gridEl.className = 'pointer-events-auto mx-auto max-w-xl';
                     gridEl.innerHTML = `
-                        <div class="deep-search-radar-box rounded-2xl border p-5 sm:p-6 text-white">
-                            <div class="flex items-center justify-between gap-3 mb-3">
+                        <div class="deep-search-radar-box rounded-2xl border p-4 sm:p-5 text-white">
+                            <div class="flex items-center justify-between gap-3 mb-2.5">
                                 <div class="flex items-center gap-2.5">
-                                    <span class="w-9 h-9 rounded-full bg-brand-gold/20 border border-brand-gold/60 text-brand-gold flex items-center justify-center shrink-0">
-                                        <i class="fas fa-satellite-dish fa-spin text-sm"></i>
+                                    <span class="w-8 h-8 rounded-full bg-brand-gold/20 border border-brand-gold/60 text-brand-gold flex items-center justify-center shrink-0">
+                                        <i class="fas fa-satellite-dish fa-spin text-xs"></i>
                                     </span>
                                     <div>
-                                        <div class="text-sm font-extrabold text-brand-goldLight">${escHtml(mode === 'flight' ? d.title_flight : d.title_hotel)}</div>
+                                        <div class="text-xs sm:text-sm font-extrabold text-brand-goldLight">${escHtml(mode === 'flight' ? d.title_flight : d.title_hotel)}</div>
                                         <div class="text-[11px] text-slate-300">${escHtml(d.sub_wait)}</div>
                                     </div>
                                 </div>
-                                <div id="deep-countdown-pill" class="px-3.5 py-1.5 rounded-full bg-brand-gold text-black font-luxury text-xs font-black shrink-0">20 ${escHtml(d.sec_left)}</div>
+                                <div id="deep-countdown-pill" class="px-3 py-1 rounded-full bg-brand-gold text-black font-luxury text-xs font-black shrink-0">20 ${escHtml(d.sec_left)}</div>
                             </div>
-                            <div class="w-full h-2 rounded-full bg-slate-800 overflow-hidden mb-4">
+                            <div class="w-full h-1.5 rounded-full bg-slate-800 overflow-hidden mb-3">
                                 <div id="deep-inner-bar" class="h-full bg-gradient-to-r from-amber-400 via-yellow-300 to-emerald-400 transition-all duration-300" style="width: 4%;"></div>
                             </div>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                 ${steps.map((st, i) => `
                                     <div id="deep-step-${i}" class="deep-search-step-item ${i === 0 ? 'active' : ''}">
-                                        <i class="fas ${i === 0 ? 'fa-circle-notch fa-spin text-brand-gold' : 'fa-circle text-slate-600'} text-[11px] shrink-0"></i>
+                                        <i class="fas ${i === 0 ? 'fa-circle-notch fa-spin text-brand-gold' : 'fa-circle text-slate-600'} text-[10px] shrink-0"></i>
                                         <span>${escHtml(st)}</span>
                                     </div>`).join('')}
                             </div>
@@ -5041,10 +5004,10 @@
                             el.classList.remove('active', 'done');
                             if (i < activeStepIdx || elapsed >= DEEP_SEARCH_DURATION_MS) {
                                 el.classList.add('done');
-                                if (ic) ic.className = 'fas fa-check-circle text-emerald-400 text-[11px] shrink-0';
+                                if (ic) ic.className = 'fas fa-check-circle text-emerald-400 text-[10px] shrink-0';
                             } else if (i === activeStepIdx) {
                                 el.classList.add('active');
-                                if (ic) ic.className = 'fas fa-circle-notch fa-spin text-brand-gold text-[11px] shrink-0';
+                                if (ic) ic.className = 'fas fa-circle-notch fa-spin text-brand-gold text-[10px] shrink-0';
                             }
                         }
 
@@ -5088,16 +5051,16 @@
                 if (statusEl) statusEl.textContent = titleTxt;
                 if (!gridEl) return;
 
-                gridEl.className = 'pointer-events-auto mx-auto max-w-2xl';
+                gridEl.className = 'pointer-events-auto mx-auto max-w-xl';
                 gridEl.innerHTML = `
-                    <div class="no-offers-honest-box rounded-2xl border p-6 text-center text-white">
-                        <div class="w-12 h-12 mx-auto mb-3 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-300 flex items-center justify-center">
-                            <i class="fas fa-info-circle text-xl"></i>
+                    <div class="no-offers-honest-box rounded-2xl border p-4 sm:p-5 text-center text-white">
+                        <div class="inline-flex items-center gap-2 mb-1.5">
+                            <span class="w-8 h-8 rounded-full bg-amber-500/20 border border-amber-400/60 text-amber-300 flex items-center justify-center shrink-0"><i class="fas fa-info-circle text-sm"></i></span>
+                            <h4 class="font-luxury text-sm sm:text-base font-extrabold text-amber-200">${escHtml(titleTxt)}</h4>
                         </div>
-                        <h4 class="font-luxury text-base sm:text-lg font-extrabold text-amber-200 mb-2">${escHtml(titleTxt)}</h4>
-                        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-5">${escHtml(subTxt)}</p>
+                        <p class="text-xs text-slate-200 leading-relaxed mb-3.5">${escHtml(subTxt)}</p>
                         <button type="button" onclick="window.closeCinematicOverlay(false)"
-                            class="px-6 py-2.5 rounded-full bg-brand-gold text-black text-xs font-black hover:opacity-90 transition cursor-pointer">
+                            class="px-5 py-2 rounded-full bg-brand-gold text-black text-xs font-black hover:opacity-90 transition cursor-pointer">
                             <i class="fas fa-sliders-h mx-1.5"></i>${escHtml(d.close_retry)}
                         </button>
                     </div>`;
@@ -5106,6 +5069,7 @@
             function renderPersuasionBox(mode, totalCards) {
                 const lang = document.documentElement.lang || 'tr';
                 const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
+                const d = getDeepDict();
                 const box = document.getElementById('persuasion-card-box');
                 const titleEl = document.getElementById('persuasion-title');
                 const headEl = document.getElementById('persuasion-headline');
@@ -5116,7 +5080,7 @@
                 window.currentTripReadinessSet = new Set();
                 window.currentTripTotalCards = Math.max(1, totalCards);
                 if (titleEl) titleEl.textContent = dict.persuasion_title;
-                if (headEl) headEl.textContent = mode === 'flight' ? dict.persuasion_headline_flight : dict.persuasion_headline_hotel;
+                if (headEl) headEl.textContent = mode === 'flight' ? d.persuasion_f : d.persuasion_h;
                 if (detEl) {
                     detEl.classList.add('hidden');
                     detEl.innerHTML = `
@@ -5130,8 +5094,7 @@
             }
 
             window.togglePersuasionDetails = function() {
-                const detEl = document.getElementById('persuasion-details');
-                const chev = document.getElementById('persuasion-chevron');
+                const detEl = document.getElementById('persuasion-details'), chev = document.getElementById('persuasion-chevron');
                 if (!detEl) return;
                 const isHidden = detEl.classList.toggle('hidden');
                 if (chev) chev.className = isHidden ? 'fas fa-chevron-down text-[10px]' : 'fas fa-chevron-up text-[10px]';
@@ -5147,8 +5110,7 @@
             window.updateTripReadinessUI = function() {
                 const lang = document.documentElement.lang || 'tr';
                 const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
-                const lbl = document.getElementById('readiness-label');
-                const fill = document.getElementById('readiness-bar-fill');
+                const lbl = document.getElementById('readiness-label'), fill = document.getElementById('readiness-bar-fill');
                 const pct = Math.min(100, Math.round((window.currentTripReadinessSet.size / Math.max(1, window.currentTripTotalCards)) * 100));
                 if (lbl) lbl.textContent = pct >= 100 ? dict.readiness_complete : `${dict.readiness_prefix} ${pct}%`;
                 if (fill) fill.style.width = `${Math.max(8, pct)}%`;
@@ -5182,16 +5144,14 @@
             }
 
             // =====================================================================
-            // 6. مستشار الفنادق (20 ثانية بحث عميق + Klook/KKday فقط + صفر عروض وهمية)
+            // 6. مستشار الفنادق (20 ثانية بحث عميق + عروض حقيقية فقط + هوية UcuzaKal)
             // =====================================================================
             window.startHotelConcierge = async function() {
                 const lang = document.documentElement.lang || 'tr';
                 const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                 const d = getDeepDict();
 
-                const budgetEl = document.getElementById('hc-budget');
-                const daysEl = document.getElementById('hc-days');
-                const guestsEl = document.getElementById('hc-guests');
+                const budgetEl = document.getElementById('hc-budget'), daysEl = document.getElementById('hc-days'), guestsEl = document.getElementById('hc-guests');
                 const userBudget = parseBudgetNum(budgetEl && budgetEl.value);
                 const days = parseInt((daysEl && daysEl.value) || '', 10);
                 const guests = parseInt((guestsEl && guestsEl.value) || '', 10);
@@ -5211,31 +5171,32 @@
 
                 const destVal = (document.getElementById('hc-dest') && document.getElementById('hc-dest').value) || 'Tüm Türkiye';
                 const accType = (document.getElementById('hc-type') && document.getElementById('hc-type').value) || 'hotel';
-                const pInfo = window.TURKEY_81_COORDS[destVal] || { cityEn: 'Istanbul', lat: 41.0082, lng: 28.9784 };
-                const cityEn = destVal === 'Tüm Türkiye' ? 'All Turkey' : pInfo.cityEn;
+                const isAllTr = destVal === 'Tüm Türkiye';
+                const pInfo = isAllTr
+                    ? { cityEn: 'All Turkey', lat: 39.2, lng: 35.2 }
+                    : (window.TURKEY_81_COORDS[destVal] || { cityEn: 'Istanbul', lat: 41.0082, lng: 28.9784 });
+                const destLabel = formatDestDisplayName(destVal, lang);
 
                 clearRadarTimers();
                 const sessionId = ++window.activeSearchSessionId;
-                const overlay = document.getElementById('cinematic-overlay');
-                const subEl = document.getElementById('cinematic-summary-sub');
-                const hudEl = document.getElementById('hud-live-telemetry');
+                const overlay = document.getElementById('cinematic-overlay'), subEl = document.getElementById('cinematic-summary-sub'), hudEl = document.getElementById('hud-live-telemetry');
 
                 if (overlay) overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
-                if (!window._mapHistoryPushed) {
-                    try { window.history.pushState({ ukMapOpen: true }, ''); window._mapHistoryPushed = true; } catch (e) {}
-                }
-                if (subEl) subEl.textContent = `🇹🇷 ${window.translateTextStrong(destVal, lang)} • ${days} ${dict.days_label || 'Days'} • ${guests} ${dict.guests_label || 'Guests'} • $${Math.round(userBudget)}`;
-                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span> DEEP LIVE SCAN (20s) • ${escHtml(cityEn.toUpperCase())}`;
+                if (!window._mapHistoryPushed) { try { window.history.pushState({ ukMapOpen: true }, ''); window._mapHistoryPushed = true; } catch (e) {} }
+                if (subEl) subEl.textContent = `🇹🇷 ${destLabel} • ${days} ${dict.days_label || 'Days'} • ${guests} ${dict.guests_label || 'Guests'} • $${Math.round(userBudget)}`;
+                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span> ${escHtml(destLabel)}`;
 
                 if (window.ConciergeAudio) window.ConciergeAudio.playRadarPing(980);
-                const map = ensureLeafletMap([pInfo.lat, pInfo.lng], destVal === 'Tüm Türkiye' ? 6 : 8);
+                const map = ensureLeafletMap([pInfo.lat, pInfo.lng], isAllTr ? 6 : 8);
                 if (map) {
                     applyIsolatedTurkeyMask(map);
+                    // إزاحة الخريطة قليلاً للأعلى بحيث تظهر الوجهة بوضوح كامل فوق الصندوق السفلي
+                    map.panBy([0, 95], { animate: false });
                     L.marker([pInfo.lat, pInfo.lng], {
                         icon: L.divIcon({
                             className: '',
-                            html: `<div class="relative"><div class="radar-pulse-ring"></div><div class="radar-target-dot"></div><div class="radar-country-label">📍 ${escHtml(window.translateTextStrong(destVal, lang))}</div></div>`,
+                            html: `<div class="relative"><div class="radar-pulse-ring"></div><div class="radar-target-dot"></div><div class="radar-country-label">📍 ${escHtml(destLabel)}</div></div>`,
                             iconSize: [0, 0]
                         })
                     }).addTo(window.leafletMarkersLayer);
@@ -5243,14 +5204,14 @@
 
                 const [timerDone, apiRes] = await Promise.all([
                     runDeepSearchProgressUI(sessionId, 'hotel'),
-                    callLiveVerifyEdge({ mode: 'hotel', province: destVal, cityEn, stayType: accType, budgetUsd: userBudget, days, guests })
+                    callLiveVerifyEdge({ mode: 'hotel', province: destVal, cityEn: pInfo.cityEn, stayType: accType, budgetUsd: userBudget, days, guests })
                 ]);
 
                 if (!timerDone || sessionId !== window.activeSearchSessionId) return;
                 if (window.ConciergeAudio) window.ConciergeAudio.playLanding();
 
                 if (!apiRes || !apiRes.found || !Array.isArray(apiRes.stays) || apiRes.stays.length === 0) {
-                    if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> ${escHtml(cityEn.toUpperCase())} — 0 MATCHING OFFERS`;
+                    if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> ${escHtml(destLabel)}`;
                     const subMsg = (apiRes && apiRes.reason === 'below_budget' && apiRes.minMarketUsd)
                         ? d.no_budget_hotel_sub.replace('$MIN', `$${apiRes.minMarketUsd}`).replace('$USER', `$${Math.round(userBudget)}`)
                         : d.no_stay_sub;
@@ -5258,56 +5219,43 @@
                     return;
                 }
 
-                const cards = apiRes.stays.map(st => ({
-                    partner: st.partner,
-                    badge: st.partner === 'kkday' ? (dict.badge_stay_kayak || '🏨 KKday') : (dict.badge_stay_klook || '🏨 Klook'),
-                    title: st.name,
-                    sub: `${dict.total_stay} ~$${Math.round(st.priceUsd * days)} (${days} ${dict.days_label || 'Days'})`,
-                    price: `$${st.priceUsd} ${dict.per_night}`,
-                    cta: st.partner === 'kkday' ? (dict.btn_book_kayak || dict.book_deal_btn) : (dict.btn_book_klook || dict.book_deal_btn),
-                    icon: 'fas fa-hotel',
-                    url: st.affiliateUrl
-                }));
+                const cards = apiRes.stays.map(st => {
+                    const localTitle = st.i18n ? window.pickDealLocalizedField(st, 'title', st.name, lang) : st.name;
+                    const cityDisp = formatDestDisplayName(st.cityTr || st.cityEn || destVal, lang);
+                    return {
+                        badge: d.stay_badge,
+                        title: localTitle,
+                        sub: `${cityDisp} • ${dict.total_stay} ~$${Math.round(st.priceUsd * days)} (${days} ${dict.days_label || 'Days'})`,
+                        price: `$${st.priceUsd} ${dict.per_night}`,
+                        cta: d.stay_cta,
+                        icon: 'fas fa-hotel',
+                        url: st.affiliateUrl
+                    };
+                });
 
                 const add = apiRes.addons || {};
                 if (add.activity && add.activity.affiliateUrl) {
-                    cards.push({
-                        partner: add.activity.partner,
-                        badge: add.activity.partner === 'wegotrip' ? d.wegotrip_badge : d.tiqets_badge,
-                        title: add.activity.title, sub: `${cityEn} • HTTP 200 Verified`,
-                        price: dict.live_price_badge, cta: dict.btn_book_activity, icon: 'fas fa-ticket-alt', url: add.activity.affiliateUrl
-                    });
+                    cards.push({ badge: d.activity_badge, title: d.activity_title, sub: d.activity_sub, price: dict.live_price_badge, cta: d.activity_cta, icon: 'fas fa-ticket-alt', url: add.activity.affiliateUrl });
                 }
                 if (add.car && add.car.affiliateUrl) {
-                    cards.push({
-                        partner: add.car.partner, badge: d.car_badge,
-                        title: add.car.title, sub: `${cityEn} • HTTP 200 Verified`,
-                        price: dict.live_price_badge, cta: dict.btn_rent_car, icon: 'fas fa-car', url: add.car.affiliateUrl
-                    });
+                    cards.push({ badge: d.car_badge, title: d.car_title, sub: d.car_sub, price: dict.live_price_badge, cta: d.car_cta, icon: 'fas fa-car', url: add.car.affiliateUrl });
                 }
                 if (add.esim && add.esim.affiliateUrl) {
-                    cards.push({
-                        partner: 'airalo', badge: d.airalo_badge,
-                        title: add.esim.title, sub: d.airalo_sub,
-                        price: dict.live_price_badge, cta: dict.btn_get_esim, icon: 'fas fa-sim-card', url: add.esim.affiliateUrl
-                    });
+                    cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: add.esim.affiliateUrl });
                 }
 
                 const statusEl = document.getElementById('cinematic-status-title');
                 if (statusEl) statusEl.textContent = dict.radar_step_3;
-                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> ${escHtml(cityEn.toUpperCase())} — ${cards.length} LIVE VERIFIED`;
+                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> ${escHtml(destLabel)} — ${cards.length}`;
                 renderPersuasionBox('hotel', cards.length);
                 renderConciergeOfferCards(cards);
             };
 
             // =====================================================================
-            // 7. مستشار الطيران (20 ثانية بحث عميق + Aviasales حيّ + Airalo & Welcome Pickups حصراً)
+            // 7. مستشار الطيران (20 ثانية بحث عميق + إظهار كلا الوجهتين بوضوح كامل فوق الصندوق)
             // =====================================================================
             function readAndValidateFlightEndpoint(side) {
-                const sel = document.getElementById(`fc-${side}-country`);
-                const trCity = document.getElementById(`fc-${side}-tr-city`);
-                const wCity = document.getElementById(`fc-${side}-world-city`);
-                const airEl = document.getElementById(`fc-${side}-airport`);
+                const sel = document.getElementById(`fc-${side}-country`), trCity = document.getElementById(`fc-${side}-tr-city`), wCity = document.getElementById(`fc-${side}-world-city`), airEl = document.getElementById(`fc-${side}-airport`);
                 const code = (sel && sel.selectedIndex >= 0 && sel.options[sel.selectedIndex].getAttribute('data-code')) || '';
                 const airRaw = (airEl && airEl.value.trim()) || '';
 
@@ -5332,28 +5280,20 @@
                 const dict = (window.TRANSLATIONS && window.TRANSLATIONS[lang]) || window.TRANSLATIONS.tr;
                 const d = getDeepDict();
 
-                const budgetEl = document.getElementById('fc-budget');
-                const classEl = document.getElementById('fc-class');
-                const airlineEl = document.getElementById('fc-airline');
-                const fromCityEl = document.getElementById('fc-from-world-city');
-                const toCityEl = document.getElementById('fc-to-world-city');
-                const fromTrEl = document.getElementById('fc-from-tr-city');
-                const toTrEl = document.getElementById('fc-to-tr-city');
-
+                const budgetEl = document.getElementById('fc-budget'), classEl = document.getElementById('fc-class'), airlineEl = document.getElementById('fc-airline');
+                const fromCityEl = document.getElementById('fc-from-world-city'), toCityEl = document.getElementById('fc-to-world-city'), fromTrEl = document.getElementById('fc-from-tr-city'), toTrEl = document.getElementById('fc-to-tr-city');
                 [budgetEl, classEl, fromCityEl, toCityEl, fromTrEl, toTrEl].forEach(el => { if (el) el.classList.remove('input-error-ring'); });
 
                 const userBudget = parseBudgetNum(budgetEl && budgetEl.value);
                 const cabinClass = (classEl && classEl.value) || '';
                 const preferredAirline = (airlineEl && airlineEl.value.trim()) || '';
-                const origRes = readAndValidateFlightEndpoint('from');
-                const destRes = readAndValidateFlightEndpoint('to');
+                const origRes = readAndValidateFlightEndpoint('from'), destRes = readAndValidateFlightEndpoint('to');
 
                 const missing = [];
                 if (origRes.reason === 'missing') missing.push(origRes.field);
                 if (destRes.reason === 'missing') missing.push(destRes.field);
                 if (!(userBudget > 0)) missing.push(budgetEl);
                 if (!cabinClass) missing.push(classEl);
-
                 if (missing.length > 0) {
                     missing.forEach(el => { if (el) el.classList.add('input-error-ring'); });
                     showInlineFormAlert('fc-validation-msg', dict.err_flight_missing_fields, 'error');
@@ -5367,14 +5307,8 @@
                     if (bad.field) bad.field.focus();
                     return;
                 }
-                if (!origRes.ok || !destRes.ok || !origRes.iata || !destRes.iata) {
-                    showInlineFormAlert('fc-validation-msg', dict.err_flight_no_deals, 'warn');
-                    return;
-                }
-                if (origRes.iata === destRes.iata) {
-                    showInlineFormAlert('fc-validation-msg', dict.err_flight_same_route, 'error');
-                    return;
-                }
+                if (!origRes.ok || !destRes.ok || !origRes.iata || !destRes.iata) { showInlineFormAlert('fc-validation-msg', dict.err_flight_no_deals, 'warn'); return; }
+                if (origRes.iata === destRes.iata) { showInlineFormAlert('fc-validation-msg', dict.err_flight_same_route, 'error'); return; }
                 hideInlineFormAlert('fc-validation-msg');
 
                 clearRadarTimers();
@@ -5382,39 +5316,38 @@
                 const orig = origRes, dest = destRes;
                 const km = Math.max(180, haversineKm(orig.lat, orig.lng, dest.lat, dest.lng));
                 const estHours = Math.max(0.8, Math.round((km / 780) * 10) / 10);
-                const classLabels = {
-                    economy: dict.class_eco || 'Economy', premium: dict.class_prem || 'Premium Economy',
-                    business: dict.class_bus || 'Business Class', first: dict.class_first || 'First Class'
-                };
+                const origDisp = formatDestDisplayName(orig.province || orig.city, lang);
+                const destDisp = formatDestDisplayName(dest.province || dest.city, lang);
+                const classLabels = { economy: dict.class_eco || 'Economy', premium: dict.class_prem || 'Premium', business: dict.class_bus || 'Business', first: dict.class_first || 'First' };
                 const cabinLabel = classLabels[cabinClass] || cabinClass;
 
-                const overlay = document.getElementById('cinematic-overlay');
-                const subEl = document.getElementById('cinematic-summary-sub');
-                const hudEl = document.getElementById('hud-live-telemetry');
-
+                const overlay = document.getElementById('cinematic-overlay'), subEl = document.getElementById('cinematic-summary-sub'), hudEl = document.getElementById('hud-live-telemetry');
                 if (overlay) overlay.classList.add('active');
                 document.body.style.overflow = 'hidden';
-                if (!window._mapHistoryPushed) {
-                    try { window.history.pushState({ ukMapOpen: true }, ''); window._mapHistoryPushed = true; } catch (e) {}
-                }
-                if (subEl) subEl.textContent = `${orig.city} (${orig.iata}) ➔ ✈️ ${dest.city} (${dest.iata}) • ${cabinLabel} • $${Math.round(userBudget)}`;
-                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span> DEEP LIVE SCAN (20s) • ${escHtml(orig.iata)} ➔ ${escHtml(dest.iata)}`;
+                if (!window._mapHistoryPushed) { try { window.history.pushState({ ukMapOpen: true }, ''); window._mapHistoryPushed = true; } catch (e) {} }
+                if (subEl) subEl.textContent = `${origDisp} (${orig.iata}) ➔ ✈️ ${destDisp} (${dest.iata}) • ${cabinLabel} • $${Math.round(userBudget)}`;
+                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse inline-block"></span> ${escHtml(orig.iata)} ➔ ${escHtml(dest.iata)}`;
 
-                const midLat = (orig.lat + dest.lat) / 2;
-                const midLng = (orig.lng + dest.lng) / 2;
+                const midLat = (orig.lat + dest.lat) / 2, midLng = (orig.lng + dest.lng) / 2;
                 const map = ensureLeafletMap([midLat, midLng], 4);
                 if (map && typeof L !== 'undefined') {
                     map.setMaxBounds(null);
                     map.setMinZoom(2);
-                    map.fitBounds(L.latLngBounds([[orig.lat, orig.lng], [dest.lat, dest.lng]]), { padding: [70, 90], maxZoom: 6, animate: false });
+                    // ترك هامش سفلي 290px وعلوي 130px لتظهر كلتا الوجهتين والمسار كاملين بوضوح فوق الصندوق
+                    map.fitBounds(L.latLngBounds([[orig.lat, orig.lng], [dest.lat, dest.lng]]), {
+                        paddingTopLeft: [70, 130],
+                        paddingBottomRight: [70, 290],
+                        maxZoom: 5,
+                        animate: false
+                    });
                     L.marker([orig.lat, orig.lng], {
-                        icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring origin-ring"></div><div class="radar-target-dot origin-dot"></div><div class="radar-country-label">${escHtml(orig.iata)}</div></div>`, iconSize: [0, 0] })
+                        icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring origin-ring"></div><div class="radar-target-dot origin-dot"></div><div class="radar-country-label">🛫 ${escHtml(origDisp)} (${escHtml(orig.iata)})</div></div>`, iconSize: [0, 0] })
                     }).addTo(window.leafletMarkersLayer);
                     L.marker([dest.lat, dest.lng], {
-                        icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring"></div><div class="radar-target-dot"></div><div class="radar-country-label">${escHtml(dest.iata)}</div></div>`, iconSize: [0, 0] })
+                        icon: L.divIcon({ className: '', html: `<div class="relative"><div class="radar-pulse-ring"></div><div class="radar-target-dot"></div><div class="radar-country-label">🛬 ${escHtml(destDisp)} (${escHtml(dest.iata)})</div></div>`, iconSize: [0, 0] })
                     }).addTo(window.leafletMarkersLayer);
 
-                    const ctrlLat = midLat + Math.min(10, km / 460);
+                    const ctrlLat = midLat + Math.min(8, km / 520);
                     const curvePts = [];
                     for (let i = 0; i <= 60; i++) {
                         const t = i / 60;
@@ -5423,7 +5356,7 @@
                             (1 - t) * (1 - t) * orig.lng + 2 * (1 - t) * t * midLng + t * t * dest.lng
                         ]);
                     }
-                    L.polyline(curvePts, { color: '#D4AF37', weight: 2.8, dashArray: '7, 6', opacity: 0.92 }).addTo(window.leafletMarkersLayer);
+                    L.polyline(curvePts, { color: '#D4AF37', weight: 3.2, dashArray: '8, 6', opacity: 0.96 }).addTo(window.leafletMarkersLayer);
 
                     const jetMarker = L.marker(curvePts[0], {
                         icon: L.divIcon({
@@ -5452,11 +5385,9 @@
                 const [timerDone, apiRes] = await Promise.all([
                     runDeepSearchProgressUI(sessionId, 'flight'),
                     callLiveVerifyEdge({
-                        mode: 'flight',
-                        origIata: orig.iata, destIata: dest.iata,
+                        mode: 'flight', origIata: orig.iata, destIata: dest.iata,
                         origCountry: orig.countryCode, destCountry: dest.countryCode,
-                        destCity: dest.city, budgetUsd: userBudget,
-                        cabinClass, airline: preferredAirline
+                        destCity: dest.city, budgetUsd: userBudget, cabinClass, airline: preferredAirline
                     })
                 ]);
 
@@ -5464,7 +5395,7 @@
                 if (window.ConciergeAudio) window.ConciergeAudio.playLanding();
 
                 if (!apiRes || !apiRes.found || !apiRes.flight || !window.isValidExternalUrl(apiRes.flight.affiliateUrl)) {
-                    if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> ${escHtml(orig.iata)} ➔ ${escHtml(dest.iata)} — 0 OFFERS FOR BUDGET`;
+                    if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-400 inline-block"></span> ${escHtml(orig.iata)} ➔ ${escHtml(dest.iata)}`;
                     const subMsg = (apiRes && apiRes.reason === 'below_budget' && apiRes.minMarketUsd)
                         ? d.no_budget_flight_sub.replace('$MIN', `$${apiRes.minMarketUsd}`).replace('$USER', `$${Math.round(userBudget)}`)
                         : d.no_route_flight_sub;
@@ -5476,12 +5407,11 @@
                 const stopTxt = fl.transfers === 0 ? d.direct_stops_0 : `${d.direct_stops_n} (${fl.transfers})`;
                 const cards = [
                     {
-                        partner: 'aviasales',
-                        badge: `${dict.badge_flight} • ${cabinLabel}`,
-                        title: `${orig.city} (${fl.origIata}) ✈️ ${dest.city} (${fl.destIata})`,
+                        badge: `${d.flight_badge} • ${cabinLabel}`,
+                        title: `${origDisp} (${fl.origIata}) ✈️ ${destDisp} (${fl.destIata})`,
                         sub: `${fl.airline} • ${stopTxt}${fl.departureDate ? ' • ' + fl.departureDate : ''} • ~${estHours}h`,
                         price: `$${fl.priceUsd}`,
-                        cta: dict.book_deal_btn,
+                        cta: d.flight_cta,
                         icon: 'fas fa-plane',
                         url: fl.affiliateUrl
                     }
@@ -5489,54 +5419,20 @@
 
                 const add = apiRes.addons || {};
                 if (cabinClass !== 'economy' && add.transfer && window.isValidExternalUrl(add.transfer.affiliateUrl)) {
-                    cards.push({
-                        partner: 'welcome',
-                        badge: d.welcome_badge,
-                        title: add.transfer.title,
-                        sub: `${cabinLabel} VIP Arrival • ${dest.iata} • HTTP 200`,
-                        price: dict.live_price_badge,
-                        cta: dict.btn_book_transfer,
-                        icon: 'fas fa-taxi',
-                        url: add.transfer.affiliateUrl
-                    });
+                    cards.push({ badge: d.transfer_badge, title: d.transfer_title, sub: d.transfer_sub, price: dict.live_price_badge, cta: d.transfer_cta, icon: 'fas fa-taxi', url: add.transfer.affiliateUrl });
                 }
                 if (add.esim && window.isValidExternalUrl(add.esim.affiliateUrl)) {
-                    cards.push({
-                        partner: 'airalo',
-                        badge: d.airalo_badge,
-                        title: add.esim.title,
-                        sub: d.airalo_sub,
-                        price: dict.live_price_badge,
-                        cta: dict.btn_get_esim,
-                        icon: 'fas fa-sim-card',
-                        url: add.esim.affiliateUrl
-                    });
+                    cards.push({ badge: d.esim_badge, title: d.esim_title, sub: d.esim_sub, price: dict.live_price_badge, cta: d.esim_cta, icon: 'fas fa-sim-card', url: add.esim.affiliateUrl });
                 }
 
                 const statusEl = document.getElementById('cinematic-status-title');
                 if (statusEl) statusEl.textContent = dict.radar_step_3;
-                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> ${escHtml(fl.origIata)} ➔ ${escHtml(fl.destIata)} — ${cards.length} LIVE VERIFIED`;
-
-                if (map && typeof L !== 'undefined') {
-                    L.popup({ closeButton: true, autoClose: false, offset: [0, -14] })
-                        .setLatLng([dest.lat, dest.lng])
-                        .setContent(`
-                            <div class="text-center p-1">
-                                <div class="text-xs font-black text-brand-gold mb-1">${escHtml(fl.origIata)} ✈️ ${escHtml(fl.destIata)}</div>
-                                <div class="text-[10px] text-slate-200 mb-2">${escHtml(cabinLabel)} • $${fl.priceUsd}</div>
-                                <a href="${escHtml(fl.affiliateUrl)}" target="_blank" rel="noopener noreferrer"
-                                   class="inline-block px-4 py-1.5 rounded-full bg-brand-gold text-black text-[11px] font-black">${escHtml(dict.book_deal_btn)}</a>
-                            </div>`)
-                        .openOn(map);
-                }
-
+                if (hudEl) hudEl.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 inline-block"></span> ${escHtml(fl.origIata)} ➔ ${escHtml(fl.destIata)} — ${cards.length}`;
                 renderPersuasionBox('flight', cards.length);
                 renderConciergeOfferCards(cards);
             };
 
-            // =====================================================================
             // 8. تحميل ملف العروض الرئيسي والأرشيف والمدونة
-            // =====================================================================
             async function fetchJsonWithTimeout(url, timeoutMs) {
                 const ctrl = typeof AbortController !== 'undefined' ? new AbortController() : null;
                 const timer = ctrl ? setTimeout(() => ctrl.abort(), timeoutMs || 4500) : null;
@@ -5544,11 +5440,8 @@
                     const r = await fetch(url, { cache: 'no-store', signal: ctrl ? ctrl.signal : undefined });
                     if (!r.ok) return null;
                     return await r.json();
-                } catch (e) {
-                    return null;
-                } finally {
-                    if (timer) clearTimeout(timer);
-                }
+                } catch (e) { return null; }
+                finally { if (timer) clearTimeout(timer); }
             }
 
             let currentFeedUpdatedTs = 0;
@@ -5570,15 +5463,9 @@
             function handleUrlDeepLinks() {
                 try {
                     const params = new URLSearchParams(window.location.search);
-                    const dealParam = params.get('deal');
-                    const articleParam = params.get('article');
-                    if (dealParam && !window._deepLinkHandled) {
-                        window._deepLinkHandled = true;
-                        window.openDealSpotlightById(dealParam);
-                    } else if (articleParam && window.ARTICLES_MAP[articleParam] && !window._deepLinkHandled) {
-                        window._deepLinkHandled = true;
-                        window.openArticleModal(articleParam);
-                    }
+                    const dealParam = params.get('deal'), articleParam = params.get('article');
+                    if (dealParam && !window._deepLinkHandled) { window._deepLinkHandled = true; window.openDealSpotlightById(dealParam); }
+                    else if (articleParam && window.ARTICLES_MAP[articleParam] && !window._deepLinkHandled) { window._deepLinkHandled = true; window.openArticleModal(articleParam); }
                 } catch (e) {}
             }
 
@@ -5617,9 +5504,7 @@
                 })();
             }
 
-            document.addEventListener('DOMContentLoaded', () => {
-                bootstrapPlatformData();
-            });
+            document.addEventListener('DOMContentLoaded', () => { bootstrapPlatformData(); });
         })();
     </script>
 </body>
