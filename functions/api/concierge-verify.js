@@ -1,9 +1,8 @@
 /**
- * UcuzaKal Türkiye — Live Concierge Engine (v3.3)
+ * UcuzaKal Türkiye — Live Concierge Engine (v3.4)
+ * - Fixes Tiqets redirect bug (uses exact city+Turkey query instead of wrong numeric IDs).
+ * - Blocks legacy blank Klook /hotels/ URLs from live_deals_feed.json.
  * - Exact Aviasales cabin class links (w1/c1/f1) + live v3/v1/v2 fare lookup.
- * - Strictly 1 accurate stay offer per search + per-room/per-guest math.
- * - Confirmed exact-city Activities (Tiqets) & Car Rentals (Localrent) for supported Turkish cities only.
- * - Confirmed Airalo 5G eSIM + Welcome Pickups VIP transfer (non-economy).
  * - Exclusive approved gateways (marker=798779, trs=597953). Zero Firebase/GitHub quota.
  */
 
@@ -76,18 +75,24 @@ const WELCOME_SLUGS = {
     "new york": "new-york", lisbon: "lisbon", brussels: "brussels",
 };
 
-// المدن التركية المؤكدة بصفحات أنشطة مباشرة (لا تتحول لصفحات عامة أو دول أخرى)
-const TIQETS_EXACT_SLUGS = {
-    istanbul: "istanbul-c60711",
-    antalya: "antalya-c79888",
-    izmir: "izmir-c80036",
-    bodrum: "bodrum-c79923",
-    mugla: "bodrum-c79923",
-    cappadocia: "cappadocia-c166298",
-    nevsehir: "cappadocia-c166298",
+// المدن التركية السياحية المدعومة ببحث Tiqets المباشر (بدون معرّفات رقمية خاطئة)
+const TIQETS_TR_CITIES = {
+    istanbul: "Istanbul",
+    antalya: "Antalya",
+    izmir: "Izmir",
+    bodrum: "Bodrum",
+    mugla: "Bodrum",
+    cappadocia: "Cappadocia",
+    nevsehir: "Cappadocia",
+    alanya: "Alanya",
+    fethiye: "Fethiye",
+    marmaris: "Marmaris",
+    ankara: "Ankara",
+    bursa: "Bursa",
+    trabzon: "Trabzon",
 };
 
-// المدن التركية المؤكدة بصفحات تأجير سيارات مباشرة في Localrent (لا تتحول لأنطاليا)
+// المدن التركية المؤكدة بصفحات مستقلة في Localrent
 const LOCALRENT_EXACT_TR = {
     istanbul: "istanbul",
     antalya: "antalya",
@@ -104,7 +109,6 @@ const LOCALRENT_EXACT_TR = {
     mugla: "bodrum",
 };
 
-// أسعار بداية السوق الواقعية لكل غرفة/ليلة في المدن التركية (متوافقة مع أسعار Klook الفعلية)
 const REAL_ROOM_FLOOR_USD = {
     istanbul: 34, antalya: 32, izmir: 36, bursa: 35, trabzon: 36,
     ankara: 34, mugla: 45, bodrum: 48, nevsehir: 40, cappadocia: 40,
@@ -148,7 +152,6 @@ const airportMatches = (r1, r2) => {
     return !a || (CITY_GROUPS[b] || [b]).includes(a);
 };
 
-// صيغة Aviasales الرسمية الدقيقة لدرجات التذكرة (الحرف الصغير قبل عدد الركاب: w1 / c1 / f1)
 function buildFlightUrl(orig, dest, depDate, cabinClass, rawLink) {
     const o = orig.toUpperCase(), d = dest.toUpperCase();
     const cls = { economy: "", premium: "w", business: "c", first: "f" }[cabinClass] ?? "";
@@ -242,9 +245,11 @@ function resolveExactTransfer(cityEn) {
     return slug ? { affiliateUrl: wrapAff("welcome", `https://www.welcomepickups.com/${slug}/airport-transfer-book/`) } : null;
 }
 
+// بحث Tiqets المباشر باسم المدينة التركية فقط (يمنع التحويل لأمريكا أو بلجيكا نهائياً)
 function resolveExactActivity(cityEn) {
-    const ts = TIQETS_EXACT_SLUGS[normCity(cityEn)];
-    return ts ? { affiliateUrl: wrapAff("tiqets", `https://www.tiqets.com/en/${ts}/`) } : null;
+    const cleanCity = TIQETS_TR_CITIES[normCity(cityEn)];
+    if (!cleanCity) return null;
+    return { affiliateUrl: wrapAff("tiqets", `https://www.tiqets.com/en/search?q=${encodeURIComponent(`${cleanCity} Turkey`)}`) };
 }
 
 function resolveExactCar(cityEn) {
@@ -256,6 +261,16 @@ function buildAccurateKlookStayUrl(cityEn, stayType) {
     const stayWord = stayType === "resort" ? "resort" : (stayType === "apart" ? "apart hotel" : "hotel");
     const safeCity = (cityEn && normCity(cityEn) !== "all turkey") ? `${cityEn} Turkey` : "Turkey";
     return wrapAff("klook", `https://www.klook.com/en-US/search/result/?query=${encodeURIComponent(`${safeCity} ${stayWord}`)}&type=hotel&sort=price_asc`);
+}
+
+// كشف ورفض روابط Klook الفارغة القديمة (/hotels/) التي تفتح خانة Where to?
+function isDirectStayProductUrl(affUrl) {
+    let dec = String(affUrl || "");
+    try { dec = decodeURIComponent(dec); } catch {}
+    const low = dec.toLowerCase();
+    if (/\/activity\/|\/experiences\/|\/car-rentals\/|\/transfers\//.test(low)) return false;
+    if (/klook\.com\/(?:[a-z]{2}-[a-z]{2}\/)?hotels\/?(?:\?|$)/i.test(low)) return false;
+    return /klook\.com\/.*\/hotels\/detail\/|kkday\.com\/.*\/product\/\d+/i.test(low);
 }
 
 async function handleFlight(body, context) {
@@ -331,18 +346,17 @@ async function handleHotel(body, context) {
 
     const isAllTr = normCity(cityEn) === "all turkey" || normCity(province) === "tum turkiye";
     const tCity = normCity(cityEn), tProv = normCity(province);
-    const candidates = [];
+    const directCandidates = [];
 
+    // قبول روابط الفنادق المباشرة فقط من feed واستبعاد أي رابط /hotels/ فارغ
     const feed = await loadSiteFeed(context);
     for (const h of (feed?.mainHotels || [])) {
         const hc = normCity(h.cityEn || h.city || ""), hp = normCity(h.city || h.cityEn || "");
         if (!isAllTr && hc !== tCity && hp !== tProv && !hc.includes(tCity) && !tCity.includes(hc)) continue;
         const aff = String(h.affiliateUrl || h.link || "");
-        if (!aff.startsWith("http")) continue;
-        let dec = aff; try { dec = decodeURIComponent(aff); } catch {}
-        if (/\/activity\/|\/experiences\/|\/car-rentals\/|\/transfers\//i.test(dec)) continue;
+        if (!isDirectStayProductUrl(aff)) continue;
         const perRoomUsd = Math.round(Number(h.priceUsd || String(h.price || "").replace(/[^0-9.]/g, "")) || 45);
-        candidates.push({
+        directCandidates.push({
             name: h.name || h.title || null, cityEn: h.cityEn || h.city || cityEn,
             cityTr: h.city || h.cityEn || province, stayType: String(h.stayType || h.accType || "hotel").toLowerCase(),
             priceUsd: perRoomUsd * rooms, perRoomUsd, rooms, affiliateUrl: aff, i18n: h.i18n || null,
@@ -356,20 +370,19 @@ async function handleHotel(body, context) {
     const totalNightMarket = realRoomPrice * rooms;
 
     let bestStay = null;
-    if (candidates.length > 0) {
-        candidates.sort((a, b) => {
+    if (directCandidates.length > 0) {
+        directCandidates.sort((a, b) => {
             const ta = a.stayType === stayType ? 0 : 1, tb = b.stayType === stayType ? 0 : 1;
             if (ta !== tb) return ta - tb;
-            const dA = a.priceUsd <= budgetUsd * rooms ? (budgetUsd * rooms - a.priceUsd) : (a.priceUsd - budgetUsd * rooms + 1000);
-            const dB = b.priceUsd <= budgetUsd * rooms ? (budgetUsd * rooms - b.priceUsd) : (b.priceUsd - budgetUsd * rooms + 1000);
-            return dA - dB;
+            return Math.abs(a.priceUsd - budgetUsd * rooms) - Math.abs(b.priceUsd - budgetUsd * rooms);
         });
-        bestStay = candidates[0];
+        bestStay = directCandidates[0];
     } else {
         bestStay = {
             name: null, cityEn: dispCity, cityTr: dispProv, stayType,
             priceUsd: totalNightMarket, perRoomUsd: realRoomPrice, rooms,
-            affiliateUrl: buildAccurateKlookStayUrl(dispCity, stayType), i18n: null,
+            affiliateUrl: buildAccurateKlookStayUrl(isAllTr ? "Turkey" : dispCity, stayType),
+            i18n: null,
         };
     }
 
@@ -389,7 +402,7 @@ async function handleHotel(body, context) {
 }
 
 export async function onRequestGet(context) {
-    return jsonResp({ ok: true, version: "3.3", hasAviasalesToken: Boolean(context.env?.AVIASALES_API_TOKEN) });
+    return jsonResp({ ok: true, version: "3.4", hasAviasalesToken: Boolean(context.env?.AVIASALES_API_TOKEN) });
 }
 
 export async function onRequestPost(context) {
