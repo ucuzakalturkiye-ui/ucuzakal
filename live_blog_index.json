@@ -1,6 +1,82 @@
 {
-  "updatedAt": "2026-11-25T06:52:41.367203+00:00",
+  "updatedAt": "2026-11-25T18:38:15.799075+00:00",
   "posts": [
+    {
+      "slug": "flight-istanbul-istanbul-moskova-havalimani-ulasim-esim-20261125",
+      "category": "flight",
+      "clusterAngle": "airport_logistics",
+      "templateType": "flight_blog",
+      "status": "published",
+      "city": "İstanbul",
+      "cityEn": "Istanbul",
+      "cities": {
+        "tr": "İstanbul",
+        "ar": "إسطنبول",
+        "ru": "Стамбул",
+        "en": "Istanbul"
+      },
+      "title": "İstanbul ➔ Moskova Uçuş + İstanbul Havalimanı Transfer & eSIM Rehberi (2026) — $68",
+      "excerpt": "İniş sonrası metro, ekspres servis, sabit fiyatlı transfer ve havalimanında yüksek internet faturasını önleme. Bu güncel 2026 İstanbul ➔ Moskova rehberinde $68 başlangıçlı canlı fırsatla %46 tasarruf etmenin ve İstanbul ucuz uçak bileti odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+      "titles": {
+        "tr": "İstanbul ➔ Moskova Uçuş + İstanbul Havalimanı Transfer & eSIM Rehberi (2026) — $68",
+        "ar": "دليل الوصول إلى مطار إسطنبول وتذاكر إسطنبول ← موسكو (2026): المواصلات والـ eSIM من $68",
+        "ru": "Перелет Стамбул ➔ Москва и логистика аэропорта Стамбул (2026): трансфер и eSIM от $68",
+        "en": "Istanbul ➔ Moscow Flights & Istanbul Airport Transfer + eSIM Blueprint (2026) from $68"
+      },
+      "excerpts": {
+        "tr": "İniş sonrası metro, ekspres servis, sabit fiyatlı transfer ve havalimanında yüksek internet faturasını önleme. Bu güncel 2026 İstanbul ➔ Moskova rehberinde $68 başlangıçlı canlı fırsatla %46 tasarruf etmenin ve İstanbul ucuz uçak bileti odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+        "ar": "كل ما تحتاجه من لحظة هبوط الطائرة: أسرع مواصلات المطار، التوصيل العائلي، وتفعيل الإنترنت قبل الإقلاع. في هذا الدليل العملي لعام 2026 حول إسطنبول ← موسكو، نستعرض لك الخيارات الأكثر طلباً (أرخص تذاكر طيران إلى إسطنبول) مع أسعار حية تبدأ من $68 وتوفير يصل إلى 46%.",
+        "ru": "Полный план после прилета: метро, экспресс-автобусы, фиксированный трансфер и связь eSIM. В этом практическом гиде 2026 года по направлению Стамбул ➔ Москва собраны живые тарифы от $68, экономия до 46% и ответы на главные вопросы (дешевые авиабилеты в Стамбул).",
+        "en": "Step-by-step arrival guide covering rail links, fixed-rate transfers, and pre-flight eSIM setup. In this 2026 guide to Istanbul ➔ Moscow, we unpack real pricing from $68 (saving up to 46%) and high-demand insights (cheap flights to Istanbul)."
+      },
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-moskova-havalimani-ulasim-esim-20261125/hero.webp?v=4db4fe3bd1",
+      "heroHash": "4db4fe3bd1",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/flight-istanbul-istanbul-moskova-havalimani-ulasim-esim-20261125.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FIST2412SVO1",
+      "price": "$68",
+      "wordCountTr": 914,
+      "readingTimeMin": 8,
+      "publishedAt": "2026-11-25T18:38:15.799075+00:00",
+      "updatedAt": "2026-11-25T18:38:15.799075+00:00"
+    },
+    {
+      "slug": "hotel-izmir-gastronomi-ve-oteller-gastronomi-ve-oteller-20261125",
+      "category": "hotel",
+      "clusterAngle": "gastronomy_stay",
+      "templateType": "hotel_blog",
+      "status": "published",
+      "city": "İzmir",
+      "cityEn": "Izmir",
+      "cities": {
+        "tr": "İzmir",
+        "ar": "إزمير",
+        "ru": "Измир",
+        "en": "Izmir"
+      },
+      "title": "İzmir Gurme & Konaklama Rehberi (2026): Türk Mutfağı, Tatlılar ve En Yakın Oteller",
+      "excerpt": "Yerel kahvaltıcılar, otantik tatlıcılar ve akşam yürüyerek ulaşabileceğiniz en iyi gastronomi semtleri. Bu güncel 2026 İzmir rehberinde $67 başlangıçlı canlı fırsatla %21 tasarruf etmenin ve İzmir en iyi oteller odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+      "titles": {
+        "tr": "İzmir Gurme & Konaklama Rehberi (2026): Türk Mutfağı, Tatlılar ve En Yakın Oteller",
+        "ar": "دليل المطبخ والحلويات التركية في إزمير (2026) مع أفضل الفنادق القريبة من $67",
+        "ru": "Гастрономический гид по городу Измир (2026): турецкая кухня и лучшие отели от $67",
+        "en": "Izmir Food, Sweets & Stay Guide (2026): Authentic Turkish Dining from $67"
+      },
+      "excerpts": {
+        "tr": "Yerel kahvaltıcılar, otantik tatlıcılar ve akşam yürüyerek ulaşabileceğiniz en iyi gastronomi semtleri. Bu güncel 2026 İzmir rehberinde $67 başlangıçlı canlı fırsatla %21 tasarruf etmenin ve İzmir en iyi oteller odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+        "ar": "دليل يجمع بين أشهر الأطباق والحلويات التركية الأصيلة وأفضل الأحياء السكنية القريبة من المطاعم المميزة. في هذا الدليل العملي لعام 2026 حول إزمير، نستعرض لك الخيارات الأكثر طلباً (أفضل فنادق إزمير) مع أسعار حية تبدأ من $67 وتوفير يصل إلى 21%.",
+        "ru": "Сочетание лучших локальных ресторанов, турецких сладостей и удобных отелей рядом. В этом практическом гиде 2026 года по направлению Измир собраны живые тарифы от $67, экономия до 21% и ответы на главные вопросы (лучшие отели Измира).",
+        "en": "Pairing authentic Turkish cuisine and traditional sweets with the most walkable dining districts. In this 2026 guide to Izmir, we unpack real pricing from $67 (saving up to 21%) and high-demand insights (best hotels in Izmir)."
+      },
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-izmir-gastronomi-ve-oteller-gastronomi-ve-oteller-20261125/hero.webp?v=934e583142",
+      "heroHash": "934e583142",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-izmir-gastronomi-ve-oteller-gastronomi-ve-oteller-20261125.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DIzmir%2520Turkey%2520hotel%26type%3Dhotel",
+      "price": "$67",
+      "wordCountTr": 918,
+      "readingTimeMin": 8,
+      "publishedAt": "2026-11-25T18:38:08.036538+00:00",
+      "updatedAt": "2026-11-25T18:38:08.036538+00:00"
+    },
     {
       "slug": "flight-istanbul-istanbul-moskova-bagaj-direkt-ucus-20261125",
       "category": "flight",
@@ -838,5 +914,5 @@
       "updatedAt": "2026-11-25T02:46:07.210719+00:00"
     }
   ],
-  "totalPosts": 22
+  "totalPosts": 24
 }
