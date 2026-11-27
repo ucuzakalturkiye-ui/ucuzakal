@@ -1,6 +1,82 @@
 {
-  "updatedAt": "2026-11-27T06:53:16.665389+00:00",
+  "updatedAt": "2026-11-27T18:40:13.258666+00:00",
   "posts": [
+    {
+      "slug": "flight-istanbul-istanbul-bodrum-havalimani-ulasim-esim-20261127",
+      "category": "flight",
+      "clusterAngle": "airport_logistics",
+      "templateType": "flight_blog",
+      "status": "published",
+      "city": "İstanbul",
+      "cityEn": "Istanbul",
+      "cities": {
+        "tr": "İstanbul",
+        "ar": "إسطنبول",
+        "ru": "Стамбул",
+        "en": "Istanbul"
+      },
+      "title": "İstanbul ➔ Bodrum Uçuş + İstanbul Havalimanı Transfer & eSIM Rehberi (2026) — $27",
+      "excerpt": "İniş sonrası metro, ekspres servis, sabit fiyatlı transfer ve havalimanında yüksek internet faturasını önleme. Bu güncel 2026 İstanbul ➔ Bodrum rehberinde $27 başlangıçlı canlı fırsatla %46 tasarruf etmenin ve istanbul bodrum uçak bileti odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+      "titles": {
+        "tr": "İstanbul ➔ Bodrum Uçuş + İstanbul Havalimanı Transfer & eSIM Rehberi (2026) — $27",
+        "ar": "دليل الوصول إلى مطار إسطنبول وتذاكر إسطنبول ← بودروم (2026): المواصلات والـ eSIM من $27",
+        "ru": "Перелет Стамбул ➔ Бодрум и логистика аэропорта Стамбул (2026): трансфер и eSIM от $27",
+        "en": "Istanbul ➔ Bodrum Flights & Istanbul Airport Transfer + eSIM Blueprint (2026) from $27"
+      },
+      "excerpts": {
+        "tr": "İniş sonrası metro, ekspres servis, sabit fiyatlı transfer ve havalimanında yüksek internet faturasını önleme. Bu güncel 2026 İstanbul ➔ Bodrum rehberinde $27 başlangıçlı canlı fırsatla %46 tasarruf etmenin ve istanbul bodrum uçak bileti odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+        "ar": "كل ما تحتاجه من لحظة هبوط الطائرة: أسرع مواصلات المطار، التوصيل العائلي، وتفعيل الإنترنت قبل الإقلاع. في هذا الدليل العملي لعام 2026 حول إسطنبول ← بودروم، نستعرض لك الخيارات الأكثر طلباً (فنادق إسطنبول تقسيم 4 نجوم) مع أسعار حية تبدأ من $27 وتوفير يصل إلى 46%.",
+        "ru": "Полный план после прилета: метро, экспресс-автобусы, фиксированный трансфер и связь eSIM. В этом практическом гиде 2026 года по направлению Стамбул ➔ Бодрум собраны живые тарифы от $27, экономия до 46% и ответы на главные вопросы (дешевые авиабилеты в Стамбул).",
+        "en": "Step-by-step arrival guide covering rail links, fixed-rate transfers, and pre-flight eSIM setup. In this 2026 guide to Istanbul ➔ Bodrum, we unpack real pricing from $27 (saving up to 46%) and high-demand insights (cheap flights to Istanbul)."
+      },
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-havalimani-ulasim-esim-20261127/hero.webp?v=59028ef15b",
+      "heroHash": "59028ef15b",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/flight-istanbul-istanbul-bodrum-havalimani-ulasim-esim-20261127.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSAW1401BJV1",
+      "price": "$27",
+      "wordCountTr": 924,
+      "readingTimeMin": 8,
+      "publishedAt": "2026-11-27T18:40:13.258666+00:00",
+      "updatedAt": "2026-11-27T18:40:13.258666+00:00"
+    },
+    {
+      "slug": "hotel-bursa-aile-apart-resort-aile-apart-resort-20261127",
+      "category": "hotel",
+      "clusterAngle": "family_apart",
+      "templateType": "hotel_blog",
+      "status": "published",
+      "city": "Bursa",
+      "cityEn": "Bursa",
+      "cities": {
+        "tr": "Bursa",
+        "ar": "بورصة",
+        "ru": "Бурса",
+        "en": "Bursa"
+      },
+      "title": "Bursa Aile Tatili (2026): Apart Daire mi, Resort mu? $58'dan Başlayan Seçenekler",
+      "excerpt": "Çocuklu aileler ve 4+ kişilik gruplar için mutfaklı rezidans, her şey dahil resort ve otel maliyet kıyası. Bu güncel 2026 Bursa rehberinde $58 başlangıçlı canlı fırsatla %21 tasarruf etmenin ve Bursa termal spa otelleri odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+      "titles": {
+        "tr": "Bursa Aile Tatili (2026): Apart Daire mi, Resort mu? $58'dan Başlayan Seçenekler",
+        "ar": "فنادق أم شقق فندقية أم منتجعات في بورصة (2026)؟ دليل العائلات من $58",
+        "ru": "Апартаменты, отель или курорт в городе Бурса (2026): гид для семей от $58",
+        "en": "Bursa Family Stay Guide (2026): Apartments vs. Resorts from $58"
+      },
+      "excerpts": {
+        "tr": "Çocuklu aileler ve 4+ kişilik gruplar için mutfaklı rezidans, her şey dahil resort ve otel maliyet kıyası. Bu güncel 2026 Bursa rehberinde $58 başlangıçlı canlı fırsatla %21 tasarruf etmenin ve Bursa termal spa otelleri odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+        "ar": "مقارنة عملية بالأرقام للعائلات العربية بين الشقق الفندقية المزوّدة بمطبخ والمنتجعات الشاملة والفنادق المركزية. في هذا الدليل العملي لعام 2026 حول بورصة، نستعرض لك الخيارات الأكثر طلباً (فنادق بورصة تركيا 5 نجوم) مع أسعار حية تبدأ من $58 وتوفير يصل إلى 21%.",
+        "ru": "Практическое сравнение апарт-отелей с кухней, курортов и городских отелей для семей с детьми. В этом практическом гиде 2026 года по направлению Бурса собраны живые тарифы от $58, экономия до 21% и ответы на главные вопросы (термальные отели Бурсы).",
+        "en": "Real cost comparison of serviced apartments, all-inclusive resorts, and central hotels for families. In this 2026 guide to Bursa, we unpack real pricing from $58 (saving up to 21%) and high-demand insights (best thermal spa hotels in Bursa)."
+      },
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-bursa-aile-apart-resort-aile-apart-resort-20261127/hero.webp?v=91d5987d91",
+      "heroHash": "91d5987d91",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-bursa-aile-apart-resort-aile-apart-resort-20261127.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DBursa%2520Turkey%2520hotel%26type%3Dhotel",
+      "price": "$58",
+      "wordCountTr": 918,
+      "readingTimeMin": 8,
+      "publishedAt": "2026-11-27T18:40:01.831008+00:00",
+      "updatedAt": "2026-11-27T18:40:01.831008+00:00"
+    },
     {
       "slug": "flight-istanbul-istanbul-bodrum-bagaj-direkt-ucus-20261127",
       "category": "flight",
@@ -1142,5 +1218,5 @@
       "updatedAt": "2026-11-26T04:21:16.696207+00:00"
     }
   ],
-  "totalPosts": 30
+  "totalPosts": 32
 }
