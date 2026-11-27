@@ -1,6 +1,82 @@
 {
-  "updatedAt": "2026-11-26T18:40:36.995772+00:00",
+  "updatedAt": "2026-11-27T06:53:16.665389+00:00",
   "posts": [
+    {
+      "slug": "flight-istanbul-istanbul-bodrum-bagaj-direkt-ucus-20261127",
+      "category": "flight",
+      "clusterAngle": "baggage_airlines",
+      "templateType": "flight_blog",
+      "status": "published",
+      "city": "İstanbul",
+      "cityEn": "Istanbul",
+      "cities": {
+        "tr": "İstanbul",
+        "ar": "إسطنبول",
+        "ru": "Стамбул",
+        "en": "Istanbul"
+      },
+      "title": "İstanbul ➔ Bodrum Direkt Uçuş ve Bagaj Rehberi (2026): $27'dan Başlayan Akıllı Karşılaştırma",
+      "excerpt": "Light ve tam bagajlı tarifeler, online check-in zamanlaması ve kapıda ekstra bagaj tuzağından kaçınma. Bu güncel 2026 İstanbul ➔ Bodrum rehberinde $27 başlangıçlı canlı fırsatla %46 tasarruf etmenin ve istanbul bodrum uçak bileti odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+      "titles": {
+        "tr": "İstanbul ➔ Bodrum Direkt Uçuş ve Bagaj Rehberi (2026): $27'dan Başlayan Akıllı Karşılaştırma",
+        "ar": "مقارنة الرحلات المباشرة وقوانين الأمتعة على خط إسطنبول ← بودروم (2026) ابتداءً من $27",
+        "ru": "Прямые рейсы и правила багажа Стамбул ➔ Бодрум (2026): сравнение тарифов от $27",
+        "en": "Istanbul ➔ Bodrum Direct Flights & Baggage Guide (2026): Smart Fare Comparison from $27"
+      },
+      "excerpts": {
+        "tr": "Light ve tam bagajlı tarifeler, online check-in zamanlaması ve kapıda ekstra bagaj tuzağından kaçınma. Bu güncel 2026 İstanbul ➔ Bodrum rehberinde $27 başlangıçlı canlı fırsatla %46 tasarruf etmenin ve istanbul bodrum uçak bileti odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+        "ar": "مقارنة شاملة بين التذاكر الاقتصادية الخفيفة وتذاكر الأمتعة الكاملة لتجنب الرسوم المضاعفة في المطار. في هذا الدليل العملي لعام 2026 حول إسطنبول ← بودروم، نستعرض لك الخيارات الأكثر طلباً (فنادق إسطنبول تقسيم 4 نجوم) مع أسعار حية تبدأ من $27 وتوفير يصل إلى 46%.",
+        "ru": "Сравнение тарифов с ручной кладью и багажом, чтобы избежать переплат в аэропорту. В этом практическом гиде 2026 года по направлению Стамбул ➔ Бодрум собраны живые тарифы от $27, экономия до 46% и ответы на главные вопросы (дешевые авиабилеты в Стамбул).",
+        "en": "Comparing cabin-only light fares versus checked-bag bundles to avoid airport surcharges. In this 2026 guide to Istanbul ➔ Bodrum, we unpack real pricing from $27 (saving up to 46%) and high-demand insights (cheap flights to Istanbul)."
+      },
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-bagaj-direkt-ucus-20261127/hero.webp?v=6e658ac5b3",
+      "heroHash": "6e658ac5b3",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/flight-istanbul-istanbul-bodrum-bagaj-direkt-ucus-20261127.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=100&marker=798779&p=4114&trs=597953&u=https%3A%2F%2Fwww.aviasales.com%2Fsearch%2FSAW1401BJV1",
+      "price": "$27",
+      "wordCountTr": 908,
+      "readingTimeMin": 8,
+      "publishedAt": "2026-11-27T06:53:16.665389+00:00",
+      "updatedAt": "2026-11-27T06:53:16.665389+00:00"
+    },
+    {
+      "slug": "hotel-istanbul-ucuz-donem-butce-ucuz-donem-butce-20261127",
+      "category": "hotel",
+      "clusterAngle": "budget_seasons",
+      "templateType": "hotel_blog",
+      "status": "published",
+      "city": "İstanbul",
+      "cityEn": "Istanbul",
+      "cities": {
+        "tr": "İstanbul",
+        "ar": "إسطنبول",
+        "ru": "Стамбул",
+        "en": "Istanbul"
+      },
+      "title": "İstanbul En Ucuz Tatil Zamanı ve Bütçe Planı (2026): $61 ile %22 Tasarruf",
+      "excerpt": "Aylara göre fiyat dalgalanmaları, omuz sezon fırsatları ve kur/kart masraflarını sıfırlama taktikleri. Bu güncel 2026 İstanbul rehberinde $61 başlangıçlı canlı fırsatla %22 tasarruf etmenin ve İstanbul en iyi oteller odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+      "titles": {
+        "tr": "İstanbul En Ucuz Tatil Zamanı ve Bütçe Planı (2026): $61 ile %22 Tasarruf",
+        "ar": "أرخص شهور السفر إلى إسطنبول وجدول الميزانية اليومية (2026): وفر 22% ابتداءً من $61",
+        "ru": "Когда дешевле ехать в Стамбул (2026): реальный бюджет и экономия 22% от $61",
+        "en": "Cheapest Time to Visit Istanbul & Daily Budget (2026): Save 22% from $61"
+      },
+      "excerpts": {
+        "tr": "Aylara göre fiyat dalgalanmaları, omuz sezon fırsatları ve kur/kart masraflarını sıfırlama taktikleri. Bu güncel 2026 İstanbul rehberinde $61 başlangıçlı canlı fırsatla %22 tasarruf etmenin ve İstanbul en iyi oteller odaklı doğru seçimi yapmanın tüm adımlarını topladık.",
+        "ar": "تحليل أرخص المواسم السياحية في السنة مع جدول مصاريف يومية واقعية وأسرار تفادي فروقات الصرف. في هذا الدليل العملي لعام 2026 حول إسطنبول، نستعرض لك الخيارات الأكثر طلباً (فنادق إسطنبول تقسيم 4 نجوم) مع أسعار حية تبدأ من $61 وتوفير يصل إلى 22%.",
+        "ru": "Сезонные спады цен, таблица реальных ежедневных расходов и защита от скрытых комиссий. В этом практическом гиде 2026 года по направлению Стамбул собраны живые тарифы от $61, экономия до 22% и ответы на главные вопросы (лучшие отели Стамбула).",
+        "en": "Month-by-month pricing calendar, shoulder-season drops, and real daily cost formulas. In this 2026 guide to Istanbul, we unpack real pricing from $61 (saving up to 22%) and high-demand insights (best hotels in Istanbul)."
+      },
+      "heroImage": "https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-ucuz-donem-butce-ucuz-donem-butce-20261127/hero.webp?v=04a74dc8dc",
+      "heroHash": "04a74dc8dc",
+      "jsonUrl": "https://ucuzakal.pages.dev/assets/blog/posts/hotel-istanbul-ucuz-donem-butce-ucuz-donem-butce-20261127.json",
+      "affiliateUrl": "https://tp.media/r?campaign_id=137&marker=798779&p=4110&trs=597953&u=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fsearch%2Fresult%2F%3Fquery%3DIstanbul%2520Turkey%2520hotel%26type%3Dhotel",
+      "price": "$61",
+      "wordCountTr": 927,
+      "readingTimeMin": 8,
+      "publishedAt": "2026-11-27T06:52:55.589821+00:00",
+      "updatedAt": "2026-11-27T06:52:55.589821+00:00"
+    },
     {
       "slug": "flight-istanbul-istanbul-bodrum-en-ucuz-gunler-20261126",
       "category": "flight",
@@ -1066,5 +1142,5 @@
       "updatedAt": "2026-11-26T04:21:16.696207+00:00"
     }
   ],
-  "totalPosts": 28
+  "totalPosts": 30
 }

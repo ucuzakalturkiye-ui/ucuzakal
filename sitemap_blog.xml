@@ -3,9 +3,61 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://ucuzakal.pages.dev/blog/</loc>
-    <lastmod>2026-11-26</lastmod>
+    <lastmod>2026-11-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://ucuzakal.pages.dev/blog/flight-istanbul-istanbul-bodrum-bagaj-direkt-ucus-20261127/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-bagaj-direkt-ucus-20261127/hero.webp?v=6e658ac5b3</image:loc>
+      <image:title>İstanbul ➔ Bodrum Direkt Uçuş ve Bagaj Rehberi (2026): $27&#x27;dan Başlayan Akıllı Karşılaştırma</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-bagaj-direkt-ucus-20261127/sec_1.webp?v=fa7845dd75</image:loc>
+      <image:title>İstanbul uçuş ve havalimanı terminali rehberi</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-bagaj-direkt-ucus-20261127/sec_2.webp?v=da4c58e19a</image:loc>
+      <image:title>İstanbul varış sonrası şehir merkezi ve ulaşım</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-bagaj-direkt-ucus-20261127/sec_3.webp?v=873ef99d7f</image:loc>
+      <image:title>İstanbul gezi rotası ve en güzel manzaralar</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/flight-istanbul-istanbul-bodrum-bagaj-direkt-ucus-20261127/sec_4.webp?v=28fdbf9804</image:loc>
+      <image:title>İstanbul varış sonrası yerel Türk mutfağı ve lezzetler</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://ucuzakal.pages.dev/blog/hotel-istanbul-ucuz-donem-butce-ucuz-donem-butce-20261127/</loc>
+    <lastmod>2026-11-27</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-ucuz-donem-butce-ucuz-donem-butce-20261127/hero.webp?v=04a74dc8dc</image:loc>
+      <image:title>İstanbul En Ucuz Tatil Zamanı ve Bütçe Planı (2026): $61 ile %22 Tasarruf</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-ucuz-donem-butce-ucuz-donem-butce-20261127/sec_1.webp?v=5191da6617</image:loc>
+      <image:title>İstanbul en iyi konaklama bölgeleri ve şehir manzarası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-ucuz-donem-butce-ucuz-donem-butce-20261127/sec_2.webp?v=bd8b832b7a</image:loc>
+      <image:title>İstanbul lüks otel, resort ve apart daire seçenekleri</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-ucuz-donem-butce-ucuz-donem-butce-20261127/sec_3.webp?v=bce0f20ee0</image:loc>
+      <image:title>İstanbul öne çıkan duraklar ve gezi rotası</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://ucuzakal.pages.dev/assets/blog/images/hotel-istanbul-ucuz-donem-butce-ucuz-donem-butce-20261127/sec_4.webp?v=aa71f5c615</image:loc>
+      <image:title>İstanbul yerel gastronomi ve geleneksel Türk mutfağı</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://ucuzakal.pages.dev/blog/flight-istanbul-istanbul-bodrum-en-ucuz-gunler-20261126/</loc>
