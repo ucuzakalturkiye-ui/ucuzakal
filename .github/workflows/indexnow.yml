@@ -1,0 +1,88 @@
+name: Auto Notify IndexNow (Bing)
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'sitemap.xml'
+      - 'sitemap_blog.xml'
+      - 'index.html'
+      - 'blog/**'
+      - 'live_deals_feed.json'
+  workflow_dispatch:
+
+jobs:
+  notify-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Wait for deployment
+        if: github.event_name == 'push'
+        run: sleep 60
+
+      - name: Submit URLs to IndexNow
+        run: |
+          python3 - << 'EOF'
+          import json
+          import os
+          import urllib.request
+          import urllib.error
+          import xml.etree.ElementTree as ET
+
+          HOST = "ucuzakal.pages.dev"
+          KEY = "2e9926191f544b5e8c4e3ac842e15634"
+          KEY_LOCATION = f"https://{HOST}/{KEY}.txt"
+          SITEMAPS = ["sitemap.xml", "sitemap_blog.xml"]
+
+          urls = []
+          seen = set()
+
+          for sm in SITEMAPS:
+              if not os.path.exists(sm):
+                  continue
+              tree = ET.parse(sm)
+              root = tree.getroot()
+              for elem in root.iter():
+                  if elem.tag == "url" or elem.tag.endswith("}url"):
+                      for child in elem:
+                          if child.tag == "loc" or child.tag == "{http://www.sitemaps.org/schemas/sitemap/0.9}loc":
+                              if child.text:
+                                  u = child.text.strip()
+                                  if u.startswith(f"https://{HOST}") and u not in seen:
+                                      seen.add(u)
+                                      urls.append(u)
+
+          if not urls:
+              urls = [f"https://{HOST}/", f"https://{HOST}/blog/"]
+
+          payload = {
+              "host": HOST,
+              "key": KEY,
+              "keyLocation": KEY_LOCATION,
+              "urlList": urls[:10000],
+          }
+
+          data = json.dumps(payload).encode("utf-8")
+          req = urllib.request.Request(
+              "https://api.indexnow.org/indexnow",
+              data=data,
+              headers={
+                  "Content-Type": "application/json; charset=utf-8",
+                  "User-Agent": "UcuzaKal-IndexNow-Bot/1.0",
+              },
+              method="POST",
+          )
+
+          try:
+              with urllib.request.urlopen(req, timeout=30) as resp:
+                  status = resp.getcode()
+                  print(f"IndexNow status: {status} | Submitted URLs: {len(urls)}")
+                  if status not in (200, 202):
+                      raise SystemExit(f"Unexpected status code: {status}")
+          except urllib.error.HTTPError as e:
+              body = e.read().decode("utf-8", errors="ignore")
+              raise SystemExit(f"IndexNow HTTP error {e.code}: {body}")
+          EOF
